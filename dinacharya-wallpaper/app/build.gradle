@@ -1,0 +1,75 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'app.dinacharya.wallpaper'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'app.dinacharya.wallpaper'
+        minSdk 26
+        // Google Play needs new apps and updates to target Android 16 (API 36) or later.
+        targetSdk 36
+        versionCode 17
+        versionName '1.0'
+    }
+
+    // Two keys, on purpose:
+    //  - "shared": the fixed key in this project, used for the test APK you install yourself. Its
+    //    fingerprint is the one registered in Google Cloud for "Sign in with Google", so it never
+    //    changes. It is public to anyone who sees this project, so it is never used for Google Play.
+    //  - "upload": YOUR private key for Google Play. It is not in this project. The Play workflow
+    //    reads it from GitHub secrets (see README, "Publish on Google Play").
+    signingConfigs {
+        shared {
+            storeFile file('signing/dinacharya.jks')
+            storePassword 'dinacharya'
+            keyAlias 'dinacharya'
+            keyPassword 'dinacharya'
+        }
+        upload {
+            def path = System.getenv('UPLOAD_KEYSTORE_FILE')
+            if (path) {
+                storeFile file(path)
+                storePassword System.getenv('UPLOAD_KEYSTORE_PASSWORD')
+                keyAlias System.getenv('UPLOAD_KEY_ALIAS')
+                keyPassword System.getenv('UPLOAD_KEY_PASSWORD')
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.shared
+        }
+        release {
+            minifyEnabled false
+            signingConfig System.getenv('UPLOAD_KEYSTORE_FILE') ? signingConfigs.upload : signingConfigs.shared
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    // "Sign in with Google" account picker and Drive permission (Google Identity Services).
+    implementation 'com.google.android.gms:play-services-auth:21.2.0'
+    // Google Play Billing: the one-time "Pro" purchase.
+    implementation 'com.android.billingclient:billing:9.1.0'
+    // Google AdMob: small banner ads for people who have not bought Pro, and the consent form.
+    implementation 'com.google.android.gms:play-services-ads:25.5.0'
+    implementation 'com.google.android.ump:user-messaging-platform:4.0.0'
+}
+
+// A bundle for Google Play must be signed with your own upload key, never the shared one above.
+gradle.taskGraph.whenReady { graph ->
+    if (graph.hasTask(':app:bundleRelease') && !System.getenv('UPLOAD_KEYSTORE_FILE')) {
+        throw new GradleException('bundleRelease needs your upload key. Set UPLOAD_KEYSTORE_FILE, '
+                + 'UPLOAD_KEYSTORE_PASSWORD, UPLOAD_KEY_ALIAS and UPLOAD_KEY_PASSWORD '
+                + '(the "Build for Google Play" workflow does this from GitHub secrets).')
+    }
+}

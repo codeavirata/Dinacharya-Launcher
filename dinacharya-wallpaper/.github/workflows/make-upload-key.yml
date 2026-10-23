@@ -1,0 +1,52 @@
+name: Make my Google Play upload key
+
+# Run this ONCE, in a PRIVATE repository, if you have no upload key yet.
+# It makes a key, and gives you a small file with the four secret values to paste into GitHub.
+# Download it, save it somewhere safe (a password manager), then delete the download.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  key:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Only in a private repository
+        if: ${{ github.event.repository.private != true }}
+        run: |
+          echo "::error::This repository is public, so anyone could download the key. Make it private first (Settings > General > Danger zone > Change visibility), then run this again."
+          exit 1
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Make the key
+        run: |
+          PASS=$(openssl rand -hex 16)
+          keytool -genkeypair -keystore upload.jks -storetype PKCS12 -alias upload -keyalg RSA -keysize 2048 \
+            -validity 10000 -storepass "$PASS" -keypass "$PASS" -dname "CN=Dinacharya upload key, O=ASG, C=IN"
+          {
+            echo "Keep this file private. Anyone who has it can sign updates of your app."
+            echo
+            echo "Add these four secrets in GitHub: Settings > Secrets and variables > Actions > New repository secret"
+            echo
+            echo "UPLOAD_KEY_ALIAS      = upload"
+            echo "UPLOAD_KEYSTORE_PASSWORD = $PASS"
+            echo "UPLOAD_KEY_PASSWORD   = $PASS"
+            echo "UPLOAD_KEYSTORE_BASE64 (one long line):"
+            base64 -w0 upload.jks
+            echo
+            echo
+            echo "Fingerprint of this upload key (Google Play asks for the certificate when you register it):"
+            keytool -list -v -keystore upload.jks -storepass "$PASS" | grep -E "SHA1|SHA256"
+          } > upload-key-secrets.txt
+          mkdir out && mv upload.jks upload-key-secrets.txt out/
+
+      - name: Keep the key for 2 days
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-upload-key
+          path: out/
+          retention-days: 2

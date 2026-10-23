@@ -1,0 +1,13021 @@
+[
+{
+"id": 1,
+"en": "Backup failed",
+"src": [
+"AccountStore.java:147"
+]
+},
+{
+"id": 2,
+"en": "failed, code {1}: {2}",
+"src": [
+"AdSlot.java:69"
+]
+},
+{
+"id": 3,
+"en": "No ad right now (code {1}). Trying again soon.",
+"src": [
+"AdSlot.java:73"
+]
+},
+{
+"id": 4,
+"en": "Loading an ad…",
+"src": [
+"AdSlot.java:84"
+]
+},
+{
+"id": 5,
+"en": "Remove ads with Pro",
+"src": [
+"AdSlot.java:87"
+]
+},
+{
+"id": 6,
+"en": "asked for",
+"src": [
+"AdSlot.java:91"
+]
+},
+{
+"id": 7,
+"en": "no banner asked for yet",
+"src": [
+"Ads.java:36"
+]
+},
+{
+"id": 8,
+"en": "no video asked for yet",
+"src": [
+"Ads.java:37"
+]
+},
+{
+"id": 9,
+"en": "not asked yet",
+"src": [
+"Ads.java:38"
+]
+},
+{
+"id": 10,
+"en": "form error {1}: {2}",
+"src": [
+"Ads.java:71"
+]
+},
+{
+"id": 11,
+"en": "update error {1}: {2}",
+"src": [
+"Ads.java:79"
+]
+},
+{
+"id": 12,
+"en": "Ads: ",
+"src": [
+"Ads.java:116"
+]
+},
+{
+"id": 13,
+"en": "on in this build",
+"src": [
+"Ads.java:118"
+]
+},
+{
+"id": 14,
+"en": "off in this build",
+"src": [
+"Ads.java:118"
+]
+},
+{
+"id": 15,
+"en": ", Pro {1}",
+"src": [
+"Ads.java:119"
+]
+},
+{
+"id": 16,
+"en": "not owned",
+"src": [
+"Ads.java:119"
+]
+},
+{
+"id": 17,
+"en": ", consent {1}",
+"src": [
+"Ads.java:120"
+]
+},
+{
+"id": 18,
+"en": ", canRequestAds {1}",
+"src": [
+"Ads.java:121"
+]
+},
+{
+"id": 19,
+"en": ", library ready {1}",
+"src": [
+"Ads.java:122"
+]
+},
+{
+"id": 20,
+"en": ", banner: {1}",
+"src": [
+"Ads.java:123"
+]
+},
+{
+"id": 21,
+"en": ", video: {1}",
+"src": [
+"Ads.java:124"
+]
+},
+{
+"id": 22,
+"en": "Test alarm",
+"src": [
+"AlarmActivity.java:160",
+"AlarmScheduler.java:143",
+"AlarmService.java:172",
+"AlarmService.java:352"
+]
+},
+{
+"id": 23,
+"en": "If you can see and hear this, your alarms will work.",
+"src": [
+"AlarmActivity.java:161"
+]
+},
+{
+"id": 24,
+"en": "Alarms are working on this phone.",
+"src": [
+"AlarmActivity.java:163"
+]
+},
+{
+"id": 25,
+"en": "A real alarm looks like this and asks if you are continuing with the schedule. Nothing in your routine was changed.",
+"src": [
+"AlarmActivity.java:164"
+]
+},
+{
+"id": 26,
+"en": "Stop the test",
+"src": [
+"AlarmActivity.java:166"
+]
+},
+{
+"id": 27,
+"en": "Next slot",
+"src": [
+"AlarmActivity.java:189",
+"AlarmService.java:175",
+"AlarmService.java:353"
+]
+},
+{
+"id": 28,
+"en": "Your day starts. {1} to {2}",
+"src": [
+"AlarmActivity.java:190"
+]
+},
+{
+"id": 29,
+"en": "{1} to {2}",
+"src": [
+"AlarmActivity.java:191"
+]
+},
+{
+"id": 30,
+"en": "Are you continuing with the schedule?",
+"src": [
+"AlarmActivity.java:200"
+]
+},
+{
+"id": 31,
+"en": "Yes, continue as planned",
+"src": [
+"AlarmActivity.java:201"
+]
+},
+{
+"id": 32,
+"en": "C",
+"src": [
+"AlarmActivity.java:203",
+"AlarmActivity.java:233"
+]
+},
+{
+"id": 33,
+"en": "No, I want to change it",
+"src": [
+"AlarmActivity.java:206"
+]
+},
+{
+"id": 34,
+"en": "What will you do instead?",
+"src": [
+"AlarmActivity.java:214"
+]
+},
+{
+"id": 35,
+"en": "This changes today only. Your saved routine stays as it is.",
+"src": [
+"AlarmActivity.java:223"
+]
+},
+{
+"id": 36,
+"en": "Save new name for today",
+"src": [
+"AlarmActivity.java:225"
+]
+},
+{
+"id": 37,
+"en": "Type a name, or choose Take it off",
+"src": [
+"AlarmActivity.java:228"
+]
+},
+{
+"id": 38,
+"en": "R",
+"src": [
+"AlarmActivity.java:238"
+]
+},
+{
+"id": 39,
+"en": "Changed for today: {1}",
+"src": [
+"AlarmActivity.java:239"
+]
+},
+{
+"id": 40,
+"en": "Take it off for today",
+"src": [
+"AlarmActivity.java:241"
+]
+},
+{
+"id": 41,
+"en": "S",
+"src": [
+"AlarmActivity.java:243"
+]
+},
+{
+"id": 42,
+"en": "Taken off for today",
+"src": [
+"AlarmActivity.java:244"
+]
+},
+{
+"id": 43,
+"en": "Back",
+"src": [
+"AlarmActivity.java:246",
+"AlarmActivity.java:392",
+"AlarmActivity.java:404",
+"AlarmActivity.java:434",
+"TourActivity.java:216"
+]
+},
+{
+"id": 44,
+"en": "Asking again",
+"src": [
+"AlarmActivity.java:257"
+]
+},
+{
+"id": 45,
+"en": "Time to sleep",
+"src": [
+"AlarmActivity.java:257",
+"AlarmService.java:178",
+"AlarmService.java:353"
+]
+},
+{
+"id": 46,
+"en": "Planned bedtime {1}",
+"src": [
+"AlarmActivity.java:258",
+"ReportRenderer.java:517"
+]
+},
+{
+"id": 47,
+"en": "Are you going to sleep, or will it take more time?",
+"src": [
+"AlarmActivity.java:260"
+]
+},
+{
+"id": 48,
+"en": "I am going to sleep",
+"src": [
+"AlarmActivity.java:261"
+]
+},
+{
+"id": 49,
+"en": "It will take more time",
+"src": [
+"AlarmActivity.java:269"
+]
+},
+{
+"id": 50,
+"en": "Remind me again after how long?",
+"src": [
+"AlarmActivity.java:278"
+]
+},
+{
+"id": 51,
+"en": "or type minutes",
+"src": [
+"AlarmActivity.java:286"
+]
+},
+{
+"id": 52,
+"en": "{1} min",
+"src": [
+"AlarmActivity.java:353",
+"Routine.java:408"
+]
+},
+{
+"id": 53,
+"en": "Remind me",
+"src": [
+"AlarmActivity.java:367"
+]
+},
+{
+"id": 54,
+"en": "Pick between 1 and 360 minutes",
+"src": [
+"AlarmActivity.java:378"
+]
+},
+{
+"id": 55,
+"en": "I will ask again at {1}",
+"src": [
+"AlarmActivity.java:390"
+]
+},
+{
+"id": 56,
+"en": "Going to sleep at {1}",
+"src": [
+"AlarmActivity.java:398"
+]
+},
+{
+"id": 57,
+"en": ", {1} after your plan",
+"src": [
+"AlarmActivity.java:399"
+]
+},
+{
+"id": 58,
+"en": "Good night. I will wake you at {1}.",
+"src": [
+"AlarmActivity.java:402"
+]
+},
+{
+"id": 59,
+"en": "Set the alarm",
+"src": [
+"AlarmActivity.java:403",
+"AlarmActivity.java:433"
+]
+},
+{
+"id": 60,
+"en": "When do you want to wake up?",
+"src": [
+"AlarmActivity.java:407"
+]
+},
+{
+"id": 61,
+"en": "Normal schedule",
+"src": [
+"AlarmActivity.java:408"
+]
+},
+{
+"id": 62,
+"en": "Shift my day later",
+"src": [
+"AlarmActivity.java:408"
+]
+},
+{
+"id": 63,
+"en": "Skip the slots I sleep through",
+"src": [
+"AlarmActivity.java:408"
+]
+},
+{
+"id": 64,
+"en": "These changes are for tomorrow only. To change your routine for good, edit it in the app.",
+"src": [
+"AlarmActivity.java:431"
+]
+},
+{
+"id": 65,
+"en": "Good night. Alarm set for {1}",
+"src": [
+"AlarmActivity.java:446"
+]
+},
+{
+"id": 66,
+"en": "Alarms switched on",
+"src": [
+"AlarmHealth.java:50"
+]
+},
+{
+"id": 67,
+"en": "Nothing rings while this is off.",
+"src": [
+"AlarmHealth.java:50"
+]
+},
+{
+"id": 68,
+"en": "Notifications",
+"src": [
+"AlarmHealth.java:51",
+"Permissions.java:56",
+"SettingsPage.java:384",
+"TourArt.java:229"
+]
+},
+{
+"id": 69,
+"en": "The alarm question appears here, also on the lock screen.",
+"src": [
+"AlarmHealth.java:51"
+]
+},
+{
+"id": 70,
+"en": "Exact alarms",
+"src": [
+"AlarmHealth.java:53",
+"Permissions.java:59",
+"SettingsPage.java:389"
+]
+},
+{
+"id": 71,
+"en": "Rings on the minute a slot starts, not a few minutes late.",
+"src": [
+"AlarmHealth.java:53"
+]
+},
+{
+"id": 72,
+"en": "Alarm screen over the lock screen",
+"src": [
+"AlarmHealth.java:55",
+"Permissions.java:62"
+]
+},
+{
+"id": 73,
+"en": "Opens the question by itself when the phone is locked.",
+"src": [
+"AlarmHealth.java:55",
+"Permissions.java:62"
+]
+},
+{
+"id": 74,
+"en": "Alarm pop-up allowed",
+"src": [
+"AlarmHealth.java:57"
+]
+},
+{
+"id": 75,
+"en": "Shows the question on top while you use the phone.",
+"src": [
+"AlarmHealth.java:57"
+]
+},
+{
+"id": 76,
+"en": "No battery limits",
+"src": [
+"AlarmHealth.java:59",
+"Permissions.java:68",
+"SettingsPage.java:396"
+]
+},
+{
+"id": 77,
+"en": "Stops the phone from putting the app to sleep. Set Battery to Unrestricted on the app info page.",
+"src": [
+"AlarmHealth.java:59"
+]
+},
+{
+"id": 78,
+"en": "Allow background activity",
+"src": [
+"AlarmHealth.java:62",
+"Permissions.java:71"
+]
+},
+{
+"id": 79,
+"en": "Some phones stop apps unless you allow this in their own settings.",
+"src": [
+"AlarmHealth.java:62"
+]
+},
+{
+"id": 80,
+"en": "Find Dinacharya Launcher and allow auto-start or background activity.",
+"src": [
+"AlarmHealth.java:179"
+]
+},
+{
+"id": 81,
+"en": "Open Battery, and choose Unrestricted or Allow background activity.",
+"src": [
+"AlarmHealth.java:189"
+]
+},
+{
+"id": 82,
+"en": "Open Settings, Apps, Dinacharya Launcher, Battery",
+"src": [
+"AlarmHealth.java:191"
+]
+},
+{
+"id": 83,
+"en": "Alarms",
+"src": [
+"AlarmService.java:151",
+"ExtraSections.java:113",
+"HomePage.java:281",
+"HomePage.java:288",
+"SettingsPage.java:90",
+"SettingsPage.java:350",
+"SettingsPage.java:453",
+"TourArt.java:377"
+]
+},
+{
+"id": 84,
+"en": "Rings when a slot of your day starts",
+"src": [
+"AlarmService.java:152"
+]
+},
+{
+"id": 85,
+"en": "Missed alarms",
+"src": [
+"AlarmService.java:157"
+]
+},
+{
+"id": 86,
+"en": "This is how an alarm looks. Tap to stop it.",
+"src": [
+"AlarmService.java:173"
+]
+},
+{
+"id": 87,
+"en": "{1} to {2}. Tap to answer.",
+"src": [
+"AlarmService.java:176"
+]
+},
+{
+"id": 88,
+"en": "Going to sleep, or will it take more time?",
+"src": [
+"AlarmService.java:179"
+]
+},
+{
+"id": 89,
+"en": "Alarms (backup)",
+"src": [
+"AlarmService.java:338"
+]
+},
+{
+"id": 90,
+"en": "Tap to answer.",
+"src": [
+"AlarmService.java:354"
+]
+},
+{
+"id": 91,
+"en": "Bedtime question",
+"src": [
+"AlarmService.java:381"
+]
+},
+{
+"id": 92,
+"en": "Missed: {1}",
+"src": [
+"AlarmService.java:384"
+]
+},
+{
+"id": 93,
+"en": "The alarm rang for five minutes. Your schedule was not changed.",
+"src": [
+"AlarmService.java:385"
+]
+},
+{
+"id": 94,
+"en": "Sleep",
+"src": [
+"AlarmState.java:11",
+"InsightsPage.java:115",
+"Plan.java:369",
+"ReportRenderer.java:291",
+"ReportRenderer.java:515",
+"ReportRenderer.java:561",
+"Routine.java:15",
+"Routine.java:634",
+"TourArt.java:183",
+"TourArt.java:251"
+]
+},
+{
+"id": 95,
+"en": "reaskAt={1}\nreaskBed={2}\nreaskDay={3}\nreaskSrc={4}\nreaskTitle={5}\nlastFired={6}\n",
+"src": [
+"AlarmState.java:16"
+]
+},
+{
+"id": 96,
+"en": "Not enough data",
+"src": [
+"Analyzer.java:71"
+]
+},
+{
+"id": 97,
+"en": "Excellent",
+"src": [
+"Analyzer.java:72"
+]
+},
+{
+"id": 98,
+"en": "Good",
+"src": [
+"Analyzer.java:73"
+]
+},
+{
+"id": 99,
+"en": "Fair",
+"src": [
+"Analyzer.java:74"
+]
+},
+{
+"id": 100,
+"en": "Needs work",
+"src": [
+"Analyzer.java:75"
+]
+},
+{
+"id": 101,
+"en": "{1}  (work)",
+"src": [
+"AppEntry.java:23"
+]
+},
+{
+"id": 102,
+"en": "Dinacharya routine",
+"src": [
+"AppKey.java:60",
+"LauncherSettingsActivity.java:262"
+]
+},
+{
+"id": 103,
+"en": "Camera",
+"src": [
+"AppKey.java:61",
+"LauncherSettingsActivity.java:262",
+"TourArt.java:202",
+"TourArt.java:233"
+]
+},
+{
+"id": 104,
+"en": "Phone",
+"src": [
+"AppKey.java:62",
+"LauncherSettingsActivity.java:262",
+"SettingsPage.java:91",
+"TourArt.java:236"
+]
+},
+{
+"id": 105,
+"en": "Search",
+"src": [
+"AppPicker.java:45"
+]
+},
+{
+"id": 106,
+"en": "Cancel",
+"src": [
+"AppPicker.java:91",
+"BackupPage.java:279",
+"BackupPage.java:288",
+"BackupPage.java:404",
+"BackupPage.java:491",
+"BackupPage.java:572",
+"BackupPage.java:622",
+"BackupPage.java:637",
+"FocusDialog.java:160",
+"GroupDialog.java:211",
+"GroupDialog.java:372",
+"InsightsPage.java:270",
+"LanguageDialog.java:41",
+"LauncherSettingsActivity.java:479",
+"LauncherSettingsActivity.java:525",
+"RoutinePage.java:411",
+"RoutinePage.java:432",
+"RoutinePage.java:449",
+"RoutinePage.java:541",
+"RoutinePage.java:568",
+"RoutinePage.java:829",
+"RoutinePage.java:853",
+"RoutinePage.java:960",
+"RoutinePage.java:1110",
+"RoutinePage.java:1219",
+"VideoPass.java:395"
+]
+},
+{
+"id": 107,
+"en": "format={1}",
+"src": [
+"BackupArchive.java:64"
+]
+},
+{
+"id": 108,
+"en": "not a backup path: {1}",
+"src": [
+"BackupArchive.java:74"
+]
+},
+{
+"id": 109,
+"en": "The backup file contains an unexpected entry.",
+"src": [
+"BackupArchive.java:95"
+]
+},
+{
+"id": 110,
+"en": "The backup file has too many entries.",
+"src": [
+"BackupArchive.java:96"
+]
+},
+{
+"id": 111,
+"en": "The backup file is too large.",
+"src": [
+"BackupArchive.java:101"
+]
+},
+{
+"id": 112,
+"en": "The backup file is damaged.",
+"src": [
+"BackupArchive.java:115"
+]
+},
+{
+"id": 113,
+"en": "This is not a Dinacharya Launcher backup.",
+"src": [
+"BackupArchive.java:117",
+"BackupArchive.java:118"
+]
+},
+{
+"id": 114,
+"en": "This backup was made by a newer version of the app. Update the app first.",
+"src": [
+"BackupArchive.java:119"
+]
+},
+{
+"id": 115,
+"en": "The backup has no readable routine.",
+"src": [
+"BackupArchive.java:122"
+]
+},
+{
+"id": 116,
+"en": "prefs/{1}.txt",
+"src": [
+"BackupData.java:32",
+"BackupData.java:110"
+]
+},
+{
+"id": 117,
+"en": "Could not make a folder for the backup.",
+"src": [
+"BackupData.java:84"
+]
+},
+{
+"id": 118,
+"en": "Could not replace the history.",
+"src": [
+"BackupData.java:92",
+"BackupData.java:95"
+]
+},
+{
+"id": 119,
+"en": "Could not save the restored settings.",
+"src": [
+"BackupData.java:122"
+]
+},
+{
+"id": 120,
+"en": "Backup",
+"src": [
+"BackupPage.java:57",
+"MainActivity.java:29",
+"SettingsPage.java:457"
+]
+},
+{
+"id": 121,
+"en": "Your days, safe in Google Drive",
+"src": [
+"BackupPage.java:57"
+]
+},
+{
+"id": 122,
+"en": "Google Drive backup",
+"src": [
+"BackupPage.java:59"
+]
+},
+{
+"id": 123,
+"en": "Back up",
+"src": [
+"BackupPage.java:86",
+"BackupPage.java:164"
+]
+},
+{
+"id": 124,
+"en": "Google Account",
+"src": [
+"BackupPage.java:90"
+]
+},
+{
+"id": 125,
+"en": "Settings",
+"src": [
+"BackupPage.java:98",
+"MainActivity.java:29",
+"SettingsPage.java:77"
+]
+},
+{
+"id": 126,
+"en": "Back up to Google Drive",
+"src": [
+"BackupPage.java:99",
+"BackupPage.java:615"
+]
+},
+{
+"id": 127,
+"en": "Back up using",
+"src": [
+"BackupPage.java:100",
+"BackupPage.java:630"
+]
+},
+{
+"id": 128,
+"en": "Restore",
+"src": [
+"BackupPage.java:105",
+"BackupPage.java:571"
+]
+},
+{
+"id": 129,
+"en": "Restore from Google Drive",
+"src": [
+"BackupPage.java:108"
+]
+},
+{
+"id": 130,
+"en": "Other ways to sign in",
+"src": [
+"BackupPage.java:112"
+]
+},
+{
+"id": 131,
+"en": "Check sign-in setup",
+"src": [
+"BackupPage.java:115"
+]
+},
+{
+"id": 132,
+"en": "Sign in with a code",
+"src": [
+"BackupPage.java:116",
+"BackupPage.java:232",
+"BackupPage.java:401"
+]
+},
+{
+"id": 133,
+"en": "Code sign-in setup (client ID)",
+"src": [
+"BackupPage.java:117"
+]
+},
+{
+"id": 134,
+"en": "Never",
+"src": [
+"BackupPage.java:142",
+"BackupPolicy.java:6"
+]
+},
+{
+"id": 135,
+"en": "Today",
+"src": [
+"BackupPage.java:146",
+"ExtraSections.java:73",
+"LauncherSettingsActivity.java:485",
+"PerformanceActivity.java:44"
+]
+},
+{
+"id": 136,
+"en": "Yesterday",
+"src": [
+"BackupPage.java:147"
+]
+},
+{
+"id": 137,
+"en": "d MMM yyyy",
+"src": [
+"BackupPage.java:148"
+]
+},
+{
+"id": 138,
+"en": "Last backup: {1}",
+"src": [
+"BackupPage.java:157"
+]
+},
+{
+"id": 139,
+"en": "Size: {1}",
+"src": [
+"BackupPage.java:158"
+]
+},
+{
+"id": 140,
+"en": "Tap Back up to make the first one.",
+"src": [
+"BackupPage.java:158"
+]
+},
+{
+"id": 141,
+"en": "Sign in to start backing up.",
+"src": [
+"BackupPage.java:158"
+]
+},
+{
+"id": 142,
+"en": "Working…",
+"src": [
+"BackupPage.java:164"
+]
+},
+{
+"id": 143,
+"en": "Signed in",
+"src": [
+"BackupPage.java:172"
+]
+},
+{
+"id": 144,
+"en": "Switch account",
+"src": [
+"BackupPage.java:178"
+]
+},
+{
+"id": 145,
+"en": "Sign out",
+"src": [
+"BackupPage.java:181",
+"BackupPage.java:287"
+]
+},
+{
+"id": 146,
+"en": "Not signed in",
+"src": [
+"BackupPage.java:187"
+]
+},
+{
+"id": 147,
+"en": "Sign in with Google",
+"src": [
+"BackupPage.java:189"
+]
+},
+{
+"id": 148,
+"en": "Wi-Fi only",
+"src": [
+"BackupPage.java:192",
+"BackupPage.java:628"
+]
+},
+{
+"id": 149,
+"en": "Wi-Fi or mobile data",
+"src": [
+"BackupPage.java:192",
+"BackupPage.java:628"
+]
+},
+{
+"id": 150,
+"en": "Could not sign in",
+"src": [
+"BackupPage.java:229",
+"BackupPage.java:262"
+]
+},
+{
+"id": 151,
+"en": "Check setup",
+"src": [
+"BackupPage.java:231"
+]
+},
+{
+"id": 152,
+"en": "Close",
+"src": [
+"BackupPage.java:233",
+"BackupPage.java:352",
+"RestrictedSettings.java:73",
+"SetupActivity.java:81",
+"SetupActivity.java:163"
+]
+},
+{
+"id": 153,
+"en": "Sign-in failed.",
+"src": [
+"BackupPage.java:253"
+]
+},
+{
+"id": 154,
+"en": "OK",
+"src": [
+"BackupPage.java:262",
+"BackupPage.java:594",
+"ExtraSections.java:193",
+"GroupDialog.java:52",
+"LauncherSettingsActivity.java:514",
+"MainActivity.java:304",
+"VideoPass.java:120"
+]
+},
+{
+"id": 155,
+"en": "Signed in as {1}",
+"src": [
+"BackupPage.java:267"
+]
+},
+{
+"id": 156,
+"en": "Switch Google account?",
+"src": [
+"BackupPage.java:276"
+]
+},
+{
+"id": 157,
+"en": "You are signed out here, then you pick another account. Backups already in Drive stay there.",
+"src": [
+"BackupPage.java:277"
+]
+},
+{
+"id": 158,
+"en": "Switch",
+"src": [
+"BackupPage.java:278"
+]
+},
+{
+"id": 159,
+"en": "Sign out?",
+"src": [
+"BackupPage.java:285"
+]
+},
+{
+"id": 160,
+"en": "Automatic backups stop. Your data stays on this phone, and the last backup stays in your Google Drive.",
+"src": [
+"BackupPage.java:286"
+]
+},
+{
+"id": 161,
+"en": "Signed out",
+"src": [
+"BackupPage.java:302"
+]
+},
+{
+"id": 162,
+"en": "Package name\n{1}\n\n",
+"src": [
+"BackupPage.java:315"
+]
+},
+{
+"id": 163,
+"en": "SHA-1 of this installed app\n{1}\n",
+"src": [
+"BackupPage.java:316"
+]
+},
+{
+"id": 164,
+"en": "(could not read)",
+"src": [
+"BackupPage.java:316"
+]
+},
+{
+"id": 165,
+"en": "✓ Same as in the README.\n\n",
+"src": [
+"BackupPage.java:320"
+]
+},
+{
+"id": 166,
+"en": "✗ Different from the README. This APK was signed with another key, so register THIS SHA-1 in Google Cloud (or build from the project as it is, which uses the included key).\n\n",
+"src": [
+"BackupPage.java:322"
+]
+},
+{
+"id": 167,
+"en": "In console.cloud.google.com, in ONE project:\n",
+"src": [
+"BackupPage.java:325"
+]
+},
+{
+"id": 168,
+"en": "1. Google Drive API is enabled.\n",
+"src": [
+"BackupPage.java:326"
+]
+},
+{
+"id": 169,
+"en": "2. Google Auth Platform > Branding is filled in (app name, your email).\n",
+"src": [
+"BackupPage.java:327"
+]
+},
+{
+"id": 170,
+"en": "3. Audience: External, and either “In production” (press Publish app) or your Gmail listed under Test users.\n",
+"src": [
+"BackupPage.java:328"
+]
+},
+{
+"id": 171,
+"en": "4. Clients: an Android client with exactly the package name and SHA-1 above.\n",
+"src": [
+"BackupPage.java:329"
+]
+},
+{
+"id": 172,
+"en": "5. Wait 5 to 10 minutes after saving, then try again.\n\n",
+"src": [
+"BackupPage.java:330"
+]
+},
+{
+"id": 173,
+"en": "Still failing? Use “Sign in with a code”, or copy these details and send them with Settings > Help > Copy problem report.",
+"src": [
+"BackupPage.java:331"
+]
+},
+{
+"id": 174,
+"en": "Package: {1}\nSHA-1: {2}",
+"src": [
+"BackupPage.java:332"
+]
+},
+{
+"id": 175,
+"en": "Sign-in setup check",
+"src": [
+"BackupPage.java:334"
+]
+},
+{
+"id": 176,
+"en": "Copy values",
+"src": [
+"BackupPage.java:336"
+]
+},
+{
+"id": 177,
+"en": "Dinacharya sign-in values",
+"src": [
+"BackupPage.java:339"
+]
+},
+{
+"id": 178,
+"en": "Copied",
+"src": [
+"BackupPage.java:340"
+]
+},
+{
+"id": 179,
+"en": "Could not copy",
+"src": [
+"BackupPage.java:342",
+"HomePage.java:397",
+"SettingsPage.java:478"
+]
+},
+{
+"id": 180,
+"en": "Open Google Cloud",
+"src": [
+"BackupPage.java:345"
+]
+},
+{
+"id": 181,
+"en": "Open console.cloud.google.com in a browser",
+"src": [
+"BackupPage.java:349"
+]
+},
+{
+"id": 182,
+"en": "Google code",
+"src": [
+"BackupPage.java:394"
+]
+},
+{
+"id": 183,
+"en": "The code is copied. Waiting for you…",
+"src": [
+"BackupPage.java:395"
+]
+},
+{
+"id": 184,
+"en": "Open the page",
+"src": [
+"BackupPage.java:403"
+]
+},
+{
+"id": 185,
+"en": "Open {1} in a browser",
+"src": [
+"BackupPage.java:417"
+]
+},
+{
+"id": 186,
+"en": "You said no at Google. Nothing was changed.",
+"src": [
+"BackupPage.java:441"
+]
+},
+{
+"id": 187,
+"en": "The code ran out. Try again.",
+"src": [
+"BackupPage.java:451"
+]
+},
+{
+"id": 188,
+"en": "Client ID (…apps.googleusercontent.com)",
+"src": [
+"BackupPage.java:470"
+]
+},
+{
+"id": 189,
+"en": "Client secret",
+"src": [
+"BackupPage.java:474"
+]
+},
+{
+"id": 190,
+"en": "Code sign-in setup",
+"src": [
+"BackupPage.java:484"
+]
+},
+{
+"id": 191,
+"en": "Save",
+"src": [
+"BackupPage.java:486",
+"FocusDialog.java:159",
+"GroupDialog.java:211",
+"InsightsPage.java:257",
+"RoutinePage.java:428",
+"RoutinePage.java:849"
+]
+},
+{
+"id": 192,
+"en": "Both the ID and the secret are needed",
+"src": [
+"BackupPage.java:489"
+]
+},
+{
+"id": 193,
+"en": "Backed up ({1})",
+"src": [
+"BackupPage.java:507"
+]
+},
+{
+"id": 194,
+"en": "Sign in again",
+"src": [
+"BackupPage.java:516"
+]
+},
+{
+"id": 195,
+"en": "{1}\n\nSign in again to keep backing up.",
+"src": [
+"BackupPage.java:517"
+]
+},
+{
+"id": 196,
+"en": "Sign in",
+"src": [
+"BackupPage.java:518"
+]
+},
+{
+"id": 197,
+"en": "Later",
+"src": [
+"BackupPage.java:522"
+]
+},
+{
+"id": 198,
+"en": "There is no backup in this Google account yet.",
+"src": [
+"BackupPage.java:545"
+]
+},
+{
+"id": 199,
+"en": "{1}\nSize: {2}",
+"src": [
+"BackupPage.java:559"
+]
+},
+{
+"id": 200,
+"en": "Made: ",
+"src": [
+"BackupPage.java:559"
+]
+},
+{
+"id": 201,
+"en": "\nPhone: {1}",
+"src": [
+"BackupPage.java:560"
+]
+},
+{
+"id": 202,
+"en": "\nDay reports: {1}",
+"src": [
+"BackupPage.java:561"
+]
+},
+{
+"id": 203,
+"en": "Restore this backup?",
+"src": [
+"BackupPage.java:568"
+]
+},
+{
+"id": 204,
+"en": "Backup found",
+"src": [
+"BackupPage.java:568"
+]
+},
+{
+"id": 205,
+"en": "{1}\n\nRestoring replaces the routines, settings and history on this phone with the backup. What is on this phone now is kept aside inside the app, just in case.",
+"src": [
+"BackupPage.java:569"
+]
+},
+{
+"id": 206,
+"en": "Not now",
+"src": [
+"BackupPage.java:572",
+"BatterySetup.java:31",
+"HomeRole.java:84",
+"ProPrompt.java:54",
+"ProPrompt.java:108",
+"RoutinePage.java:290",
+"UsageAccess.java:35"
+]
+},
+{
+"id": 207,
+"en": "Restore failed.",
+"src": [
+"BackupPage.java:586"
+]
+},
+{
+"id": 208,
+"en": "{1}\n\nNothing on this phone was changed.",
+"src": [
+"BackupPage.java:593"
+]
+},
+{
+"id": 209,
+"en": "Could not restore",
+"src": [
+"BackupPage.java:593"
+]
+},
+{
+"id": 210,
+"en": "Restored. Welcome back!",
+"src": [
+"BackupPage.java:598"
+]
+},
+{
+"id": 211,
+"en": "Only when I tap “Back up”",
+"src": [
+"BackupPolicy.java:6"
+]
+},
+{
+"id": 212,
+"en": "Daily",
+"src": [
+"BackupPolicy.java:6"
+]
+},
+{
+"id": 213,
+"en": "Weekly",
+"src": [
+"BackupPolicy.java:6"
+]
+},
+{
+"id": 214,
+"en": "Monthly",
+"src": [
+"BackupPolicy.java:6"
+]
+},
+{
+"id": 215,
+"en": "{1} B",
+"src": [
+"BackupPolicy.java:41"
+]
+},
+{
+"id": 216,
+"en": "{1} KB",
+"src": [
+"BackupPolicy.java:42"
+]
+},
+{
+"id": 217,
+"en": "Let Dinacharya Launcher run in the background",
+"src": [
+"BatterySetup.java:22"
+]
+},
+{
+"id": 218,
+"en": "So alarms are never late, set Dinacharya Launcher’s battery use to “Unrestricted” (some phones say “Don’t optimise” or “No restrictions”).\n\n1. Tap “Open app info” below.\n2. Tap Battery (or “App battery usage”).\n3. Choose Unrestricted.\n\nAndroid’s general battery list hides Dinacharya Launcher until you switch its filter to “All apps”.",
+"src": [
+"BatterySetup.java:23"
+]
+},
+{
+"id": 219,
+"en": "Open app info",
+"src": [
+"BatterySetup.java:29",
+"RestrictedSettings.java:72"
+]
+},
+{
+"id": 220,
+"en": "Battery list",
+"src": [
+"BatterySetup.java:30"
+]
+},
+{
+"id": 221,
+"en": "Switch the filter to All apps, then find Dinacharya Launcher.",
+"src": [
+"BatterySetup.java:42"
+]
+},
+{
+"id": 222,
+"en": "DEVELOPED BY",
+"src": [
+"BrandMark.java:40"
+]
+},
+{
+"id": 223,
+"en": "ASG",
+"src": [
+"BrandMark.java:41"
+]
+},
+{
+"id": 224,
+"en": "ASG",
+"src": [
+"BrandMark.java:65",
+"PosterRenderer.java:203"
+]
+},
+{
+"id": 225,
+"en": "Not signed in to Google.",
+"src": [
+"Cloud.java:45",
+"DeviceAuth.java:150"
+]
+},
+{
+"id": 226,
+"en": "Could not reach Google Drive{1}",
+"src": [
+"Cloud.java:55"
+]
+},
+{
+"id": 227,
+"en": "Backup failed: {1}",
+"src": [
+"Cloud.java:60",
+"Cloud.java:61"
+]
+},
+{
+"id": 228,
+"en": "id,name,size,modifiedTime,appProperties",
+"src": [
+"CloudDrive.java:23"
+]
+},
+{
+"id": 229,
+"en": "UTF-8",
+"src": [
+"CloudDrive.java:69",
+"DeviceAuth.java:84",
+"DeviceAuth.java:84"
+]
+},
+{
+"id": 230,
+"en": "Bearer {1}",
+"src": [
+"CloudDrive.java:79"
+]
+},
+{
+"id": 231,
+"en": "Authorization",
+"src": [
+"CloudDrive.java:79"
+]
+},
+{
+"id": 232,
+"en": "Google did not accept the sign-in. Please sign in again.",
+"src": [
+"CloudDrive.java:84"
+]
+},
+{
+"id": 233,
+"en": "HTTP {1}",
+"src": [
+"CloudDrive.java:96",
+"DeviceAuth.java:109",
+"DeviceAuth.java:137",
+"DeviceAuth.java:172"
+]
+},
+{
+"id": 234,
+"en": "name = '{1}' and trashed = false",
+"src": [
+"CloudDrive.java:125"
+]
+},
+{
+"id": 235,
+"en": "{1}?spaces=appDataFolder&orderBy={2}&pageSize=20&q={3}&fields={4}",
+"src": [
+"CloudDrive.java:126"
+]
+},
+{
+"id": 236,
+"en": "modifiedTime desc",
+"src": [
+"CloudDrive.java:126"
+]
+},
+{
+"id": 237,
+"en": "files({1})",
+"src": [
+"CloudDrive.java:127"
+]
+},
+{
+"id": 238,
+"en": "GET",
+"src": [
+"CloudDrive.java:128",
+"CloudDrive.java:190",
+"CloudDrive.java:202"
+]
+},
+{
+"id": 239,
+"en": "Could not look for the backup",
+"src": [
+"CloudDrive.java:129"
+]
+},
+{
+"id": 240,
+"en": "{\"name\":",
+"src": [
+"CloudDrive.java:152"
+]
+},
+{
+"id": 241,
+"en": ",\"parents\":[\"appDataFolder\"]",
+"src": [
+"CloudDrive.java:153"
+]
+},
+{
+"id": 242,
+"en": ",\"appProperties\":{",
+"src": [
+"CloudDrive.java:155"
+]
+},
+{
+"id": 243,
+"en": "dinacharya{1}",
+"src": [
+"CloudDrive.java:165"
+]
+},
+{
+"id": 244,
+"en": "r\n--{1}--",
+"src": [
+"CloudDrive.java:170"
+]
+},
+{
+"id": 245,
+"en": "multipart/related; boundary={1}",
+"src": [
+"CloudDrive.java:172"
+]
+},
+{
+"id": 246,
+"en": "Content-Type",
+"src": [
+"CloudDrive.java:172",
+"CloudDrive.java:213",
+"DeviceAuth.java:94"
+]
+},
+{
+"id": 247,
+"en": "X-HTTP-Method-Override",
+"src": [
+"CloudDrive.java:176"
+]
+},
+{
+"id": 248,
+"en": "PATCH",
+"src": [
+"CloudDrive.java:176"
+]
+},
+{
+"id": 249,
+"en": "{1}/{2}?uploadType=multipart&fields={3}",
+"src": [
+"CloudDrive.java:177"
+]
+},
+{
+"id": 250,
+"en": "{1}?uploadType=multipart&fields={2}",
+"src": [
+"CloudDrive.java:179"
+]
+},
+{
+"id": 251,
+"en": "POST",
+"src": [
+"CloudDrive.java:181",
+"CloudDrive.java:214",
+"DeviceAuth.java:95"
+]
+},
+{
+"id": 252,
+"en": "Upload failed",
+"src": [
+"CloudDrive.java:183"
+]
+},
+{
+"id": 253,
+"en": "Upload failed (no file id)",
+"src": [
+"CloudDrive.java:185"
+]
+},
+{
+"id": 254,
+"en": "{1}/{2}?alt=media",
+"src": [
+"CloudDrive.java:190"
+]
+},
+{
+"id": 255,
+"en": "Download failed",
+"src": [
+"CloudDrive.java:191"
+]
+},
+{
+"id": 256,
+"en": "DELETE",
+"src": [
+"CloudDrive.java:196"
+]
+},
+{
+"id": 257,
+"en": "Could not delete the old backup",
+"src": [
+"CloudDrive.java:197"
+]
+},
+{
+"id": 258,
+"en": "Could not read your Google account",
+"src": [
+"CloudDrive.java:203"
+]
+},
+{
+"id": 259,
+"en": "token={1}",
+"src": [
+"CloudDrive.java:214"
+]
+},
+{
+"id": 260,
+"en": "The app closed",
+"src": [
+"CrashLog.java:55"
+]
+},
+{
+"id": 261,
+"en": "yyyy-MM-dd HH:mm:ss",
+"src": [
+"CrashLog.java:74"
+]
+},
+{
+"id": 262,
+"en": "{1} at {2} (thread {3})\nAndroid {4} (API {5}), {6} {7}\n\n{8}",
+"src": [
+"CrashLog.java:75"
+]
+},
+{
+"id": 263,
+"en": "Handled problem in {1}",
+"src": [
+"CrashLog.java:93"
+]
+},
+{
+"id": 264,
+"en": "every saved day in Performance",
+"src": [
+"DayPass.java:50"
+]
+},
+{
+"id": 265,
+"en": "the week view in Performance",
+"src": [
+"DayPass.java:51"
+]
+},
+{
+"id": 266,
+"en": "pauses for more than {1} apps",
+"src": [
+"DayPass.java:52"
+]
+},
+{
+"id": 267,
+"en": "strict pauses",
+"src": [
+"DayPass.java:53"
+]
+},
+{
+"id": 268,
+"en": "daily limits on pauses",
+"src": [
+"DayPass.java:54"
+]
+},
+{
+"id": 269,
+"en": "playful pauses",
+"src": [
+"DayPass.java:55"
+]
+},
+{
+"id": 270,
+"en": "more than {1} lock",
+"src": [
+"DayPass.java:56"
+]
+},
+{
+"id": 271,
+"en": "more than {1} apps in a lock",
+"src": [
+"DayPass.java:57"
+]
+},
+{
+"id": 272,
+"en": "strict locks",
+"src": [
+"DayPass.java:58"
+]
+},
+{
+"id": 273,
+"en": "weekday and weekend routines",
+"src": [
+"DayPass.java:59"
+]
+},
+{
+"id": 274,
+"en": "daily goals",
+"src": [
+"DayPass.java:60"
+]
+},
+{
+"id": 275,
+"en": "the Sunset colour look",
+"src": [
+"DayPass.java:61"
+]
+},
+{
+"id": 276,
+"en": "the Ocean colour look",
+"src": [
+"DayPass.java:62"
+]
+},
+{
+"id": 277,
+"en": "the Graphite colour look",
+"src": [
+"DayPass.java:63"
+]
+},
+{
+"id": 278,
+"en": "Performance: every saved day",
+"src": [
+"DayPass.java:67"
+]
+},
+{
+"id": 279,
+"en": "Performance: the week view",
+"src": [
+"DayPass.java:68"
+]
+},
+{
+"id": 280,
+"en": "Pauses: more than {1} apps",
+"src": [
+"DayPass.java:69"
+]
+},
+{
+"id": 281,
+"en": "Pauses: strict",
+"src": [
+"DayPass.java:70"
+]
+},
+{
+"id": 282,
+"en": "Pauses: daily limits",
+"src": [
+"DayPass.java:71"
+]
+},
+{
+"id": 283,
+"en": "Pauses: playful (sum, sentence, breathing, why)",
+"src": [
+"DayPass.java:72"
+]
+},
+{
+"id": 284,
+"en": "Locks: more than one lock",
+"src": [
+"DayPass.java:73"
+]
+},
+{
+"id": 285,
+"en": "Locks: more than {1} apps in a lock",
+"src": [
+"DayPass.java:74"
+]
+},
+{
+"id": 286,
+"en": "Locks: strict",
+"src": [
+"DayPass.java:75"
+]
+},
+{
+"id": 287,
+"en": "Routines: weekday, weekend, exam day",
+"src": [
+"DayPass.java:76"
+]
+},
+{
+"id": 288,
+"en": "Goals: daily goals with streaks",
+"src": [
+"DayPass.java:77"
+]
+},
+{
+"id": 289,
+"en": "Looks: Sunset",
+"src": [
+"DayPass.java:78"
+]
+},
+{
+"id": 290,
+"en": "Looks: Ocean",
+"src": [
+"DayPass.java:79"
+]
+},
+{
+"id": 291,
+"en": "Looks: Graphite",
+"src": [
+"DayPass.java:80"
+]
+},
+{
+"id": 292,
+"en": "Saved days",
+"src": [
+"DayPass.java:83"
+]
+},
+{
+"id": 293,
+"en": "Week view",
+"src": [
+"DayPass.java:83"
+]
+},
+{
+"id": 294,
+"en": "More paused apps",
+"src": [
+"DayPass.java:83"
+]
+},
+{
+"id": 295,
+"en": "Strict pauses",
+"src": [
+"DayPass.java:83",
+"TourArt.java:378"
+]
+},
+{
+"id": 296,
+"en": "Daily limits",
+"src": [
+"DayPass.java:83"
+]
+},
+{
+"id": 297,
+"en": "Playful pauses",
+"src": [
+"DayPass.java:83",
+"TourArt.java:378"
+]
+},
+{
+"id": 298,
+"en": "More locks",
+"src": [
+"DayPass.java:84"
+]
+},
+{
+"id": 299,
+"en": "More locked apps",
+"src": [
+"DayPass.java:84"
+]
+},
+{
+"id": 300,
+"en": "Strict locks",
+"src": [
+"DayPass.java:84",
+"GroupDialog.java:177"
+]
+},
+{
+"id": 301,
+"en": "Routines",
+"src": [
+"DayPass.java:84",
+"DayPass.java:86",
+"ProActivity.java:23",
+"RoutinePage.java:196"
+]
+},
+{
+"id": 302,
+"en": "Goals",
+"src": [
+"DayPass.java:84",
+"DayPass.java:86",
+"SettingsPage.java:455"
+]
+},
+{
+"id": 303,
+"en": "Sunset look",
+"src": [
+"DayPass.java:84"
+]
+},
+{
+"id": 304,
+"en": "Ocean look",
+"src": [
+"DayPass.java:84"
+]
+},
+{
+"id": 305,
+"en": "Graphite look",
+"src": [
+"DayPass.java:84"
+]
+},
+{
+"id": 306,
+"en": "Performance",
+"src": [
+"DayPass.java:86",
+"PerformanceActivity.java:37",
+"ProActivity.java:19"
+]
+},
+{
+"id": 307,
+"en": "Pauses",
+"src": [
+"DayPass.java:86"
+]
+},
+{
+"id": 308,
+"en": "Locks",
+"src": [
+"DayPass.java:86"
+]
+},
+{
+"id": 309,
+"en": "Looks",
+"src": [
+"DayPass.java:86"
+]
+},
+{
+"id": 310,
+"en": "{1} ({2} for 3 days, the rest for a day)",
+"src": [
+"DayPass.java:243"
+]
+},
+{
+"id": 311,
+"en": "{1} for {2}",
+"src": [
+"DayPass.java:245"
+]
+},
+{
+"id": 312,
+"en": "3 days",
+"src": [
+"DayPass.java:245"
+]
+},
+{
+"id": 313,
+"en": "a day",
+"src": [
+"DayPass.java:245"
+]
+},
+{
+"id": 314,
+"en": "everything in {1}",
+"src": [
+"DayPass.java:282"
+]
+},
+{
+"id": 315,
+"en": "{1} Pro features",
+"src": [
+"DayPass.java:283"
+]
+},
+{
+"id": 316,
+"en": "Open until {1}",
+"src": [
+"DayPass.java:323"
+]
+},
+{
+"id": 317,
+"en": "Kept",
+"src": [
+"DayReport.java:9",
+"ReportRenderer.java:429"
+]
+},
+{
+"id": 318,
+"en": "Changed",
+"src": [
+"DayReport.java:9",
+"ReportRenderer.java:450"
+]
+},
+{
+"id": 319,
+"en": "Taken off",
+"src": [
+"DayReport.java:9"
+]
+},
+{
+"id": 320,
+"en": "No answer",
+"src": [
+"DayReport.java:9"
+]
+},
+{
+"id": 321,
+"en": "Not tracked",
+"src": [
+"DayReport.java:9"
+]
+},
+{
+"id": 322,
+"en": "Ahead",
+"src": [
+"DayReport.java:9"
+]
+},
+{
+"id": 323,
+"en": "DINAREPORT1",
+"src": [
+"DayReport.java:11"
+]
+},
+{
+"id": 324,
+"en": "day={1}",
+"src": [
+"DayReport.java:75"
+]
+},
+{
+"id": 325,
+"en": "start={1}",
+"src": [
+"DayReport.java:76"
+]
+},
+{
+"id": 326,
+"en": "end={1}",
+"src": [
+"DayReport.java:77"
+]
+},
+{
+"id": 327,
+"en": "partial={1}",
+"src": [
+"DayReport.java:78"
+]
+},
+{
+"id": 328,
+"en": "alarms={1}",
+"src": [
+"DayReport.java:79"
+]
+},
+{
+"id": 329,
+"en": "phoneKnown={1}",
+"src": [
+"DayReport.java:80"
+]
+},
+{
+"id": 330,
+"en": "phone={1}",
+"src": [
+"DayReport.java:81"
+]
+},
+{
+"id": 331,
+"en": "hours=",
+"src": [
+"DayReport.java:82"
+]
+},
+{
+"id": 332,
+"en": "bedPlanned={1}",
+"src": [
+"DayReport.java:85"
+]
+},
+{
+"id": 333,
+"en": "bedActual={1}",
+"src": [
+"DayReport.java:86"
+]
+},
+{
+"id": 334,
+"en": "sleepPlanned={1}",
+"src": [
+"DayReport.java:87"
+]
+},
+{
+"id": 335,
+"en": "snoozes={1}",
+"src": [
+"DayReport.java:88"
+]
+},
+{
+"id": 336,
+"en": "snoozeMin={1}",
+"src": [
+"DayReport.java:89"
+]
+},
+{
+"id": 337,
+"en": "beforeBed={1}",
+"src": [
+"DayReport.java:90"
+]
+},
+{
+"id": 338,
+"en": "total={1}",
+"src": [
+"DayReport.java:91"
+]
+},
+{
+"id": 339,
+"en": "pauses={1}",
+"src": [
+"DayReport.java:92"
+]
+},
+{
+"id": 340,
+"en": "wentBack={1}",
+"src": [
+"DayReport.java:93"
+]
+},
+{
+"id": 341,
+"en": "openedAfter={1}",
+"src": [
+"DayReport.java:94"
+]
+},
+{
+"id": 342,
+"en": "pausedMost={1}",
+"src": [
+"DayReport.java:95"
+]
+},
+{
+"id": 343,
+"en": "planKept={1}",
+"src": [
+"DayReport.java:96"
+]
+},
+{
+"id": 344,
+"en": "focus={1}",
+"src": [
+"DayReport.java:97"
+]
+},
+{
+"id": 345,
+"en": "sleep={1}",
+"src": [
+"DayReport.java:98"
+]
+},
+{
+"id": 346,
+"en": "score={1}",
+"src": [
+"DayReport.java:99"
+]
+},
+{
+"id": 347,
+"en": "R\t{1}",
+"src": [
+"DayReport.java:101",
+"LauncherConfig.java:227",
+"PassReset.java:133"
+]
+},
+{
+"id": 348,
+"en": "G\t{1}",
+"src": [
+"DayReport.java:106",
+"LauncherConfig.java:231",
+"PassReset.java:139",
+"Routine.java:435"
+]
+},
+{
+"id": 349,
+"en": "A\t{1}",
+"src": [
+"DayReport.java:107"
+]
+},
+{
+"id": 350,
+"en": "T\t{1}",
+"src": [
+"DayReport.java:108"
+]
+},
+{
+"id": 351,
+"en": "Z\t{1}",
+"src": [
+"DayReport.java:110"
+]
+},
+{
+"id": 352,
+"en": "openid email profile {1}",
+"src": [
+"DeviceAuth.java:16"
+]
+},
+{
+"id": 353,
+"en": "Code sign-in is not set up (no client ID).",
+"src": [
+"DeviceAuth.java:100"
+]
+},
+{
+"id": 354,
+"en": "Google refused the sign-in: {1}",
+"src": [
+"DeviceAuth.java:109"
+]
+},
+{
+"id": 355,
+"en": "Sign-in failed: {1}",
+"src": [
+"DeviceAuth.java:137"
+]
+},
+{
+"id": 356,
+"en": "Could not renew the Google sign-in ({1})",
+"src": [
+"DeviceAuth.java:172"
+]
+},
+{
+"id": 357,
+"en": "B",
+"src": [
+"Ev.java:53",
+"LauncherSettingsActivity.java:492",
+"ReportAssembler.java:125"
+]
+},
+{
+"id": 358,
+"en": "O",
+"src": [
+"Ev.java:53"
+]
+},
+{
+"id": 359,
+"en": "Tomorrow",
+"src": [
+"ExtraSections.java:73"
+]
+},
+{
+"id": 360,
+"en": "{1} starts at {2} instead of {3}",
+"src": [
+"ExtraSections.java:74"
+]
+},
+{
+"id": 361,
+"en": " (slots covered by the extra sleep are dropped)",
+"src": [
+"ExtraSections.java:76"
+]
+},
+{
+"id": 362,
+"en": " (the morning moves later, bedtime stays)",
+"src": [
+"ExtraSections.java:77"
+]
+},
+{
+"id": 363,
+"en": "{1} is taken off",
+"src": [
+"ExtraSections.java:82"
+]
+},
+{
+"id": 364,
+"en": "{1} is called “{2}”",
+"src": [
+"ExtraSections.java:82"
+]
+},
+{
+"id": 365,
+"en": "Changed for today only",
+"src": [
+"ExtraSections.java:90"
+]
+},
+{
+"id": 366,
+"en": "Your saved routine is untouched. These end by themselves.",
+"src": [
+"ExtraSections.java:95"
+]
+},
+{
+"id": 367,
+"en": "Undo today’s changes",
+"src": [
+"ExtraSections.java:96"
+]
+},
+{
+"id": 368,
+"en": "A nudge at every slot",
+"src": [
+"ExtraSections.java:113"
+]
+},
+{
+"id": 369,
+"en": "Remind me with an alarm",
+"src": [
+"ExtraSections.java:115"
+]
+},
+{
+"id": 370,
+"en": "An alarm rings when a slot starts. To stop it you say if you continue as planned or want a change (a new name for today, or take the slot off). At bedtime it asks if you are going to sleep and when you want to wake. You can switch single slots off with the bell on the Routine tab.",
+"src": [
+"ExtraSections.java:120"
+]
+},
+{
+"id": 371,
+"en": "Ring a test alarm in 10 seconds",
+"src": [
+"ExtraSections.java:127",
+"HomePage.java:319"
+]
+},
+{
+"id": 372,
+"en": "The test goes the same way as a real alarm. Lock the phone first to see it as it will be.",
+"src": [
+"ExtraSections.java:128"
+]
+},
+{
+"id": 373,
+"en": "Is the phone ready?",
+"src": [
+"ExtraSections.java:131"
+]
+},
+{
+"id": 374,
+"en": "Alarms are on",
+"src": [
+"ExtraSections.java:161"
+]
+},
+{
+"id": 375,
+"en": "Switch on “Allow setting alarms and reminders” so alarms ring on the minute.",
+"src": [
+"ExtraSections.java:177"
+]
+},
+{
+"id": 376,
+"en": "\n\nNotifications are off for this app, so you will only hear it.",
+"src": [
+"ExtraSections.java:188"
+]
+},
+{
+"id": 377,
+"en": "\n\nAndroid is not allowing exact alarms, so it may come a little late.",
+"src": [
+"ExtraSections.java:189"
+]
+},
+{
+"id": 378,
+"en": "Test alarm set",
+"src": [
+"ExtraSections.java:191"
+]
+},
+{
+"id": 379,
+"en": "It rings in 10 seconds. To try it as it will really be, press the power button now to lock the phone.{1}",
+"src": [
+"ExtraSections.java:192"
+]
+},
+{
+"id": 380,
+"en": "Could not open that screen",
+"src": [
+"ExtraSections.java:216"
+]
+},
+{
+"id": 381,
+"en": "Open Settings, Apps, Dinacharya Launcher, Alarms and reminders",
+"src": [
+"ExtraSections.java:228",
+"Permissions.java:181"
+]
+},
+{
+"id": 382,
+"en": "Open Settings, Apps, Dinacharya Launcher, Notifications",
+"src": [
+"ExtraSections.java:244",
+"Permissions.java:152"
+]
+},
+{
+"id": 383,
+"en": "Open Settings, Apps, Dinacharya Launcher, and allow full screen notifications",
+"src": [
+"ExtraSections.java:256",
+"Permissions.java:192"
+]
+},
+{
+"id": 384,
+"en": "Choose Alerting, and allow pop-up on screen.",
+"src": [
+"ExtraSections.java:267"
+]
+},
+{
+"id": 385,
+"en": "Alarms are off, so nothing is set in Android.",
+"src": [
+"ExtraSections.java:301"
+]
+},
+{
+"id": 386,
+"en": "Set in Android for {1}",
+"src": [
+"ExtraSections.java:302"
+]
+},
+{
+"id": 387,
+"en": " (exact).",
+"src": [
+"ExtraSections.java:303"
+]
+},
+{
+"id": 388,
+"en": ". Android may deliver it a few minutes late.",
+"src": [
+"ExtraSections.java:303"
+]
+},
+{
+"id": 389,
+"en": "Nothing is set in Android right now.",
+"src": [
+"ExtraSections.java:304"
+]
+},
+{
+"id": 390,
+"en": "\nAn alarm set for {1} never reached the app. The phone was off, or it stopped the app. See the checklist above.",
+"src": [
+"ExtraSections.java:306"
+]
+},
+{
+"id": 391,
+"en": "\nLast alarm Android gave the app: {1}",
+"src": [
+"ExtraSections.java:310"
+]
+},
+{
+"id": 392,
+"en": " (test)",
+"src": [
+"ExtraSections.java:310"
+]
+},
+{
+"id": 393,
+"en": ". Ringing started.",
+"src": [
+"ExtraSections.java:311"
+]
+},
+{
+"id": 394,
+"en": ". Android would not start the ringing service, so a notification was used.",
+"src": [
+"ExtraSections.java:312"
+]
+},
+{
+"id": 395,
+"en": ". Ringing did not start. Copy the problem report from Settings > Help and send it.",
+"src": [
+"ExtraSections.java:313"
+]
+},
+{
+"id": 396,
+"en": "\nNo alarm has reached the app yet. Try the test alarm.",
+"src": [
+"ExtraSections.java:315"
+]
+},
+{
+"id": 397,
+"en": "MISSING",
+"src": [
+"ExtraSections.java:326"
+]
+},
+{
+"id": 398,
+"en": "not set",
+"src": [
+"ExtraSections.java:326"
+]
+},
+{
+"id": 399,
+"en": "Alarm details unavailable.",
+"src": [
+"ExtraSections.java:330"
+]
+},
+{
+"id": 400,
+"en": "No alarm is planned (all slots have their bell switched off).",
+"src": [
+"ExtraSections.java:342"
+]
+},
+{
+"id": 401,
+"en": "Next alarm: {1}  ·  {2}",
+"src": [
+"ExtraSections.java:343"
+]
+},
+{
+"id": 402,
+"en": "Untitled",
+"src": [
+"ExtraSections.java:343",
+"HomePage.java:310",
+"PosterRenderer.java:551"
+]
+},
+{
+"id": 403,
+"en": "Open",
+"src": [
+"ExtraSections.java:351",
+"LauncherSettingsActivity.java:248",
+"Permissions.java:71"
+]
+},
+{
+"id": 404,
+"en": "Allow",
+"src": [
+"ExtraSections.java:351",
+"LauncherSettingsActivity.java:367",
+"LauncherSettingsActivity.java:443",
+"LauncherSettingsActivity.java:445",
+"Permissions.java:56",
+"Permissions.java:59",
+"Permissions.java:62",
+"Permissions.java:66",
+"Permissions.java:69",
+"SettingsPage.java:420"
+]
+},
+{
+"id": 405,
+"en": "Habits",
+"src": [
+"ExtraSections.java:361",
+"ReportRenderer.java:672"
+]
+},
+{
+"id": 406,
+"en": "What your days are telling you",
+"src": [
+"ExtraSections.java:361"
+]
+},
+{
+"id": 407,
+"en": "Worked out on this phone from your own days with simple rules. No AI service, nothing leaves the phone.",
+"src": [
+"ExtraSections.java:367"
+]
+},
+{
+"id": 408,
+"en": "Notes appear after your first full day. Turn on alarms and usage access so the app can see how the day went.",
+"src": [
+"ExtraSections.java:398"
+]
+},
+{
+"id": 409,
+"en": "Nothing to flag. Keep going.",
+"src": [
+"ExtraSections.java:404"
+]
+},
+{
+"id": 410,
+"en": "Open Performance",
+"src": [
+"ExtraSections.java:406"
+]
+},
+{
+"id": 411,
+"en": "No daily limit",
+"src": [
+"FocusDialog.java:25"
+]
+},
+{
+"id": 412,
+"en": "{1} min a day",
+"src": [
+"FocusDialog.java:26"
+]
+},
+{
+"id": 413,
+"en": "{1} h",
+"src": [
+"FocusDialog.java:27"
+]
+},
+{
+"id": 414,
+"en": "{1} h {2} min",
+"src": [
+"FocusDialog.java:27"
+]
+},
+{
+"id": 415,
+"en": "{1} a day",
+"src": [
+"FocusDialog.java:27"
+]
+},
+{
+"id": 416,
+"en": "A pause gives you a moment to decide. It never locks you out: Go back is always there, and so is a way in after a longer wait.",
+"src": [
+"FocusDialog.java:47"
+]
+},
+{
+"id": 417,
+"en": "Short pause ({1} seconds)",
+"src": [
+"FocusDialog.java:53"
+]
+},
+{
+"id": 418,
+"en": "Strict pause ({1} seconds)",
+"src": [
+"FocusDialog.java:53"
+]
+},
+{
+"id": 419,
+"en": "No pause",
+"src": [
+"FocusDialog.java:53",
+"LauncherSettingsActivity.java:307"
+]
+},
+{
+"id": 420,
+"en": "  • Pro",
+"src": [
+"FocusDialog.java:58",
+"FocusDialog.java:99",
+"FocusDialog.java:201",
+"FocusDialog.java:205",
+"FocusDialog.java:213"
+]
+},
+{
+"id": 421,
+"en": "How the pause goes",
+"src": [
+"FocusDialog.java:72"
+]
+},
+{
+"id": 422,
+"en": "Playful pauses (a quick sum, a sentence, breathing, saying why)",
+"src": [
+"FocusDialog.java:88"
+]
+},
+{
+"id": 423,
+"en": "Daily limit{1}",
+"src": [
+"FocusDialog.java:99",
+"FocusDialog.java:205"
+]
+},
+{
+"id": 424,
+"en": "A daily limit",
+"src": [
+"FocusDialog.java:131"
+]
+},
+{
+"id": 425,
+"en": "Pause at any time of day (a strict pause still only applies in focus times)",
+"src": [
+"FocusDialog.java:141"
+]
+},
+{
+"id": 426,
+"en": "Remove",
+"src": [
+"FocusDialog.java:161",
+"InsightsPage.java:272",
+"RoutinePage.java:535",
+"RoutinePage.java:855"
+]
+},
+{
+"id": 427,
+"en": "A strict pause",
+"src": [
+"FocusDialog.java:171"
+]
+},
+{
+"id": 428,
+"en": "Pause rules for more than {1} apps",
+"src": [
+"FocusDialog.java:179"
+]
+},
+{
+"id": 429,
+"en": "No pause for {1}",
+"src": [
+"FocusDialog.java:191"
+]
+},
+{
+"id": 430,
+"en": "Pause set for {1}. It starts the next time you open it from the home screen.",
+"src": [
+"FocusDialog.java:192"
+]
+},
+{
+"id": 431,
+"en": "Strict pause ({1} seconds){2}",
+"src": [
+"FocusDialog.java:201"
+]
+},
+{
+"id": 432,
+"en": "Pause rules for as many apps as you like. ",
+"src": [
+"FocusDialog.java:220"
+]
+},
+{
+"id": 433,
+"en": "Free: pause rules for up to {1} apps ({2} used). Pro has no limit. ",
+"src": [
+"FocusDialog.java:221"
+]
+},
+{
+"id": 434,
+"en": "Strict pauses apply in focus times: {1}. ",
+"src": [
+"FocusDialog.java:222"
+]
+},
+{
+"id": 435,
+"en": "With the strong lock on, pauses hold wherever the app is opened from.",
+"src": [
+"FocusDialog.java:223"
+]
+},
+{
+"id": 436,
+"en": "Pauses work when you open an app from this home screen. The strong lock in the home settings holds them everywhere.",
+"src": [
+"FocusDialog.java:224"
+]
+},
+{
+"id": 437,
+"en": "30 min",
+"src": [
+"GroupDialog.java:27"
+]
+},
+{
+"id": 438,
+"en": "1 h",
+"src": [
+"GroupDialog.java:27"
+]
+},
+{
+"id": 439,
+"en": "2 h",
+"src": [
+"GroupDialog.java:27"
+]
+},
+{
+"id": 440,
+"en": "4 h",
+"src": [
+"GroupDialog.java:27"
+]
+},
+{
+"id": 441,
+"en": "8 h",
+"src": [
+"GroupDialog.java:27"
+]
+},
+{
+"id": 442,
+"en": "This is a strict lock and it is holding now, until {1}. A strict lock cannot be changed or removed while it holds.",
+"src": [
+"GroupDialog.java:50"
+]
+},
+{
+"id": 443,
+"en": "Name, for example Social",
+"src": [
+"GroupDialog.java:80"
+]
+},
+{
+"id": 444,
+"en": "Choose apps",
+"src": [
+"GroupDialog.java:92"
+]
+},
+{
+"id": 445,
+"en": "Locked between",
+"src": [
+"GroupDialog.java:97"
+]
+},
+{
+"id": 446,
+"en": "On these days",
+"src": [
+"GroupDialog.java:120"
+]
+},
+{
+"id": 447,
+"en": "Every day",
+"src": [
+"GroupDialog.java:126",
+"LockRules.java:163"
+]
+},
+{
+"id": 448,
+"en": "Weekdays",
+"src": [
+"GroupDialog.java:130",
+"LockRules.java:164",
+"RoutinePage.java:399",
+"TourArt.java:242"
+]
+},
+{
+"id": 449,
+"en": "Weekends",
+"src": [
+"GroupDialog.java:134",
+"LockRules.java:165"
+]
+},
+{
+"id": 450,
+"en": "None",
+"src": [
+"GroupDialog.java:138"
+]
+},
+{
+"id": 451,
+"en": "Lock now for",
+"src": [
+"GroupDialog.java:146"
+]
+},
+{
+"id": 452,
+"en": "Unlock now",
+"src": [
+"GroupDialog.java:165"
+]
+},
+{
+"id": 453,
+"en": "Without strict, you can still break a lock: wait 30 seconds and type a sentence. A strict lock cannot be broken, and cannot be changed while it holds. {1}",
+"src": [
+"GroupDialog.java:186"
+]
+},
+{
+"id": 454,
+"en": "With the strong lock on, locks hold wherever the app is opened from.",
+"src": [
+"GroupDialog.java:188"
+]
+},
+{
+"id": 455,
+"en": "Locks apply when you open an app from this home screen. The strong lock in the home settings holds them everywhere.",
+"src": [
+"GroupDialog.java:189"
+]
+},
+{
+"id": 456,
+"en": "From {1}",
+"src": [
+"GroupDialog.java:194"
+]
+},
+{
+"id": 457,
+"en": "to {1}",
+"src": [
+"GroupDialog.java:195",
+"PosterRenderer.java:514",
+"RoutinePage.java:1257"
+]
+},
+{
+"id": 458,
+"en": "No daily schedule. Use Lock now, or pick days.",
+"src": [
+"GroupDialog.java:198"
+]
+},
+{
+"id": 459,
+"en": "Locked {1}, {2} to {3}.",
+"src": [
+"GroupDialog.java:200"
+]
+},
+{
+"id": 460,
+"en": " (the whole day)",
+"src": [
+"GroupDialog.java:202"
+]
+},
+{
+"id": 461,
+"en": " (into the next morning)",
+"src": [
+"GroupDialog.java:202"
+]
+},
+{
+"id": 462,
+"en": "Locked by hand until {1} ({2} left).",
+"src": [
+"GroupDialog.java:205"
+]
+},
+{
+"id": 463,
+"en": "Not locked by hand.",
+"src": [
+"GroupDialog.java:206"
+]
+},
+{
+"id": 464,
+"en": "Delete",
+"src": [
+"GroupDialog.java:212",
+"RoutinePage.java:349",
+"RoutinePage.java:442",
+"RoutinePage.java:768",
+"RoutinePage.java:953"
+]
+},
+{
+"id": 465,
+"en": "Choose at least one app",
+"src": [
+"GroupDialog.java:225"
+]
+},
+{
+"id": 466,
+"en": "Locking more than {1} apps (a group of apps)",
+"src": [
+"GroupDialog.java:229",
+"GroupDialog.java:347"
+]
+},
+{
+"id": 467,
+"en": "Locked apps",
+"src": [
+"GroupDialog.java:239",
+"GroupDialog.java:244",
+"LauncherSettingsActivity.java:373"
+]
+},
+{
+"id": 468,
+"en": "That is the most groups there can be",
+"src": [
+"GroupDialog.java:241"
+]
+},
+{
+"id": 469,
+"en": "Apps to lock (up to {1} free)",
+"src": [
+"GroupDialog.java:267"
+]
+},
+{
+"id": 470,
+"en": "Apps in the group",
+"src": [
+"GroupDialog.java:267"
+]
+},
+{
+"id": 471,
+"en": "Strict: no way past until it ends",
+"src": [
+"GroupDialog.java:271"
+]
+},
+{
+"id": 472,
+"en": "Strict: no way past (Pro)",
+"src": [
+"GroupDialog.java:271"
+]
+},
+{
+"id": 473,
+"en": "Locked group",
+"src": [
+"GroupDialog.java:275"
+]
+},
+{
+"id": 474,
+"en": "New locked group",
+"src": [
+"GroupDialog.java:275"
+]
+},
+{
+"id": 475,
+"en": "Lock apps",
+"src": [
+"GroupDialog.java:275",
+"LauncherSettingsActivity.java:402"
+]
+},
+{
+"id": 476,
+"en": "No apps yet.",
+"src": [
+"GroupDialog.java:310"
+]
+},
+{
+"id": 477,
+"en": "and {1} more",
+"src": [
+"GroupDialog.java:323"
+]
+},
+{
+"id": 478,
+"en": "Up to {1} apps in a group",
+"src": [
+"GroupDialog.java:362"
+]
+},
+{
+"id": 479,
+"en": "Apps to lock",
+"src": [
+"GroupDialog.java:370"
+]
+},
+{
+"id": 480,
+"en": "Done",
+"src": [
+"GroupDialog.java:371",
+"LauncherSettingsActivity.java:474",
+"TourActivity.java:248"
+]
+},
+{
+"id": 481,
+"en": "You have used it for {1} today.\nYour limit is {2}.",
+"src": [
+"GuardRules.java:203",
+"LauncherActivity.java:1090"
+]
+},
+{
+"id": 482,
+"en": "Right now: {1}.\nThis is a focus time.",
+"src": [
+"GuardRules.java:207",
+"LauncherActivity.java:1093"
+]
+},
+{
+"id": 483,
+"en": "This is a focus time.",
+"src": [
+"GuardRules.java:207",
+"LauncherActivity.java:1093"
+]
+},
+{
+"id": 484,
+"en": "Right now: {1}.\nIs this the best use of the next few minutes?",
+"src": [
+"GuardRules.java:209",
+"LauncherActivity.java:1095"
+]
+},
+{
+"id": 485,
+"en": "Take a breath.\nIs this what you meant to open?",
+"src": [
+"GuardRules.java:210",
+"LauncherActivity.java:1097"
+]
+},
+{
+"id": 486,
+"en": "Strong lock",
+"src": [
+"GuardService.java:162",
+"LauncherSettingsActivity.java:430",
+"LauncherSettingsActivity.java:434"
+]
+},
+{
+"id": 487,
+"en": "Shown while the strong lock is on",
+"src": [
+"GuardService.java:163"
+]
+},
+{
+"id": 488,
+"en": "Strong lock is on",
+"src": [
+"GuardService.java:171"
+]
+},
+{
+"id": 489,
+"en": "Holding locked and paused apps. Tap to change.",
+"src": [
+"GuardService.java:172"
+]
+},
+{
+"id": 490,
+"en": "a locked group",
+"src": [
+"GuardService.java:424",
+"LockScreen.java:97"
+]
+},
+{
+"id": 491,
+"en": "Strictly locked  ·  ",
+"src": [
+"GuardService.java:425"
+]
+},
+{
+"id": 492,
+"en": "Locked  ·  ",
+"src": [
+"GuardService.java:425"
+]
+},
+{
+"id": 493,
+"en": "Go back",
+"src": [
+"GuardService.java:432",
+"LockScreen.java:111",
+"PauseScreen.java:105",
+"TourArt.java:292",
+"TourArt.java:354"
+]
+},
+{
+"id": 494,
+"en": "Open anyway",
+"src": [
+"GuardService.java:440",
+"PauseScreen.java:110",
+"PauseScreen.java:250"
+]
+},
+{
+"id": 495,
+"en": "Opening the lock screen…",
+"src": [
+"GuardService.java:449"
+]
+},
+{
+"id": 496,
+"en": "This lock is strict. There is no way past it until it ends.",
+"src": [
+"GuardService.java:463",
+"LockScreen.java:118"
+]
+},
+{
+"id": 497,
+"en": "To break this lock, open the app from the Dinacharya Launcher home screen.",
+"src": [
+"GuardService.java:465"
+]
+},
+{
+"id": 498,
+"en": "You can open it in {1} s",
+"src": [
+"GuardService.java:480"
+]
+},
+{
+"id": 499,
+"en": "You can open it now.",
+"src": [
+"GuardService.java:480"
+]
+},
+{
+"id": 500,
+"en": "{1}.txt",
+"src": [
+"HistoryStore.java:77"
+]
+},
+{
+"id": 501,
+"en": "Your home screen",
+"src": [
+"HomePage.java:90"
+]
+},
+{
+"id": 502,
+"en": "Change the look",
+"src": [
+"HomePage.java:100"
+]
+},
+{
+"id": 503,
+"en": "Good night",
+"src": [
+"HomePage.java:121"
+]
+},
+{
+"id": 504,
+"en": "Good morning",
+"src": [
+"HomePage.java:121"
+]
+},
+{
+"id": 505,
+"en": "Good afternoon",
+"src": [
+"HomePage.java:121"
+]
+},
+{
+"id": 506,
+"en": "Good evening",
+"src": [
+"HomePage.java:121"
+]
+},
+{
+"id": 507,
+"en": "Signed in as {1}. Open Backup.",
+"src": [
+"HomePage.java:127"
+]
+},
+{
+"id": 508,
+"en": "Not signed in. Open Backup.",
+"src": [
+"HomePage.java:127"
+]
+},
+{
+"id": 509,
+"en": "{1} settings still to do",
+"src": [
+"HomePage.java:162"
+]
+},
+{
+"id": 510,
+"en": "Setup",
+"src": [
+"HomePage.java:162"
+]
+},
+{
+"id": 511,
+"en": "1 setting still to do",
+"src": [
+"HomePage.java:162"
+]
+},
+{
+"id": 512,
+"en": "Open the setup guide",
+"src": [
+"HomePage.java:170"
+]
+},
+{
+"id": 513,
+"en": "Take the tour",
+"src": [
+"HomePage.java:172",
+"LauncherSettingsActivity.java:246",
+"SettingsPage.java:84"
+]
+},
+{
+"id": 514,
+"en": "EEEE, d MMMM",
+"src": [
+"HomePage.java:186"
+]
+},
+{
+"id": 515,
+"en": "NOW{1}",
+"src": [
+"HomePage.java:207"
+]
+},
+{
+"id": 516,
+"en": "{1} – {2}   ·   {3} left",
+"src": [
+"HomePage.java:212"
+]
+},
+{
+"id": 517,
+"en": "NOW",
+"src": [
+"HomePage.java:234"
+]
+},
+{
+"id": 518,
+"en": "Free time",
+"src": [
+"HomePage.java:237"
+]
+},
+{
+"id": 519,
+"en": "Next:  {1}  at {2}  (in {3})",
+"src": [
+"HomePage.java:245"
+]
+},
+{
+"id": 520,
+"en": "Alarms are off",
+"src": [
+"HomePage.java:282",
+"RoutinePage.java:279",
+"RoutinePage.java:287"
+]
+},
+{
+"id": 521,
+"en": "Nothing will ring until you turn them on. When a slot starts you hear an alarm and answer: continue as planned, or change it.",
+"src": [
+"HomePage.java:283"
+]
+},
+{
+"id": 522,
+"en": "Turn on alarms",
+"src": [
+"HomePage.java:285",
+"RoutinePage.java:281"
+]
+},
+{
+"id": 523,
+"en": "Alarms need your attention",
+"src": [
+"HomePage.java:289"
+]
+},
+{
+"id": 524,
+"en": "Allow: {1}.",
+"src": [
+"HomePage.java:290"
+]
+},
+{
+"id": 525,
+"en": "The alarm set for {1} never reached the app. The phone may be stopping it.",
+"src": [
+"HomePage.java:291"
+]
+},
+{
+"id": 526,
+"en": "Fix now",
+"src": [
+"HomePage.java:293"
+]
+},
+{
+"id": 527,
+"en": "Next alarm",
+"src": [
+"HomePage.java:308"
+]
+},
+{
+"id": 528,
+"en": "None planned",
+"src": [
+"HomePage.java:309"
+]
+},
+{
+"id": 529,
+"en": "Every slot has its bell off.",
+"src": [
+"HomePage.java:312"
+]
+},
+{
+"id": 530,
+"en": "Test",
+"src": [
+"HomePage.java:315"
+]
+},
+{
+"id": 531,
+"en": "Tip: allow background use so alarms are never late. Tap to open.",
+"src": [
+"HomePage.java:324"
+]
+},
+{
+"id": 532,
+"en": "Today's goals",
+"src": [
+"HomePage.java:354"
+]
+},
+{
+"id": 533,
+"en": "Dinacharya Launcher closed unexpectedly last time",
+"src": [
+"HomePage.java:371"
+]
+},
+{
+"id": 534,
+"en": "Sorry about that. Tap Copy details and send them to the developer so it can be fixed.",
+"src": [
+"HomePage.java:372"
+]
+},
+{
+"id": 535,
+"en": "Copy details",
+"src": [
+"HomePage.java:378"
+]
+},
+{
+"id": 536,
+"en": "Dismiss",
+"src": [
+"HomePage.java:381"
+]
+},
+{
+"id": 537,
+"en": "Dinacharya problem report",
+"src": [
+"HomePage.java:393",
+"SettingsPage.java:475"
+]
+},
+{
+"id": 538,
+"en": "Details copied",
+"src": [
+"HomePage.java:394"
+]
+},
+{
+"id": 539,
+"en": "Dinacharya Launcher is not your home app any more",
+"src": [
+"HomeRole.java:80"
+]
+},
+{
+"id": 540,
+"en": "The Home button now opens another launcher. This happens after an update or a reinstall, or when another home app is picked. Make Dinacharya Launcher your home app again?",
+"src": [
+"HomeRole.java:81"
+]
+},
+{
+"id": 541,
+"en": "Make it my home app",
+"src": [
+"HomeRole.java:83",
+"MainActivity.java:167"
+]
+},
+{
+"id": 542,
+"en": "Stop asking",
+"src": [
+"HomeRole.java:85"
+]
+},
+{
+"id": 543,
+"en": "Open Settings, then Apps, Default apps, Home app",
+"src": [
+"HomeRole.java:117"
+]
+},
+{
+"id": 544,
+"en": "Insights",
+"src": [
+"InsightsPage.java:43",
+"MainActivity.java:29"
+]
+},
+{
+"id": 545,
+"en": "How your days are going",
+"src": [
+"InsightsPage.java:43"
+]
+},
+{
+"id": 546,
+"en": "Reports",
+"src": [
+"InsightsPage.java:56"
+]
+},
+{
+"id": 547,
+"en": "Every day, saved",
+"src": [
+"InsightsPage.java:56"
+]
+},
+{
+"id": 548,
+"en": "Performance and reports",
+"src": [
+"InsightsPage.java:59"
+]
+},
+{
+"id": 549,
+"en": "Could not open Performance",
+"src": [
+"InsightsPage.java:63"
+]
+},
+{
+"id": 550,
+"en": "Today so far",
+"src": [
+"InsightsPage.java:106"
+]
+},
+{
+"id": 551,
+"en": "Plan kept",
+"src": [
+"InsightsPage.java:115",
+"ReportRenderer.java:266"
+]
+},
+{
+"id": 552,
+"en": "Focus",
+"src": [
+"InsightsPage.java:115",
+"LauncherSettingsActivity.java:319",
+"ReportRenderer.java:280"
+]
+},
+{
+"id": 553,
+"en": "Daily goals",
+"src": [
+"InsightsPage.java:125",
+"InsightsPage.java:213"
+]
+},
+{
+"id": 554,
+"en": "＋  Add a goal",
+"src": [
+"InsightsPage.java:127"
+]
+},
+{
+"id": 555,
+"en": "Time by type today",
+"src": [
+"InsightsPage.java:133"
+]
+},
+{
+"id": 556,
+"en": " of {1}",
+"src": [
+"InsightsPage.java:180",
+"ReportRenderer.java:483",
+"TourActivity.java:262"
+]
+},
+{
+"id": 557,
+"en": " of {1} planned",
+"src": [
+"InsightsPage.java:180",
+"ReportRenderer.java:484"
+]
+},
+{
+"id": 558,
+"en": "Your plan has {1} of it today.",
+"src": [
+"InsightsPage.java:198"
+]
+},
+{
+"id": 559,
+"en": "Planned today: {1}.",
+"src": [
+"InsightsPage.java:199"
+]
+},
+{
+"id": 560,
+"en": "-day streak.  ",
+"src": [
+"InsightsPage.java:200",
+"InsightsPage.java:200"
+]
+},
+{
+"id": 561,
+"en": "Add an activity type first (Routine tab)",
+"src": [
+"InsightsPage.java:228"
+]
+},
+{
+"id": 562,
+"en": "Type",
+"src": [
+"InsightsPage.java:242"
+]
+},
+{
+"id": 563,
+"en": "Every day, at least",
+"src": [
+"InsightsPage.java:244"
+]
+},
+{
+"id": 564,
+"en": "Goal for {1}",
+"src": [
+"InsightsPage.java:255"
+]
+},
+{
+"id": 565,
+"en": "New daily goal",
+"src": [
+"InsightsPage.java:255"
+]
+},
+{
+"id": 566,
+"en": "A goal needs at least 5 minutes",
+"src": [
+"InsightsPage.java:261"
+]
+},
+{
+"id": 567,
+"en": "Goal set: {1}, {2} a day.",
+"src": [
+"InsightsPage.java:268"
+]
+},
+{
+"id": 568,
+"en": "Goal removed.",
+"src": [
+"InsightsPage.java:277"
+]
+},
+{
+"id": 569,
+"en": "English",
+"src": [
+"Lang.java:37"
+]
+},
+{
+"id": 570,
+"en": "{1}-u-nu-latn",
+"src": [
+"Lang.java:218",
+"Lang.java:227"
+]
+},
+{
+"id": 571,
+"en": "Automatic: {1}",
+"src": [
+"LanguageDialog.java:17"
+]
+},
+{
+"id": 572,
+"en": "Automatic (the phone's language)",
+"src": [
+"LanguageDialog.java:26"
+]
+},
+{
+"id": 573,
+"en": "Language",
+"src": [
+"LanguageDialog.java:34",
+"LauncherSettingsActivity.java:217",
+"LauncherSettingsActivity.java:218",
+"SettingsPage.java:80"
+]
+},
+{
+"id": 574,
+"en": "That set the lock screen only. Open the wallpaper step again and choose the home screen too.",
+"src": [
+"LauncherActivity.java:278"
+]
+},
+{
+"id": 575,
+"en": "Make this your home app",
+"src": [
+"LauncherActivity.java:385"
+]
+},
+{
+"id": 576,
+"en": "Swipe up: all apps  ·  Tap: dashboard  ·  Hold: settings",
+"src": [
+"LauncherActivity.java:396"
+]
+},
+{
+"id": 577,
+"en": "No camera app found",
+"src": [
+"LauncherActivity.java:578"
+]
+},
+{
+"id": 578,
+"en": "No phone app found",
+"src": [
+"LauncherActivity.java:582"
+]
+},
+{
+"id": 579,
+"en": "That app could not be opened.",
+"src": [
+"LauncherActivity.java:625"
+]
+},
+{
+"id": 580,
+"en": "JavaReflectionMemberAccess",
+"src": [
+"LauncherActivity.java:630"
+]
+},
+{
+"id": 581,
+"en": "Search apps",
+"src": [
+"LauncherActivity.java:761",
+"TourArt.java:200"
+]
+},
+{
+"id": 582,
+"en": "Open the dashboard",
+"src": [
+"LauncherActivity.java:1171"
+]
+},
+{
+"id": 583,
+"en": "Add a pause",
+"src": [
+"LauncherActivity.java:1175"
+]
+},
+{
+"id": 584,
+"en": "Change the pause",
+"src": [
+"LauncherActivity.java:1175"
+]
+},
+{
+"id": 585,
+"en": "Hide from the list",
+"src": [
+"LauncherActivity.java:1178"
+]
+},
+{
+"id": 586,
+"en": "Hidden. You can show it again in the home screen settings.",
+"src": [
+"LauncherActivity.java:1183"
+]
+},
+{
+"id": 587,
+"en": "App info",
+"src": [
+"LauncherActivity.java:1185"
+]
+},
+{
+"id": 588,
+"en": "Could not open the app info.",
+"src": [
+"LauncherActivity.java:1188"
+]
+},
+{
+"id": 589,
+"en": "The home screen could not start.\nYour apps are fine. Try again, or pick another home app.",
+"src": [
+"LauncherActivity.java:1213"
+]
+},
+{
+"id": 590,
+"en": "Try again",
+"src": [
+"LauncherActivity.java:1218"
+]
+},
+{
+"id": 591,
+"en": "Change home app",
+"src": [
+"LauncherActivity.java:1219",
+"LauncherSettingsActivity.java:236"
+]
+},
+{
+"id": 592,
+"en": "Open Dinacharya Launcher",
+"src": [
+"LauncherActivity.java:1220"
+]
+},
+{
+"id": 593,
+"en": "Auto",
+"src": [
+"LauncherConfig.java:18",
+"SettingsPage.java:165"
+]
+},
+{
+"id": 594,
+"en": "Dark",
+"src": [
+"LauncherConfig.java:18"
+]
+},
+{
+"id": 595,
+"en": "Light",
+"src": [
+"LauncherConfig.java:18",
+"SettingsPage.java:165"
+]
+},
+{
+"id": 596,
+"en": "Small",
+"src": [
+"LauncherConfig.java:19"
+]
+},
+{
+"id": 597,
+"en": "Medium",
+"src": [
+"LauncherConfig.java:19"
+]
+},
+{
+"id": 598,
+"en": "Large",
+"src": [
+"LauncherConfig.java:19"
+]
+},
+{
+"id": 599,
+"en": "Huge",
+"src": [
+"LauncherConfig.java:19"
+]
+},
+{
+"id": 600,
+"en": "DINALAUNCH1",
+"src": [
+"LauncherConfig.java:25"
+]
+},
+{
+"id": 601,
+"en": "Group",
+"src": [
+"LauncherConfig.java:81"
+]
+},
+{
+"id": 602,
+"en": "theme={1}",
+"src": [
+"LauncherConfig.java:214",
+"Routine.java:421"
+]
+},
+{
+"id": 603,
+"en": "size={1}",
+"src": [
+"LauncherConfig.java:215"
+]
+},
+{
+"id": 604,
+"en": "autoOpen={1}",
+"src": [
+"LauncherConfig.java:216"
+]
+},
+{
+"id": 605,
+"en": "kbd={1}",
+"src": [
+"LauncherConfig.java:217"
+]
+},
+{
+"id": 606,
+"en": "focusKinds={1}",
+"src": [
+"LauncherConfig.java:218"
+]
+},
+{
+"id": 607,
+"en": "pauseSec={1}",
+"src": [
+"LauncherConfig.java:219"
+]
+},
+{
+"id": 608,
+"en": "strictSec={1}",
+"src": [
+"LauncherConfig.java:220"
+]
+},
+{
+"id": 609,
+"en": "strong=1\n",
+"src": [
+"LauncherConfig.java:221"
+]
+},
+{
+"id": 610,
+"en": "swipes=2\n",
+"src": [
+"LauncherConfig.java:222"
+]
+},
+{
+"id": 611,
+"en": "swipeLeft={1}",
+"src": [
+"LauncherConfig.java:223"
+]
+},
+{
+"id": 612,
+"en": "swipeRight={1}",
+"src": [
+"LauncherConfig.java:224"
+]
+},
+{
+"id": 613,
+"en": "X\t{1}",
+"src": [
+"LauncherConfig.java:225"
+]
+},
+{
+"id": 614,
+"en": "‹  Back",
+"src": [
+"LauncherSettingsActivity.java:47"
+]
+},
+{
+"id": 615,
+"en": "Home screen",
+"src": [
+"LauncherSettingsActivity.java:51",
+"SettingsPage.java:79",
+"SettingsPage.java:82",
+"SettingsPage.java:447",
+"TourArt.java:377"
+]
+},
+{
+"id": 616,
+"en": "Nothing",
+"src": [
+"LauncherSettingsActivity.java:107",
+"LauncherSettingsActivity.java:262"
+]
+},
+{
+"id": 617,
+"en": "Change",
+"src": [
+"LauncherSettingsActivity.java:218",
+"LauncherSettingsActivity.java:254",
+"LauncherSettingsActivity.java:255",
+"TourArt.java:275"
+]
+},
+{
+"id": 618,
+"en": "Home app",
+"src": [
+"LauncherSettingsActivity.java:222"
+]
+},
+{
+"id": 619,
+"en": "A calmer home screen",
+"src": [
+"LauncherSettingsActivity.java:222"
+]
+},
+{
+"id": 620,
+"en": "Dinacharya Launcher is your home app",
+"src": [
+"LauncherSettingsActivity.java:225"
+]
+},
+{
+"id": 621,
+"en": "Not your home app yet",
+"src": [
+"LauncherSettingsActivity.java:225"
+]
+},
+{
+"id": 622,
+"en": "Pressing Home shows this screen.",
+"src": [
+"LauncherSettingsActivity.java:226"
+]
+},
+{
+"id": 623,
+"en": "Press Try it to look first.",
+"src": [
+"LauncherSettingsActivity.java:226"
+]
+},
+{
+"id": 624,
+"en": "Set",
+"src": [
+"LauncherSettingsActivity.java:226",
+"LauncherSettingsActivity.java:232",
+"Permissions.java:73",
+"Permissions.java:78",
+"RoutinePage.java:814"
+]
+},
+{
+"id": 625,
+"en": "The Dinacharya Launcher wallpaper is on",
+"src": [
+"LauncherSettingsActivity.java:229"
+]
+},
+{
+"id": 626,
+"en": "Only the lock screen has it",
+"src": [
+"LauncherSettingsActivity.java:229"
+]
+},
+{
+"id": 627,
+"en": "Wallpaper not in place yet",
+"src": [
+"LauncherSettingsActivity.java:229"
+]
+},
+{
+"id": 628,
+"en": "Your day shows on the home screen, lock screen and recent apps.",
+"src": [
+"LauncherSettingsActivity.java:230"
+]
+},
+{
+"id": 629,
+"en": "On Android’s preview, choose Home screen (or both).",
+"src": [
+"LauncherSettingsActivity.java:231"
+]
+},
+{
+"id": 630,
+"en": "Android asks you to confirm once.",
+"src": [
+"LauncherSettingsActivity.java:232"
+]
+},
+{
+"id": 631,
+"en": "Try it now",
+"src": [
+"LauncherSettingsActivity.java:235"
+]
+},
+{
+"id": 632,
+"en": "A short walk through what the app does",
+"src": [
+"LauncherSettingsActivity.java:246",
+"SettingsPage.java:84"
+]
+},
+{
+"id": 633,
+"en": "Start",
+"src": [
+"LauncherSettingsActivity.java:246"
+]
+},
+{
+"id": 634,
+"en": "Check phone settings",
+"src": [
+"LauncherSettingsActivity.java:248",
+"SettingsPage.java:86"
+]
+},
+{
+"id": 635,
+"en": "Permissions and settings the app needs",
+"src": [
+"LauncherSettingsActivity.java:248"
+]
+},
+{
+"id": 636,
+"en": "Swipes",
+"src": [
+"LauncherSettingsActivity.java:253"
+]
+},
+{
+"id": 637,
+"en": "Shortcuts",
+"src": [
+"LauncherSettingsActivity.java:253"
+]
+},
+{
+"id": 638,
+"en": "Swipe left",
+"src": [
+"LauncherSettingsActivity.java:254"
+]
+},
+{
+"id": 639,
+"en": "Swipe right",
+"src": [
+"LauncherSettingsActivity.java:255"
+]
+},
+{
+"id": 640,
+"en": "Swipe left opens",
+"src": [
+"LauncherSettingsActivity.java:261"
+]
+},
+{
+"id": 641,
+"en": "Swipe right opens",
+"src": [
+"LauncherSettingsActivity.java:261"
+]
+},
+{
+"id": 642,
+"en": "Look",
+"src": [
+"LauncherSettingsActivity.java:272"
+]
+},
+{
+"id": 643,
+"en": "How it looks",
+"src": [
+"LauncherSettingsActivity.java:272"
+]
+},
+{
+"id": 644,
+"en": "Change what the home screen shows",
+"src": [
+"LauncherSettingsActivity.java:275"
+]
+},
+{
+"id": 645,
+"en": "Colours of the list of all apps and the pause screen",
+"src": [
+"LauncherSettingsActivity.java:277"
+]
+},
+{
+"id": 646,
+"en": "Text size in the list of all apps",
+"src": [
+"LauncherSettingsActivity.java:285"
+]
+},
+{
+"id": 647,
+"en": "Open an app when only one matches",
+"src": [
+"LauncherSettingsActivity.java:293"
+]
+},
+{
+"id": 648,
+"en": "Open the keyboard in the list of all apps",
+"src": [
+"LauncherSettingsActivity.java:297"
+]
+},
+{
+"id": 649,
+"en": "Strict pause, {1} s",
+"src": [
+"LauncherSettingsActivity.java:305"
+]
+},
+{
+"id": 650,
+"en": "Short pause, {1} s",
+"src": [
+"LauncherSettingsActivity.java:306"
+]
+},
+{
+"id": 651,
+"en": "  ·  limit {1} a day",
+"src": [
+"LauncherSettingsActivity.java:309"
+]
+},
+{
+"id": 652,
+"en": "  ·  also outside focus times",
+"src": [
+"LauncherSettingsActivity.java:310"
+]
+},
+{
+"id": 653,
+"en": "  ·  needs Pro",
+"src": [
+"LauncherSettingsActivity.java:311",
+"LauncherSettingsActivity.java:396"
+]
+},
+{
+"id": 654,
+"en": "  ·  Pro part off",
+"src": [
+"LauncherSettingsActivity.java:314"
+]
+},
+{
+"id": 655,
+"en": "A pause before apps open",
+"src": [
+"LauncherSettingsActivity.java:319"
+]
+},
+{
+"id": 656,
+"en": " from this home screen",
+"src": [
+"LauncherSettingsActivity.java:320",
+"LauncherSettingsActivity.java:376"
+]
+},
+{
+"id": 657,
+"en": " To hold them whichever way they open, turn on the strong lock below.",
+"src": [
+"LauncherSettingsActivity.java:322"
+]
+},
+{
+"id": 658,
+"en": "Pause during",
+"src": [
+"LauncherSettingsActivity.java:323"
+]
+},
+{
+"id": 659,
+"en": "{1} time",
+"src": [
+"LauncherSettingsActivity.java:326"
+]
+},
+{
+"id": 660,
+"en": "Short pause",
+"src": [
+"LauncherSettingsActivity.java:331"
+]
+},
+{
+"id": 661,
+"en": "Strict pause",
+"src": [
+"LauncherSettingsActivity.java:335"
+]
+},
+{
+"id": 662,
+"en": "Strict pause (Pro)",
+"src": [
+"LauncherSettingsActivity.java:335"
+]
+},
+{
+"id": 663,
+"en": "Apps with a pause",
+"src": [
+"LauncherSettingsActivity.java:340"
+]
+},
+{
+"id": 664,
+"en": "Edit",
+"src": [
+"LauncherSettingsActivity.java:346",
+"LauncherSettingsActivity.java:399"
+]
+},
+{
+"id": 665,
+"en": "Add a pause for an app",
+"src": [
+"LauncherSettingsActivity.java:352"
+]
+},
+{
+"id": 666,
+"en": "Add a pause for",
+"src": [
+"LauncherSettingsActivity.java:352"
+]
+},
+{
+"id": 667,
+"en": "See Pro",
+"src": [
+"LauncherSettingsActivity.java:361",
+"LauncherSettingsActivity.java:419",
+"MainActivity.java:305",
+"PerformanceActivity.java:187",
+"PerformanceActivity.java:245",
+"ProPrompt.java:53",
+"ProPrompt.java:107"
+]
+},
+{
+"id": 668,
+"en": "Usage access",
+"src": [
+"LauncherSettingsActivity.java:366",
+"LauncherSettingsActivity.java:442",
+"SettingsPage.java:383"
+]
+},
+{
+"id": 669,
+"en": "Needed to count the minutes for daily limits",
+"src": [
+"LauncherSettingsActivity.java:366"
+]
+},
+{
+"id": 670,
+"en": "Locked groups",
+"src": [
+"LauncherSettingsActivity.java:373",
+"TourArt.java:378"
+]
+},
+{
+"id": 671,
+"en": "Lock a group of apps for a time",
+"src": [
+"LauncherSettingsActivity.java:373"
+]
+},
+{
+"id": 672,
+"en": "Lock apps for a time",
+"src": [
+"LauncherSettingsActivity.java:373",
+"ProActivity.java:22"
+]
+},
+{
+"id": 673,
+"en": "Put the apps that eat your time in a group, then lock the group",
+"src": [
+"LauncherSettingsActivity.java:374"
+]
+},
+{
+"id": 674,
+"en": "Pick the apps that eat your time, then lock them",
+"src": [
+"LauncherSettingsActivity.java:374"
+]
+},
+{
+"id": 675,
+"en": "  ·  strict",
+"src": [
+"LauncherSettingsActivity.java:395"
+]
+},
+{
+"id": 676,
+"en": "  ·  only {1} held, needs Pro",
+"src": [
+"LauncherSettingsActivity.java:397"
+]
+},
+{
+"id": 677,
+"en": "  ·  strict part off",
+"src": [
+"LauncherSettingsActivity.java:398"
+]
+},
+{
+"id": 678,
+"en": "Add a locked group",
+"src": [
+"LauncherSettingsActivity.java:402"
+]
+},
+{
+"id": 679,
+"en": "More than one lock",
+"src": [
+"LauncherSettingsActivity.java:405"
+]
+},
+{
+"id": 680,
+"en": "Hold locks and pauses everywhere",
+"src": [
+"LauncherSettingsActivity.java:430"
+]
+},
+{
+"id": 681,
+"en": "Lets Dinacharya Launcher see which app is in front",
+"src": [
+"LauncherSettingsActivity.java:442"
+]
+},
+{
+"id": 682,
+"en": "Display over other apps",
+"src": [
+"LauncherSettingsActivity.java:444"
+]
+},
+{
+"id": 683,
+"en": "Lets the lock screen appear over an app",
+"src": [
+"LauncherSettingsActivity.java:444"
+]
+},
+{
+"id": 684,
+"en": "Hidden apps",
+"src": [
+"LauncherSettingsActivity.java:453",
+"LauncherSettingsActivity.java:472"
+]
+},
+{
+"id": 685,
+"en": "Apps kept out of the list",
+"src": [
+"LauncherSettingsActivity.java:453"
+]
+},
+{
+"id": 686,
+"en": " app is",
+"src": [
+"LauncherSettingsActivity.java:458"
+]
+},
+{
+"id": 687,
+"en": " apps are",
+"src": [
+"LauncherSettingsActivity.java:458"
+]
+},
+{
+"id": 688,
+"en": "Show some again",
+"src": [
+"LauncherSettingsActivity.java:460"
+]
+},
+{
+"id": 689,
+"en": "At the home screen",
+"src": [
+"LauncherSettingsActivity.java:485"
+]
+},
+{
+"id": 690,
+"en": "{1} today",
+"src": [
+"LauncherSettingsActivity.java:501"
+]
+},
+{
+"id": 691,
+"en": "Reset these settings",
+"src": [
+"LauncherSettingsActivity.java:508"
+]
+},
+{
+"id": 692,
+"en": "A strict lock is holding",
+"src": [
+"LauncherSettingsActivity.java:511"
+]
+},
+{
+"id": 693,
+"en": "The settings cannot be reset while a strict lock holds. It ends at {1}.",
+"src": [
+"LauncherSettingsActivity.java:512"
+]
+},
+{
+"id": 694,
+"en": "Reset the home screen?",
+"src": [
+"LauncherSettingsActivity.java:518"
+]
+},
+{
+"id": 695,
+"en": "This clears the swipes, the look, the hidden apps, the pause rules and the locked groups. Your routine and reports are not touched.",
+"src": [
+"LauncherSettingsActivity.java:519"
+]
+},
+{
+"id": 696,
+"en": "Reset",
+"src": [
+"LauncherSettingsActivity.java:521",
+"RoutinePage.java:1210"
+]
+},
+{
+"id": 697,
+"en": "#ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+"src": [
+"LetterRail.java:16"
+]
+},
+{
+"id": 698,
+"en": "Mon",
+"src": [
+"LockRules.java:157",
+"Routine.java:26"
+]
+},
+{
+"id": 699,
+"en": "Tue",
+"src": [
+"LockRules.java:157",
+"Routine.java:26"
+]
+},
+{
+"id": 700,
+"en": "Wed",
+"src": [
+"LockRules.java:157",
+"Routine.java:26"
+]
+},
+{
+"id": 701,
+"en": "Thu",
+"src": [
+"LockRules.java:157",
+"Routine.java:26"
+]
+},
+{
+"id": 702,
+"en": "Fri",
+"src": [
+"LockRules.java:157",
+"Routine.java:26"
+]
+},
+{
+"id": 703,
+"en": "Sat",
+"src": [
+"LockRules.java:157",
+"Routine.java:26"
+]
+},
+{
+"id": 704,
+"en": "Sun",
+"src": [
+"LockRules.java:157",
+"Routine.java:26"
+]
+},
+{
+"id": 705,
+"en": "No days",
+"src": [
+"LockRules.java:162"
+]
+},
+{
+"id": 706,
+"en": "tomorrow {1}",
+"src": [
+"LockRules.java:192"
+]
+},
+{
+"id": 707,
+"en": "Locked until {1}",
+"src": [
+"LockRules.java:199"
+]
+},
+{
+"id": 708,
+"en": "Next: {1}",
+"src": [
+"LockRules.java:201"
+]
+},
+{
+"id": 709,
+"en": "Not scheduled",
+"src": [
+"LockRules.java:202"
+]
+},
+{
+"id": 710,
+"en": "Strictly locked  ·  {1}",
+"src": [
+"LockScreen.java:98"
+]
+},
+{
+"id": 711,
+"en": "Locked  ·  {1}",
+"src": [
+"LockScreen.java:98"
+]
+},
+{
+"id": 712,
+"en": "Until {1}",
+"src": [
+"LockScreen.java:103"
+]
+},
+{
+"id": 713,
+"en": "Break the lock",
+"src": [
+"LockScreen.java:115",
+"LockScreen.java:242",
+"TourArt.java:355"
+]
+},
+{
+"id": 714,
+"en": "{1} left",
+"src": [
+"LockScreen.java:166"
+]
+},
+{
+"id": 715,
+"en": "The lock has ended.",
+"src": [
+"LockScreen.java:181"
+]
+},
+{
+"id": 716,
+"en": "Open {1}",
+"src": [
+"LockScreen.java:184"
+]
+},
+{
+"id": 717,
+"en": "A lock is a promise to yourself. Wait a moment before you break it.",
+"src": [
+"LockScreen.java:200"
+]
+},
+{
+"id": 718,
+"en": "Type this to break the lock",
+"src": [
+"LockScreen.java:217"
+]
+},
+{
+"id": 719,
+"en": "Not the same yet. Check each word.",
+"src": [
+"LockScreen.java:234",
+"PauseScreen.java:344"
+]
+},
+{
+"id": 720,
+"en": "Type it here",
+"src": [
+"LockScreen.java:299",
+"PauseScreen.java:333"
+]
+},
+{
+"id": 721,
+"en": "Home",
+"src": [
+"MainActivity.java:29"
+]
+},
+{
+"id": 722,
+"en": "Routine",
+"src": [
+"MainActivity.java:29",
+"Routine.java:671",
+"Routine.java:674",
+"RoutinePage.java:189",
+"SettingsPage.java:449"
+]
+},
+{
+"id": 723,
+"en": "You’re all set",
+"src": [
+"MainActivity.java:157"
+]
+},
+{
+"id": 724,
+"en": "Press the Home button to see your day. Everything else is here in the dashboard: your routine, insights, backup and settings.",
+"src": [
+"MainActivity.java:159"
+]
+},
+{
+"id": 725,
+"en": "One more step: make Dinacharya Launcher your home app, so your day is what you see when you press Home. Everything else is here in the dashboard: your routine, insights, backup and settings.",
+"src": [
+"MainActivity.java:160"
+]
+},
+{
+"id": 726,
+"en": "Stay here",
+"src": [
+"MainActivity.java:162"
+]
+},
+{
+"id": 727,
+"en": "Go to my home screen",
+"src": [
+"MainActivity.java:164"
+]
+},
+{
+"id": 728,
+"en": "Your video pass has ended",
+"src": [
+"MainActivity.java:302"
+]
+},
+{
+"id": 729,
+"en": "closed with result {1}",
+"src": [
+"MainActivity.java:362"
+]
+},
+{
+"id": 730,
+"en": ", no data",
+"src": [
+"MainActivity.java:363"
+]
+},
+{
+"id": 731,
+"en": ", no token",
+"src": [
+"MainActivity.java:363"
+]
+},
+{
+"id": 732,
+"en": "{1}\n\n(Result {2}",
+"src": [
+"MainActivity.java:364"
+]
+},
+{
+"id": 733,
+"en": ", no details from Google)",
+"src": [
+"MainActivity.java:364"
+]
+},
+{
+"id": 734,
+"en": "UNDO",
+"src": [
+"MainActivity.java:435"
+]
+},
+{
+"id": 735,
+"en": "Could not save. Please try again.",
+"src": [
+"MainActivity.java:556"
+]
+},
+{
+"id": 736,
+"en": "Undone",
+"src": [
+"MainActivity.java:607"
+]
+},
+{
+"id": 737,
+"en": "extra text at {1}",
+"src": [
+"MiniJson.java:23"
+]
+},
+{
+"id": 738,
+"en": "\\n",
+"src": [
+"MiniJson.java:55",
+"PassLedger.java:170",
+"Translator.java:140"
+]
+},
+{
+"id": 739,
+"en": "\\r",
+"src": [
+"MiniJson.java:56",
+"PassLedger.java:172",
+"Translator.java:142"
+]
+},
+{
+"id": 740,
+"en": "\\t",
+"src": [
+"MiniJson.java:57",
+"PassLedger.java:171",
+"Translator.java:141"
+]
+},
+{
+"id": 741,
+"en": "unexpected end",
+"src": [
+"MiniJson.java:71"
+]
+},
+{
+"id": 742,
+"en": "+-0123456789.eE",
+"src": [
+"MiniJson.java:80"
+]
+},
+{
+"id": 743,
+"en": "unexpected character at {1}",
+"src": [
+"MiniJson.java:81"
+]
+},
+{
+"id": 744,
+"en": "bad escape",
+"src": [
+"MiniJson.java:135"
+]
+},
+{
+"id": 745,
+"en": "unterminated string",
+"src": [
+"MiniJson.java:142"
+]
+},
+{
+"id": 746,
+"en": "expected {1} at {2}",
+"src": [
+"MiniJson.java:146"
+]
+},
+{
+"id": 747,
+"en": "DINAOV1",
+"src": [
+"Overrides.java:24"
+]
+},
+{
+"id": 748,
+"en": "sig={1}",
+"src": [
+"Overrides.java:112"
+]
+},
+{
+"id": 749,
+"en": "S\t{1}",
+"src": [
+"Overrides.java:114"
+]
+},
+{
+"id": 750,
+"en": "E\t{1}",
+"src": [
+"Overrides.java:118"
+]
+},
+{
+"id": 751,
+"en": "DINAPASSES1",
+"src": [
+"PassLedger.java:162"
+]
+},
+{
+"id": 752,
+"en": "DINAPASS3",
+"src": [
+"PassReset.java:35"
+]
+},
+{
+"id": 753,
+"en": "DINAPASS2",
+"src": [
+"PassReset.java:37"
+]
+},
+{
+"id": 754,
+"en": "M\t{1}",
+"src": [
+"PassReset.java:130"
+]
+},
+{
+"id": 755,
+"en": "O\t{1}",
+"src": [
+"PassReset.java:145"
+]
+},
+{
+"id": 756,
+"en": "L\t{1}",
+"src": [
+"PassReset.java:148"
+]
+},
+{
+"id": 757,
+"en": "P\t{1}",
+"src": [
+"PassReset.java:151",
+"Routine.java:443"
+]
+},
+{
+"id": 758,
+"en": "Your pass for {1} has ended. {2} you made with it went back to the free version. What you had before is untouched. Dinacharya Pro keeps such things for good.",
+"src": [
+"PassReset.java:383"
+]
+},
+{
+"id": 759,
+"en": "{1} changes",
+"src": [
+"PassReset.java:384"
+]
+},
+{
+"id": 760,
+"en": "1 change",
+"src": [
+"PassReset.java:384"
+]
+},
+{
+"id": 761,
+"en": "Wait",
+"src": [
+"PauseChallenge.java:14"
+]
+},
+{
+"id": 762,
+"en": "Quick sum",
+"src": [
+"PauseChallenge.java:14"
+]
+},
+{
+"id": 763,
+"en": "Type a sentence",
+"src": [
+"PauseChallenge.java:14"
+]
+},
+{
+"id": 764,
+"en": "Breathe",
+"src": [
+"PauseChallenge.java:14"
+]
+},
+{
+"id": 765,
+"en": "Say why",
+"src": [
+"PauseChallenge.java:14"
+]
+},
+{
+"id": 766,
+"en": "Count down a few seconds",
+"src": [
+"PauseChallenge.java:16"
+]
+},
+{
+"id": 767,
+"en": "Solve a simple sum to open the app",
+"src": [
+"PauseChallenge.java:17"
+]
+},
+{
+"id": 768,
+"en": "Type a short sentence on purpose",
+"src": [
+"PauseChallenge.java:18"
+]
+},
+{
+"id": 769,
+"en": "Take slow breaths with a moving circle",
+"src": [
+"PauseChallenge.java:19"
+]
+},
+{
+"id": 770,
+"en": "Pick why you are opening it",
+"src": [
+"PauseChallenge.java:20"
+]
+},
+{
+"id": 771,
+"en": "I choose to open this app",
+"src": [
+"PauseChallenge.java:24"
+]
+},
+{
+"id": 772,
+"en": "I am in control of my time",
+"src": [
+"PauseChallenge.java:25"
+]
+},
+{
+"id": 773,
+"en": "This can wait a few minutes",
+"src": [
+"PauseChallenge.java:26"
+]
+},
+{
+"id": 774,
+"en": "I am opening this on purpose",
+"src": [
+"PauseChallenge.java:27"
+]
+},
+{
+"id": 775,
+"en": "I will come back to my day",
+"src": [
+"PauseChallenge.java:28"
+]
+},
+{
+"id": 776,
+"en": "I need it for something specific",
+"src": [
+"PauseChallenge.java:32"
+]
+},
+{
+"id": 777,
+"en": "I am bored",
+"src": [
+"PauseChallenge.java:33"
+]
+},
+{
+"id": 778,
+"en": "It is just a habit",
+"src": [
+"PauseChallenge.java:34"
+]
+},
+{
+"id": 779,
+"en": "I am avoiding something",
+"src": [
+"PauseChallenge.java:35"
+]
+},
+{
+"id": 780,
+"en": "Boredom passes. Stand up and stretch for a minute, then decide.",
+"src": [
+"PauseChallenge.java:38"
+]
+},
+{
+"id": 781,
+"en": "Habits fade once you notice them. Take one slow breath first.",
+"src": [
+"PauseChallenge.java:39"
+]
+},
+{
+"id": 782,
+"en": "Do the smallest next step of your task for two minutes. Then decide.",
+"src": [
+"PauseChallenge.java:40"
+]
+},
+{
+"id": 783,
+"en": "\\s+",
+"src": [
+"PauseChallenge.java:122"
+]
+},
+{
+"id": 784,
+"en": "Open anyway in {1}",
+"src": [
+"PauseScreen.java:250"
+]
+},
+{
+"id": 785,
+"en": "Skip the challenge in {1}",
+"src": [
+"PauseScreen.java:252"
+]
+},
+{
+"id": 786,
+"en": "Skip the challenge",
+"src": [
+"PauseScreen.java:252"
+]
+},
+{
+"id": 787,
+"en": "Sum 1 of {1}",
+"src": [
+"PauseScreen.java:276"
+]
+},
+{
+"id": 788,
+"en": "Solve it to open",
+"src": [
+"PauseScreen.java:276"
+]
+},
+{
+"id": 789,
+"en": "Your answer",
+"src": [
+"PauseScreen.java:282"
+]
+},
+{
+"id": 790,
+"en": "Right! One more.",
+"src": [
+"PauseScreen.java:299"
+]
+},
+{
+"id": 791,
+"en": "Sum {1} of {2}",
+"src": [
+"PauseScreen.java:302"
+]
+},
+{
+"id": 792,
+"en": "Not quite. Try again.",
+"src": [
+"PauseScreen.java:304"
+]
+},
+{
+"id": 793,
+"en": "Check",
+"src": [
+"PauseScreen.java:313",
+"PauseScreen.java:352"
+]
+},
+{
+"id": 794,
+"en": "Type this to open it",
+"src": [
+"PauseScreen.java:326"
+]
+},
+{
+"id": 795,
+"en": "Breathe in",
+"src": [
+"PauseScreen.java:392",
+"PauseScreen.java:427"
+]
+},
+{
+"id": 796,
+"en": "Breath 1 of {1}",
+"src": [
+"PauseScreen.java:400"
+]
+},
+{
+"id": 797,
+"en": "Breathe out",
+"src": [
+"PauseScreen.java:427"
+]
+},
+{
+"id": 798,
+"en": "Breath {1} of {2}",
+"src": [
+"PauseScreen.java:429"
+]
+},
+{
+"id": 799,
+"en": "Why are you opening it?",
+"src": [
+"PauseScreen.java:443"
+]
+},
+{
+"id": 800,
+"en": "Open in {1}",
+"src": [
+"PauseScreen.java:469",
+"PauseScreen.java:478"
+]
+},
+{
+"id": 801,
+"en": "Open it",
+"src": [
+"PauseScreen.java:481"
+]
+},
+{
+"id": 802,
+"en": " so far",
+"src": [
+"PdfActions.java:22"
+]
+},
+{
+"id": 803,
+"en": "This phone has no save dialog. Use Share instead.",
+"src": [
+"PdfActions.java:34"
+]
+},
+{
+"id": 804,
+"en": "could not open the file",
+"src": [
+"PdfActions.java:45"
+]
+},
+{
+"id": 805,
+"en": "PDF saved",
+"src": [
+"PdfActions.java:47"
+]
+},
+{
+"id": 806,
+"en": "Could not save the PDF: {1}",
+"src": [
+"PdfActions.java:49"
+]
+},
+{
+"id": 807,
+"en": "no folder",
+"src": [
+"PdfActions.java:62"
+]
+},
+{
+"id": 808,
+"en": "Share report",
+"src": [
+"PdfActions.java:76"
+]
+},
+{
+"id": 809,
+"en": "Could not make the PDF: {1}",
+"src": [
+"PdfActions.java:79"
+]
+},
+{
+"id": 810,
+"en": "Week",
+"src": [
+"PerformanceActivity.java:44",
+"PerformanceActivity.java:86"
+]
+},
+{
+"id": 811,
+"en": "Week · Pro",
+"src": [
+"PerformanceActivity.java:44",
+"PerformanceActivity.java:86"
+]
+},
+{
+"id": 812,
+"en": "Days",
+"src": [
+"PerformanceActivity.java:44"
+]
+},
+{
+"id": 813,
+"en": "Reading your day…",
+"src": [
+"PerformanceActivity.java:93"
+]
+},
+{
+"id": 814,
+"en": "The weekly view is part of Pro",
+"src": [
+"PerformanceActivity.java:100"
+]
+},
+{
+"id": 815,
+"en": "The week chart, your average score and the tips that come from it. Today and the last {1} days stay free.",
+"src": [
+"PerformanceActivity.java:101"
+]
+},
+{
+"id": 816,
+"en": "Could not read the day: {1}",
+"src": [
+"PerformanceActivity.java:131"
+]
+},
+{
+"id": 817,
+"en": "Allow usage access to see phone time",
+"src": [
+"PerformanceActivity.java:146"
+]
+},
+{
+"id": 818,
+"en": "Save PDF",
+"src": [
+"PerformanceActivity.java:159",
+"ReportActivity.java:38"
+]
+},
+{
+"id": 819,
+"en": "Share PDF",
+"src": [
+"PerformanceActivity.java:161",
+"ReportActivity.java:39"
+]
+},
+{
+"id": 820,
+"en": "No finished days yet. After your first full day, a report is saved here and the week chart starts.",
+"src": [
+"PerformanceActivity.java:168"
+]
+},
+{
+"id": 821,
+"en": "No saved days yet. A report is saved on this phone each time a schedule day ends.",
+"src": [
+"PerformanceActivity.java:198"
+]
+},
+{
+"id": 822,
+"en": "Phone {1}",
+"src": [
+"PerformanceActivity.java:216"
+]
+},
+{
+"id": 823,
+"en": "Phone not measured",
+"src": [
+"PerformanceActivity.java:216"
+]
+},
+{
+"id": 824,
+"en": "  ·  backed up",
+"src": [
+"PerformanceActivity.java:217"
+]
+},
+{
+"id": 825,
+"en": "  ·  not backed up yet",
+"src": [
+"PerformanceActivity.java:217"
+]
+},
+{
+"id": 826,
+"en": "{1} saved on this phone. Opening days older than the last {2} is part of Pro.",
+"src": [
+"PerformanceActivity.java:241"
+]
+},
+{
+"id": 827,
+"en": " older day is",
+"src": [
+"PerformanceActivity.java:241"
+]
+},
+{
+"id": 828,
+"en": " older days are",
+"src": [
+"PerformanceActivity.java:241"
+]
+},
+{
+"id": 829,
+"en": "{1}h {2}m",
+"src": [
+"PerformanceActivity.java:269",
+"Routine.java:411"
+]
+},
+{
+"id": 830,
+"en": "{1}m",
+"src": [
+"PerformanceActivity.java:269"
+]
+},
+{
+"id": 831,
+"en": "Alarms and reminders show up here, also over the lock screen.",
+"src": [
+"Permissions.java:56"
+]
+},
+{
+"id": 832,
+"en": "Alarms on",
+"src": [
+"Permissions.java:57"
+]
+},
+{
+"id": 833,
+"en": "Rings when a slot of your day starts and asks one question.",
+"src": [
+"Permissions.java:57"
+]
+},
+{
+"id": 834,
+"en": "Turn on",
+"src": [
+"Permissions.java:57",
+"RoutinePage.java:289"
+]
+},
+{
+"id": 835,
+"en": "Rings on the minute a slot starts, not minutes late.",
+"src": [
+"Permissions.java:59"
+]
+},
+{
+"id": 836,
+"en": "Phone-use time (optional)",
+"src": [
+"Permissions.java:65"
+]
+},
+{
+"id": 837,
+"en": "Shows your phone time and counts daily app limits. Read on this phone only.",
+"src": [
+"Permissions.java:65"
+]
+},
+{
+"id": 838,
+"en": "Greyed out or “Restricted setting”?",
+"src": [
+"Permissions.java:66"
+]
+},
+{
+"id": 839,
+"en": "Stops the phone from putting the app to sleep. Set Battery to Unrestricted on the app’s info page.",
+"src": [
+"Permissions.java:68"
+]
+},
+{
+"id": 840,
+"en": "Open Android’s battery list",
+"src": [
+"Permissions.java:69"
+]
+},
+{
+"id": 841,
+"en": "Your phone's maker stops apps in the background unless you allow it.",
+"src": [
+"Permissions.java:71"
+]
+},
+{
+"id": 842,
+"en": "Make Dinacharya Launcher your home app",
+"src": [
+"Permissions.java:73"
+]
+},
+{
+"id": 843,
+"en": "Pressing Home shows your day.",
+"src": [
+"Permissions.java:73"
+]
+},
+{
+"id": 844,
+"en": "Put the Dinacharya Launcher wallpaper in place",
+"src": [
+"Permissions.java:74"
+]
+},
+{
+"id": 845,
+"en": "Only the lock screen has it. On Android’s preview, choose Home screen (or both).",
+"src": [
+"Permissions.java:76"
+]
+},
+{
+"id": 846,
+"en": "Shows your day on the lock screen and in recent apps. Android asks you to confirm once.",
+"src": [
+"Permissions.java:77"
+]
+},
+{
+"id": 847,
+"en": "48:94:D3:1F:BE:2F:4A:60:ED:4A:B2:1F:E9:00:61:FE:3D:8C:E8:B8",
+"src": [
+"PickerAuth.java:55"
+]
+},
+{
+"id": 848,
+"en": "Google's sign-in screen closed without an account. If you did not close it yourself, Google is not accepting this app yet. Tap “Check setup” to compare this app with your Google Cloud settings.",
+"src": [
+"PickerAuth.java:58"
+]
+},
+{
+"id": 849,
+"en": "\n\nGoogle said: {1}",
+"src": [
+"PickerAuth.java:66"
+]
+},
+{
+"id": 850,
+"en": "Google does not recognise this app (developer error 10). The package name or SHA-1 registered in Google Cloud does not match this app, or the Android client is in another project. Tap “Check setup”.{1}",
+"src": [
+"PickerAuth.java:73"
+]
+},
+{
+"id": 851,
+"en": "No internet connection. Try again when you are online.{1}",
+"src": [
+"PickerAuth.java:76"
+]
+},
+{
+"id": 852,
+"en": "{1}\n\n(Code {2}){3}",
+"src": [
+"PickerAuth.java:77"
+]
+},
+{
+"id": 853,
+"en": "Google Play services cannot do this sign-in on this phone (code 17). Use “Sign in with a code”.{1}",
+"src": [
+"PickerAuth.java:78"
+]
+},
+{
+"id": 854,
+"en": "Google sign-in failed (code {1}).{2}",
+"src": [
+"PickerAuth.java:79"
+]
+},
+{
+"id": 855,
+"en": "Google sign-in failed{1}",
+"src": [
+"PickerAuth.java:82"
+]
+},
+{
+"id": 856,
+"en": "Google sign-in could not start.",
+"src": [
+"PickerAuth.java:120",
+"PickerAuth.java:126"
+]
+},
+{
+"id": 857,
+"en": "This phone's Google Play services could not start the sign-in. Use “Sign in with a code” instead.",
+"src": [
+"PickerAuth.java:135"
+]
+},
+{
+"id": 858,
+"en": "Google needs you to sign in again. Open Backup and tap Sign in.",
+"src": [
+"PickerAuth.java:158"
+]
+},
+{
+"id": 859,
+"en": "Google sign-in failed.",
+"src": [
+"PickerAuth.java:165"
+]
+},
+{
+"id": 860,
+"en": "Google sign-in took too long. Will try again later.",
+"src": [
+"PickerAuth.java:167"
+]
+},
+{
+"id": 861,
+"en": "Interrupted.",
+"src": [
+"PickerAuth.java:170"
+]
+},
+{
+"id": 862,
+"en": "Google Play services are not available on this phone.",
+"src": [
+"PickerAuth.java:172"
+]
+},
+{
+"id": 863,
+"en": "#days",
+"src": [
+"Plan.java:71"
+]
+},
+{
+"id": 864,
+"en": "Alarm at {1}. You sleep {2}.",
+"src": [
+"Plan.java:439"
+]
+},
+{
+"id": 865,
+"en": " instead of {1}",
+"src": [
+"Plan.java:440"
+]
+},
+{
+"id": 866,
+"en": "Nothing changes tomorrow.",
+"src": [
+"Plan.java:441"
+]
+},
+{
+"id": 867,
+"en": "A delay over {1} is too long to make up.",
+"src": [
+"Plan.java:454",
+"Plan.java:477"
+]
+},
+{
+"id": 868,
+"en": "Alarm at {1}. You sleep the full {2}.",
+"src": [
+"Plan.java:456",
+"Plan.java:479"
+]
+},
+{
+"id": 869,
+"en": "Every slot moves {1} later. Bedtime stays at {2}.",
+"src": [
+"Plan.java:458"
+]
+},
+{
+"id": 870,
+"en": "Not enough rest or free time to give back {1}. Pick another option.",
+"src": [
+"Plan.java:461"
+]
+},
+{
+"id": 871,
+"en": "No slot needs changing.",
+"src": [
+"Plan.java:464"
+]
+},
+{
+"id": 872,
+"en": "The extra sleep would cover your whole morning. Pick another option.",
+"src": [
+"Plan.java:482"
+]
+},
+{
+"id": 873,
+"en": "Later slots keep their normal times.",
+"src": [
+"Plan.java:484"
+]
+},
+{
+"id": 874,
+"en": "Your day starts with \"{1}\" at {2}.",
+"src": [
+"Plan.java:497"
+]
+},
+{
+"id": 875,
+"en": "{1}→{2} min",
+"src": [
+"Plan.java:520"
+]
+},
+{
+"id": 876,
+"en": "Shortened: {1}.",
+"src": [
+"Plan.java:523"
+]
+},
+{
+"id": 877,
+"en": "Dropped: {1}.",
+"src": [
+"Plan.java:524"
+]
+},
+{
+"id": 878,
+"en": "DEVELOPED BY ASG",
+"src": [
+"PosterRenderer.java:192"
+]
+},
+{
+"id": 879,
+"en": "EEEE",
+"src": [
+"PosterRenderer.java:223"
+]
+},
+{
+"id": 880,
+"en": "MMMM",
+"src": [
+"PosterRenderer.java:225"
+]
+},
+{
+"id": 881,
+"en": "ADJUSTED FOR TODAY",
+"src": [
+"PosterRenderer.java:266",
+"PosterRenderer.java:274"
+]
+},
+{
+"id": 882,
+"en": "WAKE {1}   FIRST TASK {2}   {3}",
+"src": [
+"PosterRenderer.java:278"
+]
+},
+{
+"id": 883,
+"en": "BED ",
+"src": [
+"PosterRenderer.java:280"
+]
+},
+{
+"id": 884,
+"en": "END ",
+"src": [
+"PosterRenderer.java:280"
+]
+},
+{
+"id": 885,
+"en": "PHONE TODAY",
+"src": [
+"PosterRenderer.java:319"
+]
+},
+{
+"id": 886,
+"en": "TAKEN OFF",
+"src": [
+"PosterRenderer.java:552"
+]
+},
+{
+"id": 887,
+"en": "TODAY ONLY",
+"src": [
+"PosterRenderer.java:552"
+]
+},
+{
+"id": 888,
+"en": "NOW  ·  {1} left",
+"src": [
+"PosterRenderer.java:571"
+]
+},
+{
+"id": 889,
+"en": "The purchase did not go through. You were not charged.",
+"src": [
+"Pro.java:496"
+]
+},
+{
+"id": 890,
+"en": "Thank you! Dinacharya Pro is on.",
+"src": [
+"Pro.java:555"
+]
+},
+{
+"id": 891,
+"en": "Your payment is pending. Pro turns on as soon as it goes through.",
+"src": [
+"Pro.java:557"
+]
+},
+{
+"id": 892,
+"en": "Pro is not available right now. It is sold through Google Play, so install the app from there, check your connection and try again.",
+"src": [
+"Pro.java:576"
+]
+},
+{
+"id": 893,
+"en": "Could not open Google Play. Try again in a moment.",
+"src": [
+"Pro.java:590",
+"Pro.java:594"
+]
+},
+{
+"id": 894,
+"en": "Checking Google Play…",
+"src": [
+"Pro.java:600"
+]
+},
+{
+"id": 895,
+"en": "Home screen, alarms, reports of today, backup",
+"src": [
+"ProActivity.java:18"
+]
+},
+{
+"id": 896,
+"en": "Everything",
+"src": [
+"ProActivity.java:18",
+"ProActivity.java:18"
+]
+},
+{
+"id": 897,
+"en": "Today and the last {1} days",
+"src": [
+"ProActivity.java:19"
+]
+},
+{
+"id": 898,
+"en": "Every saved day, the weekly view and tips",
+"src": [
+"ProActivity.java:19"
+]
+},
+{
+"id": 899,
+"en": "Up to {1} apps, a short wait",
+"src": [
+"ProActivity.java:20"
+]
+},
+{
+"id": 900,
+"en": "Any number of apps, strict pauses, daily limits, and playful pauses (a sum, a sentence, breathing, say why)",
+"src": [
+"ProActivity.java:20"
+]
+},
+{
+"id": 901,
+"en": "Pause before an app",
+"src": [
+"ProActivity.java:20"
+]
+},
+{
+"id": 902,
+"en": "Up to {1} apps",
+"src": [
+"ProActivity.java:22"
+]
+},
+{
+"id": 903,
+"en": "Groups of apps, any number of locks, and strict locks",
+"src": [
+"ProActivity.java:22"
+]
+},
+{
+"id": 904,
+"en": "One routine",
+"src": [
+"ProActivity.java:23"
+]
+},
+{
+"id": 905,
+"en": "Weekday, weekend and exam-day routines",
+"src": [
+"ProActivity.java:23"
+]
+},
+{
+"id": 906,
+"en": "Goals and type totals",
+"src": [
+"ProActivity.java:24"
+]
+},
+{
+"id": 907,
+"en": "Not included",
+"src": [
+"ProActivity.java:24"
+]
+},
+{
+"id": 908,
+"en": "Daily goals with streaks",
+"src": [
+"ProActivity.java:24"
+]
+},
+{
+"id": 909,
+"en": "Colour looks of the home screen",
+"src": [
+"ProActivity.java:25"
+]
+},
+{
+"id": 910,
+"en": "The first look",
+"src": [
+"ProActivity.java:25"
+]
+},
+{
+"id": 911,
+"en": "All the looks",
+"src": [
+"ProActivity.java:25"
+]
+},
+{
+"id": 912,
+"en": "Ads",
+"src": [
+"ProActivity.java:26"
+]
+},
+{
+"id": 913,
+"en": "Small ads in the dashboard",
+"src": [
+"ProActivity.java:26"
+]
+},
+{
+"id": 914,
+"en": "No ads",
+"src": [
+"ProActivity.java:26",
+"TourArt.java:378"
+]
+},
+{
+"id": 915,
+"en": "Dinacharya",
+"src": [
+"ProActivity.java:74",
+"SettingsPage.java:488"
+]
+},
+{
+"id": 916,
+"en": "Dinacharya Pro",
+"src": [
+"ProActivity.java:75",
+"SettingsPage.java:335"
+]
+},
+{
+"id": 917,
+"en": "You have Pro. Thank you!",
+"src": [
+"ProActivity.java:76"
+]
+},
+{
+"id": 918,
+"en": "One purchase, no subscription. Paid once through Google Play.",
+"src": [
+"ProActivity.java:76"
+]
+},
+{
+"id": 919,
+"en": "Get Pro for {1}",
+"src": [
+"ProActivity.java:81"
+]
+},
+{
+"id": 920,
+"en": "Get Pro",
+"src": [
+"ProActivity.java:81"
+]
+},
+{
+"id": 921,
+"en": "The price comes from Google Play. It shows here once Play answers, and Pro can only be bought in a copy of the app that was installed from Google Play.",
+"src": [
+"ProActivity.java:83"
+]
+},
+{
+"id": 922,
+"en": "Switched on for testing on this phone.",
+"src": [
+"ProActivity.java:89"
+]
+},
+{
+"id": 923,
+"en": "Try it first",
+"src": [
+"ProActivity.java:93"
+]
+},
+{
+"id": 924,
+"en": "Watch short videos, use Pro features for a while",
+"src": [
+"ProActivity.java:93"
+]
+},
+{
+"id": 925,
+"en": "Pick a feature, then choose how many short videos to watch: 1 video opens just that feature for a day, 2 videos for 3 days, 3 videos the whole group it is in (all the pauses, say). Each feature has its own video and its own time, so opening one never opens another. Nothing is charged. When the time is up, what you set up with it goes back to the free version (Pro keeps it for good).",
+"src": [
+"ProActivity.java:96"
+]
+},
+{
+"id": 926,
+"en": "{1} is part of Pro.",
+"src": [
+"ProActivity.java:114",
+"ProPrompt.java:124"
+]
+},
+{
+"id": 927,
+"en": "Open it free",
+"src": [
+"ProActivity.java:114",
+"ProPrompt.java:124"
+]
+},
+{
+"id": 928,
+"en": "What is free, and what Pro adds",
+"src": [
+"ProActivity.java:121"
+]
+},
+{
+"id": 929,
+"en": "Free:  {1}",
+"src": [
+"ProActivity.java:124"
+]
+},
+{
+"id": 930,
+"en": "Pro:  {1}",
+"src": [
+"ProActivity.java:125"
+]
+},
+{
+"id": 931,
+"en": "Restore my purchase",
+"src": [
+"ProActivity.java:128"
+]
+},
+{
+"id": 932,
+"en": "Tied to your Google Play account, so it comes back on a new phone. Refunds follow Google Play's rules. If Pro ever ends (a refund, say), nothing you made is taken away: a routine, a lock or a pause that goes past the free limit stays saved and starts working again with Pro. A video pass is different: when its time is up, what you set up with it goes back to the free version.",
+"src": [
+"ProActivity.java:130"
+]
+},
+{
+"id": 933,
+"en": "For testing",
+"src": [
+"ProActivity.java:136"
+]
+},
+{
+"id": 934,
+"en": "Test build only",
+"src": [
+"ProActivity.java:136"
+]
+},
+{
+"id": 935,
+"en": "Pretend I have Pro",
+"src": [
+"ProActivity.java:137"
+]
+},
+{
+"id": 936,
+"en": "{1} is part of Pro, a one-time purchase that also removes the ads.",
+"src": [
+"ProPrompt.java:38"
+]
+},
+{
+"id": 937,
+"en": "{1} is open now. To finish, you also need: {2}. It has its own video, or it is part of Pro, a one-time purchase that also removes the ads.",
+"src": [
+"ProPrompt.java:44"
+]
+},
+{
+"id": 938,
+"en": "Part of Pro",
+"src": [
+"ProPrompt.java:47",
+"ProPrompt.java:51"
+]
+},
+{
+"id": 939,
+"en": "{1}\n\nOr watch short videos to use it free. You choose how many:",
+"src": [
+"ProPrompt.java:75"
+]
+},
+{
+"id": 940,
+"en": " When the time is up, what you set up with it goes back to the free version.",
+"src": [
+"ProPrompt.java:95"
+]
+},
+{
+"id": 941,
+"en": "Only the videos you watch to the end count, and stopping early still keeps what you earned. Each thing you open has its own video and its own time.{1}",
+"src": [
+"ProPrompt.java:96"
+]
+},
+{
+"id": 942,
+"en": "Watch videos: open {1} free",
+"src": [
+"ProPrompt.java:123"
+]
+},
+{
+"id": 943,
+"en": "{1}: open until {2}.",
+"src": [
+"ProPrompt.java:157",
+"VideoPass.java:98"
+]
+},
+{
+"id": 944,
+"en": "Keep {1} for 3 days: watch 1 more video",
+"src": [
+"ProPrompt.java:165"
+]
+},
+{
+"id": 945,
+"en": "That report is no longer on the phone",
+"src": [
+"ReportActivity.java:23"
+]
+},
+{
+"id": 946,
+"en": "In your Google Drive backup.",
+"src": [
+"ReportActivity.java:45"
+]
+},
+{
+"id": 947,
+"en": "Goes into your Google Drive backup next time it runs.",
+"src": [
+"ReportActivity.java:45"
+]
+},
+{
+"id": 948,
+"en": "Tip: sign in under Backup to keep every day in your Google Drive.",
+"src": [
+"ReportActivity.java:46"
+]
+},
+{
+"id": 949,
+"en": "Made on your phone by Dinacharya Launcher  ·  page {1} of {2}",
+"src": [
+"ReportPdf.java:36"
+]
+},
+{
+"id": 950,
+"en": "bad name",
+"src": [
+"ReportProvider.java:21"
+]
+},
+{
+"id": 951,
+"en": "Time by activity type, so far",
+"src": [
+"ReportRenderer.java:215"
+]
+},
+{
+"id": 952,
+"en": "Time by activity type",
+"src": [
+"ReportRenderer.java:215",
+"ReportRenderer.java:670"
+]
+},
+{
+"id": 953,
+"en": "Suggestions for tomorrow",
+"src": [
+"ReportRenderer.java:218"
+]
+},
+{
+"id": 954,
+"en": "TODAY SO FAR",
+"src": [
+"ReportRenderer.java:225"
+]
+},
+{
+"id": 955,
+"en": "DAILY REPORT",
+"src": [
+"ReportRenderer.java:225"
+]
+},
+{
+"id": 956,
+"en": "EEEE, d MMMM yyyy",
+"src": [
+"ReportRenderer.java:228"
+]
+},
+{
+"id": 957,
+"en": "{1} to {2}   ·   {3}",
+"src": [
+"ReportRenderer.java:233"
+]
+},
+{
+"id": 958,
+"en": "Updated {1}",
+"src": [
+"ReportRenderer.java:235"
+]
+},
+{
+"id": 959,
+"en": "How the score is made",
+"src": [
+"ReportRenderer.java:254"
+]
+},
+{
+"id": 960,
+"en": "{1} kept, {2} changed, {3} taken off, {4} not answered, out of {5} slots.",
+"src": [
+"ReportRenderer.java:264"
+]
+},
+{
+"id": 961,
+"en": "No slot has been answered yet.",
+"src": [
+"ReportRenderer.java:265"
+]
+},
+{
+"id": 962,
+"en": "Turn on alarms to measure this.",
+"src": [
+"ReportRenderer.java:265"
+]
+},
+{
+"id": 963,
+"en": "Phone in use for {1}% of task time ({2} of {3}).",
+"src": [
+"ReportRenderer.java:276"
+]
+},
+{
+"id": 964,
+"en": "Not enough task time yet.",
+"src": [
+"ReportRenderer.java:278"
+]
+},
+{
+"id": 965,
+"en": "Allow usage access to measure this.",
+"src": [
+"ReportRenderer.java:278"
+]
+},
+{
+"id": 966,
+"en": "{1} late",
+"src": [
+"ReportRenderer.java:285"
+]
+},
+{
+"id": 967,
+"en": "{1}, slept {2} of a planned {3}.",
+"src": [
+"ReportRenderer.java:285"
+]
+},
+{
+"id": 968,
+"en": "On time",
+"src": [
+"ReportRenderer.java:285",
+"ReportRenderer.java:601"
+]
+},
+{
+"id": 969,
+"en": "Measured after bedtime.",
+"src": [
+"ReportRenderer.java:289"
+]
+},
+{
+"id": 970,
+"en": "Answer the bedtime alarm to measure this.",
+"src": [
+"ReportRenderer.java:289"
+]
+},
+{
+"id": 971,
+"en": "Phone use",
+"src": [
+"ReportRenderer.java:310"
+]
+},
+{
+"id": 972,
+"en": "Phone use was not available. Allow usage access in the app to include it.",
+"src": [
+"ReportRenderer.java:312"
+]
+},
+{
+"id": 973,
+"en": "{1} during task time ({2}% of it)",
+"src": [
+"ReportRenderer.java:326"
+]
+},
+{
+"id": 974,
+"en": "{1} in the hour before bed",
+"src": [
+"ReportRenderer.java:329"
+]
+},
+{
+"id": 975,
+"en": "Bars: phone use each hour.  Strip: your plan by type.",
+"src": [
+"ReportRenderer.java:363"
+]
+},
+{
+"id": 976,
+"en": "Top apps",
+"src": [
+"ReportRenderer.java:371"
+]
+},
+{
+"id": 977,
+"en": "Focus at the home screen",
+"src": [
+"ReportRenderer.java:391"
+]
+},
+{
+"id": 978,
+"en": "times you went back after the pause",
+"src": [
+"ReportRenderer.java:394"
+]
+},
+{
+"id": 979,
+"en": "times you opened the app anyway",
+"src": [
+"ReportRenderer.java:396"
+]
+},
+{
+"id": 980,
+"en": "Paused most: {1}",
+"src": [
+"ReportRenderer.java:399"
+]
+},
+{
+"id": 981,
+"en": "Time planned and kept",
+"src": [
+"ReportRenderer.java:422"
+]
+},
+{
+"id": 982,
+"en": "Planned",
+"src": [
+"ReportRenderer.java:425"
+]
+},
+{
+"id": 983,
+"en": "{1} so far",
+"src": [
+"ReportRenderer.java:434"
+]
+},
+{
+"id": 984,
+"en": "not tracked",
+"src": [
+"ReportRenderer.java:439"
+]
+},
+{
+"id": 985,
+"en": "Task",
+"src": [
+"ReportRenderer.java:443",
+"Routine.java:15"
+]
+},
+{
+"id": 986,
+"en": "Rest",
+"src": [
+"ReportRenderer.java:443",
+"Routine.java:15",
+"SlotOps.java:187",
+"TourArt.java:183",
+"TourArt.java:183",
+"TourArt.java:251"
+]
+},
+{
+"id": 987,
+"en": "Meal",
+"src": [
+"ReportRenderer.java:443",
+"Routine.java:15",
+"TourArt.java:183",
+"TourArt.java:251"
+]
+},
+{
+"id": 988,
+"en": "Personal",
+"src": [
+"ReportRenderer.java:443",
+"Routine.java:15"
+]
+},
+{
+"id": 989,
+"en": "Not kept",
+"src": [
+"ReportRenderer.java:452"
+]
+},
+{
+"id": 990,
+"en": " goal ✓",
+"src": [
+"ReportRenderer.java:483"
+]
+},
+{
+"id": 991,
+"en": "Average per day. Slots you kept, or that had no alarm to ask you, count as done.",
+"src": [
+"ReportRenderer.java:488"
+]
+},
+{
+"id": 992,
+"en": "Slots you kept, or that had no alarm to ask you, count as done.",
+"src": [
+"ReportRenderer.java:489"
+]
+},
+{
+"id": 993,
+"en": "   ·   went to sleep {1}",
+"src": [
+"ReportRenderer.java:518"
+]
+},
+{
+"id": 994,
+"en": "   ·   wake-up {1}",
+"src": [
+"ReportRenderer.java:519"
+]
+},
+{
+"id": 995,
+"en": "Slept {1} of a planned {2}.",
+"src": [
+"ReportRenderer.java:525"
+]
+},
+{
+"id": 996,
+"en": "Not recorded yet.",
+"src": [
+"ReportRenderer.java:528"
+]
+},
+{
+"id": 997,
+"en": "Not recorded. Answer the bedtime alarm and the app will track it.",
+"src": [
+"ReportRenderer.java:528"
+]
+},
+{
+"id": 998,
+"en": "You asked for more time {1} ({2} in all).",
+"src": [
+"ReportRenderer.java:532"
+]
+},
+{
+"id": 999,
+"en": "Your day, slot by slot",
+"src": [
+"ReportRenderer.java:541",
+"RoutinePage.java:189"
+]
+},
+{
+"id": 1000,
+"en": "TIME",
+"src": [
+"ReportRenderer.java:543"
+]
+},
+{
+"id": 1001,
+"en": "SLOT",
+"src": [
+"ReportRenderer.java:544"
+]
+},
+{
+"id": 1002,
+"en": "STATUS",
+"src": [
+"ReportRenderer.java:545"
+]
+},
+{
+"id": 1003,
+"en": "PHONE",
+"src": [
+"ReportRenderer.java:546"
+]
+},
+{
+"id": 1004,
+"en": "LAST DAYS",
+"src": [
+"ReportRenderer.java:592"
+]
+},
+{
+"id": 1005,
+"en": "Your week",
+"src": [
+"ReportRenderer.java:593"
+]
+},
+{
+"id": 1006,
+"en": " closed day",
+"src": [
+"ReportRenderer.java:594"
+]
+},
+{
+"id": 1007,
+"en": " closed days",
+"src": [
+"ReportRenderer.java:594"
+]
+},
+{
+"id": 1008,
+"en": "Average score",
+"src": [
+"ReportRenderer.java:602"
+]
+},
+{
+"id": 1009,
+"en": "Phone per day",
+"src": [
+"ReportRenderer.java:602"
+]
+},
+{
+"id": 1010,
+"en": "Late to bed, average",
+"src": [
+"ReportRenderer.java:602"
+]
+},
+{
+"id": 1011,
+"en": "Daily score",
+"src": [
+"ReportRenderer.java:611"
+]
+},
+{
+"id": 1012,
+"en": "Phone time per day",
+"src": [
+"ReportRenderer.java:649"
+]
+},
+{
+"id": 1013,
+"en": "Most reliable: {1}, kept {2}% of the time.",
+"src": [
+"ReportRenderer.java:675"
+]
+},
+{
+"id": 1014,
+"en": "Needs attention: {1}, kept {2}% of the time.",
+"src": [
+"ReportRenderer.java:680"
+]
+},
+{
+"id": 1015,
+"en": "Days with a score of 70 or more: {1} of {2}.",
+"src": [
+"ReportRenderer.java:685"
+]
+},
+{
+"id": 1016,
+"en": "Habits appear after a few answered days.",
+"src": [
+"ReportRenderer.java:690"
+]
+},
+{
+"id": 1017,
+"en": "Suggestions",
+"src": [
+"ReportRenderer.java:695"
+]
+},
+{
+"id": 1018,
+"en": "EEE",
+"src": [
+"ReportRenderer.java:702"
+]
+},
+{
+"id": 1019,
+"en": "Open Settings, Apps, Dinacharya Launcher",
+"src": [
+"RestrictedSettings.java:55"
+]
+},
+{
+"id": 1020,
+"en": "Android is holding this setting back",
+"src": [
+"RestrictedSettings.java:63"
+]
+},
+{
+"id": 1021,
+"en": "Android locks some switches for an app that was installed from a file instead of Google Play. It is a one-time unlock:\n\n1. Tap “Open app info” below.\n2. Tap the ⋮ menu at the top right.\n3. Choose “Allow restricted settings” and confirm with your PIN or fingerprint.\n4. Go back and switch on Usage access.\n\nIf ⋮ does not show that choice yet, first try to switch Usage access on once: Android then shows it.",
+"src": [
+"RestrictedSettings.java:64"
+]
+},
+{
+"id": 1022,
+"en": "Teal",
+"src": [
+"Routine.java:21"
+]
+},
+{
+"id": 1023,
+"en": "Sunset",
+"src": [
+"Routine.java:21"
+]
+},
+{
+"id": 1024,
+"en": "Ocean",
+"src": [
+"Routine.java:21"
+]
+},
+{
+"id": 1025,
+"en": "Graphite",
+"src": [
+"Routine.java:21"
+]
+},
+{
+"id": 1026,
+"en": "DINACHARYA1",
+"src": [
+"Routine.java:28"
+]
+},
+{
+"id": 1027,
+"en": "My routine",
+"src": [
+"Routine.java:130"
+]
+},
+{
+"id": 1028,
+"en": "Study",
+"src": [
+"Routine.java:170",
+"Routine.java:637",
+"Routine.java:637",
+"TourArt.java:183",
+"TourArt.java:183",
+"TourArt.java:251",
+"TourArt.java:251"
+]
+},
+{
+"id": 1029,
+"en": "Revision",
+"src": [
+"Routine.java:171",
+"Routine.java:632",
+"Routine.java:638",
+"Routine.java:638",
+"Routine.java:639"
+]
+},
+{
+"id": 1030,
+"en": "Practice",
+"src": [
+"Routine.java:172",
+"Routine.java:638"
+]
+},
+{
+"id": 1031,
+"en": "Work",
+"src": [
+"Routine.java:173",
+"Routine.java:638"
+]
+},
+{
+"id": 1032,
+"en": "Nap",
+"src": [
+"Routine.java:174",
+"Routine.java:638"
+]
+},
+{
+"id": 1033,
+"en": "Exercise",
+"src": [
+"Routine.java:175",
+"Routine.java:637",
+"Routine.java:639"
+]
+},
+{
+"id": 1034,
+"en": "Reading",
+"src": [
+"Routine.java:176"
+]
+},
+{
+"id": 1035,
+"en": "Family time",
+"src": [
+"Routine.java:177",
+"Routine.java:639"
+]
+},
+{
+"id": 1036,
+"en": " AM",
+"src": [
+"Routine.java:404"
+]
+},
+{
+"id": 1037,
+"en": " PM",
+"src": [
+"Routine.java:404"
+]
+},
+{
+"id": 1038,
+"en": "{1}h",
+"src": [
+"Routine.java:411"
+]
+},
+{
+"id": 1039,
+"en": "mode={1}",
+"src": [
+"Routine.java:418"
+]
+},
+{
+"id": 1040,
+"en": "anchor={1}",
+"src": [
+"Routine.java:419"
+]
+},
+{
+"id": 1041,
+"en": "palette={1}",
+"src": [
+"Routine.java:420"
+]
+},
+{
+"id": 1042,
+"en": "fmt24={1}",
+"src": [
+"Routine.java:422"
+]
+},
+{
+"id": 1043,
+"en": "top={1}",
+"src": [
+"Routine.java:423"
+]
+},
+{
+"id": 1044,
+"en": "bottom={1}",
+"src": [
+"Routine.java:424"
+]
+},
+{
+"id": 1045,
+"en": "clock={1}",
+"src": [
+"Routine.java:425"
+]
+},
+{
+"id": 1046,
+"en": "screen={1}",
+"src": [
+"Routine.java:426"
+]
+},
+{
+"id": 1047,
+"en": "alarm={1}",
+"src": [
+"Routine.java:427"
+]
+},
+{
+"id": 1048,
+"en": "mark={1}",
+"src": [
+"Routine.java:428"
+]
+},
+{
+"id": 1049,
+"en": "N\t{1}",
+"src": [
+"Routine.java:429"
+]
+},
+{
+"id": 1050,
+"en": "subs=1\n",
+"src": [
+"Routine.java:430"
+]
+},
+{
+"id": 1051,
+"en": "U\t{1}",
+"src": [
+"Routine.java:432"
+]
+},
+{
+"id": 1052,
+"en": "days=",
+"src": [
+"Routine.java:439"
+]
+},
+{
+"id": 1053,
+"en": "B\t{1}",
+"src": [
+"Routine.java:452"
+]
+},
+{
+"id": 1054,
+"en": "Wake up & freshen up",
+"src": [
+"Routine.java:627"
+]
+},
+{
+"id": 1055,
+"en": "Yoga & stretching",
+"src": [
+"Routine.java:627",
+"Routine.java:637"
+]
+},
+{
+"id": 1056,
+"en": "Breakfast",
+"src": [
+"Routine.java:627"
+]
+},
+{
+"id": 1057,
+"en": "Morning focus block",
+"src": [
+"Routine.java:628",
+"Routine.java:637"
+]
+},
+{
+"id": 1058,
+"en": "Short break",
+"src": [
+"Routine.java:628"
+]
+},
+{
+"id": 1059,
+"en": "Reading & notes",
+"src": [
+"Routine.java:629",
+"Routine.java:637"
+]
+},
+{
+"id": 1060,
+"en": "Tea break",
+"src": [
+"Routine.java:629"
+]
+},
+{
+"id": 1061,
+"en": "Practice problems",
+"src": [
+"Routine.java:630",
+"Routine.java:638"
+]
+},
+{
+"id": 1062,
+"en": "Lunch",
+"src": [
+"Routine.java:630"
+]
+},
+{
+"id": 1063,
+"en": "Power nap",
+"src": [
+"Routine.java:630",
+"Routine.java:638"
+]
+},
+{
+"id": 1064,
+"en": "Project work",
+"src": [
+"Routine.java:631",
+"Routine.java:638"
+]
+},
+{
+"id": 1065,
+"en": "Walk & tea",
+"src": [
+"Routine.java:631"
+]
+},
+{
+"id": 1066,
+"en": "Evening walk",
+"src": [
+"Routine.java:632",
+"Routine.java:639"
+]
+},
+{
+"id": 1067,
+"en": "Dinner",
+"src": [
+"Routine.java:632"
+]
+},
+{
+"id": 1068,
+"en": "Review & plan tomorrow",
+"src": [
+"Routine.java:633",
+"Routine.java:639"
+]
+},
+{
+"id": 1069,
+"en": "Family & free time",
+"src": [
+"Routine.java:633",
+"Routine.java:639"
+]
+},
+{
+"id": 1070,
+"en": "Wind down",
+"src": [
+"Routine.java:634"
+]
+},
+{
+"id": 1071,
+"en": "Start of day",
+"src": [
+"RoutinePage.java:208"
+]
+},
+{
+"id": 1072,
+"en": "Set one time, the day follows",
+"src": [
+"RoutinePage.java:208"
+]
+},
+{
+"id": 1073,
+"en": "Wake-up time",
+"src": [
+"RoutinePage.java:209"
+]
+},
+{
+"id": 1074,
+"en": "First task time",
+"src": [
+"RoutinePage.java:209"
+]
+},
+{
+"id": 1075,
+"en": "I wake up at",
+"src": [
+"RoutinePage.java:212",
+"RoutinePage.java:460"
+]
+},
+{
+"id": 1076,
+"en": "Slots",
+"src": [
+"RoutinePage.java:229"
+]
+},
+{
+"id": 1077,
+"en": "Tap a name to rename it, ⋮ for more",
+"src": [
+"RoutinePage.java:229"
+]
+},
+{
+"id": 1078,
+"en": "Hold ≡ and drag to move a slot. Swipe a slot left to delete it, right to add one below it. The day keeps its length: minutes only move from one slot to another.",
+"src": [
+"RoutinePage.java:230"
+]
+},
+{
+"id": 1079,
+"en": "＋  Add slot",
+"src": [
+"RoutinePage.java:232"
+]
+},
+{
+"id": 1080,
+"en": "Add rests",
+"src": [
+"RoutinePage.java:233"
+]
+},
+{
+"id": 1081,
+"en": "Paste from web app",
+"src": [
+"RoutinePage.java:237"
+]
+},
+{
+"id": 1082,
+"en": "Reset to sample",
+"src": [
+"RoutinePage.java:238"
+]
+},
+{
+"id": 1083,
+"en": "Activity types",
+"src": [
+"RoutinePage.java:241"
+]
+},
+{
+"id": 1084,
+"en": "Give a slot a type",
+"src": [
+"RoutinePage.java:241"
+]
+},
+{
+"id": 1085,
+"en": "A type is a kind of activity inside a main kind, for example Study inside Task. Pick it on any slot. The home screen shows it under the slot's name; reports and goals count it. Tap a type to remove it.",
+"src": [
+"RoutinePage.java:242"
+]
+},
+{
+"id": 1086,
+"en": "The bells on the slots below will not ring until you turn alarms on.",
+"src": [
+"RoutinePage.java:280"
+]
+},
+{
+"id": 1087,
+"en": "Turn them on so the bells on your slots ring when a slot starts?",
+"src": [
+"RoutinePage.java:288"
+]
+},
+{
+"id": 1088,
+"en": "＋ New",
+"src": [
+"RoutinePage.java:318"
+]
+},
+{
+"id": 1089,
+"en": "＋ Weekend routine",
+"src": [
+"RoutinePage.java:318"
+]
+},
+{
+"id": 1090,
+"en": "Want a different day on weekends or exam days? Add another routine and pick its days.",
+"src": [
+"RoutinePage.java:324"
+]
+},
+{
+"id": 1091,
+"en": ": uses {1}",
+"src": [
+"RoutinePage.java:335"
+]
+},
+{
+"id": 1092,
+"en": ": uses this routine",
+"src": [
+"RoutinePage.java:335"
+]
+},
+{
+"id": 1093,
+"en": "Not used on any day yet: tap the days that should follow it.",
+"src": [
+"RoutinePage.java:343"
+]
+},
+{
+"id": 1094,
+"en": "Used on {1}. Tap a day to change.",
+"src": [
+"RoutinePage.java:344"
+]
+},
+{
+"id": 1095,
+"en": "Rename",
+"src": [
+"RoutinePage.java:346"
+]
+},
+{
+"id": 1096,
+"en": "Every day needs a routine. Pick another routine, then tap this day to give it to that one.",
+"src": [
+"RoutinePage.java:361"
+]
+},
+{
+"id": 1097,
+"en": "{1} now follows “{2}”.",
+"src": [
+"RoutinePage.java:369"
+]
+},
+{
+"id": 1098,
+"en": "Weekday and weekend routines",
+"src": [
+"RoutinePage.java:373"
+]
+},
+{
+"id": 1099,
+"en": "Exam day",
+"src": [
+"RoutinePage.java:377",
+"TourArt.java:242"
+]
+},
+{
+"id": 1100,
+"en": "Weekend",
+"src": [
+"RoutinePage.java:377",
+"TourArt.java:242"
+]
+},
+{
+"id": 1101,
+"en": "Copy of “{1}”",
+"src": [
+"RoutinePage.java:382"
+]
+},
+{
+"id": 1102,
+"en": "Name",
+"src": [
+"RoutinePage.java:389"
+]
+},
+{
+"id": 1103,
+"en": "Start from",
+"src": [
+"RoutinePage.java:391"
+]
+},
+{
+"id": 1104,
+"en": "You can change its slots and start time after, and pick the days it is used on.",
+"src": [
+"RoutinePage.java:393"
+]
+},
+{
+"id": 1105,
+"en": "New routine",
+"src": [
+"RoutinePage.java:395"
+]
+},
+{
+"id": 1106,
+"en": "Create",
+"src": [
+"RoutinePage.java:397"
+]
+},
+{
+"id": 1107,
+"en": "Made “{1}”{2}",
+"src": [
+"RoutinePage.java:409"
+]
+},
+{
+"id": 1108,
+"en": " for Saturday and Sunday.",
+"src": [
+"RoutinePage.java:409"
+]
+},
+{
+"id": 1109,
+"en": ". Tap the days that should use it.",
+"src": [
+"RoutinePage.java:409"
+]
+},
+{
+"id": 1110,
+"en": "Rename routine",
+"src": [
+"RoutinePage.java:426"
+]
+},
+{
+"id": 1111,
+"en": "Delete “{1}”?",
+"src": [
+"RoutinePage.java:440",
+"RoutinePage.java:951"
+]
+},
+{
+"id": 1112,
+"en": "Its days go back to “{1}”. Its slots are deleted.",
+"src": [
+"RoutinePage.java:441"
+]
+},
+{
+"id": 1113,
+"en": "Deleted “{1}”.",
+"src": [
+"RoutinePage.java:447"
+]
+},
+{
+"id": 1114,
+"en": "my first task starts at",
+"src": [
+"RoutinePage.java:460"
+]
+},
+{
+"id": 1115,
+"en": "Over by {1}. Your sleep runs past the next wake-up.",
+"src": [
+"RoutinePage.java:465"
+]
+},
+{
+"id": 1116,
+"en": "Unplanned time: {1} of the 24 hours.",
+"src": [
+"RoutinePage.java:466"
+]
+},
+{
+"id": 1117,
+"en": "Your slots add up to exactly 24 hours.",
+"src": [
+"RoutinePage.java:467"
+]
+},
+{
+"id": 1118,
+"en": "Wake-up {1}   ·   First task {2}   ·   {3}\n{4}",
+"src": [
+"RoutinePage.java:468"
+]
+},
+{
+"id": 1119,
+"en": "Bedtime ",
+"src": [
+"RoutinePage.java:469"
+]
+},
+{
+"id": 1120,
+"en": "Day ends ",
+"src": [
+"RoutinePage.java:469"
+]
+},
+{
+"id": 1121,
+"en": "Add a Task slot first",
+"src": [
+"RoutinePage.java:477"
+]
+},
+{
+"id": 1122,
+"en": "Type {1}. Tap to remove.",
+"src": [
+"RoutinePage.java:513"
+]
+},
+{
+"id": 1123,
+"en": "＋ Add",
+"src": [
+"RoutinePage.java:518"
+]
+},
+{
+"id": 1124,
+"en": "No slot uses this type.",
+"src": [
+"RoutinePage.java:530"
+]
+},
+{
+"id": 1125,
+"en": " slot uses",
+"src": [
+"RoutinePage.java:530"
+]
+},
+{
+"id": 1126,
+"en": " slots use",
+"src": [
+"RoutinePage.java:530"
+]
+},
+{
+"id": 1127,
+"en": "{1} it. They keep their name and time and just lose the type.",
+"src": [
+"RoutinePage.java:531"
+]
+},
+{
+"id": 1128,
+"en": " Its daily goal is removed too.",
+"src": [
+"RoutinePage.java:531"
+]
+},
+{
+"id": 1129,
+"en": "Remove “{1}”?",
+"src": [
+"RoutinePage.java:533"
+]
+},
+{
+"id": 1130,
+"en": "Removed “{1}”.",
+"src": [
+"RoutinePage.java:539"
+]
+},
+{
+"id": 1131,
+"en": "e.g. Maths",
+"src": [
+"RoutinePage.java:549"
+]
+},
+{
+"id": 1132,
+"en": "Type name",
+"src": [
+"RoutinePage.java:549"
+]
+},
+{
+"id": 1133,
+"en": "New {1} type",
+"src": [
+"RoutinePage.java:555"
+]
+},
+{
+"id": 1134,
+"en": "Add",
+"src": [
+"RoutinePage.java:557",
+"RoutinePage.java:1109"
+]
+},
+{
+"id": 1135,
+"en": "Write a name for the type",
+"src": [
+"RoutinePage.java:561"
+]
+},
+{
+"id": 1136,
+"en": "“{1}” was already there",
+"src": [
+"RoutinePage.java:566"
+]
+},
+{
+"id": 1137,
+"en": "Added “{1}” under {2}",
+"src": [
+"RoutinePage.java:566"
+]
+},
+{
+"id": 1138,
+"en": "Drag to move this slot",
+"src": [
+"RoutinePage.java:637"
+]
+},
+{
+"id": 1139,
+"en": "Slot name",
+"src": [
+"RoutinePage.java:658"
+]
+},
+{
+"id": 1140,
+"en": "Length. Tap to type the minutes.",
+"src": [
+"RoutinePage.java:719"
+]
+},
+{
+"id": 1141,
+"en": "5 minutes shorter. Hold for 30.",
+"src": [
+"RoutinePage.java:726"
+]
+},
+{
+"id": 1142,
+"en": "5 minutes longer. Hold for 30.",
+"src": [
+"RoutinePage.java:736"
+]
+},
+{
+"id": 1143,
+"en": "Alarm on for “{1}”",
+"src": [
+"RoutinePage.java:749"
+]
+},
+{
+"id": 1144,
+"en": "No alarm for “{1}”",
+"src": [
+"RoutinePage.java:749"
+]
+},
+{
+"id": 1145,
+"en": "More: add below, note, duplicate, delete",
+"src": [
+"RoutinePage.java:753"
+]
+},
+{
+"id": 1146,
+"en": "Add a slot below",
+"src": [
+"RoutinePage.java:765"
+]
+},
+{
+"id": 1147,
+"en": "Add a note",
+"src": [
+"RoutinePage.java:766"
+]
+},
+{
+"id": 1148,
+"en": "Edit the note",
+"src": [
+"RoutinePage.java:766"
+]
+},
+{
+"id": 1149,
+"en": "Duplicate (splits this slot in two)",
+"src": [
+"RoutinePage.java:767"
+]
+},
+{
+"id": 1150,
+"en": "Alarms are off. Tap to turn them on.",
+"src": [
+"RoutinePage.java:787"
+]
+},
+{
+"id": 1151,
+"en": "Alarm on. Tap to switch off for this slot.",
+"src": [
+"RoutinePage.java:788"
+]
+},
+{
+"id": 1152,
+"en": "Alarm off. Tap to switch on for this slot.",
+"src": [
+"RoutinePage.java:788"
+]
+},
+{
+"id": 1153,
+"en": "Minutes (1 to 1440)",
+"src": [
+"RoutinePage.java:809"
+]
+},
+{
+"id": 1154,
+"en": "Length of “{1}”",
+"src": [
+"RoutinePage.java:812"
+]
+},
+{
+"id": 1155,
+"en": "Write a number of minutes",
+"src": [
+"RoutinePage.java:819"
+]
+},
+{
+"id": 1156,
+"en": "Use 1 to 1440 minutes",
+"src": [
+"RoutinePage.java:823"
+]
+},
+{
+"id": 1157,
+"en": "e.g. Polity chapter 4, then 20 practice questions",
+"src": [
+"RoutinePage.java:840"
+]
+},
+{
+"id": 1158,
+"en": "Shown on this slot and on its alarm.",
+"src": [
+"RoutinePage.java:845"
+]
+},
+{
+"id": 1159,
+"en": "Note for “{1}”",
+"src": [
+"RoutinePage.java:847"
+]
+},
+{
+"id": 1160,
+"en": "Note removed.",
+"src": [
+"RoutinePage.java:859"
+]
+},
+{
+"id": 1161,
+"en": "No type",
+"src": [
+"RoutinePage.java:874",
+"RoutinePage.java:1174"
+]
+},
+{
+"id": 1162,
+"en": "＋ New type…",
+"src": [
+"RoutinePage.java:876"
+]
+},
+{
+"id": 1163,
+"en": "Moved “{1}”.",
+"src": [
+"RoutinePage.java:906"
+]
+},
+{
+"id": 1164,
+"en": "Keep at least one slot",
+"src": [
+"RoutinePage.java:913"
+]
+},
+{
+"id": 1165,
+"en": "Its {1} stay in your day. Where should they go?",
+"src": [
+"RoutinePage.java:920"
+]
+},
+{
+"id": 1166,
+"en": "Share them out over the other slots",
+"src": [
+"RoutinePage.java:931"
+]
+},
+{
+"id": 1167,
+"en": "Add to the slot above: “",
+"src": [
+"RoutinePage.java:934"
+]
+},
+{
+"id": 1168,
+"en": "Add to the slot below: “",
+"src": [
+"RoutinePage.java:934"
+]
+},
+{
+"id": 1169,
+"en": "went to “{1}”",
+"src": [
+"RoutinePage.java:957"
+]
+},
+{
+"id": 1170,
+"en": "were shared out",
+"src": [
+"RoutinePage.java:957"
+]
+},
+{
+"id": 1171,
+"en": "Deleted “{1}”. Its {2} min {3}.",
+"src": [
+"RoutinePage.java:958"
+]
+},
+{
+"id": 1172,
+"en": "This slot is too short to split",
+"src": [
+"RoutinePage.java:991",
+"RoutinePage.java:999"
+]
+},
+{
+"id": 1173,
+"en": "Split “{1}” into two slots.",
+"src": [
+"RoutinePage.java:1004"
+]
+},
+{
+"id": 1174,
+"en": "It goes right after “{1}”. Your day stays the same length, so its time is taken from other slots.",
+"src": [
+"RoutinePage.java:1033"
+]
+},
+{
+"id": 1175,
+"en": "Name, e.g. Maths homework",
+"src": [
+"RoutinePage.java:1036"
+]
+},
+{
+"id": 1176,
+"en": "Kind",
+"src": [
+"RoutinePage.java:1040"
+]
+},
+{
+"id": 1177,
+"en": "Type (optional)",
+"src": [
+"RoutinePage.java:1043"
+]
+},
+{
+"id": 1178,
+"en": "or write a new type",
+"src": [
+"RoutinePage.java:1048"
+]
+},
+{
+"id": 1179,
+"en": "Minutes",
+"src": [
+"RoutinePage.java:1059"
+]
+},
+{
+"id": 1180,
+"en": "Take the minutes from",
+"src": [
+"RoutinePage.java:1065"
+]
+},
+{
+"id": 1181,
+"en": "This slot: “{1}”",
+"src": [
+"RoutinePage.java:1069"
+]
+},
+{
+"id": 1182,
+"en": "The next slot: “{1}”",
+"src": [
+"RoutinePage.java:1074"
+]
+},
+{
+"id": 1183,
+"en": "All the other slots (not Sleep)",
+"src": [
+"RoutinePage.java:1079"
+]
+},
+{
+"id": 1184,
+"en": "Up to {1} min can be taken from here.",
+"src": [
+"RoutinePage.java:1100"
+]
+},
+{
+"id": 1185,
+"en": "There is no room to take from here. Pick another source.",
+"src": [
+"RoutinePage.java:1100"
+]
+},
+{
+"id": 1186,
+"en": "Add a slot",
+"src": [
+"RoutinePage.java:1107"
+]
+},
+{
+"id": 1187,
+"en": "Give the slot a name, or pick a type.",
+"src": [
+"RoutinePage.java:1125"
+]
+},
+{
+"id": 1188,
+"en": "Write how many minutes it takes.",
+"src": [
+"RoutinePage.java:1132"
+]
+},
+{
+"id": 1189,
+"en": "It needs at least 1 minute.",
+"src": [
+"RoutinePage.java:1137"
+]
+},
+{
+"id": 1190,
+"en": "Only {1} min can be taken from there. Use fewer minutes or another source.",
+"src": [
+"RoutinePage.java:1141"
+]
+},
+{
+"id": 1191,
+"en": "There is no room to take from there. Pick another source.",
+"src": [
+"RoutinePage.java:1142"
+]
+},
+{
+"id": 1192,
+"en": "That did not fit. Try fewer minutes.",
+"src": [
+"RoutinePage.java:1150"
+]
+},
+{
+"id": 1193,
+"en": "the other slots",
+"src": [
+"RoutinePage.java:1154"
+]
+},
+{
+"id": 1194,
+"en": "Added “{1}”, {2} min, taken from {3}.",
+"src": [
+"RoutinePage.java:1159"
+]
+},
+{
+"id": 1195,
+"en": "No back-to-back tasks found",
+"src": [
+"RoutinePage.java:1193"
+]
+},
+{
+"id": 1196,
+"en": "No task has time to spare for a rest",
+"src": [
+"RoutinePage.java:1197"
+]
+},
+{
+"id": 1197,
+"en": "{1}, taken from the tasks next to them{2}",
+"src": [
+"RoutinePage.java:1201"
+]
+},
+{
+"id": 1198,
+"en": " rest added",
+"src": [
+"RoutinePage.java:1201"
+]
+},
+{
+"id": 1199,
+"en": " rests added",
+"src": [
+"RoutinePage.java:1201"
+]
+},
+{
+"id": 1200,
+"en": ". {1} had no room.",
+"src": [
+"RoutinePage.java:1202"
+]
+},
+{
+"id": 1201,
+"en": "Reset “{1}”?",
+"src": [
+"RoutinePage.java:1208"
+]
+},
+{
+"id": 1202,
+"en": "Its slots are replaced with the sample day (wake-up 5:30 AM). You can undo this.",
+"src": [
+"RoutinePage.java:1209"
+]
+},
+{
+"id": 1203,
+"en": "“{1}” reset to the sample day.",
+"src": [
+"RoutinePage.java:1217"
+]
+},
+{
+"id": 1204,
+"en": "Copy your routine in the web app first",
+"src": [
+"RoutinePage.java:1239"
+]
+},
+{
+"id": 1205,
+"en": "Routine imported into “{1}”.",
+"src": [
+"RoutinePage.java:1246"
+]
+},
+{
+"id": 1206,
+"en": "Swipes, look, pause rules, hidden apps",
+"src": [
+"SettingsPage.java:82"
+]
+},
+{
+"id": 1207,
+"en": "Permissions and settings the app needs, with a tick for each",
+"src": [
+"SettingsPage.java:86"
+]
+},
+{
+"id": 1208,
+"en": "Home screen look and alarms",
+"src": [
+"SettingsPage.java:88"
+]
+},
+{
+"id": 1209,
+"en": "Home screen look",
+"src": [
+"SettingsPage.java:89",
+"SettingsPage.java:148"
+]
+},
+{
+"id": 1210,
+"en": "Colours, clock, phone time, spacing",
+"src": [
+"SettingsPage.java:89"
+]
+},
+{
+"id": 1211,
+"en": "On or off, test alarm, phone checklist",
+"src": [
+"SettingsPage.java:90"
+]
+},
+{
+"id": 1212,
+"en": "Permissions",
+"src": [
+"SettingsPage.java:92",
+"SettingsPage.java:360"
+]
+},
+{
+"id": 1213,
+"en": "What the app may do, and why",
+"src": [
+"SettingsPage.java:92"
+]
+},
+{
+"id": 1214,
+"en": "Support",
+"src": [
+"SettingsPage.java:93"
+]
+},
+{
+"id": 1215,
+"en": "Help and problem report",
+"src": [
+"SettingsPage.java:94"
+]
+},
+{
+"id": 1216,
+"en": "How things work, copy a report",
+"src": [
+"SettingsPage.java:94"
+]
+},
+{
+"id": 1217,
+"en": "Ad privacy choices",
+"src": [
+"SettingsPage.java:96"
+]
+},
+{
+"id": 1218,
+"en": "Change what you agreed to for ads",
+"src": [
+"SettingsPage.java:96"
+]
+},
+{
+"id": 1219,
+"en": "About",
+"src": [
+"SettingsPage.java:99",
+"SettingsPage.java:487"
+]
+},
+{
+"id": 1220,
+"en": "Version and developer",
+"src": [
+"SettingsPage.java:99"
+]
+},
+{
+"id": 1221,
+"en": "‹  Settings",
+"src": [
+"SettingsPage.java:130"
+]
+},
+{
+"id": 1222,
+"en": "Theme",
+"src": [
+"SettingsPage.java:164"
+]
+},
+{
+"id": 1223,
+"en": "Night",
+"src": [
+"SettingsPage.java:165"
+]
+},
+{
+"id": 1224,
+"en": "Colours",
+"src": [
+"SettingsPage.java:174"
+]
+},
+{
+"id": 1225,
+"en": "On the home screen",
+"src": [
+"SettingsPage.java:180"
+]
+},
+{
+"id": 1226,
+"en": "24-hour clock",
+"src": [
+"SettingsPage.java:181"
+]
+},
+{
+"id": 1227,
+"en": "Show the time",
+"src": [
+"SettingsPage.java:186"
+]
+},
+{
+"id": 1228,
+"en": "Show phone screen time today",
+"src": [
+"SettingsPage.java:191"
+]
+},
+{
+"id": 1229,
+"en": "Allow usage access",
+"src": [
+"SettingsPage.java:200"
+]
+},
+{
+"id": 1230,
+"en": "Show “Developed by” mark",
+"src": [
+"SettingsPage.java:202"
+]
+},
+{
+"id": 1231,
+"en": "Spacing",
+"src": [
+"SettingsPage.java:209"
+]
+},
+{
+"id": 1232,
+"en": "Space at top",
+"src": [
+"SettingsPage.java:210"
+]
+},
+{
+"id": 1233,
+"en": "Space at bottom",
+"src": [
+"SettingsPage.java:211"
+]
+},
+{
+"id": 1234,
+"en": "Add top space if your lock screen shows a big clock, and bottom space for the app dock.",
+"src": [
+"SettingsPage.java:212"
+]
+},
+{
+"id": 1235,
+"en": "{1} colours{2}",
+"src": [
+"SettingsPage.java:261"
+]
+},
+{
+"id": 1236,
+"en": ", selected",
+"src": [
+"SettingsPage.java:261"
+]
+},
+{
+"id": 1237,
+"en": "The {1} colours",
+"src": [
+"SettingsPage.java:264"
+]
+},
+{
+"id": 1238,
+"en": "Screen time is read on this phone only. Nothing is sent anywhere.",
+"src": [
+"SettingsPage.java:312"
+]
+},
+{
+"id": 1239,
+"en": "To show screen time, Android needs your OK. Tap the button, find Dinacharya Launcher in the list and switch it on.",
+"src": [
+"SettingsPage.java:313"
+]
+},
+{
+"id": 1240,
+"en": "Dinacharya Pro ✓",
+"src": [
+"SettingsPage.java:335"
+]
+},
+{
+"id": 1241,
+"en": "Thank you for supporting the app.",
+"src": [
+"SettingsPage.java:337"
+]
+},
+{
+"id": 1242,
+"en": "No ads, every day and week in reports, more pauses and locks, routines, goals, colours{1}",
+"src": [
+"SettingsPage.java:339"
+]
+},
+{
+"id": 1243,
+"en": ". Or try features free with short videos",
+"src": [
+"SettingsPage.java:340"
+]
+},
+{
+"id": 1244,
+"en": "This phone",
+"src": [
+"SettingsPage.java:382"
+]
+},
+{
+"id": 1245,
+"en": "Phone time on the home screen and in reports.",
+"src": [
+"SettingsPage.java:383"
+]
+},
+{
+"id": 1246,
+"en": "The alarm question, also on the lock screen.",
+"src": [
+"SettingsPage.java:384"
+]
+},
+{
+"id": 1247,
+"en": "Rings at the exact minute a slot starts.",
+"src": [
+"SettingsPage.java:389"
+]
+},
+{
+"id": 1248,
+"en": "Keeps alarms and backups on time on phones that stop apps.",
+"src": [
+"SettingsPage.java:396"
+]
+},
+{
+"id": 1249,
+"en": "{1} Not allowed yet.",
+"src": [
+"SettingsPage.java:417"
+]
+},
+{
+"id": 1250,
+"en": "Open the phone's Settings, then Apps, Dinacharya Launcher",
+"src": [
+"SettingsPage.java:436"
+]
+},
+{
+"id": 1251,
+"en": "Help",
+"src": [
+"SettingsPage.java:444"
+]
+},
+{
+"id": 1252,
+"en": "Quick guide",
+"src": [
+"SettingsPage.java:445"
+]
+},
+{
+"id": 1253,
+"en": "Dinacharya Launcher is your home screen: no apps on it, just your day, with the slot you are in highlighted. Tap your day to open the dashboard, swipe up for every app, down for notifications, press and hold for its settings. Settings > Home screen has the rest, and Take the tour shows it all.",
+"src": [
+"SettingsPage.java:447"
+]
+},
+{
+"id": 1254,
+"en": "Pick a start time; every slot follows. Drag ≡ to move a slot, swipe left to delete, swipe right to add one below. Tap ⋮ on a slot for notes, duplicating and more.",
+"src": [
+"SettingsPage.java:449"
+]
+},
+{
+"id": 1255,
+"en": "On the Routine tab, add another routine and tap the days it is used on. Alarms, the home screen and reports follow the right one each day.",
+"src": [
+"SettingsPage.java:451"
+]
+},
+{
+"id": 1256,
+"en": "Weekdays and weekends",
+"src": [
+"SettingsPage.java:451"
+]
+},
+{
+"id": 1257,
+"en": "Turn alarms on from the Alarms card on Home. When one rings, say if you continue as planned or change the slot for today. If one does not ring, open Settings > Alarms: the checklist shows what is missing, and Ring a test alarm tries it in 10 seconds.",
+"src": [
+"SettingsPage.java:453"
+]
+},
+{
+"id": 1258,
+"en": "On Insights, set a daily goal for a type such as Study. Kept slots of that type fill it up; days in a row make a streak.",
+"src": [
+"SettingsPage.java:455"
+]
+},
+{
+"id": 1259,
+"en": "Undo",
+"src": [
+"SettingsPage.java:456"
+]
+},
+{
+"id": 1260,
+"en": "After deleting, moving or adding, a bar with Undo appears for a few seconds.",
+"src": [
+"SettingsPage.java:456"
+]
+},
+{
+"id": 1261,
+"en": "On Backup, sign in with Google and choose Daily, Weekly or Monthly. Restore on a new phone from the same tab.",
+"src": [
+"SettingsPage.java:457"
+]
+},
+{
+"id": 1262,
+"en": "Problem report",
+"src": [
+"SettingsPage.java:463"
+]
+},
+{
+"id": 1263,
+"en": "Copy problem report",
+"src": [
+"SettingsPage.java:469"
+]
+},
+{
+"id": 1264,
+"en": "Dinacharya Launcher {1} on Android {2} ({3} {4})\n\nAlarms:\n{5}\n\n{6}\n\n{7}\n\n{8}",
+"src": [
+"SettingsPage.java:470"
+]
+},
+{
+"id": 1265,
+"en": "No crash recorded.",
+"src": [
+"SettingsPage.java:472"
+]
+},
+{
+"id": 1266,
+"en": "No handled problems.",
+"src": [
+"SettingsPage.java:472"
+]
+},
+{
+"id": 1267,
+"en": "Report copied",
+"src": [
+"SettingsPage.java:476"
+]
+},
+{
+"id": 1268,
+"en": "Version {1}",
+"src": [
+"SettingsPage.java:489"
+]
+},
+{
+"id": 1269,
+"en": "Phone settings",
+"src": [
+"SetupActivity.java:54"
+]
+},
+{
+"id": 1270,
+"en": "Welcome",
+"src": [
+"SetupActivity.java:54"
+]
+},
+{
+"id": 1271,
+"en": "Check your phone settings",
+"src": [
+"SetupActivity.java:55"
+]
+},
+{
+"id": 1272,
+"en": "Let’s get your phone ready",
+"src": [
+"SetupActivity.java:55"
+]
+},
+{
+"id": 1273,
+"en": "A few settings so the alarms ring on time and the home screen works. Each one opens Android’s own screen and takes a moment. You can skip any of them.",
+"src": [
+"SetupActivity.java:57"
+]
+},
+{
+"id": 1274,
+"en": "Continue",
+"src": [
+"SetupActivity.java:79",
+"TourArt.java:274",
+"UsageAccess.java:34"
+]
+},
+{
+"id": 1275,
+"en": "Skip for now",
+"src": [
+"SetupActivity.java:81"
+]
+},
+{
+"id": 1276,
+"en": "That set the lock screen only. Tap Set again and choose the home screen too.",
+"src": [
+"SetupActivity.java:119"
+]
+},
+{
+"id": 1277,
+"en": "Everything is set.",
+"src": [
+"SetupActivity.java:162"
+]
+},
+{
+"id": 1278,
+"en": "Finish",
+"src": [
+"SetupActivity.java:163"
+]
+},
+{
+"id": 1279,
+"en": "{1} steps left.",
+"src": [
+"SetupActivity.java:165"
+]
+},
+{
+"id": 1280,
+"en": "1 step left.",
+"src": [
+"SetupActivity.java:165"
+]
+},
+{
+"id": 1281,
+"en": "Next step",
+"src": [
+"SetupActivity.java:166"
+]
+},
+{
+"id": 1282,
+"en": "Set up everything",
+"src": [
+"SetupActivity.java:166"
+]
+},
+{
+"id": 1283,
+"en": "That is past your alarm: there would be no sleep left.",
+"src": [
+"SnoozeCost.java:46"
+]
+},
+{
+"id": 1284,
+"en": "This costs you {1} of sleep.",
+"src": [
+"SnoozeCost.java:48"
+]
+},
+{
+"id": 1285,
+"en": "Sleep now: {1}. After {2}: {3}.",
+"src": [
+"SnoozeCost.java:49"
+]
+},
+{
+"id": 1286,
+"en": "That is {1} short of the {2} you planned.",
+"src": [
+"SnoozeCost.java:53"
+]
+},
+{
+"id": 1287,
+"en": "Under 6 hours of sleep makes tomorrow harder.",
+"src": [
+"SnoozeCost.java:56"
+]
+},
+{
+"id": 1288,
+"en": "Already snoozed {1} today. With this: {2}.",
+"src": [
+"SnoozeCost.java:58"
+]
+},
+{
+"id": 1289,
+"en": "Open Settings, Apps, Special access, Display over other apps",
+"src": [
+"StrongMode.java:78"
+]
+},
+{
+"id": 1290,
+"en": "On. Locks and pauses are held wherever an app opens from.",
+"src": [
+"StrongMode.java:87"
+]
+},
+{
+"id": 1291,
+"en": "Almost on: allow Usage access below.",
+"src": [
+"StrongMode.java:89"
+]
+},
+{
+"id": 1292,
+"en": "Almost on: allow Display over other apps below.",
+"src": [
+"StrongMode.java:91"
+]
+},
+{
+"id": 1293,
+"en": "Almost on: allow the two things below.",
+"src": [
+"StrongMode.java:93"
+]
+},
+{
+"id": 1294,
+"en": "Off. Locks and pauses work when you open an app from this home screen.",
+"src": [
+"StrongMode.java:95"
+]
+},
+{
+"id": 1295,
+"en": "Turn on alarms so the app can see which slots you keep.",
+"src": [
+"Suggestions.java:43"
+]
+},
+{
+"id": 1296,
+"en": "Allow usage access to see your phone time and the apps behind it.",
+"src": [
+"Suggestions.java:44"
+]
+},
+{
+"id": 1297,
+"en": "You took off {1} on {2} of the last {3} days. Make it shorter, or move it to a quieter time.",
+"src": [
+"Suggestions.java:77"
+]
+},
+{
+"id": 1298,
+"en": "You renamed {1} to {2} on {3} days. Change it in the routine so the plan matches your day.",
+"src": [
+"Suggestions.java:86"
+]
+},
+{
+"id": 1299,
+"en": "You went to sleep about {1} late on average over the last {2} nights. Move bedtime and wake-up later in the app, or start winding down earlier.",
+"src": [
+"Suggestions.java:100"
+]
+},
+{
+"id": 1300,
+"en": "You spent {1} on your phone during {2} ({3}% of the block). Keep the phone in another room for that block.",
+"src": [
+"Suggestions.java:113"
+]
+},
+{
+"id": 1301,
+"en": "You used the phone for {1} in the hour before bed. A screen-free hour helps you fall asleep.",
+"src": [
+"Suggestions.java:119"
+]
+},
+{
+"id": 1302,
+"en": "{1} took {2}, {3}% of your phone time. Set a daily limit for it in Settings > Home screen, or in Android's Digital Wellbeing.",
+"src": [
+"Suggestions.java:125"
+]
+},
+{
+"id": 1303,
+"en": "an app",
+"src": [
+"Suggestions.java:131"
+]
+},
+{
+"id": 1304,
+"en": "The home screen paused you {1} times and you opened the app anyway {2} times; {3} pulled you most. Make it Strict, or give it a daily limit, in Settings > Home screen.",
+"src": [
+"Suggestions.java:133"
+]
+},
+{
+"id": 1305,
+"en": "You stopped yourself {1} times at the home screen. That is focus working.",
+"src": [
+"Suggestions.java:136"
+]
+},
+{
+"id": 1306,
+"en": "{1} of your 24 hours are not planned. Add a block for that time.",
+"src": [
+"Suggestions.java:143"
+]
+},
+{
+"id": 1307,
+"en": "Your blocks add up to {1} more than 24 hours. Shorten something.",
+"src": [
+"Suggestions.java:145"
+]
+},
+{
+"id": 1308,
+"en": "Only {1}% of your awake time is rest. Short breaks between tasks help you stay focused.",
+"src": [
+"Suggestions.java:155"
+]
+},
+{
+"id": 1309,
+"en": "You have kept {1} for {2} days in a row. It is a good place for your hardest work.",
+"src": [
+"Suggestions.java:179"
+]
+},
+{
+"id": 1310,
+"en": "A solid day. Keep the same routine tomorrow.",
+"src": [
+"Suggestions.java:182"
+]
+},
+{
+"id": 1311,
+"en": "Not enough days yet for suggestions. Keep the alarms on and check back in a few days.",
+"src": [
+"Suggestions.java:183"
+]
+},
+{
+"id": 1312,
+"en": "＋  Add below",
+"src": [
+"SwipeRow.java:35"
+]
+},
+{
+"id": 1313,
+"en": "Delete  ✕",
+"src": [
+"SwipeRow.java:36"
+]
+},
+{
+"id": 1314,
+"en": "Your day, on your home screen",
+"src": [
+"TourActivity.java:36"
+]
+},
+{
+"id": 1315,
+"en": "Swipe up for every app",
+"src": [
+"TourActivity.java:37"
+]
+},
+{
+"id": 1316,
+"en": "Swipe and press",
+"src": [
+"TourActivity.java:38"
+]
+},
+{
+"id": 1317,
+"en": "A routine that fits you",
+"src": [
+"TourActivity.java:39"
+]
+},
+{
+"id": 1318,
+"en": "Alarms that ask",
+"src": [
+"TourActivity.java:40"
+]
+},
+{
+"id": 1319,
+"en": "A pause before distractions",
+"src": [
+"TourActivity.java:41"
+]
+},
+{
+"id": 1320,
+"en": "Lock apps for a while",
+"src": [
+"TourActivity.java:42"
+]
+},
+{
+"id": 1321,
+"en": "See how your days go",
+"src": [
+"TourActivity.java:43"
+]
+},
+{
+"id": 1322,
+"en": "Back up to your own Drive",
+"src": [
+"TourActivity.java:44"
+]
+},
+{
+"id": 1323,
+"en": "Free, and Pro if you want more",
+"src": [
+"TourActivity.java:45"
+]
+},
+{
+"id": 1324,
+"en": "Your day is the wallpaper",
+"src": [
+"TourActivity.java:46"
+]
+},
+{
+"id": 1325,
+"en": "Last check",
+"src": [
+"TourActivity.java:47"
+]
+},
+{
+"id": 1326,
+"en": "No icons and no clutter. Your whole home screen is your day: the time, the date and every slot, with the one you are in highlighted.",
+"src": [
+"TourActivity.java:50"
+]
+},
+{
+"id": 1327,
+"en": "Every app, as a plain list over a soft blur of your day. Type to search. Slide along the A to Z strip to jump to a letter. Press and hold an app to add a pause, hide it, or open its info. Dinacharya Launcher is in the list too: tap it for the dashboard.",
+"src": [
+"TourActivity.java:51"
+]
+},
+{
+"id": 1328,
+"en": "Tap your day to open the dashboard. Swipe down for notifications. Swipe left for the camera and right for the phone: you can change both to any app. Press and hold anywhere for settings.",
+"src": [
+"TourActivity.java:52"
+]
+},
+{
+"id": 1329,
+"en": "Set your wake-up time and shape the day into slots: Study, Rest, Meals and more. Keep one routine for weekdays and others for weekends or exam days. Open the dashboard to edit them.",
+"src": [
+"TourActivity.java:53"
+]
+},
+{
+"id": 1330,
+"en": "Each slot can ring when it starts and ask one question: carry on, or change the plan? At bedtime it asks when you went to sleep, and if you need more time it tells you what that costs in sleep. The question comes up by itself, and again when you wake the phone or come back to the home screen.",
+"src": [
+"TourActivity.java:54"
+]
+},
+{
+"id": 1331,
+"en": "Pick the apps that pull you away. During focus time they wait a few seconds before they open, and you can always open them anyway. Free: two apps. Pro: any number, strict pauses, daily limits, and playful pauses: a quick sum, a sentence to type, slow breaths, or saying why you are opening it.",
+"src": [
+"TourActivity.java:55"
+]
+},
+{
+"id": 1332,
+"en": "Shut the apps that eat your time for hours you choose: every day or on some days, or just for the next hour. A locked app is greyed in the list, and the lock screen shows when it opens again. You can break a lock by waiting half a minute and typing a sentence. Free: lock two apps. Pro: groups of apps, as many locks as you like, and strict locks that cannot be broken. Set it up in the home settings.",
+"src": [
+"TourActivity.java:56"
+]
+},
+{
+"id": 1333,
+"en": "A score for each day, phone time by hour and by app, goals with streaks, and plain suggestions. Today and the last three days are free, and each can be saved as a PDF. Pro adds every saved day and the weekly view.",
+"src": [
+"TourActivity.java:57"
+]
+},
+{
+"id": 1334,
+"en": "Sign in with Google to back up to a private space in your own Drive, and restore on a new phone. The home settings, your routines and your reports are all in it.",
+"src": [
+"TourActivity.java:58"
+]
+},
+{
+"id": 1335,
+"en": "The Dinacharya Launcher live wallpaper shows the time, the date and every slot of your day, with the one you are in highlighted, and keeps itself up to date. It comes with the home screen: Dinacharya Launcher asks Android to put it in place and you confirm once, so it also shows on your lock screen and in your recent apps.",
+"src": [
+"TourActivity.java:60"
+]
+},
+{
+"id": 1336,
+"en": "Anything still missing from the setup is listed here. You can skip it now and come back from Settings.",
+"src": [
+"TourActivity.java:61"
+]
+},
+{
+"id": 1337,
+"en": "Skip",
+"src": [
+"TourActivity.java:163"
+]
+},
+{
+"id": 1338,
+"en": "Next",
+"src": [
+"TourActivity.java:222",
+"TourActivity.java:248"
+]
+},
+{
+"id": 1339,
+"en": "{1} of {2}",
+"src": [
+"TourActivity.java:239"
+]
+},
+{
+"id": 1340,
+"en": "Free: the home screen, alarms, today's report and the last three days, two paused apps and two locked apps. Pro is one payment{1} through Google Play, with no subscription. It adds every saved day and the weekly view, strict and playful pauses, daily limits, groups of locked apps and strict locks, weekday and weekend routines, goals, every colour look, and no ads.{2}",
+"src": [
+"TourActivity.java:261"
+]
+},
+{
+"id": 1341,
+"en": " Or watch short videos to open some of these for a while: 1 video opens just ONE of them for a day, 2 videos for 3 days, 3 videos the whole group it is in. Tap “Watch videos” wherever you see “Part of Pro”, or on the Pro screen. What you set up with it goes back to the free version when the time is up.",
+"src": [
+"TourActivity.java:265"
+]
+},
+{
+"id": 1342,
+"en": "Everything is set",
+"src": [
+"TourActivity.java:312"
+]
+},
+{
+"id": 1343,
+"en": "Your phone is ready.",
+"src": [
+"TourActivity.java:312"
+]
+},
+{
+"id": 1344,
+"en": "Tue 20 Oct",
+"src": [
+"TourArt.java:181"
+]
+},
+{
+"id": 1345,
+"en": "Phone today  2h 05m",
+"src": [
+"TourArt.java:182"
+]
+},
+{
+"id": 1346,
+"en": "Wake up",
+"src": [
+"TourArt.java:183",
+"TourArt.java:251"
+]
+},
+{
+"id": 1347,
+"en": "Books",
+"src": [
+"TourArt.java:202"
+]
+},
+{
+"id": 1348,
+"en": "Calculator",
+"src": [
+"TourArt.java:202"
+]
+},
+{
+"id": 1349,
+"en": "Calendar",
+"src": [
+"TourArt.java:202"
+]
+},
+{
+"id": 1350,
+"en": "Clock",
+"src": [
+"TourArt.java:202"
+]
+},
+{
+"id": 1351,
+"en": "Contacts",
+"src": [
+"TourArt.java:202"
+]
+},
+{
+"id": 1352,
+"en": "Drive",
+"src": [
+"TourArt.java:202"
+]
+},
+{
+"id": 1353,
+"en": "ABCDEFGHIJK",
+"src": [
+"TourArt.java:206"
+]
+},
+{
+"id": 1354,
+"en": "Swipe up",
+"src": [
+"TourArt.java:213"
+]
+},
+{
+"id": 1355,
+"en": "for every app",
+"src": [
+"TourArt.java:214"
+]
+},
+{
+"id": 1356,
+"en": "All apps",
+"src": [
+"TourArt.java:226"
+]
+},
+{
+"id": 1357,
+"en": "Study starts now",
+"src": [
+"TourArt.java:271"
+]
+},
+{
+"id": 1358,
+"en": "Are you continuing, or changing the plan?",
+"src": [
+"TourArt.java:272"
+]
+},
+{
+"id": 1359,
+"en": "Bedtime",
+"src": [
+"TourArt.java:279"
+]
+},
+{
+"id": 1360,
+"en": "When did you go to sleep?",
+"src": [
+"TourArt.java:280"
+]
+},
+{
+"id": 1361,
+"en": "Social app",
+"src": [
+"TourArt.java:287",
+"TourArt.java:350"
+]
+},
+{
+"id": 1362,
+"en": "Right now: Study.",
+"src": [
+"TourArt.java:288"
+]
+},
+{
+"id": 1363,
+"en": "Is this the best use of",
+"src": [
+"TourArt.java:289"
+]
+},
+{
+"id": 1364,
+"en": "the next few minutes?",
+"src": [
+"TourArt.java:290"
+]
+},
+{
+"id": 1365,
+"en": "Open anyway in 7",
+"src": [
+"TourArt.java:293"
+]
+},
+{
+"id": 1366,
+"en": "Today's score",
+"src": [
+"TourArt.java:308"
+]
+},
+{
+"id": 1367,
+"en": "Phone use by hour",
+"src": [
+"TourArt.java:317"
+]
+},
+{
+"id": 1368,
+"en": "Study  5h 40m of 6h",
+"src": [
+"TourArt.java:320"
+]
+},
+{
+"id": 1369,
+"en": "5-day streak",
+"src": [
+"TourArt.java:321"
+]
+},
+{
+"id": 1370,
+"en": "Your own Google Drive",
+"src": [
+"TourArt.java:336"
+]
+},
+{
+"id": 1371,
+"en": "private to you",
+"src": [
+"TourArt.java:337"
+]
+},
+{
+"id": 1372,
+"en": "Daily, weekly",
+"src": [
+"TourArt.java:340"
+]
+},
+{
+"id": 1373,
+"en": "or monthly",
+"src": [
+"TourArt.java:341"
+]
+},
+{
+"id": 1374,
+"en": "Restore on a",
+"src": [
+"TourArt.java:342"
+]
+},
+{
+"id": 1375,
+"en": "new phone",
+"src": [
+"TourArt.java:343"
+]
+},
+{
+"id": 1376,
+"en": "Locked  ·  Social",
+"src": [
+"TourArt.java:351"
+]
+},
+{
+"id": 1377,
+"en": "Until 6:00 AM",
+"src": [
+"TourArt.java:352"
+]
+},
+{
+"id": 1378,
+"en": "4h 20m left",
+"src": [
+"TourArt.java:353"
+]
+},
+{
+"id": 1379,
+"en": "Shows when it",
+"src": [
+"TourArt.java:359"
+]
+},
+{
+"id": 1380,
+"en": "opens again",
+"src": [
+"TourArt.java:360"
+]
+},
+{
+"id": 1381,
+"en": "Wait, then type",
+"src": [
+"TourArt.java:363"
+]
+},
+{
+"id": 1382,
+"en": "a sentence",
+"src": [
+"TourArt.java:364"
+]
+},
+{
+"id": 1383,
+"en": "Strict locks (Pro)",
+"src": [
+"TourArt.java:365"
+]
+},
+{
+"id": 1384,
+"en": "can't be broken",
+"src": [
+"TourArt.java:366"
+]
+},
+{
+"id": 1385,
+"en": "Free",
+"src": [
+"TourArt.java:375"
+]
+},
+{
+"id": 1386,
+"en": "Pro",
+"src": [
+"TourArt.java:376"
+]
+},
+{
+"id": 1387,
+"en": "Today's report",
+"src": [
+"TourArt.java:377"
+]
+},
+{
+"id": 1388,
+"en": "Last 3 days",
+"src": [
+"TourArt.java:377"
+]
+},
+{
+"id": 1389,
+"en": "2 paused apps",
+"src": [
+"TourArt.java:377"
+]
+},
+{
+"id": 1390,
+"en": "2 locked apps",
+"src": [
+"TourArt.java:377"
+]
+},
+{
+"id": 1391,
+"en": "All saved days",
+"src": [
+"TourArt.java:378"
+]
+},
+{
+"id": 1392,
+"en": "Weekly view",
+"src": [
+"TourArt.java:378"
+]
+},
+{
+"id": 1393,
+"en": "One payment, or a short video for a day",
+"src": [
+"TourArt.java:384"
+]
+},
+{
+"id": 1394,
+"en": "Time, date",
+"src": [
+"TourArt.java:396"
+]
+},
+{
+"id": 1395,
+"en": "and phone time",
+"src": [
+"TourArt.java:397"
+]
+},
+{
+"id": 1396,
+"en": "The slot you",
+"src": [
+"TourArt.java:401"
+]
+},
+{
+"id": 1397,
+"en": "are in",
+"src": [
+"TourArt.java:402"
+]
+},
+{
+"id": 1398,
+"en": "Every slot",
+"src": [
+"TourArt.java:406"
+]
+},
+{
+"id": 1399,
+"en": "of your day",
+"src": [
+"TourArt.java:407"
+]
+},
+{
+"id": 1400,
+"en": "Part of the",
+"src": [
+"TourArt.java:409"
+]
+},
+{
+"id": 1401,
+"en": "home screen",
+"src": [
+"TourArt.java:410"
+]
+},
+{
+"id": 1402,
+"en": "{1}([^\\n]+?)",
+"src": [
+"Translator.java:52"
+]
+},
+{
+"id": 1403,
+"en": "Allow usage access?",
+"src": [
+"UsageAccess.java:22"
+]
+},
+{
+"id": 1404,
+"en": "Dinacharya Launcher reads which apps you used and for how long, so it can show your phone time on the home screen and in your reports, and count the minutes for any daily app limit you set on the home screen.\n\nIt is read on this phone only. It is not sent to the developer or to anyone else. If you turn on Google Drive backup, your saved reports (including the names of the apps you used most) go to your own private space in your own Drive, and nowhere else.\n\nNext, Android's settings open. Find Dinacharya Launcher in the list and switch it on. You can switch it off there at any time.{1}",
+"src": [
+"UsageAccess.java:23"
+]
+},
+{
+"id": 1405,
+"en": "\n\nIf the switch is greyed out (“Restricted setting”), tap “Greyed out?” for the one-time unlock.",
+"src": [
+"UsageAccess.java:32"
+]
+},
+{
+"id": 1406,
+"en": "Greyed out?",
+"src": [
+"UsageAccess.java:37"
+]
+},
+{
+"id": 1407,
+"en": "Open Settings, then Apps, Special app access, Usage access",
+"src": [
+"UsageAccess.java:54"
+]
+},
+{
+"id": 1408,
+"en": "What you set up with it goes back to the free version then, unless you get Pro.",
+"src": [
+"VideoPass.java:72"
+]
+},
+{
+"id": 1409,
+"en": "no ad units",
+"src": [
+"VideoPass.java:171"
+]
+},
+{
+"id": 1410,
+"en": "layer {1} took too long",
+"src": [
+"VideoPass.java:181"
+]
+},
+{
+"id": 1411,
+"en": "layer {1} failed, code {2}: {3}",
+"src": [
+"VideoPass.java:193"
+]
+},
+{
+"id": 1412,
+"en": "layer {1} could not be asked",
+"src": [
+"VideoPass.java:217"
+]
+},
+{
+"id": 1413,
+"en": "A video is already on its way.",
+"src": [
+"VideoPass.java:340"
+]
+},
+{
+"id": 1414,
+"en": "That cannot be kept longer.",
+"src": [
+"VideoPass.java:345"
+]
+},
+{
+"id": 1415,
+"en": "That is open already.",
+"src": [
+"VideoPass.java:351"
+]
+},
+{
+"id": 1416,
+"en": "You have watched a lot of videos today. Try again tomorrow, or get Pro: it is one payment, opens everything for good and removes the ads.",
+"src": [
+"VideoPass.java:355"
+]
+},
+{
+"id": 1417,
+"en": "That is plenty for today",
+"src": [
+"VideoPass.java:355"
+]
+},
+{
+"id": 1418,
+"en": "Videos are not ready yet. Check your connection and try again in a moment.",
+"src": [
+"VideoPass.java:362"
+]
+},
+{
+"id": 1419,
+"en": "A video could not be started. Try again in a moment.",
+"src": [
+"VideoPass.java:371",
+"VideoPass.java:433"
+]
+},
+{
+"id": 1420,
+"en": "Getting a short video…",
+"src": [
+"VideoPass.java:394"
+]
+},
+{
+"id": 1421,
+"en": "Getting the next video…",
+"src": [
+"VideoPass.java:394"
+]
+},
+{
+"id": 1422,
+"en": "The video could not be shown. Try again in a little while.",
+"src": [
+"VideoPass.java:413"
+]
+},
+{
+"id": 1423,
+"en": "There is no video to show at the moment. Try again in a little while. Nothing was used up and nothing was opened.",
+"src": [
+"VideoPass.java:425"
+]
+},
+{
+"id": 1424,
+"en": "No video right now",
+"src": [
+"VideoPass.java:425",
+"VideoPass.java:485"
+]
+},
+{
+"id": 1425,
+"en": "The next video could not be found. You keep what you already earned.",
+"src": [
+"VideoPass.java:427"
+]
+},
+{
+"id": 1426,
+"en": "Watch the whole video to open it. Nothing was opened.",
+"src": [
+"VideoPass.java:473"
+]
+},
+{
+"id": 1427,
+"en": "could not be shown, code {1}: {2}",
+"src": [
+"VideoPass.java:479"
+]
+},
+{
+"id": 1428,
+"en": "The video could not be shown. Try again in a little while. Nothing was opened.",
+"src": [
+"VideoPass.java:485"
+]
+},
+{
+"id": 1429,
+"en": "to keep {1} open for 3 days",
+"src": [
+"VideoPass.java:530"
+]
+},
+{
+"id": 1430,
+"en": "to open {1} for a day",
+"src": [
+"VideoPass.java:531"
+]
+},
+{
+"id": 1431,
+"en": "Video {1} of {2} watched",
+"src": [
+"VideoPass.java:532"
+]
+},
+{
+"id": 1432,
+"en": "{1} is open now.\n\nWatch {2} {3}.\n\nOr stop here and keep what you have.",
+"src": [
+"VideoPass.java:533"
+]
+},
+{
+"id": 1433,
+"en": "{1} more videos",
+"src": [
+"VideoPass.java:534"
+]
+},
+{
+"id": 1434,
+"en": "one more video",
+"src": [
+"VideoPass.java:534"
+]
+},
+{
+"id": 1435,
+"en": "Next video",
+"src": [
+"VideoPass.java:538"
+]
+},
+{
+"id": 1436,
+"en": "Stop here",
+"src": [
+"VideoPass.java:539"
+]
+},
+{
+"id": 1437,
+"en": "It could not be opened. Please try again.",
+"src": [
+"VideoPass.java:562"
+]
+},
+{
+"id": 1438,
+"en": "Thank you for watching.\n{1}",
+"src": [
+"VideoPass.java:565"
+]
+},
+{
+"id": 1439,
+"en": "This phone has no live wallpaper screen",
+"src": [
+"WallpaperSetup.java:126"
+]
+},
+{
+"id": 1440,
+"en": "DINACHARYA",
+"src": [
+"WelcomeActivity.java:83"
+]
+},
+{
+"id": 1441,
+"en": "Welcome to Dinacharya Launcher",
+"src": [
+"WelcomeActivity.java:96"
+]
+},
+{
+"id": 1442,
+"en": "A calm home screen made from your daily routine: your whole day, live, with nothing else on it. Alarms that ask, a pause or a lock for the apps that pull you away, and a report on how each day went.",
+"src": [
+"WelcomeActivity.java:101"
+]
+},
+{
+"id": 1443,
+"en": "Get started",
+"src": [
+"WelcomeActivity.java:113"
+]
+},
+{
+"id": 1444,
+"en": "It takes about a minute. Every step can be skipped.",
+"src": [
+"WelcomeActivity.java:115"
+]
+},
+{
+"id": 5001,
+"en": "Pick apps that pull you away.",
+"src": [
+"added"
+]
+},
+{
+"id": 5002,
+"en": "When you open one, it waits a few seconds first, so you can go back or carry on.",
+"src": [
+"added"
+]
+},
+{
+"id": 5003,
+"en": "When you open one from this home screen, it waits a few seconds first, so you can go back or carry on.",
+"src": [
+"added"
+]
+},
+{
+"id": 5004,
+"en": "It never locks you out: Open anyway is always there.",
+"src": [
+"added"
+]
+},
+{
+"id": 5005,
+"en": "To hold them whichever way they open, turn on the strong lock below.",
+"src": [
+"added"
+]
+},
+{
+"id": 5006,
+"en": "Put the apps that eat your time in a group, then lock the group for hours you choose, on the days you choose, or just for the next hour.",
+"src": [
+"added"
+]
+},
+{
+"id": 5007,
+"en": "Pick the apps that eat your time, then lock them for hours you choose, on the days you choose, or just for the next hour.",
+"src": [
+"added"
+]
+},
+{
+"id": 5008,
+"en": "A locked app does not open until the lock ends.",
+"src": [
+"added"
+]
+},
+{
+"id": 5009,
+"en": "A locked app does not open from this home screen until the lock ends.",
+"src": [
+"added"
+]
+},
+{
+"id": 5010,
+"en": "You can break a lock by waiting 30 seconds and typing a sentence; a strict lock (Pro) cannot be broken.",
+"src": [
+"added"
+]
+},
+{
+"id": 5011,
+"en": "1 app is hidden from the list of all apps and from search.",
+"src": [
+"added"
+]
+},
+{
+"id": 5012,
+"en": "{1} apps are hidden from the list of all apps and from search.",
+"src": [
+"added"
+]
+},
+{
+"id": 5013,
+"en": "1 pause today",
+"src": [
+"added"
+]
+},
+{
+"id": 5014,
+"en": "{1} pauses today",
+"src": [
+"added"
+]
+},
+{
+"id": 5015,
+"en": "You went back {1} and opened the app anyway {2}.",
+"src": [
+"added"
+]
+},
+{
+"id": 5016,
+"en": "The day report keeps this count.",
+"src": [
+"added"
+]
+},
+{
+"id": 5017,
+"en": "1 time",
+"src": [
+"added"
+]
+},
+{
+"id": 5018,
+"en": "{1} times",
+"src": [
+"added"
+]
+},
+{
+"id": 5019,
+"en": "Alarm at {1}. You sleep {2} instead of {3}.",
+"src": [
+"added"
+]
+},
+{
+"id": 5020,
+"en": "1 older day is saved on this phone.",
+"src": [
+"added"
+]
+},
+{
+"id": 5021,
+"en": "{1} older days are saved on this phone.",
+"src": [
+"added"
+]
+},
+{
+"id": 5022,
+"en": "Opening days older than the last {1} days is part of Pro.",
+"src": [
+"added"
+]
+},
+{
+"id": 5023,
+"en": "{1} of {2} goal",
+"src": [
+"added"
+]
+},
+{
+"id": 5024,
+"en": "{1} of {2} goal ✓",
+"src": [
+"added"
+]
+},
+{
+"id": 5025,
+"en": "{1} of {2} planned",
+"src": [
+"added"
+]
+},
+{
+"id": 5026,
+"en": "1 closed day",
+"src": [
+"added"
+]
+},
+{
+"id": 5027,
+"en": "{1} closed days",
+"src": [
+"added"
+]
+},
+{
+"id": 5028,
+"en": "Made “{1}” for Saturday and Sunday.",
+"src": [
+"added"
+]
+},
+{
+"id": 5029,
+"en": "Made “{1}”. Tap the days that should use it.",
+"src": [
+"added"
+]
+},
+{
+"id": 5030,
+"en": "Bedtime {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5031,
+"en": "Day ends {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5032,
+"en": "1 slot uses it. It keeps its name and time and just loses the type.",
+"src": [
+"added"
+]
+},
+{
+"id": 5033,
+"en": "{1} slots use it. They keep their name and time and just lose the type.",
+"src": [
+"added"
+]
+},
+{
+"id": 5034,
+"en": "Add to the slot above: “{1}”",
+"src": [
+"added"
+]
+},
+{
+"id": 5035,
+"en": "Add to the slot below: “{1}”",
+"src": [
+"added"
+]
+},
+{
+"id": 5036,
+"en": "Deleted “{1}”. Its {2} min went to “{3}”.",
+"src": [
+"added"
+]
+},
+{
+"id": 5037,
+"en": "Deleted “{1}”. Its {2} min were shared out.",
+"src": [
+"added"
+]
+},
+{
+"id": 5038,
+"en": "1 rest added, taken from the tasks next to them.",
+"src": [
+"added"
+]
+},
+{
+"id": 5039,
+"en": "{1} rests added, taken from the tasks next to them.",
+"src": [
+"added"
+]
+},
+{
+"id": 5040,
+"en": "1 gap had no room.",
+"src": [
+"added"
+]
+},
+{
+"id": 5041,
+"en": "{1} gaps had no room.",
+"src": [
+"added"
+]
+},
+{
+"id": 5042,
+"en": "No ads, every day and week in reports, more pauses and locks, routines, goals, colours",
+"src": [
+"added"
+]
+},
+{
+"id": 5043,
+"en": "No ads, every day and week in reports, more pauses and locks, routines, goals, colours. Or try features free with short videos",
+"src": [
+"added"
+]
+},
+{
+"id": 5044,
+"en": "Used on 1 day. Tap a day to change.",
+"src": [
+"added"
+]
+},
+{
+"id": 5045,
+"en": "Used on {1} days. Tap a day to change.",
+"src": [
+"added"
+]
+},
+{
+"id": 5046,
+"en": "{1} colours, selected",
+"src": [
+"added"
+]
+},
+{
+"id": 5047,
+"en": "{1} colours",
+"src": [
+"added"
+]
+},
+{
+"id": 5048,
+"en": "Free: the home screen, alarms, today's report and the last three days, two paused apps and two locked apps.",
+"src": [
+"added"
+]
+},
+{
+"id": 5049,
+"en": "Pro is one payment through Google Play, with no subscription.",
+"src": [
+"added"
+]
+},
+{
+"id": 5050,
+"en": "Pro is one payment of {1} through Google Play, with no subscription.",
+"src": [
+"added"
+]
+},
+{
+"id": 5051,
+"en": "It adds every saved day and the weekly view, strict and playful pauses, daily limits, groups of locked apps and strict locks, weekday and weekend routines, goals, every colour look, and no ads.",
+"src": [
+"added"
+]
+},
+{
+"id": 5052,
+"en": "Or watch short videos to open some of these for a while: 1 video opens just ONE of them for a day, 2 videos for 3 days, 3 videos the whole group it is in.",
+"src": [
+"added"
+]
+},
+{
+"id": 5053,
+"en": "Tap “Watch videos” wherever you see “Part of Pro”, or on the Pro screen.",
+"src": [
+"added"
+]
+},
+{
+"id": 5054,
+"en": "What you set up with it goes back to the free version when the time is up.",
+"src": [
+"added"
+]
+},
+{
+"id": 5055,
+"en": "Dinacharya Launcher reads which apps you used and for how long, so it can show your phone time on the home screen and in your reports, and count the minutes for any daily app limit you set on the home screen.",
+"src": [
+"added"
+]
+},
+{
+"id": 5056,
+"en": "It is read on this phone only. It is not sent to the developer or to anyone else. If you turn on Google Drive backup, your saved reports (including the names of the apps you used most) go to your own private space in your own Drive, and nowhere else.",
+"src": [
+"added"
+]
+},
+{
+"id": 5057,
+"en": "Next, Android's settings open. Find Dinacharya Launcher in the list and switch it on. You can switch it off there at any time.",
+"src": [
+"added"
+]
+},
+{
+"id": 5058,
+"en": "If the switch is greyed out (“Restricted setting”), tap “Greyed out?” for the one-time unlock.",
+"src": [
+"added"
+]
+},
+{
+"id": 5059,
+"en": "{1} is open now.",
+"src": [
+"added"
+]
+},
+{
+"id": 5060,
+"en": "Watch one more video to keep {1} open for 3 days.",
+"src": [
+"added"
+]
+},
+{
+"id": 5061,
+"en": "Watch {1} more videos to keep {2} open for 3 days.",
+"src": [
+"added"
+]
+},
+{
+"id": 5062,
+"en": "Watch one more video to open {1} for a day.",
+"src": [
+"added"
+]
+},
+{
+"id": 5063,
+"en": "Watch {1} more videos to open {2} for a day.",
+"src": [
+"added"
+]
+},
+{
+"id": 5064,
+"en": "Or stop here and keep what you have.",
+"src": [
+"added"
+]
+},
+{
+"id": 5065,
+"en": "1 video",
+"src": [
+"added"
+]
+},
+{
+"id": 5066,
+"en": "2 videos",
+"src": [
+"added"
+]
+},
+{
+"id": 5067,
+"en": "3 videos",
+"src": [
+"added"
+]
+},
+{
+"id": 5068,
+"en": "1 app",
+"src": [
+"added"
+]
+},
+{
+"id": 5069,
+"en": "{1} apps",
+"src": [
+"added"
+]
+},
+{
+"id": 5070,
+"en": "🔥 {1}-day streak.",
+"src": [
+"added"
+]
+},
+{
+"id": 5071,
+"en": "{1} h a day",
+"src": [
+"added"
+]
+},
+{
+"id": 5072,
+"en": "{1} h {2} min a day",
+"src": [
+"added"
+]
+},
+{
+"id": 5073,
+"en": "Task time",
+"src": [
+"added"
+]
+},
+{
+"id": 5074,
+"en": "Rest time",
+"src": [
+"added"
+]
+},
+{
+"id": 5075,
+"en": "Meal time",
+"src": [
+"added"
+]
+},
+{
+"id": 5076,
+"en": "Personal time",
+"src": [
+"added"
+]
+},
+{
+"id": 5077,
+"en": "Sleep time",
+"src": [
+"added"
+]
+},
+{
+"id": 5078,
+"en": "Hours",
+"src": [
+"added"
+]
+},
+{
+"id": 5079,
+"en": "{1} for 3 days",
+"src": [
+"added"
+]
+},
+{
+"id": 5080,
+"en": "{1} for a day",
+"src": [
+"added"
+]
+},
+{
+"id": 5081,
+"en": "Mon {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5082,
+"en": "Tue {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5083,
+"en": "Wed {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5084,
+"en": "Thu {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5085,
+"en": "Fri {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5086,
+"en": "Sat {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5087,
+"en": "Sun {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5088,
+"en": "You asked to start later. {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5089,
+"en": "Your day starts. {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5090,
+"en": "Start “{1}” now",
+"src": [
+"added"
+]
+},
+{
+"id": 5091,
+"en": "Start “{1}” after",
+"src": [
+"added"
+]
+},
+{
+"id": 5092,
+"en": "Continue “{1}” until",
+"src": [
+"added"
+]
+},
+{
+"id": 5093,
+"en": "{1} min from now.",
+"src": [
+"added"
+]
+},
+{
+"id": 5094,
+"en": "Starts at {1}.",
+"src": [
+"added"
+]
+},
+{
+"id": 5095,
+"en": "{1}  ·  {2} to {3}",
+"src": [
+"added"
+]
+},
+{
+"id": 5096,
+"en": "Still delay by {1} min",
+"src": [
+"added"
+]
+},
+{
+"id": 5097,
+"en": "Your break started at {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5098,
+"en": "Ready to get back to {1}?",
+"src": [
+"added"
+]
+},
+{
+"id": 5099,
+"en": "Break extended until {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5100,
+"en": "What would you like to do?",
+"src": [
+"added"
+]
+},
+{
+"id": 5101,
+"en": "Start now",
+"src": [
+"added"
+]
+},
+{
+"id": 5102,
+"en": "Start after",
+"src": [
+"added"
+]
+},
+{
+"id": 5103,
+"en": "Start later",
+"src": [
+"added"
+]
+},
+{
+"id": 5104,
+"en": "Continue the slot before until",
+"src": [
+"added"
+]
+},
+{
+"id": 5105,
+"en": "Keep going",
+"src": [
+"added"
+]
+},
+{
+"id": 5106,
+"en": "Other plan",
+"src": [
+"added"
+]
+},
+{
+"id": 5107,
+"en": "Your day has started.",
+"src": [
+"added"
+]
+},
+{
+"id": 5108,
+"en": "Time to start your day",
+"src": [
+"added"
+]
+},
+{
+"id": 5109,
+"en": "Ready to start your day?",
+"src": [
+"added"
+]
+},
+{
+"id": 5110,
+"en": "Start my day",
+"src": [
+"added"
+]
+},
+{
+"id": 5111,
+"en": "Start with a delay of",
+"src": [
+"added"
+]
+},
+{
+"id": 5112,
+"en": "Delay my start",
+"src": [
+"added"
+]
+},
+{
+"id": 5113,
+"en": "Before you put it off, read this.",
+"src": [
+"added"
+]
+},
+{
+"id": 5114,
+"en": "I am up. Start my day",
+"src": [
+"added"
+]
+},
+{
+"id": 5115,
+"en": "Type this to put your day off",
+"src": [
+"added"
+]
+},
+{
+"id": 5116,
+"en": "Your break is over",
+"src": [
+"added"
+]
+},
+{
+"id": 5117,
+"en": "Ready to get back to work?",
+"src": [
+"added"
+]
+},
+{
+"id": 5118,
+"en": "Back to work",
+"src": [
+"added"
+]
+},
+{
+"id": 5119,
+"en": "5 more minutes",
+"src": [
+"added"
+]
+},
+{
+"id": 5120,
+"en": "Time to get back to {1}. Tap to answer.",
+"src": [
+"added"
+]
+},
+{
+"id": 5121,
+"en": "Time to get back to work. Tap to answer.",
+"src": [
+"added"
+]
+},
+{
+"id": 5122,
+"en": "Good morning. Tap to start the day or put it off.",
+"src": [
+"added"
+]
+},
+{
+"id": 5123,
+"en": "Time to start now. Tap to answer.",
+"src": [
+"added"
+]
+},
+{
+"id": 5124,
+"en": "Slot questions (silent)",
+"src": [
+"added"
+]
+},
+{
+"id": 5125,
+"en": "In 10 min",
+"src": [
+"added"
+]
+},
+{
+"id": 5126,
+"en": "Vibrating alarms (backup)",
+"src": [
+"added"
+]
+},
+{
+"id": 5127,
+"en": "The wake-up alarm rang for half an hour. Your schedule was not changed.",
+"src": [
+"added"
+]
+},
+{
+"id": 5128,
+"en": "Made: {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5129,
+"en": "\nSize: {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5130,
+"en": " video: ",
+"src": [
+"added"
+]
+},
+{
+"id": 5131,
+"en": " videos: ",
+"src": [
+"added"
+]
+},
+{
+"id": 5132,
+"en": "A silent notification puts the question on screen with Start now and In 10 min buttons, with no sound and no vibration. Switch this off to see nothing at all for those slots. Each slot has its own choice: ring, vibration, silent or none, under its bell on the Routine tab.",
+"src": [
+"added"
+]
+},
+{
+"id": 5133,
+"en": "Choose one slot as your start-of-day alarm from its bell on the Routine tab. It has to be the first alarm of the day. It keeps ringing until you start the day or put it off, and before you can put it off you read a line you chose.",
+"src": [
+"added"
+]
+},
+{
+"id": 5134,
+"en": "Shown before you put the start off:  “{1}”",
+"src": [
+"added"
+]
+},
+{
+"id": 5135,
+"en": "Slots without a sound",
+"src": [
+"added"
+]
+},
+{
+"id": 5136,
+"en": "Ask me about slots set to a silent notification",
+"src": [
+"added"
+]
+},
+{
+"id": 5137,
+"en": "Start-of-day alarm",
+"src": [
+"added"
+]
+},
+{
+"id": 5138,
+"en": "Put the start off by",
+"src": [
+"added"
+]
+},
+{
+"id": 5139,
+"en": "Challenge before putting it off",
+"src": [
+"added"
+]
+},
+{
+"id": 5140,
+"en": "No challenge",
+"src": [
+"added"
+]
+},
+{
+"id": 5141,
+"en": "Solve three quick sums",
+"src": [
+"added"
+]
+},
+{
+"id": 5142,
+"en": "Your own line to read (optional)",
+"src": [
+"added"
+]
+},
+{
+"id": 5143,
+"en": "Leave empty to use the lines that come with the app, in your language",
+"src": [
+"added"
+]
+},
+{
+"id": 5144,
+"en": "The apps are locked while a slot of one of these types is going on, and open again when it ends. A break, a slot you took off, and the time between slots do not lock.",
+"src": [
+"added"
+]
+},
+{
+"id": 5145,
+"en": "Any {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5146,
+"en": "Other {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5147,
+"en": "Also lock during",
+"src": [
+"added"
+]
+},
+{
+"id": 5148,
+"en": "Choose activity types",
+"src": [
+"added"
+]
+},
+{
+"id": 5149,
+"en": "Hide the apps while they are locked",
+"src": [
+"added"
+]
+},
+{
+"id": 5150,
+"en": "A locked app then does not show in the list of all apps or in search. It comes back when the lock ends.",
+"src": [
+"added"
+]
+},
+{
+"id": 5151,
+"en": "Not locked by activity.",
+"src": [
+"added"
+]
+},
+{
+"id": 5152,
+"en": "No daily schedule. Use Lock now, pick days, or lock during an activity type.",
+"src": [
+"added"
+]
+},
+{
+"id": 5153,
+"en": "No daily times. This group locks during the activity types below.",
+"src": [
+"added"
+]
+},
+{
+"id": 5154,
+"en": " app: ",
+"src": [
+"added"
+]
+},
+{
+"id": 5155,
+"en": " apps: ",
+"src": [
+"added"
+]
+},
+{
+"id": 5156,
+"en": "Lock during",
+"src": [
+"added"
+]
+},
+{
+"id": 5157,
+"en": "On a break until {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5158,
+"en": "You said you would start at {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5159,
+"en": "To-do  {1}/{2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5160,
+"en": "Enjoy your break. Back at {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5161,
+"en": "ON A BREAK",
+"src": [
+"added"
+]
+},
+{
+"id": 5162,
+"en": "Tap it to add a to-do list for it.",
+"src": [
+"added"
+]
+},
+{
+"id": 5163,
+"en": "Take a break",
+"src": [
+"added"
+]
+},
+{
+"id": 5164,
+"en": "To-do",
+"src": [
+"added"
+]
+},
+{
+"id": 5165,
+"en": "This slot is taken off, so it has no to-do list",
+"src": [
+"added"
+]
+},
+{
+"id": 5166,
+"en": "This slot is almost over",
+"src": [
+"added"
+]
+},
+{
+"id": 5167,
+"en": "Until this slot ends",
+"src": [
+"added"
+]
+},
+{
+"id": 5168,
+"en": "How long a break?",
+"src": [
+"added"
+]
+},
+{
+"id": 5169,
+"en": "A break cannot be taken now",
+"src": [
+"added"
+]
+},
+{
+"id": 5170,
+"en": "On apps  {1}   ·   Without apps  {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5171,
+"en": "🔥 {1}-day streak.  {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5172,
+"en": "Apps: {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5173,
+"en": "{1}   ·   Without apps  {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5174,
+"en": "To-do for {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5175,
+"en": "Only on days with {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5176,
+"en": "Goal set: {1}, {2}  ·  {3}",
+"src": [
+"added"
+]
+},
+{
+"id": 5177,
+"en": " and {1} more",
+"src": [
+"added"
+]
+},
+{
+"id": 5178,
+"en": "＋  Goal for today",
+"src": [
+"added"
+]
+},
+{
+"id": 5179,
+"en": "Under a minute",
+"src": [
+"added"
+]
+},
+{
+"id": 5180,
+"en": "Time by type so far",
+"src": [
+"added"
+]
+},
+{
+"id": 5181,
+"en": "counted so far",
+"src": [
+"added"
+]
+},
+{
+"id": 5182,
+"en": "Slots so far",
+"src": [
+"added"
+]
+},
+{
+"id": 5183,
+"en": "Time and apps in each slot",
+"src": [
+"added"
+]
+},
+{
+"id": 5184,
+"en": "Break",
+"src": [
+"added"
+]
+},
+{
+"id": 5185,
+"en": "Start put off",
+"src": [
+"added"
+]
+},
+{
+"id": 5186,
+"en": "Given to the slot before",
+"src": [
+"added"
+]
+},
+{
+"id": 5187,
+"en": "Carried on past its end",
+"src": [
+"added"
+]
+},
+{
+"id": 5188,
+"en": "Tap to show or hide the apps used in this slot.",
+"src": [
+"added"
+]
+},
+{
+"id": 5189,
+"en": "Phone today",
+"src": [
+"added"
+]
+},
+{
+"id": 5190,
+"en": "Apps used most",
+"src": [
+"added"
+]
+},
+{
+"id": 5191,
+"en": "No app used",
+"src": [
+"added"
+]
+},
+{
+"id": 5192,
+"en": "Change the goal",
+"src": [
+"added"
+]
+},
+{
+"id": 5193,
+"en": "All your goals",
+"src": [
+"added"
+]
+},
+{
+"id": 5194,
+"en": "   ·   counts today",
+"src": [
+"added"
+]
+},
+{
+"id": 5195,
+"en": "   ·   not today",
+"src": [
+"added"
+]
+},
+{
+"id": 5196,
+"en": "Today only",
+"src": [
+"added"
+]
+},
+{
+"id": 5197,
+"en": "Every other day",
+"src": [
+"added"
+]
+},
+{
+"id": 5198,
+"en": "On chosen days",
+"src": [
+"added"
+]
+},
+{
+"id": 5199,
+"en": "Any day with this activity",
+"src": [
+"added"
+]
+},
+{
+"id": 5200,
+"en": "Nothing is left in today's schedule to set a goal for. Pick Every day instead.",
+"src": [
+"added"
+]
+},
+{
+"id": 5201,
+"en": "Add a slot with an activity type first (Routine tab)",
+"src": [
+"added"
+]
+},
+{
+"id": 5202,
+"en": "How often",
+"src": [
+"added"
+]
+},
+{
+"id": 5203,
+"en": "Activity",
+"src": [
+"added"
+]
+},
+{
+"id": 5204,
+"en": "At least",
+"src": [
+"added"
+]
+},
+{
+"id": 5205,
+"en": "To-do list for today",
+"src": [
+"added"
+]
+},
+{
+"id": 5206,
+"en": "New goal for today",
+"src": [
+"added"
+]
+},
+{
+"id": 5207,
+"en": "New goal",
+"src": [
+"added"
+]
+},
+{
+"id": 5208,
+"en": "Pick at least one day",
+"src": [
+"added"
+]
+},
+{
+"id": 5209,
+"en": "There are no other activities to choose from",
+"src": [
+"added"
+]
+},
+{
+"id": 5210,
+"en": "Count it only on days with…",
+"src": [
+"added"
+]
+},
+{
+"id": 5211,
+"en": "When you open one, it waits a few seconds first, so you can go back or carry on. ",
+"src": [
+"added"
+]
+},
+{
+"id": 5212,
+"en": "When you open one from this home screen, it waits a few seconds first, so you can go back or carry on. ",
+"src": [
+"added"
+]
+},
+{
+"id": 5213,
+"en": "Put the apps that eat your time in a group, then lock the group for hours you choose, on the days you choose, or just for the next hour. ",
+"src": [
+"added"
+]
+},
+{
+"id": 5214,
+"en": "Pick the apps that eat your time, then lock them for hours you choose, on the days you choose, or just for the next hour. ",
+"src": [
+"added"
+]
+},
+{
+"id": 5215,
+"en": "A locked app does not open until the lock ends. ",
+"src": [
+"added"
+]
+},
+{
+"id": 5216,
+"en": "A locked app does not open from this home screen until the lock ends. ",
+"src": [
+"added"
+]
+},
+{
+"id": 5217,
+"en": "  ·  hides its apps",
+"src": [
+"added"
+]
+},
+{
+"id": 5218,
+"en": "{1} and {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5219,
+"en": "{1}, {2} and {3} more",
+"src": [
+"added"
+]
+},
+{
+"id": 5220,
+"en": "  ·  and during {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5221,
+"en": "Locks during {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5222,
+"en": "While you are on: {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5223,
+"en": "{1} older days are saved on this phone. ",
+"src": [
+"added"
+]
+},
+{
+"id": 5224,
+"en": "{1}Opening days older than the last {2} days is part of Pro.",
+"src": [
+"added"
+]
+},
+{
+"id": 5225,
+"en": "1 older day is saved on this phone. ",
+"src": [
+"added"
+]
+},
+{
+"id": 5226,
+"en": "ON A BREAK  ·  back at {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5227,
+"en": "+{1} more",
+"src": [
+"added"
+]
+},
+{
+"id": 5228,
+"en": "Other",
+"src": [
+"added"
+]
+},
+{
+"id": 5229,
+"en": "Tomorrow only",
+"src": [
+"added"
+]
+},
+{
+"id": 5230,
+"en": "One day only",
+"src": [
+"added"
+]
+},
+{
+"id": 5231,
+"en": "Only for {1}. After that day the usual routine comes back.",
+"src": [
+"added"
+]
+},
+{
+"id": 5232,
+"en": "{1}. Change its slots below.",
+"src": [
+"added"
+]
+},
+{
+"id": 5233,
+"en": "Routine moved to {1}.",
+"src": [
+"added"
+]
+},
+{
+"id": 5234,
+"en": "Delete the routine for {1}?",
+"src": [
+"added"
+]
+},
+{
+"id": 5235,
+"en": "Deleted the routine for {1}.",
+"src": [
+"added"
+]
+},
+{
+"id": 5236,
+"en": "Type {1}. Every kind keeps it.",
+"src": [
+"added"
+]
+},
+{
+"id": 5237,
+"en": "{1} slots use it. They keep their name and time and become “Other”.",
+"src": [
+"added"
+]
+},
+{
+"id": 5238,
+"en": "When this slot starts: {1}. Tap to change.",
+"src": [
+"added"
+]
+},
+{
+"id": 5239,
+"en": "start-of-day alarm, {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5240,
+"en": " {1} gaps had no room.",
+"src": [
+"added"
+]
+},
+{
+"id": 5241,
+"en": "＋ One day only",
+"src": [
+"added"
+]
+},
+{
+"id": 5242,
+"en": "Date",
+"src": [
+"added"
+]
+},
+{
+"id": 5243,
+"en": "A routine for one day",
+"src": [
+"added"
+]
+},
+{
+"id": 5244,
+"en": "Another date…",
+"src": [
+"added"
+]
+},
+{
+"id": 5245,
+"en": "A routine that is followed on one date only, then the usual one comes back.",
+"src": [
+"added"
+]
+},
+{
+"id": 5246,
+"en": "Which day",
+"src": [
+"added"
+]
+},
+{
+"id": 5247,
+"en": "You can change its slots and start time after.",
+"src": [
+"added"
+]
+},
+{
+"id": 5248,
+"en": "Replaced the routine for ",
+"src": [
+"added"
+]
+},
+{
+"id": 5249,
+"en": "Made a routine for ",
+"src": [
+"added"
+]
+},
+{
+"id": 5250,
+"en": "That day follows its usual routine again.",
+"src": [
+"added"
+]
+},
+{
+"id": 5251,
+"en": "Time by type",
+"src": [
+"added"
+]
+},
+{
+"id": 5252,
+"en": "“Other” stays: slots with no type of their own use it",
+"src": [
+"added"
+]
+},
+{
+"id": 5253,
+"en": "1 slot uses it. It keeps its name and time and becomes “Other”.",
+"src": [
+"added"
+]
+},
+{
+"id": 5254,
+"en": "notification with ring",
+"src": [
+"added"
+]
+},
+{
+"id": 5255,
+"en": "notification with vibration",
+"src": [
+"added"
+]
+},
+{
+"id": 5256,
+"en": "silent notification",
+"src": [
+"added"
+]
+},
+{
+"id": 5257,
+"en": "no notification",
+"src": [
+"added"
+]
+},
+{
+"id": 5258,
+"en": "Notification with ring",
+"src": [
+"added"
+]
+},
+{
+"id": 5259,
+"en": "Notification with vibration",
+"src": [
+"added"
+]
+},
+{
+"id": 5260,
+"en": "Silent notification",
+"src": [
+"added"
+]
+},
+{
+"id": 5261,
+"en": "No notification",
+"src": [
+"added"
+]
+},
+{
+"id": 5262,
+"en": "This is the start-of-day alarm: tap to undo",
+"src": [
+"added"
+]
+},
+{
+"id": 5263,
+"en": "Make this the start-of-day alarm",
+"src": [
+"added"
+]
+},
+{
+"id": 5264,
+"en": "Not the start-of-day alarm any more",
+"src": [
+"added"
+]
+},
+{
+"id": 5265,
+"en": "The start-of-day alarm has to be the first alarm of the day. Set the slots before it to No notification first.",
+"src": [
+"added"
+]
+},
+{
+"id": 5266,
+"en": " 1 gap had no room.",
+"src": [
+"added"
+]
+},
+{
+"id": 5267,
+"en": "A list can hold {1} items",
+"src": [
+"added"
+]
+},
+{
+"id": 5268,
+"en": "Goal: {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5269,
+"en": "Nothing yet. Add what you want to get done in this slot.",
+"src": [
+"added"
+]
+},
+{
+"id": 5270,
+"en": "Add a to-do",
+"src": [
+"added"
+]
+},
+{
+"id": 5271,
+"en": "These are for this day only. Nothing here repeats tomorrow.",
+"src": [
+"added"
+]
+},
+{
+"id": 5272,
+"en": "Pro is one payment of {1} through Google Play, with no subscription. ",
+"src": [
+"added"
+]
+},
+{
+"id": 5273,
+"en": "Free: the home screen, alarms, today's report and the last three days, two paused apps and two locked apps. {1}It adds every saved day and the weekly view, strict and playful pauses, daily limits, groups of locked apps and strict locks, weekday and weekend routines, goals, every colour look, and no ads.{2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5274,
+"en": "Pro is one payment through Google Play, with no subscription. ",
+"src": [
+"added"
+]
+},
+{
+"id": 5275,
+"en": "{1} is open now.\n\n{2}\n\nOr stop here and keep what you have.",
+"src": [
+"added"
+]
+},
+{
+"id": 5276,
+"en": "Well begun is half done.",
+"src": [
+"added"
+]
+},
+{
+"id": 5277,
+"en": "Small steps every day add up to big change.",
+"src": [
+"added"
+]
+},
+{
+"id": 5278,
+"en": "The hardest part is getting up. You have already done it.",
+"src": [
+"added"
+]
+},
+{
+"id": 5279,
+"en": "Choose what you want most over what you want right now.",
+"src": [
+"added"
+]
+},
+{
+"id": 5280,
+"en": "Your future self is watching. Make them proud.",
+"src": [
+"added"
+]
+},
+{
+"id": 5281,
+"en": "Start now. You can polish it later.",
+"src": [
+"added"
+]
+},
+{
+"id": 5282,
+"en": "One focused hour today beats ten good intentions.",
+"src": [
+"added"
+]
+},
+{
+"id": 5283,
+"en": "Rest was for the night. The morning is for action.",
+"src": [
+"added"
+]
+},
+{
+"id": 5284,
+"en": "You do not have to feel ready. You only have to begin.",
+"src": [
+"added"
+]
+},
+{
+"id": 5285,
+"en": "Every morning is a fresh page. Write something worth reading.",
+"src": [
+"added"
+]
+},
+{
+"id": 5286,
+"en": "Progress, not perfection.",
+"src": [
+"added"
+]
+},
+{
+"id": 5287,
+"en": "The day belongs to those who start it.",
+"src": [
+"added"
+]
+},
+{
+"id": 5288,
+"en": "Five more minutes of sleep will not help your goals. Five minutes of work will.",
+"src": [
+"added"
+]
+},
+{
+"id": 5289,
+"en": "Be the person your plan needs today.",
+"src": [
+"added"
+]
+},
+{
+"id": 5290,
+"en": "Wake up with a purpose and the day will make room for it.",
+"src": [
+"added"
+]
+},
+{
+"id": 5291,
+"en": "I am choosing to put my day off",
+"src": [
+"added"
+]
+},
+{
+"id": 5292,
+"en": "My plan is waiting for me",
+"src": [
+"added"
+]
+},
+{
+"id": 5293,
+"en": "I could start right now",
+"src": [
+"added"
+]
+},
+{
+"id": 5294,
+"en": "I am putting this off on purpose",
+"src": [
+"added"
+]
+},
+{
+"id": 5295,
+"en": "Later is my choice, not the plan",
+"src": [
+"added"
+]
+},
+{
+"id": 5296,
+"en": "hours",
+"src": [
+"added"
+]
+},
+{
+"id": 5297,
+"en": "minutes",
+"src": [
+"added"
+]
+},
+{
+"id": 5298,
+"en": "{1}, only on days with {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5299,
+"en": "Replaced the routine for {1}. Change its slots below.",
+"src": [
+"added"
+]
+},
+{
+"id": 5300,
+"en": "Made a routine for {1}. Change its slots below.",
+"src": [
+"added"
+]
+},
+{
+"id": 5301,
+"en": "Back at {1}.",
+"src": [
+"added"
+]
+},
+{
+"id": 5302,
+"en": "Back at {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5303,
+"en": ", when this slot ends",
+"src": [
+"added"
+]
+},
+{
+"id": 5304,
+"en": "Other options",
+"src": [
+"added"
+]
+},
+{
+"id": 5305,
+"en": "Delay the start",
+"src": [
+"added"
+]
+},
+{
+"id": 5306,
+"en": "More time",
+"src": [
+"added"
+]
+},
+{
+"id": 5307,
+"en": "Rest for",
+"src": [
+"added"
+]
+},
+{
+"id": 5308,
+"en": "Add this time",
+"src": [
+"added"
+]
+},
+{
+"id": 5309,
+"en": "About this backup",
+"src": [
+"added"
+]
+},
+{
+"id": 5310,
+"en": "How often, and over which network",
+"src": [
+"added"
+]
+},
+{
+"id": 5311,
+"en": "For a new phone, or after reinstalling",
+"src": [
+"added"
+]
+},
+{
+"id": 5312,
+"en": "A short code, if the account list does not open",
+"src": [
+"added"
+]
+},
+{
+"id": 5313,
+"en": "Still to allow: {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5314,
+"en": "All set",
+"src": [
+"added"
+]
+},
+{
+"id": 5315,
+"en": "A preview, and the button to change its look",
+"src": [
+"added"
+]
+},
+{
+"id": 5316,
+"en": "Your to-do list",
+"src": [
+"added"
+]
+},
+{
+"id": 5317,
+"en": "{1} of {2} done",
+"src": [
+"added"
+]
+},
+{
+"id": 5318,
+"en": "Start the break",
+"src": [
+"added"
+]
+},
+{
+"id": 5319,
+"en": "1 slot  ·  {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5320,
+"en": "{1} slots  ·  {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5321,
+"en": "1 type",
+"src": [
+"added"
+]
+},
+{
+"id": 5322,
+"en": "{1} types",
+"src": [
+"added"
+]
+},
+{
+"id": 5323,
+"en": "1 goal, with how it repeats",
+"src": [
+"added"
+]
+},
+{
+"id": 5324,
+"en": "{1} goals, with how they repeat",
+"src": [
+"added"
+]
+},
+{
+"id": 5325,
+"en": "Phone use by hour, and the apps used most",
+"src": [
+"added"
+]
+},
+{
+"id": 5326,
+"en": "{1} apps have a pause",
+"src": [
+"added"
+]
+},
+{
+"id": 5327,
+"en": "1 app has a pause",
+"src": [
+"added"
+]
+},
+{
+"id": 5328,
+"en": "{1} apps are hidden",
+"src": [
+"added"
+]
+},
+{
+"id": 5329,
+"en": "1 app is hidden",
+"src": [
+"added"
+]
+},
+{
+"id": 5330,
+"en": "{1} locks",
+"src": [
+"added"
+]
+},
+{
+"id": 5331,
+"en": "1 lock",
+"src": [
+"added"
+]
+},
+{
+"id": 5332,
+"en": "Help and checks",
+"src": [
+"added"
+]
+},
+{
+"id": 5333,
+"en": "Colours, text size and the keyboard in the list of all apps",
+"src": [
+"added"
+]
+},
+{
+"id": 5334,
+"en": "A pause before apps open: none yet",
+"src": [
+"added"
+]
+},
+{
+"id": 5335,
+"en": "How it works",
+"src": [
+"added"
+]
+},
+{
+"id": 5336,
+"en": "How locks work",
+"src": [
+"added"
+]
+},
+{
+"id": 5337,
+"en": "On: holds locks and pauses everywhere",
+"src": [
+"added"
+]
+},
+{
+"id": 5338,
+"en": "Off: locks hold only from this home screen",
+"src": [
+"added"
+]
+},
+{
+"id": 5339,
+"en": "No pauses so far today.",
+"src": [
+"added"
+]
+},
+{
+"id": 5340,
+"en": "Less",
+"src": [
+"added"
+]
+},
+{
+"id": 5341,
+"en": "More",
+"src": [
+"added"
+]
+},
+{
+"id": 5342,
+"en": "Hold ≡ and drag to move a slot. Swipe a slot left to delete it, right to add one below it. Tap the arrow on a slot for its type, length, alarm and more. The day keeps its length: minutes only move from one slot to another.",
+"src": [
+"added"
+]
+},
+{
+"id": 5343,
+"en": "How to edit slots",
+"src": [
+"added"
+]
+},
+{
+"id": 5344,
+"en": "More tools",
+"src": [
+"added"
+]
+},
+{
+"id": 5345,
+"en": "Study, Exercise, Meal and the rest, by kind",
+"src": [
+"added"
+]
+},
+{
+"id": 5346,
+"en": "Details",
+"src": [
+"added"
+]
+},
+{
+"id": 5347,
+"en": "details shown. Tap to hide.",
+"src": [
+"added"
+]
+},
+{
+"id": 5348,
+"en": "details hidden. Tap to show.",
+"src": [
+"added"
+]
+},
+{
+"id": 5349,
+"en": "expanded",
+"src": [
+"added"
+]
+},
+{
+"id": 5350,
+"en": "collapsed",
+"src": [
+"added"
+]
+},
+{
+"id": 5351,
+"en": "Clock, phone screen time, the “Developed by” mark",
+"src": [
+"added"
+]
+},
+{
+"id": 5352,
+"en": "Space at the top and at the bottom",
+"src": [
+"added"
+]
+},
+{
+"id": 5353,
+"en": "Nothing written down",
+"src": [
+"added"
+]
+},
+{
+"id": 5354,
+"en": "Some problems were written down",
+"src": [
+"added"
+]
+},
+{
+"id": 5355,
+"en": "“{1}” will not come back on other days. Where it already is stays as it is.",
+"src": [
+"added"
+]
+},
+{
+"id": 5356,
+"en": "Up to {1} things can repeat",
+"src": [
+"added"
+]
+},
+{
+"id": 5357,
+"en": "tap to stop repeating",
+"src": [
+"added"
+]
+},
+{
+"id": 5358,
+"en": "Stop repeating this?",
+"src": [
+"added"
+]
+},
+{
+"id": 5359,
+"en": "Stop repeating",
+"src": [
+"added"
+]
+},
+{
+"id": 5360,
+"en": "Keep it",
+"src": [
+"added"
+]
+},
+{
+"id": 5361,
+"en": "Repeat",
+"src": [
+"added"
+]
+},
+{
+"id": 5362,
+"en": "Does not repeat",
+"src": [
+"added"
+]
+},
+{
+"id": 5363,
+"en": "A to-do is for this day only, unless you set it to repeat with the ↻ button.",
+"src": [
+"added"
+]
+},
+{
+"id": 5364,
+"en": "{1}–{2} of {3}",
+"src": [
+"added"
+]
+}
+]

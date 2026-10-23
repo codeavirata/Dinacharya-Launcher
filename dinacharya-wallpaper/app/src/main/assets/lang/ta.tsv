@@ -1,0 +1,1580 @@
+# Dinacharya, language file "ta": English text TAB translation. Built by tools/i18n/build.py
+Backup failed	காப்புப்பிரதி தோல்வியடைந்தது
+No ad right now (code {1}). Trying again soon.	இப்போது விளம்பரம் இல்லை (குறியீடு {1}). சிறிது நேரத்தில் மீண்டும் முயற்சிக்கப்படும்.
+Loading an ad…	விளம்பரம் ஏற்றப்படுகிறது…
+Remove ads with Pro	Pro வாங்கி விளம்பரங்களை நீக்குங்கள்
+Test alarm	சோதனை அலாரம்
+If you can see and hear this, your alarms will work.	இதைப் பார்த்துக் கேட்க முடிந்தால், உங்கள் அலாரங்கள் வேலை செய்யும்.
+Alarms are working on this phone.	இந்த ஃபோனில் அலாரங்கள் வேலை செய்கின்றன.
+A real alarm looks like this and asks if you are continuing with the schedule. Nothing in your routine was changed.	உண்மையான அலாரம் இப்படித்தான் தோன்றும்; நீங்கள் வழக்கத்தின்படி செல்கிறீர்களா என்று கேட்கும். உங்கள் வழக்கத்தில் எதுவும் மாறவில்லை.
+Stop the test	சோதனையை நிறுத்து
+Next slot	அடுத்த ஸ்லாட்
+Your day starts. {1} to {2}	உங்கள் நாள் தொடங்குகிறது. {1} முதல் {2} வரை
+{1} to {2}	{1} முதல் {2} வரை
+Are you continuing with the schedule?	நீங்கள் வழக்கத்தின்படி தொடர்கிறீர்களா?
+Yes, continue as planned	ஆம், திட்டமிட்டபடி தொடரவும்
+No, I want to change it	இல்லை, இதை மாற்ற வேண்டும்
+What will you do instead?	அதற்குப் பதிலாக என்ன செய்வீர்கள்?
+This changes today only. Your saved routine stays as it is.	இது இன்றைக்கு மட்டுமே மாற்றும். சேமித்த உங்கள் வழக்கம் அப்படியே இருக்கும்.
+Save new name for today	இன்றைக்கான புதிய பெயரைச் சேமி
+Type a name, or choose Take it off	ஒரு பெயரை உள்ளிடுங்கள், அல்லது “நீக்கு” என்பதைத் தேர்ந்தெடுங்கள்
+Changed for today: {1}	இன்றைக்கு மாற்றப்பட்டது: {1}
+Take it off for today	இன்றைக்கு நீக்கு
+Taken off for today	இன்றைக்கு நீக்கப்பட்டது
+Back	பின்னே
+Asking again	மீண்டும் கேட்கிறது
+Time to sleep	உறங்கும் நேரம்
+Planned bedtime {1}	திட்டமிட்ட உறக்க நேரம் {1}
+Are you going to sleep, or will it take more time?	நீங்கள் உறங்கப் போகிறீர்களா, அல்லது இன்னும் நேரம் ஆகுமா?
+I am going to sleep	இப்போது உறங்கப் போகிறேன்
+It will take more time	இன்னும் நேரம் ஆகும்
+Remind me again after how long?	எவ்வளவு நேரம் கழித்து மீண்டும் நினைவூட்டவா?
+or type minutes	அல்லது நிமிடங்களை உள்ளிடுங்கள்
+{1} min	{1} நிமிடம்
+Remind me	நினைவூட்டு
+Pick between 1 and 360 minutes	1 முதல் 360 நிமிடங்களுக்குள் தேர்ந்தெடுங்கள்
+I will ask again at {1}	{1} மணிக்கு மீண்டும் கேட்கப்படும்
+Going to sleep at {1}	உறங்கும் நேரம்: {1}
+, {1} after your plan	, உங்கள் திட்டத்துக்குப் பின் {1}
+Good night. I will wake you at {1}.	இனிய இரவு. {1} மணிக்கு உங்களை எழுப்புவோம்.
+Set the alarm	அலாரத்தை அமை
+When do you want to wake up?	நீங்கள் எப்போது எழ விரும்புகிறீர்கள்?
+Normal schedule	வழக்கமான அட்டவணை
+Shift my day later	என் நாளைத் தாமதமாகத் தொடங்கு
+Skip the slots I sleep through	நான் தூங்கிவிடும் ஸ்லாட்களைத் தவிர்
+These changes are for tomorrow only. To change your routine for good, edit it in the app.	இந்த மாற்றங்கள் நாளைக்கு மட்டுமே. உங்கள் வழக்கத்தை நிரந்தரமாக மாற்ற, ஆப்பில் அதைத் திருத்துங்கள்.
+Good night. Alarm set for {1}	இனிய இரவு. அலாரம் {1}க்கு அமைக்கப்பட்டது
+Alarms switched on	அலாரங்கள் இயக்கத்தில் உள்ளன
+Nothing rings while this is off.	இது அணைந்திருக்கும்போது எதுவும் ஒலிக்காது.
+Notifications	அறிவிப்புகள்
+The alarm question appears here, also on the lock screen.	அலாரம் கேள்வி இங்கே தோன்றும், பூட்டுத் திரையிலும்.
+Exact alarms	துல்லியமான அலாரங்கள்
+Rings on the minute a slot starts, not a few minutes late.	ஸ்லாட் தொடங்கும் நிமிடத்திலேயே ஒலிக்கும், சில நிமிடம் தாமதமாக அல்ல.
+Alarm screen over the lock screen	பூட்டுத் திரைக்கு மேல் அலாரம் திரை
+Opens the question by itself when the phone is locked.	ஃபோன் பூட்டியிருக்கும்போது கேள்வி தானாகத் திறக்கும்.
+Alarm pop-up allowed	அலாரம் பாப்-அப் அனுமதிக்கப்பட்டது
+Shows the question on top while you use the phone.	நீங்கள் ஃபோனைப் பயன்படுத்தும்போது கேள்வியை மேலே காட்டும்.
+No battery limits	பேட்டரி கட்டுப்பாடுகள் இல்லை
+Stops the phone from putting the app to sleep. Set Battery to Unrestricted on the app info page.	ஆப்ஸை ஃபோன் உறங்க வைப்பதைத் தடுக்கும். ஆப் தகவல் பக்கத்தில் பேட்டரியை “கட்டுப்பாடற்றது” என அமையுங்கள்.
+Allow background activity	பின்னணிச் செயல்பாட்டை அனுமதி
+Some phones stop apps unless you allow this in their own settings.	சில ஃபோன்கள் தங்கள் சொந்த அமைப்புகளில் அனுமதிக்காவிட்டால் ஆப்ஸை நிறுத்திவிடும்.
+Find Dinacharya Launcher and allow auto-start or background activity.	Dinacharya Launcher-ஐக் கண்டுபிடித்து தானாகத் தொடங்குதல் அல்லது பின்னணிச் செயல்பாட்டை அனுமதிக்கவும்.
+Open Battery, and choose Unrestricted or Allow background activity.	பேட்டரியைத் திறந்து “கட்டுப்பாடற்றது” அல்லது “பின்னணிச் செயல்பாட்டை அனுமதி” என்பதைத் தேர்ந்தெடுங்கள்.
+Open Settings, Apps, Dinacharya Launcher, Battery	அமைப்புகள், ஆப்ஸ், Dinacharya Launcher, பேட்டரி என்பதைத் திறக்கவும்
+Alarms	அலாரங்கள்
+Rings when a slot of your day starts	உங்கள் நாளின் ஸ்லாட் தொடங்கும்போது ஒலிக்கும்
+Missed alarms	தவறவிட்ட அலாரங்கள்
+This is how an alarm looks. Tap to stop it.	அலாரம் இப்படித் தோன்றும். நிறுத்த தட்டவும்.
+{1} to {2}. Tap to answer.	{1} முதல் {2} வரை. பதிலளிக்கத் தட்டவும்.
+Going to sleep, or will it take more time?	உறங்கப் போகிறீர்களா, அல்லது இன்னும் நேரம் ஆகுமா?
+Alarms (backup)	அலாரங்கள் (காப்பு)
+Tap to answer.	பதிலளிக்கத் தட்டவும்.
+Bedtime question	உறக்கக் கேள்வி
+Missed: {1}	தவறியது: {1}
+The alarm rang for five minutes. Your schedule was not changed.	அலாரம் ஐந்து நிமிடம் ஒலித்தது. உங்கள் அட்டவணை மாற்றப்படவில்லை.
+Sleep	உறக்கம்
+Not enough data	போதுமான தரவு இல்லை
+Excellent	மிகச் சிறப்பு
+Good	நன்று
+Fair	பரவாயில்லை
+Needs work	முன்னேற்றம் தேவை
+{1}  (work)	{1}  (பணி)
+Dinacharya routine	Dinacharya வழக்கம்
+Camera	கேமரா
+Phone	ஃபோன்
+Search	தேடு
+Cancel	ரத்துசெய்
+The backup file contains an unexpected entry.	காப்புப்பிரதி கோப்பில் எதிர்பாராத உள்ளீடு உள்ளது.
+The backup file has too many entries.	காப்புப்பிரதி கோப்பில் மிக அதிக உள்ளீடுகள் உள்ளன.
+The backup file is too large.	காப்புப்பிரதி கோப்பு மிகப் பெரியது.
+The backup file is damaged.	காப்புப்பிரதி கோப்பு சேதமடைந்துள்ளது.
+This is not a Dinacharya Launcher backup.	இது Dinacharya Launcher காப்புப்பிரதி அல்ல.
+This backup was made by a newer version of the app. Update the app first.	இந்தக் காப்புப்பிரதி ஆப்பின் புதிய பதிப்பில் உருவாக்கப்பட்டது. முதலில் ஆப்பைப் புதுப்பிக்கவும்.
+The backup has no readable routine.	காப்புப்பிரதியில் படிக்கக்கூடிய வழக்கம் இல்லை.
+Could not make a folder for the backup.	காப்புப்பிரதிக்கான கோப்புறையை உருவாக்க முடியவில்லை.
+Could not replace the history.	வரலாற்றை மாற்ற முடியவில்லை.
+Could not save the restored settings.	மீட்டெடுத்த அமைப்புகளைச் சேமிக்க முடியவில்லை.
+Backup	காப்புப்பிரதி
+Your days, safe in Google Drive	உங்கள் நாட்கள், Google Drive-இல் பாதுகாப்பாக
+Google Drive backup	Google Drive காப்புப்பிரதி
+Back up	காப்புப்பிரதி எடு
+Google Account	Google கணக்கு
+Settings	அமைப்புகள்
+Back up to Google Drive	Google Drive-இல் காப்புப்பிரதி எடு
+Back up using	காப்புப்பிரதி எடுக்கும் முறை
+Restore	மீட்டெடு
+Restore from Google Drive	Google Drive-இலிருந்து மீட்டெடு
+Other ways to sign in	உள்நுழைவதற்கான பிற வழிகள்
+Check sign-in setup	உள்நுழைவு அமைப்பைச் சரிபார்
+Sign in with a code	குறியீட்டால் உள்நுழை
+Code sign-in setup (client ID)	குறியீட்டு உள்நுழைவு அமைப்பு (கிளையன்ட் ID)
+Never	ஒருபோதும் இல்லை
+Today	இன்று
+Yesterday	நேற்று
+Last backup: {1}	கடைசிக் காப்புப்பிரதி: {1}
+Size: {1}	அளவு: {1}
+Tap Back up to make the first one.	முதல் காப்புப்பிரதியை உருவாக்க “காப்புப்பிரதி எடு” என்பதைத் தட்டவும்.
+Sign in to start backing up.	காப்புப்பிரதியைத் தொடங்க உள்நுழையவும்.
+Working…	வேலை நடக்கிறது…
+Signed in	உள்நுழைந்துள்ளீர்கள்
+Switch account	கணக்கை மாற்று
+Sign out	வெளியேறு
+Not signed in	உள்நுழையவில்லை
+Sign in with Google	Google மூலம் உள்நுழை
+Wi-Fi only	Wi-Fi மட்டும்
+Wi-Fi or mobile data	Wi-Fi அல்லது மொபைல் டேட்டா
+Could not sign in	உள்நுழைய முடியவில்லை
+Check setup	அமைப்பைச் சரிபார்
+Close	மூடு
+Sign-in failed.	உள்நுழைவு தோல்வியடைந்தது.
+OK	சரி
+Signed in as {1}	{1} ஆக உள்நுழைந்துள்ளீர்கள்
+Switch Google account?	Google கணக்கை மாற்றவா?
+You are signed out here, then you pick another account. Backups already in Drive stay there.	இங்கிருந்து நீங்கள் வெளியேறுவீர்கள், பிறகு வேறு கணக்கைத் தேர்ந்தெடுப்பீர்கள். Drive-இல் ஏற்கனவே உள்ள காப்புப்பிரதிகள் அங்கேயே இருக்கும்.
+Switch	மாற்று
+Sign out?	வெளியேறவா?
+Automatic backups stop. Your data stays on this phone, and the last backup stays in your Google Drive.	தானியங்கிக் காப்புப்பிரதிகள் நிற்கும். உங்கள் தரவு இந்த ஃபோனிலேயே இருக்கும், கடைசிக் காப்புப்பிரதி உங்கள் Google Drive-இல் இருக்கும்.
+Signed out	வெளியேறிவிட்டீர்கள்
+Sign-in setup check	உள்நுழைவு அமைப்புச் சரிபார்ப்பு
+Copy values	மதிப்புகளை நகலெடு
+Dinacharya sign-in values	Dinacharya உள்நுழைவு மதிப்புகள்
+Copied	நகலெடுக்கப்பட்டது
+Could not copy	நகலெடுக்க முடியவில்லை
+Open Google Cloud	Google Cloud-ஐத் திற
+Open console.cloud.google.com in a browser	உலாவியில் console.cloud.google.com ஐத் திறக்கவும்
+Google code	Google குறியீடு
+The code is copied. Waiting for you…	குறியீடு நகலெடுக்கப்பட்டது. உங்களுக்காகக் காத்திருக்கிறது…
+Open the page	பக்கத்தைத் திற
+Open {1} in a browser	உலாவியில் {1} ஐத் திறக்கவும்
+You said no at Google. Nothing was changed.	நீங்கள் Google-இல் வேண்டாம் என்றீர்கள். எதுவும் மாற்றப்படவில்லை.
+The code ran out. Try again.	குறியீட்டின் நேரம் முடிந்தது. மீண்டும் முயற்சிக்கவும்.
+Client ID (…apps.googleusercontent.com)	கிளையன்ட் ID (…apps.googleusercontent.com)
+Client secret	கிளையன்ட் சீக்ரெட்
+Code sign-in setup	குறியீட்டு உள்நுழைவு அமைப்பு
+Save	சேமி
+Both the ID and the secret are needed	ID மற்றும் சீக்ரெட் இரண்டும் தேவை
+Backed up ({1})	காப்புப்பிரதி எடுக்கப்பட்டது ({1})
+Sign in again	மீண்டும் உள்நுழையவும்
+{1}\n\nSign in again to keep backing up.	{1}\n\nகாப்புப்பிரதியைத் தொடர மீண்டும் உள்நுழையவும்.
+Sign in	உள்நுழை
+Later	பிறகு
+There is no backup in this Google account yet.	இந்த Google கணக்கில் இன்னும் காப்புப்பிரதி இல்லை.
+{1}\nSize: {2}	{1}\nஅளவு: {2}
+Made:	உருவாக்கப்பட்டது:
+Phone: {1}	\nஃபோன்: {1}
+Day reports: {1}	\nநாள் அறிக்கைகள்: {1}
+Restore this backup?	இந்தக் காப்புப்பிரதியை மீட்டெடுக்கவா?
+Backup found	காப்புப்பிரதி கிடைத்தது
+{1}\n\nRestoring replaces the routines, settings and history on this phone with the backup. What is on this phone now is kept aside inside the app, just in case.	{1}\n\nமீட்டெடுத்தால் இந்த ஃபோனின் வழக்கங்கள், அமைப்புகள், வரலாறு ஆகியவை காப்புப்பிரதியால் மாற்றப்படும். இந்த ஃபோனில் இப்போது உள்ளவை முன்னெச்சரிக்கையாக ஆப்பிற்குள் தனியாக வைக்கப்படும்.
+Not now	இப்போது வேண்டாம்
+Restore failed.	மீட்டெடுப்பு தோல்வியடைந்தது.
+{1}\n\nNothing on this phone was changed.	{1}\n\nஇந்த ஃபோனில் எதுவும் மாற்றப்படவில்லை.
+Could not restore	மீட்டெடுக்க முடியவில்லை
+Restored. Welcome back!	மீட்டெடுக்கப்பட்டது. மீண்டும் வருக!
+Only when I tap “Back up”	நான் “காப்புப்பிரதி எடு” என்பதைத் தட்டும்போது மட்டும்
+Daily	தினமும்
+Weekly	வாரந்தோறும்
+Monthly	மாதந்தோறும்
+Let Dinacharya Launcher run in the background	Dinacharya Launcher பின்னணியில் இயங்கட்டும்
+So alarms are never late, set Dinacharya Launcher’s battery use to “Unrestricted” (some phones say “Don’t optimise” or “No restrictions”).\n\n1. Tap “Open app info” below.\n2. Tap Battery (or “App battery usage”).\n3. Choose Unrestricted.\n\nAndroid’s general battery list hides Dinacharya Launcher until you switch its filter to “All apps”.	அலாரங்கள் ஒருபோதும் தாமதமாகாமல் இருக்க, Dinacharya Launcher-இன் பேட்டரி பயன்பாட்டை “கட்டுப்பாடற்றது” என அமையுங்கள் (சில ஃபோன்களில் “மேம்படுத்த வேண்டாம்” அல்லது “கட்டுப்பாடு இல்லை” என்று இருக்கும்).\n\n1. கீழே “ஆப் தகவலைத் திற” என்பதைத் தட்டவும்.\n2. பேட்டரி (அல்லது “ஆப் பேட்டரி பயன்பாடு”) என்பதைத் தட்டவும்.\n3. “கட்டுப்பாடற்றது” என்பதைத் தேர்ந்தெடுக்கவும்.\n\nAndroid-இன் பொதுவான பேட்டரிப் பட்டியலில் வடிகட்டியை “எல்லா ஆப்ஸ்” என மாற்றும் வரை Dinacharya Launcher தெரியாது.
+Open app info	ஆப் தகவலைத் திற
+Battery list	பேட்டரிப் பட்டியல்
+Switch the filter to All apps, then find Dinacharya Launcher.	வடிகட்டியை “எல்லா ஆப்ஸ்” என மாற்றி, பிறகு Dinacharya Launcher-ஐத் தேடுங்கள்.
+Not signed in to Google.	Google-இல் உள்நுழையவில்லை.
+Could not reach Google Drive{1}	Google Drive-ஐ அடைய முடியவில்லை{1}
+Backup failed: {1}	காப்புப்பிரதி தோல்வி: {1}
+Google did not accept the sign-in. Please sign in again.	Google உள்நுழைவை ஏற்கவில்லை. தயவுசெய்து மீண்டும் உள்நுழையவும்.
+Could not look for the backup	காப்புப்பிரதியைத் தேட முடியவில்லை
+Upload failed	பதிவேற்றம் தோல்வியடைந்தது
+Upload failed (no file id)	பதிவேற்றம் தோல்வியடைந்தது (கோப்பு ID இல்லை)
+Download failed	பதிவிறக்கம் தோல்வியடைந்தது
+Could not delete the old backup	பழைய காப்புப்பிரதியை நீக்க முடியவில்லை
+Could not read your Google account	உங்கள் Google கணக்கைப் படிக்க முடியவில்லை
+every saved day in Performance	செயல்திறனில் சேமித்த ஒவ்வொரு நாளும்
+the week view in Performance	செயல்திறனில் வாரக் காட்சி
+pauses for more than {1} apps	{1} ஆப்களுக்கு மேல் இடைநிறுத்தங்கள்
+strict pauses	கண்டிப்பான இடைநிறுத்தங்கள்
+daily limits on pauses	இடைநிறுத்தங்களுக்கான தினசரி வரம்புகள்
+playful pauses	விளையாட்டான இடைநிறுத்தங்கள்
+more than {1} lock	{1}க்கு மேல் லாக்குகள்
+more than {1} apps in a lock	ஒரு லாக்கில் {1} ஆப்களுக்கு மேல்
+strict locks	கண்டிப்பான லாக்குகள்
+weekday and weekend routines	வார நாள் மற்றும் வார இறுதி வழக்கங்கள்
+daily goals	தினசரி இலக்குகள்
+the Sunset colour look	சன்செட் வண்ணத் தோற்றம்
+the Ocean colour look	ஓஷன் வண்ணத் தோற்றம்
+the Graphite colour look	கிராஃபைட் வண்ணத் தோற்றம்
+Performance: every saved day	செயல்திறன்: சேமித்த ஒவ்வொரு நாளும்
+Performance: the week view	செயல்திறன்: வாரக் காட்சி
+Pauses: more than {1} apps	இடைநிறுத்தங்கள்: {1} ஆப்களுக்கு மேல்
+Pauses: strict	இடைநிறுத்தங்கள்: கண்டிப்பானவை
+Pauses: daily limits	இடைநிறுத்தங்கள்: தினசரி வரம்புகள்
+Pauses: playful (sum, sentence, breathing, why)	இடைநிறுத்தங்கள்: விளையாட்டானவை (கூட்டல், வாக்கியம், சுவாசம், காரணம்)
+Locks: more than one lock	லாக்குகள்: ஒன்றுக்கு மேற்பட்ட லாக்
+Locks: more than {1} apps in a lock	லாக்குகள்: ஒரு லாக்கில் {1} ஆப்களுக்கு மேல்
+Locks: strict	லாக்குகள்: கண்டிப்பானவை
+Routines: weekday, weekend, exam day	வழக்கங்கள்: வார நாள், வார இறுதி, தேர்வு நாள்
+Goals: daily goals with streaks	இலக்குகள்: தொடர்ச்சியுடன் தினசரி இலக்குகள்
+Looks: Sunset	தோற்றங்கள்: சூரியாஸ்தமனம்
+Looks: Ocean	தோற்றங்கள்: கடல்
+Looks: Graphite	தோற்றங்கள்: கிராஃபைட்
+Saved days	சேமித்த நாட்கள்
+Week view	வாரக் காட்சி
+More paused apps	கூடுதல் இடைநிறுத்த ஆப்ஸ்
+Strict pauses	கண்டிப்பான இடைநிறுத்தங்கள்
+Daily limits	தினசரி வரம்புகள்
+Playful pauses	விளையாட்டான இடைநிறுத்தங்கள்
+More locks	கூடுதல் லாக்குகள்
+More locked apps	கூடுதல் லாக் செய்த ஆப்ஸ்
+Strict locks	கண்டிப்பான லாக்குகள்
+Routines	வழக்கங்கள்
+Goals	இலக்குகள்
+Sunset look	சூரியாஸ்தமனம் தோற்றம்
+Ocean look	கடல் தோற்றம்
+Graphite look	கிராஃபைட் தோற்றம்
+Performance	செயல்திறன்
+Pauses	இடைநிறுத்தங்கள்
+Locks	லாக்குகள்
+Looks	தோற்றங்கள்
+{1} ({2} for 3 days, the rest for a day)	{1} ({2} 3 நாட்களுக்கு, மற்றவை ஒரு நாளுக்கு)
+{1} for {2}	{1}: {2}க்கு
+3 days	3 நாட்கள்
+a day	ஒரு நாள்
+everything in {1}	{1}-இல் உள்ள அனைத்தும்
+{1} Pro features	{1} Pro வசதிகள்
+Open until {1}	{1} வரை திறந்திருக்கும்
+Kept	கடைப்பிடித்தது
+Changed	மாற்றியது
+Taken off	நீக்கியது
+No answer	பதில் இல்லை
+Not tracked	பதிவாகவில்லை
+Ahead	முன்னே
+Code sign-in is not set up (no client ID).	குறியீட்டு உள்நுழைவு அமைக்கப்படவில்லை (கிளையன்ட் ID இல்லை).
+Google refused the sign-in: {1}	Google உள்நுழைவை மறுத்தது: {1}
+Sign-in failed: {1}	உள்நுழைவு தோல்வி: {1}
+Could not renew the Google sign-in ({1})	Google உள்நுழைவைப் புதுப்பிக்க முடியவில்லை ({1})
+Tomorrow	நாளை
+{1} starts at {2} instead of {3}	{1} {3}க்குப் பதிலாக {2}க்குத் தொடங்குகிறது
+(slots covered by the extra sleep are dropped)	(கூடுதல் உறக்கத்தில் வரும் ஸ்லாட்கள் நீக்கப்படும்)
+(the morning moves later, bedtime stays)	(காலை தாமதமாகும், உறக்க நேரம் அப்படியே இருக்கும்)
+{1} is taken off	{1} நீக்கப்பட்டது
+{1} is called “{2}”	{1}-இன் பெயர் “{2}”
+Changed for today only	இன்றைக்கு மட்டும் மாற்றப்பட்டது
+Your saved routine is untouched. These end by themselves.	சேமித்த உங்கள் வழக்கம் தொடப்படவில்லை. இந்த மாற்றங்கள் தானாகவே முடிந்துவிடும்.
+Undo today’s changes	இன்றைய மாற்றங்களை மீட்டெடு
+A nudge at every slot	ஒவ்வொரு ஸ்லாட்டிலும் ஒரு மென்மையான நினைவூட்டல்
+Remind me with an alarm	அலாரத்தால் எனக்கு நினைவூட்டு
+An alarm rings when a slot starts. To stop it you say if you continue as planned or want a change (a new name for today, or take the slot off). At bedtime it asks if you are going to sleep and when you want to wake. You can switch single slots off with the bell on the Routine tab.	ஸ்லாட் தொடங்கும்போது அலாரம் ஒலிக்கும். அதை நிறுத்த, திட்டமிட்டபடி தொடர்கிறீர்களா அல்லது மாற்றம் வேண்டுமா (இன்றைக்கு புதிய பெயர், அல்லது ஸ்லாட்டை நீக்குதல்) என்று சொல்கிறீர்கள். உறங்கும் நேரத்தில், நீங்கள் உறங்கப் போகிறீர்களா, எப்போது எழ வேண்டும் என்று கேட்கும். தினசரி வழக்கம் தாவலில் உள்ள மணியால் தனித்தனி ஸ்லாட்களின் அலாரத்தை அணைக்கலாம்.
+Ring a test alarm in 10 seconds	10 விநாடிகளில் சோதனை அலாரத்தை ஒலிக்கச் செய்
+The test goes the same way as a real alarm. Lock the phone first to see it as it will be.	சோதனை உண்மையான அலாரம் போலவே நடக்கும். அது உண்மையில் எப்படி இருக்கும் என்று பார்க்க முதலில் ஃபோனைப் பூட்டுங்கள்.
+Is the phone ready?	ஃபோன் தயாரா?
+Alarms are on	அலாரங்கள் இயக்கத்தில் உள்ளன
+Switch on “Allow setting alarms and reminders” so alarms ring on the minute.	அலாரங்கள் சரியான நிமிடத்தில் ஒலிக்க “அலாரங்களையும் நினைவூட்டல்களையும் அமைக்க அனுமதி” என்பதை இயக்குங்கள்.
+Notifications are off for this app, so you will only hear it.	\n\nஇந்த ஆப்பிற்கு அறிவிப்புகள் அணைக்கப்பட்டுள்ளன, எனவே நீங்கள் ஒலியை மட்டுமே கேட்பீர்கள்.
+Android is not allowing exact alarms, so it may come a little late.	\n\nAndroid துல்லியமான அலாரங்களை அனுமதிக்கவில்லை, எனவே அது சற்று தாமதமாக வரலாம்.
+Test alarm set	சோதனை அலாரம் அமைக்கப்பட்டது
+It rings in 10 seconds. To try it as it will really be, press the power button now to lock the phone.{1}	இது 10 விநாடிகளில் ஒலிக்கும். உண்மையில் எப்படி இருக்கும் என்று பார்க்க, இப்போதே பவர் பொத்தானை அழுத்தி ஃபோனைப் பூட்டுங்கள்.{1}
+Could not open that screen	அந்தத் திரையைத் திறக்க முடியவில்லை
+Open Settings, Apps, Dinacharya Launcher, Alarms and reminders	அமைப்புகள், ஆப்ஸ், Dinacharya Launcher, அலாரங்கள் மற்றும் நினைவூட்டல்கள் என்பதைத் திறக்கவும்
+Open Settings, Apps, Dinacharya Launcher, Notifications	அமைப்புகள், ஆப்ஸ், Dinacharya Launcher, அறிவிப்புகள் என்பதைத் திறக்கவும்
+Open Settings, Apps, Dinacharya Launcher, and allow full screen notifications	அமைப்புகள், ஆப்ஸ், Dinacharya Launcher என்பதைத் திறந்து, முழுத்திரை அறிவிப்புகளை அனுமதிக்கவும்
+Choose Alerting, and allow pop-up on screen.	“எச்சரிக்கை” என்பதைத் தேர்ந்தெடுத்து, திரையில் பாப்-அப்பை அனுமதிக்கவும்.
+Alarms are off, so nothing is set in Android.	அலாரங்கள் அணைக்கப்பட்டுள்ளன, எனவே Android-இல் எதுவும் அமைக்கப்படவில்லை.
+Set in Android for {1}	Android-இல் {1}க்கு அமைக்கப்பட்டுள்ளது
+(exact).	(துல்லியம்).
+. Android may deliver it a few minutes late.	Android இதை சில நிமிடம் தாமதமாக அனுப்பலாம்.
+Nothing is set in Android right now.	இப்போது Android-இல் எதுவும் அமைக்கப்படவில்லை.
+An alarm set for {1} never reached the app. The phone was off, or it stopped the app. See the checklist above.	\n{1}க்கு அமைத்த அலாரம் ஆப்பை ஒருபோதும் அடையவில்லை. ஃபோன் அணைந்திருந்தது, அல்லது அது ஆப்பை நிறுத்திவிட்டது. மேலே உள்ள சரிபார்ப்புப் பட்டியலைப் பாருங்கள்.
+Last alarm Android gave the app: {1}	\nAndroid ஆப்பிற்கு வழங்கிய கடைசி அலாரம்: {1}
+(test)	(சோதனை)
+. Ringing started.	ஒலிக்கத் தொடங்கியது.
+. Android would not start the ringing service, so a notification was used.	Android ஒலிக்கும் சேவையைத் தொடங்கவில்லை, எனவே அறிவிப்பு பயன்படுத்தப்பட்டது.
+. Ringing did not start. Copy the problem report from Settings > Help and send it.	ஒலிக்கத் தொடங்கவில்லை. அமைப்புகள் > உதவியிலிருந்து சிக்கல் அறிக்கையை நகலெடுத்து அனுப்புங்கள்.
+No alarm has reached the app yet. Try the test alarm.	\nஇதுவரை எந்த அலாரமும் ஆப்பை அடையவில்லை. சோதனை அலாரத்தை முயற்சிக்கவும்.
+Alarm details unavailable.	அலாரம் தகவல் கிடைக்கவில்லை.
+No alarm is planned (all slots have their bell switched off).	எந்த அலாரமும் அமைக்கப்படவில்லை (எல்லா ஸ்லாட்களின் மணியும் அணைந்துள்ளது).
+Next alarm: {1}  ·  {2}	அடுத்த அலாரம்: {1}  ·  {2}
+Untitled	தலைப்பு இல்லை
+Open	திற
+Allow	அனுமதி வழங்கு
+Habits	பழக்கங்கள்
+What your days are telling you	உங்கள் நாட்கள் உங்களிடம் என்ன சொல்கின்றன
+Worked out on this phone from your own days with simple rules. No AI service, nothing leaves the phone.	உங்கள் சொந்த நாட்களிலிருந்து, எளிய விதிகளுடன், இந்த ஃபோனிலேயே உருவாக்கப்படுகிறது. AI சேவை இல்லை, ஃபோனிலிருந்து எதுவும் வெளியே செல்லாது.
+Notes appear after your first full day. Turn on alarms and usage access so the app can see how the day went.	முதல் முழு நாள் முடிந்ததும் குறிப்புகள் தோன்றும். அலாரங்கள் மற்றும் பயன்பாட்டு அணுகலை இயக்குங்கள், அப்போதுதான் ஆப் உங்கள் நாள் எப்படி சென்றது என்று பார்க்க முடியும்.
+Nothing to flag. Keep going.	சொல்ல எதுவும் இல்லை. தொடருங்கள்.
+Open Performance	செயல்திறனைத் திற
+No daily limit	தினசரி வரம்பு இல்லை
+{1} min a day	ஒரு நாளுக்கு {1} நிமிடம்
+{1} h	{1} மணி
+{1} h {2} min	{1} மணி {2} நிமிடம்
+{1} a day	ஒரு நாளுக்கு {1}
+A pause gives you a moment to decide. It never locks you out: Go back is always there, and so is a way in after a longer wait.	இடைநிறுத்தம் முடிவெடுக்க உங்களுக்கு ஒரு கணம் தருகிறது. அது உங்களை ஒருபோதும் வெளியே நிறுத்தாது: “திரும்பிச் செல்” எப்போதும் இருக்கும், சற்று நீண்ட காத்திருப்புக்குப் பிறகு உள்ளே செல்லும் வழியும் இருக்கும்.
+Short pause ({1} seconds)	குறுகிய இடைநிறுத்தம் ({1} வினாடி)
+Strict pause ({1} seconds)	கண்டிப்பான இடைநிறுத்தம் ({1} வினாடி)
+No pause	இடைநிறுத்தம் இல்லை
+How the pause goes	இடைநிறுத்தம் எப்படி இயங்குகிறது
+Playful pauses (a quick sum, a sentence, breathing, saying why)	சுவாரஸ்யமான இடைநிறுத்தம் (ஒரு கூட்டல், ஒரு வாக்கியம், மூச்சு, காரணம் சொல்வது)
+Daily limit{1}	தினசரி வரம்பு{1}
+A daily limit	தினசரி வரம்பு
+Pause at any time of day (a strict pause still only applies in focus times)	நாளின் எந்த நேரத்திலும் இடைநிறுத்தம் (கண்டிப்பான இடைநிறுத்தம் இன்னும் ஃபோகஸ் நேரத்தில் மட்டுமே பொருந்தும்)
+Remove	நீக்கு
+A strict pause	ஒரு கண்டிப்பான இடைநிறுத்தம்
+Pause rules for more than {1} apps	{1}க்கு மேற்பட்ட ஆப்களுக்கான இடைநிறுத்த விதிகள்
+No pause for {1}	{1}க்கு இடைநிறுத்தம் இல்லை
+Pause set for {1}. It starts the next time you open it from the home screen.	{1}க்கான இடைநிறுத்தம் அமைக்கப்பட்டது. அடுத்த முறை முகப்புத் திரையிலிருந்து திறக்கும்போது அது தொடங்கும்.
+Strict pause ({1} seconds){2}	கண்டிப்பான இடைநிறுத்தம் ({1} வினாடி){2}
+Pause rules for as many apps as you like.	நீங்கள் விரும்பும் எத்தனை ஆப்களுக்கும் இடைநிறுத்த விதிகள்.
+Free: pause rules for up to {1} apps ({2} used). Pro has no limit.	இலவசம்: {1} ஆப்கள் வரை இடைநிறுத்த விதிகள் ({2} பயன்பாட்டில்). Pro-வில் வரம்பு இல்லை.
+Strict pauses apply in focus times: {1}.	கண்டிப்பான இடைநிறுத்தங்கள் ஃபோகஸ் நேரத்தில் பொருந்தும்: {1}.
+With the strong lock on, pauses hold wherever the app is opened from.	ஸ்ட்ராங் லாக் இயக்கத்தில் இருக்கும்போது, ஆப் எங்கிருந்து திறக்கப்பட்டாலும் இடைநிறுத்தங்கள் பொருந்தும்.
+Pauses work when you open an app from this home screen. The strong lock in the home settings holds them everywhere.	நீங்கள் ஆப்பை இந்த முகப்புத் திரையிலிருந்து திறக்கும்போது இடைநிறுத்தங்கள் செயல்படும். முகப்பு அமைப்புகளில் உள்ள ஸ்ட்ராங் லாக் அவற்றை எல்லா இடங்களிலும் பொருந்தச் செய்கிறது.
+30 min	30 நிமிடம்
+1 h	1 மணி
+2 h	2 மணி
+4 h	4 மணி
+8 h	8 மணி
+This is a strict lock and it is holding now, until {1}. A strict lock cannot be changed or removed while it holds.	இது ஒரு கண்டிப்பான லாக், இப்போது {1} வரை நடைமுறையில் உள்ளது. கண்டிப்பான லாக் நடைமுறையில் இருக்கும்போது அதை மாற்றவோ நீக்கவோ முடியாது.
+Name, for example Social	பெயர், எ.கா. சமூகம்
+Choose apps	ஆப்களைத் தேர்ந்தெடுங்கள்
+Locked between	இந்த நேரங்களுக்கு இடையே லாக்
+On these days	இந்த நாட்களில்
+Every day	ஒவ்வொரு நாளும்
+Weekdays	வார நாட்கள்
+Weekends	வார இறுதி
+None	எதுவுமில்லை
+Lock now for	இப்போது இவ்வளவு நேரத்திற்கு லாக் செய்
+Unlock now	இப்போது அன்லாக் செய்
+Without strict, you can still break a lock: wait 30 seconds and type a sentence. A strict lock cannot be broken, and cannot be changed while it holds. {1}	கண்டிப்பானதாக இல்லாவிட்டால் நீங்கள் லாக்கை உடைக்கலாம்: 30 வினாடி காத்திருந்து ஒரு வாக்கியத்தை தட்டச்சு செய்யுங்கள். கண்டிப்பான லாக்கை உடைக்க முடியாது, நடைமுறையில் இருக்கும்போது மாற்றவும் முடியாது. {1}
+With the strong lock on, locks hold wherever the app is opened from.	ஸ்ட்ராங் லாக் இயக்கத்தில் இருக்கும்போது, ஆப் எங்கிருந்து திறக்கப்பட்டாலும் லாக்குகள் பொருந்தும்.
+Locks apply when you open an app from this home screen. The strong lock in the home settings holds them everywhere.	நீங்கள் ஆப்பை இந்த முகப்புத் திரையிலிருந்து திறக்கும்போது லாக்குகள் செயல்படும். முகப்பு அமைப்புகளில் உள்ள ஸ்ட்ராங் லாக் அவற்றை எல்லா இடங்களிலும் பொருந்தச் செய்கிறது.
+From {1}	{1} முதல்
+to {1}	{1} வரை
+No daily schedule. Use Lock now, or pick days.	தினசரி அட்டவணை இல்லை. “இப்போது லாக் செய்” என்பதைப் பயன்படுத்துங்கள், அல்லது நாட்களைத் தேர்ந்தெடுங்கள்.
+Locked {1}, {2} to {3}.	லாக் {1}, {2} முதல் {3} வரை.
+(the whole day)	(முழு நாள்)
+(into the next morning)	(மறுநாள் காலை வரை)
+Locked by hand until {1} ({2} left).	கைமுறையாக லாக் செய்யப்பட்டது, {1} வரை ({2} மீதம்).
+Not locked by hand.	கைமுறையாக லாக் செய்யப்படவில்லை.
+Delete	நீக்கு
+Choose at least one app	குறைந்தது ஒரு ஆப்பைத் தேர்ந்தெடுங்கள்
+Locking more than {1} apps (a group of apps)	{1}க்கு மேற்பட்ட ஆப்களை லாக் செய்வது (ஆப்களின் குழு)
+Locked apps	லாக் செய்யப்பட்ட ஆப்கள்
+That is the most groups there can be	இதற்கு மேல் குழுக்கள் இருக்க முடியாது
+Apps to lock (up to {1} free)	லாக் செய்ய வேண்டிய ஆப்கள் ({1} வரை இலவசம்)
+Apps in the group	குழுவின் ஆப்கள்
+Strict: no way past until it ends	கண்டிப்பான: முடியும் வரை கடந்து செல்ல வழி இல்லை
+Strict: no way past (Pro)	கண்டிப்பான: கடந்து செல்ல வழி இல்லை (Pro)
+Locked group	லாக் செய்யப்பட்ட குழு
+New locked group	புதிய லாக் குழு
+Lock apps	ஆப்களை லாக் செய்யுங்கள்
+No apps yet.	இன்னும் ஆப்கள் இல்லை.
+and {1} more	மேலும் {1}
+Up to {1} apps in a group	ஒரு குழுவில் {1} ஆப்கள் வரை
+Apps to lock	லாக் செய்ய வேண்டிய ஆப்கள்
+Done	முடிந்தது
+You have used it for {1} today.\nYour limit is {2}.	நீங்கள் இன்று இதை {1} பயன்படுத்தியுள்ளீர்கள்.\nஉங்கள் வரம்பு {2}.
+Right now: {1}.\nThis is a focus time.	இப்போது: {1}.\nஇது ஃபோகஸ் நேரம்.
+This is a focus time.	இது ஃபோகஸ் நேரம்.
+Right now: {1}.\nIs this the best use of the next few minutes?	இப்போது: {1}.\nஅடுத்த சில நிமிடங்களுக்கு இதுவே சிறந்த பயன்பாடா?
+Take a breath.\nIs this what you meant to open?	ஒரு மூச்சு எடுங்கள்.\nநீங்கள் திறக்க நினைத்தது இதுவா?
+Strong lock	ஸ்ட்ராங் லாக்
+Shown while the strong lock is on	ஸ்ட்ராங் லாக் இயக்கத்தில் இருக்கும்போது தோன்றும்
+Strong lock is on	ஸ்ட்ராங் லாக் இயக்கத்தில் உள்ளது
+Holding locked and paused apps. Tap to change.	லாக் மற்றும் இடைநிறுத்தம் உள்ள ஆப்களைப் பிடித்து வைத்திருக்கிறது. மாற்ற தட்டவும்.
+a locked group	ஒரு லாக் செய்யப்பட்ட குழு
+Strictly locked  ·	கண்டிப்பாக லாக்  ·
+Locked  ·	லாக்  ·
+Go back	திரும்பிச் செல்
+Open anyway	இருந்தாலும் திற
+Opening the lock screen…	லாக் திரை திறக்கிறது…
+This lock is strict. There is no way past it until it ends.	இந்த லாக் கண்டிப்பானது. முடியும் வரை கடந்து செல்ல வழி இல்லை.
+To break this lock, open the app from the Dinacharya Launcher home screen.	இந்த லாக்கை உடைக்க ஆப்பை Dinacharya Launcher-இன் முகப்புத் திரையிலிருந்து திறக்கவும்.
+You can open it in {1} s	இதை {1} வினாடியில் திறக்கலாம்
+You can open it now.	இப்போது இதைத் திறக்கலாம்.
+Your home screen	உங்கள் முகப்புத் திரை
+Change the look	தோற்றத்தை மாற்று
+Good night	இனிய இரவு
+Good morning	காலை வணக்கம்
+Good afternoon	மதிய வணக்கம்
+Good evening	மாலை வணக்கம்
+Signed in as {1}. Open Backup.	{1} ஆக உள்நுழைந்துள்ளீர்கள். காப்புப்பிரதியைத் திற.
+Not signed in. Open Backup.	உள்நுழையவில்லை. காப்புப்பிரதியைத் திற.
+{1} settings still to do	{1} அமைப்புகள் மீதம்
+Setup	அமைவு
+1 setting still to do	1 அமைப்பு மீதம்
+Open the setup guide	அமைவு வழிகாட்டியைத் திற
+Take the tour	சுற்றுப்பயணத்தைப் பாருங்கள்
+NOW{1}	இப்போது{1}
+{1} – {2}   ·   {3} left	{1} – {2}   ·   {3} மீதம்
+NOW	இப்போது
+Free time	ஓய்வு நேரம்
+Next:  {1}  at {2}  (in {3})	அடுத்து:  {1}  {2} மணிக்கு  ({3} இல்)
+Alarms are off	அலாரங்கள் அணைந்துள்ளன
+Nothing will ring until you turn them on. When a slot starts you hear an alarm and answer: continue as planned, or change it.	நீங்கள் இயக்கும் வரை எதுவும் ஒலிக்காது. ஸ்லாட் தொடங்கும்போது அலாரம் ஒலிக்கும், நீங்கள் பதிலளிக்கிறீர்கள்: திட்டப்படி தொடருங்கள், அல்லது மாற்றுங்கள்.
+Turn on alarms	அலாரங்களை இயக்கு
+Alarms need your attention	அலாரத்திற்கு உங்கள் கவனம் தேவை
+Allow: {1}.	அனுமதி வழங்கு: {1}.
+The alarm set for {1} never reached the app. The phone may be stopping it.	{1}க்காக அமைத்த அலாரம் ஆப்பை அடையவில்லை. ஃபோன் அதைத் தடுத்து வைத்திருக்கலாம்.
+Fix now	இப்போதே சரிசெய்
+Next alarm	அடுத்த அலாரம்
+None planned	எதுவும் அமைக்கப்படவில்லை
+Every slot has its bell off.	ஒவ்வொரு ஸ்லாட்டின் மணியும் அணைந்துள்ளது.
+Test	சோதனை
+Tip: allow background use so alarms are never late. Tap to open.	குறிப்பு: அலாரங்கள் ஒருபோதும் தாமதமாக ஒலிக்காமல் இருக்க, பின்னணிப் பயன்பாட்டை அனுமதியுங்கள். திறக்க தட்டவும்.
+Today's goals	இன்றைய இலக்குகள்
+Dinacharya Launcher closed unexpectedly last time	கடந்த முறை Dinacharya Launcher திடீரென மூடப்பட்டது
+Sorry about that. Tap Copy details and send them to the developer so it can be fixed.	அதற்காக வருந்துகிறோம். “விவரங்களை நகலெடு” என்பதைத் தட்டி டெவலப்பருக்கு அனுப்புங்கள், அப்போது இதை சரிசெய்ய முடியும்.
+Copy details	விவரங்களை நகலெடு
+Dismiss	மூடு
+Dinacharya problem report	Dinacharya சிக்கல் அறிக்கை
+Details copied	விவரங்கள் நகலெடுக்கப்பட்டன
+Dinacharya Launcher is not your home app any more	Dinacharya Launcher இனி உங்கள் முகப்பு ஆப் அல்ல
+The Home button now opens another launcher. This happens after an update or a reinstall, or when another home app is picked. Make Dinacharya Launcher your home app again?	இப்போது முகப்புப் பொத்தான் வேறொரு லாஞ்சரைத் திறக்கிறது. இது புதுப்பிப்புக்குப் பிறகு அல்லது மீண்டும் நிறுவிய பிறகு, அல்லது வேறொரு முகப்பு ஆப் தேர்ந்தெடுக்கப்படும்போது நடக்கும். Dinacharya Launcher-ஐ மீண்டும் உங்கள் முகப்பு ஆப்பாக்கலாமா?
+Make it my home app	இதை என் முகப்பு ஆப்பாக்கு
+Stop asking	மீண்டும் கேட்காதே
+Open Settings, then Apps, Default apps, Home app	அமைப்புகள், பிறகு ஆப்கள், இயல்புநிலை ஆப்கள், முகப்பு ஆப் என்பதைத் திறக்கவும்
+Insights	இன்சைட்ஸ்
+How your days are going	உங்கள் நாட்கள் எப்படிப் போகின்றன
+Reports	அறிக்கை
+Every day, saved	ஒவ்வொரு நாளும், சேமிக்கப்பட்டது
+Performance and reports	செயல்திறன் மற்றும் அறிக்கைகள்
+Could not open Performance	செயல்திறனைத் திறக்க முடியவில்லை
+Today so far	இன்று இதுவரை
+Plan kept	திட்டத்தைப் பின்பற்றினீர்கள்
+Focus	ஃபோகஸ்
+Daily goals	தினசரி இலக்குகள்
+＋  Add a goal	＋  இலக்கைச் சேர்
+Time by type today	இன்று வகை வாரியாக நேரம்
+Your plan has {1} of it today.	உங்கள் திட்டத்தில் இன்று இதில் {1} உள்ளது.
+Planned today: {1}.	இன்று அமைத்தது: {1}.
+Add an activity type first (Routine tab)	முதலில் ஒரு செயல்பாட்டு வகையைச் சேர்க்கவும் (வழக்கம் தாவல்)
+Type	வகை
+Every day, at least	ஒவ்வொரு நாளும், குறைந்தது
+Goal for {1}	{1}க்கான இலக்கு
+New daily goal	புதிய தினசரி இலக்கு
+A goal needs at least 5 minutes	இலக்கு குறைந்தது 5 நிமிடமாக இருக்க வேண்டும்
+Goal set: {1}, {2} a day.	இலக்கு அமைக்கப்பட்டது: {1}, ஒரு நாளுக்கு {2}.
+Goal removed.	இலக்கு நீக்கப்பட்டது.
+Automatic: {1}	தானியங்கு: {1}
+Automatic (the phone's language)	தானியங்கு (ஃபோனின் மொழி)
+Language	மொழி
+That set the lock screen only. Open the wallpaper step again and choose the home screen too.	இது பூட்டுத் திரையை மட்டுமே அமைத்தது. வால்பேப்பர் படியை மீண்டும் திறந்து முகப்புத் திரையையும் தேர்ந்தெடுங்கள்.
+Make this your home app	இதை உங்கள் முகப்பு ஆப்பாக்குங்கள்
+Swipe up: all apps  ·  Tap: dashboard  ·  Hold: settings	மேலே ஸ்வைப்: எல்லா ஆப்களும்  ·  தட்டவும்: டாஷ்போர்டு  ·  அழுத்திப் பிடிக்கவும்: அமைப்புகள்
+No camera app found	கேமரா ஆப் கிடைக்கவில்லை
+No phone app found	ஃபோன் ஆப் கிடைக்கவில்லை
+That app could not be opened.	அந்த ஆப்பைத் திறக்க முடியவில்லை.
+Search apps	ஆப்களைத் தேடு
+Open the dashboard	டாஷ்போர்டைத் திற
+Add a pause	இடைநிறுத்தம் சேர்
+Change the pause	இடைநிறுத்தத்தை மாற்று
+Hide from the list	பட்டியலிலிருந்து மறை
+Hidden. You can show it again in the home screen settings.	மறைக்கப்பட்டது. முகப்புத் திரை அமைப்புகளில் அதை மீண்டும் காட்டலாம்.
+App info	ஆப் தகவல்
+Could not open the app info.	ஆப் தகவலைத் திறக்க முடியவில்லை.
+The home screen could not start.\nYour apps are fine. Try again, or pick another home app.	முகப்புத் திரையைத் தொடங்க முடியவில்லை.\nஉங்கள் ஆப்கள் பாதுகாப்பாக உள்ளன. மீண்டும் முயலுங்கள், அல்லது வேறொரு முகப்பு ஆப்பைத் தேர்ந்தெடுங்கள்.
+Try again	மீண்டும் முயல்
+Change home app	முகப்பு ஆப்பை மாற்று
+Open Dinacharya Launcher	Dinacharya Launcher-ஐத் திற
+Auto	தானியங்கி
+Dark	டார்க்
+Light	லைட்
+Small	சிறியது
+Medium	நடுத்தரம்
+Large	பெரியது
+Huge	மிகப் பெரியது
+‹  Back	‹  பின்னே
+Home screen	முகப்புத் திரை
+Nothing	எதுவுமில்லை
+Change	மாற்று
+Home app	முகப்பு ஆப்
+A calmer home screen	இன்னும் அமைதியான முகப்புத் திரை
+Dinacharya Launcher is your home app	Dinacharya Launcher உங்கள் முகப்பு ஆப்
+Not your home app yet	இன்னும் உங்கள் முகப்பு ஆப் இல்லை
+Pressing Home shows this screen.	முகப்பை அழுத்தினால் இந்தத் திரை தெரியும்.
+Press Try it to look first.	முதலில் பார்க்க “இப்போதே முயற்சி” என்பதை அழுத்துங்கள்.
+Set	அமை
+The Dinacharya Launcher wallpaper is on	Dinacharya Launcher வால்பேப்பர் இயக்கத்தில் உள்ளது
+Only the lock screen has it	பூட்டுத் திரையில் மட்டும் உள்ளது
+Wallpaper not in place yet	வால்பேப்பர் இன்னும் அமைக்கப்படவில்லை
+Your day shows on the home screen, lock screen and recent apps.	உங்கள் நாள் முகப்புத் திரை, பூட்டுத் திரை மற்றும் சமீபத்திய ஆப்களில் தெரியும்.
+On Android’s preview, choose Home screen (or both).	Android முன்னோட்டத்தில் முகப்புத் திரையை (அல்லது இரண்டையும்) தேர்ந்தெடுங்கள்.
+Android asks you to confirm once.	Android ஒருமுறை உறுதிப்படுத்தச் சொல்லும்.
+Try it now	இப்போதே முயற்சி
+A short walk through what the app does	ஆப் என்ன செய்கிறது என்பதன் சிறு சுற்றுப்பயணம்
+Start	தொடங்கு
+Check phone settings	ஃபோன் அமைப்புகளைச் சரிபார்
+Permissions and settings the app needs	ஆப்புக்குத் தேவையான அனுமதிகளும் அமைப்புகளும்
+Swipes	ஸ்வைப்கள்
+Shortcuts	குறுக்குவழிகள்
+Swipe left	இடதுபுறம் ஸ்வைப்
+Swipe right	வலதுபுறம் ஸ்வைப்
+Swipe left opens	இடதுபுறம் ஸ்வைப் செய்தால் திறப்பது
+Swipe right opens	வலதுபுறம் ஸ்வைப் செய்தால் திறப்பது
+Look	தோற்றம்
+How it looks	இது எப்படித் தெரிகிறது
+Change what the home screen shows	முகப்புத் திரை காட்டுவதை மாற்று
+Colours of the list of all apps and the pause screen	எல்லா ஆப்கள் பட்டியல் மற்றும் இடைநிறுத்தத் திரையின் வண்ணங்கள்
+Text size in the list of all apps	எல்லா ஆப்கள் பட்டியலில் எழுத்தின் அளவு
+Open an app when only one matches	ஒன்று மட்டும் பொருந்தினால் ஆப்பைத் திற
+Open the keyboard in the list of all apps	எல்லா ஆப்கள் பட்டியலில் விசைப்பலகையைத் திற
+Strict pause, {1} s	கண்டிப்பான இடைநிறுத்தம், {1} வினாடி
+Short pause, {1} s	குறுகிய இடைநிறுத்தம், {1} வினாடி
+·  limit {1} a day	  ·  வரம்பு: ஒரு நாளுக்கு {1}
+·  also outside focus times	  ·  ஃபோகஸ் நேரத்துக்கு வெளியிலும்
+·  needs Pro	  ·  Pro தேவை
+·  Pro part off	  ·  Pro பகுதி அணைந்துள்ளது
+A pause before apps open	ஆப்கள் திறக்கும் முன் ஒரு இடைநிறுத்தம்
+Pause during	எப்போது இடைநிறுத்தம்
+Short pause	குறுகிய இடைநிறுத்தம்
+Strict pause	கண்டிப்பான இடைநிறுத்தம்
+Strict pause (Pro)	கண்டிப்பான இடைநிறுத்தம் (Pro)
+Apps with a pause	இடைநிறுத்தம் உள்ள ஆப்கள்
+Edit	திருத்து
+Add a pause for an app	ஒரு ஆப்புக்கு இடைநிறுத்தம் சேர்
+Add a pause for	இதற்கு இடைநிறுத்தம் சேர்
+See Pro	Pro-வைப் பார்
+Usage access	பயன்பாட்டு அணுகல்
+Needed to count the minutes for daily limits	தினசரி வரம்புகளுக்கு நிமிடங்களை எண்ணத் தேவை
+Locked groups	லாக் செய்யப்பட்ட குழுக்கள்
+Lock a group of apps for a time	ஆப்களின் ஒரு குழுவை சிறிது நேரம் லாக் செய்
+Lock apps for a time	ஆப்களை சிறிது நேரம் லாக் செய்
+·  strict	  ·  கண்டிப்பான
+·  only {1} held, needs Pro	  ·  {1} மட்டும் நடைமுறையில், Pro தேவை
+·  strict part off	  ·  கண்டிப்பான பகுதி அணைந்துள்ளது
+Add a locked group	லாக் செய்யப்பட்ட குழுவைச் சேர்
+More than one lock	ஒன்றுக்கு மேற்பட்ட லாக்
+Hold locks and pauses everywhere	எல்லா இடங்களிலும் லாக்குகளையும் இடைநிறுத்தங்களையும் பிடித்து வை
+Lets Dinacharya Launcher see which app is in front	எந்த ஆப் முன்னால் உள்ளது என்பதை Dinacharya Launcher பார்க்க அனுமதிக்கிறது
+Display over other apps	பிற ஆப்களின் மேல் காட்டு
+Lets the lock screen appear over an app	லாக் திரை ஒரு ஆப்பின் மேல் தோன்ற அனுமதிக்கிறது
+Hidden apps	மறைக்கப்பட்ட ஆப்கள்
+Apps kept out of the list	பட்டியலில் இருந்து விலக்கிய ஆப்கள்
+Show some again	சிலவற்றை மீண்டும் காட்டு
+At the home screen	முகப்புத் திரையில்
+Reset these settings	இந்த அமைப்புகளை மீட்டமை
+A strict lock is holding	ஒரு கண்டிப்பான லாக் நடைமுறையில் உள்ளது
+The settings cannot be reset while a strict lock holds. It ends at {1}.	கண்டிப்பான லாக் நடைமுறையில் இருக்கும்போது அமைப்புகளை மீட்டமைக்க முடியாது. இது {1} மணிக்கு முடிகிறது.
+Reset the home screen?	முகப்புத் திரையை மீட்டமைக்கவா?
+This clears the swipes, the look, the hidden apps, the pause rules and the locked groups. Your routine and reports are not touched.	இது ஸ்வைப்கள், தோற்றம், மறைக்கப்பட்ட ஆப்கள், இடைநிறுத்த விதிகள் மற்றும் லாக் செய்யப்பட்ட குழுக்களை அழிக்கும். உங்கள் வழக்கம் மற்றும் அறிக்கைகள் மாறாது.
+Reset	மீட்டமை
+Mon	திங்
+Tue	செவ்
+Wed	புதன்
+Thu	வியா
+Fri	வெள்
+Sat	சனி
+Sun	ஞாயி
+No days	நாட்கள் இல்லை
+tomorrow {1}	நாளை {1}
+Locked until {1}	{1} வரை லாக்
+Next: {1}	அடுத்து: {1}
+Not scheduled	திட்டமிடப்படவில்லை
+Strictly locked  ·  {1}	கண்டிப்பாக லாக்  ·  {1}
+Locked  ·  {1}	லாக்  ·  {1}
+Until {1}	{1} வரை
+Break the lock	லாக்கை உடை
+{1} left	{1} மீதம்
+The lock has ended.	லாக் முடிந்துவிட்டது.
+Open {1}	{1}-ஐத் திற
+A lock is a promise to yourself. Wait a moment before you break it.	லாக் என்பது உங்களுக்கே நீங்கள் தரும் வாக்குறுதி. அதை உடைக்கும் முன் சிறிது நேரம் காத்திருங்கள்.
+Type this to break the lock	லாக்கை உடைக்க இதை தட்டச்சு செய்யுங்கள்
+Not the same yet. Check each word.	இன்னும் ஒன்றுபோல இல்லை. ஒவ்வொரு சொல்லையும் சரிபாருங்கள்.
+Type it here	இங்கே தட்டச்சு செய்யுங்கள்
+Home	முகப்பு
+Routine	வழக்கம்
+You’re all set	எல்லாம் தயார்
+Press the Home button to see your day. Everything else is here in the dashboard: your routine, insights, backup and settings.	உங்கள் நாளைப் பார்க்க முகப்புப் பொத்தானை அழுத்துங்கள். மற்றவை எல்லாம் இங்கே டாஷ்போர்டில் உள்ளன: உங்கள் வழக்கம், இன்சைட்ஸ், காப்புப்பிரதி மற்றும் அமைப்புகள்.
+One more step: make Dinacharya Launcher your home app, so your day is what you see when you press Home. Everything else is here in the dashboard: your routine, insights, backup and settings.	இன்னும் ஒரு படி: Dinacharya Launcher-ஐ உங்கள் முகப்பு ஆப்பாக்குங்கள், முகப்பை அழுத்தும்போது உங்கள் நாளே தெரியும். மற்றவை எல்லாம் இங்கே டாஷ்போர்டில் உள்ளன: உங்கள் வழக்கம், இன்சைட்ஸ், காப்புப்பிரதி மற்றும் அமைப்புகள்.
+Stay here	இங்கேயே இருங்கள்
+Go to my home screen	என் முகப்புத் திரைக்குச் செல்
+Your video pass has ended	உங்கள் வீடியோ பாஸ் முடிந்துவிட்டது
+UNDO	செயல்தவிர்
+Could not save. Please try again.	சேமிக்க முடியவில்லை. மீண்டும் முயலுங்கள்.
+Undone	செயல் தவிர்க்கப்பட்டது
+Your pass for {1} has ended. {2} you made with it went back to the free version. What you had before is untouched. Dinacharya Pro keeps such things for good.	{1}க்கான உங்கள் பாஸ் முடிந்துவிட்டது. அதனுடன் நீங்கள் செய்த {2} இலவசப் பதிப்புக்குத் திரும்பிவிட்டன. முன்பு இருந்தது தொடப்படவில்லை. Dinacharya Pro இவற்றை நிரந்தரமாக வைத்திருக்கும்.
+{1} changes	{1} மாற்றங்கள்
+1 change	1 மாற்றம்
+Wait	காத்திரு
+Quick sum	விரைவுக் கணக்கு
+Type a sentence	ஒரு வாக்கியத்தை தட்டச்சு செய்
+Breathe	மூச்சு விடு
+Say why	காரணம் சொல்
+Count down a few seconds	சில வினாடிகள் எண்ணு
+Solve a simple sum to open the app	ஆப்பைத் திறக்க ஒரு எளிய கணக்கைத் தீர்
+Type a short sentence on purpose	வேண்டுமென்றே ஒரு சிறு வாக்கியத்தை தட்டச்சு செய்
+Take slow breaths with a moving circle	நகரும் வட்டத்துடன் மெதுவாக மூச்சு விடு
+Pick why you are opening it	ஏன் திறக்கிறீர்கள் என்பதைத் தேர்ந்தெடுங்கள்
+I choose to open this app	நான் இந்த ஆப்பைத் திறக்கத் தேர்ந்தெடுக்கிறேன்
+I am in control of my time	என் நேரம் என் கட்டுப்பாட்டில் உள்ளது
+This can wait a few minutes	இது சில நிமிடங்கள் காத்திருக்கலாம்
+I am opening this on purpose	நான் இதை வேண்டுமென்றே திறக்கிறேன்
+I will come back to my day	நான் என் நாளுக்குத் திரும்புவேன்
+I need it for something specific	ஒரு குறிப்பிட்ட வேலைக்கு எனக்கு இது தேவை
+I am bored	எனக்கு சலிப்பாக இருக்கிறது
+It is just a habit	இது வெறும் பழக்கம்
+I am avoiding something	நான் எதையோ தவிர்க்கிறேன்
+Boredom passes. Stand up and stretch for a minute, then decide.	சலிப்பு கடந்துபோகும். ஒரு நிமிடம் எழுந்து உடலை நீட்டுங்கள், பிறகு முடிவு செய்யுங்கள்.
+Habits fade once you notice them. Take one slow breath first.	பழக்கங்கள் கவனித்தவுடன் மங்கிவிடும். முதலில் ஒரு மெதுவான மூச்சு எடுங்கள்.
+Do the smallest next step of your task for two minutes. Then decide.	இரண்டு நிமிடம் உங்கள் வேலையின் மிகச் சிறிய அடுத்த படியைச் செய்யுங்கள். பிறகு முடிவு செய்யுங்கள்.
+Open anyway in {1}	{1}ல் எப்படியும் திற
+Skip the challenge in {1}	{1}ல் சவாலைத் தவிர்
+Skip the challenge	சவாலைத் தவிர்
+Sum 1 of {1}	கணக்கு 1/{1}
+Solve it to open	திறக்க இதைத் தீர்
+Your answer	உங்கள் பதில்
+Right! One more.	சரி! இன்னொன்று.
+Sum {1} of {2}	கணக்கு {1}/{2}
+Not quite. Try again.	சரியில்லை. மீண்டும் முயலுங்கள்.
+Check	சரிபார்
+Type this to open it	திறக்க இதை தட்டச்சு செய்
+Breathe in	மூச்சை உள்ளிழு
+Breath 1 of {1}	மூச்சு 1/{1}
+Breathe out	மூச்சை வெளியே விடு
+Breath {1} of {2}	மூச்சு {1}/{2}
+Why are you opening it?	ஏன் இதைத் திறக்கிறீர்கள்?
+Open in {1}	{1}ல் திற
+Open it	திற
+This phone has no save dialog. Use Share instead.	இந்த ஃபோனில் சேமிக்கும் உரையாடல் இல்லை. அதற்குப் பதிலாக பகிர்வைப் பயன்படுத்துங்கள்.
+could not open the file	கோப்பைத் திறக்க முடியவில்லை
+PDF saved	PDF சேமிக்கப்பட்டது
+Could not save the PDF: {1}	PDF-ஐச் சேமிக்க முடியவில்லை: {1}
+no folder	கோப்புறை இல்லை
+Share report	அறிக்கையைப் பகிர்
+Could not make the PDF: {1}	PDF உருவாக்க முடியவில்லை: {1}
+Week	வாரம்
+Week · Pro	வாரம் · Pro
+Days	நாட்கள்
+Reading your day…	உங்கள் நாள் படிக்கப்படுகிறது…
+The weekly view is part of Pro	வாராந்திரக் காட்சி Pro-வின் பகுதி
+The week chart, your average score and the tips that come from it. Today and the last {1} days stay free.	வாரத்தின் வரைபடம், உங்கள் சராசரி மதிப்பெண் மற்றும் அதிலிருந்து வரும் குறிப்புகள். இன்றும் கடந்த {1} நாட்களும் இலவசம்.
+Could not read the day: {1}	நாளைப் படிக்க முடியவில்லை: {1}
+Allow usage access to see phone time	ஃபோன் நேரத்தைப் பார்க்க பயன்பாட்டு அணுகலை அனுமதியுங்கள்
+Save PDF	PDF சேமி
+Share PDF	PDF பகிர்
+No finished days yet. After your first full day, a report is saved here and the week chart starts.	இன்னும் முடிந்த நாள் எதுவும் இல்லை. முதல் முழு நாளுக்குப் பிறகு ஒரு அறிக்கை இங்கே சேமிக்கப்படும், வார வரைபடம் தொடங்கும்.
+No saved days yet. A report is saved on this phone each time a schedule day ends.	இன்னும் சேமித்த நாள் எதுவும் இல்லை. அட்டவணை நாள் முடியும் ஒவ்வொரு முறையும் இந்த ஃபோனில் ஒரு அறிக்கை சேமிக்கப்படும்.
+Phone {1}	ஃபோன் {1}
+Phone not measured	ஃபோன் நேரம் அளக்கப்படவில்லை
+·  backed up	  ·  காப்புப்பிரதி எடுக்கப்பட்டது
+·  not backed up yet	  ·  இன்னும் காப்புப்பிரதி எடுக்கப்படவில்லை
+{1}h {2}m	{1}ம {2}நி
+{1}m	{1}நி
+Alarms and reminders show up here, also over the lock screen.	அலாரங்களும் நினைவூட்டல்களும் இங்கே தெரியும், பூட்டுத் திரையிலும்.
+Alarms on	அலாரங்கள் இயக்கத்தில்
+Rings when a slot of your day starts and asks one question.	உங்கள் நாளின் ஒரு ஸ்லாட் தொடங்கும்போது ஒலித்து ஒரு கேள்வி கேட்கும்.
+Turn on	இயக்கு
+Rings on the minute a slot starts, not minutes late.	ஸ்லாட் தொடங்கும் அதே நிமிடத்தில் ஒலிக்கும், நிமிடங்கள் தாமதமாக அல்ல.
+Phone-use time (optional)	ஃபோன் பயன்பாட்டு நேரம் (விருப்பத் தேர்வு)
+Shows your phone time and counts daily app limits. Read on this phone only.	உங்கள் ஃபோன் நேரத்தைக் காட்டி தினசரி ஆப் வரம்புகளை எண்ணும். இந்த ஃபோனில் மட்டுமே படிக்கப்படும்.
+Greyed out or “Restricted setting”?	சாம்பல் நிறத்தில் உள்ளதா அல்லது “தடைசெய்யப்பட்ட அமைப்பு” என்று உள்ளதா?
+Stops the phone from putting the app to sleep. Set Battery to Unrestricted on the app’s info page.	ஆப்பை ஃபோன் தூங்க வைப்பதைத் தடுக்கும். ஆப்பின் தகவல் பக்கத்தில் பேட்டரியை “கட்டுப்பாடற்றது” என அமையுங்கள்.
+Open Android’s battery list	Android-இன் பேட்டரி பட்டியலைத் திற
+Your phone's maker stops apps in the background unless you allow it.	நீங்கள் அனுமதிக்காவிட்டால் உங்கள் ஃபோன் தயாரிப்பாளர் பின்னணியில் ஆப்களை நிறுத்திவிடுவார்.
+Make Dinacharya Launcher your home app	Dinacharya Launcher-ஐ உங்கள் முகப்பு ஆப்பாக்குங்கள்
+Pressing Home shows your day.	முகப்பை அழுத்தினால் உங்கள் நாள் தெரியும்.
+Put the Dinacharya Launcher wallpaper in place	Dinacharya Launcher வால்பேப்பரை அமையுங்கள்
+Only the lock screen has it. On Android’s preview, choose Home screen (or both).	பூட்டுத் திரையில் மட்டும் உள்ளது. Android முன்னோட்டத்தில் முகப்புத் திரையை (அல்லது இரண்டையும்) தேர்ந்தெடுங்கள்.
+Shows your day on the lock screen and in recent apps. Android asks you to confirm once.	உங்கள் நாளை பூட்டுத் திரையிலும் சமீபத்திய ஆப்களிலும் காட்டும். Android ஒருமுறை உறுதிப்படுத்தச் சொல்லும்.
+Google's sign-in screen closed without an account. If you did not close it yourself, Google is not accepting this app yet. Tap “Check setup” to compare this app with your Google Cloud settings.	Google-இன் உள்நுழைவுத் திரை கணக்கு இல்லாமல் மூடப்பட்டது. நீங்களாக மூடவில்லை என்றால், Google இன்னும் இந்த ஆப்பை ஏற்கவில்லை. இந்த ஆப்பை உங்கள் Google Cloud அமைப்புகளுடன் ஒப்பிட “அமைப்பைச் சரிபார்” என்பதைத் தட்டுங்கள்.
+Google said: {1}	\n\nGoogle கூறியது: {1}
+Google does not recognise this app (developer error 10). The package name or SHA-1 registered in Google Cloud does not match this app, or the Android client is in another project. Tap “Check setup”.{1}	Google இந்த ஆப்பை அடையாளம் காணவில்லை (டெவலப்பர் பிழை 10). Google Cloud-இல் பதிவு செய்த தொகுப்புப் பெயர் அல்லது SHA-1 இந்த ஆப்புடன் பொருந்தவில்லை, அல்லது Android கிளையன்ட் வேறு திட்டத்தில் உள்ளது. “அமைப்பைச் சரிபார்” என்பதைத் தட்டுங்கள்.{1}
+No internet connection. Try again when you are online.{1}	இணைய இணைப்பு இல்லை. ஆன்லைனில் வந்ததும் மீண்டும் முயலுங்கள்.{1}
+{1}\n\n(Code {2}){3}	{1}\n\n(குறியீடு {2}){3}
+Google Play services cannot do this sign-in on this phone (code 17). Use “Sign in with a code”.{1}	இந்த ஃபோனில் Google Play services இந்த உள்நுழைவைச் செய்ய முடியாது (குறியீடு 17). “குறியீட்டால் உள்நுழை” என்பதைப் பயன்படுத்துங்கள்.{1}
+Google sign-in failed (code {1}).{2}	Google உள்நுழைவு தோல்வியடைந்தது (குறியீடு {1}).{2}
+Google sign-in failed{1}	Google உள்நுழைவு தோல்வியடைந்தது{1}
+Google sign-in could not start.	Google உள்நுழைவைத் தொடங்க முடியவில்லை.
+This phone's Google Play services could not start the sign-in. Use “Sign in with a code” instead.	இந்த ஃபோனின் Google Play services உள்நுழைவைத் தொடங்க முடியவில்லை. அதற்குப் பதிலாக “குறியீட்டால் உள்நுழை” என்பதைப் பயன்படுத்துங்கள்.
+Google needs you to sign in again. Open Backup and tap Sign in.	Google நீங்கள் மீண்டும் உள்நுழைய வேண்டும் என்கிறது. காப்புப்பிரதியைத் திறந்து உள்நுழை என்பதைத் தட்டுங்கள்.
+Google sign-in failed.	Google உள்நுழைவு தோல்வியடைந்தது.
+Google sign-in took too long. Will try again later.	Google உள்நுழைவு அதிக நேரம் எடுத்தது. பிறகு மீண்டும் முயற்சிக்கப்படும்.
+Interrupted.	இடையில் நின்றுவிட்டது.
+Google Play services are not available on this phone.	இந்த ஃபோனில் Google Play services கிடைக்கவில்லை.
+Alarm at {1}. You sleep {2}.	அலாரம் {1} மணிக்கு. நீங்கள் {2} தூங்குகிறீர்கள்.
+Nothing changes tomorrow.	நாளை எதுவும் மாறாது.
+A delay over {1} is too long to make up.	{1}க்கு மேற்பட்ட தாமதத்தை ஈடுகட்ட முடியாத அளவு நீளமானது.
+Alarm at {1}. You sleep the full {2}.	அலாரம் {1} மணிக்கு. நீங்கள் முழு {2} தூங்குகிறீர்கள்.
+Every slot moves {1} later. Bedtime stays at {2}.	ஒவ்வொரு ஸ்லாட்டும் {1} தாமதமாக நகரும். தூங்கும் நேரம் {2} ஆகவே இருக்கும்.
+Not enough rest or free time to give back {1}. Pick another option.	{1} திருப்பித் தர போதுமான ஓய்வோ ஓய்வு நேரமோ இல்லை. வேறொரு தேர்வைத் தேர்ந்தெடுங்கள்.
+No slot needs changing.	எந்த ஸ்லாட்டையும் மாற்ற வேண்டியதில்லை.
+The extra sleep would cover your whole morning. Pick another option.	கூடுதல் தூக்கம் உங்கள் முழுக் காலையையும் எடுத்துக்கொள்ளும். வேறொரு தேர்வைத் தேர்ந்தெடுங்கள்.
+Later slots keep their normal times.	பிந்தைய ஸ்லாட்கள் அவற்றின் வழக்கமான நேரங்களிலேயே இருக்கும்.
+Your day starts with "{1}" at {2}.	உங்கள் நாள் {2} மணிக்கு "{1}" உடன் தொடங்குகிறது.
+{1}→{2} min	{1}→{2} நிமிடம்
+Shortened: {1}.	சுருக்கப்பட்டது: {1}.
+Dropped: {1}.	நீக்கப்பட்டது: {1}.
+ADJUSTED FOR TODAY	இன்றைக்கு சரிசெய்யப்பட்டது
+WAKE {1}   FIRST TASK {2}   {3}	எழுதல் {1}   முதல் வேலை {2}   {3}
+BED	உறக்கம்
+END	முடிவு
+PHONE TODAY	இன்று ஃபோன்
+TAKEN OFF	நீக்கப்பட்டது
+TODAY ONLY	இன்று மட்டும்
+NOW  ·  {1} left	இப்போது  ·  {1} மீதம்
+The purchase did not go through. You were not charged.	வாங்குதல் நடக்கவில்லை. உங்களிடம் கட்டணம் வசூலிக்கப்படவில்லை.
+Thank you! Dinacharya Pro is on.	நன்றி! Dinacharya Pro இயக்கத்தில் உள்ளது.
+Your payment is pending. Pro turns on as soon as it goes through.	உங்கள் பணம் செலுத்துதல் நிலுவையில் உள்ளது. அது முடிந்ததும் Pro இயங்கும்.
+Pro is not available right now. It is sold through Google Play, so install the app from there, check your connection and try again.	Pro இப்போது கிடைக்கவில்லை. இது Google Play வழியாக விற்கப்படுகிறது, எனவே ஆப்பை அங்கிருந்தே நிறுவி, உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலுங்கள்.
+Could not open Google Play. Try again in a moment.	Google Play-ஐத் திறக்க முடியவில்லை. சிறிது நேரம் கழித்து மீண்டும் முயலுங்கள்.
+Checking Google Play…	Google Play சரிபார்க்கப்படுகிறது…
+Home screen, alarms, reports of today, backup	முகப்புத் திரை, அலாரங்கள், இன்றைய அறிக்கைகள், காப்புப்பிரதி
+Everything	எல்லாம்
+Today and the last {1} days	இன்றும் கடந்த {1} நாட்களும்
+Every saved day, the weekly view and tips	சேமித்த ஒவ்வொரு நாளும், வாராந்திரக் காட்சி மற்றும் குறிப்புகள்
+Up to {1} apps, a short wait	{1} ஆப்கள் வரை, சிறிய காத்திருப்பு
+Any number of apps, strict pauses, daily limits, and playful pauses (a sum, a sentence, breathing, say why)	எத்தனை ஆப்களும், கண்டிப்பான இடைநிறுத்தங்கள், தினசரி வரம்புகள் மற்றும் சுவாரஸ்யமான இடைநிறுத்தங்கள் (ஒரு கூட்டல், ஒரு வாக்கியம், மூச்சு, காரணம் சொல்வது)
+Pause before an app	ஆப்புக்கு முன் இடைநிறுத்தம்
+Up to {1} apps	{1} ஆப்கள் வரை
+Groups of apps, any number of locks, and strict locks	ஆப்களின் குழுக்கள், எத்தனை லாக்குகளும், கண்டிப்பான லாக்குகளும்
+One routine	ஒரு வழக்கம்
+Weekday, weekend and exam-day routines	வார நாள், வார இறுதி மற்றும் தேர்வு நாள் வழக்கங்கள்
+Goals and type totals	இலக்குகளும் வகை வாரி மொத்தங்களும்
+Not included	சேர்க்கப்படவில்லை
+Daily goals with streaks	தொடர் நாட்களுடன் தினசரி இலக்குகள்
+Colour looks of the home screen	முகப்புத் திரையின் வண்ணத் தோற்றங்கள்
+The first look	முதல் தோற்றம்
+All the looks	எல்லாத் தோற்றங்களும்
+Ads	விளம்பரங்கள்
+Small ads in the dashboard	டாஷ்போர்டில் சிறிய விளம்பரங்கள்
+No ads	விளம்பரங்கள் இல்லை
+You have Pro. Thank you!	உங்களிடம் Pro உள்ளது. நன்றி!
+One purchase, no subscription. Paid once through Google Play.	ஒருமுறை வாங்குதல், சந்தா இல்லை. Google Play வழியாக ஒருமுறை மட்டும் பணம் செலுத்தவும்.
+Get Pro for {1}	{1}க்கு Pro பெறுங்கள்
+Get Pro	Pro பெறுங்கள்
+The price comes from Google Play. It shows here once Play answers, and Pro can only be bought in a copy of the app that was installed from Google Play.	விலை Google Play-இலிருந்து வருகிறது. Play பதிலளித்ததும் இங்கே தெரியும், மேலும் Pro-வை Google Play-இலிருந்து நிறுவிய ஆப்பில் மட்டுமே வாங்க முடியும்.
+Switched on for testing on this phone.	இந்த ஃபோனில் சோதனைக்காக இயக்கப்பட்டது.
+Try it first	முதலில் முயன்று பாருங்கள்
+Watch short videos, use Pro features for a while	சிறு வீடியோக்களைப் பார்த்து, சிறிது நேரம் Pro வசதிகளைப் பயன்படுத்துங்கள்
+Pick a feature, then choose how many short videos to watch: 1 video opens just that feature for a day, 2 videos for 3 days, 3 videos the whole group it is in (all the pauses, say). Each feature has its own video and its own time, so opening one never opens another. Nothing is charged. When the time is up, what you set up with it goes back to the free version (Pro keeps it for good).	ஒரு வசதியைத் தேர்ந்தெடுத்து, எத்தனை சிறு வீடியோக்களைப் பார்க்க வேண்டும் என்று தேர்ந்தெடுங்கள்: 1 வீடியோ அந்த வசதியை மட்டும் ஒரு நாளுக்குத் திறக்கும், 2 வீடியோ 3 நாட்களுக்கு, 3 வீடியோ அது இருக்கும் முழுக் குழுவையும் (எ.கா. எல்லா இடைநிறுத்தங்களும்). ஒவ்வொரு வசதிக்கும் அதற்கே உரிய வீடியோவும் நேரமும் உண்டு, எனவே ஒன்றைத் திறப்பது மற்றொன்றைத் திறக்காது. கட்டணம் எதுவும் இல்லை. நேரம் முடிந்ததும், அதனுடன் நீங்கள் அமைத்தது இலவசப் பதிப்புக்குத் திரும்பும் (Pro அதை நிரந்தரமாக வைத்திருக்கும்).
+{1} is part of Pro.	{1} Pro-வின் பகுதி.
+Open it free	இலவசமாகத் திற
+What is free, and what Pro adds	எது இலவசம், Pro என்ன சேர்க்கிறது
+Free:  {1}	இலவசம்:  {1}
+Pro:  {1}	Pro:  {1}
+Restore my purchase	என் வாங்குதலை மீட்டெடு
+Tied to your Google Play account, so it comes back on a new phone. Refunds follow Google Play's rules. If Pro ever ends (a refund, say), nothing you made is taken away: a routine, a lock or a pause that goes past the free limit stays saved and starts working again with Pro. A video pass is different: when its time is up, what you set up with it goes back to the free version.	உங்கள் Google Play கணக்குடன் இணைக்கப்பட்டுள்ளது, எனவே புதிய ஃபோனில் திரும்பக் கிடைக்கும். பணத்தைத் திரும்பப் பெறுதல் Google Play விதிகளின்படி நடக்கும். Pro எப்போதாவது முடிந்தால் (எ.கா. பணம் திரும்பப் பெறப்பட்டால்), நீங்கள் உருவாக்கியது எதுவும் நீக்கப்படாது: இலவச வரம்பைத் தாண்டிய வழக்கம், லாக் அல்லது இடைநிறுத்தம் சேமிக்கப்பட்டிருக்கும், Pro உடன் மீண்டும் வேலை செய்யும். வீடியோ பாஸ் வேறு: அதன் நேரம் முடிந்ததும், அதனுடன் நீங்கள் அமைத்தது இலவசப் பதிப்புக்குத் திரும்பும்.
+{1} is part of Pro, a one-time purchase that also removes the ads.	{1} Pro-வின் பகுதி, இது ஒருமுறை வாங்குதல்; விளம்பரங்களையும் நீக்கும்.
+{1} is open now. To finish, you also need: {2}. It has its own video, or it is part of Pro, a one-time purchase that also removes the ads.	{1} இப்போது திறந்துள்ளது. முடிக்க உங்களுக்கு இதுவும் தேவை: {2}. இதற்குத் தனி வீடியோ உள்ளது, அல்லது இது Pro-வின் பகுதி, இது ஒருமுறை வாங்குதல்; விளம்பரங்களையும் நீக்கும்.
+Part of Pro	Pro-வின் பகுதி
+{1}\n\nOr watch short videos to use it free. You choose how many:	{1}\n\nஅல்லது இலவசமாகப் பயன்படுத்த சிறு வீடியோக்களைப் பாருங்கள். எத்தனை என்பதை நீங்களே தேர்ந்தெடுங்கள்:
+When the time is up, what you set up with it goes back to the free version.	 நேரம் முடிந்ததும், அதனுடன் நீங்கள் அமைத்தது இலவசப் பதிப்புக்குத் திரும்பும்.
+Only the videos you watch to the end count, and stopping early still keeps what you earned. Each thing you open has its own video and its own time.{1}	முடிவுவரை நீங்கள் பார்க்கும் வீடியோக்கள் மட்டுமே கணக்கிடப்படும், முன்னதாக நிறுத்தினாலும் நீங்கள் பெற்றது நிலைக்கும். நீங்கள் திறக்கும் ஒவ்வொன்றுக்கும் தனி வீடியோவும் தனி நேரமும் உண்டு.{1}
+Watch videos: open {1} free	வீடியோ பாருங்கள்: {1} இலவசமாகத் திற
+{1}: open until {2}.	{1}: {2} வரை திறந்துள்ளது.
+Keep {1} for 3 days: watch 1 more video	{1}ஐ 3 நாட்களுக்கு வைத்திருங்கள்: இன்னும் 1 வீடியோ பாருங்கள்
+That report is no longer on the phone	அந்த அறிக்கை இனி ஃபோனில் இல்லை
+In your Google Drive backup.	உங்கள் Google Drive காப்புப்பிரதியில்.
+Goes into your Google Drive backup next time it runs.	அடுத்த முறை காப்புப்பிரதி இயங்கும்போது உங்கள் Google Drive காப்புப்பிரதியில் சேரும்.
+Tip: sign in under Backup to keep every day in your Google Drive.	குறிப்பு: ஒவ்வொரு நாளையும் உங்கள் Google Drive-இல் வைத்திருக்க காப்புப்பிரதியில் உள்நுழையுங்கள்.
+Made on your phone by Dinacharya Launcher  ·  page {1} of {2}	உங்கள் ஃபோனில் Dinacharya Launcher உருவாக்கியது  ·  பக்கம் {1}/{2}
+Time by activity type, so far	இதுவரை செயல்பாட்டு வகை வாரியாக நேரம்
+Time by activity type	செயல்பாட்டு வகை வாரியாக நேரம்
+Suggestions for tomorrow	நாளைக்கான பரிந்துரைகள்
+TODAY SO FAR	இன்று இதுவரை
+DAILY REPORT	தினசரி அறிக்கை
+{1} to {2}   ·   {3}	{1} முதல் {2} வரை   ·   {3}
+Updated {1}	{1}க்கு புதுப்பிக்கப்பட்டது
+How the score is made	மதிப்பெண் எப்படி உருவாகிறது
+{1} kept, {2} changed, {3} taken off, {4} not answered, out of {5} slots.	{5} ஸ்லாட்களில் {1} கடைப்பிடிக்கப்பட்டன, {2} மாற்றப்பட்டன, {3} நீக்கப்பட்டன, {4}க்கு பதில் இல்லை.
+No slot has been answered yet.	இதுவரை எந்த ஸ்லாட்டுக்கும் பதில் அளிக்கப்படவில்லை.
+Turn on alarms to measure this.	இதை அளக்க அலாரங்களை இயக்குங்கள்.
+Phone in use for {1}% of task time ({2} of {3}).	வேலை நேரத்தில் {1}% ஃபோன் பயன்படுத்தப்பட்டது ({3}ல் {2}).
+Not enough task time yet.	போதுமான வேலை நேரம் இன்னும் இல்லை.
+Allow usage access to measure this.	இதை அளக்க பயன்பாட்டு அணுகலை அனுமதியுங்கள்.
+{1} late	{1} தாமதம்
+{1}, slept {2} of a planned {3}.	{1}, திட்டமிட்ட {3}ல் {2} தூக்கம்.
+On time	சரியான நேரத்தில்
+Measured after bedtime.	உறங்கும் நேரத்திற்குப் பிறகு அளக்கப்பட்டது.
+Answer the bedtime alarm to measure this.	இதை அளக்க உறங்கும் நேர அலாரத்திற்கு பதிலளியுங்கள்.
+Phone use	ஃபோன் பயன்பாடு
+Phone use was not available. Allow usage access in the app to include it.	ஃபோன் பயன்பாடு கிடைக்கவில்லை. அதைச் சேர்க்க ஆப்பில் பயன்பாட்டு அணுகலை அனுமதியுங்கள்.
+{1} during task time ({2}% of it)	வேலை நேரத்தில் {1} (அதில் {2}%)
+{1} in the hour before bed	உறங்குவதற்கு முந்தைய மணி நேரத்தில் {1}
+Bars: phone use each hour.  Strip: your plan by type.	பட்டைகள்: ஒவ்வொரு மணிநேரத்தின் ஃபோன் பயன்பாடு.  கீற்று: வகை வாரியாக உங்கள் திட்டம்.
+Top apps	அதிகம் பயன்படுத்தப்பட்ட ஆப்கள்
+Focus at the home screen	முகப்புத் திரையில் ஃபோகஸ்
+times you went back after the pause	முறை இடைநிறுத்தத்திற்குப் பிறகு நீங்கள் திரும்பிச் சென்றீர்கள்
+times you opened the app anyway	முறை நீங்கள் எப்படியும் ஆப்பைத் திறந்தீர்கள்
+Paused most: {1}	அதிகம் இடைநிறுத்தப்பட்டது: {1}
+Time planned and kept	திட்டமிட்டதும் கடைப்பிடித்ததுமான நேரம்
+Planned	திட்டமிட்டது
+{1} so far	இதுவரை {1}
+not tracked	அளக்கப்படவில்லை
+Task	வேலை
+Rest	ஓய்வு
+Meal	உணவு
+Personal	தனிப்பட்டது
+Not kept	கடைப்பிடிக்கப்படவில்லை
+Average per day. Slots you kept, or that had no alarm to ask you, count as done.	ஒரு நாளுக்கு சராசரி. நீங்கள் கடைப்பிடித்த அல்லது உங்களிடம் கேட்க அலாரம் இல்லாத ஸ்லாட்கள் முடிந்ததாகக் கணக்கிடப்படும்.
+Slots you kept, or that had no alarm to ask you, count as done.	நீங்கள் கடைப்பிடித்த அல்லது உங்களிடம் கேட்க அலாரம் இல்லாத ஸ்லாட்கள் முடிந்ததாகக் கணக்கிடப்படும்.
+·   went to sleep {1}	   ·   உறக்கம் {1}
+·   wake-up {1}	   ·   எழுந்தது {1}
+Slept {1} of a planned {2}.	திட்டமிட்ட {2}ல் {1} தூக்கம்.
+Not recorded yet.	இன்னும் பதிவாகவில்லை.
+Not recorded. Answer the bedtime alarm and the app will track it.	பதிவாகவில்லை. உறங்கும் நேர அலாரத்திற்கு பதிலளியுங்கள், ஆப் அதைப் பதிவு செய்யும்.
+You asked for more time {1} ({2} in all).	நீங்கள் {1} கூடுதல் நேரம் கேட்டீர்கள் (மொத்தம் {2}).
+Your day, slot by slot	உங்கள் நாள், ஸ்லாட் வாரியாக
+TIME	நேரம்
+SLOT	ஸ்லாட்
+STATUS	நிலை
+PHONE	ஃபோன்
+LAST DAYS	கடந்த நாட்கள்
+Your week	உங்கள் வாரம்
+Average score	சராசரி மதிப்பெண்
+Phone per day	ஒரு நாளுக்கு ஃபோன்
+Late to bed, average	தாமதமாக உறங்குதல், சராசரி
+Daily score	தினசரி மதிப்பெண்
+Phone time per day	ஒரு நாளுக்கு ஃபோன் நேரம்
+Most reliable: {1}, kept {2}% of the time.	மிகவும் நம்பகமானது: {1}, {2}% நேரம் கடைப்பிடிக்கப்பட்டது.
+Needs attention: {1}, kept {2}% of the time.	கவனம் தேவை: {1}, {2}% நேரம் கடைப்பிடிக்கப்பட்டது.
+Days with a score of 70 or more: {1} of {2}.	70 அல்லது அதற்கு மேல் மதிப்பெண் பெற்ற நாட்கள்: {2}ல் {1}.
+Habits appear after a few answered days.	சில நாட்கள் பதிலளித்த பிறகு பழக்கங்கள் தெரியும்.
+Suggestions	பரிந்துரைகள்
+Open Settings, Apps, Dinacharya Launcher	அமைப்புகள், பிறகு ஆப்கள், பிறகு Dinacharya Launcher என்பதைத் திறக்கவும்
+Android is holding this setting back	Android இந்த அமைப்பைத் தடுத்து வைத்துள்ளது
+Android locks some switches for an app that was installed from a file instead of Google Play. It is a one-time unlock:\n\n1. Tap “Open app info” below.\n2. Tap the ⋮ menu at the top right.\n3. Choose “Allow restricted settings” and confirm with your PIN or fingerprint.\n4. Go back and switch on Usage access.\n\nIf ⋮ does not show that choice yet, first try to switch Usage access on once: Android then shows it.	Google Play-க்குப் பதிலாக கோப்பிலிருந்து நிறுவிய ஆப்பின் சில சுவிட்ச்களை Android பூட்டி வைக்கும். இது ஒருமுறை மட்டும் செய்யும் திறப்பு:\n\n1. கீழே “ஆப் தகவலைத் திற” என்பதைத் தட்டுங்கள்.\n2. மேல் வலதுபுறம் ⋮ மெனுவைத் தட்டுங்கள்.\n3. “தடைசெய்யப்பட்ட அமைப்புகளை அனுமதி” என்பதைத் தேர்ந்தெடுத்து உங்கள் PIN அல்லது கைரேகையால் உறுதிப்படுத்துங்கள்.\n4. திரும்பிச் சென்று பயன்பாட்டு அணுகலை இயக்குங்கள்.\n\n⋮ இல் இந்தத் தேர்வு இன்னும் தெரியவில்லை என்றால், முதலில் பயன்பாட்டு அணுகலை ஒருமுறை இயக்கிப் பாருங்கள்: அப்போது Android அதைக் காட்டும்.
+Teal	டீல்
+Sunset	சூரியாஸ்தமனம்
+Ocean	கடல்
+Graphite	கிராஃபைட்
+My routine	என் வழக்கம்
+Study	படிப்பு
+Revision	மறுபார்வை
+Practice	பயிற்சி
+Work	வேலை
+Nap	சிறு தூக்கம்
+Exercise	உடற்பயிற்சி
+Reading	வாசிப்பு
+Family time	குடும்ப நேரம்
+{1}h	{1}ம
+Wake up & freshen up	எழுந்து தயாராகுங்கள்
+Yoga & stretching	யோகா & நீட்சிப் பயிற்சி
+Breakfast	காலை உணவு
+Morning focus block	காலை ஃபோகஸ் பிளாக்
+Short break	சிறிய இடைவேளை
+Reading & notes	வாசிப்பு & குறிப்புகள்
+Tea break	தேநீர் இடைவேளை
+Practice problems	பயிற்சிக் கேள்விகள்
+Lunch	மதிய உணவு
+Power nap	சிறு தூக்கம்
+Project work	திட்டப் பணி
+Walk & tea	நடை & தேநீர்
+Evening walk	மாலை நடை
+Dinner	இரவு உணவு
+Review & plan tomorrow	மறுபார்வை & நாளைய திட்டம்
+Family & free time	குடும்பம் & ஓய்வு நேரம்
+Wind down	உறங்கத் தயாராதல்
+Start of day	நாளின் தொடக்கம்
+Set one time, the day follows	ஒரு நேரத்தை அமையுங்கள், மீதி நாள் அதைப் பின்பற்றும்
+Wake-up time	எழும் நேரம்
+First task time	முதல் வேலையின் நேரம்
+I wake up at	நான் எழும் நேரம்
+Slots	ஸ்லாட்கள்
+Tap a name to rename it, ⋮ for more	பெயரை மாற்ற அதைத் தட்டவும், மேலும் விருப்பங்களுக்கு ⋮
+Hold ≡ and drag to move a slot. Swipe a slot left to delete it, right to add one below it. The day keeps its length: minutes only move from one slot to another.	ஸ்லாட்டை நகர்த்த ≡ ஐ அழுத்திப் பிடித்து இழுக்கவும். ஸ்லாட்டை நீக்க இடப்பக்கம் ஸ்வைப் செய்யவும், அதன் கீழே புதியதைச் சேர்க்க வலப்பக்கம். நாளின் நீளம் மாறாது: நிமிடங்கள் ஒரு ஸ்லாட்டிலிருந்து இன்னொன்றுக்கு மட்டுமே நகரும்.
+＋  Add slot	＋  ஸ்லாட் சேர்
+Add rests	ஓய்வுகளைச் சேர்
+Paste from web app	வலை ஆப்பிலிருந்து ஒட்டு
+Reset to sample	மாதிரிக்கு மீட்டமை
+Activity types	செயல்பாட்டு வகைகள்
+Give a slot a type	ஸ்லாட்டுக்கு ஒரு வகை கொடுங்கள்
+A type is a kind of activity inside a main kind, for example Study inside Task. Pick it on any slot. The home screen shows it under the slot's name; reports and goals count it. Tap a type to remove it.	வகை என்பது ஒரு முதன்மை வகைக்குள் இருக்கும் செயல்பாட்டின் ஒரு வகையாகும், எடுத்துக்காட்டாக வேலைக்குள் படிப்பு. எந்த ஸ்லாட்டிலும் அதைத் தேர்ந்தெடுக்கலாம். முகப்புத் திரை அதை ஸ்லாட்டின் பெயருக்குக் கீழே காட்டும்; அறிக்கைகளும் இலக்குகளும் அதைக் கணக்கிடும். ஒரு வகையை நீக்க அதைத் தட்டவும்.
+The bells on the slots below will not ring until you turn alarms on.	அலாரங்களை இயக்கும் வரை கீழுள்ள ஸ்லாட்களின் மணிகள் ஒலிக்காது.
+Turn them on so the bells on your slots ring when a slot starts?	ஸ்லாட் தொடங்கும்போது உங்கள் ஸ்லாட்களின் மணிகள் ஒலிக்க அவற்றை இயக்கவா?
+＋ New	＋ புதியது
+＋ Weekend routine	＋ வார இறுதி வழக்கம்
+Want a different day on weekends or exam days? Add another routine and pick its days.	வார இறுதிகளில் அல்லது தேர்வு நாட்களில் வேறு நாள் வேண்டுமா? இன்னொரு வழக்கத்தைச் சேர்த்து அதன் நாட்களைத் தேர்ந்தெடுங்கள்.
+: uses {1}	: {1} பயன்படுத்துகிறது
+: uses this routine	: இந்த வழக்கத்தைப் பயன்படுத்துகிறது
+Not used on any day yet: tap the days that should follow it.	இன்னும் எந்த நாளிலும் பயன்படுத்தப்படவில்லை: இதைப் பின்பற்ற வேண்டிய நாட்களைத் தட்டவும்.
+Rename	பெயர் மாற்று
+Every day needs a routine. Pick another routine, then tap this day to give it to that one.	ஒவ்வொரு நாளுக்கும் ஒரு வழக்கம் தேவை. வேறொரு வழக்கத்தைத் தேர்ந்தெடுத்து, பிறகு இந்த நாளைத் தட்டி அதை அதற்குக் கொடுங்கள்.
+{1} now follows “{2}”.	{1} இப்போது “{2}” ஐப் பின்பற்றுகிறது.
+Weekday and weekend routines	வார நாள் மற்றும் வார இறுதி வழக்கங்கள்
+Exam day	தேர்வு நாள்
+Weekend	வார இறுதி
+Copy of “{1}”	“{1}” இன் நகல்
+Name	பெயர்
+Start from	இதிலிருந்து தொடங்கு
+You can change its slots and start time after, and pick the days it is used on.	பிறகு அதன் ஸ்லாட்களையும் தொடக்க நேரத்தையும் மாற்றலாம், எந்த நாட்களில் பயன்படுத்த வேண்டும் என்பதையும் தேர்ந்தெடுக்கலாம்.
+New routine	புதிய வழக்கம்
+Create	உருவாக்கு
+Rename routine	வழக்கத்தின் பெயரை மாற்று
+Delete “{1}”?	“{1}” ஐ நீக்கவா?
+Its days go back to “{1}”. Its slots are deleted.	அதன் நாட்கள் “{1}” க்குத் திரும்பும். அதன் ஸ்லாட்கள் நீக்கப்படும்.
+Deleted “{1}”.	“{1}” நீக்கப்பட்டது.
+my first task starts at	என் முதல் வேலை தொடங்கும் நேரம்
+Over by {1}. Your sleep runs past the next wake-up.	{1} அதிகம். உங்கள் உறக்கம் அடுத்த எழும் நேரத்தைத் தாண்டிச் செல்கிறது.
+Unplanned time: {1} of the 24 hours.	திட்டமிடாத நேரம்: 24 மணி நேரத்தில் {1}.
+Your slots add up to exactly 24 hours.	உங்கள் ஸ்லாட்கள் சரியாக 24 மணி நேரம் வருகின்றன.
+Wake-up {1}   ·   First task {2}   ·   {3}\n{4}	எழுதல் {1}   ·   முதல் வேலை {2}   ·   {3}\n{4}
+Add a Task slot first	முதலில் ஒரு வேலை ஸ்லாட்டைச் சேர்க்கவும்
+Type {1}. Tap to remove.	வகை {1}. நீக்கத் தட்டவும்.
+＋ Add	＋ சேர்
+No slot uses this type.	எந்த ஸ்லாட்டும் இந்த வகையைப் பயன்படுத்தவில்லை.
+Its daily goal is removed too.	அதன் தினசரி இலக்கும் நீக்கப்படும்.
+Remove “{1}”?	“{1}” ஐ நீக்கவா?
+Removed “{1}”.	“{1}” நீக்கப்பட்டது.
+e.g. Maths	எ.கா. கணிதம்
+Type name	வகையின் பெயர்
+New {1} type	புதிய {1} வகை
+Add	சேர்
+Write a name for the type	வகைக்கு ஒரு பெயரை எழுதுங்கள்
+“{1}” was already there	“{1}” ஏற்கெனவே இருந்தது
+Added “{1}” under {2}	“{1}” {2} இன் கீழ் சேர்க்கப்பட்டது
+Drag to move this slot	இந்த ஸ்லாட்டை நகர்த்த இழுக்கவும்
+Slot name	ஸ்லாட் பெயர்
+Length. Tap to type the minutes.	நீளம். நிமிடங்களை உள்ளிடத் தட்டவும்.
+5 minutes shorter. Hold for 30.	5 நிமிடம் குறைவு. 30 க்கு அழுத்திப் பிடிக்கவும்.
+5 minutes longer. Hold for 30.	5 நிமிடம் அதிகம். 30 க்கு அழுத்திப் பிடிக்கவும்.
+Alarm on for “{1}”	“{1}” க்கு அலாரம் இயக்கத்தில்
+No alarm for “{1}”	“{1}” க்கு அலாரம் இல்லை
+More: add below, note, duplicate, delete	மேலும்: கீழே சேர், குறிப்பு, நகலெடு, நீக்கு
+Add a slot below	கீழே ஒரு ஸ்லாட்டைச் சேர்
+Add a note	குறிப்பைச் சேர்
+Edit the note	குறிப்பைத் திருத்து
+Duplicate (splits this slot in two)	நகலெடு (இந்த ஸ்லாட்டை இரண்டாகப் பிரிக்கும்)
+Alarms are off. Tap to turn them on.	அலாரங்கள் அணைந்துள்ளன. இயக்கத் தட்டவும்.
+Alarm on. Tap to switch off for this slot.	அலாரம் இயக்கத்தில். இந்த ஸ்லாட்டுக்கு அணைக்கத் தட்டவும்.
+Alarm off. Tap to switch on for this slot.	அலாரம் அணைந்துள்ளது. இந்த ஸ்லாட்டுக்கு இயக்கத் தட்டவும்.
+Minutes (1 to 1440)	நிமிடங்கள் (1 முதல் 1440)
+Length of “{1}”	“{1}” இன் நீளம்
+Write a number of minutes	நிமிடங்களின் எண்ணிக்கையை எழுதுங்கள்
+Use 1 to 1440 minutes	1 முதல் 1440 நிமிடங்களைப் பயன்படுத்துங்கள்
+e.g. Polity chapter 4, then 20 practice questions	எ.கா. அரசியல் அமைப்பு அத்தியாயம் 4, பிறகு 20 பயிற்சிக் கேள்விகள்
+Shown on this slot and on its alarm.	இது இந்த ஸ்லாட்டிலும் அதன் அலாரத்திலும் காட்டப்படும்.
+Note for “{1}”	“{1}” க்கான குறிப்பு
+Note removed.	குறிப்பு நீக்கப்பட்டது.
+No type	வகை இல்லை
+＋ New type…	＋ புதிய வகை…
+Moved “{1}”.	“{1}” நகர்த்தப்பட்டது.
+Keep at least one slot	குறைந்தது ஒரு ஸ்லாட்டை வைத்திருங்கள்
+Its {1} stay in your day. Where should they go?	அதன் {1} உங்கள் நாளிலேயே இருக்கும். அவை எங்கே செல்ல வேண்டும்?
+Share them out over the other slots	மற்ற ஸ்லாட்களில் பகிர்ந்தளி
+This slot is too short to split	இந்த ஸ்லாட்டைப் பிரிக்க முடியாத அளவுக்குச் சிறியது
+Split “{1}” into two slots.	“{1}” ஐ இரண்டு ஸ்லாட்களாகப் பிரி.
+It goes right after “{1}”. Your day stays the same length, so its time is taken from other slots.	இது “{1}” க்கு உடனே பிறகு வரும். உங்கள் நாளின் நீளம் மாறாது, எனவே இதன் நேரம் மற்ற ஸ்லாட்களிலிருந்து எடுக்கப்படும்.
+Name, e.g. Maths homework	பெயர், எ.கா. கணித வீட்டுப்பாடம்
+Kind	பிரிவு
+Type (optional)	வகை (விருப்பம்)
+or write a new type	அல்லது புதிய வகையை எழுதுங்கள்
+Minutes	நிமிடங்கள்
+Take the minutes from	நிமிடங்களை எங்கிருந்து எடுப்பது
+This slot: “{1}”	இந்த ஸ்லாட்: “{1}”
+The next slot: “{1}”	அடுத்த ஸ்லாட்: “{1}”
+All the other slots (not Sleep)	மற்ற அனைத்து ஸ்லாட்கள் (உறக்கம் தவிர)
+Up to {1} min can be taken from here.	இங்கிருந்து அதிகபட்சம் {1} நிமிடம் எடுக்கலாம்.
+There is no room to take from here. Pick another source.	இங்கிருந்து எடுக்க இடமில்லை. வேறொரு மூலத்தைத் தேர்ந்தெடுங்கள்.
+Add a slot	ஸ்லாட் சேர்
+Give the slot a name, or pick a type.	ஸ்லாட்டுக்கு ஒரு பெயர் கொடுங்கள், அல்லது ஒரு வகையைத் தேர்ந்தெடுங்கள்.
+Write how many minutes it takes.	இதற்கு எத்தனை நிமிடங்கள் ஆகும் என்பதை எழுதுங்கள்.
+It needs at least 1 minute.	இதற்குக் குறைந்தது 1 நிமிடம் தேவை.
+Only {1} min can be taken from there. Use fewer minutes or another source.	அங்கிருந்து {1} நிமிடம் மட்டுமே எடுக்கலாம். குறைவான நிமிடங்களை அல்லது வேறொரு மூலத்தைப் பயன்படுத்துங்கள்.
+There is no room to take from there. Pick another source.	அங்கிருந்து எடுக்க இடமில்லை. வேறொரு மூலத்தைத் தேர்ந்தெடுங்கள்.
+That did not fit. Try fewer minutes.	அது பொருந்தவில்லை. குறைவான நிமிடங்களை முயலுங்கள்.
+the other slots	மற்ற ஸ்லாட்கள்
+Added “{1}”, {2} min, taken from {3}.	“{1}” சேர்க்கப்பட்டது, {2} நிமிடம், {3} இலிருந்து எடுக்கப்பட்டது.
+No back-to-back tasks found	தொடர்ச்சியான வேலைகள் எதுவும் இல்லை
+No task has time to spare for a rest	ஓய்வுக்கு நேரம் மிச்சமுள்ள வேலை எதுவும் இல்லை
+Reset “{1}”?	“{1}” ஐ மீட்டமைக்கவா?
+Its slots are replaced with the sample day (wake-up 5:30 AM). You can undo this.	அதன் ஸ்லாட்கள் மாதிரி நாளால் மாற்றப்படும் (எழுதல் 5:30 AM). இதைச் செயல்தவிர்க்கலாம்.
+“{1}” reset to the sample day.	“{1}” மாதிரி நாளுக்கு மீட்டமைக்கப்பட்டது.
+Copy your routine in the web app first	முதலில் வலை ஆப்பில் உங்கள் வழக்கத்தை நகலெடுங்கள்
+Routine imported into “{1}”.	வழக்கம் “{1}” இல் இறக்குமதி செய்யப்பட்டது.
+Swipes, look, pause rules, hidden apps	ஸ்வைப்கள், தோற்றம், இடைநிறுத்த விதிகள், மறைத்த ஆப்கள்
+Permissions and settings the app needs, with a tick for each	ஆப்புக்குத் தேவையான அனுமதிகளும் அமைப்புகளும், ஒவ்வொன்றுக்கும் ஒரு டிக்குடன்
+Home screen look and alarms	முகப்புத் திரைத் தோற்றமும் அலாரங்களும்
+Home screen look	முகப்புத் திரைத் தோற்றம்
+Colours, clock, phone time, spacing	நிறங்கள், கடிகாரம், ஃபோன் நேரம், இடைவெளி
+On or off, test alarm, phone checklist	இயக்கம் அல்லது நிறுத்தம், சோதனை அலாரம், ஃபோன் சரிபார்ப்புப் பட்டியல்
+Permissions	அனுமதிகள்
+What the app may do, and why	ஆப் என்ன செய்யலாம், ஏன்
+Support	ஆதரவு
+Help and problem report	உதவி மற்றும் சிக்கல் அறிக்கை
+How things work, copy a report	விஷயங்கள் எப்படி வேலை செய்கின்றன, அறிக்கையை நகலெடு
+Ad privacy choices	விளம்பர தனியுரிமைத் தேர்வுகள்
+Change what you agreed to for ads	விளம்பரங்களுக்கு நீங்கள் ஒப்புக்கொண்டதை மாற்றுங்கள்
+About	பற்றி
+Version and developer	பதிப்பு மற்றும் உருவாக்குநர்
+‹  Settings	‹  அமைப்புகள்
+Theme	தீம்
+Night	இரவு
+Colours	நிறங்கள்
+On the home screen	முகப்புத் திரையில்
+24-hour clock	24 மணி நேரக் கடிகாரம்
+Show the time	நேரத்தைக் காட்டு
+Show phone screen time today	இன்றைய ஃபோன் திரை நேரத்தைக் காட்டு
+Allow usage access	பயன்பாட்டு அணுகலை அனுமதி
+Show “Developed by” mark	“Developed by” குறியைக் காட்டு
+Spacing	இடைவெளி
+Space at top	மேலே உள்ள இடம்
+Space at bottom	கீழே உள்ள இடம்
+Add top space if your lock screen shows a big clock, and bottom space for the app dock.	உங்கள் பூட்டுத் திரையில் பெரிய கடிகாரம் தெரிந்தால் மேலே இடம் கூட்டுங்கள், ஆப் டாக்குக்குக் கீழே இடம்.
+The {1} colours	{1} நிறங்கள்
+Screen time is read on this phone only. Nothing is sent anywhere.	திரை நேரம் இந்த ஃபோனில் மட்டுமே படிக்கப்படுகிறது. எதுவும் எங்கும் அனுப்பப்படுவதில்லை.
+To show screen time, Android needs your OK. Tap the button, find Dinacharya Launcher in the list and switch it on.	திரை நேரத்தைக் காட்ட Android க்கு உங்கள் சம்மதம் தேவை. பொத்தானைத் தட்டி, பட்டியலில் Dinacharya Launcher ஐக் கண்டுபிடித்து இயக்குங்கள்.
+Dinacharya Pro ✓	Dinacharya Pro ✓
+Thank you for supporting the app.	ஆப்பை ஆதரித்ததற்கு நன்றி.
+This phone	இந்த ஃபோன்
+Phone time on the home screen and in reports.	முகப்புத் திரையிலும் அறிக்கைகளிலும் ஃபோன் நேரம்.
+The alarm question, also on the lock screen.	அலாரக் கேள்வி, பூட்டுத் திரையிலும்.
+Rings at the exact minute a slot starts.	ஸ்லாட் தொடங்கும் சரியான நிமிடத்தில் ஒலிக்கும்.
+Keeps alarms and backups on time on phones that stop apps.	ஆப்களை நிறுத்தும் ஃபோன்களில் அலாரங்களையும் காப்புப்பிரதிகளையும் சரியான நேரத்தில் வைத்திருக்கும்.
+{1} Not allowed yet.	{1} இன்னும் அனுமதிக்கப்படவில்லை.
+Open the phone's Settings, then Apps, Dinacharya Launcher	ஃபோனின் அமைப்புகளைத் திறந்து, பிறகு ஆப்கள், Dinacharya Launcher
+Help	உதவி
+Quick guide	விரைவு வழிகாட்டி
+Dinacharya Launcher is your home screen: no apps on it, just your day, with the slot you are in highlighted. Tap your day to open the dashboard, swipe up for every app, down for notifications, press and hold for its settings. Settings > Home screen has the rest, and Take the tour shows it all.	Dinacharya Launcher உங்கள் முகப்புத் திரை: அதில் ஆப்கள் இல்லை, உங்கள் நாள் மட்டுமே, நீங்கள் இருக்கும் ஸ்லாட் சிறப்பிக்கப்பட்டிருக்கும். டாஷ்போர்டைத் திறக்க உங்கள் நாளைத் தட்டவும், எல்லா ஆப்களுக்கும் மேலே ஸ்வைப் செய்யவும், அறிவிப்புகளுக்குக் கீழே, அதன் அமைப்புகளுக்கு அழுத்திப் பிடிக்கவும். அமைப்புகள் > முகப்புத் திரையில் மற்றவை உள்ளன, சுற்றுப்பயணத்தைப் பாருங்கள் அனைத்தையும் காட்டும்.
+Pick a start time; every slot follows. Drag ≡ to move a slot, swipe left to delete, swipe right to add one below. Tap ⋮ on a slot for notes, duplicating and more.	ஒரு தொடக்க நேரத்தைத் தேர்ந்தெடுங்கள்; ஒவ்வொரு ஸ்லாட்டும் அதைப் பின்தொடரும். ஸ்லாட்டை நகர்த்த ≡ ஐ இழுக்கவும், நீக்க இடப்பக்கம் ஸ்வைப் செய்யவும், கீழே ஒன்றைச் சேர்க்க வலப்பக்கம் ஸ்வைப் செய்யவும். குறிப்புகள், நகலெடுத்தல் மற்றும் பலவற்றுக்கு ஸ்லாட்டில் ⋮ ஐத் தட்டவும்.
+On the Routine tab, add another routine and tap the days it is used on. Alarms, the home screen and reports follow the right one each day.	வழக்கம் தாவலில் இன்னொரு வழக்கத்தைச் சேர்த்து, அது பயன்படுத்தப்படும் நாட்களைத் தட்டவும். அலாரங்கள், முகப்புத் திரை, அறிக்கைகள் ஒவ்வொரு நாளும் சரியான வழக்கத்தைப் பின்பற்றும்.
+Weekdays and weekends	வார நாட்களும் வார இறுதிகளும்
+Turn alarms on from the Alarms card on Home. When one rings, say if you continue as planned or change the slot for today. If one does not ring, open Settings > Alarms: the checklist shows what is missing, and Ring a test alarm tries it in 10 seconds.	முகப்பில் உள்ள அலாரம் அட்டையிலிருந்து அலாரங்களை இயக்குங்கள். ஒன்று ஒலிக்கும்போது, திட்டப்படி தொடர்கிறீர்களா அல்லது இன்றைக்கு ஸ்லாட்டை மாற்றுகிறீர்களா என்று சொல்லுங்கள். ஒன்று ஒலிக்கவில்லை என்றால், அமைப்புகள் > அலாரங்களைத் திறக்கவும்: சரிபார்ப்புப் பட்டியல் எது இல்லை என்பதைக் காட்டும், சோதனை அலாரத்தை ஒலிக்கச் செய் அதை 10 விநாடிகளில் சோதிக்கும்.
+On Insights, set a daily goal for a type such as Study. Kept slots of that type fill it up; days in a row make a streak.	இன்சைட்ஸில் படிப்பு போன்ற ஒரு வகைக்கு தினசரி இலக்கை அமையுங்கள். அந்த வகையின் நிறைவேற்றிய ஸ்லாட்கள் அதை நிரப்பும்; தொடர்ச்சியான நாட்கள் ஒரு தொடர்ச்சியை உருவாக்கும்.
+Undo	செயல்தவிர்
+After deleting, moving or adding, a bar with Undo appears for a few seconds.	நீக்கிய, நகர்த்திய அல்லது சேர்த்த பிறகு, சில விநாடிகள் செயல்தவிர் உள்ள ஒரு பட்டி தோன்றும்.
+On Backup, sign in with Google and choose Daily, Weekly or Monthly. Restore on a new phone from the same tab.	காப்புப்பிரதியில் Google மூலம் உள்நுழைந்து தினமும், வாரந்தோறும் அல்லது மாதந்தோறும் என்பதைத் தேர்ந்தெடுங்கள். புதிய ஃபோனில் அதே தாவலிலிருந்து மீட்டெடுங்கள்.
+Problem report	சிக்கல் அறிக்கை
+Copy problem report	சிக்கல் அறிக்கையை நகலெடு
+No crash recorded.	செயலிழப்பு எதுவும் பதிவாகவில்லை.
+No handled problems.	கையாளப்பட்ட சிக்கல்கள் இல்லை.
+Report copied	அறிக்கை நகலெடுக்கப்பட்டது
+Version {1}	பதிப்பு {1}
+Phone settings	ஃபோன் அமைப்புகள்
+Welcome	வரவேற்கிறோம்
+Check your phone settings	உங்கள் ஃபோன் அமைப்புகளைச் சரிபாருங்கள்
+Let’s get your phone ready	உங்கள் ஃபோனைத் தயார் செய்வோம்
+A few settings so the alarms ring on time and the home screen works. Each one opens Android’s own screen and takes a moment. You can skip any of them.	அலாரங்கள் சரியான நேரத்தில் ஒலிக்கவும் முகப்புத் திரை வேலை செய்யவும் சில அமைப்புகள். ஒவ்வொன்றும் Android இன் சொந்தத் திரையைத் திறந்து சிறிது நேரம் எடுக்கும். எதை வேண்டுமானாலும் தவிர்க்கலாம்.
+Continue	தொடர்க
+Skip for now	இப்போதைக்குத் தவிர்
+That set the lock screen only. Tap Set again and choose the home screen too.	அது பூட்டுத் திரையை மட்டும் அமைத்தது. மீண்டும் “அமை” என்பதைத் தட்டி முகப்புத் திரையையும் தேர்ந்தெடுங்கள்.
+Everything is set.	எல்லாம் அமைக்கப்பட்டது.
+Finish	முடி
+{1} steps left.	{1} படிகள் மீதம் உள்ளன.
+1 step left.	1 படி மீதம் உள்ளது.
+Next step	அடுத்த படி
+Set up everything	எல்லாவற்றையும் அமை
+That is past your alarm: there would be no sleep left.	அது உங்கள் அலாரத்தைத் தாண்டியது: உறக்கம் மிஞ்சாது.
+This costs you {1} of sleep.	இது உங்கள் உறக்கத்தில் {1} குறைக்கிறது.
+Sleep now: {1}. After {2}: {3}.	இப்போது உறக்கம்: {1}. {2} க்குப் பிறகு: {3}.
+That is {1} short of the {2} you planned.	நீங்கள் திட்டமிட்ட {2} ஐ விட இது {1} குறைவு.
+Under 6 hours of sleep makes tomorrow harder.	6 மணி நேரத்திற்குக் குறைவான உறக்கம் நாளையை கடினமாக்கும்.
+Already snoozed {1} today. With this: {2}.	இன்று ஏற்கெனவே {1} ஸ்னூஸ் செய்யப்பட்டுள்ளது. இதனுடன்: {2}.
+Open Settings, Apps, Special access, Display over other apps	அமைப்புகள், ஆப்கள், சிறப்பு அணுகல், பிற ஆப்களின் மேல் காட்டு என்பதைத் திறக்கவும்
+On. Locks and pauses are held wherever an app opens from.	இயக்கத்தில். ஆப் எங்கிருந்து திறந்தாலும் லாக்குகளும் இடைநிறுத்தங்களும் நிலைத்திருக்கும்.
+Almost on: allow Usage access below.	கிட்டத்தட்ட இயக்கத்தில்: கீழே பயன்பாட்டு அணுகலை அனுமதியுங்கள்.
+Almost on: allow Display over other apps below.	கிட்டத்தட்ட இயக்கத்தில்: கீழே “பிற ஆப்களின் மேல் காட்டு” என்பதை அனுமதியுங்கள்.
+Almost on: allow the two things below.	கிட்டத்தட்ட இயக்கத்தில்: கீழே உள்ள இரண்டையும் அனுமதியுங்கள்.
+Off. Locks and pauses work when you open an app from this home screen.	அணைந்துள்ளது. இந்த முகப்புத் திரையிலிருந்து ஆப்பைத் திறக்கும்போது மட்டுமே லாக்குகளும் இடைநிறுத்தங்களும் வேலை செய்யும்.
+Turn on alarms so the app can see which slots you keep.	நீங்கள் எந்த ஸ்லாட்களைப் பின்பற்றுகிறீர்கள் என்பதை ஆப் பார்க்க அலாரங்களை இயக்குங்கள்.
+Allow usage access to see your phone time and the apps behind it.	உங்கள் ஃபோன் நேரத்தையும் அதன் பின்னுள்ள ஆப்களையும் பார்க்க பயன்பாட்டு அணுகலை அனுமதியுங்கள்.
+You took off {1} on {2} of the last {3} days. Make it shorter, or move it to a quieter time.	கடந்த {3} நாட்களில் {2} நாட்கள் நீங்கள் {1} ஐத் தவிர்த்தீர்கள். அதைச் சிறியதாக்குங்கள், அல்லது அமைதியான நேரத்திற்கு மாற்றுங்கள்.
+You renamed {1} to {2} on {3} days. Change it in the routine so the plan matches your day.	{3} நாட்கள் நீங்கள் {1} இன் பெயரை {2} என மாற்றினீர்கள். திட்டம் உங்கள் நாளுடன் பொருந்த வழக்கத்தில் அதை மாற்றுங்கள்.
+You went to sleep about {1} late on average over the last {2} nights. Move bedtime and wake-up later in the app, or start winding down earlier.	கடந்த {2} இரவுகளில் சராசரியாக சுமார் {1} தாமதமாக உறங்கினீர்கள். ஆப்பில் உறங்கும் நேரத்தையும் எழும் நேரத்தையும் தள்ளி வையுங்கள், அல்லது உறங்கத் தயாராவதை முன்னதாகத் தொடங்குங்கள்.
+You spent {1} on your phone during {2} ({3}% of the block). Keep the phone in another room for that block.	{2} நேரத்தில் நீங்கள் ஃபோனில் {1} செலவழித்தீர்கள் (தொகுதியின் {3}%). அந்தத் தொகுதிக்கு ஃபோனை வேறு அறையில் வையுங்கள்.
+You used the phone for {1} in the hour before bed. A screen-free hour helps you fall asleep.	உறங்குவதற்கு முந்தைய மணி நேரத்தில் ஃபோனை {1} பயன்படுத்தினீர்கள். திரையில்லாத ஒரு மணி நேரம் உறக்கம் வர உதவும்.
+{1} took {2}, {3}% of your phone time. Set a daily limit for it in Settings > Home screen, or in Android's Digital Wellbeing.	{1} {2} எடுத்தது, உங்கள் ஃபோன் நேரத்தில் {3}%. அமைப்புகள் > முகப்புத் திரையில், அல்லது Android இன் டிஜிட்டல் வெல்பீயிங்கில் அதற்குத் தினசரி வரம்பை அமையுங்கள்.
+an app	ஒரு ஆப்
+The home screen paused you {1} times and you opened the app anyway {2} times; {3} pulled you most. Make it Strict, or give it a daily limit, in Settings > Home screen.	முகப்புத் திரை உங்களை {1} முறை நிறுத்தியது, நீங்கள் இருந்தாலும் {2} முறை ஆப்பைத் திறந்தீர்கள்; {3} உங்களை அதிகம் இழுத்தது. அமைப்புகள் > முகப்புத் திரையில் அதைக் கண்டிப்பானதாக்குங்கள், அல்லது தினசரி வரம்பு கொடுங்கள்.
+You stopped yourself {1} times at the home screen. That is focus working.	முகப்புத் திரையில் நீங்கள் உங்களை {1} முறை நிறுத்திக்கொண்டீர்கள். அதுவே கவனம் வேலை செய்வது.
+{1} of your 24 hours are not planned. Add a block for that time.	உங்கள் 24 மணி நேரத்தில் {1} திட்டமிடப்படவில்லை. அந்த நேரத்திற்கு ஒரு தொகுதியைச் சேருங்கள்.
+Your blocks add up to {1} more than 24 hours. Shorten something.	உங்கள் தொகுதிகள் 24 மணி நேரத்தை விட {1} அதிகமாகின்றன. எதையாவது சுருக்குங்கள்.
+Only {1}% of your awake time is rest. Short breaks between tasks help you stay focused.	விழித்திருக்கும் நேரத்தில் {1}% மட்டுமே ஓய்வு. வேலைகளுக்கு இடையிலான சிறு இடைவேளைகள் கவனத்துடன் இருக்க உதவும்.
+You have kept {1} for {2} days in a row. It is a good place for your hardest work.	நீங்கள் {1} ஐ தொடர்ச்சியாக {2} நாட்கள் பின்பற்றியுள்ளீர்கள். உங்கள் கடினமான வேலைக்கு இது நல்ல இடம்.
+A solid day. Keep the same routine tomorrow.	நல்ல நாள். நாளையும் இதே வழக்கத்தைத் தொடருங்கள்.
+Not enough days yet for suggestions. Keep the alarms on and check back in a few days.	பரிந்துரைகளுக்கு இன்னும் போதுமான நாட்கள் இல்லை. அலாரங்களை இயக்கத்தில் வைத்து சில நாட்களில் மீண்டும் பாருங்கள்.
+＋  Add below	＋  கீழே சேர்
+Delete  ✕	நீக்கு  ✕
+Your day, on your home screen	உங்கள் நாள், உங்கள் முகப்புத் திரையில்
+Swipe up for every app	எல்லா ஆப்களுக்கும் மேலே ஸ்வைப் செய்யுங்கள்
+Swipe and press	ஸ்வைப் & அழுத்திப் பிடித்தல்
+A routine that fits you	உங்களுக்குப் பொருந்தும் வழக்கம்
+Alarms that ask	கேட்கும் அலாரங்கள்
+A pause before distractions	கவனச்சிதறல்களுக்கு முன் ஒரு இடைநிறுத்தம்
+Lock apps for a while	சிறிது நேரம் ஆப்களை லாக் செய்யுங்கள்
+See how your days go	உங்கள் நாட்கள் எப்படிப் போகின்றன என்று பாருங்கள்
+Back up to your own Drive	உங்கள் சொந்த Drive இல் காப்புப்பிரதி எடுங்கள்
+Free, and Pro if you want more	இலவசம், மேலும் வேண்டுமானால் Pro
+Your day is the wallpaper	உங்கள் நாளே வால்பேப்பர்
+Last check	கடைசிச் சரிபார்ப்பு
+No icons and no clutter. Your whole home screen is your day: the time, the date and every slot, with the one you are in highlighted.	ஐகான்கள் இல்லை, குழப்பம் இல்லை. உங்கள் முழு முகப்புத் திரையும் உங்கள் நாளே: நேரம், தேதி மற்றும் ஒவ்வொரு ஸ்லாட்டும், நீங்கள் இருக்கும் ஸ்லாட் சிறப்பிக்கப்பட்டிருக்கும்.
+Every app, as a plain list over a soft blur of your day. Type to search. Slide along the A to Z strip to jump to a letter. Press and hold an app to add a pause, hide it, or open its info. Dinacharya Launcher is in the list too: tap it for the dashboard.	ஒவ்வொரு ஆப்பும், உங்கள் நாளின் மென்மையான மங்கலின் மேல் ஒரு எளிய பட்டியலாக. தேட தட்டச்சு செய்யுங்கள். ஒரு எழுத்துக்குத் தாவ A முதல் Z பட்டையில் சறுக்குங்கள். ஒரு ஆப்பை அழுத்திப் பிடித்து இடைநிறுத்தத்தைச் சேர்க்கலாம், மறைக்கலாம், அல்லது அதன் தகவலைத் திறக்கலாம். Dinacharya Launcher-உம் பட்டியலில் உள்ளது: டாஷ்போர்டுக்கு அதைத் தட்டுங்கள்.
+Tap your day to open the dashboard. Swipe down for notifications. Swipe left for the camera and right for the phone: you can change both to any app. Press and hold anywhere for settings.	டாஷ்போர்டைத் திறக்க உங்கள் நாளைத் தட்டுங்கள். அறிவிப்புகளுக்குக் கீழே ஸ்வைப் செய்யுங்கள். கேமராவுக்கு இடப்பக்கமும் ஃபோனுக்கு வலப்பக்கமும் ஸ்வைப் செய்யுங்கள்: இரண்டையும் எந்த ஆப்பாகவும் மாற்றலாம். அமைப்புகளுக்கு எங்கும் அழுத்திப் பிடியுங்கள்.
+Set your wake-up time and shape the day into slots: Study, Rest, Meals and more. Keep one routine for weekdays and others for weekends or exam days. Open the dashboard to edit them.	உங்கள் எழும் நேரத்தை அமைத்து, நாளை ஸ்லாட்களாக வடிவமையுங்கள்: படிப்பு, ஓய்வு, உணவு மற்றும் பல. வார நாட்களுக்கு ஒரு வழக்கத்தையும், வார இறுதிகள் அல்லது தேர்வு நாட்களுக்கு மற்றவற்றையும் வைத்திருங்கள். அவற்றைத் திருத்த டாஷ்போர்டைத் திறங்கள்.
+Each slot can ring when it starts and ask one question: carry on, or change the plan? At bedtime it asks when you went to sleep, and if you need more time it tells you what that costs in sleep. The question comes up by itself, and again when you wake the phone or come back to the home screen.	ஒவ்வொரு ஸ்லாட்டும் தொடங்கும்போது ஒலித்து ஒரு கேள்வி கேட்கலாம்: தொடர்வதா, திட்டத்தை மாற்றுவதா? உறங்கும் நேரத்தில் நீங்கள் எப்போது உறங்கினீர்கள் என்று கேட்கும், உங்களுக்கு மேலும் நேரம் தேவைப்பட்டால் அது உறக்கத்தில் என்ன விலை என்று சொல்லும். கேள்வி தானாகவே வரும், ஃபோனை எழுப்பும்போதோ முகப்புத் திரைக்குத் திரும்பும்போதோ மீண்டும் வரும்.
+Pick the apps that pull you away. During focus time they wait a few seconds before they open, and you can always open them anyway. Free: two apps. Pro: any number, strict pauses, daily limits, and playful pauses: a quick sum, a sentence to type, slow breaths, or saying why you are opening it.	உங்களை இழுக்கும் ஆப்களைத் தேர்ந்தெடுங்கள். கவன நேரத்தில் அவை திறக்கும் முன் சில விநாடிகள் காத்திருக்கும், நீங்கள் எப்போதும் அவற்றை இருந்தாலும் திறக்கலாம். இலவசம்: இரண்டு ஆப்கள். Pro: எத்தனை வேண்டுமானாலும், கண்டிப்பான இடைநிறுத்தங்கள், தினசரி வரம்புகள், மற்றும் விளையாட்டான இடைநிறுத்தங்கள்: ஒரு விரைவுக் கூட்டல், தட்டச்சு செய்ய ஒரு வாக்கியம், மெதுவான மூச்சுகள், அல்லது ஏன் திறக்கிறீர்கள் என்று சொல்வது.
+Shut the apps that eat your time for hours you choose: every day or on some days, or just for the next hour. A locked app is greyed in the list, and the lock screen shows when it opens again. You can break a lock by waiting half a minute and typing a sentence. Free: lock two apps. Pro: groups of apps, as many locks as you like, and strict locks that cannot be broken. Set it up in the home settings.	உங்கள் நேரத்தைத் தின்னும் ஆப்களை நீங்கள் தேர்ந்தெடுக்கும் மணிகளுக்கு மூடுங்கள்: ஒவ்வொரு நாளும் அல்லது சில நாட்கள், அல்லது அடுத்த ஒரு மணி நேரத்திற்கு மட்டும். லாக் செய்த ஆப் பட்டியலில் சாம்பல் நிறத்தில் இருக்கும், அது எப்போது மீண்டும் திறக்கும் என்பதை பூட்டுத் திரை காட்டும். அரை நிமிடம் காத்திருந்து ஒரு வாக்கியம் தட்டச்சு செய்து லாக்கை உடைக்கலாம். இலவசம்: இரண்டு ஆப்களை லாக் செய்யலாம். Pro: ஆப்களின் குழுக்கள், எத்தனை லாக்குகள் வேண்டுமானாலும், உடைக்க முடியாத கண்டிப்பான லாக்குகள். முகப்பு அமைப்புகளில் அமையுங்கள்.
+A score for each day, phone time by hour and by app, goals with streaks, and plain suggestions. Today and the last three days are free, and each can be saved as a PDF. Pro adds every saved day and the weekly view.	ஒவ்வொரு நாளுக்கும் ஒரு மதிப்பெண், மணி வாரியாகவும் ஆப் வாரியாகவும் ஃபோன் நேரம், தொடர்ச்சியுடன் இலக்குகள், எளிய பரிந்துரைகள். இன்றும் கடந்த மூன்று நாட்களும் இலவசம், ஒவ்வொன்றையும் PDF ஆகச் சேமிக்கலாம். Pro இல் சேமித்த ஒவ்வொரு நாளும் வாரக் காட்சியும் சேரும்.
+Sign in with Google to back up to a private space in your own Drive, and restore on a new phone. The home settings, your routines and your reports are all in it.	உங்கள் சொந்த Drive இல் உள்ள தனிப்பட்ட இடத்தில் காப்புப்பிரதி எடுக்க Google மூலம் உள்நுழையுங்கள், புதிய ஃபோனில் மீட்டெடுங்கள். முகப்பு அமைப்புகள், உங்கள் வழக்கங்கள், உங்கள் அறிக்கைகள் எல்லாம் அதில் உள்ளன.
+The Dinacharya Launcher live wallpaper shows the time, the date and every slot of your day, with the one you are in highlighted, and keeps itself up to date. It comes with the home screen: Dinacharya Launcher asks Android to put it in place and you confirm once, so it also shows on your lock screen and in your recent apps.	Dinacharya Launcher-இன் நேரடி வால்பேப்பர் நேரம், தேதி மற்றும் உங்கள் நாளின் ஒவ்வொரு ஸ்லாட்டையும் காட்டுகிறது, நீங்கள் இருக்கும் ஸ்லாட்டைச் சிறப்பித்து, தன்னைத் தானே புதுப்பித்துக்கொள்கிறது. இது முகப்புத் திரையுடன் வருகிறது: Dinacharya Launcher அதை அமைக்கும்படி Android ஐக் கேட்கும், நீங்கள் ஒருமுறை உறுதிசெய்கிறீர்கள், அதனால் இது உங்கள் பூட்டுத் திரையிலும் சமீபத்திய ஆப்களிலும் தெரியும்.
+Anything still missing from the setup is listed here. You can skip it now and come back from Settings.	அமைப்பில் இன்னும் விடுபட்டவை இங்கே பட்டியலிடப்பட்டுள்ளன. இப்போது தவிர்த்துவிட்டு அமைப்புகளிலிருந்து திரும்பி வரலாம்.
+Skip	தவிர்
+Next	அடுத்து
+{1} of {2}	{2} இல் {1}
+Everything is set	எல்லாம் அமைக்கப்பட்டது
+Your phone is ready.	உங்கள் ஃபோன் தயார்.
+Phone today  2h 05m	இன்று ஃபோன்  2ம 05நி
+Wake up	எழுந்திரு
+Books	புத்தகங்கள்
+Calculator	கால்குலேட்டர்
+Calendar	நாட்காட்டி
+Clock	கடிகாரம்
+Contacts	தொடர்புகள்
+Drive	Drive
+Swipe up	மேலே ஸ்வைப் செய்யுங்கள்
+for every app	எல்லா ஆப்களுக்கும்
+All apps	எல்லா ஆப்கள்
+Study starts now	படிப்பு இப்போது தொடங்குகிறது
+Are you continuing, or changing the plan?	தொடர்கிறீர்களா, அல்லது திட்டத்தை மாற்றுகிறீர்களா?
+Bedtime	உறங்கும் நேரம்
+When did you go to sleep?	நீங்கள் எப்போது உறங்கினீர்கள்?
+Social app	சமூக ஆப்
+Right now: Study.	இப்போது: படிப்பு.
+Is this the best use of	அடுத்த சில நிமிடங்களுக்கு
+the next few minutes?	இதுவே சிறந்த பயன்பாடா?
+Open anyway in 7	7 இல் இருந்தாலும் திற
+Today's score	இன்றைய மதிப்பெண்
+Phone use by hour	மணி வாரியாக ஃபோன் பயன்பாடு
+Study  5h 40m of 6h	படிப்பு  6ம இல் 5ம 40நி
+5-day streak	5 நாள் தொடர்ச்சி
+Your own Google Drive	உங்கள் சொந்த Google Drive
+private to you	உங்களுக்கு மட்டும் தனிப்பட்டது
+Daily, weekly	தினமும், வாரந்தோறும்
+or monthly	அல்லது மாதந்தோறும்
+Restore on a	புதிய ஃபோனில்
+new phone	மீட்டெடுங்கள்
+Locked  ·  Social	லாக்  ·  சமூகம்
+Until 6:00 AM	6:00 AM வரை
+4h 20m left	4ம 20நி மீதம்
+Shows when it	இது மீண்டும் எப்போது
+opens again	திறக்கும் என்பதைக் காட்டும்
+Wait, then type	காத்திருந்து, பிறகு ஒரு
+a sentence	வாக்கியம் தட்டச்சு செய்யுங்கள்
+Strict locks (Pro)	கண்டிப்பான லாக்குகள் (Pro)
+can't be broken	உடைக்க முடியாது
+Free	இலவசம்
+Today's report	இன்றைய அறிக்கை
+Last 3 days	கடந்த 3 நாட்கள்
+2 paused apps	இடைநிறுத்தப்பட்ட 2 ஆப்கள்
+2 locked apps	லாக் செய்யப்பட்ட 2 ஆப்கள்
+All saved days	சேமித்த எல்லா நாட்களும்
+Weekly view	வாரக் காட்சி
+One payment, or a short video for a day	ஒருமுறை கட்டணம், அல்லது ஒரு நாளுக்கு ஒரு சிறு வீடியோ
+Time, date	நேரம், தேதி
+and phone time	மற்றும் ஃபோன் நேரம்
+The slot you	நீங்கள் இருக்கும்
+are in	ஸ்லாட்
+Every slot	உங்கள் நாளின்
+of your day	ஒவ்வொரு ஸ்லாட்
+Part of the	முகப்புத் திரையின்
+home screen	ஒரு பகுதி
+Allow usage access?	பயன்பாட்டு அணுகலை அனுமதிக்கவா?
+Greyed out?	சாம்பல் நிறத்தில் உள்ளதா?
+Open Settings, then Apps, Special app access, Usage access	அமைப்புகளைத் திறந்து, பிறகு ஆப்கள், சிறப்பு ஆப் அணுகல், பயன்பாட்டு அணுகல்
+What you set up with it goes back to the free version then, unless you get Pro.	இதன் மூலம் நீங்கள் அமைத்தவை, நீங்கள் Pro வாங்கவில்லை என்றால், அப்போது இலவசப் பதிப்புக்குத் திரும்பும்.
+A video is already on its way.	ஒரு வீடியோ ஏற்கெனவே வந்துகொண்டிருக்கிறது.
+That cannot be kept longer.	இதை இன்னும் நீண்ட நேரம் வைத்திருக்க முடியாது.
+That is open already.	அது ஏற்கெனவே திறந்திருக்கிறது.
+You have watched a lot of videos today. Try again tomorrow, or get Pro: it is one payment, opens everything for good and removes the ads.	நீங்கள் இன்று நிறைய வீடியோக்களைப் பார்த்துவிட்டீர்கள். நாளை மீண்டும் முயலுங்கள், அல்லது Pro வாங்குங்கள்: இது ஒருமுறை கட்டணம், எல்லாவற்றையும் நிரந்தரமாகத் திறக்கும், விளம்பரங்களை நீக்கும்.
+That is plenty for today	இன்றைக்கு இது போதும்
+Videos are not ready yet. Check your connection and try again in a moment.	வீடியோக்கள் இன்னும் தயாராகவில்லை. உங்கள் இணைப்பைச் சரிபார்த்து சிறிது நேரத்தில் மீண்டும் முயலுங்கள்.
+A video could not be started. Try again in a moment.	ஒரு வீடியோவைத் தொடங்க முடியவில்லை. சிறிது நேரத்தில் மீண்டும் முயலுங்கள்.
+Getting a short video…	சிறு வீடியோவைப் பெறுகிறது…
+Getting the next video…	அடுத்த வீடியோவைப் பெறுகிறது…
+The video could not be shown. Try again in a little while.	வீடியோவைக் காட்ட முடியவில்லை. சிறிது நேரம் கழித்து மீண்டும் முயலுங்கள்.
+There is no video to show at the moment. Try again in a little while. Nothing was used up and nothing was opened.	இப்போது காட்ட வீடியோ எதுவும் இல்லை. சிறிது நேரம் கழித்து மீண்டும் முயலுங்கள். எதுவும் செலவாகவில்லை, எதுவும் திறக்கப்படவில்லை.
+No video right now	இப்போது வீடியோ இல்லை
+The next video could not be found. You keep what you already earned.	அடுத்த வீடியோ கிடைக்கவில்லை. ஏற்கெனவே நீங்கள் பெற்றது உங்களிடமே இருக்கும்.
+Watch the whole video to open it. Nothing was opened.	இதைத் திறக்க முழு வீடியோவையும் பாருங்கள். எதுவும் திறக்கப்படவில்லை.
+The video could not be shown. Try again in a little while. Nothing was opened.	வீடியோவைக் காட்ட முடியவில்லை. சிறிது நேரம் கழித்து மீண்டும் முயலுங்கள். எதுவும் திறக்கப்படவில்லை.
+Video {1} of {2} watched	{2} இல் {1} வீடியோ பார்க்கப்பட்டது
+Next video	அடுத்த வீடியோ
+Stop here	இங்கேயே நிறுத்து
+It could not be opened. Please try again.	அதைத் திறக்க முடியவில்லை. மீண்டும் முயலுங்கள்.
+Thank you for watching.\n{1}	பார்த்ததற்கு நன்றி.\n{1}
+This phone has no live wallpaper screen	இந்த ஃபோனில் நேரடி வால்பேப்பர் திரை இல்லை
+Welcome to Dinacharya Launcher	Dinacharya Launcher-க்கு வரவேற்கிறோம்
+A calm home screen made from your daily routine: your whole day, live, with nothing else on it. Alarms that ask, a pause or a lock for the apps that pull you away, and a report on how each day went.	உங்கள் அன்றாட வழக்கத்திலிருந்து உருவான அமைதியான முகப்புத் திரை: உங்கள் முழு நாளும், நேரலையில், வேறு எதுவும் இல்லாமல். கேட்கும் அலாரங்கள், உங்களை இழுக்கும் ஆப்களுக்கு ஒரு இடைநிறுத்தம் அல்லது லாக், ஒவ்வொரு நாளும் எப்படிப் போனது என்ற அறிக்கை.
+Get started	தொடங்குங்கள்
+It takes about a minute. Every step can be skipped.	இதற்கு ஒரு நிமிடம் ஆகும். ஒவ்வொரு படியையும் தவிர்க்கலாம்.
+Pick apps that pull you away.	உங்களைத் திசைதிருப்பும் ஆப்களைத் தேர்ந்தெடுங்கள்.
+When you open one, it waits a few seconds first, so you can go back or carry on.	நீங்கள் ஒன்றைத் திறக்கும்போது, அது முதலில் சில வினாடிகள் காத்திருக்கும், அப்போது நீங்கள் திரும்பிச் செல்லலாம் அல்லது தொடரலாம்.
+When you open one from this home screen, it waits a few seconds first, so you can go back or carry on.	நீங்கள் ஒன்றை இந்த முகப்புத் திரையிலிருந்து திறக்கும்போது, அது முதலில் சில வினாடிகள் காத்திருக்கும், அப்போது நீங்கள் திரும்பிச் செல்லலாம் அல்லது தொடரலாம்.
+It never locks you out: Open anyway is always there.	இது உங்களை ஒருபோதும் வெளியே நிறுத்தாது: “இருந்தாலும் திற” எப்போதும் இருக்கும்.
+To hold them whichever way they open, turn on the strong lock below.	அவற்றை எப்படித் திறந்தாலும் பிடித்து வைக்க, கீழே உள்ள ஸ்ட்ராங் லாக்கை இயக்குங்கள்.
+Put the apps that eat your time in a group, then lock the group for hours you choose, on the days you choose, or just for the next hour.	உங்கள் நேரத்தை விழுங்கும் ஆப்களை ஒரு குழுவில் வையுங்கள், பிறகு அந்தக் குழுவை நீங்கள் தேர்ந்த மணிநேரங்களுக்கு, நீங்கள் தேர்ந்த நாட்களில், அல்லது அடுத்த ஒரு மணி நேரத்திற்கு மட்டும் லாக் செய்யுங்கள்.
+Pick the apps that eat your time, then lock them for hours you choose, on the days you choose, or just for the next hour.	உங்கள் நேரத்தை விழுங்கும் ஆப்களைத் தேர்ந்தெடுங்கள், பிறகு அவற்றை நீங்கள் தேர்ந்த மணிநேரங்களுக்கு, நீங்கள் தேர்ந்த நாட்களில், அல்லது அடுத்த ஒரு மணி நேரத்திற்கு மட்டும் லாக் செய்யுங்கள்.
+A locked app does not open until the lock ends.	லாக் முடியும் வரை லாக் செய்யப்பட்ட ஆப் திறக்காது.
+A locked app does not open from this home screen until the lock ends.	லாக் முடியும் வரை லாக் செய்யப்பட்ட ஆப் இந்த முகப்புத் திரையிலிருந்து திறக்காது.
+You can break a lock by waiting 30 seconds and typing a sentence; a strict lock (Pro) cannot be broken.	30 வினாடி காத்திருந்து ஒரு வாக்கியத்தை தட்டச்சு செய்து லாக்கை உடைக்கலாம்; கண்டிப்பான லாக்கை (Pro) உடைக்க முடியாது.
+1 app is hidden from the list of all apps and from search.	எல்லா ஆப்கள் பட்டியலிலிருந்தும் தேடலிலிருந்தும் 1 ஆப் மறைக்கப்பட்டுள்ளது.
+{1} apps are hidden from the list of all apps and from search.	எல்லா ஆப்கள் பட்டியலிலிருந்தும் தேடலிலிருந்தும் {1} ஆப்கள் மறைக்கப்பட்டுள்ளன.
+1 pause today	இன்று 1 இடைநிறுத்தம்
+{1} pauses today	இன்று {1} இடைநிறுத்தங்கள்
+You went back {1} and opened the app anyway {2}.	நீங்கள் {1} திரும்பிச் சென்றீர்கள், {2} இருந்தாலும் ஆப்பைத் திறந்தீர்கள்.
+The day report keeps this count.	நாள் அறிக்கை இந்த எண்ணிக்கையை வைத்திருக்கும்.
+1 time	1 முறை
+{1} times	{1} முறை
+Alarm at {1}. You sleep {2} instead of {3}.	அலாரம் {1} மணிக்கு. நீங்கள் {3}க்குப் பதிலாக {2} தூங்குகிறீர்கள்.
+1 older day is saved on this phone.	இந்த ஃபோனில் 1 பழைய நாள் சேமிக்கப்பட்டுள்ளது.
+{1} older days are saved on this phone.	இந்த ஃபோனில் {1} பழைய நாட்கள் சேமிக்கப்பட்டுள்ளன.
+Opening days older than the last {1} days is part of Pro.	கடந்த {1} நாட்களுக்கு முந்தைய நாட்களைத் திறப்பது Pro-வின் பகுதி.
+{1} of {2} goal	இலக்கு {2}ல் {1}
+{1} of {2} goal ✓	இலக்கு {2}ல் {1} ✓
+{1} of {2} planned	திட்டமிட்டது {2}ல் {1}
+1 closed day	1 முடிந்த நாள்
+{1} closed days	{1} முடிந்த நாட்கள்
+Made “{1}” for Saturday and Sunday.	சனி, ஞாயிறுக்கு “{1}” உருவாக்கப்பட்டது.
+Made “{1}”. Tap the days that should use it.	“{1}” உருவாக்கப்பட்டது. இதைப் பயன்படுத்த வேண்டிய நாட்களைத் தட்டவும்.
+Bedtime {1}	உறங்கும் நேரம் {1}
+Day ends {1}	நாள் முடிவு {1}
+1 slot uses it. It keeps its name and time and just loses the type.	1 ஸ்லாட் இதைப் பயன்படுத்துகிறது. அது தன் பெயரையும் நேரத்தையும் வைத்துக்கொண்டு, வகையை மட்டும் இழக்கும்.
+{1} slots use it. They keep their name and time and just lose the type.	{1} ஸ்லாட்கள் இதைப் பயன்படுத்துகின்றன. அவை தம் பெயரையும் நேரத்தையும் வைத்துக்கொண்டு, வகையை மட்டும் இழக்கும்.
+Add to the slot above: “{1}”	மேலுள்ள ஸ்லாட்டில் சேர்: “{1}”
+Add to the slot below: “{1}”	கீழுள்ள ஸ்லாட்டில் சேர்: “{1}”
+Deleted “{1}”. Its {2} min went to “{3}”.	“{1}” நீக்கப்பட்டது. அதன் {2} நிமிடம் “{3}” க்குச் சென்றது.
+Deleted “{1}”. Its {2} min were shared out.	“{1}” நீக்கப்பட்டது. அதன் {2} நிமிடம் பகிர்ந்தளிக்கப்பட்டது.
+1 rest added, taken from the tasks next to them.	1 ஓய்வு சேர்க்கப்பட்டது, அருகிலுள்ள வேலைகளிலிருந்து எடுக்கப்பட்டது.
+{1} rests added, taken from the tasks next to them.	{1} ஓய்வுகள் சேர்க்கப்பட்டன, அருகிலுள்ள வேலைகளிலிருந்து எடுக்கப்பட்டன.
+1 gap had no room.	1 இடைவெளிக்கு இடம் இல்லை.
+{1} gaps had no room.	{1} இடைவெளிகளுக்கு இடம் இல்லை.
+No ads, every day and week in reports, more pauses and locks, routines, goals, colours	விளம்பரங்கள் இல்லை, அறிக்கைகளில் ஒவ்வொரு நாளும் வாரமும், அதிக இடைநிறுத்தங்களும் லாக்குகளும், வழக்கங்கள், இலக்குகள், நிறங்கள்
+No ads, every day and week in reports, more pauses and locks, routines, goals, colours. Or try features free with short videos	விளம்பரங்கள் இல்லை, அறிக்கைகளில் ஒவ்வொரு நாளும் வாரமும், அதிக இடைநிறுத்தங்களும் லாக்குகளும், வழக்கங்கள், இலக்குகள், நிறங்கள். அல்லது குறுகிய வீடியோக்களால் வசதிகளை இலவசமாக முயன்று பாருங்கள்
+Used on 1 day. Tap a day to change.	1 நாளில் பயன்படுத்தப்படுகிறது. மாற்ற ஒரு நாளைத் தட்டவும்.
+Used on {1} days. Tap a day to change.	{1} நாட்களில் பயன்படுத்தப்படுகிறது. மாற்ற ஒரு நாளைத் தட்டவும்.
+{1} colours, selected	{1} நிறங்கள், தேர்ந்தெடுக்கப்பட்டது
+{1} colours	{1} நிறங்கள்
+Free: the home screen, alarms, today's report and the last three days, two paused apps and two locked apps.	இலவசம்: முகப்புத் திரை, அலாரங்கள், இன்றைய அறிக்கை மற்றும் கடந்த மூன்று நாட்கள், இடைநிறுத்தப்பட்ட இரண்டு ஆப்கள் மற்றும் லாக் செய்யப்பட்ட இரண்டு ஆப்கள்.
+Pro is one payment through Google Play, with no subscription.	Pro என்பது Google Play வழியாக ஒருமுறை செலுத்தும் கட்டணம், சந்தா இல்லை.
+Pro is one payment of {1} through Google Play, with no subscription.	Pro என்பது Google Play வழியாக {1} ஒருமுறை செலுத்தும் கட்டணம், சந்தா இல்லை.
+It adds every saved day and the weekly view, strict and playful pauses, daily limits, groups of locked apps and strict locks, weekday and weekend routines, goals, every colour look, and no ads.	இதில் சேமித்த ஒவ்வொரு நாளும் வாரக் காட்சியும், கண்டிப்பான மற்றும் விளையாட்டான இடைநிறுத்தங்கள், தினசரி வரம்புகள், லாக் செய்யப்பட்ட ஆப்களின் குழுக்களும் கண்டிப்பான லாக்குகளும், வார நாள் மற்றும் வார இறுதி வழக்கங்கள், இலக்குகள், ஒவ்வொரு நிறத் தோற்றமும் சேரும், விளம்பரங்கள் இருக்காது.
+Or watch short videos to open some of these for a while: 1 video opens just ONE of them for a day, 2 videos for 3 days, 3 videos the whole group it is in.	அல்லது சிறிது நேரத்திற்கு இவற்றில் சிலவற்றைத் திறக்க சிறு வீடியோக்களைப் பாருங்கள்: 1 வீடியோ அவற்றில் ஒன்றை மட்டும் ஒரு நாளுக்குத் திறக்கும், 2 வீடியோக்கள் 3 நாட்களுக்கு, 3 வீடியோக்கள் அது இருக்கும் முழுக் குழுவையும்.
+Tap “Watch videos” wherever you see “Part of Pro”, or on the Pro screen.	“Pro-வின் பகுதி” என்று எங்கு பார்த்தாலும், அல்லது Pro திரையில், “வீடியோ பாருங்கள்” என்பதைத் தட்டவும்.
+What you set up with it goes back to the free version when the time is up.	இதன் மூலம் நீங்கள் அமைத்தவை நேரம் முடிந்ததும் இலவசப் பதிப்புக்குத் திரும்பும்.
+Dinacharya Launcher reads which apps you used and for how long, so it can show your phone time on the home screen and in your reports, and count the minutes for any daily app limit you set on the home screen.	எந்த ஆப்களை எவ்வளவு நேரம் பயன்படுத்தினீர்கள் என்பதை Dinacharya Launcher படிக்கிறது, அப்போதுதான் முகப்புத் திரையிலும் உங்கள் அறிக்கைகளிலும் ஃபோன் நேரத்தைக் காட்ட முடியும், முகப்புத் திரையில் நீங்கள் அமைக்கும் எந்த தினசரி ஆப் வரம்புக்கும் நிமிடங்களை எண்ண முடியும்.
+It is read on this phone only. It is not sent to the developer or to anyone else. If you turn on Google Drive backup, your saved reports (including the names of the apps you used most) go to your own private space in your own Drive, and nowhere else.	இது இந்த ஃபோனில் மட்டுமே படிக்கப்படுகிறது. இது உருவாக்குநருக்கோ வேறு யாருக்குமோ அனுப்பப்படுவதில்லை. நீங்கள் Google Drive காப்புப்பிரதியை இயக்கினால், சேமிக்கப்பட்ட உங்கள் அறிக்கைகள் (அதிகம் பயன்படுத்திய ஆப்களின் பெயர்கள் உட்பட) உங்கள் சொந்த Drive இல் உள்ள தனிப்பட்ட இடத்திற்குச் செல்லும், வேறு எங்கும் செல்லாது.
+Next, Android's settings open. Find Dinacharya Launcher in the list and switch it on. You can switch it off there at any time.	அடுத்து Android இன் அமைப்புகள் திறக்கும். பட்டியலில் Dinacharya Launcher ஐக் கண்டுபிடித்து அதை இயக்குங்கள். அங்கே எப்போது வேண்டுமானாலும் அதை அணைக்கலாம்.
+If the switch is greyed out (“Restricted setting”), tap “Greyed out?” for the one-time unlock.	சுவிட்ச் சாம்பல் நிறத்தில் இருந்தால் (“Restricted setting”), ஒருமுறை திறக்க “சாம்பல் நிறத்தில் உள்ளதா?” என்பதைத் தட்டவும்.
+{1} is open now.	{1} இப்போது திறந்திருக்கிறது.
+Watch one more video to keep {1} open for 3 days.	{1} ஐ 3 நாட்கள் திறந்து வைத்திருக்க இன்னும் ஒரு வீடியோவைப் பாருங்கள்.
+Watch {1} more videos to keep {2} open for 3 days.	{2} ஐ 3 நாட்கள் திறந்து வைத்திருக்க இன்னும் {1} வீடியோக்களைப் பாருங்கள்.
+Watch one more video to open {1} for a day.	{1} ஐ ஒரு நாளுக்குத் திறக்க இன்னும் ஒரு வீடியோவைப் பாருங்கள்.
+Watch {1} more videos to open {2} for a day.	{2} ஐ ஒரு நாளுக்குத் திறக்க இன்னும் {1} வீடியோக்களைப் பாருங்கள்.
+Or stop here and keep what you have.	அல்லது இங்கேயே நிறுத்தி, உங்களிடம் இருப்பதை வைத்துக்கொள்ளுங்கள்.
+1 video	1 வீடியோ
+2 videos	2 வீடியோக்கள்
+3 videos	3 வீடியோக்கள்
+1 app	1 ஆப்
+{1} apps	{1} ஆப்கள்
+🔥 {1}-day streak.	🔥 தொடர்ந்து {1} நாட்கள்.
+{1} h a day	ஒரு நாளுக்கு {1} மணி
+{1} h {2} min a day	ஒரு நாளுக்கு {1} மணி {2} நிமிடம்
+Task time	வேலை நேரம்
+Rest time	ஓய்வு நேரம்
+Meal time	உணவு நேரம்
+Personal time	தனிப்பட்ட நேரம்
+Sleep time	உறக்க நேரம்
+Hours	மணி
+{1} for 3 days	{1} 3 நாட்களுக்கு
+{1} for a day	{1} ஒரு நாளுக்கு
+Mon {1}	திங் {1}
+Tue {1}	செவ் {1}
+Wed {1}	புதன் {1}
+Thu {1}	வியா {1}
+Fri {1}	வெள் {1}
+Sat {1}	சனி {1}
+Sun {1}	ஞாயி {1}
+You asked to start later. {1}	நீங்கள் பிறகு தொடங்கச் சொன்னீர்கள். {1}
+Your day starts. {1}	உங்கள் நாள் தொடங்குகிறது. {1}
+Start “{1}” now	“{1}” ஐ இப்போது தொடங்கு
+Start “{1}” after	“{1}” ஐ இவ்வளவு நேரத்துக்குப் பிறகு தொடங்கு
+Continue “{1}” until	“{1}” ஐ இந்த நேரம் வரை தொடரவும்
+{1} min from now.	இப்போதிலிருந்து {1} நிமிடம் கழித்து.
+Starts at {1}.	{1} மணிக்குத் தொடங்கும்.
+{1}  ·  {2} to {3}	{1}  ·  {2} முதல் {3} வரை
+Still delay by {1} min	அப்படியும் {1} நிமிடம் தள்ளிவை
+Your break started at {1}	உங்கள் இடைவேளை {1} மணிக்குத் தொடங்கியது
+Ready to get back to {1}?	{1} க்குத் திரும்பத் தயாரா?
+Break extended until {1}	இடைவேளை {1} வரை நீட்டிக்கப்பட்டது
+What would you like to do?	நீங்கள் என்ன செய்ய விரும்புகிறீர்கள்?
+Start now	இப்போதே தொடங்கு
+Start after	இவ்வளவு நேரத்துக்குப் பிறகு தொடங்கு
+Start later	பிறகு தொடங்கு
+Continue the slot before until	முந்தைய ஸ்லாட்டை இந்த நேரம் வரை தொடரவும்
+Keep going	தொடர்ந்து செல்
+Other plan	வேறு திட்டம்
+Your day has started.	உங்கள் நாள் தொடங்கிவிட்டது.
+Time to start your day	உங்கள் நாளைத் தொடங்கும் நேரம்
+Ready to start your day?	உங்கள் நாளைத் தொடங்கத் தயாரா?
+Start my day	என் நாளைத் தொடங்கு
+Start with a delay of	இவ்வளவு தாமதத்துடன் தொடங்கு
+Delay my start	என் தொடக்கத்தைத் தள்ளிவை
+Before you put it off, read this.	தள்ளிவைக்கும் முன், இதைப் படியுங்கள்.
+I am up. Start my day	நான் தயார். என் நாளைத் தொடங்கு
+Type this to put your day off	உங்கள் நாளைத் தள்ளிவைக்க இதைத் தட்டச்சு செய்யுங்கள்
+Your break is over	உங்கள் இடைவேளை முடிந்தது
+Ready to get back to work?	வேலைக்குத் திரும்பத் தயாரா?
+Back to work	வேலைக்குத் திரும்பு
+5 more minutes	மேலும் 5 நிமிடம்
+Time to get back to {1}. Tap to answer.	{1} க்குத் திரும்ப வேண்டிய நேரம். பதிலளிக்கத் தட்டவும்.
+Time to get back to work. Tap to answer.	வேலைக்குத் திரும்ப வேண்டிய நேரம். பதிலளிக்கத் தட்டவும்.
+Good morning. Tap to start the day or put it off.	காலை வணக்கம். நாளைத் தொடங்க அல்லது தள்ளிவைக்கத் தட்டவும்.
+Time to start now. Tap to answer.	இப்போது தொடங்க வேண்டிய நேரம். பதிலளிக்கத் தட்டவும்.
+Slot questions (silent)	ஸ்லாட் கேள்விகள் (ஒலியின்றி)
+In 10 min	10 நிமிடத்தில்
+Vibrating alarms (backup)	அதிர்வு அலாரங்கள் (காப்புப்பிரதி)
+The wake-up alarm rang for half an hour. Your schedule was not changed.	எழுப்பும் அலாரம் அரை மணி நேரம் ஒலித்தது. உங்கள் அட்டவணை மாற்றப்படவில்லை.
+Made: {1}	உருவாக்கியது: {1}
+video:	 வீடியோ: 
+videos:	 வீடியோக்கள்: 
+A silent notification puts the question on screen with Start now and In 10 min buttons, with no sound and no vibration. Switch this off to see nothing at all for those slots. Each slot has its own choice: ring, vibration, silent or none, under its bell on the Routine tab.	ஒலியற்ற அறிவிப்பு கேள்வியைத் திரையில் காட்டும்; “இப்போதே தொடங்கு” மற்றும் “10 நிமிடத்தில்” பொத்தான்கள் இருக்கும் — ஒலியும் இல்லை, அதிர்வும் இல்லை. அந்த ஸ்லாட்களுக்கு எதுவுமே தெரியக்கூடாது என்றால் இதை அணைக்கவும். ஒவ்வொரு ஸ்லாட்டுக்கும் அதன் சொந்தத் தேர்வு உண்டு: ஒலி, அதிர்வு, ஒலியற்றது அல்லது எதுவுமில்லை — வழக்கம் தாவலில் அதன் மணியின் கீழ்.
+Choose one slot as your start-of-day alarm from its bell on the Routine tab. It has to be the first alarm of the day. It keeps ringing until you start the day or put it off, and before you can put it off you read a line you chose.	வழக்கம் தாவலில் ஒரு ஸ்லாட்டின் மணியிலிருந்து அதை உங்கள் நாள்-தொடக்க அலாரமாகத் தேர்ந்தெடுக்கவும். அது நாளின் முதல் அலாரமாக இருக்க வேண்டும். நீங்கள் நாளைத் தொடங்கும் வரை அல்லது தள்ளிவைக்கும் வரை அது ஒலித்துக்கொண்டே இருக்கும்; தள்ளிவைக்கும் முன் நீங்கள் தேர்ந்தெடுத்த ஒரு வரியைப் படிக்க வேண்டும்.
+Shown before you put the start off:  “{1}”	தொடக்கத்தைத் தள்ளிவைக்கும் முன் காட்டப்படும்:  “{1}”
+Slots without a sound	ஒலியற்ற ஸ்லாட்கள்
+Ask me about slots set to a silent notification	ஒலியற்ற அறிவிப்பு அமைக்கப்பட்ட ஸ்லாட்கள் பற்றி என்னிடம் கேள்
+Start-of-day alarm	நாள்-தொடக்க அலாரம்
+Put the start off by	தொடக்கத்தை இவ்வளவு தள்ளிவை
+Challenge before putting it off	தள்ளிவைக்கும் முன் சவால்
+No challenge	சவால் இல்லை
+Solve three quick sums	மூன்று எளிய கூட்டல்களைத் தீர்க்கவும்
+Your own line to read (optional)	படிப்பதற்கான உங்கள் சொந்த வரி (விருப்பத்தேர்வு)
+Leave empty to use the lines that come with the app, in your language	காலியாக விட்டால் ஆப்புடன் வரும் வரிகள் உங்கள் மொழியில் பயன்படுத்தப்படும்
+The apps are locked while a slot of one of these types is going on, and open again when it ends. A break, a slot you took off, and the time between slots do not lock.	இந்த வகைகளில் ஏதேனும் ஒன்றின் ஸ்லாட் நடக்கும்போது ஆப்கள் லாக் ஆகியிருக்கும்; அது முடிந்ததும் மீண்டும் திறக்கும். இடைவேளை, நீக்கிய ஸ்லாட், ஸ்லாட்களுக்கு இடைப்பட்ட நேரம் ஆகியவை லாக் செய்யாது.
+Any {1}	எந்த {1}
+Other {1}	பிற {1}
+Also lock during	இந்த நேரத்திலும் லாக் செய்
+Choose activity types	செயல்பாட்டு வகைகளைத் தேர்ந்தெடுக்கவும்
+Hide the apps while they are locked	லாக் ஆகியிருக்கும் போது ஆப்களை மறை
+A locked app then does not show in the list of all apps or in search. It comes back when the lock ends.	அப்போது லாக் செய்த ஆப் எல்லா ஆப்களின் பட்டியலிலும் தேடலிலும் தெரியாது. லாக் முடிந்ததும் அது திரும்பும்.
+Not locked by activity.	செயல்பாட்டின்படி லாக் இல்லை.
+No daily schedule. Use Lock now, pick days, or lock during an activity type.	தினசரி அட்டவணை இல்லை. “இப்போது லாக் செய்” பயன்படுத்தவும், நாட்களைத் தேர்ந்தெடுக்கவும், அல்லது ஒரு செயல்பாட்டு வகையின் போது லாக் செய்யவும்.
+No daily times. This group locks during the activity types below.	தினசரி நேரங்கள் இல்லை. இந்தக் குழு கீழே உள்ள செயல்பாட்டு வகைகளின் போது லாக் ஆகும்.
+app:	 ஆப்: 
+apps:	 ஆப்கள்: 
+Lock during	இந்த நேரத்தில் லாக் செய்
+On a break until {1}	{1} வரை இடைவேளையில்
+You said you would start at {1}	நீங்கள் {1} மணிக்குத் தொடங்குவதாகச் சொன்னீர்கள்
+To-do  {1}/{2}	செய்ய வேண்டியவை  {1}/{2}
+Enjoy your break. Back at {1}	இடைவேளையை அனுபவியுங்கள். {1} மணிக்குத் திரும்புவீர்கள்
+ON A BREAK	இடைவேளையில்
+Tap it to add a to-do list for it.	இதற்கான செய்ய வேண்டியவை பட்டியலைச் சேர்க்க இதைத் தட்டவும்.
+Take a break	இடைவேளை எடு
+To-do	செய்ய வேண்டியவை
+This slot is taken off, so it has no to-do list	இந்த ஸ்லாட் நீக்கப்பட்டது, அதனால் இதற்குப் பட்டியல் இல்லை
+This slot is almost over	இந்த ஸ்லாட் கிட்டத்தட்ட முடிந்துவிட்டது
+Until this slot ends	இந்த ஸ்லாட் முடியும் வரை
+How long a break?	எவ்வளவு நேர இடைவேளை?
+A break cannot be taken now	இப்போது இடைவேளை எடுக்க முடியாது
+On apps  {1}   ·   Without apps  {2}	ஆப்களுடன்  {1}   ·   ஆப்கள் இல்லாமல்  {2}
+🔥 {1}-day streak.  {2}	🔥 தொடர்ந்து {1} நாட்கள்.  {2}
+Apps: {1}	ஆப்கள்: {1}
+{1}   ·   Without apps  {2}	{1}   ·   ஆப்கள் இல்லாமல்  {2}
+To-do for {1}	{1} க்கான செய்ய வேண்டியவை
+Only on days with {1}	{1} உள்ள நாட்களில் மட்டும்
+Goal set: {1}, {2}  ·  {3}	இலக்கு அமைக்கப்பட்டது: {1}, {2}  ·  {3}
+＋  Goal for today	＋  இன்றைக்கான இலக்கு
+Under a minute	ஒரு நிமிடத்துக்குக் குறைவு
+Time by type so far	இதுவரை வகைப்படி நேரம்
+counted so far	இதுவரை கணக்கிடப்பட்டது
+Slots so far	இதுவரையிலான ஸ்லாட்கள்
+Time and apps in each slot	ஒவ்வொரு ஸ்லாட்டிலும் நேரமும் ஆப்களும்
+Break	இடைவேளை
+Start put off	தொடக்கம் தள்ளிவைக்கப்பட்டது
+Given to the slot before	முந்தைய ஸ்லாட்டுக்குக் கொடுக்கப்பட்டது
+Carried on past its end	முடிவுக்குப் பிறகும் தொடர்ந்தது
+Tap to show or hide the apps used in this slot.	இந்த ஸ்லாட்டில் பயன்படுத்திய ஆப்களைக் காட்ட அல்லது மறைக்கத் தட்டவும்.
+Phone today	இன்று போன்
+Apps used most	அதிகம் பயன்படுத்திய ஆப்கள்
+No app used	எந்த ஆப்பும் பயன்படுத்தப்படவில்லை
+Change the goal	இலக்கை மாற்று
+All your goals	உங்கள் எல்லா இலக்குகளும்
+·   counts today	   ·   இன்று கணக்கில் வரும்
+·   not today	   ·   இன்று இல்லை
+Today only	இன்று மட்டும்
+Every other day	ஒருநாள் விட்டு ஒருநாள்
+On chosen days	தேர்ந்தெடுத்த நாட்களில்
+Any day with this activity	இந்தச் செயல்பாடு உள்ள எந்த நாளும்
+Nothing is left in today's schedule to set a goal for. Pick Every day instead.	இன்றைய அட்டவணையில் இலக்கு வைக்க எதுவும் மீதமில்லை. அதற்குப் பதிலாக ஒவ்வொரு நாளும் என்பதைத் தேர்ந்தெடுங்கள்.
+Add a slot with an activity type first (Routine tab)	முதலில் செயல்பாட்டு வகையுடன் ஒரு ஸ்லாட்டைச் சேர்க்கவும் (வழக்கம் தாவல்)
+How often	எவ்வளவு முறை
+Activity	செயல்பாடு
+At least	குறைந்தது
+To-do list for today	இன்றைய செய்ய வேண்டியவை
+New goal for today	இன்றைக்கான புதிய இலக்கு
+New goal	புதிய இலக்கு
+Pick at least one day	குறைந்தது ஒரு நாளைத் தேர்ந்தெடுக்கவும்
+There are no other activities to choose from	தேர்ந்தெடுக்க வேறு செயல்பாடுகள் இல்லை
+Count it only on days with…	இந்த நாட்களில் மட்டும் கணக்கிடு…
+·  hides its apps	  ·  ஆப்களை மறைக்கும்
+{1} and {2}	{1} மற்றும் {2}
+{1}, {2} and {3} more	{1}, {2} மற்றும் மேலும் {3}
+·  and during {1}	  ·  மேலும் {1} நேரத்தில்
+Locks during {1}	{1} நேரத்தில் லாக்
+While you are on: {1}	நீங்கள் இதில் இருக்கும்போது: {1}
+{1}Opening days older than the last {2} days is part of Pro.	{1}கடைசி {2} நாட்களை விடப் பழைய நாட்களைத் திறப்பது Pro-வின் பகுதி.
+ON A BREAK  ·  back at {1}	இடைவேளையில்  ·  {1} மணிக்குத் திரும்புவீர்கள்
++{1} more	+{1} மேலும்
+Other	பிற
+Tomorrow only	நாளை மட்டும்
+One day only	ஒரு நாள் மட்டும்
+Only for {1}. After that day the usual routine comes back.	{1} க்கு மட்டும். அந்த நாளுக்குப் பிறகு வழக்கமான வழக்கம் திரும்பும்.
+{1}. Change its slots below.	{1}. இதன் ஸ்லாட்களைக் கீழே மாற்றுங்கள்.
+Routine moved to {1}.	வழக்கம் {1} க்கு நகர்த்தப்பட்டது.
+Delete the routine for {1}?	{1} க்கான வழக்கத்தை நீக்கவா?
+Deleted the routine for {1}.	{1} க்கான வழக்கம் நீக்கப்பட்டது.
+Type {1}. Every kind keeps it.	வகை {1}. ஒவ்வொரு வகையும் இதை வைத்திருக்கும்.
+{1} slots use it. They keep their name and time and become “Other”.	{1} ஸ்லாட்கள் இதைப் பயன்படுத்துகின்றன. அவை தங்கள் பெயரையும் நேரத்தையும் வைத்துக்கொண்டு “பிற” ஆகிவிடும்.
+When this slot starts: {1}. Tap to change.	இந்த ஸ்லாட் தொடங்கும்போது: {1}. மாற்றத் தட்டவும்.
+start-of-day alarm, {1}	நாள்-தொடக்க அலாரம், {1}
+＋ One day only	＋ ஒரு நாள் மட்டும்
+Date	தேதி
+A routine for one day	ஒரு நாளுக்கான வழக்கம்
+Another date…	வேறு தேதி…
+A routine that is followed on one date only, then the usual one comes back.	ஒரே ஒரு தேதியில் மட்டும் பின்பற்றப்படும் வழக்கம்; பிறகு வழக்கமானது திரும்பும்.
+Which day	எந்த நாள்
+You can change its slots and start time after.	இதன் ஸ்லாட்களையும் தொடங்கும் நேரத்தையும் பிறகு மாற்றலாம்.
+That day follows its usual routine again.	அந்த நாள் மீண்டும் அதன் வழக்கமான வழக்கத்தைப் பின்பற்றும்.
+Time by type	வகைப்படி நேரம்
+“Other” stays: slots with no type of their own use it	“பிற” இருக்கும்: சொந்த வகை இல்லாத ஸ்லாட்கள் இதைப் பயன்படுத்துகின்றன
+1 slot uses it. It keeps its name and time and becomes “Other”.	1 ஸ்லாட் இதைப் பயன்படுத்துகிறது. அது தன் பெயரையும் நேரத்தையும் வைத்துக்கொண்டு “பிற” ஆகிவிடும்.
+notification with ring	ஒலியுடன் அறிவிப்பு
+notification with vibration	அதிர்வுடன் அறிவிப்பு
+silent notification	ஒலியற்ற அறிவிப்பு
+no notification	அறிவிப்பு இல்லை
+Notification with ring	ஒலியுடன் அறிவிப்பு
+Notification with vibration	அதிர்வுடன் அறிவிப்பு
+Silent notification	ஒலியற்ற அறிவிப்பு
+No notification	அறிவிப்பு இல்லை
+This is the start-of-day alarm: tap to undo	இது நாள்-தொடக்க அலாரம்: செயல்தவிர்க்கத் தட்டவும்
+Make this the start-of-day alarm	இதை நாள்-தொடக்க அலாரமாக்கு
+Not the start-of-day alarm any more	இனி நாள்-தொடக்க அலாரம் அல்ல
+The start-of-day alarm has to be the first alarm of the day. Set the slots before it to No notification first.	நாள்-தொடக்க அலாரம் நாளின் முதல் அலாரமாக இருக்க வேண்டும். முதலில் இதற்கு முந்தைய ஸ்லாட்களை “அறிவிப்பு இல்லை” என அமைக்கவும்.
+A list can hold {1} items	ஒரு பட்டியலில் {1} உருப்படிகள் வைக்கலாம்
+Goal: {1}	இலக்கு: {1}
+Nothing yet. Add what you want to get done in this slot.	இன்னும் எதுவும் இல்லை. இந்த ஸ்லாட்டில் நீங்கள் செய்ய விரும்புவதைச் சேர்க்கவும்.
+Add a to-do	செய்ய வேண்டியதைச் சேர்
+These are for this day only. Nothing here repeats tomorrow.	இவை இந்த நாளுக்கு மட்டும். இங்குள்ளவை எதுவும் நாளை திரும்பாது.
+Free: the home screen, alarms, today's report and the last three days, two paused apps and two locked apps. {1}It adds every saved day and the weekly view, strict and playful pauses, daily limits, groups of locked apps and strict locks, weekday and weekend routines, goals, every colour look, and no ads.{2}	இலவசம்: முகப்புத் திரை, அலாரங்கள், இன்றைய அறிக்கை மற்றும் கடந்த மூன்று நாட்கள், இடைநிறுத்தப்பட்ட இரண்டு ஆப்கள் மற்றும் லாக் செய்யப்பட்ட இரண்டு ஆப்கள். {1}இதில் சேர்வது: சேமிக்கப்பட்ட ஒவ்வொரு நாளும் வாராந்திரப் பார்வையும், கண்டிப்பான மற்றும் விளையாட்டான இடைநிறுத்தங்கள், தினசரி வரம்புகள், லாக் செய்த ஆப்களின் குழுக்கள் மற்றும் கண்டிப்பான லாக், வார நாள் மற்றும் வார இறுதி வழக்கங்கள், இலக்குகள், ஒவ்வொரு நிறத் தோற்றமும், விளம்பரங்கள் இல்லை.{2}
+{1} is open now.\n\n{2}\n\nOr stop here and keep what you have.	{1} இப்போது திறந்திருக்கிறது.\n\n{2}\n\nஅல்லது இங்கேயே நிறுத்தி, உங்களிடம் உள்ளதை வைத்துக்கொள்ளுங்கள்.
+Well begun is half done.	நல்ல தொடக்கம் பாதி வேலை முடிந்ததற்குச் சமம்.
+Small steps every day add up to big change.	தினமும் சிறு அடிகள் பெரிய மாற்றமாகச் சேர்கின்றன.
+The hardest part is getting up. You have already done it.	மிகக் கடினமான பகுதி எழுந்திருப்பதுதான். அதை நீங்கள் ஏற்கனவே செய்துவிட்டீர்கள்.
+Choose what you want most over what you want right now.	இப்போது விரும்புவதை விட, மிக அதிகமாக விரும்புவதைத் தேர்ந்தெடுங்கள்.
+Your future self is watching. Make them proud.	உங்கள் எதிர்கால நீங்கள் பார்த்துக்கொண்டிருக்கிறார். அவரைப் பெருமைப்படுத்துங்கள்.
+Start now. You can polish it later.	இப்போதே தொடங்குங்கள். பிறகு மெருகேற்றலாம்.
+One focused hour today beats ten good intentions.	இன்றைய ஒரு கவனம் செலுத்திய மணி நேரம் பத்து நல்ல எண்ணங்களை விடச் சிறந்தது.
+Rest was for the night. The morning is for action.	ஓய்வு இரவுக்கானது. காலை செயலுக்கானது.
+You do not have to feel ready. You only have to begin.	தயாராக உணர வேண்டியதில்லை. தொடங்கினால் போதும்.
+Every morning is a fresh page. Write something worth reading.	ஒவ்வொரு காலையும் ஒரு புதிய பக்கம். படிக்கத் தகுந்த ஒன்றை எழுதுங்கள்.
+Progress, not perfection.	முன்னேற்றம், முழுமை அல்ல.
+The day belongs to those who start it.	நாள் அதைத் தொடங்குபவர்களுக்கே சொந்தம்.
+Five more minutes of sleep will not help your goals. Five minutes of work will.	இன்னும் ஐந்து நிமிடம் தூங்குவது உங்கள் இலக்குகளுக்கு உதவாது. ஐந்து நிமிட வேலை உதவும்.
+Be the person your plan needs today.	இன்று உங்கள் திட்டத்துக்குத் தேவையான நபராக இருங்கள்.
+Wake up with a purpose and the day will make room for it.	நோக்கத்துடன் எழுந்திருங்கள், நாள் அதற்கு இடம் தரும்.
+I am choosing to put my day off	என் நாளைத் தள்ளிவைப்பது என் தேர்வு
+My plan is waiting for me	என் திட்டம் எனக்காகக் காத்திருக்கிறது
+I could start right now	இப்போதே தொடங்குவது என் கையில்
+I am putting this off on purpose	இதைத் தள்ளிவைப்பது நான் யோசித்து எடுத்த முடிவு
+Later is my choice, not the plan	பிறகு செய்வது என் தேர்வு, திட்டம் அல்ல
+hours	மணி
+minutes	நிமிடம்
+{1}, only on days with {2}	{1}, {2} உள்ள நாட்களில் மட்டும்
+Replaced the routine for {1}. Change its slots below.	{1} க்கான வழக்கம் மாற்றப்பட்டது. இதன் ஸ்லாட்களைக் கீழே மாற்றவும்.
+Made a routine for {1}. Change its slots below.	{1} க்கான வழக்கம் உருவாக்கப்பட்டது. இதன் ஸ்லாட்களைக் கீழே மாற்றவும்.
+Back at {1}.	{1} மணிக்குத் திரும்புவீர்கள்.
+Back at {1}	{1} மணிக்குத் திரும்புவீர்கள்
+, when this slot ends	, இந்த ஸ்லாட் முடியும்போது
+Other options	மற்ற விருப்பங்கள்
+Delay the start	தொடக்கத்தைத் தாமதப்படுத்து
+More time	இன்னும் நேரம்
+Rest for	ஓய்வு நேரம்
+Add this time	இந்த நேரத்தைச் சேர்
+About this backup	இந்தக் காப்புப்பிரதி பற்றி
+How often, and over which network	எத்தனை முறை, எந்த நெட்வொர்க்கில்
+For a new phone, or after reinstalling	புதிய ஃபோனுக்கு, அல்லது ஆப்பை மீண்டும் நிறுவிய பிறகு
+A short code, if the account list does not open	ஒரு சிறிய குறியீடு, கணக்குப் பட்டியல் திறக்கவில்லை என்றால்
+Still to allow: {1}	இன்னும் அனுமதிக்க வேண்டியவை: {1}
+All set	எல்லாம் தயார்
+A preview, and the button to change its look	ஒரு முன்னோட்டம், அதன் தோற்றத்தை மாற்றும் பொத்தான்
+Your to-do list	உங்கள் செய்ய வேண்டியவை பட்டியல்
+{1} of {2} done	{2} இல் {1} முடிந்தது
+Start the break	இடைவேளையைத் தொடங்கு
+1 slot  ·  {1}	1 ஸ்லாட்  ·  {1}
+{1} slots  ·  {2}	{1} ஸ்லாட்கள்  ·  {2}
+1 type	1 வகை
+{1} types	{1} வகைகள்
+1 goal, with how it repeats	1 இலக்கு, அது எப்படி மீண்டும் வரும் என்பதுடன்
+{1} goals, with how they repeat	{1} இலக்குகள், அவை எப்படி மீண்டும் வரும் என்பதுடன்
+Phone use by hour, and the apps used most	மணி வாரியாக ஃபோன் பயன்பாடு, அதிகம் பயன்படுத்திய ஆப்கள்
+{1} apps have a pause	{1} ஆப்களுக்கு இடைநிறுத்தம் உள்ளது
+1 app has a pause	1 ஆப்புக்கு இடைநிறுத்தம் உள்ளது
+{1} apps are hidden	{1} ஆப்கள் மறைக்கப்பட்டுள்ளன
+1 app is hidden	1 ஆப் மறைக்கப்பட்டுள்ளது
+{1} locks	{1} லாக்குகள்
+1 lock	1 லாக்
+Help and checks	உதவியும் சரிபார்ப்பும்
+Colours, text size and the keyboard in the list of all apps	எல்லா ஆப்கள் பட்டியலில் நிறங்கள், எழுத்தின் அளவு, விசைப்பலகை
+A pause before apps open: none yet	ஆப் திறக்கும் முன் இடைநிறுத்தம்: இன்னும் இல்லை
+How it works	இது எப்படி வேலை செய்கிறது
+How locks work	லாக்குகள் எப்படி வேலை செய்கின்றன
+On: holds locks and pauses everywhere	இயக்கத்தில்: லாக்குகளும் இடைநிறுத்தங்களும் எல்லா இடத்திலும் செயல்படும்
+Off: locks hold only from this home screen	அணைப்பு: லாக்குகள் இந்த முகப்புத் திரையிலிருந்து திறக்கும்போது மட்டுமே செயல்படும்
+No pauses so far today.	இன்று இதுவரை இடைநிறுத்தம் எதுவும் இல்லை.
+Less	குறை
+More	கூட்டு
+Hold ≡ and drag to move a slot. Swipe a slot left to delete it, right to add one below it. Tap the arrow on a slot for its type, length, alarm and more. The day keeps its length: minutes only move from one slot to another.	ஸ்லாட்டை நகர்த்த ≡ ஐ அழுத்திப் பிடித்து இழுக்கவும். ஸ்லாட்டை நீக்க இடப்பக்கம் ஸ்வைப் செய்யவும், அதன் கீழே புதியதைச் சேர்க்க வலப்பக்கம். ஸ்லாட்டின் வகை, நீளம், அலாரம் மற்றும் பலவற்றைப் பார்க்க அதன் அம்புக்குறியைத் தட்டவும். நாளின் நீளம் மாறாது: நிமிடங்கள் ஒரு ஸ்லாட்டிலிருந்து இன்னொன்றுக்கு மட்டுமே நகரும்.
+How to edit slots	ஸ்லாட்டுகளை எப்படி மாற்றுவது
+More tools	மேலும் கருவிகள்
+Study, Exercise, Meal and the rest, by kind	படிப்பு, உடற்பயிற்சி, உணவு மற்றும் மற்றவை, வகை வாரியாக
+Details	விவரங்கள்
+details shown. Tap to hide.	விவரங்கள் காட்டப்படுகின்றன. மறைக்கத் தட்டவும்.
+details hidden. Tap to show.	விவரங்கள் மறைக்கப்பட்டுள்ளன. காட்டத் தட்டவும்.
+expanded	விரிவாக்கப்பட்டது
+collapsed	சுருக்கப்பட்டது
+Clock, phone screen time, the “Developed by” mark	கடிகாரம், ஃபோன் திரை நேரம், “Developed by” குறி
+Space at the top and at the bottom	மேலேயும் கீழேயும் இடைவெளி
+Nothing written down	எதுவும் பதிவாகவில்லை
+Some problems were written down	சில சிக்கல்கள் பதிவாகியுள்ளன
+“{1}” will not come back on other days. Where it already is stays as it is.	“{1}” இனி மற்ற நாட்களில் மீண்டும் வராது. ஏற்கெனவே இருக்கும் இடத்தில் அப்படியே இருக்கும்.
+Up to {1} things can repeat	அதிகபட்சம் {1} விஷயங்கள் மீண்டும் வரலாம்
+tap to stop repeating	மீண்டும் வருவதை நிறுத்தத் தட்டவும்
+Stop repeating this?	இதை மீண்டும் வருவதை நிறுத்தவா?
+Stop repeating	மீண்டும் வருவதை நிறுத்து
+Keep it	வைத்திரு
+Repeat	மீண்டும்
+Does not repeat	மீண்டும் வராது
+A to-do is for this day only, unless you set it to repeat with the ↻ button.	செய்ய வேண்டியவை பட்டியலில் உள்ளது இந்த நாளுக்கு மட்டுமே, ↻ பொத்தானால் மீண்டும் வருமாறு அமைக்கும் வரை.
+{1}–{2} of {3}	{3} இல் {1}–{2}
+# the same texts without the marks at their ends
+{1} after your plan	உங்கள் திட்டத்துக்குப் பின் {1}
+Made	உருவாக்கப்பட்டது
+slots covered by the extra sleep are dropped	கூடுதல் உறக்கத்தில் வரும் ஸ்லாட்கள் நீக்கப்படும்
+the morning moves later, bedtime stays	காலை தாமதமாகும், உறக்க நேரம் அப்படியே இருக்கும்
+test	சோதனை
+the whole day	முழு நாள்
+into the next morning	மறுநாள் காலை வரை
+Strictly locked	கண்டிப்பாக லாக்
+Locked	லாக்
+limit {1} a day	வரம்பு: ஒரு நாளுக்கு {1}
+also outside focus times	ஃபோகஸ் நேரத்துக்கு வெளியிலும்
+needs Pro	Pro தேவை
+Pro part off	Pro பகுதி அணைந்துள்ளது
+strict	கண்டிப்பான
+only {1} held, needs Pro	{1} மட்டும் நடைமுறையில், Pro தேவை
+strict part off	கண்டிப்பான பகுதி அணைந்துள்ளது
+backed up	காப்புப்பிரதி எடுக்கப்பட்டது
+not backed up yet	இன்னும் காப்புப்பிரதி எடுக்கப்படவில்லை
+{1}\n\nOr watch short videos to use it free. You choose how many	{1}\n\nஅல்லது இலவசமாகப் பயன்படுத்த சிறு வீடியோக்களைப் பாருங்கள். எத்தனை என்பதை நீங்களே தேர்ந்தெடுங்கள்
+went to sleep {1}	உறக்கம் {1}
+wake-up {1}	எழுந்தது {1}
+uses {1}	{1} பயன்படுத்துகிறது
+uses this routine	இந்த வழக்கத்தைப் பயன்படுத்துகிறது
+video	வீடியோ
+videos	வீடியோக்கள்
+app	ஆப்
+apps	ஆப்கள்
+counts today	இன்று கணக்கில் வரும்
+not today	இன்று இல்லை
+hides its apps	ஆப்களை மறைக்கும்
+and during {1}	மேலும் {1} நேரத்தில்
+when this slot ends	இந்த ஸ்லாட் முடியும்போது

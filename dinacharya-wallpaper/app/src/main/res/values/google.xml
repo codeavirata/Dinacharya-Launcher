@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Only for "Sign in with a code" (the fallback). Paste the client ID and secret of an OAuth client
+  of type "TVs and Limited Input devices" from your Google Cloud project here before building, or
+  type them in the app under Backup > Other ways to sign in. The account picker needs nothing here.
+-->
+<resources>
+    <string name="google_code_client_id" translatable="false"></string>
+    <string name="google_code_client_secret" translatable="false"></string>
+</resources>

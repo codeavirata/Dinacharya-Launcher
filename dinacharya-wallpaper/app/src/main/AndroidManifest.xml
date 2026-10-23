@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Optional: lets the home screen and the reports show phone use. The user switches it on in Settings. -->
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+
+    <!-- Alarms: rings at the start of each slot, shows the question on the lock screen, keeps the phone awake while it rings. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- The ringing service is an alarm that holds the exact-alarm permission, the one case Android
+         reserves this foreground-service type for. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- Rings each alarm on the minute. The user allows it once (Alarms and reminders); the Alarms
+         screen checks it and takes them there. Google Play allows the stronger USE_EXACT_ALARM only
+         for alarm-clock and calendar apps, so this app asks instead. -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <!-- Sets the alarms again after the phone restarts. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- Only used for Google sign-in and the Drive backup. Nothing is sent unless you sign in. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Lets the automatic backup wait for Wi-Fi when you choose "Wi-Fi only", and lets ads load. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- The one-time "Pro" purchase through Google Play. -->
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <!-- Lets a swipe down on the home screen open the notification shade (an ordinary permission; if a phone
+         refuses it, swiping down from the top of the screen still works). -->
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+
+    <!-- Optional "Strong lock" (off until the user turns it on in the home settings): a small foreground service that looks at
+         which app is in front, and a lock or pause screen shown over a locked app wherever it was opened from. It uses the
+         Usage access above and the "Display over other apps" permission, which the user gives in Android's own settings.
+         It reads nothing but the name of the app in front, and keeps and sends nothing. -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+
+    <uses-feature
+        android:name="android.software.live_wallpaper"
+        android:required="false" />
+
+    <!-- Needed to find which app is the home screen, to list the apps on the phone for the home screen's list of all
+         apps, and to show app names in the phone-use report. -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.HOME" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+        <!-- The phone app is never covered by the strong lock, so calls can always be made. -->
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Google AdMob app ID (test value until you put your own in res/values/monetization.xml). -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id" />
+
+        <!-- What the app's icon opens: a welcome the first time (then the setup and the tour), the dashboard after that.
+             It is the only activity with an icon. -->
+        <activity
+            android:name=".WelcomeActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/TourTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- The home screen: what Android shows when Dinacharya is chosen in its Home app setting. It has no icon and is
+             kept out of the list of recent apps, so that Dinacharya appears there once (the dashboard). It lists no apps
+             and shows no ads. -->
+        <activity
+            android:name=".LauncherActivity"
+            android:clearTaskOnLaunch="true"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:stateNotNeeded="true"
+            android:taskAffinity=""
+            android:theme="@style/LauncherTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- The dashboard: routine, insights, backup and settings. Opened by the app's icon (through the welcome) or from the home screen. -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <activity
+            android:name=".LauncherSettingsActivity"
+            android:exported="false"
+            android:label="Home screen"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <!-- The first-start setup: every permission and setting, one list. -->
+        <activity
+            android:name=".SetupActivity"
+            android:exported="false"
+            android:label="Set up" />
+
+        <activity
+            android:name=".TourActivity"
+            android:exported="false"
+            android:label="Tour"
+            android:theme="@style/TourTheme" />
+
+        <!-- Every "See Pro" button opens this. -->
+        <activity
+            android:name=".ProActivity"
+            android:exported="false"
+            android:label="Dinacharya Pro" />
+
+        <activity
+            android:name=".PerformanceActivity"
+            android:exported="false"
+            android:label="Performance" />
+
+        <activity
+            android:name=".ReportActivity"
+            android:exported="false"
+            android:label="Day report" />
+
+        <!-- The question that stops the alarm. Opens over the lock screen. -->
+        <activity
+            android:name=".AlarmActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:showWhenLocked="true"
+            android:taskAffinity=""
+            android:turnScreenOn="true"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            tools:ignore="UnusedAttribute" />
+
+        <service
+            android:name=".AlarmService"
+            android:exported="false"
+            android:foregroundServiceType="systemExempted" />
+
+        <!-- The strong lock: watches which app is in front while it is switched on in the home settings. -->
+        <service
+            android:name=".GuardService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Holds the apps the person has locked or paused, wherever they are opened from, by showing the lock or pause screen in front of them" />
+        </service>
+
+        <!-- The lock or pause screen the strong lock brings up in front of an app. Its own task, not in the recent apps. -->
+        <activity
+            android:name=".GuardActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboard|keyboardHidden|uiMode|density|fontScale|layoutDirection|locale"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:noHistory="false"
+            android:taskAffinity=""
+            android:theme="@style/GuardTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <receiver
+            android:name=".AlarmReceiver"
+            android:exported="false" />
+
+        <!-- The "Start now" and "In 10 min" buttons of a silent slot notification. -->
+        <receiver
+            android:name=".SlotActionReceiver"
+            android:exported="false" />
+
+        <receiver
+            android:name=".BootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".DayCloser$DayCloseReceiver"
+            android:exported="false" />
+
+        <!-- Gives a finished one-day video pass its ending: what was made with it goes back to the free version. -->
+        <receiver
+            android:name=".PassSettle$PassEndReceiver"
+            android:exported="false" />
+
+        <service
+            android:name=".DriveJob"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <!-- Hands a report PDF to Drive, mail or chat when you tap Share. Reads nothing else. -->
+        <provider
+            android:name=".ReportProvider"
+            android:authorities="app.dinacharya.wallpaper.reports"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+
+        <!-- Dinacharya's live wallpaper: your day on the home screen, the lock screen and in recent apps. The launcher asks
+             Android to put it in place; the person confirms once on Android's own preview screen. -->
+        <service
+            android:name=".PosterWallpaperService"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_WALLPAPER">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/wallpaper" />
+        </service>
+    </application>
+</manifest>

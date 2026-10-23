@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 11 and older: Google backup keeps the routine and the history, but not the Google sign-in. -->
+<full-backup-content>
+    <exclude domain="sharedpref" path="account.xml" />
+    <exclude domain="sharedpref" path="pro.xml" />
+    <exclude domain="sharedpref" path="alarm_diag.xml" />
+</full-backup-content>

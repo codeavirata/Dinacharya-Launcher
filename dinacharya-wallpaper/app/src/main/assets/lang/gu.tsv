@@ -1,0 +1,1580 @@
+# Dinacharya, language file "gu": English text TAB translation. Built by tools/i18n/build.py
+Backup failed	બેકઅપ નિષ્ફળ ગયું
+No ad right now (code {1}). Trying again soon.	હાલમાં કોઈ જાહેરાત નથી (કોડ {1}). થોડી વારમાં ફરી પ્રયાસ થશે.
+Loading an ad…	જાહેરાત લોડ થઈ રહી છે…
+Remove ads with Pro	Pro લઈને જાહેરાતો હટાવો
+Test alarm	ટેસ્ટ એલાર્મ
+If you can see and hear this, your alarms will work.	જો તમે આ જોઈ અને સાંભળી શકો છો, તો તમારા એલાર્મ કામ કરશે.
+Alarms are working on this phone.	આ ફોન પર એલાર્મ કામ કરી રહ્યા છે.
+A real alarm looks like this and asks if you are continuing with the schedule. Nothing in your routine was changed.	સાચો એલાર્મ આવો જ દેખાય છે અને પૂછે છે કે તમે દિનચર્યા મુજબ ચાલી રહ્યા છો કે નહીં. તમારી દિનચર્યામાં કંઈ બદલાયું નથી.
+Stop the test	ટેસ્ટ બંધ કરો
+Next slot	આગળનો સ્લૉટ
+Your day starts. {1} to {2}	તમારો દિવસ શરૂ થાય છે. {1} થી {2}
+{1} to {2}	{1} થી {2}
+Are you continuing with the schedule?	શું તમે દિનચર્યા મુજબ આગળ વધી રહ્યા છો?
+Yes, continue as planned	હા, યોજના મુજબ ચાલુ રાખો
+No, I want to change it	ના, મારે તેમાં ફેરફાર કરવો છે
+What will you do instead?	તેના બદલે તમે શું કરશો?
+This changes today only. Your saved routine stays as it is.	આ ફેરફાર ફક્ત આજ માટે છે. તમારી સાચવેલી દિનચર્યા જેમ છે તેમ જ રહેશે.
+Save new name for today	આજ માટે નવું નામ સાચવો
+Type a name, or choose Take it off	નામ લખો, અથવા “હટાવી દો” પસંદ કરો
+Changed for today: {1}	આજ માટે બદલ્યું: {1}
+Take it off for today	આજ માટે હટાવી દો
+Taken off for today	આજ માટે હટાવ્યું
+Back	પાછળ
+Asking again	ફરી પૂછી રહ્યા છીએ
+Time to sleep	સૂવાનો સમય
+Planned bedtime {1}	નક્કી કરેલો સૂવાનો સમય {1}
+Are you going to sleep, or will it take more time?	તમે સૂવા જઈ રહ્યા છો, કે વધુ સમય લાગશે?
+I am going to sleep	હવે સૂવું છે
+It will take more time	વધુ સમય લાગશે
+Remind me again after how long?	કેટલા સમય પછી ફરી યાદ અપાવું?
+or type minutes	અથવા મિનિટ લખો
+{1} min	{1} મિનિટ
+Remind me	યાદ અપાવો
+Pick between 1 and 360 minutes	1 થી 360 મિનિટ વચ્ચે પસંદ કરો
+I will ask again at {1}	{1} વાગ્યે ફરી પૂછવામાં આવશે
+Going to sleep at {1}	સૂવાનો સમય: {1}
+, {1} after your plan	, તમારી યોજના પછી {1}
+Good night. I will wake you at {1}.	શુભ રાત્રિ. તમને {1} વાગ્યે ઉઠાડવામાં આવશે.
+Set the alarm	એલાર્મ સેટ કરો
+When do you want to wake up?	તમે ક્યારે ઊઠવા માગો છો?
+Normal schedule	સામાન્ય સમયપત્રક
+Shift my day later	મારો દિવસ મોડો શરૂ કરો
+Skip the slots I sleep through	હું ઊંઘી જાઉં તે સ્લૉટ છોડી દો
+These changes are for tomorrow only. To change your routine for good, edit it in the app.	આ ફેરફારો ફક્ત આવતીકાલ માટે છે. તમારી દિનચર્યા કાયમ માટે બદલવા તેને એપમાં સંપાદિત કરો.
+Good night. Alarm set for {1}	શુભ રાત્રિ. એલાર્મ {1} માટે સેટ થયું
+Alarms switched on	એલાર્મ ચાલુ છે
+Nothing rings while this is off.	આ બંધ હોય ત્યારે કંઈ વાગશે નહીં.
+Notifications	સૂચનાઓ
+The alarm question appears here, also on the lock screen.	એલાર્મનો પ્રશ્ન અહીં દેખાય છે, લૉક સ્ક્રીન પર પણ.
+Exact alarms	ચોક્કસ એલાર્મ
+Rings on the minute a slot starts, not a few minutes late.	સ્લૉટ શરૂ થાય તે જ મિનિટે વાગે છે, થોડી મિનિટ મોડું નહીં.
+Alarm screen over the lock screen	લૉક સ્ક્રીન પર એલાર્મ સ્ક્રીન
+Opens the question by itself when the phone is locked.	ફોન લૉક હોય ત્યારે પ્રશ્ન આપમેળે ખુલે છે.
+Alarm pop-up allowed	એલાર્મ પૉપ-અપની મંજૂરી છે
+Shows the question on top while you use the phone.	તમે ફોન વાપરતા હો ત્યારે પ્રશ્ન ઉપર બતાવે છે.
+No battery limits	બેટરી પર કોઈ મર્યાદા નથી
+Stops the phone from putting the app to sleep. Set Battery to Unrestricted on the app info page.	ફોનને એપ સુવડાવી દેતા અટકાવે છે. એપ માહિતી પેજ પર બેટરીને “પ્રતિબંધ વગર” પર સેટ કરો.
+Allow background activity	બૅકગ્રાઉન્ડ પ્રવૃત્તિની મંજૂરી આપો
+Some phones stop apps unless you allow this in their own settings.	કેટલાક ફોન તમે તેમના પોતાના સેટિંગ્સમાં મંજૂરી ન આપો ત્યાં સુધી એપ્સ બંધ કરી દે છે.
+Find Dinacharya Launcher and allow auto-start or background activity.	Dinacharya Launcher શોધો અને ઓટો-સ્ટાર્ટ અથવા બૅકગ્રાઉન્ડ પ્રવૃત્તિની મંજૂરી આપો.
+Open Battery, and choose Unrestricted or Allow background activity.	બેટરી ખોલો, અને “પ્રતિબંધ વગર” અથવા “બૅકગ્રાઉન્ડ પ્રવૃત્તિની મંજૂરી આપો” પસંદ કરો.
+Open Settings, Apps, Dinacharya Launcher, Battery	સેટિંગ્સ, એપ્સ, Dinacharya Launcher, બેટરી ખોલો
+Alarms	એલાર્મ
+Rings when a slot of your day starts	તમારા દિવસનો સ્લૉટ શરૂ થાય ત્યારે વાગે છે
+Missed alarms	ચૂકી ગયેલા એલાર્મ
+This is how an alarm looks. Tap to stop it.	એલાર્મ આવો દેખાય છે. બંધ કરવા ટૅપ કરો.
+{1} to {2}. Tap to answer.	{1} થી {2}. જવાબ આપવા ટૅપ કરો.
+Going to sleep, or will it take more time?	સૂવા જઈ રહ્યા છો, કે વધુ સમય લાગશે?
+Alarms (backup)	એલાર્મ (બેકઅપ)
+Tap to answer.	જવાબ આપવા ટૅપ કરો.
+Bedtime question	સૂવાનો પ્રશ્ન
+Missed: {1}	ચૂકી ગયું: {1}
+The alarm rang for five minutes. Your schedule was not changed.	એલાર્મ પાંચ મિનિટ વાગ્યું. તમારું સમયપત્રક બદલાયું નથી.
+Sleep	ઊંઘ
+Not enough data	પૂરતો ડેટા નથી
+Excellent	ઉત્તમ
+Good	સારું
+Fair	ઠીક-ઠાક
+Needs work	સુધારાની જરૂર
+{1}  (work)	{1}  (કાર્ય)
+Dinacharya routine	Dinacharya દિનચર્યા
+Camera	કૅમેરા
+Phone	ફોન
+Search	શોધો
+Cancel	રદ કરો
+The backup file contains an unexpected entry.	બેકઅપ ફાઇલમાં અણધારી એન્ટ્રી છે.
+The backup file has too many entries.	બેકઅપ ફાઇલમાં ઘણી બધી એન્ટ્રીઓ છે.
+The backup file is too large.	બેકઅપ ફાઇલ ખૂબ મોટી છે.
+The backup file is damaged.	બેકઅપ ફાઇલ બગડેલી છે.
+This is not a Dinacharya Launcher backup.	આ Dinacharya Launcher નું બેકઅપ નથી.
+This backup was made by a newer version of the app. Update the app first.	આ બેકઅપ એપના નવા વર્ઝનથી બન્યું છે. પહેલા એપ અપડેટ કરો.
+The backup has no readable routine.	બેકઅપમાં વાંચી શકાય તેવી દિનચર્યા નથી.
+Could not make a folder for the backup.	બેકઅપ માટે ફોલ્ડર બનાવી શકાયું નથી.
+Could not replace the history.	ઇતિહાસ બદલી શકાયો નથી.
+Could not save the restored settings.	પુનઃસ્થાપિત સેટિંગ્સ સાચવી શકાઈ નથી.
+Backup	બેકઅપ
+Your days, safe in Google Drive	તમારા દિવસો, Google ડ્રાઇવમાં સુરક્ષિત
+Google Drive backup	Google ડ્રાઇવ બેકઅપ
+Back up	બેકઅપ લો
+Google Account	Google એકાઉન્ટ
+Settings	સેટિંગ્સ
+Back up to Google Drive	Google ડ્રાઇવ પર બેકઅપ લો
+Back up using	બેકઅપ કેવી રીતે લેવું
+Restore	રીસ્ટોર કરો
+Restore from Google Drive	Google ડ્રાઇવમાંથી રીસ્ટોર કરો
+Other ways to sign in	સાઇન ઇન કરવાની બીજી રીતો
+Check sign-in setup	સાઇન-ઇન સેટઅપ તપાસો
+Sign in with a code	કોડથી સાઇન ઇન કરો
+Code sign-in setup (client ID)	કોડ સાઇન-ઇન સેટઅપ (ક્લાયન્ટ ID)
+Never	ક્યારેય નહીં
+Today	આજે
+Yesterday	ગઈકાલે
+Last backup: {1}	છેલ્લું બેકઅપ: {1}
+Size: {1}	માપ: {1}
+Tap Back up to make the first one.	પહેલું બેકઅપ બનાવવા “બેકઅપ લો” પર ટૅપ કરો.
+Sign in to start backing up.	બેકઅપ શરૂ કરવા સાઇન ઇન કરો.
+Working…	કામ ચાલુ છે…
+Signed in	સાઇન ઇન છે
+Switch account	એકાઉન્ટ બદલો
+Sign out	સાઇન આઉટ કરો
+Not signed in	સાઇન ઇન નથી
+Sign in with Google	Google થી સાઇન ઇન કરો
+Wi-Fi only	ફક્ત Wi-Fi
+Wi-Fi or mobile data	Wi-Fi અથવા મોબાઇલ ડેટા
+Could not sign in	સાઇન ઇન થઈ શક્યું નહીં
+Check setup	સેટઅપ તપાસો
+Close	બંધ કરો
+Sign-in failed.	સાઇન-ઇન નિષ્ફળ.
+OK	ઠીક છે
+Signed in as {1}	{1} તરીકે સાઇન ઇન છે
+Switch Google account?	Google એકાઉન્ટ બદલવું છે?
+You are signed out here, then you pick another account. Backups already in Drive stay there.	તમે અહીંથી સાઇન આઉટ થશો, પછી બીજું એકાઉન્ટ પસંદ કરશો. ડ્રાઇવમાં પહેલાથી રહેલા બેકઅપ ત્યાં જ રહેશે.
+Switch	બદલો
+Sign out?	સાઇન આઉટ કરવું છે?
+Automatic backups stop. Your data stays on this phone, and the last backup stays in your Google Drive.	આપમેળે થતા બેકઅપ બંધ થશે. તમારો ડેટા આ ફોન પર રહેશે, અને છેલ્લું બેકઅપ તમારા Google ડ્રાઇવમાં રહેશે.
+Signed out	સાઇન આઉટ થયા
+Sign-in setup check	સાઇન-ઇન સેટઅપ તપાસ
+Copy values	મૂલ્યો કૉપિ કરો
+Dinacharya sign-in values	Dinacharya સાઇન-ઇન મૂલ્યો
+Copied	કૉપિ થયું
+Could not copy	કૉપિ થઈ શક્યું નહીં
+Open Google Cloud	Google Cloud ખોલો
+Open console.cloud.google.com in a browser	બ્રાઉઝરમાં console.cloud.google.com ખોલો
+Google code	Google કોડ
+The code is copied. Waiting for you…	કોડ કૉપિ થઈ ગયો છે. તમારી રાહ જોઈ રહ્યા છીએ…
+Open the page	પેજ ખોલો
+Open {1} in a browser	બ્રાઉઝરમાં {1} ખોલો
+You said no at Google. Nothing was changed.	તમે Google પર ના પાડી. કંઈ બદલાયું નથી.
+The code ran out. Try again.	કોડની મુદત પૂરી થઈ. ફરી પ્રયાસ કરો.
+Client ID (…apps.googleusercontent.com)	ક્લાયન્ટ ID (…apps.googleusercontent.com)
+Client secret	ક્લાયન્ટ સીક્રેટ
+Code sign-in setup	કોડ સાઇન-ઇન સેટઅપ
+Save	સાચવો
+Both the ID and the secret are needed	ID અને સીક્રેટ બંને જરૂરી છે
+Backed up ({1})	બેકઅપ થઈ ગયું ({1})
+Sign in again	ફરી સાઇન ઇન કરો
+{1}\n\nSign in again to keep backing up.	{1}\n\nબેકઅપ ચાલુ રાખવા ફરી સાઇન ઇન કરો.
+Sign in	સાઇન ઇન
+Later	પછી
+There is no backup in this Google account yet.	આ Google એકાઉન્ટમાં હજી કોઈ બેકઅપ નથી.
+{1}\nSize: {2}	{1}\nમાપ: {2}
+Made:	બનાવ્યું:
+Phone: {1}	\nફોન: {1}
+Day reports: {1}	\nદિવસના રિપોર્ટ: {1}
+Restore this backup?	આ બેકઅપ રીસ્ટોર કરવું છે?
+Backup found	બેકઅપ મળ્યું
+{1}\n\nRestoring replaces the routines, settings and history on this phone with the backup. What is on this phone now is kept aside inside the app, just in case.	{1}\n\nરીસ્ટોર કરવાથી આ ફોનની દિનચર્યાઓ, સેટિંગ્સ અને ઇતિહાસ બેકઅપથી બદલાઈ જશે. આ ફોન પર અત્યારે જે છે તે સાવચેતી તરીકે એપની અંદર અલગ રાખવામાં આવે છે.
+Not now	હમણાં નહીં
+Restore failed.	રીસ્ટોર નિષ્ફળ.
+{1}\n\nNothing on this phone was changed.	{1}\n\nઆ ફોન પર કંઈ બદલાયું નથી.
+Could not restore	રીસ્ટોર થઈ શક્યું નહીં
+Restored. Welcome back!	રીસ્ટોર થઈ ગયું. ફરી સ્વાગત છે!
+Only when I tap “Back up”	ફક્ત જ્યારે હું “બેકઅપ લો” ટૅપ કરું
+Daily	દરરોજ
+Weekly	દર અઠવાડિયે
+Monthly	દર મહિને
+Let Dinacharya Launcher run in the background	Dinacharya Launcher ને બૅકગ્રાઉન્ડમાં ચાલવા દો
+So alarms are never late, set Dinacharya Launcher’s battery use to “Unrestricted” (some phones say “Don’t optimise” or “No restrictions”).\n\n1. Tap “Open app info” below.\n2. Tap Battery (or “App battery usage”).\n3. Choose Unrestricted.\n\nAndroid’s general battery list hides Dinacharya Launcher until you switch its filter to “All apps”.	એલાર્મ ક્યારેય મોડા ન વાગે તે માટે Dinacharya Launcher નો બેટરી વપરાશ “પ્રતિબંધ વગર” પર સેટ કરો (કેટલાક ફોનમાં “ઑપ્ટિમાઇઝ ન કરો” અથવા “કોઈ પ્રતિબંધ નહીં” લખેલું હોય છે).\n\n1. નીચે “એપ માહિતી ખોલો” પર ટૅપ કરો.\n2. બેટરી (અથવા “એપ બેટરી વપરાશ”) પર ટૅપ કરો.\n3. “પ્રતિબંધ વગર” પસંદ કરો.\n\nAndroid ની સામાન્ય બેટરી યાદીમાં Dinacharya Launcher ત્યાં સુધી દેખાતું નથી જ્યાં સુધી તમે ફિલ્ટર “બધી એપ્સ” પર ન કરો.
+Open app info	એપ માહિતી ખોલો
+Battery list	બેટરી યાદી
+Switch the filter to All apps, then find Dinacharya Launcher.	ફિલ્ટરને “બધી એપ્સ” પર કરો, પછી Dinacharya Launcher શોધો.
+Not signed in to Google.	Google માં સાઇન ઇન નથી.
+Could not reach Google Drive{1}	Google ડ્રાઇવ સુધી પહોંચી શક્યા નહીં{1}
+Backup failed: {1}	બેકઅપ નિષ્ફળ: {1}
+Google did not accept the sign-in. Please sign in again.	Google એ સાઇન-ઇન સ્વીકાર્યું નહીં. કૃપા કરીને ફરી સાઇન ઇન કરો.
+Could not look for the backup	બેકઅપ શોધી શકાયું નહીં
+Upload failed	અપલોડ નિષ્ફળ
+Upload failed (no file id)	અપલોડ નિષ્ફળ (ફાઇલ ID મળ્યો નહીં)
+Download failed	ડાઉનલોડ નિષ્ફળ
+Could not delete the old backup	જૂનું બેકઅપ કાઢી શકાયું નહીં
+Could not read your Google account	તમારું Google એકાઉન્ટ વાંચી શકાયું નહીં
+every saved day in Performance	પ્રદર્શનમાં દરેક સાચવેલો દિવસ
+the week view in Performance	પ્રદર્શનમાં અઠવાડિયાનો દેખાવ
+pauses for more than {1} apps	{1} થી વધુ એપ્સ માટે વિરામ
+strict pauses	કડક વિરામ
+daily limits on pauses	વિરામ પર દૈનિક મર્યાદા
+playful pauses	મજેદાર વિરામ
+more than {1} lock	{1} થી વધુ લૉક
+more than {1} apps in a lock	એક લૉકમાં {1} થી વધુ એપ્સ
+strict locks	કડક લૉક
+weekday and weekend routines	અઠવાડિયાના દિવસો અને વીકએન્ડની દિનચર્યાઓ
+daily goals	દૈનિક લક્ષ્યો
+the Sunset colour look	સનસેટ કલર લુક
+the Ocean colour look	ઓશન કલર લુક
+the Graphite colour look	ગ્રેફાઇટ કલર લુક
+Performance: every saved day	પ્રદર્શન: દરેક સાચવેલો દિવસ
+Performance: the week view	પ્રદર્શન: અઠવાડિયાનો દેખાવ
+Pauses: more than {1} apps	વિરામ: {1} થી વધુ એપ્સ
+Pauses: strict	વિરામ: કડક
+Pauses: daily limits	વિરામ: દૈનિક મર્યાદા
+Pauses: playful (sum, sentence, breathing, why)	વિરામ: મજેદાર (સરવાળો, વાક્ય, શ્વાસ, કારણ)
+Locks: more than one lock	લૉક: એક કરતાં વધુ લૉક
+Locks: more than {1} apps in a lock	લૉક: એક લૉકમાં {1} થી વધુ એપ્સ
+Locks: strict	લૉક: કડક
+Routines: weekday, weekend, exam day	દિનચર્યાઓ: અઠવાડિયાના દિવસો, વીકએન્ડ, પરીક્ષાનો દિવસ
+Goals: daily goals with streaks	લક્ષ્યો: સ્ટ્રીક સાથે દૈનિક લક્ષ્યો
+Looks: Sunset	લુક: સૂર્યાસ્ત
+Looks: Ocean	લુક: સમુદ્ર
+Looks: Graphite	લુક: ગ્રેફાઇટ
+Saved days	સાચવેલા દિવસો
+Week view	અઠવાડિયાનો દેખાવ
+More paused apps	વધુ વિરામવાળી એપ્સ
+Strict pauses	કડક વિરામ
+Daily limits	દૈનિક મર્યાદા
+Playful pauses	મજેદાર વિરામ
+More locks	વધુ લૉક
+More locked apps	વધુ લૉક કરેલી એપ્સ
+Strict locks	કડક લૉક
+Routines	દિનચર્યાઓ
+Goals	લક્ષ્યો
+Sunset look	સૂર્યાસ્ત લુક
+Ocean look	સમુદ્ર લુક
+Graphite look	ગ્રેફાઇટ લુક
+Performance	પ્રદર્શન
+Pauses	વિરામ
+Locks	લૉક
+Looks	લુક
+{1} ({2} for 3 days, the rest for a day)	{1} ({2} 3 દિવસ માટે, બાકીના એક દિવસ માટે)
+{1} for {2}	{1}: {2} માટે
+3 days	3 દિવસ
+a day	એક દિવસ
+everything in {1}	{1} માં બધું
+{1} Pro features	{1} Pro સુવિધાઓ
+Open until {1}	{1} સુધી ખુલ્લું
+Kept	પાળ્યું
+Changed	બદલ્યું
+Taken off	હટાવ્યું
+No answer	જવાબ નથી
+Not tracked	નોંધ નથી
+Ahead	આગળ
+Code sign-in is not set up (no client ID).	કોડ સાઇન-ઇન સેટ નથી (ક્લાયન્ટ ID નથી).
+Google refused the sign-in: {1}	Google એ સાઇન-ઇન નકાર્યું: {1}
+Sign-in failed: {1}	સાઇન-ઇન નિષ્ફળ: {1}
+Could not renew the Google sign-in ({1})	Google સાઇન-ઇન રિન્યુ થઈ શક્યું નહીં ({1})
+Tomorrow	આવતીકાલે
+{1} starts at {2} instead of {3}	{1} {3} ને બદલે {2} વાગ્યે શરૂ થાય છે
+(slots covered by the extra sleep are dropped)	(વધારાની ઊંઘમાં આવતા સ્લૉટ છોડી દેવાય છે)
+(the morning moves later, bedtime stays)	(સવાર મોડી થાય છે, સૂવાનો સમય એ જ રહે છે)
+{1} is taken off	{1} હટાવી દીધું છે
+{1} is called “{2}”	{1} નું નામ “{2}” છે
+Changed for today only	ફક્ત આજ માટે બદલ્યું
+Your saved routine is untouched. These end by themselves.	તમારી સાચવેલી દિનચર્યા જેમ છે તેમ જ છે. આ ફેરફારો આપમેળે પૂરા થાય છે.
+Undo today’s changes	આજના ફેરફારો પાછા લો
+A nudge at every slot	દરેક સ્લૉટ પર એક હળવી યાદ
+Remind me with an alarm	મને એલાર્મથી યાદ અપાવો
+An alarm rings when a slot starts. To stop it you say if you continue as planned or want a change (a new name for today, or take the slot off). At bedtime it asks if you are going to sleep and when you want to wake. You can switch single slots off with the bell on the Routine tab.	સ્લૉટ શરૂ થાય ત્યારે એલાર્મ વાગે છે. તેને બંધ કરવા તમે કહો છો કે યોજના મુજબ ચાલુ રાખવું છે કે ફેરફાર જોઈએ છે (આજ માટે નવું નામ, અથવા સ્લૉટ હટાવવો). સૂવાના સમયે તે પૂછે છે કે તમે સૂવા જઈ રહ્યા છો કે નહીં અને ક્યારે ઊઠવું છે. દિનચર્યા ટેબ પરની ઘંટડીથી તમે અલગ અલગ સ્લૉટના એલાર્મ બંધ કરી શકો છો.
+Ring a test alarm in 10 seconds	10 સેકન્ડમાં ટેસ્ટ એલાર્મ વગાડો
+The test goes the same way as a real alarm. Lock the phone first to see it as it will be.	ટેસ્ટ સાચા એલાર્મની જેમ જ ચાલે છે. તેને સાચા સ્વરૂપમાં જોવા પહેલા ફોન લૉક કરો.
+Is the phone ready?	શું ફોન તૈયાર છે?
+Alarms are on	એલાર્મ ચાલુ છે
+Switch on “Allow setting alarms and reminders” so alarms ring on the minute.	એલાર્મ બરાબર મિનિટે વાગે તે માટે “એલાર્મ અને રિમાઇન્ડર સેટ કરવાની મંજૂરી” ચાલુ કરો.
+Notifications are off for this app, so you will only hear it.	\n\nઆ એપ માટે સૂચનાઓ બંધ છે, તેથી તમે ફક્ત અવાજ સાંભળશો.
+Android is not allowing exact alarms, so it may come a little late.	\n\nAndroid ચોક્કસ એલાર્મની મંજૂરી આપતું નથી, તેથી તે થોડું મોડું આવી શકે છે.
+Test alarm set	ટેસ્ટ એલાર્મ સેટ થયું
+It rings in 10 seconds. To try it as it will really be, press the power button now to lock the phone.{1}	તે 10 સેકન્ડમાં વાગશે. સાચા સ્વરૂપમાં અજમાવવા હમણાં પાવર બટન દબાવી ફોન લૉક કરો.{1}
+Could not open that screen	તે સ્ક્રીન ખોલી શકાઈ નહીં
+Open Settings, Apps, Dinacharya Launcher, Alarms and reminders	સેટિંગ્સ, એપ્સ, Dinacharya Launcher, એલાર્મ અને રિમાઇન્ડર ખોલો
+Open Settings, Apps, Dinacharya Launcher, Notifications	સેટિંગ્સ, એપ્સ, Dinacharya Launcher, સૂચનાઓ ખોલો
+Open Settings, Apps, Dinacharya Launcher, and allow full screen notifications	સેટિંગ્સ, એપ્સ, Dinacharya Launcher ખોલો, અને ફુલ-સ્ક્રીન સૂચનાઓની મંજૂરી આપો
+Choose Alerting, and allow pop-up on screen.	“એલર્ટિંગ” પસંદ કરો, અને સ્ક્રીન પર પૉપ-અપની મંજૂરી આપો.
+Alarms are off, so nothing is set in Android.	એલાર્મ બંધ છે, તેથી Android માં કંઈ સેટ નથી.
+Set in Android for {1}	Android માં {1} માટે સેટ છે
+(exact).	(ચોક્કસ).
+. Android may deliver it a few minutes late.	Android તેને થોડી મિનિટ મોડું મોકલી શકે છે.
+Nothing is set in Android right now.	હાલમાં Android માં કંઈ સેટ નથી.
+An alarm set for {1} never reached the app. The phone was off, or it stopped the app. See the checklist above.	\n{1} માટે સેટ કરેલું એલાર્મ એપ સુધી ક્યારેય પહોંચ્યું નહીં. ફોન બંધ હતો, અથવા તેણે એપ બંધ કરી દીધી. ઉપરની ચેકલિસ્ટ જુઓ.
+Last alarm Android gave the app: {1}	\nAndroid એ એપને આપેલું છેલ્લું એલાર્મ: {1}
+(test)	(ટેસ્ટ)
+. Ringing started.	વાગવાનું શરૂ થયું.
+. Android would not start the ringing service, so a notification was used.	Android એ વગાડવાની સેવા શરૂ ન કરી, તેથી સૂચનાનો ઉપયોગ થયો.
+. Ringing did not start. Copy the problem report from Settings > Help and send it.	વાગવાનું શરૂ થયું નહીં. સેટિંગ્સ > મદદ માંથી સમસ્યાનો રિપોર્ટ કૉપિ કરીને મોકલો.
+No alarm has reached the app yet. Try the test alarm.	\nહજુ સુધી કોઈ એલાર્મ એપ સુધી પહોંચ્યો નથી. ટેસ્ટ એલાર્મ અજમાવો.
+Alarm details unavailable.	એલાર્મની માહિતી ઉપલબ્ધ નથી.
+No alarm is planned (all slots have their bell switched off).	કોઈ એલાર્મ નક્કી નથી (બધા સ્લૉટની ઘંટડી બંધ છે).
+Next alarm: {1}  ·  {2}	આગામી એલાર્મ: {1}  ·  {2}
+Untitled	શીર્ષક વગરનું
+Open	ખોલો
+Allow	પરવાનગી આપો
+Habits	આદતો
+What your days are telling you	તમારા દિવસો તમને શું કહે છે
+Worked out on this phone from your own days with simple rules. No AI service, nothing leaves the phone.	તમારા પોતાના દિવસો પરથી, સરળ નિયમો સાથે, આ જ ફોન પર તૈયાર થાય છે. કોઈ AI સેવા નથી, ફોનની બહાર કંઈ જતું નથી.
+Notes appear after your first full day. Turn on alarms and usage access so the app can see how the day went.	પહેલો પૂરો દિવસ પૂરો થયા પછી નોંધ દેખાશે. એલાર્મ અને ઉપયોગની ઍક્સેસ ચાલુ કરો જેથી એપ જોઈ શકે કે દિવસ કેવો ગયો.
+Nothing to flag. Keep going.	કહેવા જેવું કંઈ નથી. ચાલુ રાખો.
+Open Performance	પ્રદર્શન ખોલો
+No daily limit	દૈનિક મર્યાદા નથી
+{1} min a day	દિવસ દીઠ {1} મિનિટ
+{1} h	{1} કલાક
+{1} h {2} min	{1} કલાક {2} મિનિટ
+{1} a day	દિવસ દીઠ {1}
+A pause gives you a moment to decide. It never locks you out: Go back is always there, and so is a way in after a longer wait.	વિરામ તમને નિર્ણય લેવાની એક ક્ષણ આપે છે. તે તમને ક્યારેય બહાર રાખતો નથી: “પાછા જાઓ” હંમેશાં હોય છે, અને થોડી લાંબી રાહ જોયા પછી અંદર જવાનો રસ્તો પણ.
+Short pause ({1} seconds)	ટૂંકો વિરામ ({1} સેકન્ડ)
+Strict pause ({1} seconds)	કડક વિરામ ({1} સેકન્ડ)
+No pause	કોઈ વિરામ નથી
+How the pause goes	વિરામ કેવી રીતે ચાલે છે
+Playful pauses (a quick sum, a sentence, breathing, saying why)	મજેદાર વિરામ (એક સરવાળો, એક વાક્ય, શ્વાસ, કારણ જણાવવું)
+Daily limit{1}	દૈનિક મર્યાદા{1}
+A daily limit	દૈનિક મર્યાદા
+Pause at any time of day (a strict pause still only applies in focus times)	દિવસના કોઈ પણ સમયે વિરામ (કડક વિરામ છતાં ફક્ત ફોકસ સમયમાં જ લાગુ પડે છે)
+Remove	દૂર કરો
+A strict pause	એક કડક વિરામ
+Pause rules for more than {1} apps	{1} થી વધુ એપ્સ માટે વિરામના નિયમો
+No pause for {1}	{1} માટે કોઈ વિરામ નથી
+Pause set for {1}. It starts the next time you open it from the home screen.	{1} માટે વિરામ સેટ થઈ ગયો. તે આગલી વખતે હોમ સ્ક્રીન પરથી ખોલતાં શરૂ થશે.
+Strict pause ({1} seconds){2}	કડક વિરામ ({1} સેકન્ડ){2}
+Pause rules for as many apps as you like.	તમને જોઈએ તેટલી એપ્સ માટે વિરામના નિયમો.
+Free: pause rules for up to {1} apps ({2} used). Pro has no limit.	મફત: {1} એપ્સ સુધી વિરામના નિયમો ({2} વપરાશમાં). Pro માં કોઈ મર્યાદા નથી.
+Strict pauses apply in focus times: {1}.	કડક વિરામ ફોકસ સમયમાં લાગુ પડે છે: {1}.
+With the strong lock on, pauses hold wherever the app is opened from.	સ્ટ્રૉંગ લૉક ચાલુ હોય ત્યારે, એપ ગમે ત્યાંથી ખોલો તો પણ વિરામ લાગુ રહે છે.
+Pauses work when you open an app from this home screen. The strong lock in the home settings holds them everywhere.	તમે એપ આ હોમ સ્ક્રીન પરથી ખોલો ત્યારે વિરામ કામ કરે છે. હોમ સેટિંગ્સનું સ્ટ્રૉંગ લૉક તેમને બધે લાગુ રાખે છે.
+30 min	30 મિનિટ
+1 h	1 કલાક
+2 h	2 કલાક
+4 h	4 કલાક
+8 h	8 કલાક
+This is a strict lock and it is holding now, until {1}. A strict lock cannot be changed or removed while it holds.	આ કડક લૉક છે અને હાલમાં {1} સુધી લાગુ છે. કડક લૉક લાગુ હોય ત્યારે બદલી કે દૂર કરી શકાતું નથી.
+Name, for example Social	નામ, જેમ કે સોશિયલ
+Choose apps	એપ્સ પસંદ કરો
+Locked between	આ સમય વચ્ચે લૉક
+On these days	આ દિવસોએ
+Every day	દરરોજ
+Weekdays	અઠવાડિયાના દિવસો
+Weekends	સપ્તાહાંત
+None	કોઈ નહીં
+Lock now for	હમણાં આટલા સમય માટે લૉક કરો
+Unlock now	હમણાં અનલૉક કરો
+Without strict, you can still break a lock: wait 30 seconds and type a sentence. A strict lock cannot be broken, and cannot be changed while it holds. {1}	કડક ન હોય તો પણ તમે લૉક તોડી શકો છો: 30 સેકન્ડ રાહ જુઓ અને એક વાક્ય ટાઇપ કરો. કડક લૉક તોડી શકાતું નથી, અને લાગુ હોય ત્યારે બદલી પણ શકાતું નથી. {1}
+With the strong lock on, locks hold wherever the app is opened from.	સ્ટ્રૉંગ લૉક ચાલુ હોય ત્યારે, એપ ગમે ત્યાંથી ખોલો તો પણ લૉક લાગુ રહે છે.
+Locks apply when you open an app from this home screen. The strong lock in the home settings holds them everywhere.	તમે એપ આ હોમ સ્ક્રીન પરથી ખોલો ત્યારે લૉક કામ કરે છે. હોમ સેટિંગ્સનું સ્ટ્રૉંગ લૉક તેમને બધે લાગુ રાખે છે.
+From {1}	{1} થી
+to {1}	{1} સુધી
+No daily schedule. Use Lock now, or pick days.	દૈનિક શેડ્યૂલ નથી. “હમણાં લૉક કરો” વાપરો, અથવા દિવસો પસંદ કરો.
+Locked {1}, {2} to {3}.	લૉક {1}, {2} થી {3}.
+(the whole day)	(આખો દિવસ)
+(into the next morning)	(બીજા દિવસે સવાર સુધી)
+Locked by hand until {1} ({2} left).	હાથે લૉક કર્યું, {1} સુધી ({2} બાકી).
+Not locked by hand.	હાથે લૉક કર્યું નથી.
+Delete	કાઢી નાખો
+Choose at least one app	ઓછામાં ઓછી એક એપ પસંદ કરો
+Locking more than {1} apps (a group of apps)	{1} થી વધુ એપ્સ લૉક કરવી (એપ્સનું જૂથ)
+Locked apps	લૉક કરેલી એપ્સ
+That is the most groups there can be	આનાથી વધુ જૂથ ન હોઈ શકે
+Apps to lock (up to {1} free)	લૉક કરવાની એપ્સ ({1} સુધી મફત)
+Apps in the group	જૂથની એપ્સ
+Strict: no way past until it ends	કડક: પૂરું થાય ત્યાં સુધી આગળ જવાનો કોઈ રસ્તો નથી
+Strict: no way past (Pro)	કડક: આગળ જવાનો કોઈ રસ્તો નથી (Pro)
+Locked group	લૉક કરેલું જૂથ
+New locked group	નવું લૉક જૂથ
+Lock apps	એપ્સ લૉક કરો
+No apps yet.	હજુ કોઈ એપ નથી.
+and {1} more	અને વધુ {1}
+Up to {1} apps in a group	એક જૂથમાં {1} એપ્સ સુધી
+Apps to lock	લૉક કરવાની એપ્સ
+Done	થઈ ગયું
+You have used it for {1} today.\nYour limit is {2}.	તમે આજે આ {1} વાપર્યું છે.\nતમારી મર્યાદા {2} છે.
+Right now: {1}.\nThis is a focus time.	હમણાં: {1}.\nઆ ફોકસનો સમય છે.
+This is a focus time.	આ ફોકસનો સમય છે.
+Right now: {1}.\nIs this the best use of the next few minutes?	હમણાં: {1}.\nશું આગામી થોડી મિનિટોનો આ શ્રેષ્ઠ ઉપયોગ છે?
+Take a breath.\nIs this what you meant to open?	એક શ્વાસ લો.\nશું તમે આ જ ખોલવા માંગતા હતા?
+Strong lock	સ્ટ્રૉંગ લૉક
+Shown while the strong lock is on	સ્ટ્રૉંગ લૉક ચાલુ હોય ત્યારે દેખાય છે
+Strong lock is on	સ્ટ્રૉંગ લૉક ચાલુ છે
+Holding locked and paused apps. Tap to change.	લૉક અને વિરામવાળી એપ્સને પકડી રાખે છે. બદલવા માટે ટૅપ કરો.
+a locked group	એક લૉક કરેલું જૂથ
+Strictly locked  ·	કડકાઈથી લૉક  ·
+Locked  ·	લૉક  ·
+Go back	પાછા જાઓ
+Open anyway	છતાં ખોલો
+Opening the lock screen…	લૉક સ્ક્રીન ખુલી રહી છે…
+This lock is strict. There is no way past it until it ends.	આ લૉક કડક છે. પૂરું થાય ત્યાં સુધી આગળ જવાનો કોઈ રસ્તો નથી.
+To break this lock, open the app from the Dinacharya Launcher home screen.	આ લૉક તોડવા માટે એપ Dinacharya Launcher ની હોમ સ્ક્રીન પરથી ખોલો.
+You can open it in {1} s	તમે તેને {1} સેકન્ડમાં ખોલી શકો છો
+You can open it now.	હવે તમે તેને ખોલી શકો છો.
+Your home screen	તમારી હોમ સ્ક્રીન
+Change the look	લુક બદલો
+Good night	શુભ રાત્રિ
+Good morning	સુપ્રભાત
+Good afternoon	શુભ બપોર
+Good evening	શુભ સંધ્યા
+Signed in as {1}. Open Backup.	{1} તરીકે સાઇન ઇન છો. બેકઅપ ખોલો.
+Not signed in. Open Backup.	સાઇન ઇન નથી. બેકઅપ ખોલો.
+{1} settings still to do	{1} સેટિંગ્સ બાકી છે
+Setup	સેટઅપ
+1 setting still to do	1 સેટિંગ બાકી છે
+Open the setup guide	સેટઅપ માર્ગદર્શિકા ખોલો
+Take the tour	ટૂર જુઓ
+NOW{1}	હમણાં{1}
+{1} – {2}   ·   {3} left	{1} – {2}   ·   {3} બાકી
+NOW	હમણાં
+Free time	ખાલી સમય
+Next:  {1}  at {2}  (in {3})	આગળ:  {1}  {2} વાગ્યે  ({3} માં)
+Alarms are off	એલાર્મ બંધ છે
+Nothing will ring until you turn them on. When a slot starts you hear an alarm and answer: continue as planned, or change it.	તમે તેને ચાલુ કરશો નહીં ત્યાં સુધી કંઈ વાગશે નહીં. સ્લૉટ શરૂ થાય ત્યારે તમને એલાર્મ સંભળાય છે અને તમે જવાબ આપો છો: યોજના મુજબ ચાલુ રાખો, અથવા તેને બદલો.
+Turn on alarms	એલાર્મ ચાલુ કરો
+Alarms need your attention	એલાર્મને તમારું ધ્યાન જોઈએ છે
+Allow: {1}.	પરવાનગી આપો: {1}.
+The alarm set for {1} never reached the app. The phone may be stopping it.	{1} માટે સેટ કરેલો એલાર્મ એપ સુધી પહોંચ્યો નહીં. કદાચ ફોન તેને રોકી રહ્યો છે.
+Fix now	હમણાં સુધારો
+Next alarm	આગામી એલાર્મ
+None planned	કંઈ નક્કી નથી
+Every slot has its bell off.	દરેક સ્લૉટની ઘંટડી બંધ છે.
+Test	ટેસ્ટ
+Tip: allow background use so alarms are never late. Tap to open.	સૂચન: એલાર્મ ક્યારેય મોડા ન વાગે તે માટે બૅકગ્રાઉન્ડ ઉપયોગની પરવાનગી આપો. ખોલવા માટે ટૅપ કરો.
+Today's goals	આજના લક્ષ્યો
+Dinacharya Launcher closed unexpectedly last time	છેલ્લી વખતે Dinacharya Launcher અચાનક બંધ થઈ ગઈ હતી
+Sorry about that. Tap Copy details and send them to the developer so it can be fixed.	એ માટે ક્ષમા કરજો. “વિગતો કૉપિ કરો” પર ટૅપ કરો અને ડેવલપરને મોકલો જેથી તે સુધારી શકાય.
+Copy details	વિગતો કૉપિ કરો
+Dismiss	બંધ કરો
+Dinacharya problem report	Dinacharya સમસ્યા રિપોર્ટ
+Details copied	વિગતો કૉપિ થઈ
+Dinacharya Launcher is not your home app any more	Dinacharya Launcher હવે તમારી હોમ એપ નથી
+The Home button now opens another launcher. This happens after an update or a reinstall, or when another home app is picked. Make Dinacharya Launcher your home app again?	હવે હોમ બટન બીજું લૉન્ચર ખોલે છે. આવું અપડેટ કે ફરીથી ઇન્સ્ટૉલ કર્યા પછી થાય છે, અથવા બીજી હોમ એપ પસંદ કરાય ત્યારે. Dinacharya Launcher ને ફરીથી તમારી હોમ એપ બનાવવી છે?
+Make it my home app	તેને મારી હોમ એપ બનાવો
+Stop asking	ફરી ન પૂછો
+Open Settings, then Apps, Default apps, Home app	સેટિંગ્સ, પછી એપ્સ, ડિફૉલ્ટ એપ્સ, હોમ એપ ખોલો
+Insights	ઇનસાઇટ્સ
+How your days are going	તમારા દિવસો કેવા જઈ રહ્યા છે
+Reports	રિપોર્ટ
+Every day, saved	દરરોજ, સાચવેલા
+Performance and reports	પ્રદર્શન અને રિપોર્ટ
+Could not open Performance	પ્રદર્શન ખોલી શકાયું નહીં
+Today so far	આજ સુધી
+Plan kept	યોજના નિભાવી
+Focus	ફોકસ
+Daily goals	દૈનિક લક્ષ્યો
+＋  Add a goal	＋  લક્ષ્ય ઉમેરો
+Time by type today	આજે પ્રકાર પ્રમાણે સમય
+Your plan has {1} of it today.	તમારી યોજનામાં આજે આનો {1} છે.
+Planned today: {1}.	આજે નક્કી: {1}.
+Add an activity type first (Routine tab)	પહેલાં એક પ્રવૃત્તિ પ્રકાર ઉમેરો (દિનચર્યા ટૅબ)
+Type	પ્રકાર
+Every day, at least	દરરોજ, ઓછામાં ઓછું
+Goal for {1}	{1} માટે લક્ષ્ય
+New daily goal	નવું દૈનિક લક્ષ્ય
+A goal needs at least 5 minutes	લક્ષ્ય ઓછામાં ઓછું 5 મિનિટનું હોવું જોઈએ
+Goal set: {1}, {2} a day.	લક્ષ્ય નક્કી: {1}, દરરોજ {2}.
+Goal removed.	લક્ષ્ય કાઢી નાખ્યું.
+Automatic: {1}	આપમેળે: {1}
+Automatic (the phone's language)	આપમેળે (ફોનની ભાષા)
+Language	ભાષા
+That set the lock screen only. Open the wallpaper step again and choose the home screen too.	તેનાથી ફક્ત લૉક સ્ક્રીન સેટ થઈ. વૉલપેપરનું પગલું ફરી ખોલો અને હોમ સ્ક્રીન પણ પસંદ કરો.
+Make this your home app	તેને તમારી હોમ એપ બનાવો
+Swipe up: all apps  ·  Tap: dashboard  ·  Hold: settings	ઉપર સ્વાઇપ: બધી એપ્સ  ·  ટૅપ: ડેશબોર્ડ  ·  દબાવી રાખો: સેટિંગ્સ
+No camera app found	કૅમેરા એપ મળી નહીં
+No phone app found	ફોન એપ મળી નહીં
+That app could not be opened.	તે એપ ખોલી શકાઈ નહીં.
+Search apps	એપ્સ શોધો
+Open the dashboard	ડેશબોર્ડ ખોલો
+Add a pause	વિરામ ઉમેરો
+Change the pause	વિરામ બદલો
+Hide from the list	યાદીમાંથી છુપાવો
+Hidden. You can show it again in the home screen settings.	છુપાવ્યું. તમે તેને હોમ સ્ક્રીન સેટિંગ્સમાં ફરી બતાવી શકો છો.
+App info	એપની માહિતી
+Could not open the app info.	એપની માહિતી ખોલી શકાઈ નહીં.
+The home screen could not start.\nYour apps are fine. Try again, or pick another home app.	હોમ સ્ક્રીન શરૂ થઈ શકી નહીં.\nતમારી એપ્સ સુરક્ષિત છે. ફરી પ્રયત્ન કરો, અથવા બીજી હોમ એપ પસંદ કરો.
+Try again	ફરી પ્રયત્ન કરો
+Change home app	હોમ એપ બદલો
+Open Dinacharya Launcher	Dinacharya Launcher ખોલો
+Auto	ઑટો
+Dark	ડાર્ક
+Light	લાઇટ
+Small	નાનું
+Medium	મધ્યમ
+Large	મોટું
+Huge	ખૂબ મોટું
+‹  Back	‹  પાછળ
+Home screen	હોમ સ્ક્રીન
+Nothing	કંઈ નહીં
+Change	બદલો
+Home app	હોમ એપ
+A calmer home screen	વધુ શાંત હોમ સ્ક્રીન
+Dinacharya Launcher is your home app	Dinacharya Launcher તમારી હોમ એપ છે
+Not your home app yet	હજુ તમારી હોમ એપ નથી
+Pressing Home shows this screen.	હોમ દબાવતાં આ સ્ક્રીન દેખાય છે.
+Press Try it to look first.	પહેલાં જોવા માટે “હમણાં અજમાવો” દબાવો.
+Set	સેટ કરો
+The Dinacharya Launcher wallpaper is on	Dinacharya Launcher વૉલપેપર ચાલુ છે
+Only the lock screen has it	ફક્ત લૉક સ્ક્રીન પર છે
+Wallpaper not in place yet	વૉલપેપર હજુ લગાવ્યું નથી
+Your day shows on the home screen, lock screen and recent apps.	તમારો દિવસ હોમ સ્ક્રીન, લૉક સ્ક્રીન અને તાજેતરની એપ્સમાં દેખાય છે.
+On Android’s preview, choose Home screen (or both).	Android ના પ્રીવ્યૂમાં હોમ સ્ક્રીન (અથવા બંને) પસંદ કરો.
+Android asks you to confirm once.	Android એક વાર ખાતરી કરવા કહે છે.
+Try it now	હમણાં અજમાવો
+A short walk through what the app does	એપ શું કરે છે તેની એક ટૂંકી સફર
+Start	શરૂ કરો
+Check phone settings	ફોનની સેટિંગ્સ તપાસો
+Permissions and settings the app needs	એપને જોઈતી પરવાનગીઓ અને સેટિંગ્સ
+Swipes	સ્વાઇપ
+Shortcuts	શૉર્ટકટ
+Swipe left	ડાબે સ્વાઇપ
+Swipe right	જમણે સ્વાઇપ
+Swipe left opens	ડાબે સ્વાઇપ કરતાં ખુલે છે
+Swipe right opens	જમણે સ્વાઇપ કરતાં ખુલે છે
+Look	લુક
+How it looks	તે કેવું દેખાય છે
+Change what the home screen shows	હોમ સ્ક્રીન પર શું દેખાય તે બદલો
+Colours of the list of all apps and the pause screen	બધી એપ્સની યાદી અને વિરામ સ્ક્રીનના રંગો
+Text size in the list of all apps	બધી એપ્સની યાદીમાં અક્ષરોનું કદ
+Open an app when only one matches	ફક્ત એક જ મળે ત્યારે એપ ખોલો
+Open the keyboard in the list of all apps	બધી એપ્સની યાદીમાં કીબોર્ડ ખોલો
+Strict pause, {1} s	કડક વિરામ, {1} સેકન્ડ
+Short pause, {1} s	ટૂંકો વિરામ, {1} સેકન્ડ
+·  limit {1} a day	  ·  મર્યાદા: દિવસ દીઠ {1}
+·  also outside focus times	  ·  ફોકસ સમયની બહાર પણ
+·  needs Pro	  ·  Pro જોઈએ
+·  Pro part off	  ·  Pro ભાગ બંધ
+A pause before apps open	એપ્સ ખુલતાં પહેલાં એક વિરામ
+Pause during	વિરામ ક્યારે
+Short pause	ટૂંકો વિરામ
+Strict pause	કડક વિરામ
+Strict pause (Pro)	કડક વિરામ (Pro)
+Apps with a pause	વિરામવાળી એપ્સ
+Edit	ફેરફાર કરો
+Add a pause for an app	કોઈ એપ માટે વિરામ ઉમેરો
+Add a pause for	આના માટે વિરામ ઉમેરો
+See Pro	Pro જુઓ
+Usage access	ઉપયોગની ઍક્સેસ
+Needed to count the minutes for daily limits	દૈનિક મર્યાદા માટે મિનિટો ગણવા જરૂરી
+Locked groups	લૉક કરેલા જૂથો
+Lock a group of apps for a time	એપ્સના એક જૂથને અમુક સમય માટે લૉક કરો
+Lock apps for a time	એપ્સને અમુક સમય માટે લૉક કરો
+·  strict	  ·  કડક
+·  only {1} held, needs Pro	  ·  ફક્ત {1} લાગુ, Pro જોઈએ
+·  strict part off	  ·  કડક ભાગ બંધ
+Add a locked group	લૉક કરેલું જૂથ ઉમેરો
+More than one lock	એક કરતાં વધુ લૉક
+Hold locks and pauses everywhere	લૉક અને વિરામ બધે લાગુ રાખો
+Lets Dinacharya Launcher see which app is in front	કઈ એપ આગળ છે તે Dinacharya Launcher ને જોવા દે છે
+Display over other apps	બીજી એપ્સ પર બતાવો
+Lets the lock screen appear over an app	લૉક સ્ક્રીનને એપ પર આવવા દે છે
+Hidden apps	છુપાવેલી એપ્સ
+Apps kept out of the list	યાદીમાંથી બહાર રાખેલી એપ્સ
+Show some again	કેટલીક ફરી બતાવો
+At the home screen	હોમ સ્ક્રીન પર
+Reset these settings	આ સેટિંગ્સ રીસેટ કરો
+A strict lock is holding	એક કડક લૉક લાગુ છે
+The settings cannot be reset while a strict lock holds. It ends at {1}.	કડક લૉક લાગુ હોય ત્યારે સેટિંગ્સ રીસેટ થઈ શકતી નથી. તે {1} એ પૂરું થાય છે.
+Reset the home screen?	હોમ સ્ક્રીન રીસેટ કરવી છે?
+This clears the swipes, the look, the hidden apps, the pause rules and the locked groups. Your routine and reports are not touched.	આનાથી સ્વાઇપ, લુક, છુપાવેલી એપ્સ, વિરામના નિયમો અને લૉક કરેલા જૂથો સાફ થઈ જશે. તમારી દિનચર્યા અને રિપોર્ટને અસર થશે નહીં.
+Reset	રીસેટ કરો
+Mon	સોમ
+Tue	મંગળ
+Wed	બુધ
+Thu	ગુરુ
+Fri	શુક્ર
+Sat	શનિ
+Sun	રવિ
+No days	કોઈ દિવસ નહીં
+tomorrow {1}	આવતીકાલે {1}
+Locked until {1}	{1} સુધી લૉક
+Next: {1}	આગળ: {1}
+Not scheduled	શેડ્યૂલ નથી
+Strictly locked  ·  {1}	કડકાઈથી લૉક  ·  {1}
+Locked  ·  {1}	લૉક  ·  {1}
+Until {1}	{1} સુધી
+Break the lock	લૉક તોડો
+{1} left	{1} બાકી
+The lock has ended.	લૉક પૂરું થઈ ગયું છે.
+Open {1}	{1} ખોલો
+A lock is a promise to yourself. Wait a moment before you break it.	લૉક એ પોતાને આપેલું વચન છે. તેને તોડતાં પહેલાં થોડી વાર રાહ જુઓ.
+Type this to break the lock	લૉક તોડવા માટે આ ટાઇપ કરો
+Not the same yet. Check each word.	હજુ મેળ ખાતું નથી. દરેક શબ્દ તપાસો.
+Type it here	અહીં ટાઇપ કરો
+Home	હોમ
+Routine	દિનચર્યા
+You’re all set	બધું તૈયાર છે
+Press the Home button to see your day. Everything else is here in the dashboard: your routine, insights, backup and settings.	તમારો દિવસ જોવા માટે હોમ બટન દબાવો. બાકી બધું અહીં ડેશબોર્ડમાં છે: તમારી દિનચર્યા, ઇનસાઇટ્સ, બેકઅપ અને સેટિંગ્સ.
+One more step: make Dinacharya Launcher your home app, so your day is what you see when you press Home. Everything else is here in the dashboard: your routine, insights, backup and settings.	એક પગલું બાકી: Dinacharya Launcher ને તમારી હોમ એપ બનાવો, જેથી હોમ દબાવતાં તમારો દિવસ જ દેખાય. બાકી બધું અહીં ડેશબોર્ડમાં છે: તમારી દિનચર્યા, ઇનસાઇટ્સ, બેકઅપ અને સેટિંગ્સ.
+Stay here	અહીં જ રહો
+Go to my home screen	મારી હોમ સ્ક્રીન પર જાઓ
+Your video pass has ended	તમારો વીડિયો પાસ પૂરો થઈ ગયો છે
+UNDO	પૂર્વવત્ કરો
+Could not save. Please try again.	સાચવી શકાયું નહીં. કૃપા કરીને ફરી પ્રયત્ન કરો.
+Undone	પૂર્વવત્ થયું
+Your pass for {1} has ended. {2} you made with it went back to the free version. What you had before is untouched. Dinacharya Pro keeps such things for good.	{1} માટેનો તમારો પાસ પૂરો થઈ ગયો છે. તેની સાથે તમે કરેલા {2} મફત વર્ઝન પર પાછા ગયા છે. પહેલાં જે હતું તેને અડકવામાં આવ્યું નથી. Dinacharya Pro આવી બાબતો કાયમ માટે રાખે છે.
+{1} changes	{1} ફેરફાર
+1 change	1 ફેરફાર
+Wait	રાહ જુઓ
+Quick sum	ઝટપટ ગણિત
+Type a sentence	એક વાક્ય ટાઇપ કરો
+Breathe	શ્વાસ લો
+Say why	કારણ જણાવો
+Count down a few seconds	થોડી સેકન્ડ ગણો
+Solve a simple sum to open the app	એપ ખોલવા માટે એક સરળ સવાલ ઉકેલો
+Type a short sentence on purpose	ઇરાદાપૂર્વક એક ટૂંકું વાક્ય ટાઇપ કરો
+Take slow breaths with a moving circle	ફરતા વર્તુળ સાથે ધીમા શ્વાસ લો
+Pick why you are opening it	તમે તેને કેમ ખોલી રહ્યા છો તે પસંદ કરો
+I choose to open this app	હું આ એપ ખોલવાનું પસંદ કરું છું
+I am in control of my time	મારો સમય મારા હાથમાં છે
+This can wait a few minutes	આ થોડી મિનિટ રાહ જોઈ શકે છે
+I am opening this on purpose	હું આ ઇરાદાપૂર્વક ખોલું છું
+I will come back to my day	મારે મારા દિવસ પર પાછા ફરવું છે
+I need it for something specific	મને આની ચોક્કસ કામ માટે જરૂર છે
+I am bored	મને કંટાળો આવે છે
+It is just a habit	આ બસ એક આદત છે
+I am avoiding something	હું કંઈક ટાળું છું
+Boredom passes. Stand up and stretch for a minute, then decide.	કંટાળો પસાર થઈ જાય છે. એક મિનિટ ઊભા થઈને શરીર ખેંચો, પછી નક્કી કરો.
+Habits fade once you notice them. Take one slow breath first.	આદતો ધ્યાનમાં આવતાં જ ઢીલી પડે છે. પહેલાં એક ધીમો શ્વાસ લો.
+Do the smallest next step of your task for two minutes. Then decide.	બે મિનિટ તમારા કામનું સૌથી નાનું આગલું પગલું કરો. પછી નક્કી કરો.
+Open anyway in {1}	{1} માં છતાં ખોલો
+Skip the challenge in {1}	{1} માં પડકાર છોડો
+Skip the challenge	પડકાર છોડો
+Sum 1 of {1}	સવાલ 1/{1}
+Solve it to open	ખોલવા માટે ઉકેલો
+Your answer	તમારો જવાબ
+Right! One more.	સાચું! એક વધુ.
+Sum {1} of {2}	સવાલ {1}/{2}
+Not quite. Try again.	બરાબર નથી. ફરી પ્રયત્ન કરો.
+Check	તપાસો
+Type this to open it	ખોલવા માટે આ ટાઇપ કરો
+Breathe in	શ્વાસ અંદર લો
+Breath 1 of {1}	શ્વાસ 1/{1}
+Breathe out	શ્વાસ બહાર કાઢો
+Breath {1} of {2}	શ્વાસ {1}/{2}
+Why are you opening it?	તમે તેને કેમ ખોલી રહ્યા છો?
+Open in {1}	{1} માં ખોલો
+Open it	ખોલો
+This phone has no save dialog. Use Share instead.	આ ફોનમાં સેવ ડાયલૉગ નથી. તેના બદલે શેર વાપરો.
+could not open the file	ફાઇલ ખોલી શકાઈ નહીં
+PDF saved	PDF સાચવી
+Could not save the PDF: {1}	PDF સાચવી શકાઈ નહીં: {1}
+no folder	કોઈ ફોલ્ડર નથી
+Share report	રિપોર્ટ શેર કરો
+Could not make the PDF: {1}	PDF બનાવી શકાઈ નહીં: {1}
+Week	અઠવાડિયું
+Week · Pro	અઠવાડિયું · Pro
+Days	દિવસો
+Reading your day…	તમારો દિવસ વાંચી રહ્યા છે…
+The weekly view is part of Pro	સાપ્તાહિક દૃશ્ય Pro નો ભાગ છે
+The week chart, your average score and the tips that come from it. Today and the last {1} days stay free.	અઠવાડિયાનો ચાર્ટ, તમારો સરેરાશ સ્કોર અને તેમાંથી મળતી ટિપ્સ. આજે અને છેલ્લા {1} દિવસ મફત રહે છે.
+Could not read the day: {1}	દિવસ વાંચી શકાયો નહીં: {1}
+Allow usage access to see phone time	ફોનનો સમય જોવા માટે ઉપયોગની ઍક્સેસ આપો
+Save PDF	PDF સાચવો
+Share PDF	PDF શેર કરો
+No finished days yet. After your first full day, a report is saved here and the week chart starts.	હજુ કોઈ પૂરો દિવસ થયો નથી. પહેલો પૂરો દિવસ થયા પછી એક રિપોર્ટ અહીં સચવાય છે અને અઠવાડિયાનો ચાર્ટ શરૂ થાય છે.
+No saved days yet. A report is saved on this phone each time a schedule day ends.	હજુ કોઈ સાચવેલો દિવસ નથી. શેડ્યૂલનો દિવસ પૂરો થાય ત્યારે દર વખતે આ ફોન પર એક રિપોર્ટ સચવાય છે.
+Phone {1}	ફોન {1}
+Phone not measured	ફોનનો સમય માપ્યો નથી
+·  backed up	  ·  બેકઅપ થઈ ગયું
+·  not backed up yet	  ·  હજુ બેકઅપ થયું નથી
+{1}h {2}m	{1}ક {2}મિ
+{1}m	{1}મિ
+Alarms and reminders show up here, also over the lock screen.	એલાર્મ અને રિમાઇન્ડર અહીં દેખાય છે, લૉક સ્ક્રીન પર પણ.
+Alarms on	એલાર્મ ચાલુ
+Rings when a slot of your day starts and asks one question.	દિવસનો કોઈ સ્લૉટ શરૂ થાય ત્યારે વાગે છે અને એક પ્રશ્ન પૂછે છે.
+Turn on	ચાલુ કરો
+Rings on the minute a slot starts, not minutes late.	સ્લૉટ શરૂ થાય તે જ મિનિટે વાગે છે, મિનિટો મોડો નહીં.
+Phone-use time (optional)	ફોન વાપરવાનો સમય (વૈકલ્પિક)
+Shows your phone time and counts daily app limits. Read on this phone only.	તમારો ફોન-સમય બતાવે છે અને દૈનિક એપ મર્યાદા ગણે છે. ફક્ત આ જ ફોન પર વંચાય છે.
+Greyed out or “Restricted setting”?	ધૂંધળું દેખાય છે કે “પ્રતિબંધિત સેટિંગ” લખ્યું છે?
+Stops the phone from putting the app to sleep. Set Battery to Unrestricted on the app’s info page.	ફોનને એપ સુવડાવી દેતા અટકાવે છે. એપની માહિતીના પેજ પર બેટરીને “અપ્રતિબંધિત” કરો.
+Open Android’s battery list	Android ની બેટરી યાદી ખોલો
+Your phone's maker stops apps in the background unless you allow it.	તમે પરવાનગી ન આપો ત્યાં સુધી તમારા ફોનનો નિર્માતા એપ્સને બૅકગ્રાઉન્ડમાં અટકાવી દે છે.
+Make Dinacharya Launcher your home app	Dinacharya Launcher ને તમારી હોમ એપ બનાવો
+Pressing Home shows your day.	હોમ દબાવતાં તમારો દિવસ દેખાય છે.
+Put the Dinacharya Launcher wallpaper in place	Dinacharya Launcher વૉલપેપર લગાવો
+Only the lock screen has it. On Android’s preview, choose Home screen (or both).	હાલ ફક્ત લૉક સ્ક્રીન પર છે. Android ના પ્રીવ્યૂમાં હોમ સ્ક્રીન (અથવા બંને) પસંદ કરો.
+Shows your day on the lock screen and in recent apps. Android asks you to confirm once.	તમારો દિવસ લૉક સ્ક્રીન અને તાજેતરની એપ્સમાં બતાવે છે. Android એક વાર ખાતરી કરવા કહે છે.
+Google's sign-in screen closed without an account. If you did not close it yourself, Google is not accepting this app yet. Tap “Check setup” to compare this app with your Google Cloud settings.	Google ની સાઇન-ઇન સ્ક્રીન ખાતા વગર બંધ થઈ ગઈ. જો તમે તેને જાતે બંધ ન કરી હોય, તો Google હજુ આ એપ સ્વીકારતું નથી. આ એપને તમારી Google Cloud સેટિંગ્સ સાથે સરખાવવા “સેટઅપ તપાસો” દબાવો.
+Google said: {1}	\n\nGoogle એ કહ્યું: {1}
+Google does not recognise this app (developer error 10). The package name or SHA-1 registered in Google Cloud does not match this app, or the Android client is in another project. Tap “Check setup”.{1}	Google આ એપને ઓળખતું નથી (ડેવલપર ભૂલ 10). Google Cloud માં નોંધાયેલું પૅકેજ નામ અથવા SHA-1 આ એપ સાથે મેળ ખાતું નથી, અથવા Android ક્લાયન્ટ બીજા પ્રોજેક્ટમાં છે. “સેટઅપ તપાસો” દબાવો.{1}
+No internet connection. Try again when you are online.{1}	ઇન્ટરનેટ કનેક્શન નથી. ઓનલાઇન થાઓ ત્યારે ફરી પ્રયત્ન કરો.{1}
+{1}\n\n(Code {2}){3}	{1}\n\n(કોડ {2}){3}
+Google Play services cannot do this sign-in on this phone (code 17). Use “Sign in with a code”.{1}	આ ફોન પર Google Play services આ સાઇન-ઇન કરી શકતી નથી (કોડ 17). “કોડથી સાઇન ઇન કરો” વાપરો.{1}
+Google sign-in failed (code {1}).{2}	Google સાઇન-ઇન થયું નહીં (કોડ {1}).{2}
+Google sign-in failed{1}	Google સાઇન-ઇન થયું નહીં{1}
+Google sign-in could not start.	Google સાઇન-ઇન શરૂ થઈ શક્યું નહીં.
+This phone's Google Play services could not start the sign-in. Use “Sign in with a code” instead.	આ ફોનની Google Play services સાઇન-ઇન શરૂ કરી શકી નહીં. તેના બદલે “કોડથી સાઇન ઇન કરો” વાપરો.
+Google needs you to sign in again. Open Backup and tap Sign in.	Google ઇચ્છે છે કે તમે ફરી સાઇન ઇન કરો. બેકઅપ ખોલો અને સાઇન ઇન દબાવો.
+Google sign-in failed.	Google સાઇન-ઇન થયું નહીં.
+Google sign-in took too long. Will try again later.	Google સાઇન-ઇનમાં ખૂબ વાર લાગી. પછી ફરી પ્રયત્ન થશે.
+Interrupted.	વચ્ચે અટકી ગયું.
+Google Play services are not available on this phone.	આ ફોન પર Google Play services ઉપલબ્ધ નથી.
+Alarm at {1}. You sleep {2}.	એલાર્મ {1} એ. તમે {2} ઊંઘો છો.
+Nothing changes tomorrow.	કાલે કંઈ બદલાતું નથી.
+A delay over {1} is too long to make up.	{1} થી વધુ મોડું ભરપાઈ કરવા માટે ખૂબ લાંબું છે.
+Alarm at {1}. You sleep the full {2}.	એલાર્મ {1} એ. તમે પૂરા {2} ઊંઘો છો.
+Every slot moves {1} later. Bedtime stays at {2}.	દરેક સ્લૉટ {1} મોડો ખસે છે. સૂવાનો સમય {2} જ રહે છે.
+Not enough rest or free time to give back {1}. Pick another option.	{1} પાછા આપવા જેટલો આરામ કે ખાલી સમય નથી. બીજો વિકલ્પ પસંદ કરો.
+No slot needs changing.	કોઈ સ્લૉટ બદલવાની જરૂર નથી.
+The extra sleep would cover your whole morning. Pick another option.	વધારાની ઊંઘ તમારી આખી સવાર લઈ લેશે. બીજો વિકલ્પ પસંદ કરો.
+Later slots keep their normal times.	પછીના સ્લૉટ તેમના સામાન્ય સમયે રહે છે.
+Your day starts with "{1}" at {2}.	તમારો દિવસ {2} એ "{1}" થી શરૂ થાય છે.
+{1}→{2} min	{1}→{2} મિનિટ
+Shortened: {1}.	ટૂંકું કર્યું: {1}.
+Dropped: {1}.	કાઢી નાખ્યું: {1}.
+ADJUSTED FOR TODAY	આજ માટે ગોઠવેલ
+WAKE {1}   FIRST TASK {2}   {3}	જાગવું {1}   પહેલું કામ {2}   {3}
+BED	સૂવું
+END	અંત
+PHONE TODAY	આજે ફોન
+TAKEN OFF	કાઢી નાખ્યું
+TODAY ONLY	ફક્ત આજે
+NOW  ·  {1} left	હમણાં  ·  {1} બાકી
+The purchase did not go through. You were not charged.	ખરીદી પૂરી થઈ નથી. તમારી પાસેથી કોઈ ચાર્જ લેવાયો નથી.
+Thank you! Dinacharya Pro is on.	આભાર! Dinacharya Pro ચાલુ છે.
+Your payment is pending. Pro turns on as soon as it goes through.	તમારી ચુકવણી બાકી છે. તે પૂરી થતાં જ Pro ચાલુ થઈ જશે.
+Pro is not available right now. It is sold through Google Play, so install the app from there, check your connection and try again.	Pro હમણાં ઉપલબ્ધ નથી. તે Google Play દ્વારા વેચાય છે, તેથી એપ ત્યાંથી જ ઇન્સ્ટૉલ કરો, તમારું કનેક્શન તપાસો અને ફરી પ્રયત્ન કરો.
+Could not open Google Play. Try again in a moment.	Google Play ખોલી શકાયું નહીં. થોડી વારમાં ફરી પ્રયત્ન કરો.
+Checking Google Play…	Google Play તપાસી રહ્યા છે…
+Home screen, alarms, reports of today, backup	હોમ સ્ક્રીન, એલાર્મ, આજના રિપોર્ટ, બેકઅપ
+Everything	બધું
+Today and the last {1} days	આજે અને છેલ્લા {1} દિવસ
+Every saved day, the weekly view and tips	દરેક સાચવેલો દિવસ, સાપ્તાહિક દૃશ્ય અને ટિપ્સ
+Up to {1} apps, a short wait	{1} એપ્સ સુધી, થોડી રાહ
+Any number of apps, strict pauses, daily limits, and playful pauses (a sum, a sentence, breathing, say why)	કોઈ પણ સંખ્યામાં એપ્સ, કડક વિરામ, દૈનિક મર્યાદા અને મજેદાર વિરામ (એક સરવાળો, એક વાક્ય, શ્વાસ, કારણ જણાવવું)
+Pause before an app	એપ પહેલાં વિરામ
+Up to {1} apps	{1} એપ્સ સુધી
+Groups of apps, any number of locks, and strict locks	એપ્સના જૂથો, કોઈ પણ સંખ્યામાં લૉક અને કડક લૉક
+One routine	એક દિનચર્યા
+Weekday, weekend and exam-day routines	અઠવાડિયાના દિવસો, સપ્તાહાંત અને પરીક્ષાના દિવસની દિનચર્યાઓ
+Goals and type totals	લક્ષ્યો અને પ્રકાર મુજબ કુલ
+Not included	સામેલ નથી
+Daily goals with streaks	સળંગ દિવસો સાથે દૈનિક લક્ષ્યો
+Colour looks of the home screen	હોમ સ્ક્રીનના રંગીન લુક
+The first look	પહેલો લુક
+All the looks	બધા લુક
+Ads	જાહેરાતો
+Small ads in the dashboard	ડેશબોર્ડમાં નાની જાહેરાતો
+No ads	કોઈ જાહેરાત નહીં
+You have Pro. Thank you!	તમારી પાસે Pro છે. આભાર!
+One purchase, no subscription. Paid once through Google Play.	એક વારની ખરીદી, કોઈ સબ્સ્ક્રિપ્શન નથી. Google Play દ્વારા એક જ વાર ચુકવણી.
+Get Pro for {1}	{1} માં Pro મેળવો
+Get Pro	Pro મેળવો
+The price comes from Google Play. It shows here once Play answers, and Pro can only be bought in a copy of the app that was installed from Google Play.	કિંમત Google Play પરથી આવે છે. Play જવાબ આપે ત્યારે તે અહીં દેખાય છે, અને Pro ફક્ત Google Play પરથી ઇન્સ્ટૉલ કરેલી એપમાં જ ખરીદી શકાય છે.
+Switched on for testing on this phone.	આ ફોન પર પરીક્ષણ માટે ચાલુ કર્યું.
+Try it first	પહેલાં અજમાવો
+Watch short videos, use Pro features for a while	ટૂંકા વીડિયો જુઓ, થોડા સમય માટે Pro સુવિધાઓ વાપરો
+Pick a feature, then choose how many short videos to watch: 1 video opens just that feature for a day, 2 videos for 3 days, 3 videos the whole group it is in (all the pauses, say). Each feature has its own video and its own time, so opening one never opens another. Nothing is charged. When the time is up, what you set up with it goes back to the free version (Pro keeps it for good).	એક સુવિધા પસંદ કરો, પછી કેટલા ટૂંકા વીડિયો જોવા તે પસંદ કરો: 1 વીડિયો ફક્ત તે સુવિધાને એક દિવસ માટે ખોલે છે, 2 વીડિયો 3 દિવસ માટે, 3 વીડિયો તે જે જૂથમાં છે તે આખા જૂથને (જેમ કે બધા વિરામ). દરેક સુવિધાનો પોતાનો વીડિયો અને પોતાનો સમય હોય છે, તેથી એક ખોલવાથી બીજી ક્યારેય ખૂલતી નથી. કોઈ ચાર્જ લાગતો નથી. સમય પૂરો થાય ત્યારે, તેની સાથે તમે જે ગોઠવ્યું હતું તે મફત વર્ઝન પર પાછું જાય છે (Pro તેને કાયમ રાખે છે).
+{1} is part of Pro.	{1} Pro નો ભાગ છે.
+Open it free	મફત ખોલો
+What is free, and what Pro adds	શું મફત છે, અને Pro શું ઉમેરે છે
+Free:  {1}	મફત:  {1}
+Pro:  {1}	Pro:  {1}
+Restore my purchase	મારી ખરીદી પાછી મેળવો
+Tied to your Google Play account, so it comes back on a new phone. Refunds follow Google Play's rules. If Pro ever ends (a refund, say), nothing you made is taken away: a routine, a lock or a pause that goes past the free limit stays saved and starts working again with Pro. A video pass is different: when its time is up, what you set up with it goes back to the free version.	તમારા Google Play ખાતા સાથે જોડાયેલ છે, તેથી નવા ફોન પર પાછી આવે છે. રિફંડ Google Play ના નિયમો મુજબ થાય છે. જો Pro ક્યારેય પૂરું થાય (જેમ કે રિફંડથી), તો તમે બનાવેલું કંઈ છીનવાતું નથી: મફત મર્યાદાથી આગળની દિનચર્યા, લૉક કે વિરામ સચવાયેલા રહે છે અને Pro સાથે ફરી કામ કરે છે. વીડિયો પાસ અલગ છે: તેનો સમય પૂરો થાય ત્યારે, તેની સાથે તમે જે ગોઠવ્યું હતું તે મફત વર્ઝન પર પાછું જાય છે.
+{1} is part of Pro, a one-time purchase that also removes the ads.	{1} Pro નો ભાગ છે, જે એક વારની ખરીદી છે અને જાહેરાતો પણ દૂર કરે છે.
+{1} is open now. To finish, you also need: {2}. It has its own video, or it is part of Pro, a one-time purchase that also removes the ads.	{1} હમણાં ખુલ્લું છે. પૂરું કરવા માટે તમને આ પણ જોઈએ: {2}. તેનો પોતાનો વીડિયો છે, અથવા તે Pro નો ભાગ છે, જે એક વારની ખરીદી છે અને જાહેરાતો પણ દૂર કરે છે.
+Part of Pro	Pro નો ભાગ
+{1}\n\nOr watch short videos to use it free. You choose how many:	{1}\n\nઅથવા તેને મફત વાપરવા ટૂંકા વીડિયો જુઓ. કેટલા જોવા તે તમે નક્કી કરો:
+When the time is up, what you set up with it goes back to the free version.	 સમય પૂરો થાય ત્યારે, તેની સાથે તમે જે ગોઠવ્યું હતું તે મફત વર્ઝન પર પાછું જાય છે.
+Only the videos you watch to the end count, and stopping early still keeps what you earned. Each thing you open has its own video and its own time.{1}	ફક્ત તમે અંત સુધી જુઓ તે વીડિયો જ ગણાય છે, અને વહેલા અટકો તો પણ તમે જે મેળવ્યું તે રહે છે. તમે ખોલો છો તે દરેક વસ્તુનો પોતાનો વીડિયો અને પોતાનો સમય હોય છે.{1}
+Watch videos: open {1} free	વીડિયો જુઓ: {1} મફત ખોલો
+{1}: open until {2}.	{1}: {2} સુધી ખુલ્લું.
+Keep {1} for 3 days: watch 1 more video	{1} ને 3 દિવસ રાખો: 1 વધુ વીડિયો જુઓ
+That report is no longer on the phone	તે રિપોર્ટ હવે ફોન પર નથી
+In your Google Drive backup.	તમારા Google Drive બેકઅપમાં.
+Goes into your Google Drive backup next time it runs.	આગલી વખતે બેકઅપ ચાલશે ત્યારે તમારા Google Drive બેકઅપમાં જશે.
+Tip: sign in under Backup to keep every day in your Google Drive.	ટિપ: દરેક દિવસ તમારા Google Drive માં રાખવા બેકઅપમાં સાઇન ઇન કરો.
+Made on your phone by Dinacharya Launcher  ·  page {1} of {2}	તમારા ફોન પર Dinacharya Launcher દ્વારા બનાવેલ  ·  પાનું {1}/{2}
+Time by activity type, so far	અત્યાર સુધી પ્રવૃત્તિના પ્રકાર મુજબ સમય
+Time by activity type	પ્રવૃત્તિના પ્રકાર મુજબ સમય
+Suggestions for tomorrow	કાલ માટે સૂચનો
+TODAY SO FAR	આજ અત્યાર સુધી
+DAILY REPORT	દૈનિક રિપોર્ટ
+{1} to {2}   ·   {3}	{1} થી {2}   ·   {3}
+Updated {1}	{1} એ અપડેટ કર્યું
+How the score is made	સ્કોર કેવી રીતે બને છે
+{1} kept, {2} changed, {3} taken off, {4} not answered, out of {5} slots.	{5} સ્લૉટમાંથી {1} પાળ્યા, {2} બદલ્યા, {3} કાઢ્યા, {4} ના જવાબ આપ્યા નથી.
+No slot has been answered yet.	હજુ કોઈ સ્લૉટનો જવાબ આપ્યો નથી.
+Turn on alarms to measure this.	આ માપવા માટે એલાર્મ ચાલુ કરો.
+Phone in use for {1}% of task time ({2} of {3}).	કામના સમયના {1}% ફોન વપરાયો ({3} માંથી {2}).
+Not enough task time yet.	હજુ કામનો પૂરતો સમય નથી.
+Allow usage access to measure this.	આ માપવા માટે ઉપયોગની ઍક્સેસ આપો.
+{1} late	{1} મોડું
+{1}, slept {2} of a planned {3}.	{1}, નક્કી કરેલા {3} માંથી {2} ઊંઘ.
+On time	સમયસર
+Measured after bedtime.	સૂવાના સમય પછી માપ્યું.
+Answer the bedtime alarm to measure this.	આ માપવા માટે સૂવાના એલાર્મનો જવાબ આપો.
+Phone use	ફોનનો ઉપયોગ
+Phone use was not available. Allow usage access in the app to include it.	ફોનનો ઉપયોગ ઉપલબ્ધ ન હતો. તેને સામેલ કરવા એપમાં ઉપયોગની ઍક્સેસ આપો.
+{1} during task time ({2}% of it)	કામના સમય દરમિયાન {1} (તેના {2}%)
+{1} in the hour before bed	સૂવા પહેલાના કલાકમાં {1}
+Bars: phone use each hour.  Strip: your plan by type.	પટ્ટીઓ: દર કલાકનો ફોન ઉપયોગ.  પટ્ટો: પ્રકાર મુજબ તમારી યોજના.
+Top apps	સૌથી વધુ વપરાયેલી એપ્સ
+Focus at the home screen	હોમ સ્ક્રીન પર ફોકસ
+times you went back after the pause	વાર તમે વિરામ પછી પાછા ગયા
+times you opened the app anyway	વાર તમે છતાં એપ ખોલી
+Paused most: {1}	સૌથી વધુ વિરામ: {1}
+Time planned and kept	આયોજિત અને પાળેલો સમય
+Planned	આયોજિત
+{1} so far	અત્યાર સુધી {1}
+not tracked	માપ્યું નથી
+Task	કામ
+Rest	આરામ
+Meal	ભોજન
+Personal	અંગત
+Not kept	પાળ્યું નથી
+Average per day. Slots you kept, or that had no alarm to ask you, count as done.	દિવસ દીઠ સરેરાશ. તમે પાળેલા, અથવા જેમાં તમને પૂછવા એલાર્મ ન હતો, તે સ્લૉટ પૂરા ગણાય છે.
+Slots you kept, or that had no alarm to ask you, count as done.	તમે પાળેલા, અથવા જેમાં તમને પૂછવા એલાર્મ ન હતો, તે સ્લૉટ પૂરા ગણાય છે.
+·   went to sleep {1}	   ·   સૂવાનો સમય {1}
+·   wake-up {1}	   ·   જાગવાનો સમય {1}
+Slept {1} of a planned {2}.	નક્કી કરેલા {2} માંથી {1} ઊંઘ.
+Not recorded yet.	હજુ નોંધાયું નથી.
+Not recorded. Answer the bedtime alarm and the app will track it.	નોંધાયું નથી. સૂવાના એલાર્મનો જવાબ આપો, પછી એપ તેને નોંધશે.
+You asked for more time {1} ({2} in all).	તમે {1} વધુ સમય માંગ્યો (કુલ {2}).
+Your day, slot by slot	તમારો દિવસ, સ્લૉટ પ્રમાણે
+TIME	સમય
+SLOT	સ્લૉટ
+STATUS	સ્થિતિ
+PHONE	ફોન
+LAST DAYS	છેલ્લા દિવસો
+Your week	તમારું અઠવાડિયું
+Average score	સરેરાશ સ્કોર
+Phone per day	દિવસ દીઠ ફોન
+Late to bed, average	મોડા સૂવું, સરેરાશ
+Daily score	દૈનિક સ્કોર
+Phone time per day	દિવસ દીઠ ફોન સમય
+Most reliable: {1}, kept {2}% of the time.	સૌથી વિશ્વસનીય: {1}, {2}% સમય પાળ્યું.
+Needs attention: {1}, kept {2}% of the time.	ધ્યાન જોઈએ: {1}, {2}% સમય પાળ્યું.
+Days with a score of 70 or more: {1} of {2}.	70 કે વધુ સ્કોરવાળા દિવસો: {2} માંથી {1}.
+Habits appear after a few answered days.	થોડા દિવસ જવાબ આપ્યા પછી આદતો દેખાય છે.
+Suggestions	સૂચનો
+Open Settings, Apps, Dinacharya Launcher	સેટિંગ્સ, પછી એપ્સ, પછી Dinacharya Launcher ખોલો
+Android is holding this setting back	Android આ સેટિંગ રોકી રહ્યું છે
+Android locks some switches for an app that was installed from a file instead of Google Play. It is a one-time unlock:\n\n1. Tap “Open app info” below.\n2. Tap the ⋮ menu at the top right.\n3. Choose “Allow restricted settings” and confirm with your PIN or fingerprint.\n4. Go back and switch on Usage access.\n\nIf ⋮ does not show that choice yet, first try to switch Usage access on once: Android then shows it.	Google Play ને બદલે ફાઇલમાંથી ઇન્સ્ટૉલ કરેલી એપ માટે Android કેટલાક સ્વિચ લૉક કરે છે. આ એક વારનું અનલૉક છે:\n\n1. નીચે “એપની માહિતી ખોલો” દબાવો.\n2. ઉપર જમણી બાજુએ ⋮ મેનૂ દબાવો.\n3. “પ્રતિબંધિત સેટિંગ્સને મંજૂરી આપો” પસંદ કરો અને તમારા PIN કે ફિંગરપ્રિન્ટથી ખાતરી કરો.\n4. પાછા જાઓ અને ઉપયોગની ઍક્સેસ ચાલુ કરો.\n\nજો ⋮ માં આ વિકલ્પ હજુ ન દેખાય, તો પહેલાં ઉપયોગની ઍક્સેસ એક વાર ચાલુ કરવાનો પ્રયત્ન કરો: ત્યારે Android તે બતાવે છે.
+Teal	ટીલ
+Sunset	સૂર્યાસ્ત
+Ocean	સમુદ્ર
+Graphite	ગ્રેફાઇટ
+My routine	મારી દિનચર્યા
+Study	અભ્યાસ
+Revision	પુનરાવર્તન
+Practice	પ્રૅક્ટિસ
+Work	કામ
+Nap	ઝોકું
+Exercise	કસરત
+Reading	વાંચન
+Family time	પરિવાર સાથેનો સમય
+{1}h	{1}ક
+Wake up & freshen up	ઉઠો અને તાજા થાઓ
+Yoga & stretching	યોગ અને સ્ટ્રેચિંગ
+Breakfast	નાસ્તો
+Morning focus block	સવારનો ફોકસ બ્લૉક
+Short break	ટૂંકો બ્રેક
+Reading & notes	વાંચન અને નોંધ
+Tea break	ચા બ્રેક
+Practice problems	પ્રેક્ટિસના પ્રશ્નો
+Lunch	બપોરનું ભોજન
+Power nap	ટૂંકી ઝપકી
+Project work	પ્રોજેક્ટનું કામ
+Walk & tea	ચાલવું અને ચા
+Evening walk	સાંજની લટાર
+Dinner	રાતનું ભોજન
+Review & plan tomorrow	સમીક્ષા અને કાલનું આયોજન
+Family & free time	પરિવાર અને ફ્રી સમય
+Wind down	સૂવાની તૈયારી
+Start of day	દિવસની શરૂઆત
+Set one time, the day follows	એક સમય નક્કી કરો, બાકીનો દિવસ તે મુજબ ચાલે છે
+Wake-up time	જાગવાનો સમય
+First task time	પહેલા કામનો સમય
+I wake up at	મારા જાગવાનો સમય
+Slots	સ્લૉટ
+Tap a name to rename it, ⋮ for more	નામ બદલવા માટે નામ પર ટૅપ કરો, વધુ માટે ⋮
+Hold ≡ and drag to move a slot. Swipe a slot left to delete it, right to add one below it. The day keeps its length: minutes only move from one slot to another.	સ્લૉટ ખસેડવા માટે ≡ દબાવી રાખો અને ખેંચો. સ્લૉટ કાઢી નાખવા માટે તેને ડાબે સ્વાઇપ કરો, અને તેની નીચે નવો ઉમેરવા માટે જમણે. દિવસની લંબાઈ એ જ રહે છે: મિનિટ ફક્ત એક સ્લૉટથી બીજામાં જાય છે.
+＋  Add slot	＋  સ્લૉટ ઉમેરો
+Add rests	આરામ ઉમેરો
+Paste from web app	વેબ એપમાંથી પેસ્ટ કરો
+Reset to sample	નમૂના પર રીસેટ કરો
+Activity types	પ્રવૃત્તિના પ્રકારો
+Give a slot a type	સ્લૉટને પ્રકાર આપો
+A type is a kind of activity inside a main kind, for example Study inside Task. Pick it on any slot. The home screen shows it under the slot's name; reports and goals count it. Tap a type to remove it.	પ્રકાર એટલે કોઈ મુખ્ય પ્રકારની અંદરની પ્રવૃત્તિનો પ્રકાર, જેમ કે કામની અંદર અભ્યાસ. તેને કોઈ પણ સ્લૉટ પર પસંદ કરો. હોમ સ્ક્રીન તેને સ્લૉટના નામ નીચે બતાવે છે; રિપોર્ટ અને લક્ષ્યો તેને ગણે છે. પ્રકાર દૂર કરવા માટે તેના પર ટૅપ કરો.
+The bells on the slots below will not ring until you turn alarms on.	જ્યાં સુધી તમે એલાર્મ ચાલુ ન કરો ત્યાં સુધી નીચેના સ્લૉટની ઘંટડીઓ વાગશે નહીં.
+Turn them on so the bells on your slots ring when a slot starts?	સ્લૉટ શરૂ થાય ત્યારે તમારા સ્લૉટની ઘંટડીઓ વાગે તે માટે તેમને ચાલુ કરવી છે?
+＋ New	＋ નવું
+＋ Weekend routine	＋ વીકએન્ડ દિનચર્યા
+Want a different day on weekends or exam days? Add another routine and pick its days.	વીકએન્ડ કે પરીક્ષાના દિવસો માટે અલગ દિવસ જોઈએ છે? બીજી દિનચર્યા ઉમેરો અને તેના દિવસો પસંદ કરો.
+: uses {1}	: {1} વાપરે છે
+: uses this routine	: આ દિનચર્યા વાપરે છે
+Not used on any day yet: tap the days that should follow it.	હજી કોઈ દિવસે વપરાતી નથી: જે દિવસો તેને અનુસરે તેના પર ટૅપ કરો.
+Rename	નામ બદલો
+Every day needs a routine. Pick another routine, then tap this day to give it to that one.	દરેક દિવસને એક દિનચર્યા જોઈએ. બીજી દિનચર્યા પસંદ કરો, પછી આ દિવસ પર ટૅપ કરીને તે તેને આપો.
+{1} now follows “{2}”.	{1} હવે “{2}” મુજબ ચાલશે.
+Weekday and weekend routines	અઠવાડિયાના દિવસો અને વીકએન્ડની દિનચર્યાઓ
+Exam day	પરીક્ષાનો દિવસ
+Weekend	વીકએન્ડ
+Copy of “{1}”	“{1}” ની નકલ
+Name	નામ
+Start from	આમાંથી શરૂ કરો
+You can change its slots and start time after, and pick the days it is used on.	તમે પછીથી તેના સ્લૉટ અને શરૂઆતનો સમય બદલી શકો છો, અને તે કયા દિવસોએ વપરાય તે પસંદ કરી શકો છો.
+New routine	નવી દિનચર્યા
+Create	બનાવો
+Rename routine	દિનચર્યાનું નામ બદલો
+Delete “{1}”?	“{1}” કાઢી નાખવી છે?
+Its days go back to “{1}”. Its slots are deleted.	તેના દિવસો “{1}” પર પાછા જશે. તેના સ્લૉટ કાઢી નખાશે.
+Deleted “{1}”.	“{1}” કાઢી નાખી.
+my first task starts at	મારા પહેલા કામનો સમય
+Over by {1}. Your sleep runs past the next wake-up.	{1} વધુ છે. તમારી ઊંઘ આગલા જાગવાના સમયથી આગળ ચાલે છે.
+Unplanned time: {1} of the 24 hours.	આયોજન વગરનો સમય: 24 કલાકમાંથી {1}.
+Your slots add up to exactly 24 hours.	તમારા સ્લૉટ બરાબર 24 કલાકના છે.
+Wake-up {1}   ·   First task {2}   ·   {3}\n{4}	જાગવું {1}   ·   પહેલું કામ {2}   ·   {3}\n{4}
+Add a Task slot first	પહેલા એક કામનો સ્લૉટ ઉમેરો
+Type {1}. Tap to remove.	પ્રકાર {1}. દૂર કરવા માટે ટૅપ કરો.
+＋ Add	＋ ઉમેરો
+No slot uses this type.	કોઈ સ્લૉટ આ પ્રકાર વાપરતો નથી.
+Its daily goal is removed too.	તેનું રોજનું લક્ષ્ય પણ દૂર થશે.
+Remove “{1}”?	“{1}” દૂર કરવો છે?
+Removed “{1}”.	“{1}” દૂર કર્યો.
+e.g. Maths	જેમ કે ગણિત
+Type name	પ્રકારનું નામ
+New {1} type	નવો {1} પ્રકાર
+Add	ઉમેરો
+Write a name for the type	પ્રકાર માટે નામ લખો
+“{1}” was already there	“{1}” પહેલેથી હતો
+Added “{1}” under {2}	“{1}” ને {2} હેઠળ ઉમેર્યો
+Drag to move this slot	આ સ્લૉટ ખસેડવા માટે ખેંચો
+Slot name	સ્લૉટનું નામ
+Length. Tap to type the minutes.	લંબાઈ. મિનિટ લખવા માટે ટૅપ કરો.
+5 minutes shorter. Hold for 30.	5 મિનિટ ઓછી. 30 માટે દબાવી રાખો.
+5 minutes longer. Hold for 30.	5 મિનિટ વધુ. 30 માટે દબાવી રાખો.
+Alarm on for “{1}”	“{1}” માટે એલાર્મ ચાલુ
+No alarm for “{1}”	“{1}” માટે એલાર્મ નથી
+More: add below, note, duplicate, delete	વધુ: નીચે ઉમેરો, નોંધ, ડુપ્લિકેટ, કાઢી નાખો
+Add a slot below	નીચે સ્લૉટ ઉમેરો
+Add a note	નોંધ ઉમેરો
+Edit the note	નોંધ બદલો
+Duplicate (splits this slot in two)	ડુપ્લિકેટ (આ સ્લૉટને બે ભાગમાં વહેંચે છે)
+Alarms are off. Tap to turn them on.	એલાર્મ બંધ છે. ચાલુ કરવા માટે ટૅપ કરો.
+Alarm on. Tap to switch off for this slot.	એલાર્મ ચાલુ. આ સ્લૉટ માટે બંધ કરવા ટૅપ કરો.
+Alarm off. Tap to switch on for this slot.	એલાર્મ બંધ. આ સ્લૉટ માટે ચાલુ કરવા ટૅપ કરો.
+Minutes (1 to 1440)	મિનિટ (1 થી 1440)
+Length of “{1}”	“{1}” ની લંબાઈ
+Write a number of minutes	મિનિટની સંખ્યા લખો
+Use 1 to 1440 minutes	1 થી 1440 મિનિટ વાપરો
+e.g. Polity chapter 4, then 20 practice questions	જેમ કે રાજ્યશાસ્ત્ર પ્રકરણ 4, પછી 20 પ્રેક્ટિસ પ્રશ્નો
+Shown on this slot and on its alarm.	આ સ્લૉટ પર અને તેના એલાર્મ પર દેખાય છે.
+Note for “{1}”	“{1}” માટે નોંધ
+Note removed.	નોંધ દૂર કરી.
+No type	કોઈ પ્રકાર નહીં
+＋ New type…	＋ નવો પ્રકાર…
+Moved “{1}”.	“{1}” ખસેડ્યો.
+Keep at least one slot	ઓછામાં ઓછો એક સ્લૉટ રાખો
+Its {1} stay in your day. Where should they go?	તેના {1} તમારા દિવસમાં જ રહે છે. તે ક્યાં જવા જોઈએ?
+Share them out over the other slots	તેમને બીજા સ્લૉટમાં વહેંચી દો
+This slot is too short to split	આ સ્લૉટ વહેંચવા માટે ખૂબ ટૂંકો છે
+Split “{1}” into two slots.	“{1}” ના બે સ્લૉટ કરો.
+It goes right after “{1}”. Your day stays the same length, so its time is taken from other slots.	તે “{1}” પછી તરત આવે છે. તમારા દિવસની લંબાઈ એ જ રહે છે, તેથી તેનો સમય બીજા સ્લૉટમાંથી લેવાય છે.
+Name, e.g. Maths homework	નામ, જેમ કે ગણિતનું હોમવર્ક
+Kind	શ્રેણી
+Type (optional)	પ્રકાર (વૈકલ્પિક)
+or write a new type	અથવા નવો પ્રકાર લખો
+Minutes	મિનિટ
+Take the minutes from	મિનિટ અહીંથી લો
+This slot: “{1}”	આ સ્લૉટ: “{1}”
+The next slot: “{1}”	આગલો સ્લૉટ: “{1}”
+All the other slots (not Sleep)	બાકીના બધા સ્લૉટ (ઊંઘ સિવાય)
+Up to {1} min can be taken from here.	અહીંથી વધુમાં વધુ {1} મિનિટ લઈ શકાય.
+There is no room to take from here. Pick another source.	અહીંથી લેવા માટે જગ્યા નથી. બીજો સ્રોત પસંદ કરો.
+Add a slot	સ્લૉટ ઉમેરો
+Give the slot a name, or pick a type.	સ્લૉટને નામ આપો, અથવા પ્રકાર પસંદ કરો.
+Write how many minutes it takes.	તેમાં કેટલી મિનિટ લાગે છે તે લખો.
+It needs at least 1 minute.	તેને ઓછામાં ઓછી 1 મિનિટ જોઈએ.
+Only {1} min can be taken from there. Use fewer minutes or another source.	ત્યાંથી ફક્ત {1} મિનિટ લઈ શકાય. ઓછી મિનિટ અથવા બીજો સ્રોત વાપરો.
+There is no room to take from there. Pick another source.	ત્યાંથી લેવા માટે જગ્યા નથી. બીજો સ્રોત પસંદ કરો.
+That did not fit. Try fewer minutes.	તે બેસ્યું નહીં. ઓછી મિનિટ અજમાવો.
+the other slots	બાકીના સ્લૉટ
+Added “{1}”, {2} min, taken from {3}.	“{1}” ઉમેર્યો, {2} મિનિટ, {3} માંથી લીધી.
+No back-to-back tasks found	સળંગ કામો મળ્યાં નથી
+No task has time to spare for a rest	કોઈ કામમાં આરામ માટે સમય વધારાનો નથી
+Reset “{1}”?	“{1}” રીસેટ કરવી છે?
+Its slots are replaced with the sample day (wake-up 5:30 AM). You can undo this.	તેના સ્લૉટ નમૂનાના દિવસથી બદલાઈ જશે (જાગવું 5:30 AM). તમે તેને પાછું ફેરવી શકો છો.
+“{1}” reset to the sample day.	“{1}” નમૂનાના દિવસ પર રીસેટ થઈ.
+Copy your routine in the web app first	પહેલા વેબ એપમાં તમારી દિનચર્યા કૉપી કરો
+Routine imported into “{1}”.	દિનચર્યા “{1}” માં ઇમ્પોર્ટ થઈ.
+Swipes, look, pause rules, hidden apps	સ્વાઇપ, લુક, વિરામના નિયમો, છુપાવેલી એપ્સ
+Permissions and settings the app needs, with a tick for each	એપને જોઈતી પરવાનગીઓ અને સેટિંગ્સ, દરેક માટે ટિક સાથે
+Home screen look and alarms	હોમ સ્ક્રીનનો લુક અને એલાર્મ
+Home screen look	હોમ સ્ક્રીનનો લુક
+Colours, clock, phone time, spacing	રંગો, ઘડિયાળ, ફોનનો સમય, અંતર
+On or off, test alarm, phone checklist	ચાલુ કે બંધ, ટેસ્ટ એલાર્મ, ફોન ચેકલિસ્ટ
+Permissions	પરવાનગીઓ
+What the app may do, and why	એપ શું કરી શકે, અને શા માટે
+Support	સહાય
+Help and problem report	મદદ અને સમસ્યા રિપોર્ટ
+How things work, copy a report	વસ્તુઓ કેવી રીતે ચાલે છે, રિપોર્ટ કૉપી કરો
+Ad privacy choices	જાહેરાતની ગોપનીયતાની પસંદગીઓ
+Change what you agreed to for ads	જાહેરાતો માટે તમે આપેલી સંમતિ બદલો
+About	વિશે
+Version and developer	વર્ઝન અને ડેવલપર
+‹  Settings	‹  સેટિંગ્સ
+Theme	થીમ
+Night	રાત
+Colours	રંગો
+On the home screen	હોમ સ્ક્રીન પર
+24-hour clock	24 કલાકની ઘડિયાળ
+Show the time	સમય બતાવો
+Show phone screen time today	આજનો ફોન સ્ક્રીન ટાઇમ બતાવો
+Allow usage access	વપરાશ ઍક્સેસની મંજૂરી આપો
+Show “Developed by” mark	“Developed by” નિશાન બતાવો
+Spacing	અંતર
+Space at top	ઉપરની જગ્યા
+Space at bottom	નીચેની જગ્યા
+Add top space if your lock screen shows a big clock, and bottom space for the app dock.	જો તમારી લૉક સ્ક્રીન પર મોટી ઘડિયાળ દેખાતી હોય તો ઉપરની જગ્યા વધારો, અને એપ ડૉક માટે નીચેની જગ્યા.
+The {1} colours	{1} રંગો
+Screen time is read on this phone only. Nothing is sent anywhere.	સ્ક્રીન ટાઇમ ફક્ત આ ફોન પર વંચાય છે. કંઈ પણ ક્યાંય મોકલાતું નથી.
+To show screen time, Android needs your OK. Tap the button, find Dinacharya Launcher in the list and switch it on.	સ્ક્રીન ટાઇમ બતાવવા માટે Android ને તમારી પરવાનગી જોઈએ. બટન દબાવો, યાદીમાં Dinacharya Launcher શોધો અને તેને ચાલુ કરો.
+Dinacharya Pro ✓	Dinacharya Pro ✓
+Thank you for supporting the app.	એપને ટેકો આપવા બદલ આભાર.
+This phone	આ ફોન
+Phone time on the home screen and in reports.	હોમ સ્ક્રીન પર અને રિપોર્ટમાં ફોનનો સમય.
+The alarm question, also on the lock screen.	એલાર્મનો પ્રશ્ન, લૉક સ્ક્રીન પર પણ.
+Rings at the exact minute a slot starts.	સ્લૉટ શરૂ થાય તે જ મિનિટે વાગે છે.
+Keeps alarms and backups on time on phones that stop apps.	એપ્સ રોકી દેતા ફોન પર એલાર્મ અને બેકઅપ સમયસર રાખે છે.
+{1} Not allowed yet.	{1} હજી પરવાનગી નથી.
+Open the phone's Settings, then Apps, Dinacharya Launcher	ફોનના સેટિંગ્સ ખોલો, પછી એપ્સ, Dinacharya Launcher
+Help	મદદ
+Quick guide	ઝડપી માર્ગદર્શિકા
+Dinacharya Launcher is your home screen: no apps on it, just your day, with the slot you are in highlighted. Tap your day to open the dashboard, swipe up for every app, down for notifications, press and hold for its settings. Settings > Home screen has the rest, and Take the tour shows it all.	Dinacharya Launcher તમારી હોમ સ્ક્રીન છે: તેના પર કોઈ એપ નથી, ફક્ત તમારો દિવસ, અને તમે જે સ્લૉટમાં છો તે હાઇલાઇટ થયેલો. ડેશબોર્ડ ખોલવા માટે તમારા દિવસ પર ટૅપ કરો, બધી એપ્સ માટે ઉપર સ્વાઇપ કરો, સૂચનાઓ માટે નીચે, અને તેના સેટિંગ્સ માટે દબાવી રાખો. સેટિંગ્સ > હોમ સ્ક્રીનમાં બાકીનું બધું છે, અને ટૂર જુઓ બધું બતાવે છે.
+Pick a start time; every slot follows. Drag ≡ to move a slot, swipe left to delete, swipe right to add one below. Tap ⋮ on a slot for notes, duplicating and more.	શરૂઆતનો સમય પસંદ કરો; દરેક સ્લૉટ તેની પાછળ ચાલે છે. સ્લૉટ ખસેડવા ≡ ખેંચો, કાઢી નાખવા ડાબે સ્વાઇપ કરો, અને નીચે નવો ઉમેરવા જમણે સ્વાઇપ કરો. નોંધ, ડુપ્લિકેટ અને બીજી બાબતો માટે સ્લૉટ પર ⋮ દબાવો.
+On the Routine tab, add another routine and tap the days it is used on. Alarms, the home screen and reports follow the right one each day.	દિનચર્યા ટૅબ પર બીજી દિનચર્યા ઉમેરો અને તે જે દિવસોએ વપરાય તેના પર ટૅપ કરો. એલાર્મ, હોમ સ્ક્રીન અને રિપોર્ટ દરરોજ યોગ્ય દિનચર્યાને અનુસરે છે.
+Weekdays and weekends	અઠવાડિયાના દિવસો અને વીકએન્ડ
+Turn alarms on from the Alarms card on Home. When one rings, say if you continue as planned or change the slot for today. If one does not ring, open Settings > Alarms: the checklist shows what is missing, and Ring a test alarm tries it in 10 seconds.	હોમ પરના એલાર્મ કાર્ડથી એલાર્મ ચાલુ કરો. જ્યારે કોઈ વાગે, ત્યારે કહો કે તમે યોજના મુજબ આગળ વધો છો કે આજ માટે સ્લૉટ બદલો છો. જો કોઈ ન વાગે, તો સેટિંગ્સ > એલાર્મ ખોલો: ચેકલિસ્ટ શું ખૂટે છે તે બતાવે છે, અને ટેસ્ટ એલાર્મ વગાડો તેને 10 સેકન્ડમાં અજમાવે છે.
+On Insights, set a daily goal for a type such as Study. Kept slots of that type fill it up; days in a row make a streak.	ઇનસાઇટ્સમાં અભ્યાસ જેવા કોઈ પ્રકાર માટે રોજનું લક્ષ્ય નક્કી કરો. તે પ્રકારના પૂરા કરેલા સ્લૉટ તેને ભરે છે; સળંગ દિવસો સ્ટ્રીક બનાવે છે.
+Undo	પાછું ફેરવો
+After deleting, moving or adding, a bar with Undo appears for a few seconds.	કાઢી નાખ્યા, ખસેડ્યા કે ઉમેર્યા પછી, થોડી સેકન્ડ માટે પાછું ફેરવો વાળી પટ્ટી દેખાય છે.
+On Backup, sign in with Google and choose Daily, Weekly or Monthly. Restore on a new phone from the same tab.	બેકઅપમાં Google થી સાઇન ઇન કરો અને દરરોજ, દર અઠવાડિયે કે દર મહિને પસંદ કરો. નવા ફોન પર એ જ ટૅબમાંથી રીસ્ટોર કરો.
+Problem report	સમસ્યા રિપોર્ટ
+Copy problem report	સમસ્યા રિપોર્ટ કૉપી કરો
+No crash recorded.	કોઈ ક્રેશ નોંધાયો નથી.
+No handled problems.	સંભાળેલી કોઈ સમસ્યા નથી.
+Report copied	રિપોર્ટ કૉપી થયો
+Version {1}	વર્ઝન {1}
+Phone settings	ફોન સેટિંગ્સ
+Welcome	સ્વાગત
+Check your phone settings	તમારા ફોનના સેટિંગ્સ તપાસો
+Let’s get your phone ready	ચાલો તમારો ફોન તૈયાર કરીએ
+A few settings so the alarms ring on time and the home screen works. Each one opens Android’s own screen and takes a moment. You can skip any of them.	થોડા સેટિંગ્સ, જેથી એલાર્મ સમયસર વાગે અને હોમ સ્ક્રીન ચાલે. દરેક Android ની પોતાની સ્ક્રીન ખોલે છે અને થોડી વાર લે છે. તમે કોઈ પણ છોડી શકો છો.
+Continue	ચાલુ રાખો
+Skip for now	હમણાં છોડો
+That set the lock screen only. Tap Set again and choose the home screen too.	તેનાથી ફક્ત લૉક સ્ક્રીન સેટ થઈ. ફરી “સેટ કરો” પર ટૅપ કરો અને હોમ સ્ક્રીન પણ પસંદ કરો.
+Everything is set.	બધું સેટ થઈ ગયું છે.
+Finish	પૂરું કરો
+{1} steps left.	{1} પગલાં બાકી.
+1 step left.	1 પગલું બાકી.
+Next step	આગળનું પગલું
+Set up everything	બધું સેટ કરો
+That is past your alarm: there would be no sleep left.	તે તમારા એલાર્મ પછીનું છે: ઊંઘ બચશે જ નહીં.
+This costs you {1} of sleep.	તેનાથી તમારી {1} ઊંઘ ઘટે છે.
+Sleep now: {1}. After {2}: {3}.	હમણાંની ઊંઘ: {1}. {2} પછી: {3}.
+That is {1} short of the {2} you planned.	તમે નક્કી કરેલા {2} કરતાં આ {1} ઓછું છે.
+Under 6 hours of sleep makes tomorrow harder.	6 કલાકથી ઓછી ઊંઘ આવતીકાલને મુશ્કેલ બનાવે છે.
+Already snoozed {1} today. With this: {2}.	આજે પહેલેથી {1} સ્નૂઝ થયું છે. આની સાથે: {2}.
+Open Settings, Apps, Special access, Display over other apps	સેટિંગ્સ, એપ્સ, વિશેષ ઍક્સેસ, અન્ય એપ્સ પર દેખાડો ખોલો
+On. Locks and pauses are held wherever an app opens from.	ચાલુ. એપ જ્યાંથી પણ ખુલે ત્યાં લૉક અને વિરામ લાગુ રહે છે.
+Almost on: allow Usage access below.	લગભગ ચાલુ: નીચે વપરાશ ઍક્સેસની મંજૂરી આપો.
+Almost on: allow Display over other apps below.	લગભગ ચાલુ: નીચે “અન્ય એપ્સ પર દેખાડો” ની મંજૂરી આપો.
+Almost on: allow the two things below.	લગભગ ચાલુ: નીચેની બંને બાબતોની મંજૂરી આપો.
+Off. Locks and pauses work when you open an app from this home screen.	બંધ. આ હોમ સ્ક્રીનથી એપ ખોલો ત્યારે જ લૉક અને વિરામ કામ કરે છે.
+Turn on alarms so the app can see which slots you keep.	એલાર્મ ચાલુ કરો, જેથી એપ જોઈ શકે કે તમે કયા સ્લૉટ પાળો છો.
+Allow usage access to see your phone time and the apps behind it.	તમારો ફોનનો સમય અને તેની પાછળની એપ્સ જોવા માટે વપરાશ ઍક્સેસની મંજૂરી આપો.
+You took off {1} on {2} of the last {3} days. Make it shorter, or move it to a quieter time.	છેલ્લા {3} દિવસમાંથી {2} દિવસ તમે {1} છોડ્યું. તેને ટૂંકું કરો, અથવા શાંત સમયે ખસેડો.
+You renamed {1} to {2} on {3} days. Change it in the routine so the plan matches your day.	તમે {3} દિવસ {1} નું નામ બદલીને {2} કર્યું. દિનચર્યામાં તેને બદલો, જેથી યોજના તમારા દિવસ સાથે મેળ ખાય.
+You went to sleep about {1} late on average over the last {2} nights. Move bedtime and wake-up later in the app, or start winding down earlier.	છેલ્લી {2} રાતોમાં તમે સરેરાશ લગભગ {1} મોડા સૂતા. એપમાં સૂવાનો અને જાગવાનો સમય આગળ ખસેડો, અથવા સૂવાની તૈયારી વહેલી શરૂ કરો.
+You spent {1} on your phone during {2} ({3}% of the block). Keep the phone in another room for that block.	{2} દરમિયાન તમે ફોન પર {1} વિતાવ્યા (બ્લૉકના {3}%). તે બ્લૉક માટે ફોન બીજા રૂમમાં રાખો.
+You used the phone for {1} in the hour before bed. A screen-free hour helps you fall asleep.	સૂતા પહેલાના કલાકમાં તમે {1} ફોન વાપર્યો. સ્ક્રીન વગરનો એક કલાક ઊંઘ આવવામાં મદદ કરે છે.
+{1} took {2}, {3}% of your phone time. Set a daily limit for it in Settings > Home screen, or in Android's Digital Wellbeing.	{1} એ {2} લીધા, એટલે તમારા ફોનના સમયના {3}%. સેટિંગ્સ > હોમ સ્ક્રીનમાં, અથવા Android ના ડિજિટલ વેલબીઇંગમાં તેની દૈનિક મર્યાદા નક્કી કરો.
+an app	એક એપ
+The home screen paused you {1} times and you opened the app anyway {2} times; {3} pulled you most. Make it Strict, or give it a daily limit, in Settings > Home screen.	હોમ સ્ક્રીને તમને {1} વાર રોક્યા અને તમે છતાં {2} વાર એપ ખોલી; {3} એ તમને સૌથી વધુ ખેંચ્યા. સેટિંગ્સ > હોમ સ્ક્રીનમાં તેને કડક બનાવો, અથવા તેને દૈનિક મર્યાદા આપો.
+You stopped yourself {1} times at the home screen. That is focus working.	તમે હોમ સ્ક્રીન પર {1} વાર પોતાને રોક્યા. આ જ ફોકસનું કામ છે.
+{1} of your 24 hours are not planned. Add a block for that time.	તમારા 24 કલાકમાંથી {1} નું આયોજન નથી. તે સમય માટે એક બ્લૉક ઉમેરો.
+Your blocks add up to {1} more than 24 hours. Shorten something.	તમારા બ્લૉક 24 કલાક કરતાં {1} વધુ થાય છે. કંઈક ટૂંકું કરો.
+Only {1}% of your awake time is rest. Short breaks between tasks help you stay focused.	તમારા જાગવાના સમયનો ફક્ત {1}% આરામ છે. કામો વચ્ચેના ટૂંકા બ્રેક ધ્યાન જાળવવામાં મદદ કરે છે.
+You have kept {1} for {2} days in a row. It is a good place for your hardest work.	તમે {1} સળંગ {2} દિવસ પાળ્યું છે. તમારા સૌથી અઘરા કામ માટે આ સારી જગ્યા છે.
+A solid day. Keep the same routine tomorrow.	સરસ દિવસ. કાલે પણ આ જ દિનચર્યા રાખો.
+Not enough days yet for suggestions. Keep the alarms on and check back in a few days.	સૂચનો માટે હજી પૂરતા દિવસો નથી. એલાર્મ ચાલુ રાખો અને થોડા દિવસ પછી ફરી જુઓ.
+＋  Add below	＋  નીચે ઉમેરો
+Delete  ✕	કાઢી નાખો  ✕
+Your day, on your home screen	તમારો દિવસ, તમારી હોમ સ્ક્રીન પર
+Swipe up for every app	બધી એપ્સ માટે ઉપર સ્વાઇપ કરો
+Swipe and press	સ્વાઇપ અને દબાવી રાખો
+A routine that fits you	તમને અનુકૂળ દિનચર્યા
+Alarms that ask	પૂછતા એલાર્મ
+A pause before distractions	ધ્યાન ભટકાવતી વસ્તુઓ પહેલાં એક વિરામ
+Lock apps for a while	થોડા સમય માટે એપ્સ લૉક કરો
+See how your days go	જુઓ તમારા દિવસો કેવા જાય છે
+Back up to your own Drive	તમારા પોતાના Drive માં બેકઅપ લો
+Free, and Pro if you want more	મફત, અને વધુ જોઈએ તો Pro
+Your day is the wallpaper	તમારો દિવસ જ વૉલપેપર છે
+Last check	છેલ્લી તપાસ
+No icons and no clutter. Your whole home screen is your day: the time, the date and every slot, with the one you are in highlighted.	કોઈ આઇકન નહીં અને કોઈ ગડબડ નહીં. તમારી આખી હોમ સ્ક્રીન તમારો દિવસ છે: સમય, તારીખ અને દરેક સ્લૉટ, અને તમે જેમાં છો તે હાઇલાઇટ થયેલો.
+Every app, as a plain list over a soft blur of your day. Type to search. Slide along the A to Z strip to jump to a letter. Press and hold an app to add a pause, hide it, or open its info. Dinacharya Launcher is in the list too: tap it for the dashboard.	દરેક એપ, તમારા દિવસના નરમ ઝાંખા પડદા પર સાદી યાદીમાં. શોધવા માટે ટાઇપ કરો. કોઈ અક્ષર પર જવા માટે A થી Z પટ્ટી પર સરકાવો. એપને દબાવી રાખીને તમે વિરામ ઉમેરી શકો છો, તેને છુપાવી શકો છો, અથવા તેની માહિતી ખોલી શકો છો. Dinacharya Launcher પણ યાદીમાં છે: ડેશબોર્ડ માટે તેના પર ટૅપ કરો.
+Tap your day to open the dashboard. Swipe down for notifications. Swipe left for the camera and right for the phone: you can change both to any app. Press and hold anywhere for settings.	ડેશબોર્ડ ખોલવા માટે તમારા દિવસ પર ટૅપ કરો. સૂચનાઓ માટે નીચે સ્વાઇપ કરો. કૅમેરા માટે ડાબે અને ફોન માટે જમણે સ્વાઇપ કરો: બંનેને તમે કોઈ પણ એપમાં બદલી શકો છો. સેટિંગ્સ માટે ગમે ત્યાં દબાવી રાખો.
+Set your wake-up time and shape the day into slots: Study, Rest, Meals and more. Keep one routine for weekdays and others for weekends or exam days. Open the dashboard to edit them.	તમારા જાગવાનો સમય નક્કી કરો અને દિવસને સ્લૉટમાં ઢાળો: અભ્યાસ, આરામ, ભોજન અને વધુ. અઠવાડિયાના દિવસો માટે એક દિનચર્યા રાખો અને વીકએન્ડ કે પરીક્ષાના દિવસો માટે બીજી. તેમને બદલવા ડેશબોર્ડ ખોલો.
+Each slot can ring when it starts and ask one question: carry on, or change the plan? At bedtime it asks when you went to sleep, and if you need more time it tells you what that costs in sleep. The question comes up by itself, and again when you wake the phone or come back to the home screen.	દરેક સ્લૉટ શરૂ થાય ત્યારે વાગી શકે છે અને એક પ્રશ્ન પૂછી શકે છે: ચાલુ રાખવું, કે યોજના બદલવી? સૂવાના સમયે તે પૂછે છે કે તમે ક્યારે સૂતા, અને જો તમને વધુ સમય જોઈએ તો ઊંઘમાં તેની કેટલી કિંમત ચૂકવવી પડશે તે જણાવે છે. પ્રશ્ન આપમેળે આવે છે, અને ફોન જગાડો કે હોમ સ્ક્રીન પર પાછા આવો ત્યારે ફરી આવે છે.
+Pick the apps that pull you away. During focus time they wait a few seconds before they open, and you can always open them anyway. Free: two apps. Pro: any number, strict pauses, daily limits, and playful pauses: a quick sum, a sentence to type, slow breaths, or saying why you are opening it.	તમને ભટકાવતી એપ્સ પસંદ કરો. ફોકસના સમયે તે ખુલતા પહેલાં થોડી સેકન્ડ રાહ જુએ છે, અને તમે હંમેશાં છતાં ખોલી શકો છો. મફત: બે એપ્સ. Pro: ગમે તેટલી, કડક વિરામ, દૈનિક મર્યાદા, અને મજેદાર વિરામ: એક ઝટપટ સરવાળો, ટાઇપ કરવા માટે એક વાક્ય, ધીમા શ્વાસ, અથવા તેને શા માટે ખોલો છો તે કહેવું.
+Shut the apps that eat your time for hours you choose: every day or on some days, or just for the next hour. A locked app is greyed in the list, and the lock screen shows when it opens again. You can break a lock by waiting half a minute and typing a sentence. Free: lock two apps. Pro: groups of apps, as many locks as you like, and strict locks that cannot be broken. Set it up in the home settings.	તમારો સમય ખાતી એપ્સને તમે પસંદ કરેલા કલાકો માટે બંધ કરો: દરરોજ કે અમુક દિવસે, અથવા ફક્ત આગલા કલાક માટે. લૉક કરેલી એપ યાદીમાં ઝાંખી દેખાય છે, અને લૉક સ્ક્રીન બતાવે છે કે તે ફરી ક્યારે ખુલશે. તમે અડધી મિનિટ રાહ જોઈને અને એક વાક્ય ટાઇપ કરીને લૉક તોડી શકો છો. મફત: બે એપ્સ લૉક કરો. Pro: એપ્સના જૂથ, ગમે તેટલા લૉક, અને ન તોડી શકાય એવા કડક લૉક. તેને હોમ સેટિંગ્સમાં સેટ કરો.
+A score for each day, phone time by hour and by app, goals with streaks, and plain suggestions. Today and the last three days are free, and each can be saved as a PDF. Pro adds every saved day and the weekly view.	દરેક દિવસનો સ્કોર, કલાક અને એપ મુજબ ફોનનો સમય, સ્ટ્રીક સાથે લક્ષ્યો, અને સાદાં સૂચનો. આજનો અને છેલ્લા ત્રણ દિવસ મફત છે, અને દરેકને PDF તરીકે સાચવી શકાય છે. Pro માં દરેક સાચવેલો દિવસ અને સાપ્તાહિક દૃશ્ય ઉમેરાય છે.
+Sign in with Google to back up to a private space in your own Drive, and restore on a new phone. The home settings, your routines and your reports are all in it.	તમારા પોતાના Drive ની ખાનગી જગ્યામાં બેકઅપ લેવા Google થી સાઇન ઇન કરો, અને નવા ફોન પર રીસ્ટોર કરો. હોમ સેટિંગ્સ, તમારી દિનચર્યાઓ અને તમારા રિપોર્ટ બધું તેમાં છે.
+The Dinacharya Launcher live wallpaper shows the time, the date and every slot of your day, with the one you are in highlighted, and keeps itself up to date. It comes with the home screen: Dinacharya Launcher asks Android to put it in place and you confirm once, so it also shows on your lock screen and in your recent apps.	Dinacharya Launcher નું લાઇવ વૉલપેપર સમય, તારીખ અને તમારા દિવસનો દરેક સ્લૉટ બતાવે છે, તમે જેમાં છો તેને હાઇલાઇટ કરીને, અને પોતાને અપ ટુ ડેટ રાખે છે. તે હોમ સ્ક્રીન સાથે આવે છે: Dinacharya Launcher Android ને તે ગોઠવવા કહે છે અને તમે એક વાર પુષ્ટિ કરો છો, તેથી તે તમારી લૉક સ્ક્રીન પર અને તાજેતરની એપ્સમાં પણ દેખાય છે.
+Anything still missing from the setup is listed here. You can skip it now and come back from Settings.	સેટઅપમાં હજી જે કંઈ બાકી છે તે અહીં યાદીમાં છે. તમે તેને હમણાં છોડી શકો છો અને સેટિંગ્સમાંથી પાછા આવી શકો છો.
+Skip	છોડો
+Next	આગળ
+{1} of {2}	{2} માંથી {1}
+Everything is set	બધું સેટ છે
+Your phone is ready.	તમારો ફોન તૈયાર છે.
+Phone today  2h 05m	આજે ફોન  2ક 05મિ
+Wake up	જાગો
+Books	પુસ્તકો
+Calculator	કૅલ્ક્યુલેટર
+Calendar	કૅલેન્ડર
+Clock	ઘડિયાળ
+Contacts	સંપર્કો
+Drive	Drive
+Swipe up	ઉપર સ્વાઇપ કરો
+for every app	બધી એપ્સ માટે
+All apps	બધી એપ્સ
+Study starts now	અભ્યાસ હમણાં શરૂ થાય છે
+Are you continuing, or changing the plan?	તમે ચાલુ રાખો છો, કે યોજના બદલો છો?
+Bedtime	સૂવાનો સમય
+When did you go to sleep?	તમે ક્યારે સૂતા?
+Social app	સોશિયલ એપ
+Right now: Study.	હમણાં: અભ્યાસ.
+Is this the best use of	શું આગલા થોડા મિનિટનો
+the next few minutes?	આ શ્રેષ્ઠ ઉપયોગ છે?
+Open anyway in 7	7 માં છતાં ખોલો
+Today's score	આજનો સ્કોર
+Phone use by hour	કલાક મુજબ ફોનનો ઉપયોગ
+Study  5h 40m of 6h	અભ્યાસ  6ક માંથી 5ક 40મિ
+5-day streak	5 દિવસની સ્ટ્રીક
+Your own Google Drive	તમારું પોતાનું Google Drive
+private to you	ફક્ત તમારા માટે ખાનગી
+Daily, weekly	દરરોજ, સાપ્તાહિક
+or monthly	અથવા માસિક
+Restore on a	નવા ફોન પર
+new phone	રીસ્ટોર કરો
+Locked  ·  Social	લૉક  ·  સોશિયલ
+Until 6:00 AM	6:00 AM સુધી
+4h 20m left	4ક 20મિ બાકી
+Shows when it	તે ફરી ક્યારે
+opens again	ખુલશે તે બતાવે છે
+Wait, then type	રાહ જુઓ, પછી એક
+a sentence	વાક્ય ટાઇપ કરો
+Strict locks (Pro)	કડક લૉક (Pro)
+can't be broken	તોડી શકાતા નથી
+Free	મફત
+Today's report	આજનો રિપોર્ટ
+Last 3 days	છેલ્લા 3 દિવસ
+2 paused apps	વિરામ મુકેલી 2 એપ્સ
+2 locked apps	લૉક કરેલી 2 એપ્સ
+All saved days	બધા સાચવેલા દિવસો
+Weekly view	સાપ્તાહિક દૃશ્ય
+One payment, or a short video for a day	એક જ વારની ચુકવણી, અથવા એક દિવસ માટે એક ટૂંકો વીડિયો
+Time, date	સમય, તારીખ
+and phone time	અને ફોનનો સમય
+The slot you	તમે જેમાં છો
+are in	તે સ્લૉટ
+Every slot	તમારા દિવસનો
+of your day	દરેક સ્લૉટ
+Part of the	હોમ સ્ક્રીનનો
+home screen	ભાગ
+Allow usage access?	વપરાશ ઍક્સેસની મંજૂરી આપવી છે?
+Greyed out?	ઝાંખી દેખાય છે?
+Open Settings, then Apps, Special app access, Usage access	સેટિંગ્સ ખોલો, પછી એપ્સ, વિશેષ એપ ઍક્સેસ, વપરાશ ઍક્સેસ
+What you set up with it goes back to the free version then, unless you get Pro.	તેનાથી તમે જે સેટ કર્યું હોય તે ત્યારે મફત આવૃત્તિ પર પાછું જાય છે, જો તમે Pro ન લો તો.
+A video is already on its way.	એક વીડિયો પહેલેથી આવી રહ્યો છે.
+That cannot be kept longer.	તેને વધુ લાંબું રાખી શકાતું નથી.
+That is open already.	તે પહેલેથી ખુલ્લું છે.
+You have watched a lot of videos today. Try again tomorrow, or get Pro: it is one payment, opens everything for good and removes the ads.	તમે આજે ઘણા વીડિયો જોયા છે. કાલે ફરી પ્રયાસ કરો, અથવા Pro લો: તે એક જ વારની ચુકવણી છે, બધું કાયમ માટે ખોલે છે અને જાહેરાતો દૂર કરે છે.
+That is plenty for today	આજ માટે આટલું પૂરતું છે
+Videos are not ready yet. Check your connection and try again in a moment.	વીડિયો હજી તૈયાર નથી. તમારું કનેક્શન તપાસો અને થોડી વારમાં ફરી પ્રયાસ કરો.
+A video could not be started. Try again in a moment.	વીડિયો શરૂ થઈ શક્યો નહીં. થોડી વારમાં ફરી પ્રયાસ કરો.
+Getting a short video…	ટૂંકો વીડિયો લાવી રહ્યા છીએ…
+Getting the next video…	આગલો વીડિયો લાવી રહ્યા છીએ…
+The video could not be shown. Try again in a little while.	વીડિયો બતાવી શકાયો નહીં. થોડી વાર પછી ફરી પ્રયાસ કરો.
+There is no video to show at the moment. Try again in a little while. Nothing was used up and nothing was opened.	અત્યારે બતાવવા માટે કોઈ વીડિયો નથી. થોડી વાર પછી ફરી પ્રયાસ કરો. કંઈ વપરાયું નથી અને કંઈ ખુલ્યું નથી.
+No video right now	અત્યારે કોઈ વીડિયો નથી
+The next video could not be found. You keep what you already earned.	આગલો વીડિયો મળ્યો નહીં. તમે પહેલાં જે મેળવ્યું તે તમારી પાસે જ રહે છે.
+Watch the whole video to open it. Nothing was opened.	તેને ખોલવા માટે આખો વીડિયો જુઓ. કંઈ ખુલ્યું નથી.
+The video could not be shown. Try again in a little while. Nothing was opened.	વીડિયો બતાવી શકાયો નહીં. થોડી વાર પછી ફરી પ્રયાસ કરો. કંઈ ખુલ્યું નથી.
+Video {1} of {2} watched	{2} માંથી {1} વીડિયો જોવાયો
+Next video	આગલો વીડિયો
+Stop here	અહીં અટકો
+It could not be opened. Please try again.	તે ખોલી શકાયું નહીં. કૃપા કરીને ફરી પ્રયાસ કરો.
+Thank you for watching.\n{1}	જોવા બદલ આભાર.\n{1}
+This phone has no live wallpaper screen	આ ફોનમાં લાઇવ વૉલપેપર સ્ક્રીન નથી
+Welcome to Dinacharya Launcher	Dinacharya Launcher માં આપનું સ્વાગત છે
+A calm home screen made from your daily routine: your whole day, live, with nothing else on it. Alarms that ask, a pause or a lock for the apps that pull you away, and a report on how each day went.	તમારી રોજની દિનચર્યામાંથી બનેલી શાંત હોમ સ્ક્રીન: તમારો આખો દિવસ, લાઇવ, અને બીજું કંઈ નહીં. પૂછતા એલાર્મ, તમને ભટકાવતી એપ્સ માટે વિરામ કે લૉક, અને દરેક દિવસ કેવો ગયો તેનો રિપોર્ટ.
+Get started	શરૂ કરો
+It takes about a minute. Every step can be skipped.	તેમાં લગભગ એક મિનિટ લાગે છે. દરેક પગલું છોડી શકાય છે.
+Pick apps that pull you away.	તમને ભટકાવતી એપ્સ પસંદ કરો.
+When you open one, it waits a few seconds first, so you can go back or carry on.	તમે કોઈ એપ ખોલો ત્યારે તે પહેલાં થોડી સેકન્ડ રોકાય છે, જેથી તમે પાછા જઈ શકો અથવા આગળ વધી શકો.
+When you open one from this home screen, it waits a few seconds first, so you can go back or carry on.	તમે કોઈ એપ આ હોમ સ્ક્રીન પરથી ખોલો ત્યારે તે પહેલાં થોડી સેકન્ડ રોકાય છે, જેથી તમે પાછા જઈ શકો અથવા આગળ વધી શકો.
+It never locks you out: Open anyway is always there.	તે તમને ક્યારેય બહાર રાખતું નથી: “છતાં ખોલો” હંમેશાં હોય છે.
+To hold them whichever way they open, turn on the strong lock below.	તેમને ગમે તે રીતે ખોલો તો પણ રોકી રાખવા માટે, નીચે સ્ટ્રૉંગ લૉક ચાલુ કરો.
+Put the apps that eat your time in a group, then lock the group for hours you choose, on the days you choose, or just for the next hour.	તમારો સમય ખાતી એપ્સને એક જૂથમાં મૂકો, પછી જૂથને તમે પસંદ કરેલા કલાકો માટે, તમે પસંદ કરેલા દિવસોએ, અથવા ફક્ત આગામી એક કલાક માટે લૉક કરો.
+Pick the apps that eat your time, then lock them for hours you choose, on the days you choose, or just for the next hour.	તમારો સમય ખાતી એપ્સ પસંદ કરો, પછી તેમને તમે પસંદ કરેલા કલાકો માટે, તમે પસંદ કરેલા દિવસોએ, અથવા ફક્ત આગામી એક કલાક માટે લૉક કરો.
+A locked app does not open until the lock ends.	લૉક પૂરું થાય ત્યાં સુધી લૉક કરેલી એપ ખુલતી નથી.
+A locked app does not open from this home screen until the lock ends.	લૉક પૂરું થાય ત્યાં સુધી લૉક કરેલી એપ આ હોમ સ્ક્રીન પરથી ખુલતી નથી.
+You can break a lock by waiting 30 seconds and typing a sentence; a strict lock (Pro) cannot be broken.	તમે 30 સેકન્ડ રાહ જોઈને અને એક વાક્ય ટાઇપ કરીને લૉક તોડી શકો છો; કડક લૉક (Pro) તોડી શકાતું નથી.
+1 app is hidden from the list of all apps and from search.	બધી એપ્સની યાદી અને શોધમાંથી 1 એપ છુપાવેલી છે.
+{1} apps are hidden from the list of all apps and from search.	બધી એપ્સની યાદી અને શોધમાંથી {1} એપ્સ છુપાવેલી છે.
+1 pause today	આજે 1 વિરામ
+{1} pauses today	આજે {1} વિરામ
+You went back {1} and opened the app anyway {2}.	તમે {1} પાછા ગયા અને {2} છતાં એપ ખોલી.
+The day report keeps this count.	દિવસનો રિપોર્ટ આ ગણતરી રાખે છે.
+1 time	1 વાર
+{1} times	{1} વાર
+Alarm at {1}. You sleep {2} instead of {3}.	એલાર્મ {1} એ. તમે {3} ને બદલે {2} ઊંઘો છો.
+1 older day is saved on this phone.	આ ફોન પર 1 જૂનો દિવસ સચવાયેલો છે.
+{1} older days are saved on this phone.	આ ફોન પર {1} જૂના દિવસ સચવાયેલા છે.
+Opening days older than the last {1} days is part of Pro.	છેલ્લા {1} દિવસથી જૂના દિવસો ખોલવા Pro નો ભાગ છે.
+{1} of {2} goal	લક્ષ્ય {2} માંથી {1}
+{1} of {2} goal ✓	લક્ષ્ય {2} માંથી {1} ✓
+{1} of {2} planned	આયોજિત {2} માંથી {1}
+1 closed day	1 પૂરો થયેલો દિવસ
+{1} closed days	{1} પૂરા થયેલા દિવસ
+Made “{1}” for Saturday and Sunday.	શનિવાર અને રવિવાર માટે “{1}” બનાવી.
+Made “{1}”. Tap the days that should use it.	“{1}” બનાવી. તે જે દિવસોએ વાપરવી હોય તેના પર ટૅપ કરો.
+Bedtime {1}	સૂવાનો સમય {1}
+Day ends {1}	દિવસ પૂરો થાય {1}
+1 slot uses it. It keeps its name and time and just loses the type.	1 સ્લૉટ આ પ્રકાર વાપરે છે. તે પોતાનું નામ અને સમય રાખે છે અને ફક્ત પ્રકાર ગુમાવે છે.
+{1} slots use it. They keep their name and time and just lose the type.	{1} સ્લૉટ આ પ્રકાર વાપરે છે. તે પોતાનાં નામ અને સમય રાખે છે અને ફક્ત પ્રકાર ગુમાવે છે.
+Add to the slot above: “{1}”	ઉપરના સ્લૉટમાં ઉમેરો: “{1}”
+Add to the slot below: “{1}”	નીચેના સ્લૉટમાં ઉમેરો: “{1}”
+Deleted “{1}”. Its {2} min went to “{3}”.	“{1}” કાઢી નાખ્યો. તેની {2} મિનિટ “{3}” ને મળી.
+Deleted “{1}”. Its {2} min were shared out.	“{1}” કાઢી નાખ્યો. તેની {2} મિનિટ વહેંચી દેવાઈ.
+1 rest added, taken from the tasks next to them.	1 આરામ ઉમેર્યો, બાજુના કામોમાંથી લીધો.
+{1} rests added, taken from the tasks next to them.	{1} આરામ ઉમેર્યા, બાજુના કામોમાંથી લીધા.
+1 gap had no room.	1 ગાબડા માટે જગ્યા ન હતી.
+{1} gaps had no room.	{1} ગાબડા માટે જગ્યા ન હતી.
+No ads, every day and week in reports, more pauses and locks, routines, goals, colours	જાહેરાત નહીં, રિપોર્ટમાં દરેક દિવસ અને અઠવાડિયું, વધુ વિરામ અને લૉક, દિનચર્યાઓ, લક્ષ્યો, રંગો
+No ads, every day and week in reports, more pauses and locks, routines, goals, colours. Or try features free with short videos	જાહેરાત નહીં, રિપોર્ટમાં દરેક દિવસ અને અઠવાડિયું, વધુ વિરામ અને લૉક, દિનચર્યાઓ, લક્ષ્યો, રંગો. અથવા ટૂંકા વીડિયોથી સુવિધાઓ મફત અજમાવો
+Used on 1 day. Tap a day to change.	1 દિવસે વપરાય છે. બદલવા માટે કોઈ દિવસ પર ટૅપ કરો.
+Used on {1} days. Tap a day to change.	{1} દિવસે વપરાય છે. બદલવા માટે કોઈ દિવસ પર ટૅપ કરો.
+{1} colours, selected	{1} રંગો, પસંદ કરેલ
+{1} colours	{1} રંગો
+Free: the home screen, alarms, today's report and the last three days, two paused apps and two locked apps.	મફત: હોમ સ્ક્રીન, એલાર્મ, આજનો રિપોર્ટ અને છેલ્લા ત્રણ દિવસ, વિરામ મુકેલી બે એપ્સ અને લૉક કરેલી બે એપ્સ.
+Pro is one payment through Google Play, with no subscription.	Pro એ Google Play દ્વારા એક જ વારની ચુકવણી છે, કોઈ સબસ્ક્રિપ્શન નથી.
+Pro is one payment of {1} through Google Play, with no subscription.	Pro એ Google Play દ્વારા {1} ની એક જ વારની ચુકવણી છે, કોઈ સબસ્ક્રિપ્શન નથી.
+It adds every saved day and the weekly view, strict and playful pauses, daily limits, groups of locked apps and strict locks, weekday and weekend routines, goals, every colour look, and no ads.	તેમાં દરેક સાચવેલો દિવસ અને સાપ્તાહિક દૃશ્ય, કડક અને મજેદાર વિરામ, દૈનિક મર્યાદા, લૉક કરેલી એપ્સના જૂથ અને કડક લૉક, અઠવાડિયાના દિવસો અને વીકએન્ડની દિનચર્યાઓ, લક્ષ્યો, દરેક રંગનો લુક ઉમેરાય છે, અને જાહેરાતો નથી રહેતી.
+Or watch short videos to open some of these for a while: 1 video opens just ONE of them for a day, 2 videos for 3 days, 3 videos the whole group it is in.	અથવા થોડા સમય માટે આમાંથી કેટલાક ખોલવા ટૂંકા વીડિયો જુઓ: 1 વીડિયો તેમાંથી ફક્ત એક જ એક દિવસ માટે ખોલે છે, 2 વીડિયો 3 દિવસ માટે, 3 વીડિયો તે જે જૂથમાં છે તે આખું જૂથ.
+Tap “Watch videos” wherever you see “Part of Pro”, or on the Pro screen.	જ્યાં પણ “Pro નો ભાગ” દેખાય ત્યાં, અથવા Pro સ્ક્રીન પર, “વીડિયો જુઓ” પર ટૅપ કરો.
+What you set up with it goes back to the free version when the time is up.	તેનાથી તમે જે સેટ કર્યું હોય તે સમય પૂરો થાય ત્યારે મફત આવૃત્તિ પર પાછું જાય છે.
+Dinacharya Launcher reads which apps you used and for how long, so it can show your phone time on the home screen and in your reports, and count the minutes for any daily app limit you set on the home screen.	Dinacharya Launcher તમે કઈ એપ્સ કેટલા સમય માટે વાપરી તે વાંચે છે, જેથી તે હોમ સ્ક્રીન પર અને તમારા રિપોર્ટમાં ફોનનો સમય બતાવી શકે, અને હોમ સ્ક્રીન પર તમે નક્કી કરેલી કોઈ પણ દૈનિક એપ મર્યાદાની મિનિટો ગણી શકે.
+It is read on this phone only. It is not sent to the developer or to anyone else. If you turn on Google Drive backup, your saved reports (including the names of the apps you used most) go to your own private space in your own Drive, and nowhere else.	તે ફક્ત આ ફોન પર જ વંચાય છે. તે ડેવલપરને કે બીજા કોઈને મોકલાતું નથી. જો તમે Google Drive બેકઅપ ચાલુ કરો, તો તમારા સાચવેલા રિપોર્ટ (સૌથી વધુ વપરાયેલી એપ્સના નામ સહિત) તમારા પોતાના Drive ની ખાનગી જગ્યામાં જાય છે, અને બીજે ક્યાંય નહીં.
+Next, Android's settings open. Find Dinacharya Launcher in the list and switch it on. You can switch it off there at any time.	ત્યાર પછી Android ના સેટિંગ્સ ખુલશે. યાદીમાં Dinacharya Launcher શોધો અને તેને ચાલુ કરો. તમે તેને ત્યાં ગમે ત્યારે બંધ કરી શકો છો.
+If the switch is greyed out (“Restricted setting”), tap “Greyed out?” for the one-time unlock.	જો સ્વિચ ઝાંખી દેખાય (“Restricted setting”), તો એક વારની મંજૂરી માટે “ઝાંખી દેખાય છે?” પર ટૅપ કરો.
+{1} is open now.	{1} હવે ખુલ્લું છે.
+Watch one more video to keep {1} open for 3 days.	{1} ને 3 દિવસ ખુલ્લું રાખવા માટે વધુ એક વીડિયો જુઓ.
+Watch {1} more videos to keep {2} open for 3 days.	{2} ને 3 દિવસ ખુલ્લું રાખવા માટે વધુ {1} વીડિયો જુઓ.
+Watch one more video to open {1} for a day.	{1} ને એક દિવસ માટે ખોલવા માટે વધુ એક વીડિયો જુઓ.
+Watch {1} more videos to open {2} for a day.	{2} ને એક દિવસ માટે ખોલવા માટે વધુ {1} વીડિયો જુઓ.
+Or stop here and keep what you have.	અથવા અહીં અટકો અને જે મળ્યું છે તે રાખો.
+1 video	1 વીડિયો
+2 videos	2 વીડિયો
+3 videos	3 વીડિયો
+1 app	1 એપ
+{1} apps	{1} એપ્સ
+🔥 {1}-day streak.	🔥 સતત {1} દિવસ.
+{1} h a day	દિવસ દીઠ {1} કલાક
+{1} h {2} min a day	દિવસ દીઠ {1} કલાક {2} મિનિટ
+Task time	કામનો સમય
+Rest time	આરામનો સમય
+Meal time	ભોજનનો સમય
+Personal time	અંગત સમય
+Sleep time	ઊંઘનો સમય
+Hours	કલાક
+{1} for 3 days	{1} 3 દિવસ માટે
+{1} for a day	{1} એક દિવસ માટે
+Mon {1}	સોમ {1}
+Tue {1}	મંગળ {1}
+Wed {1}	બુધ {1}
+Thu {1}	ગુરુ {1}
+Fri {1}	શુક્ર {1}
+Sat {1}	શનિ {1}
+Sun {1}	રવિ {1}
+You asked to start later. {1}	તમે પછી શરૂ કરવા કહ્યું હતું. {1}
+Your day starts. {1}	તમારો દિવસ શરૂ થાય છે. {1}
+Start “{1}” now	“{1}” હમણાં શરૂ કરો
+Start “{1}” after	“{1}” આટલા સમય પછી શરૂ કરો
+Continue “{1}” until	“{1}” આ સમય સુધી ચાલુ રાખો
+{1} min from now.	હમણાંથી {1} મિનિટ પછી.
+Starts at {1}.	{1} વાગ્યે શરૂ થશે.
+{1}  ·  {2} to {3}	{1}  ·  {2} થી {3}
+Still delay by {1} min	તો પણ {1} મિનિટ મુલતવી રાખો
+Your break started at {1}	તમારો બ્રેક {1} વાગ્યે શરૂ થયો
+Ready to get back to {1}?	{1} પર પાછા ફરવા તૈયાર છો?
+Break extended until {1}	બ્રેક {1} સુધી લંબાવ્યો
+What would you like to do?	તમે શું કરવા માંગો છો?
+Start now	હમણાં શરૂ કરો
+Start after	આટલા સમય પછી શરૂ કરો
+Start later	પછી શરૂ કરો
+Continue the slot before until	પાછલો સ્લૉટ આ સમય સુધી ચાલુ રાખો
+Keep going	ચાલુ રાખો
+Other plan	બીજી યોજના
+Your day has started.	તમારો દિવસ શરૂ થઈ ગયો છે.
+Time to start your day	તમારો દિવસ શરૂ કરવાનો સમય
+Ready to start your day?	તમારો દિવસ શરૂ કરવા તૈયાર છો?
+Start my day	મારો દિવસ શરૂ કરો
+Start with a delay of	આટલા વિલંબથી શરૂ કરો
+Delay my start	મારી શરૂઆત મુલતવી રાખો
+Before you put it off, read this.	મુલતવી રાખતા પહેલાં આ વાંચો.
+I am up. Start my day	હું તૈયાર છું. મારો દિવસ શરૂ કરો
+Type this to put your day off	તમારો દિવસ મુલતવી રાખવા આ ટાઇપ કરો
+Your break is over	તમારો બ્રેક પૂરો થયો
+Ready to get back to work?	કામ પર પાછા ફરવા તૈયાર છો?
+Back to work	કામ પર પાછા
+5 more minutes	વધુ 5 મિનિટ
+Time to get back to {1}. Tap to answer.	{1} પર પાછા ફરવાનો સમય. જવાબ આપવા ટૅપ કરો.
+Time to get back to work. Tap to answer.	કામ પર પાછા ફરવાનો સમય. જવાબ આપવા ટૅપ કરો.
+Good morning. Tap to start the day or put it off.	સુપ્રભાત. દિવસ શરૂ કરવા અથવા મુલતવી રાખવા ટૅપ કરો.
+Time to start now. Tap to answer.	હવે શરૂ કરવાનો સમય. જવાબ આપવા ટૅપ કરો.
+Slot questions (silent)	સ્લૉટના પ્રશ્નો (અવાજ વગર)
+In 10 min	10 મિનિટમાં
+Vibrating alarms (backup)	વાઇબ્રેશન એલાર્મ (બેકઅપ)
+The wake-up alarm rang for half an hour. Your schedule was not changed.	જાગવાનું એલાર્મ અડધો કલાક વાગ્યું. તમારું શેડ્યૂલ બદલાયું નથી.
+Made: {1}	બનાવ્યું: {1}
+video:	 વીડિયો: 
+videos:	 વીડિયો: 
+A silent notification puts the question on screen with Start now and In 10 min buttons, with no sound and no vibration. Switch this off to see nothing at all for those slots. Each slot has its own choice: ring, vibration, silent or none, under its bell on the Routine tab.	અવાજ વગરની સૂચના પ્રશ્નને સ્ક્રીન પર બતાવે છે, જેમાં “હમણાં શરૂ કરો” અને “10 મિનિટમાં” બટન હોય છે — અવાજ નહીં, વાઇબ્રેશન નહીં. તે સ્લૉટ માટે કશું ન દેખાય તે માટે આ બંધ કરો. દરેક સ્લૉટની પોતાની પસંદગી હોય છે: રિંગ, વાઇબ્રેશન, અવાજ વગર અથવા કંઈ નહીં — દિનચર્યા ટૅબમાં તેની ઘંટડી નીચે.
+Choose one slot as your start-of-day alarm from its bell on the Routine tab. It has to be the first alarm of the day. It keeps ringing until you start the day or put it off, and before you can put it off you read a line you chose.	દિનચર્યા ટૅબમાં કોઈ સ્લૉટની ઘંટડીથી તેને તમારા દિવસ-શરૂ એલાર્મ તરીકે પસંદ કરો. તે દિવસનું પહેલું એલાર્મ હોવું જોઈએ. તમે દિવસ શરૂ કરો અથવા મુલતવી રાખો ત્યાં સુધી તે વાગતું રહે છે, અને મુલતવી રાખતા પહેલાં તમારે તમે પસંદ કરેલી એક પંક્તિ વાંચવી પડે છે.
+Shown before you put the start off:  “{1}”	શરૂઆત મુલતવી રાખતા પહેલાં બતાવાશે:  “{1}”
+Slots without a sound	અવાજ વગરના સ્લૉટ
+Ask me about slots set to a silent notification	અવાજ વગરની સૂચના વાળા સ્લૉટ વિશે મને પૂછો
+Start-of-day alarm	દિવસ-શરૂ એલાર્મ
+Put the start off by	શરૂઆત આટલી મુલતવી રાખો
+Challenge before putting it off	મુલતવી રાખતા પહેલાં પડકાર
+No challenge	કોઈ પડકાર નહીં
+Solve three quick sums	ત્રણ સરળ સરવાળા ઉકેલો
+Your own line to read (optional)	વાંચવા માટે તમારી પોતાની પંક્તિ (વૈકલ્પિક)
+Leave empty to use the lines that come with the app, in your language	ખાલી રાખો તો એપની પોતાની પંક્તિઓ તમારી ભાષામાં વપરાશે
+The apps are locked while a slot of one of these types is going on, and open again when it ends. A break, a slot you took off, and the time between slots do not lock.	આમાંથી કોઈ પણ પ્રકારનો સ્લૉટ ચાલુ હોય ત્યારે એપ્સ લૉક રહે છે, અને તે પૂરો થાય ત્યારે ફરી ખુલે છે. બ્રેક, કાઢી નાખેલો સ્લૉટ અને સ્લૉટ વચ્ચેનો સમય લૉક કરતા નથી.
+Any {1}	કોઈપણ {1}
+Other {1}	અન્ય {1}
+Also lock during	આ દરમિયાન પણ લૉક કરો
+Choose activity types	પ્રવૃત્તિના પ્રકાર પસંદ કરો
+Hide the apps while they are locked	લૉક હોય ત્યારે એપ્સ છુપાવો
+A locked app then does not show in the list of all apps or in search. It comes back when the lock ends.	ત્યારે લૉક કરેલી એપ બધી એપ્સની યાદીમાં કે શોધમાં દેખાતી નથી. લૉક પૂરું થાય ત્યારે તે પાછી આવે છે.
+Not locked by activity.	પ્રવૃત્તિ મુજબ લૉક નથી.
+No daily schedule. Use Lock now, pick days, or lock during an activity type.	રોજનું શેડ્યૂલ નથી. “હમણાં લૉક કરો” વાપરો, દિવસો પસંદ કરો, અથવા કોઈ પ્રવૃત્તિના પ્રકાર દરમિયાન લૉક કરો.
+No daily times. This group locks during the activity types below.	રોજના સમય નથી. આ જૂથ નીચેના પ્રવૃત્તિ પ્રકારો દરમિયાન લૉક રહે છે.
+app:	 એપ: 
+apps:	 એપ્સ: 
+Lock during	આ દરમિયાન લૉક કરો
+On a break until {1}	{1} સુધી બ્રેક પર
+You said you would start at {1}	તમે {1} વાગ્યે શરૂ કરવા કહ્યું હતું
+To-do  {1}/{2}	કરવાની યાદી  {1}/{2}
+Enjoy your break. Back at {1}	બ્રેકનો આનંદ માણો. {1} વાગ્યે પાછા
+ON A BREAK	બ્રેક પર
+Tap it to add a to-do list for it.	તેના માટે કરવાની યાદી ઉમેરવા તેને ટૅપ કરો.
+Take a break	બ્રેક લો
+To-do	કરવાની યાદી
+This slot is taken off, so it has no to-do list	આ સ્લૉટ કાઢી નાખ્યો છે, એટલે તેની કરવાની યાદી નથી
+This slot is almost over	આ સ્લૉટ લગભગ પૂરો થવા આવ્યો છે
+Until this slot ends	આ સ્લૉટ પૂરો થાય ત્યાં સુધી
+How long a break?	કેટલા સમયનો બ્રેક?
+A break cannot be taken now	હમણાં બ્રેક લઈ શકાતો નથી
+On apps  {1}   ·   Without apps  {2}	એપ્સ સાથે  {1}   ·   એપ્સ વગર  {2}
+🔥 {1}-day streak.  {2}	🔥 સતત {1} દિવસ.  {2}
+Apps: {1}	એપ્સ: {1}
+{1}   ·   Without apps  {2}	{1}   ·   એપ્સ વગર  {2}
+To-do for {1}	{1} માટે કરવાની યાદી
+Only on days with {1}	ફક્ત {1} હોય તેવા દિવસોએ
+Goal set: {1}, {2}  ·  {3}	લક્ષ્ય નક્કી: {1}, {2}  ·  {3}
+＋  Goal for today	＋  આજ માટે લક્ષ્ય
+Under a minute	એક મિનિટથી ઓછું
+Time by type so far	અત્યાર સુધી પ્રકાર મુજબ સમય
+counted so far	અત્યાર સુધી ગણાયેલું
+Slots so far	અત્યાર સુધીના સ્લૉટ
+Time and apps in each slot	દરેક સ્લૉટમાં સમય અને એપ્સ
+Break	બ્રેક
+Start put off	શરૂઆત મુલતવી રાખી
+Given to the slot before	પાછલા સ્લૉટને આપ્યું
+Carried on past its end	અંત પછી પણ ચાલુ રહ્યું
+Tap to show or hide the apps used in this slot.	આ સ્લૉટમાં વપરાયેલી એપ્સ બતાવવા કે છુપાવવા ટૅપ કરો.
+Phone today	આજે ફોન
+Apps used most	સૌથી વધુ વપરાયેલી એપ્સ
+No app used	કોઈ એપ વપરાઈ નથી
+Change the goal	લક્ષ્ય બદલો
+All your goals	તમારા બધા લક્ષ્યો
+·   counts today	   ·   આજે ગણાય છે
+·   not today	   ·   આજે નહીં
+Today only	ફક્ત આજે
+Every other day	એકાંતરે દિવસે
+On chosen days	પસંદ કરેલા દિવસોએ
+Any day with this activity	આ પ્રવૃત્તિ વાળો કોઈપણ દિવસ
+Nothing is left in today's schedule to set a goal for. Pick Every day instead.	આજના શેડ્યૂલમાં લક્ષ્ય રાખવા માટે કંઈ બાકી નથી. તેને બદલે દરરોજ પસંદ કરો.
+Add a slot with an activity type first (Routine tab)	પહેલાં પ્રવૃત્તિ પ્રકાર વાળો સ્લૉટ ઉમેરો (દિનચર્યા ટૅબ)
+How often	કેટલી વાર
+Activity	પ્રવૃત્તિ
+At least	ઓછામાં ઓછું
+To-do list for today	આજની કરવાની યાદી
+New goal for today	આજ માટે નવું લક્ષ્ય
+New goal	નવું લક્ષ્ય
+Pick at least one day	ઓછામાં ઓછો એક દિવસ પસંદ કરો
+There are no other activities to choose from	પસંદ કરવા માટે બીજી કોઈ પ્રવૃત્તિ નથી
+Count it only on days with…	ફક્ત આવા દિવસોએ ગણો જ્યારે…
+·  hides its apps	  ·  એપ્સ છુપાવે છે
+{1} and {2}	{1} અને {2}
+{1}, {2} and {3} more	{1}, {2} અને {3} વધુ
+·  and during {1}	  ·  અને {1} દરમિયાન
+Locks during {1}	{1} દરમિયાન લૉક
+While you are on: {1}	તમે આના પર હો ત્યારે: {1}
+{1}Opening days older than the last {2} days is part of Pro.	{1}છેલ્લા {2} દિવસો કરતાં જૂના દિવસો ખોલવા એ Pro નો ભાગ છે.
+ON A BREAK  ·  back at {1}	બ્રેક પર  ·  {1} વાગ્યે પાછા
++{1} more	+{1} વધુ
+Other	અન્ય
+Tomorrow only	ફક્ત આવતીકાલે
+One day only	ફક્ત એક દિવસ
+Only for {1}. After that day the usual routine comes back.	ફક્ત {1} માટે. તે દિવસ પછી સામાન્ય દિનચર્યા પાછી આવે છે.
+{1}. Change its slots below.	{1}. તેના સ્લૉટ નીચે બદલો.
+Routine moved to {1}.	દિનચર્યા {1} પર ખસેડી.
+Delete the routine for {1}?	{1} ની દિનચર્યા કાઢી નાખવી છે?
+Deleted the routine for {1}.	{1} ની દિનચર્યા કાઢી નાખી.
+Type {1}. Every kind keeps it.	પ્રકાર {1}. દરેક વર્ગ તેને રાખે છે.
+{1} slots use it. They keep their name and time and become “Other”.	{1} સ્લૉટ તેનો ઉપયોગ કરે છે. તેઓ પોતાનું નામ અને સમય રાખે છે અને “અન્ય” બને છે.
+When this slot starts: {1}. Tap to change.	આ સ્લૉટ શરૂ થાય ત્યારે: {1}. બદલવા ટૅપ કરો.
+start-of-day alarm, {1}	દિવસ-શરૂ એલાર્મ, {1}
+＋ One day only	＋ ફક્ત એક દિવસ
+Date	તારીખ
+A routine for one day	એક દિવસની દિનચર્યા
+Another date…	બીજી તારીખ…
+A routine that is followed on one date only, then the usual one comes back.	એવી દિનચર્યા જે ફક્ત એક તારીખે પળાય છે, પછી સામાન્ય પાછી આવે છે.
+Which day	કયો દિવસ
+You can change its slots and start time after.	તેના સ્લૉટ અને શરૂ થવાનો સમય તમે પછી બદલી શકો છો.
+That day follows its usual routine again.	તે દિવસ ફરી તેની સામાન્ય દિનચર્યા મુજબ ચાલે છે.
+Time by type	પ્રકાર મુજબ સમય
+“Other” stays: slots with no type of their own use it	“અન્ય” રહે છે: પોતાનો પ્રકાર ન ધરાવતા સ્લૉટ તેનો ઉપયોગ કરે છે
+1 slot uses it. It keeps its name and time and becomes “Other”.	1 સ્લૉટ તેનો ઉપયોગ કરે છે. તે પોતાનું નામ અને સમય રાખે છે અને “અન્ય” બને છે.
+notification with ring	રિંગ સાથે સૂચના
+notification with vibration	વાઇબ્રેશન સાથે સૂચના
+silent notification	અવાજ વગરની સૂચના
+no notification	કોઈ સૂચના નહીં
+Notification with ring	રિંગ સાથે સૂચના
+Notification with vibration	વાઇબ્રેશન સાથે સૂચના
+Silent notification	અવાજ વગરની સૂચના
+No notification	કોઈ સૂચના નહીં
+This is the start-of-day alarm: tap to undo	આ દિવસ-શરૂ એલાર્મ છે: પૂર્વવત્ કરવા ટૅપ કરો
+Make this the start-of-day alarm	આને દિવસ-શરૂ એલાર્મ બનાવો
+Not the start-of-day alarm any more	હવે દિવસ-શરૂ એલાર્મ નથી
+The start-of-day alarm has to be the first alarm of the day. Set the slots before it to No notification first.	દિવસ-શરૂ એલાર્મ દિવસનું પહેલું એલાર્મ હોવું જોઈએ. પહેલાં તેની પહેલાંના સ્લૉટને “કોઈ સૂચના નહીં” પર સેટ કરો.
+A list can hold {1} items	એક યાદીમાં {1} વસ્તુઓ સમાય છે
+Goal: {1}	લક્ષ્ય: {1}
+Nothing yet. Add what you want to get done in this slot.	હજી કંઈ નથી. આ સ્લૉટમાં તમે જે કરવા માંગો છો તે ઉમેરો.
+Add a to-do	કરવાની વસ્તુ ઉમેરો
+These are for this day only. Nothing here repeats tomorrow.	આ ફક્ત આ દિવસ માટે છે. અહીં કંઈ પણ આવતીકાલે પુનરાવર્તિત થતું નથી.
+Free: the home screen, alarms, today's report and the last three days, two paused apps and two locked apps. {1}It adds every saved day and the weekly view, strict and playful pauses, daily limits, groups of locked apps and strict locks, weekday and weekend routines, goals, every colour look, and no ads.{2}	મફત: હોમ સ્ક્રીન, એલાર્મ, આજનો રિપોર્ટ અને છેલ્લા ત્રણ દિવસ, વિરામ મુકેલી બે એપ્સ અને લૉક કરેલી બે એપ્સ. {1}તેમાં ઉમેરાય છે: દરેક સાચવેલો દિવસ અને સાપ્તાહિક દૃશ્ય, કડક અને મજાના વિરામ, દૈનિક મર્યાદા, લૉક કરેલી એપ્સના જૂથ અને કડક લૉક, અઠવાડિયાના દિવસો અને સપ્તાહાંતની દિનચર્યા, લક્ષ્યો, દરેક રંગરૂપ, અને કોઈ જાહેરાત નહીં.{2}
+{1} is open now.\n\n{2}\n\nOr stop here and keep what you have.	{1} હવે ખુલ્લું છે.\n\n{2}\n\nઅથવા અહીં જ અટકો અને જે છે તે રાખો.
+Well begun is half done.	સારી શરૂઆત એટલે અડધું કામ પૂરું.
+Small steps every day add up to big change.	રોજના નાના પગલાં મોટા બદલાવમાં ફેરવાય છે.
+The hardest part is getting up. You have already done it.	સૌથી અઘરો ભાગ ઊઠવાનો છે. એ તમે કરી લીધો છે.
+Choose what you want most over what you want right now.	અત્યારે જે જોઈએ છે તેના કરતાં જે સૌથી વધુ જોઈએ છે તે પસંદ કરો.
+Your future self is watching. Make them proud.	તમારું ભવિષ્યનું સ્વરૂપ જોઈ રહ્યું છે. તેને ગર્વ અનુભવવા દો.
+Start now. You can polish it later.	હમણાં શરૂ કરો. પછી તેને સુધારી શકાય.
+One focused hour today beats ten good intentions.	આજનો એક એકાગ્ર કલાક દસ સારા ઇરાદા કરતાં ચડિયાતો છે.
+Rest was for the night. The morning is for action.	આરામ રાત માટે હતો. સવાર કાર્ય માટે છે.
+You do not have to feel ready. You only have to begin.	તૈયાર અનુભવવું જરૂરી નથી. બસ શરૂઆત કરવાની છે.
+Every morning is a fresh page. Write something worth reading.	દરેક સવાર એક નવું પાનું છે. વાંચવા જેવું કંઈક લખો.
+Progress, not perfection.	પ્રગતિ, પૂર્ણતા નહીં.
+The day belongs to those who start it.	દિવસ તેમનો છે જેઓ તેને શરૂ કરે છે.
+Five more minutes of sleep will not help your goals. Five minutes of work will.	વધુ પાંચ મિનિટની ઊંઘ તમારા લક્ષ્યોમાં મદદ નહીં કરે. પાંચ મિનિટનું કામ કરશે.
+Be the person your plan needs today.	આજે તમારી યોજનાને જરૂર છે તેવી વ્યક્તિ બનો.
+Wake up with a purpose and the day will make room for it.	હેતુ સાથે જાગો, દિવસ તેના માટે જગ્યા કરી આપશે.
+I am choosing to put my day off	મારો દિવસ મુલતવી રાખવો એ મારી પસંદગી છે
+My plan is waiting for me	મારી યોજના મારી રાહ જોઈ રહી છે
+I could start right now	હમણાં શરૂ કરવું મારા હાથમાં છે
+I am putting this off on purpose	આ મુલતવી રાખવું મારો વિચારેલો નિર્ણય છે
+Later is my choice, not the plan	પછી કરવું મારી પસંદગી છે, યોજના નથી
+hours	કલાક
+minutes	મિનિટ
+{1}, only on days with {2}	{1}, ફક્ત {2} હોય તેવા દિવસોએ
+Replaced the routine for {1}. Change its slots below.	{1} ની દિનચર્યા બદલી. તેના સ્લૉટ નીચે બદલો.
+Made a routine for {1}. Change its slots below.	{1} માટે દિનચર્યા બનાવી. તેના સ્લૉટ નીચે બદલો.
+Back at {1}.	{1} વાગ્યે પાછા.
+Back at {1}	{1} વાગ્યે પાછા
+, when this slot ends	, આ સ્લૉટ પૂરો થાય ત્યારે
+Other options	બીજા વિકલ્પો
+Delay the start	શરૂઆતમાં મોડું કરો
+More time	વધુ સમય
+Rest for	આરામનો સમયગાળો
+Add this time	આ સમય ઉમેરો
+About this backup	આ બેકઅપ વિશે
+How often, and over which network	કેટલી વાર, અને કયા નેટવર્ક પર
+For a new phone, or after reinstalling	નવા ફોન માટે, અથવા એપ ફરી ઇન્સ્ટૉલ કર્યા પછી
+A short code, if the account list does not open	એક ટૂંકો કોડ, જો ખાતાંની યાદી ન ખૂલે
+Still to allow: {1}	હજી પરવાનગી આપવાની બાકી: {1}
+All set	બધું તૈયાર છે
+A preview, and the button to change its look	એક ઝલક, અને તેનો દેખાવ બદલવાનું બટન
+Your to-do list	તમારી કરવાની યાદી
+{1} of {2} done	{2} માંથી {1} પૂરા
+Start the break	બ્રેક શરૂ કરો
+1 slot  ·  {1}	1 સ્લૉટ  ·  {1}
+{1} slots  ·  {2}	{1} સ્લૉટ  ·  {2}
+1 type	1 પ્રકાર
+{1} types	{1} પ્રકાર
+1 goal, with how it repeats	1 લક્ષ્ય, તે કેવી રીતે પુનરાવર્તિત થાય છે તે સાથે
+{1} goals, with how they repeat	{1} લક્ષ્યો, તે કેવી રીતે પુનરાવર્તિત થાય છે તે સાથે
+Phone use by hour, and the apps used most	કલાક મુજબ ફોનનો ઉપયોગ, અને સૌથી વધુ વપરાયેલી એપ્સ
+{1} apps have a pause	{1} એપ્સમાં વિરામ છે
+1 app has a pause	1 એપમાં વિરામ છે
+{1} apps are hidden	{1} એપ્સ છુપાવેલી છે
+1 app is hidden	1 એપ છુપાવેલી છે
+{1} locks	{1} લૉક
+1 lock	1 લૉક
+Help and checks	મદદ અને તપાસ
+Colours, text size and the keyboard in the list of all apps	બધી એપ્સની યાદીમાં રંગો, અક્ષરોનું કદ અને કીબોર્ડ
+A pause before apps open: none yet	એપ ખૂલતા પહેલાં વિરામ: હજી કોઈ નથી
+How it works	આ કેવી રીતે કામ કરે છે
+How locks work	લૉક કેવી રીતે કામ કરે છે
+On: holds locks and pauses everywhere	ચાલુ: લૉક અને વિરામ દરેક જગ્યાએ લાગુ પડે છે
+Off: locks hold only from this home screen	બંધ: લૉક ફક્ત આ હોમ સ્ક્રીન પરથી ખોલવા પર લાગુ પડે છે
+No pauses so far today.	આજે અત્યાર સુધી કોઈ વિરામ નથી.
+Less	ઓછું
+More	વધુ
+Hold ≡ and drag to move a slot. Swipe a slot left to delete it, right to add one below it. Tap the arrow on a slot for its type, length, alarm and more. The day keeps its length: minutes only move from one slot to another.	સ્લૉટ ખસેડવા માટે ≡ દબાવી રાખો અને ખેંચો. સ્લૉટ કાઢી નાખવા માટે તેને ડાબે સ્વાઇપ કરો, અને તેની નીચે નવો ઉમેરવા માટે જમણે. સ્લૉટનો પ્રકાર, લંબાઈ, એલાર્મ અને વધુ જોવા માટે તેના તીર પર ટૅપ કરો. દિવસની લંબાઈ એ જ રહે છે: મિનિટ ફક્ત એક સ્લૉટથી બીજામાં જાય છે.
+How to edit slots	સ્લૉટ કેવી રીતે બદલવા
+More tools	વધુ સાધનો
+Study, Exercise, Meal and the rest, by kind	અભ્યાસ, કસરત, ભોજન અને બાકીનું, પ્રકાર પ્રમાણે
+Details	વિગતો
+details shown. Tap to hide.	વિગતો દેખાય છે. છુપાવવા માટે ટૅપ કરો.
+details hidden. Tap to show.	વિગતો છુપાવેલી છે. બતાવવા માટે ટૅપ કરો.
+expanded	ખુલ્લું
+collapsed	બંધ
+Clock, phone screen time, the “Developed by” mark	ઘડિયાળ, ફોનનો સ્ક્રીન સમય, “Developed by” નિશાન
+Space at the top and at the bottom	ઉપર અને નીચેની જગ્યા
+Nothing written down	કંઈ નોંધાયું નથી
+Some problems were written down	કેટલીક સમસ્યાઓ નોંધાઈ છે
+“{1}” will not come back on other days. Where it already is stays as it is.	“{1}” હવે બીજા દિવસોમાં પાછું નહીં આવે. જ્યાં તે પહેલેથી છે ત્યાં એમ જ રહેશે.
+Up to {1} things can repeat	વધુમાં વધુ {1} વસ્તુઓ પુનરાવર્તિત થઈ શકે
+tap to stop repeating	પુનરાવર્તન બંધ કરવા ટૅપ કરો
+Stop repeating this?	આનું પુનરાવર્તન બંધ કરવું?
+Stop repeating	પુનરાવર્તન બંધ કરો
+Keep it	રહેવા દો
+Repeat	પુનરાવર્તન
+Does not repeat	પુનરાવર્તિત થતું નથી
+A to-do is for this day only, unless you set it to repeat with the ↻ button.	કરવાની યાદીની વસ્તુ ફક્ત આ દિવસ માટે જ હોય છે, જ્યાં સુધી તમે તેને ↻ બટનથી પુનરાવર્તિત થવા માટે સેટ ન કરો.
+{1}–{2} of {3}	{3} માંથી {1}–{2}
+# the same texts without the marks at their ends
+{1} after your plan	તમારી યોજના પછી {1}
+Made	બનાવ્યું
+slots covered by the extra sleep are dropped	વધારાની ઊંઘમાં આવતા સ્લૉટ છોડી દેવાય છે
+the morning moves later, bedtime stays	સવાર મોડી થાય છે, સૂવાનો સમય એ જ રહે છે
+test	ટેસ્ટ
+the whole day	આખો દિવસ
+into the next morning	બીજા દિવસે સવાર સુધી
+Strictly locked	કડકાઈથી લૉક
+Locked	લૉક
+limit {1} a day	મર્યાદા: દિવસ દીઠ {1}
+also outside focus times	ફોકસ સમયની બહાર પણ
+needs Pro	Pro જોઈએ
+Pro part off	Pro ભાગ બંધ
+strict	કડક
+only {1} held, needs Pro	ફક્ત {1} લાગુ, Pro જોઈએ
+strict part off	કડક ભાગ બંધ
+backed up	બેકઅપ થઈ ગયું
+not backed up yet	હજુ બેકઅપ થયું નથી
+{1}\n\nOr watch short videos to use it free. You choose how many	{1}\n\nઅથવા તેને મફત વાપરવા ટૂંકા વીડિયો જુઓ. કેટલા જોવા તે તમે નક્કી કરો
+went to sleep {1}	સૂવાનો સમય {1}
+wake-up {1}	જાગવાનો સમય {1}
+uses {1}	{1} વાપરે છે
+uses this routine	આ દિનચર્યા વાપરે છે
+video	વીડિયો
+videos	વીડિયો
+app	એપ
+apps	એપ્સ
+counts today	આજે ગણાય છે
+not today	આજે નહીં
+hides its apps	એપ્સ છુપાવે છે
+and during {1}	અને {1} દરમિયાન
+when this slot ends	આ સ્લૉટ પૂરો થાય ત્યારે

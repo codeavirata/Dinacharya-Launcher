@@ -1,0 +1,720 @@
+package app.dinacharya.wallpaper;
+
+import android.app.Activity;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.text.InputType;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.List;
+import java.util.Random;
+
+/**
+ * The question that has to be answered to stop an alarm. Over the lock screen it asks how the slot that starts goes: start now, start
+ * after a few minutes, carry on the slot before for a while, make another plan, or take it off for today. The start-of-day alarm asks to
+ * start the day or put it off (after a line to read and, if you turned it on, a challenge). At the end of a break it asks you to get back
+ * to work. At bedtime it asks whether you are going to sleep.
+ */
+public class AlarmActivity extends LangActivity {
+    private AlarmPlanner.Event ev;
+    private Routine base;
+    private Overrides ov;
+    private boolean h24;
+
+    private TextView bigClock;
+    private TextView titleView;
+    private TextView subView;
+    private LinearLayout body;
+
+    private List<Plan.WakeOption> options;
+    private int chosen;
+    private long sleepAt;
+    private int snooze = 15;
+    private final Random rnd = new Random();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= 27) {
+            setShowWhenLocked(true);
+            setTurnScreenOn(true);
+        } else {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                    | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+                    | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+        }
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        buildFrame();
+        handle(getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        handle(intent);
+    }
+
+    private int dp(float v) {
+        return Ui.dp(this, v);
+    }
+
+    private void buildFrame() {
+        ScrollView sv = new ScrollView(this);
+        sv.setFillViewport(true);
+        LinearLayout root = new LinearLayout(this);
+        root.setOrientation(LinearLayout.VERTICAL);
+        root.setPadding(dp(20), dp(32), dp(20), dp(24));
+        sv.addView(root, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        Insets.pad(sv);
+        Insets.lightBars(this);
+        setContentView(sv);
+
+        bigClock = Ui.label(this, "", 40, Ui.INK, true);
+        bigClock.setGravity(Gravity.CENTER_HORIZONTAL);
+        root.addView(bigClock, Ui.wide(this, 0));
+        titleView = Ui.label(this, "", 22, Ui.TEAL, true);
+        titleView.setGravity(Gravity.CENTER_HORIZONTAL);
+        root.addView(titleView, Ui.wide(this, 10));
+        subView = Ui.label(this, "", 15, Ui.MUTED, false);
+        subView.setGravity(Gravity.CENTER_HORIZONTAL);
+        root.addView(subView, Ui.wide(this, 4));
+        body = new LinearLayout(this);
+        body.setOrientation(LinearLayout.VERTICAL);
+        root.addView(body, Ui.wide(this, 20));
+    }
+
+    // ------------------------------------------------------------------ which question
+
+    private void handle(Intent intent) {
+        ev = AlarmScheduler.read(intent);
+        if (ev == null) {
+            finish();
+            return;
+        }
+        base = Store.load(this);
+        ov = Store.overrides(this, base);
+        h24 = base.fmt24;
+        bigClock.setText(clock(System.currentTimeMillis()));
+        if (AlarmPlanner.isTest(ev)) {
+            showTest();
+        } else if (ev.kind == AlarmPlanner.BREAK_END) {
+            showBreakEnd();
+        } else if (ev.kind == AlarmPlanner.SLOT || ev.kind == AlarmPlanner.START_AGAIN) {
+            if (ev.wake) showWakeUp();
+            else showSlot();
+        } else {
+            showBedtime(ev.kind == AlarmPlanner.REASK);
+        }
+    }
+
+    private String clock(long ms) {
+        ZonedDateTime z = Instant.ofEpochMilli(ms).atZone(ZoneId.systemDefault());
+        return Routine.formatTime(z.getHour() * 60 + z.getMinute(), h24);
+    }
+
+    /** The start-of-day alarm keeps ringing until the day is started or put off, so Back does not hide its screen while it rings. */
+    @Override
+    public void onBackPressed() {
+        if (ev != null && ev.wake && AlarmService.isRinging() && !AlarmPlanner.isTest(ev)) return;
+        super.onBackPressed();
+    }
+
+    private void silence() {
+        AlarmService.answered();   // at once, so the home screen does not bring this question back
+        try {
+            NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            if (nm != null && ev != null) nm.cancel(AlarmService.silentId(ev));   // the quiet notification of a silent slot, if that was it
+        } catch (RuntimeException ignored) {
+            // nothing to clear
+        }
+        Intent i = new Intent(this, AlarmService.class);
+        i.setAction(AlarmService.ACTION_SILENCE);
+        try {
+            startService(i);
+        } catch (RuntimeException ignored) {
+            // the service stops itself after five minutes anyway
+        }
+    }
+
+    private void log(Ev e) {
+        Store.history(this).append(e);
+    }
+
+    private void done(String message) {
+        AlarmScheduler.reschedule(this);
+        DayCloser.schedule(this);
+        if (message != null) Lang.toast(this, message, Toast.LENGTH_LONG).show();
+        finish();
+    }
+
+    private TextView question(String text) {
+        TextView t = Ui.label(this, text, 17, Ui.INK, true);
+        t.setGravity(Gravity.CENTER_HORIZONTAL);
+        return t;
+    }
+
+    private void addButton(String text, boolean primary, View.OnClickListener l) {
+        Button b = Ui.button(this, text, primary, l);
+        body.addView(b, Ui.wide(this, 10));
+    }
+
+    // ------------------------------------------------------------------ the test alarm
+
+    private void showTest() {
+        titleView.setText("Test alarm");
+        subView.setText("If you can see and hear this, your alarms will work.");
+        body.removeAllViews();
+        body.addView(question("Alarms are working on this phone."), Ui.wide(this, 0));
+        body.addView(Ui.label(this, "A real alarm looks like this and asks if you are continuing with the schedule. "
+                + "Nothing in your routine was changed.", 14, Ui.MUTED, false), Ui.wide(this, 10));
+        addButton("Stop the test", true, v -> {
+            silence();
+            finish();
+        });
+    }
+
+    // ------------------------------------------------------------------ a slot starts
+
+    /** The note you wrote for this slot, if any (from the routine of that day). */
+    private String slotNote() {
+        try {
+            Routine day = base.forDay(java.time.LocalDate.parse(ev.day));
+            if (ev.src >= 0 && ev.src < day.blocks.size()) {
+                String n = day.blocks.get(ev.src).note;
+                return n == null ? "" : n.trim();
+            }
+        } catch (RuntimeException ignored) {
+            // no note
+        }
+        return "";
+    }
+
+    private String slotName() {
+        return ev.title.isEmpty() ? "Next slot" : ev.title;
+    }
+
+    /** How many minutes can still be added inside this slot (one minute of it always stays). */
+    private int fitMinutes() {
+        return Math.max(0, SlotPlay.roomMinutes(System.currentTimeMillis(), ev.slotEndMs) - 1);
+    }
+
+    private void addNote() {
+        String note = slotNote();
+        if (!note.isEmpty()) {
+            TextView n = Ui.label(this, "📝  " + note, 15, Ui.INK, false);
+            n.setPadding(dp(14), dp(12), dp(14), dp(12));
+            n.setBackground(Ui.box(this, Ui.SOFT, Ui.LINE, 14));
+            body.addView(n, Ui.wide(this, 0));
+        }
+    }
+
+    private void showSlot() {
+        titleView.setText(slotName());
+        String range = clock(ev.slotStartMs) + " to " + clock(ev.slotEndMs);
+        subView.setText(ev.kind == AlarmPlanner.START_AGAIN ? "You asked to start later. " + range
+                : ev.firstOfDay ? "Your day starts. " + range : range);
+        body.removeAllViews();
+        panels.clear();
+        boolean hasNote = !slotNote().isEmpty();
+        addNote();
+        body.addView(question("What would you like to do?"), Ui.wide(this, hasNote ? 14 : 0));
+        // One question first: start now is a single tap. The details of the other answers open under their button, one at a time.
+        addButton(ev.title.isEmpty() ? "Start now" : "Start “" + ev.title + "” now", true, v -> {
+            silence();
+            SlotActions.startNow(this, ev);
+            done(null);
+        });
+        final int fit = fitMinutes();
+        if (fit >= SlotPlay.STEP) {
+            Expander.Part later = choice("Start later");
+            LinearLayout box = panel(later);
+            box.addView(Ui.label(this, ev.title.isEmpty() ? "Start after" : "Start “" + ev.title + "” after", 14, Ui.MUTED, true));
+            addStepper(box, SlotPlay.DEFAULT_START_DELAY, fit, false, "Start later", m -> {
+                silence();
+                long until = SlotActions.startAfter(this, ev, m);
+                done("I will ask again at " + clock(until));
+            });
+            final SlotActions.Prev prev = ev.kind == AlarmPlanner.SLOT ? SlotActions.previous(this, ev) : null;
+            if (prev != null) {
+                View rule = Ui.rule(this);
+                box.addView(rule, Ui.lp(this, ViewGroup.LayoutParams.MATCH_PARENT, dp(1), 14));
+                box.addView(Ui.label(this, prev.title.isEmpty() ? "Continue the slot before until" : "Continue “" + prev.title + "” until",
+                        14, Ui.MUTED, true), Ui.wide(this, 12));
+                addStepper(box, SlotPlay.DEFAULT_CONTINUE, fit, true, "Keep going", m -> {
+                    silence();
+                    long until = SlotActions.continuePrevious(this, ev, prev, m);
+                    done("I will ask again at " + clock(until));
+                });
+            }
+        }
+        Expander.Part other = choice("Other options");
+        LinearLayout ob = panel(other);
+        ob.addView(Ui.button(this, "Other plan", false, v -> {
+            silence();
+            showChange();
+        }), Ui.wide(this, 0));
+        ob.addView(Ui.button(this, "Take it off for today", false, v -> takeOff()), Ui.wide(this, 8));
+    }
+
+    /** The panels that open under the choices of this screen; opening one closes the others. */
+    private final java.util.List<Expander.Part> panels = new java.util.ArrayList<>();
+
+    private Expander.Part choice(String label) {
+        final Expander.Part p = Expander.choice(this, body, label);
+        panels.add(p);
+        p.onToggled(open -> {
+            if (!open) return;
+            for (Expander.Part other : panels) if (other != p) other.setOpen(false, false);
+        });
+        return p;
+    }
+
+    /** The soft box inside an opened choice. */
+    private LinearLayout panel(Expander.Part p) {
+        LinearLayout box = new LinearLayout(this);
+        box.setOrientation(LinearLayout.VERTICAL);
+        box.setPadding(dp(14), dp(12), dp(14), dp(14));
+        box.setBackground(Ui.box(this, Ui.SOFT, Ui.LINE, 14));
+        p.body.addView(box, Ui.wide(this, 8));
+        return box;
+    }
+
+    private void takeOff() {
+        silence();
+        applyEdit(true, "");
+        log(Ev.ack(System.currentTimeMillis(), ev.day, ev.src, ev.title, "S", ""));
+        done("Taken off for today");
+    }
+
+    private interface Minutes {
+        void go(int minutes);
+    }
+
+    /**
+     * Adds to {@code box} a − and + that move the minutes by five, a line saying what that means, and a button. With {@code clockMode} the
+     * number shows the time that many minutes from now, otherwise the minutes themselves.
+     */
+    private void addStepper(LinearLayout box, int initial, int maxFit, final boolean clockMode, String go, final Minutes action) {
+        final TextView caption = Ui.label(this, "", 13, Ui.MUTED, false);
+        caption.setGravity(Gravity.CENTER_HORIZONTAL);
+        final MinuteStepper[] st = new MinuteStepper[1];
+        final Runnable draw = () -> {
+            long at = System.currentTimeMillis() + st[0].minutes() * 60000L;
+            caption.setText(clockMode ? st[0].minutes() + " min from now." : "Starts at " + clock(at) + ".");
+        };
+        st[0] = new MinuteStepper(this, initial, maxFit, m -> draw.run());
+        if (clockMode) st[0].words(m -> clock(System.currentTimeMillis() + m * 60000L));
+        box.addView(st[0].view, Ui.wide(this, 6));
+        box.addView(caption, Ui.wide(this, 2));
+        draw.run();
+        box.addView(Ui.button(this, go, false, v -> action.go(st[0].minutes())), Ui.wide(this, 8));
+    }
+
+    // ------------------------------------------------------------------ the start of the day
+
+    private void startDay() {
+        silence();
+        SlotActions.startNow(this, ev);
+        done("Your day has started.");
+    }
+
+    private void showWakeUp() {
+        titleView.setText("Time to start your day");
+        subView.setText(slotName() + "  ·  " + clock(ev.slotStartMs) + " to " + clock(ev.slotEndMs));
+        body.removeAllViews();
+        boolean hasNote = !slotNote().isEmpty();
+        addNote();
+        body.addView(question("Ready to start your day?"), Ui.wide(this, hasNote ? 14 : 0));
+        panels.clear();
+        addButton("Start my day", true, v -> startDay());
+        int fit = Math.min(120, fitMinutes());
+        if (fit >= SlotPlay.STEP) {
+            Expander.Part delay = choice("Delay the start");
+            LinearLayout box = panel(delay);
+            box.addView(Ui.label(this, "Start with a delay of", 14, Ui.MUTED, true));
+            addStepper(box, base.wakeDelayMin, fit, false, "Delay my start", this::showQuote);
+        }
+    }
+
+    /** The line to read before the start is put off. The alarm keeps ringing. */
+    private void showQuote(final int minutes) {
+        body.removeAllViews();
+        body.addView(question("Before you put it off, read this."), Ui.wide(this, 0));
+        LocalDate day = LocalDate.parse(ev.day);
+        TextView q = Ui.label(this, "“" + Tr.t(WakeQuotes.forDay(base.wakeQuote, day)) + "”", 18, Ui.INK, true);
+        q.setGravity(Gravity.CENTER);
+        q.setLineSpacing(0, 1.15f);
+        q.setPadding(dp(16), dp(18), dp(16), dp(18));
+        q.setBackground(Ui.box(this, Ui.AMBER_SOFT, Ui.LINE, 14));
+        body.addView(q, Ui.wide(this, 14));
+        addButton("I am up. Start my day", true, v -> startDay());
+        addButton("Still delay by " + minutes + " min", false, v -> {
+            if (base.wakeChallenge == Routine.CHALLENGE_NONE) confirmDelay(minutes);
+            else showChallenge(minutes);
+        });
+        addButton("Back", false, v -> showWakeUp());
+    }
+
+    private void confirmDelay(int minutes) {
+        silence();
+        long until = SlotActions.startAfter(this, ev, minutes);
+        done("I will ask again at " + clock(until));
+    }
+
+    /** The challenge for putting the day off: a few sums, or a sentence to type. */
+    private void showChallenge(final int minutes) {
+        body.removeAllViews();
+        final EditText answer = new EditText(this);
+        answer.setSingleLine(true);
+        answer.setTextColor(Ui.INK);
+        answer.setGravity(Gravity.CENTER_HORIZONTAL);
+        final TextView note = Ui.label(this, " ", 14, Ui.TEAL_DARK, false);
+        note.setGravity(Gravity.CENTER_HORIZONTAL);
+        if (base.wakeChallenge == Routine.CHALLENGE_SUM) {
+            final int rounds = 3;
+            final int[] done = {0};
+            final PauseChallenge.Sum[] cur = {PauseChallenge.sum(rnd, 0)};
+            final TextView step = Ui.label(this, "Sum 1 of " + rounds, 14, Ui.MUTED, false);
+            step.setGravity(Gravity.CENTER_HORIZONTAL);
+            body.addView(step, Ui.wide(this, 0));
+            final TextView q = Ui.label(this, cur[0].question + " = ?", 32, Ui.INK, true);
+            q.setGravity(Gravity.CENTER);
+            body.addView(q, Ui.wide(this, 10));
+            answer.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED);
+            answer.setHint("Your answer");
+            body.addView(answer, Ui.wide(this, 14));
+            body.addView(note, Ui.wide(this, 8));
+            final Runnable check = () -> {
+                if (PauseChallenge.answerMatches(answer.getText().toString(), cur[0].answer)) {
+                    done[0]++;
+                    if (done[0] >= rounds) {
+                        confirmDelay(minutes);
+                        return;
+                    }
+                    note.setText("Right! One more.");
+                    cur[0] = PauseChallenge.sum(rnd, done[0]);
+                    q.setText(cur[0].question + " = ?");
+                    step.setText("Sum " + (done[0] + 1) + " of " + rounds);
+                } else {
+                    note.setText("Not quite. Try again.");
+                }
+                answer.setText("");
+            };
+            answer.setOnEditorActionListener((v, actionId, e) -> {
+                check.run();
+                return true;
+            });
+            addButton("Check", true, v -> check.run());
+        } else {
+            final String phrase = WakeQuotes.phrase(rnd);
+            body.addView(question("Type this to put your day off"), Ui.wide(this, 0));
+            TextView p = Ui.label(this, "“" + phrase + "”", 18, Ui.INK, true);
+            p.setGravity(Gravity.CENTER);
+            p.setLineSpacing(0, 1.1f);
+            body.addView(p, Ui.wide(this, 10));
+            answer.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+            answer.setHint("Type it here");
+            answer.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 16);
+            body.addView(answer, Ui.wide(this, 14));
+            body.addView(note, Ui.wide(this, 8));
+            final Runnable check = () -> {
+                if (PauseChallenge.phraseMatches(answer.getText().toString(), phrase)) {
+                    confirmDelay(minutes);
+                } else {
+                    note.setText("Not the same yet. Check each word.");
+                }
+            };
+            answer.setOnEditorActionListener((v, actionId, e) -> {
+                check.run();
+                return true;
+            });
+            addButton("Check", true, v -> check.run());
+        }
+        addButton("I am up. Start my day", false, v -> startDay());
+    }
+
+    // ------------------------------------------------------------------ a break is over
+
+    private void showBreakEnd() {
+        titleView.setText("Your break is over");
+        subView.setText("Your break started at " + clock(ev.slotStartMs));
+        body.removeAllViews();
+        panels.clear();
+        body.addView(question(ev.title.isEmpty() ? "Ready to get back to work?" : "Ready to get back to " + ev.title + "?"), Ui.wide(this, 0));
+        addButton("Back to work", true, v -> {
+            silence();
+            AlarmScheduler.reschedule(this);
+            done(null);
+        });
+        final long now = System.currentTimeMillis();
+        if (ev.slotEndMs - now >= 2 * 60000L) {
+            Expander.Part more = choice("More time");
+            LinearLayout box = panel(more);
+            box.addView(Ui.label(this, "Rest for", 14, Ui.MUTED, true));
+            final int room = SlotPlay.roomMinutes(now, ev.slotEndMs);
+            final TextView caption = Ui.label(this, "", 13, Ui.MUTED, false);
+            caption.setGravity(Gravity.CENTER_HORIZONTAL);
+            final MinuteStepper[] st = new MinuteStepper[1];
+            final Runnable draw = () -> caption.setText("Back at " + clock(SlotPlay.breakEnd(System.currentTimeMillis(), st[0].minutes(), ev.slotEndMs)) + ".");
+            st[0] = new MinuteStepper(this, 5, Math.max(room, SlotPlay.STEP), m -> draw.run());
+            box.addView(st[0].view, Ui.wide(this, 6));
+            box.addView(caption, Ui.wide(this, 2));
+            draw.run();
+            box.addView(Ui.button(this, "Add this time", false, v -> {
+                silence();
+                long until = SlotActions.extendBreak(this, st[0].minutes());
+                done(until > 0 ? "Break extended until " + clock(until) : null);
+            }), Ui.wide(this, 8));
+        }
+    }
+
+    private void showChange() {
+        body.removeAllViews();
+        body.addView(question("What will you do instead?"), Ui.wide(this, 0));
+        final EditText name = new EditText(this);
+        name.setSingleLine(true);
+        name.setText(ev.title);
+        name.setSelectAllOnFocus(true);
+        name.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 20);
+        name.setTextColor(Ui.INK);
+        name.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        body.addView(name, Ui.wide(this, 14));
+        body.addView(Ui.label(this, "This changes today only. Your saved routine stays as it is.", 13, Ui.MUTED, false),
+                Ui.wide(this, 4));
+        addButton("Save new name for today", true, v -> {
+            String n = name.getText().toString().trim();
+            if (n.isEmpty()) {
+                Lang.toast(this, "Type a name, or choose Take it off", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            long now = System.currentTimeMillis();
+            if (n.equals(ev.title)) {
+                log(Ev.ack(now, ev.day, ev.src, ev.title, "C", ""));
+                done(null);
+                return;
+            }
+            applyEdit(false, n);
+            log(Ev.ack(now, ev.day, ev.src, ev.title, "R", n));
+            done("Changed for today: " + n);
+        });
+        addButton("Take it off for today", false, v -> takeOff());
+        addButton("Back", false, v -> showSlot());
+    }
+
+    private void applyEdit(boolean skip, String newName) {
+        Plan.edit(base, ov, LocalDate.parse(ev.day), ev.src, skip, newName);
+        Store.saveOverrides(this, base, ov);
+    }
+
+    // ------------------------------------------------------------------ bedtime
+
+    private void showBedtime(boolean again) {
+        titleView.setText(again ? "Asking again" : "Time to sleep");
+        subView.setText("Planned bedtime " + clock(ev.plannedBedMs > 0 ? ev.plannedBedMs : ev.slotStartMs));
+        body.removeAllViews();
+        body.addView(question("Are you going to sleep, or will it take more time?"), Ui.wide(this, 0));
+        addButton("I am going to sleep", true, v -> {
+            silence();
+            sleepAt = System.currentTimeMillis();
+            long planned = ev.plannedBedMs > 0 ? ev.plannedBedMs : ev.slotStartMs;
+            options = Plan.wakeOptions(base, ov, LocalDate.parse(ev.day), sleepAt, Store.zone(), h24);
+            chosen = 0;
+            showWake(planned);
+        });
+        addButton("It will take more time", false, v -> {
+            silence();
+            snooze = Suggestions.favouriteSnooze(Store.history(this).events());
+            showSnooze();
+        });
+    }
+
+    private void showSnooze() {
+        body.removeAllViews();
+        body.addView(question("Remind me again after how long?"), Ui.wide(this, 0));
+        final int[] presets = {10, 15, 30, 60};
+        final LinearLayout chips = new LinearLayout(this);
+        chips.setOrientation(LinearLayout.HORIZONTAL);
+        body.addView(chips, Ui.wide(this, 14));
+        final EditText custom = new EditText(this);
+        custom.setInputType(InputType.TYPE_CLASS_NUMBER);
+        custom.setSingleLine(true);
+        custom.setHint("or type minutes");
+        custom.setTextColor(Ui.INK);
+        custom.setGravity(Gravity.CENTER_HORIZONTAL);
+        body.addView(custom, Ui.wide(this, 10));
+
+        // What it costs: sleep lost before the alarm, which stays where it is.
+        int sleepNow = 0;
+        int planned = 0;
+        int before = 0;
+        try {
+            Plan.WakeOption first = Plan.wakeOptions(base, ov, LocalDate.parse(ev.day), System.currentTimeMillis(), Store.zone(), h24).get(0);
+            sleepNow = first.sleepMin;
+            planned = first.plannedMin;
+            before = SnoozeCost.snoozedBefore(Store.history(this).events(), ev.day);
+        } catch (RuntimeException ignored) {
+            // the cost is only a help: the choice works without it
+        }
+        final int fSleepNow = sleepNow;
+        final int fPlanned = planned;
+        final int fBefore = before;
+        final TextView cost = Ui.label(this, "", 14, Ui.INK, false);
+        cost.setPadding(dp(14), dp(12), dp(14), dp(12));
+        cost.setBackground(Ui.box(this, Ui.AMBER_SOFT, Ui.LINE, 14));
+        cost.setLineSpacing(0, 1.12f);
+        body.addView(cost, Ui.wide(this, 14));
+        final Runnable showCost = () -> {
+            int minutes = snooze;
+            String typed = custom.getText().toString().trim();
+            if (!typed.isEmpty()) {
+                try {
+                    minutes = Math.min(360, Integer.parseInt(typed));
+                } catch (NumberFormatException e) {
+                    minutes = 0;
+                }
+            }
+            List<String> lines = fSleepNow > 0 ? SnoozeCost.lines(minutes, fSleepNow, fPlanned, fBefore) : new java.util.ArrayList<String>();
+            if (lines.isEmpty()) {
+                cost.setVisibility(View.GONE);
+                return;
+            }
+            cost.setVisibility(View.VISIBLE);
+            StringBuilder sb = new StringBuilder();
+            for (String l : lines) {
+                if (sb.length() > 0) sb.append('\n');
+                sb.append(l);
+            }
+            cost.setText(sb.toString());
+        };
+        custom.addTextChangedListener(new android.text.TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int st, int c, int a) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int st, int b, int c) {
+            }
+
+            @Override
+            public void afterTextChanged(android.text.Editable s) {
+                showCost.run();
+            }
+        });
+        final Runnable[] draw = new Runnable[1];
+        draw[0] = () -> {
+            showCost.run();
+            chips.removeAllViews();
+            for (final int m : presets) {
+                Button b = Ui.button(this, m + " min", m == snooze, v -> {
+                    snooze = m;
+                    custom.setText("");
+                    draw[0].run();
+                });
+                LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+                p.rightMargin = dp(6);
+                chips.addView(b, p);
+            }
+        };
+        boolean isPreset = false;
+        for (int m : presets) if (m == snooze) isPreset = true;
+        if (!isPreset) custom.setText(String.valueOf(snooze));
+        draw[0].run();
+        addButton("Remind me", true, v -> {
+            int minutes = snooze;
+            String typed = custom.getText().toString().trim();
+            if (!typed.isEmpty()) {
+                try {
+                    minutes = Integer.parseInt(typed);
+                } catch (NumberFormatException e) {
+                    minutes = -1;
+                }
+            }
+            if (minutes < 1 || minutes > 360) {
+                Lang.toast(this, "Pick between 1 and 360 minutes", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            long now = System.currentTimeMillis();
+            AlarmState st = Store.alarmState(this);
+            st.reaskAt = now + minutes * 60000L;
+            st.reaskBedMs = ev.plannedBedMs > 0 ? ev.plannedBedMs : ev.slotStartMs;
+            st.reaskDay = ev.day;
+            st.reaskSrc = ev.src;
+            st.reaskTitle = ev.title;
+            Store.saveAlarmState(this, st);
+            log(Ev.snooze(now, ev.day, minutes));
+            done("I will ask again at " + clock(st.reaskAt));
+        });
+        addButton("Back", false, v -> showBedtime(ev.kind == AlarmPlanner.REASK));
+    }
+
+    private void showWake(final long plannedBed) {
+        body.removeAllViews();
+        long late = Math.max(0, (sleepAt - plannedBed) / 60000L);
+        subView.setText("Going to sleep at " + clock(sleepAt)
+                + (late >= 5 ? ", " + Routine.formatDuration((int) late) + " after your plan" : ""));
+        if (options.size() == 1) {
+            Plan.WakeOption o = options.get(0);
+            body.addView(question("Good night. I will wake you at " + clock(o.wakeMs) + "."), Ui.wide(this, 0));
+            addButton("Set the alarm", true, v -> confirmWake(plannedBed));
+            addButton("Back", false, v -> showBedtime(ev.kind == AlarmPlanner.REASK));
+            return;
+        }
+        body.addView(question("When do you want to wake up?"), Ui.wide(this, 0));
+        String[] heads = {"Normal schedule", "Shift my day later", "Skip the slots I sleep through"};
+        for (int i = 0; i < options.size(); i++) {
+            final int idx = i;
+            final Plan.WakeOption o = options.get(i);
+            LinearLayout card = new LinearLayout(this);
+            card.setOrientation(LinearLayout.VERTICAL);
+            card.setPadding(dp(14), dp(12), dp(14), dp(12));
+            boolean sel = i == chosen && o.fits;
+            card.setBackground(Ui.box(this, sel ? 0xFFDDF0EE : Ui.SURFACE, sel ? Ui.TEAL : Ui.LINE, 14));
+            card.setAlpha(o.fits ? 1f : 0.55f);
+            TextView head = Ui.label(this, heads[Math.min(i, 2)] + "  ·  " + clock(o.wakeMs), 17, Ui.INK, true);
+            card.addView(head);
+            for (String note : o.notes) {
+                card.addView(Ui.label(this, note, 13, Ui.MUTED, false), Ui.wide(this, 3));
+            }
+            if (o.fits) {
+                card.setOnClickListener(v -> {
+                    chosen = idx;
+                    showWake(plannedBed);
+                });
+            }
+            body.addView(card, Ui.wide(this, 12));
+        }
+        body.addView(Ui.label(this, "These changes are for tomorrow only. To change your routine for good, edit it in the app.",
+                13, Ui.MUTED, false), Ui.wide(this, 14));
+        addButton("Set the alarm", true, v -> confirmWake(plannedBed));
+        addButton("Back", false, v -> showBedtime(ev.kind == AlarmPlanner.REASK));
+    }
+
+    private void confirmWake(long plannedBed) {
+        Plan.WakeOption o = options.get(Math.max(0, Math.min(chosen, options.size() - 1)));
+        if (!o.fits) o = options.get(0);
+        Plan.commit(base, ov, LocalDate.parse(ev.day), o);
+        Store.saveOverrides(this, base, ov);
+        AlarmState st = Store.alarmState(this);
+        st.reaskAt = 0;
+        Store.saveAlarmState(this, st);
+        log(Ev.sleep(sleepAt, ev.day, plannedBed, o.type, o.shiftMin));
+        done("Good night. Alarm set for " + clock(o.wakeMs));
+    }
+}

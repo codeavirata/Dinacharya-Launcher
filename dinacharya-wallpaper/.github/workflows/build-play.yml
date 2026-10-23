@@ -1,0 +1,48 @@
+name: Build for Google Play
+
+# Makes the .aab file that Google Play takes. Run it by hand: Actions > Build for Google Play > Run workflow.
+# It needs your upload key in four GitHub secrets (see README, "Publish on Google Play").
+
+on:
+  workflow_dispatch:
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.13'
+
+      - name: Check the upload key is there
+        env:
+          KEY: ${{ secrets.UPLOAD_KEYSTORE_BASE64 }}
+          PASS: ${{ secrets.UPLOAD_KEYSTORE_PASSWORD }}
+          ALIAS: ${{ secrets.UPLOAD_KEY_ALIAS }}
+        run: |
+          if [ -z "$KEY" ] || [ -z "$PASS" ] || [ -z "$ALIAS" ]; then
+            echo "::error::The upload key is missing. Add the secrets UPLOAD_KEYSTORE_BASE64, UPLOAD_KEYSTORE_PASSWORD and UPLOAD_KEY_ALIAS (and UPLOAD_KEY_PASSWORD) in Settings > Secrets and variables > Actions. The README explains how."
+            exit 1
+          fi
+          echo "$KEY" | base64 -d > "$RUNNER_TEMP/upload.jks"
+
+      - name: Build the app bundle
+        env:
+          UPLOAD_KEYSTORE_FILE: ${{ runner.temp }}/upload.jks
+          UPLOAD_KEYSTORE_PASSWORD: ${{ secrets.UPLOAD_KEYSTORE_PASSWORD }}
+          UPLOAD_KEY_ALIAS: ${{ secrets.UPLOAD_KEY_ALIAS }}
+          UPLOAD_KEY_PASSWORD: ${{ secrets.UPLOAD_KEY_PASSWORD || secrets.UPLOAD_KEYSTORE_PASSWORD }}
+        run: gradle bundleRelease --no-daemon
+
+      - name: Keep the bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: Dinacharya-play-bundle
+          path: app/build/outputs/bundle/release/app-release.aab

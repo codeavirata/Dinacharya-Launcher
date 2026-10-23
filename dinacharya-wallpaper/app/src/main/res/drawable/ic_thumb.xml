@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The picture of the wallpaper in Android's wallpaper list: a small poster of a day. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="240dp"
+    android:viewportWidth="120"
+    android:viewportHeight="240">
+    <path
+        android:fillColor="#F3F7F6"
+        android:pathData="M0,0 L120,0 L120,240 L0,240 Z" />
+    <path
+        android:fillColor="#0E7C7B"
+        android:pathData="M10,22 L46,22 L46,36 L10,36 Z" />
+    <path
+        android:fillColor="#10201E"
+        android:pathData="M76,18 L110,18 L110,40 L76,40 Z" />
+    <path
+        android:fillColor="#DDF0EE"
+        android:strokeColor="#0E7C7B"
+        android:strokeWidth="1.5"
+        android:pathData="M30,64 L110,64 L110,92 L30,92 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#CFDCDA"
+        android:strokeWidth="1"
+        android:pathData="M30,100 L110,100 L110,122 L30,122 Z" />
+    <path
+        android:fillColor="#FBEFD3"
+        android:pathData="M30,130 L110,130 L110,146 L30,146 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#CFDCDA"
+        android:strokeWidth="1"
+        android:pathData="M30,154 L110,154 L110,176 L30,176 Z" />
+    <path
+        android:fillColor="#E3E4F2"
+        android:pathData="M30,184 L110,184 L110,208 L30,208 Z" />
+    <path
+        android:strokeColor="#CFDCDA"
+        android:strokeWidth="2.5"
+        android:pathData="M18,64 L18,208" />
+</vector>

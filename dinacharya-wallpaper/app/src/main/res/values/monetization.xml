@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        Money settings. Read the README section "Earn from the app" before you publish.
+
+        pro_product_id: the ID of the one-time product you create in Google Play Console
+        (Monetize > Products > In-app products). It must match exactly.
+
+        admob_app_id / admob_banner_id / admob_rewarded_id: these are Google's TEST values. They show test ads
+        that pay nothing and are safe to tap. Before you publish, make an AdMob account (admob.google.com),
+        add this app, and paste your own App ID, your banner Ad unit ID and your rewarded Ad unit ID here
+        (the rewarded one is a second Ad unit of the type "Rewarded", for the "watch a video to open a Pro
+        feature for a day" button). Never tap real ads on your own phone: that can get the AdMob account banned.
+
+        Ad layers for the rewarded video: admob_rewarded_id is the TOP layer, then admob_rewarded_id_2 and
+        admob_rewarded_id_3. Make up to three "Rewarded" ad units in AdMob and give them falling minimum prices
+        (eCPM floors), for example the first a high floor, the second a lower one and the third no floor at all.
+        The app asks for a video from the first unit, and when nobody pays that much it asks the next, so each video
+        earns as much as it can and one is still found when the best price is not on offer. Leave a layer as the test
+        value (or the same id as another) and it is simply skipped. See the README, "Earn from the app".
+
+        ads_enabled: set to false to build an app with no ads at all.
+    -->
+    <string name="pro_product_id" translatable="false">pro_unlock</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_banner_id" translatable="false">ca-app-pub-3940256099942544/9214589741</string>
+    <string name="admob_rewarded_id" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
+    <string name="admob_rewarded_id_2" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
+    <string name="admob_rewarded_id_3" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
+    <bool name="ads_enabled">true</bool>
+</resources>
