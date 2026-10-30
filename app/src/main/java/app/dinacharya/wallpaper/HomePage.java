@@ -59,6 +59,9 @@ final class HomePage extends Page {
         words.addView(hello);
         words.addView(dateLine, Ui.wide(a, 2));
         head.addView(words, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        LinearLayout.LayoutParams dop = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dop.rightMargin = a.dp(10);
+        head.addView(DayOffDialog.chip(a, this::afterChange), dop);
         avatar = Ui.label(a, "", 18, 0xFFFFFFFF, true);
         avatar.setGravity(Gravity.CENTER);
         avatar.setOnClickListener(v -> a.go(MainActivity.TAB_BACKUP));
@@ -381,7 +384,7 @@ final class HomePage extends Page {
             row.addView(td, tp);
         }
         if (row.getChildCount() > 0) card.addView(row, Ui.wide(a, 14));
-        final EarlyFinish.Offer offer = onBreak || b.live == Routine.LIVE_WAIT ? null : EarlyFinish.of(p, nextDayOf(p), now);
+        final EarlyFinish.Offer offer = b.live == Routine.LIVE_WAIT ? null : EarlyFinish.of(p, nextDayOf(p), now);
         if (offer != null) {
             card.addView(Ui.button(a, offer.label(), false, v -> EarlyDialog.show(a, offer, this::afterChange)), Ui.wide(a, 8));
         }

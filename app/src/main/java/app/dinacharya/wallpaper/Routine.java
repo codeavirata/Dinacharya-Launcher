@@ -143,6 +143,8 @@ public final class Routine {
     public static final class Goal {
         /** How many things a goal's own to-do list holds. */
         public static final int MAX_TODOS = 12;
+        /** The longest name a goal can be given. */
+        public static final int MAX_NAME = 30;
 
         /** How it repeats: every day, every second day from {@link #date}, on chosen weekdays, or on one day only ({@link #date}). */
         public static final int DAILY = 0, ALTERNATE = 1, WEEKDAYS = 2, ONCE = 3;
@@ -161,6 +163,8 @@ public final class Routine {
         public String slot = "";
         /** The goal's own to-do list: the same things on every day the goal counts, ticked fresh each day. */
         public final List<String> todos = new ArrayList<>();
+        /** A name the person gave the goal, or empty (the goal then goes by its slot). It changes nothing about what the goal counts. */
+        public String name = "";
 
         public Goal(int kind, String sub, int mins) {
             this.kind = clampKind(kind);
@@ -196,8 +200,9 @@ public final class Routine {
             return !slot.isEmpty();
         }
 
-        /** The name shown for the goal: its slot, or the activity type of an older goal. */
+        /** The name shown for the goal: the one it was given, else its slot, or the activity type of an older goal. */
         public String label() {
+            if (!name.isEmpty()) return name;
             if (bound()) return slot;
             return sub.isEmpty() ? KIND_NAMES[kind] : sub;
         }
@@ -310,6 +315,7 @@ public final class Routine {
             g.with.addAll(with);
             g.slot = slot;
             g.todos.addAll(todos);
+            g.name = name;
             return g;
         }
     }
@@ -701,6 +707,13 @@ public final class Routine {
         return clean(t).trim();
     }
 
+    /** A name given to a goal: one line, no separators, a sensible length. */
+    public static String cleanGoalName(String t) {
+        if (t == null) return "";
+        String c = t.replace('\t', ' ').replace('\n', ' ').replace('\r', ' ').replace('|', '/').trim();
+        return c.length() > Goal.MAX_NAME ? c.substring(0, Goal.MAX_NAME).trim() : c;
+    }
+
     /** A thing on a goal's to-do list: one line, no separators, a sensible length. */
     static String cleanTodo(String t) {
         if (t == null) return "";
@@ -955,17 +968,18 @@ public final class Routine {
         }
         for (Goal g : goals) {
             sb.append("G\t").append(g.kind).append('\t').append(g.mins).append('\t').append(g.sub);
-            if (g.repeat != Goal.DAILY || !g.with.isEmpty() || g.bound() || !g.todos.isEmpty()) {
+            if (g.repeat != Goal.DAILY || !g.with.isEmpty() || g.bound() || !g.todos.isEmpty() || !g.name.isEmpty()) {
                 sb.append('\t').append(g.repeat).append('\t').append(g.date == null ? "" : g.date.toString())
                         .append('\t').append(g.daysMask).append('\t');
                 for (int i = 0; i < g.with.size(); i++) {
                     sb.append(i == 0 ? "" : "|").append(g.with.get(i).kind).append(':').append(g.with.get(i).name.replace('|', '/'));
                 }
                 // The slot and the to-do list come last, so an older reader still gets the rest right.
-                if (g.bound() || !g.todos.isEmpty()) {
+                if (g.bound() || !g.todos.isEmpty() || !g.name.isEmpty()) {
                     sb.append('\t').append(g.slot);
                     sb.append('\t');
                     for (int i = 0; i < g.todos.size(); i++) sb.append(i == 0 ? "" : "|").append(cleanTodo(g.todos.get(i)));
+                    if (!g.name.isEmpty()) sb.append('\t').append(cleanGoalName(g.name));   // the name comes last: an older reader ignores it
                 }
             }
             sb.append('\n');
@@ -1071,7 +1085,7 @@ public final class Routine {
                 continue;
             }
             if (ln.startsWith("G\t")) {
-                String[] p = ln.split("\t", 10);
+                String[] p = ln.split("\t", 11);
                 if (p.length < 4) continue;
                 try {
                     Goal g = new Goal(Integer.parseInt(p[1].trim()), p[3], Integer.parseInt(p[2].trim()));
@@ -1091,6 +1105,7 @@ public final class Routine {
                         if (p.length >= 10) {
                             for (String t : p[9].split("\\|")) g.addTodo(t);
                         }
+                        if (p.length >= 11) g.name = cleanGoalName(p[10]);
                         if ((g.repeat == Goal.ONCE && g.date == null)) continue;
                     }
                     boolean dup = r.findSame(g) != null;

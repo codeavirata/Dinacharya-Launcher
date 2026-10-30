@@ -2058,6 +2058,11 @@ The strong lock below does.	కింద ఉన్న స్ట్రాంగ�
 To hold them whichever way they open, allow the two things in the Strong lock card below.	ఎలా తెరిచినా వీటిని కొనసాగించడానికి, కింద ఉన్న స్ట్రాంగ్ లాక్ కార్డ్‌లో రెండింటికీ అనుమతి ఇవ్వండి.
 Without strict, you can still break a lock: wait 30 seconds and type a sentence.	కఠినమైనది కాకపోతే లాక్‌ను ఛేదించవచ్చు: 30 సెకన్లు వేచి ఉండి ఒక వాక్యాన్ని టైప్ చేయండి.
 A strict lock cannot be broken, and cannot be changed while it holds.	కఠినమైన లాక్‌ను ఛేదించలేరు, అది అమలులో ఉన్నప్పుడు మార్చలేరు కూడా.
+Today is already a day off	ఈరోజు ఇప్పటికే సెలవు రోజు
+＋  Goal for tomorrow	＋  రేపటి లక్ష్యం
+Goal name (optional)	లక్ష్యం పేరు (ఐచ్ఛికం)
+New goal for tomorrow	రేపటి కోసం కొత్త లక్ష్యం
+Tomorrow's schedule has no slot to set a goal for. Add a slot in the Routine tab first.	రేపటి షెడ్యూల్‌లో లక్ష్యానికి స్లాట్ లేదు. ముందు రొటీన్ ట్యాబ్‌లో స్లాట్ జోడించండి.
 # the same texts without the marks at their ends
 {1} after your plan	మీ ప్రణాళిక తర్వాత {1}
 Made	తయారైంది

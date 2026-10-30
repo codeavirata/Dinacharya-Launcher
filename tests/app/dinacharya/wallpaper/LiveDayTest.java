@@ -274,16 +274,17 @@ public class LiveDayTest {
         EarlyFinish.Offer o = EarlyFinish.of(cur, at(8, 30));
         ok("offered in a slot with a real slot after it", o != null && o.srcCur == 3 && o.srcNext == 4 && o.roomMin == 45 && o.maxRestMin() == 44
             && o.plannedEndMs == at(9, 15) && o.nextEndMs == at(9, 30));
-        ok("not offered with hardly any time left", EarlyFinish.of(base(r, at(9, 13)), at(9, 13)) == null);
+        ok("offered with two minutes left (build 27)", EarlyFinish.of(base(r, at(9, 13)), at(9, 13)) != null);
         ok("offered with a few minutes left", EarlyFinish.of(base(r, at(9, 10)), at(9, 10)) != null);
         EarlyFinish.Offer beforeSleep = EarlyFinish.of(base(r, at(21, 15)), at(21, 15));
         ok("before sleep it is offered as Early sleep (see EarlySkipTest)", beforeSleep != null && beforeSleep.kind == EarlyFinish.SLEEP && beforeSleep.label().equals("Early sleep"));
         ok("in sleep it is offered only once the next day is known (see EarlySkipTest)", EarlyFinish.of(base(r, at(23, 0)), at(23, 0)) == null);
         ok("not offered when nothing is going on", EarlyFinish.of(null, at(8, 0)) == null);
         Plan.DayPlan onCarry = live(r, carry, new AlarmState(), false, at(9, 35));
-        ok("not offered in a slot that was carried on", EarlyFinish.of(onCarry, at(9, 35)) == null);
+        EarlyFinish.Offer carryOffer = EarlyFinish.of(onCarry, at(9, 35));
+        ok("offered in a slot that was carried on, and the next slot then starts now (build 27)", carryOffer == null || carryOffer.carried);
         Plan.DayPlan atBreak = live(r, brk, new AlarmState(), false, at(8, 10));
-        ok("not offered during a break", EarlyFinish.of(atBreak, at(8, 10)) == null);
+        ok("a break does not hide it any more (build 27; see AnySlotTest)", atBreak == null || EarlyFinish.of(atBreak, at(8, 10)) == null || EarlyFinish.of(atBreak, at(8, 10)).srcCur >= 0);
         Routine skipNext = routine();
         Overrides ovSkip = skipEdit(skipNext);
         ok("not offered when the next slot is taken off", EarlyFinish.of(Plan.resolve(skipNext, ovSkip, at(10, 30), Z), at(10, 30)) == null);

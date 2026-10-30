@@ -120,7 +120,8 @@ public class EarlySkipTest {
         EarlyFinish.Offer es = EarlyFinish.of(p2110, at(21, 10));
         ok("the slot before sleep: Early sleep", es != null && es.kind == EarlyFinish.SLEEP && es.label().equals("Early sleep") && es.srcNext == 18
             && es.plannedEndMs == at(21, 30) && es.roomMin == 20 && !es.canWait());
-        ok("not with hardly any time left before sleep", EarlyFinish.of(Plan.resolve(r, new Overrides(), at(21, 28), Z), at(21, 28)) == null);
+        ok("a minute before sleep it can still be done, a few seconds before it cannot", EarlyFinish.of(Plan.resolve(r, new Overrides(), at(21, 28), Z), at(21, 28)) != null
+            && EarlyFinish.of(Plan.resolve(r, new Overrides(), at(21, 21, 29, 30), Z), at(21, 21, 29, 30)) == null);
         Plan.DayPlan night = Plan.resolve(r, new Overrides(), at(22, 2, 0, 0), Z);
         Plan.DayPlan nextDay = Plan.plan(r, new Overrides(), D.plusDays(1), Z);
         ok("sleep is the slot going on at 02:00", night.cur == night.lastSleepIndex());

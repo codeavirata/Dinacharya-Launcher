@@ -2058,6 +2058,11 @@ The strong lock below does.	नीचे दिया स्ट्रॉन्�
 To hold them whichever way they open, allow the two things in the Strong lock card below.	इन्हें चाहे जैसे खोला जाए, लागू रखने के लिए नीचे स्ट्रॉन्ग लॉक कार्ड में दोनों चीज़ों की अनुमति दें।
 Without strict, you can still break a lock: wait 30 seconds and type a sentence.	सख़्त न होने पर भी आप लॉक तोड़ सकते हैं: 30 सेकंड इंतज़ार करें और एक वाक्य टाइप करें।
 A strict lock cannot be broken, and cannot be changed while it holds.	सख़्त लॉक को तोड़ा नहीं जा सकता, और जब तक वह लागू है उसे बदला भी नहीं जा सकता।
+Today is already a day off	आज पहले से छुट्टी का दिन है
+＋  Goal for tomorrow	＋  कल का लक्ष्य
+Goal name (optional)	लक्ष्य का नाम (वैकल्पिक)
+New goal for tomorrow	कल के लिए नया लक्ष्य
+Tomorrow's schedule has no slot to set a goal for. Add a slot in the Routine tab first.	कल के कार्यक्रम में लक्ष्य के लिए कोई स्लॉट नहीं है। पहले रूटीन टैब में स्लॉट जोड़ें।
 # the same texts without the marks at their ends
 {1} after your plan	योजना से {1} बाद
 Made	बनाया गया

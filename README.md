@@ -1190,7 +1190,7 @@ close the app: they are written down and that one job is skipped.
 
 **1.0 (first release on Google Play)**
 - **Pro has two plans:** **Rs 50 a month** (a Google Play subscription, product `pro_monthly`) or **Rs 499 once for life** (the one-time product `pro_unlock`). The Pro screen shows both side by side with the prices Google Play reports; Pro is on while either is active. A monthly subscriber who buys lifetime is told to cancel the monthly plan in Google Play, and "Manage subscription" opens Google Play's page for it. Anyone who bought `pro_unlock` before keeps Pro. In Play Console create the subscription and set `pro_unlock` to Rs 499 (see "Pro purchase: monthly and lifetime").
-- The app is named **Dinacharya Launcher** and is credited "© 2026 | Developed by ASG" on one line (home screen mark, Settings > About, store text, privacy page). The version shown in Settings > About is **1.0**. Google Play's internal build number (`versionCode`) is **26** and goes up by one with every build you install or upload, because Google only accepts a number higher than every one it has seen. Settings > About shows it after the version ("1.0 (build 26)"), so you can tell which build is on the phone. The notes below, from 2.2 to 3.0.1, are the private test builds that came before.
+- The app is named **Dinacharya Launcher** and is credited "© 2026 | Developed by ASG" on one line (home screen mark, Settings > About, store text, privacy page). The version shown in Settings > About is **1.0**. Google Play's internal build number (`versionCode`) is **27** and goes up by one with every build you install or upload, because Google only accepts a number higher than every one it has seen. Settings > About shows it after the version ("1.0 (build 27)"), so you can tell which build is on the phone. The notes below, from 2.2 to 3.0.1, are the private test builds that came before.
 
 **2.2**
 - **Dinacharya is now a home screen (launcher), not a wallpaper app.** No apps on it: the whole screen is your
@@ -1379,3 +1379,11 @@ owned. The developer runs no server and receives no data. The app asks for:
 | Google account (when you sign in) | Your name and email, and the app's own private space in your Drive. The app cannot see your other Drive files. |
 
 Android 8.0 or newer.
+
+**1.0, build 27: finish any slot early, a small Day off button, named goals, goals for tomorrow**
+
+- **Finish early works almost everywhere.** It now also shows on a break (finishing ends the break and the next slot starts), on a slot that was carried on past its end (the next slot starts now) and when only one minute is left. It is still not offered on a slot you took off, a waiting row, a cut slot or when no slot follows. The "wait" choice is not offered on a carried slot or on sleep.
+- **A small "Day off" chip** sits at the top right of the Home page and of the Routine tab. It asks the same confirmation as before and says so if today is already a day off.
+- **Goals can have a name** ("Goal name (optional)", up to 30 letters). The name is only a label: which slot the goal belongs to, and how it is counted, did not change. Old goals load as before.
+- **Goals for tomorrow.** "＋  Goal for tomorrow" in the Goals section, and "Tomorrow only" in the way-to-repeat list. It lists the slots of tomorrow's schedule and counts only tomorrow.
+- New test `AnySlotTest`; `EarlySkipTest` updated for the shorter room. Six languages updated.

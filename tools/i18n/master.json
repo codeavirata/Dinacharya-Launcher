@@ -16601,5 +16601,40 @@
 "src": [
 "added"
 ]
+},
+{
+"id": 5877,
+"en": "Today is already a day off",
+"src": [
+"added"
+]
+},
+{
+"id": 5878,
+"en": "＋  Goal for tomorrow",
+"src": [
+"added"
+]
+},
+{
+"id": 5879,
+"en": "Goal name (optional)",
+"src": [
+"added"
+]
+},
+{
+"id": 5880,
+"en": "New goal for tomorrow",
+"src": [
+"added"
+]
+},
+{
+"id": 5881,
+"en": "Tomorrow's schedule has no slot to set a goal for. Add a slot in the Routine tab first.",
+"src": [
+"added"
+]
 }
 ]

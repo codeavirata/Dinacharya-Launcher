@@ -37,7 +37,7 @@ Character limits are Google's.
     groups, more locks and strict locks that cannot be broken.
 
     STRONG LOCK (OPTIONAL)
-    Off by default. Locks and pauses then also hold an app opened from recent apps, a notification or
+    On by default (you can switch it off). Locks and pauses then also hold an app opened from recent apps, a notification or
     another launcher. Needs Usage access and Display over other apps. The phone and Settings are never blocked.
 
     IN YOUR LANGUAGE

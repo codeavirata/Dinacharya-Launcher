@@ -213,6 +213,11 @@ final class RoutinePage extends Page {
     @Override
     void build(LinearLayout body) {
         title("Routine", "Your day, slot by slot");
+        LinearLayout dayOffRow = new LinearLayout(a);
+        dayOffRow.setOrientation(LinearLayout.HORIZONTAL);
+        dayOffRow.setGravity(Gravity.END);
+        dayOffRow.addView(DayOffDialog.chip(a, a::previewChanged));
+        body.addView(dayOffRow, wide(6));
 
         alarmBanner = new LinearLayout(a);
         alarmBanner.setOrientation(LinearLayout.VERTICAL);

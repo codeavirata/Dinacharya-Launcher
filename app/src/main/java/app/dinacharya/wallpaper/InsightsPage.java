@@ -155,6 +155,7 @@ final class InsightsPage extends Page {
         tp.leftMargin = a.dp(8);
         adds.addView(addToday, tp);
         gc.addView(adds, Ui.wide(a, 12));
+        gc.addView(Ui.button(a, "＋  Goal for tomorrow", false, v -> editGoal(null, false, true)), Ui.wide(a, 8));
         addGoalList(gc, m);
 
         // Every slot so far, with the apps used in it.
@@ -509,20 +510,27 @@ final class InsightsPage extends Page {
     }
 
     /** Which ways a goal can repeat, in the order of the first list of the editor. */
-    private static final int[] MODE_REPEAT = {Routine.Goal.ONCE, Routine.Goal.DAILY, Routine.Goal.ALTERNATE, Routine.Goal.WEEKDAYS};
+    private static final int[] MODE_REPEAT = {Routine.Goal.ONCE, Routine.Goal.DAILY, Routine.Goal.ALTERNATE, Routine.Goal.WEEKDAYS, Routine.Goal.ONCE};
+    /** The place of "Tomorrow only" in the list of ways to repeat (the first, "Today only", is 0). */
+    private static final int TOMORROW = 4;
 
     /**
      * Adds or changes a goal. A goal for today is only for what is still to come in today's schedule. Every other way of repeating
      * is for the activities of the schedules it will meet. Either way the goal only counts on days whose schedule has the activity.
      */
     void editGoal(final Routine.Goal g, final boolean todayOnly) {
-        if (g == null && !a.requirePro(DayPass.GOALS, "Setting a goal", () -> editGoal(null, todayOnly))) return;
+        editGoal(g, todayOnly, false);
+    }
+
+    /** Same, and with {@code tomorrow} a new goal starts as "Tomorrow only": it is for a slot of tomorrow's schedule. */
+    void editGoal(final Routine.Goal g, final boolean todayOnly, final boolean tomorrow) {
+        if (g == null && !a.requirePro(DayPass.GOALS, "Setting a goal", () -> editGoal(null, todayOnly, tomorrow))) return;
         final Routine m = a.routine();
         final long now = System.currentTimeMillis();
         final Plan.DayPlan plan = Plan.resolve(m, Store.overrides(a, m), now, Store.zone());
         final LocalDate today = plan.day;
 
-        final int[] mode = {g == null ? (todayOnly ? 0 : 1) : indexOfRepeat(g.repeat)};
+        final int[] mode = {g == null ? (tomorrow ? TOMORROW : todayOnly ? 0 : 1) : indexOfGoal(g, today)};
         final int[] mask = {g != null && g.repeat == Routine.Goal.WEEKDAYS ? g.daysMask : 31};
         final List<Routine.Sub> with = new ArrayList<>();
         if (g != null) with.addAll(g.with);
@@ -533,7 +541,7 @@ final class InsightsPage extends Page {
 
         final Spinner when = new Spinner(a);
         ArrayAdapter<String> wad = Lang.adapter(a, android.R.layout.simple_spinner_item,
-                new String[]{"Today only", "Every day", "Every other day", "On chosen days"});
+                new String[]{"Today only", "Every day", "Every other day", "On chosen days", "Tomorrow only"});
         wad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         when.setAdapter(wad);
         when.setSelection(mode[0]);
@@ -566,7 +574,7 @@ final class InsightsPage extends Page {
                 if (g != null) {
                     cands.add(GoalSlots.Pick.of(g));   // changing a goal keeps its slot
                 } else {
-                    cands.addAll(slotPicks(m, plan, mode[0], mask[0]));
+                    cands.addAll(mode[0] == TOMORROW ? tomorrowPicks(m, today) : slotPicks(m, plan, mode[0], mask[0]));
                 }
                 List<String> labels = new ArrayList<>();
                 int sel = 0;
@@ -586,7 +594,7 @@ final class InsightsPage extends Page {
                 // conditions that no longer fit the type are dropped
                 with.removeIf(w -> chosen[0] != null && chosen[0].legacy && w.kind == chosen[0].kind && w.name.equalsIgnoreCase(chosen[0].name));
                 withBtn.setText(with.isEmpty() ? "Any day with this slot" : "Only on days with " + names(with));
-                withBtn.setVisibility(mode[0] == 0 ? View.GONE : View.VISIBLE);
+                withBtn.setVisibility(mode[0] == 0 || mode[0] == TOMORROW ? View.GONE : View.VISIBLE);
                 daysRow.setVisibility(mode[0] == 3 ? View.VISIBLE : View.GONE);
             }
         };
@@ -620,6 +628,10 @@ final class InsightsPage extends Page {
         withBtn.setOnClickListener(v -> pickWith(m, plan, mode[0], mask[0],
                 chosen[0] != null && chosen[0].legacy ? new Routine.Sub(chosen[0].kind, chosen[0].name) : null, with, withBtn));
         fillTypes.run();
+        if (g == null && cands.isEmpty() && mode[0] == TOMORROW) {
+            a.toastText("Tomorrow's schedule has no slot to set a goal for. Add a slot in the Routine tab first.");
+            return;
+        }
         if (g == null && cands.isEmpty()) {
             a.toastText(todayOnly ? "Nothing is left in today's schedule to set a goal for. Pick Every day instead."
                     : "Add a slot to your routine first (Routine tab)");
@@ -631,6 +643,11 @@ final class InsightsPage extends Page {
             if (cands.isEmpty()) return;
         }
 
+        final EditText nameField = new EditText(a);
+        nameField.setSingleLine(true);
+        nameField.setHint(Lang.tr("Goal name (optional)"));
+        nameField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Routine.Goal.MAX_NAME)});
+        if (g != null) nameField.setText(g.name);
         final EditText hours = number(g == null ? "2" : String.valueOf(g.mins / 60));
         final EditText mins = number(g == null ? "0" : String.valueOf(g.mins % 60));
         LinearLayout box = new LinearLayout(a);
@@ -642,6 +659,8 @@ final class InsightsPage extends Page {
         box.addView(Ui.label(a, "Slot", 12, Ui.MUTED, true), Ui.wrap(a, 12));
         box.addView(type, Ui.wide(a, 0));
         box.addView(withBtn, Ui.wide(a, 4));
+        box.addView(Ui.label(a, "Name", 12, Ui.MUTED, true), Ui.wrap(a, 12));
+        box.addView(nameField, Ui.wide(a, 0));
         box.addView(Ui.label(a, "At least", 12, Ui.MUTED, true), Ui.wrap(a, 12));
         LinearLayout hm = new LinearLayout(a);
         hm.setOrientation(LinearLayout.HORIZONTAL);
@@ -662,7 +681,7 @@ final class InsightsPage extends Page {
         android.widget.ScrollView sv = new android.widget.ScrollView(a);
         sv.addView(box);
         AlertDialog.Builder b = new DBuilder(a)
-                .setTitle(g == null ? (mode[0] == 0 ? "New goal for today" : "New goal") : "Goal for " + g.label())
+                .setTitle(g == null ? (mode[0] == 0 ? "New goal for today" : mode[0] == TOMORROW ? "New goal for tomorrow" : "New goal") : "Goal for " + g.label())
                 .setView(sv)
                 .setPositiveButton("Save", (d, w) -> {
                     int total = parse(hours) * 60 + parse(mins);
@@ -680,8 +699,9 @@ final class InsightsPage extends Page {
                     GoalSlots.Pick pick = chosen[0];
                     Routine.Goal ng = pick.legacy ? new Routine.Goal(pick.kind, pick.name, mm) : Routine.Goal.forSlot(pick.kind, pick.name, mm);
                     ng.repeat = MODE_REPEAT[mode[0]];
-                    if (ng.repeat == Routine.Goal.ONCE) ng.date = today;
+                    if (ng.repeat == Routine.Goal.ONCE) ng.date = mode[0] == TOMORROW ? today.plusDays(1) : today;
                     else if (ng.repeat == Routine.Goal.ALTERNATE) ng.date = g != null && g.repeat == Routine.Goal.ALTERNATE && g.date != null ? g.date : today;
+                    ng.name = Routine.cleanGoalName(nameField.getText().toString());
                     if (ng.repeat == Routine.Goal.WEEKDAYS) ng.daysMask = mask[0] & 0x7F;
                     if (ng.repeat != Routine.Goal.ONCE) ng.with.addAll(with);
                     for (String t : todos) ng.addTodo(t);
@@ -821,6 +841,19 @@ final class InsightsPage extends Page {
             for (Routine r : rs) blocks.addAll(r.blocks);
         }
         return GoalSlots.of(blocks);
+    }
+
+    /** The slots a goal for tomorrow can be set for: those of tomorrow's schedule (not sleep, not taken off). */
+    static List<GoalSlots.Pick> tomorrowPicks(Routine m, LocalDate today) {
+        List<Routine.Block> blocks = new ArrayList<>();
+        for (Routine.Block b : m.forDay(today.plusDays(1)).blocks) if (b.kind != Routine.SLEEP && !b.skipped) blocks.add(b);
+        return GoalSlots.of(blocks);
+    }
+
+    /** Which entry of the list of ways to repeat a goal is: a one-day goal for tomorrow is "Tomorrow only". */
+    private static int indexOfGoal(Routine.Goal g, LocalDate today) {
+        if (g.repeat == Routine.Goal.ONCE && g.date != null && g.date.equals(today.plusDays(1))) return TOMORROW;
+        return indexOfRepeat(g.repeat);
     }
 
     private static int indexOfRepeat(int repeat) {

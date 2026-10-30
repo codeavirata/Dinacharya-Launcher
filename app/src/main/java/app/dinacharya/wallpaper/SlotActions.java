@@ -161,6 +161,7 @@ final class SlotActions {
             EarlyFinish.Offer o = EarlyFinish.of(Store.livePlan(c, base, saved, now), now);
             if (o == null || o.kind != EarlyFinish.FINISH) return -1;
             if (o.curIsSleep && how != EARLY_NOW) return -1;
+            if (o.carried && how != EARLY_NOW) return -1;
             String day = saved.day.toString();
             AlarmState st = Store.alarmState(c);
             long begin = now;
@@ -169,7 +170,9 @@ final class SlotActions {
                 begin = Math.min(now + m * 60000L, Math.max(now, o.plannedEndMs - 60000L));
             }
             HistoryStore h = Store.history(c);
-            h.append(Ev.early(now, day, o.srcNext, o.srcCur, o.titleCur, now));
+            // a slot that was carried on ends now and the next begins now (the carry is cut short); any other slot is cut short
+            if (o.carried) h.append(Ev.extend(now, day, o.srcNext, o.srcCur, o.titleCur, now));
+            else h.append(Ev.early(now, day, o.srcNext, o.srcCur, o.titleCur, now));
             h.append(Ev.ack(now, day, o.srcNext, o.titleNext, "C", ""));
             st.bindSkips(Plan.scheduleSignature(base));   // marks of an older schedule go first
             st.skipAlarm(day, o.srcNext);   // it has begun, so its own alarm at the planned time stays quiet

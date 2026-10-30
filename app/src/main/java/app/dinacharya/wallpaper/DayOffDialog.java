@@ -17,6 +17,30 @@ final class DayOffDialog {
     }
 
     /**
+     * A small "Day off" chip for the Home and Routine tabs (not a full-size button). It asks "Take the rest of today off?" and goes on as
+     * the other ways to a day off do. {@code changed} runs once the day is off (and after the plan question).
+     */
+    static android.widget.TextView chip(final Activity a, final Runnable changed) {
+        android.widget.TextView t = Ui.label(a, "Day off", 13, Ui.TEAL_DARK, true);
+        t.setGravity(android.view.Gravity.CENTER);
+        t.setMinHeight(Ui.dp(a, 34));
+        t.setPadding(Ui.dp(a, 14), Ui.dp(a, 6), Ui.dp(a, 14), Ui.dp(a, 6));
+        t.setBackground(Ui.pressable(a, Ui.TONAL, 0, 17, 0x300E7C7B));
+        t.setContentDescription(Lang.tr("Take the rest of today off"));
+        t.setOnClickListener(v -> {
+            boolean off = false;
+            try {
+                off = DayOff.pending(Store.load(a), Store.alarmState(a), System.currentTimeMillis());
+            } catch (RuntimeException ignored) {
+                // treat it as not off: the question below is harmless
+            }
+            if (off) Lang.toast(a, "Today is already a day off", android.widget.Toast.LENGTH_SHORT).show();
+            else confirm(a, changed, changed);
+        });
+        return t;
+    }
+
+    /**
      * "Take the rest of today off?" Then, when it was done, "Plan your day now, later or leave it?".
      *
      * @param taken    runs as soon as the day is off (a screen behind can redraw; an alarm that is ringing can be silenced)

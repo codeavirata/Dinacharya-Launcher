@@ -2058,6 +2058,11 @@ The strong lock below does.	નીચેનું સ્ટ્રૉંગ લ�
 To hold them whichever way they open, allow the two things in the Strong lock card below.	તેમને ગમે તે રીતે ખોલવામાં આવે તો પણ લાગુ રાખવા માટે નીચેના સ્ટ્રૉંગ લૉક કાર્ડમાં બંને બાબતોની પરવાનગી આપો.
 Without strict, you can still break a lock: wait 30 seconds and type a sentence.	કડક ન હોય તો પણ તમે લૉક તોડી શકો છો: 30 સેકન્ડ રાહ જુઓ અને એક વાક્ય ટાઇપ કરો.
 A strict lock cannot be broken, and cannot be changed while it holds.	કડક લૉક તોડી શકાતું નથી, અને તે લાગુ હોય ત્યારે બદલી પણ શકાતું નથી.
+Today is already a day off	આજે પહેલેથી રજાનો દિવસ છે
+＋  Goal for tomorrow	＋  આવતીકાલનું લક્ષ્ય
+Goal name (optional)	લક્ષ્યનું નામ (વૈકલ્પિક)
+New goal for tomorrow	આવતીકાલ માટે નવું લક્ષ્ય
+Tomorrow's schedule has no slot to set a goal for. Add a slot in the Routine tab first.	આવતીકાલના શેડ્યૂલમાં લક્ષ્ય માટે કોઈ સ્લોટ નથી. પહેલા રૂટિન ટેબમાં સ્લોટ ઉમેરો.
 # the same texts without the marks at their ends
 {1} after your plan	તમારી યોજના પછી {1}
 Made	બનાવ્યું
