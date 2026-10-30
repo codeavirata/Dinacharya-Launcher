@@ -66,7 +66,7 @@ final class PickerAuth implements Tokens {
             String detail = (m == null || m.trim().isEmpty()) ? "" : "\n\nGoogle said: " + m.trim();
             if (m != null && m.contains("UNREGISTERED_ON_API_CONSOLE")) {
                 return "Google has no record of this app (code " + code + ", UNREGISTERED_ON_API_CONSOLE). In Google Cloud, "
-                        + "the Android client for package app.dinacharya.wallpaper with this app's SHA-1 is missing, or it is in "
+                        + "the Android client for this app's package name (app.dinacharya.launcher) with this app's SHA-1 is missing, or it is in "
                         + "a different project than the Drive API. Tap “Check setup” for the exact values to enter." + detail;
             }
             if (code == 10) {
