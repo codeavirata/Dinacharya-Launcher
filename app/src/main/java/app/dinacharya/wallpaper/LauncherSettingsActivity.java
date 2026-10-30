@@ -20,9 +20,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/** Settings for the minimal home screen: the swipes, the look, the pause rules and the tour. */
+/**
+ * The home screen and focus pages of Settings. {@link #SEC_HOME} holds the home app, the swipes, the app list and the hidden apps;
+ * {@link #SEC_FOCUS} holds the pauses, the locks (with the strong lock that makes them hold everywhere) and the phone use in slots.
+ * Each page is a row of cards of which only one is open at a time; Settings opens the page with the card the person chose.
+ */
 public class LauncherSettingsActivity extends LangActivity {
     private static final int DIALOG = android.R.style.Theme_DeviceDefault_Light_Dialog_Alert;
+    static final String EXTRA_SECTION = "section";
+    static final String EXTRA_CARD = "card";
+    static final int SEC_HOME = 0, SEC_FOCUS = 1;
 
     private interface IntChange {
         void set(int value);
@@ -35,11 +42,17 @@ public class LauncherSettingsActivity extends LangActivity {
     private ScrollView sv;
     private List<AppEntry> apps = new ArrayList<>();
     private final Map<String, AppEntry> byKey = new HashMap<>();
+    private int section = SEC_HOME;
+    private Accordion cards = new Accordion();
+    private final List<String> cardIds = new ArrayList<>();
+    private String openId;
 
     @Override
     protected void onCreate(Bundle b) {
         super.onCreate(b);
         CrashLog.install(this);
+        section = getIntent().getIntExtra(EXTRA_SECTION, SEC_HOME) == SEC_FOCUS ? SEC_FOCUS : SEC_HOME;
+        openId = getIntent().getStringExtra(EXTRA_CARD);
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
         root.setBackgroundColor(0xFFEDF2F1);
@@ -48,7 +61,7 @@ public class LauncherSettingsActivity extends LangActivity {
         back.setPadding(Ui.dp(this, 16), Ui.dp(this, 14), Ui.dp(this, 16), Ui.dp(this, 4));
         back.setOnClickListener(v -> finish());
         root.addView(back, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        TextView title = Ui.label(this, "Home screen", 22, Ui.INK, true);
+        TextView title = Ui.label(this, section == SEC_FOCUS ? "Focus and locks" : "Home screen", 22, Ui.INK, true);
         title.setPadding(Ui.dp(this, 16), 0, Ui.dp(this, 16), Ui.dp(this, 8));
         root.addView(title);
 
@@ -181,6 +194,13 @@ public class LauncherSettingsActivity extends LangActivity {
         return r;
     }
 
+    /** A card of the page: it joins the row, so opening it closes the one that was open. */
+    private Expander.Part card(String id, String title, String summary) {
+        Expander.Part p = cards.add(Expander.card(this, body, title, null, summary, null, false));
+        cardIds.add(id);
+        return p;
+    }
+
     private void addRow(LinearLayout card, View v, float topDp) {
         card.addView(v, Ui.wide(this, topDp));
     }
@@ -196,33 +216,35 @@ public class LauncherSettingsActivity extends LangActivity {
         armPassTimer();
         int y = sv.getScrollY();
         body.removeAllViews();
-        homeAppCard();
-        languageCard();
-        gesturesCard();
-        lookCard();
-        final int open = Pro.open(this);   // what is open now: everything with Pro, or the one item a video opened
-        focusCard(open);
-        useCard();
-        lockCard(open);
-        strongCard();
-        hiddenCard();
-        todayCard();
-        resetCard();
+        cards = new Accordion();
+        cardIds.clear();
+        if (section == SEC_FOCUS) {
+            final int open = Pro.open(this);   // what is open now: everything with Pro, or the one item a video opened
+            focusCard(open);
+            lockCard(open);
+            useCard();
+            todayCard();
+        } else {
+            homeAppCard();
+            gesturesCard();
+            lookCard();
+            hiddenCard();
+            resetCard();
+        }
+        int idx = cardIds.indexOf(openId);
+        if (idx < 0 && cardIds.size() == 1) idx = 0;
+        cards.onChanged(() -> openId = cards.open() >= 0 && cards.open() < cardIds.size() ? cardIds.get(cards.open()) : null);
+        cards.show(idx);
         body.addView(Ui.rule(this), Ui.lp(this, ViewGroup.LayoutParams.MATCH_PARENT, Ui.dp(this, 1), 28));
         body.addView(new BrandMark(this), Ui.wide(this, 8));
         final int keep = y;
         sv.post(() -> sv.scrollTo(0, keep));
     }
 
-    private void languageCard() {
-        LinearLayout c = Ui.section(this, body, "Language", null);
-        addRow(c, row("Language", LanguageDialog.summary(this), "Change", () -> LanguageDialog.show(this, DIALOG)), 0);
-    }
-
     private void homeAppCard() {
         boolean def = HomeRole.isDefault(this);
-        LinearLayout c = Expander.card(this, body, "Home app", null,
-                def ? "Dinacharya Launcher is your home app" : "Not your home app yet", "set_home", true).body;
+        LinearLayout c = card("home", "Home app",
+                def ? "Dinacharya Launcher is your home app" : "Not your home app yet").body;
         addRow(c, note("No apps on the home screen: your day is the wallpaper. Swipe up for every app."), 6);
         addRow(c, Ui.statusRow(this, def ? "Dinacharya Launcher is your home app" : "Not your home app yet",
                 def ? "Pressing Home shows this screen." : "Press Try it to look first.", def, "Set", () -> HomeRole.request(this)), 8);
@@ -243,18 +265,12 @@ public class LauncherSettingsActivity extends LangActivity {
         btns.addView(tryIt, a);
         btns.addView(change, b2);
         addRow(c, btns, 10);
-        Expander.Part helpers = Expander.more(this, c, "Help and checks", "set_home_help", false);
-        addRow(helpers.body, note("You can go back to your old home screen at any time: tap Change home app and pick it. "
-                + "Nothing is removed from your phone."), 6);
-        addRow(helpers.body, row("Take the tour", "A short walk through what the app does", "Start",
-                () -> startActivity(new Intent(this, TourActivity.class))), 6);
-        addRow(helpers.body, row("Check phone settings", "Permissions and settings the app needs", "Open",
-                () -> startActivity(new Intent(this, SetupActivity.class).putExtra(SetupActivity.EXTRA_REVIEW, true))), 6);
+        addRow(c, note("You can go back to your old home screen at any time: tap Change home app and pick it. "
+                + "Nothing is removed from your phone."), 10);
     }
 
     private void gesturesCard() {
-        LinearLayout c = Expander.card(this, body, "Swipes", null,
-                nameOf(cfg.swipeLeft) + "  ·  " + nameOf(cfg.swipeRight), "set_swipes", false).body;
+        LinearLayout c = card("swipes", "Swipes", nameOf(cfg.swipeLeft) + "  ·  " + nameOf(cfg.swipeRight)).body;
         addRow(c, row("Swipe left", nameOf(cfg.swipeLeft), "Change", () -> pickSwipe(true)), 6);
         addRow(c, row("Swipe right", nameOf(cfg.swipeRight), "Change", () -> pickSwipe(false)), 2);
         addRow(c, note("Swipe up: all apps. Swipe down: notifications. Press and hold anywhere: these settings. "
@@ -273,13 +289,8 @@ public class LauncherSettingsActivity extends LangActivity {
     }
 
     private void lookCard() {
-        LinearLayout c = Expander.card(this, body, "Look", null, "Colours, text size and the keyboard in the list of all apps",
-                "set_look", false).body;
-        addRow(c, note("The home screen is always your day, shown by the Dinacharya Launcher wallpaper: the time, the date and every slot, "
-                + "with the one you are in highlighted. Its colours, clock and spacing are set in the dashboard."), 4);
-        addRow(c, Ui.button(this, "Change what the home screen shows", false, v ->
-                startActivity(new Intent(this, MainActivity.class).putExtra(MainActivity.EXTRA_OPEN, "look"))), 8);
-        addRow(c, Ui.label(this, "Colours of the list of all apps and the pause screen", 14, Ui.MUTED, true), 14);
+        LinearLayout c = card("list", "App list", "Colours, text size and the keyboard in the list of all apps").body;
+        addRow(c, Ui.label(this, "Colours of the list of all apps and the pause screen", 14, Ui.MUTED, true), 4);
         Segmented theme = new Segmented(this, LauncherConfig.THEME_NAMES);
         theme.pick(cfg.theme, false);
         theme.setListener(i -> {
@@ -337,9 +348,9 @@ public class LauncherSettingsActivity extends LangActivity {
     }
 
     private void focusCard(final int open) {
-        LinearLayout c = Expander.card(this, body, "Focus", null,
+        LinearLayout c = card("pauses", "Focus",
                 cfg.rules.isEmpty() ? "A pause before apps open: none yet"
-                        : cfg.rules.size() == 1 ? "1 app has a pause" : cfg.rules.size() + " apps have a pause", "set_focus", false).body;
+                        : cfg.rules.size() == 1 ? "1 app has a pause" : cfg.rules.size() + " apps have a pause").body;
         Expander.Part focusHow = Expander.more(this, c, "How it works", "set_focus_how", false);
         // whole sentences, so that each can be translated as one piece
         addRow(focusHow.body, note("Pick apps that pull you away. "
@@ -429,7 +440,7 @@ public class LauncherSettingsActivity extends LangActivity {
                 : n == 0 ? "On. Every app counts as phone use"
                 : n == 1 ? "On. Apps chosen for 1 activity" : "On. Apps chosen for " + n + " activities";
         if (!Limits.analysisAllowed(Pro.has(this, DayPass.ANALYSIS))) {
-            LinearLayout locked = Expander.card(this, body, "Phone use in slots · Pro", null, "Part of Pro", "set_use", false).body;
+            LinearLayout locked = card("use", "Phone use in slots · Pro", "Part of Pro").body;
             addRow(locked, note("See when you pick up the phone during a slot, with the exact times, and mark the apps that belong to an "
                     + "activity so they are never counted against you. The reports then show it slot by slot." + (cfg.trackUse
                     ? " Your choices are kept and work again with Pro." : "")), 4);
@@ -440,7 +451,7 @@ public class LauncherSettingsActivity extends LangActivity {
             if (offer.getChildCount() > 0) addRow(locked, offer, 8);
             return;
         }
-        LinearLayout c = Expander.card(this, body, "Phone use in slots", null, summary, "set_use", false).body;
+        LinearLayout c = card("use", "Phone use in slots", summary).body;
         addRow(c, note("See when you pick up the phone during a slot. The home screen marks it with the exact times and the reports "
                 + "count it. Apps you choose for an activity are part of it and are never marked."), 4);
         addRow(c, Ui.toggle(this, "Show phone use during slots", cfg.trackUse, (b, on) -> {
@@ -517,10 +528,13 @@ public class LauncherSettingsActivity extends LangActivity {
 
     private void lockCard(final int open) {
         final boolean more = DayPass.has(open, DayPass.LOCK_MORE);
-        LinearLayout c = Expander.card(this, body, more ? "Locked groups" : "Locked apps", null,
-                cfg.groups.isEmpty() ? (more ? "Lock a group of apps for a time" : "Lock apps for a time")
-                        : cfg.groups.size() == 1 ? "1 lock" : cfg.groups.size() + " locks", "set_lock", false).body;
-        Expander.Part lockHow = Expander.more(this, c, "How locks work", "set_lock_how", false);
+        LinearLayout c = card("locks", more ? "Locked groups" : "Locked apps",
+                (cfg.groups.isEmpty() ? (more ? "Lock a group of apps for a time" : "Lock apps for a time")
+                        : cfg.groups.size() == 1 ? "1 lock" : cfg.groups.size() + " locks")
+                        + (GuardRules.needsPermission(StrongMode.state(this))
+                        ? "  ·  Needs your permission: locks hold only from this home screen" : "")).body;
+        final Accordion inner = new Accordion();   // "How locks work" and the strong lock's "How it works": one open at a time
+        Expander.Part lockHow = inner.add(Expander.more(this, c, "How locks work", "set_lock_how", false));
         addRow(lockHow.body, note((DayPass.has(open, DayPass.LOCK_APPS)
                 ? "Put the apps that eat your time in a group, then lock the group for hours you choose, on the days you choose, or just for the next hour. "
                 : "Pick the apps that eat your time, then lock them for hours you choose, on the days you choose, or just for the next hour. ")
@@ -562,6 +576,7 @@ public class LauncherSettingsActivity extends LangActivity {
             GroupDialog.show(this, DIALOG, cfg, null, visibleApps(), now, clock24, this::render);
         });
         addRow(c, add, 10);
+        strongBlock(c, inner);
         addRow(lockHow.body, note(strongOn()
                 ? "The strong lock is on, so a lock also holds an app opened from Recents, App info, a notification, a widget or another home app, "
                 + "and one that is open when the lock starts."
@@ -586,25 +601,18 @@ public class LauncherSettingsActivity extends LangActivity {
         return cfg.strong && StrongMode.hasUsage(this) && StrongMode.hasOverlay(this);
     }
 
-    private void strongCard() {
-        int shown = StrongMode.state(this);
-        LinearLayout c = Expander.card(this, body, "Strong lock", null,
-                shown == GuardRules.ON ? "On: holds locks and pauses everywhere"
-                        : shown == GuardRules.IDLE ? "On: nothing is locked or paused yet"
-                        : GuardRules.needsPermission(shown) ? "Needs your permission: locks hold only from this home screen"
-                        : "Off: locks hold only from this home screen", "set_strong", false).body;
-        Expander.Part strongHow = Expander.more(this, c, "How it works", "set_strong_how", false);
-        addRow(strongHow.body, note("A lock that only works when you open an app from this home screen is easy to get around: open the app "
-                + "from Recents or App info instead. With the strong lock on, Dinacharya Launcher also holds an app opened from Recents, "
-                + "App info, a notification, a widget or another home app, and an app that is already open when a lock starts. It starts "
-                + "by itself as soon as something is locked or paused. The phone, Settings, the keyboard and system screens are never blocked."), 4);
+    /**
+     * The strong lock, inside the Locked apps card where the locks are: one switch that makes the locks (and the pauses) hold
+     * whichever way an app is opened. A group's own "strict" choice is separate: it only decides whether that lock can be broken.
+     */
+    private void strongBlock(LinearLayout c, Accordion inner) {
         addRow(c, Ui.toggle(this, "Strong lock", cfg.strong, (b, on) -> {
             cfg.strong = on;
             save();
             StrongMode.ensure(this);
             render();
             if (on) StrongMode.ask(this);
-        }), 8);
+        }), 16);
         addRow(c, note(StrongMode.line(StrongMode.state(this))), 2);
         if (cfg.strong) {
             addRow(c, Ui.statusRow(this, "Usage access", "Lets Dinacharya Launcher see which app is in front",
@@ -612,15 +620,19 @@ public class LauncherSettingsActivity extends LangActivity {
             addRow(c, Ui.statusRow(this, "Display over other apps", "Lets the lock screen appear over an app",
                     StrongMode.hasOverlay(this), "Allow", () -> StrongMode.askOverlayExplained(this)), 2);
         }
+        Expander.Part strongHow = inner.add(Expander.more(this, c, "How the strong lock works", "set_strong_how", false));
+        addRow(strongHow.body, note("A lock that only works when you open an app from this home screen is easy to get around: open the app "
+                + "from Recents or App info instead. With the strong lock on, Dinacharya Launcher also holds an app opened from Recents, "
+                + "App info, a notification, a widget or another home app, and an app that is already open when a lock starts. It starts "
+                + "by itself as soon as something is locked or paused. The phone, Settings, the keyboard and system screens are never blocked."), 4);
         addRow(strongHow.body, note("It shows a small notification while it runs. It looks only at the name of the app in front, on this phone, "
                 + "and keeps and sends nothing. If your phone stops background apps to save battery and the lock stops holding, "
                 + "allow Dinacharya Launcher to run in the background in the phone's battery settings."), 8);
     }
 
     private void hiddenCard() {
-        LinearLayout c = Expander.card(this, body, "Hidden apps", null,
-                cfg.hidden.isEmpty() ? "None" : cfg.hidden.size() == 1 ? "1 app is hidden" : cfg.hidden.size() + " apps are hidden",
-                "set_hidden", false).body;
+        LinearLayout c = card("hidden", "Hidden apps",
+                cfg.hidden.isEmpty() ? "None" : cfg.hidden.size() == 1 ? "1 app is hidden" : cfg.hidden.size() + " apps are hidden").body;
         if (cfg.hidden.isEmpty()) {
             addRow(c, note("None. In the list of all apps, press and hold an app to hide it."), 6);
             return;
@@ -664,8 +676,8 @@ public class LauncherSettingsActivity extends LangActivity {
         } catch (RuntimeException e) {
             CrashLog.note(this, "home screen today", e);
         }
-        LinearLayout c = Expander.card(this, body, "Today", null,
-                pauses == 0 ? "No pauses so far today." : pauses == 1 ? "1 pause today" : pauses + " pauses today", "set_today", false).body;
+        LinearLayout c = card("today", "Today",
+                pauses == 0 ? "No pauses so far today." : pauses == 1 ? "1 pause today" : pauses + " pauses today").body;
         if (pauses == 0) {
             addRow(c, note("No pauses so far today."), 6);
         } else {

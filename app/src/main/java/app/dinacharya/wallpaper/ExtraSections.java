@@ -140,6 +140,7 @@ final class ExtraSections {
 
     void buildAlarms(LinearLayout page) {
         LinearLayout root = Ui.section(a, page, "Alarms", "A nudge at every slot");
+        final Accordion alarmParts = new Accordion();   // only one of the three dropdowns below is open at a time
 
         alarmBox = Ui.toggle(a, "Remind me with an alarm", routine().alarmOn, (b, on) -> {
             if (binding) return;
@@ -151,7 +152,7 @@ final class ExtraSections {
                 + "You can switch single slots off with the bell on the Routine tab.", 13, Ui.MUTED, false), Ui.wide(a, 2));
 
         // Slots that are set to a silent notification.
-        Expander.Part silent = Expander.more(a, root, "Slots without a sound", "alarm_silent", false);
+        Expander.Part silent = alarmParts.add(Expander.more(a, root, "Slots without a sound", "alarm_silent", false));
         askSilentBox = Ui.toggle(a, "Ask me about slots set to a silent notification", routine().askSilent, (b, on) -> {
             if (binding) return;
             routine().askSilent = on;
@@ -165,7 +166,7 @@ final class ExtraSections {
                 + "under its bell on the Routine tab.", 13, Ui.MUTED, false), Ui.wide(a, 2));
 
         // The start-of-day alarm.
-        Expander.Part wake = Expander.more(a, root, "Start-of-day alarm", "alarm_wake", false);
+        Expander.Part wake = alarmParts.add(Expander.more(a, root, "Start-of-day alarm", "alarm_wake", false));
         wake.body.addView(Ui.label(a, "Choose one slot as your start-of-day alarm from its bell on the Routine tab. It has to be the first alarm of "
                 + "the day. It keeps ringing until you start the day, put it off or take the day off. Before you can turn it off you can be asked to "
                 + "solve a sum, take a pause, shake the phone or type a sentence, and you see a motivating quote.",
@@ -279,7 +280,7 @@ final class ExtraSections {
         root.addView(Ui.label(a, "The test goes the same way as a real alarm. Lock the phone first to see it as it will be.",
                 12, Ui.MUTED, false), Ui.wide(a, 6));
 
-        readyPart = Expander.more(a, root, "Is the phone ready?", "alarm_ready", false);
+        readyPart = alarmParts.add(Expander.more(a, root, "Is the phone ready?", "alarm_ready", false));
         healthBox = new LinearLayout(a);
         healthBox.setOrientation(LinearLayout.VERTICAL);
         readyPart.body.addView(healthBox, Ui.wide(a, 4));

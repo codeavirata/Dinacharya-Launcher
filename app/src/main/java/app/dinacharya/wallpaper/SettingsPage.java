@@ -76,19 +76,25 @@ final class SettingsPage extends Page {
     private void menu() {
         title("Settings", null);
         proCard();
-        LinearLayout home = Ui.section(a, body, "Home screen", null);
-        itemAction(home, Glyph.GLOBE, "Language", LanguageDialog.summary(a),
+        LinearLayout general = Ui.section(a, body, "General", null);
+        itemAction(general, Glyph.GLOBE, "Language", LanguageDialog.summary(a),
                 () -> LanguageDialog.show(a, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert));
-        itemAction(home, Glyph.HOME, "Home screen", "Swipes, look, pause rules, hidden apps",
-                () -> a.startActivity(new Intent(a, LauncherSettingsActivity.class)));
-        itemAction(home, Glyph.HELP, "Take the tour", "A short walk through what the app does",
+        itemAction(general, Glyph.HELP, "Take the tour", "A short walk through what the app does",
                 () -> a.startActivity(new Intent(a, TourActivity.class)));
-        itemAction(home, Glyph.SHIELD, "Check phone settings", "Permissions and settings the app needs, with a tick for each",
+        itemAction(general, Glyph.SHIELD, "Check phone settings", "Permissions and settings the app needs, with a tick for each",
                 () -> a.startActivity(new Intent(a, SetupActivity.class).putExtra(SetupActivity.EXTRA_REVIEW, true)));
-        LinearLayout card = Ui.section(a, body, "Home screen look and alarms", null);
-        item(card, Glyph.PALETTE, "Home screen look", "Colours, clock, phone time, spacing", LOOK);
-        item(card, Glyph.BELL, "Alarms", "On or off, test alarm, phone checklist", ALARMS);
-        LinearLayout card2 = Ui.section(a, body, "Phone", null);
+        LinearLayout home = Ui.section(a, body, "Home screen", null);
+        homeItem(home, Glyph.HOME, "Home app", "Make it your home app, and the wallpaper", LauncherSettingsActivity.SEC_HOME, "home");
+        homeItem(home, Glyph.GEAR, "Swipes", "What swiping left and right opens", LauncherSettingsActivity.SEC_HOME, "swipes");
+        homeItem(home, Glyph.CHART, "App list", "Colours, text size and the keyboard in the list of all apps", LauncherSettingsActivity.SEC_HOME, "list");
+        homeItem(home, Glyph.PERSON, "Hidden apps", "Apps kept out of the list of all apps", LauncherSettingsActivity.SEC_HOME, "hidden");
+        item(home, Glyph.PALETTE, "Home screen look", "Colours, clock, phone time, spacing", LOOK);
+        LinearLayout focus = Ui.section(a, body, "Focus and locks", null);
+        homeItem(focus, Glyph.TARGET, "Focus", "A short wait before apps open", LauncherSettingsActivity.SEC_FOCUS, "pauses");
+        homeItem(focus, Glyph.SHIELD, "Locked apps", "Lock apps for a time, and the strong lock", LauncherSettingsActivity.SEC_FOCUS, "locks");
+        homeItem(focus, Glyph.ROUTINE, "Phone use in slots", "See when you pick up the phone during a slot", LauncherSettingsActivity.SEC_FOCUS, "use");
+        LinearLayout card2 = Ui.section(a, body, "Alarms and phone", null);
+        item(card2, Glyph.BELL, "Alarms", "On or off, test alarm, phone checklist", ALARMS);
         item(card2, Glyph.SHIELD, "Permissions", "What the app may do, and why", PERMISSIONS);
         LinearLayout card3 = Ui.section(a, body, "Support", null);
         item(card3, Glyph.HELP, "Help and problem report", "How things work, copy a report", HELP);
@@ -98,6 +104,13 @@ final class SettingsPage extends Page {
         }
         item(card3, Glyph.INFO, "About", "Version and developer", ABOUT);
         a.addFooter(body);
+    }
+
+    /** A line that opens one of the home and focus settings pages, with the card for this line open. */
+    private void homeItem(LinearLayout parent, int icon, String title, String sub, final int section, final String card) {
+        itemAction(parent, icon, title, sub, () -> a.startActivity(new Intent(a, LauncherSettingsActivity.class)
+                .putExtra(LauncherSettingsActivity.EXTRA_SECTION, section)
+                .putExtra(LauncherSettingsActivity.EXTRA_CARD, card)));
     }
 
     private void item(LinearLayout parent, int icon, String title, String sub, final int target) {
@@ -177,8 +190,9 @@ final class SettingsPage extends Page {
         card.addView(swatchBox, Ui.wide(a, 6));
         rebuildSwatches();
 
-        LinearLayout show = Expander.card(a, body, "On the home screen", null, "Clock, phone screen time, the “Developed by” mark",
-                "look_show", false).body;
+        final Accordion lookParts = new Accordion();   // only one of the two cards below is open at a time
+        LinearLayout show = lookParts.add(Expander.card(a, body, "On the home screen", null, "Clock, phone screen time, the “Developed by” mark",
+                "look_show", false)).body;
         show.addView(Ui.toggle(a, "24-hour clock", r.fmt24, (b, on) -> {
             r.fmt24 = on;
             a.persist();
@@ -207,7 +221,7 @@ final class SettingsPage extends Page {
         }), Ui.wide(a, 0));
         refreshAccess();
 
-        LinearLayout space = Expander.card(a, body, "Spacing", null, "Space at the top and at the bottom", "look_space", false).body;
+        LinearLayout space = lookParts.add(Expander.card(a, body, "Spacing", null, "Space at the top and at the bottom", "look_space", false)).body;
         addSlider(space, "Space at top", r.topPct, true);
         addSlider(space, "Space at bottom", r.bottomPct, false);
         space.addView(Ui.label(a, "Add top space if your lock screen shows a big clock, and bottom space for the app dock.",
@@ -446,6 +460,7 @@ final class SettingsPage extends Page {
         header("Help");
         LinearLayout card = Ui.section(a, body, "Quick guide", null);
         int tipNo = 0;
+        final Accordion helpParts = new Accordion();   // only one tip, or the problem report, is open at a time
         String[][] tips = {
             {"Home screen", "Dinacharya Launcher is your home screen: no apps on it, just your day, with the slot you are in highlighted. "
                     + "Tap your day to open the dashboard, swipe up for every app, down for notifications, press and hold for its settings. Settings > Home screen has the rest, and Take the tour shows it all."},
@@ -460,13 +475,13 @@ final class SettingsPage extends Page {
             {"Backup", "On Backup, sign in with Google and choose Daily, Weekly or Monthly. Restore on a new phone from the same tab."},
         };
         for (String[] t : tips) {
-            Expander.Part tip = Expander.more(a, card, t[0], "help_tip_" + (tipNo++), false);
+            Expander.Part tip = helpParts.add(Expander.more(a, card, t[0], "help_tip_" + (tipNo++), false));
             tip.body.addView(a.note(t[1]), Ui.wide(a, 2));
         }
         String crash = CrashLog.lastCrash(a);
         String notes = CrashLog.notes(a);
-        LinearLayout rep = Expander.card(a, body, "Problem report", null,
-                crash == null && notes.isEmpty() ? "Nothing written down" : "Some problems were written down", "help_report", false).body;
+        LinearLayout rep = helpParts.add(Expander.card(a, body, "Problem report", null,
+                crash == null && notes.isEmpty() ? "Nothing written down" : "Some problems were written down", "help_report", false)).body;
         rep.addView(a.note(crash == null && notes.isEmpty()
                 ? "No problems have been written down. If something goes wrong, the details are kept here so you can send them."
                 : "Some problems were written down. Copy them and send them to the developer."), Ui.wide(a, 4));

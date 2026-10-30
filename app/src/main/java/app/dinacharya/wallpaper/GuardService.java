@@ -182,7 +182,9 @@ public class GuardService extends Service {
             ch.setShowBadge(false);
             nm.createNotificationChannel(ch);
         }
-        PendingIntent pi = PendingIntent.getActivity(this, 7002, new Intent(this, LauncherSettingsActivity.class),
+        PendingIntent pi = PendingIntent.getActivity(this, 7002, new Intent(this, LauncherSettingsActivity.class)
+                        .putExtra(LauncherSettingsActivity.EXTRA_SECTION, LauncherSettingsActivity.SEC_FOCUS)
+                        .putExtra(LauncherSettingsActivity.EXTRA_CARD, "locks"),
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         Notification n = new Notification.Builder(this, CHANNEL)
                 .setSmallIcon(R.drawable.ic_stat)
