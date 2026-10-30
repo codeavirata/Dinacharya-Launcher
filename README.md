@@ -1392,6 +1392,8 @@ Android 8.0 or newer.
 
 **1.0, build 29:** the small "Day off" chip is removed from the Routine tab (it stays on Home). Nothing else changed.
 
+**1.0, build 35:** fixed: an app turned off and then on again in Settings was missing from the list of all apps (the list was only read again when an app changed while the home screen was open; it is now read again every time the home screen comes to the front). New: press and hold an app, then **Uninstall** opens Android's own uninstall screen, which asks to confirm. It is offered for apps you installed in the main profile, not for phone apps, work apps or Dinacharya itself. This adds the `REQUEST_DELETE_PACKAGES` permission.
+
 **1.0, build 34:** in the Focus card the "Pause during" switches are in their own dropdown (it shows the ticked kinds when closed), so the card is shorter. Nothing else changed.
 
 **1.0, build 33:** "Swipes" is now **Shortcut**. The strong lock has no switch of its own any more: the **strict** choice switches it on. A strict lock group (or a strict pause, both Pro) makes the watcher run, so the lock also holds an app opened from Recents, App info, a notification, a widget or another home app, and one that is already open when the lock starts. Ordinary locks and pauses hold when an app is opened from the home screen, as before. The two things the strong lock needs (Usage access, Display over other apps) show in the **Locked apps** card only while a strict lock or pause is set, and Android asks for them when the strict lock is saved. The Focus card now shows only pauses, Locked apps only locks and Phone use in slots only phone use.
