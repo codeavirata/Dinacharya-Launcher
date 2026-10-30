@@ -248,7 +248,7 @@
         <!-- Hands a report PDF to Drive, mail or chat when you tap Share. Reads nothing else. -->
         <provider
             android:name=".ReportProvider"
-            android:authorities="app.dinacharya.wallpaper.reports"
+            android:authorities="app.dinacharya.launcher.reports"
             android:exported="false"
             android:grantUriPermissions="true" />
 

@@ -13,7 +13,7 @@ import java.io.FileNotFoundException;
 
 /** Lets other apps (Drive, mail, chat) read a report PDF that the app shares, and nothing else. */
 public class ReportProvider extends ContentProvider {
-    static final String AUTHORITY = "app.dinacharya.wallpaper.reports";
+    static final String AUTHORITY = "app.dinacharya.launcher.reports";
 
     private File file(Uri uri) throws FileNotFoundException {
         String name = uri.getLastPathSegment();

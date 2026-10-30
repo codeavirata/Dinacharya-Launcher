@@ -7,11 +7,11 @@ android {
     compileSdk 36
 
     defaultConfig {
-        applicationId 'app.dinacharya.wallpaper'
+        applicationId 'app.dinacharya.launcher'
         minSdk 26
         // Google Play needs new apps and updates to target Android 16 (API 36) or later.
         targetSdk 36
-        versionCode 29
+        versionCode 30
         versionName '1.0'
     }
 
