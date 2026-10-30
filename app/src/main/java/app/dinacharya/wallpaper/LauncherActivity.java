@@ -198,6 +198,9 @@ public class LauncherActivity extends LangActivity {
         super.onStart();
         try {
             source.watch(this::loadApps);
+            // Android only tells the watcher about changes while it is watching, and it stops when this screen does. An app that was
+            // turned off or on in Settings (or installed or removed) in the meantime would be missing or stale, so read the list again.
+            loadApps();
         } catch (RuntimeException e) {
             CrashLog.note(this, "home screen watch", e);
         }
@@ -1223,6 +1226,17 @@ public class LauncherActivity extends LangActivity {
 
     // ------------------------------------------------------------------ the press-and-hold menu
 
+    /** True for an app the person installed in the main profile: Android then asks to confirm and removes it. Phone apps and work apps are not offered. */
+    private boolean canUninstall(AppEntry e) {
+        if (getPackageName().equals(e.pkg) || AppKey.user(e.key) != 0) return false;
+        try {
+            android.content.pm.ApplicationInfo ai = getPackageManager().getApplicationInfo(e.pkg, 0);
+            return (ai.flags & android.content.pm.ApplicationInfo.FLAG_SYSTEM) == 0;
+        } catch (android.content.pm.PackageManager.NameNotFoundException | RuntimeException ex) {
+            return false;
+        }
+    }
+
     private void showAppMenu(final AppEntry e) {
         final List<String> labels = new ArrayList<>();
         final List<Runnable> acts = new ArrayList<>();
@@ -1248,6 +1262,16 @@ public class LauncherActivity extends LangActivity {
                 Lang.toast(this, "Could not open the app info.", Toast.LENGTH_SHORT).show();
             }
         });
+        if (canUninstall(e)) {
+            labels.add("Uninstall");
+            acts.add(() -> {
+                try {
+                    startActivity(new Intent(Intent.ACTION_DELETE, android.net.Uri.parse("package:" + e.pkg)));
+                } catch (RuntimeException ex) {
+                    Lang.toast(this, "Could not open the uninstall screen.", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
         menu = new DBuilder(this, th.dialog())
                 .setTitle(e.shown())
                 .setItems(labels.toArray(new String[0]), (dlg, which) -> {

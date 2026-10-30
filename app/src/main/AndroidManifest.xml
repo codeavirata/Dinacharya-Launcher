@@ -31,6 +31,8 @@
     <!-- Lets a swipe down on the home screen open the notification shade (an ordinary permission; if a phone
          refuses it, swiping down from the top of the screen still works). -->
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+    <!-- Lets the press-and-hold menu of an app open Android's own uninstall screen (Android asks to confirm; nothing is removed without that). -->
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
 
     <!-- Optional "Strong lock" (off until the user turns it on in the home settings): a small foreground service that looks at
          which app is in front, and a lock or pause screen shown over a locked app wherever it was opened from. It uses the
