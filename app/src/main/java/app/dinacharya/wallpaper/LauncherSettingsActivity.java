@@ -270,7 +270,7 @@ public class LauncherSettingsActivity extends LangActivity {
     }
 
     private void gesturesCard() {
-        LinearLayout c = card("swipes", "Swipes", nameOf(cfg.swipeLeft) + "  ·  " + nameOf(cfg.swipeRight)).body;
+        LinearLayout c = card("swipes", "Shortcut", nameOf(cfg.swipeLeft) + "  ·  " + nameOf(cfg.swipeRight)).body;
         addRow(c, row("Swipe left", nameOf(cfg.swipeLeft), "Change", () -> pickSwipe(true)), 6);
         addRow(c, row("Swipe right", nameOf(cfg.swipeRight), "Change", () -> pickSwipe(false)), 2);
         addRow(c, note("Swipe up: all apps. Swipe down: notifications. Press and hold anywhere: these settings. "
@@ -356,9 +356,7 @@ public class LauncherSettingsActivity extends LangActivity {
         addRow(focusHow.body, note("Pick apps that pull you away. "
                 + (strongOn() ? "When you open one, it waits a few seconds first, so you can go back or carry on. "
                 : "When you open one from this home screen, it waits a few seconds first, so you can go back or carry on. ")
-                + "It never locks you out: Open anyway is always there."
-                + (strongOn() ? "" : cfg.strong ? " To hold them whichever way they open, allow the two things in the Strong lock card below."
-                : " To hold them whichever way they open, turn on the strong lock below.")), 4);
+                + "It never locks you out: Open anyway is always there."), 4);
         addRow(c, Ui.label(this, "Pause during", 14, Ui.MUTED, true), 12);
         for (int k = 0; k < Routine.KIND_NAMES.length; k++) {
             final int kind = k;
@@ -533,8 +531,7 @@ public class LauncherSettingsActivity extends LangActivity {
                         : cfg.groups.size() == 1 ? "1 lock" : cfg.groups.size() + " locks")
                         + (GuardRules.needsPermission(StrongMode.state(this))
                         ? "  ·  Needs your permission: locks hold only from this home screen" : "")).body;
-        final Accordion inner = new Accordion();   // "How locks work" and the strong lock's "How it works": one open at a time
-        Expander.Part lockHow = inner.add(Expander.more(this, c, "How locks work", "set_lock_how", false));
+        Expander.Part lockHow = Expander.more(this, c, "How locks work", "set_lock_how", false);
         addRow(lockHow.body, note((DayPass.has(open, DayPass.LOCK_APPS)
                 ? "Put the apps that eat your time in a group, then lock the group for hours you choose, on the days you choose, or just for the next hour. "
                 : "Pick the apps that eat your time, then lock them for hours you choose, on the days you choose, or just for the next hour. ")
@@ -576,15 +573,7 @@ public class LauncherSettingsActivity extends LangActivity {
             GroupDialog.show(this, DIALOG, cfg, null, visibleApps(), now, clock24, this::render);
         });
         addRow(c, add, 10);
-        strongBlock(c, inner);
-        addRow(lockHow.body, note(strongOn()
-                ? "The strong lock is on, so a lock also holds an app opened from Recents, App info, a notification, a widget or another home app, "
-                + "and one that is open when the lock starts."
-                : cfg.strong
-                ? "For now a lock holds only when you open an app from this home screen. Allow the two things in the Strong lock card below and it also holds "
-                + "an app opened from Recents, App info, a notification, a widget or another home app, and one that is open when the lock starts."
-                : "Locks work when you open an app from this home screen. They cannot stop an app that is already open, "
-                + "or one opened from Recents, a notification or another home app. The strong lock below does."), 8);
+        holdsEverywhere(c, lockHow);
         if (!Pro.get(this).owned()) {
             addRow(c, note("Free: one lock that holds " + LockRules.FREE_GROUP_APPS + " app. Pro adds groups of apps, as many locks as you like, "
                     + "and strict locks."), 6);
@@ -602,32 +591,25 @@ public class LauncherSettingsActivity extends LangActivity {
     }
 
     /**
-     * The strong lock, inside the Locked apps card where the locks are: one switch that makes the locks (and the pauses) hold
-     * whichever way an app is opened. A group's own "strict" choice is separate: it only decides whether that lock can be broken.
+     * What makes a lock hold whichever way an app is opened. It has no switch: it starts by itself when something is locked or paused,
+     * and Android asks once for the two things it needs. Here is where those two things are allowed, under the locks they serve.
+     * A group's own "strict" choice is separate: it only decides whether that lock can be broken.
      */
-    private void strongBlock(LinearLayout c, Accordion inner) {
-        addRow(c, Ui.toggle(this, "Strong lock", cfg.strong, (b, on) -> {
-            cfg.strong = on;
-            save();
-            StrongMode.ensure(this);
-            render();
-            if (on) StrongMode.ask(this);
-        }), 16);
-        addRow(c, note(StrongMode.line(StrongMode.state(this))), 2);
-        if (cfg.strong) {
-            addRow(c, Ui.statusRow(this, "Usage access", "Lets Dinacharya Launcher see which app is in front",
-                    StrongMode.hasUsage(this), "Allow", () -> UsageAccess.ask(this, true)), 10);
-            addRow(c, Ui.statusRow(this, "Display over other apps", "Lets the lock screen appear over an app",
-                    StrongMode.hasOverlay(this), "Allow", () -> StrongMode.askOverlayExplained(this)), 2);
-        }
-        Expander.Part strongHow = inner.add(Expander.more(this, c, "How the strong lock works", "set_strong_how", false));
-        addRow(strongHow.body, note("A lock that only works when you open an app from this home screen is easy to get around: open the app "
-                + "from Recents or App info instead. With the strong lock on, Dinacharya Launcher also holds an app opened from Recents, "
-                + "App info, a notification, a widget or another home app, and an app that is already open when a lock starts. It starts "
-                + "by itself as soon as something is locked or paused. The phone, Settings, the keyboard and system screens are never blocked."), 4);
-        addRow(strongHow.body, note("It shows a small notification while it runs. It looks only at the name of the app in front, on this phone, "
-                + "and keeps and sends nothing. If your phone stops background apps to save battery and the lock stops holding, "
-                + "allow Dinacharya Launcher to run in the background in the phone's battery settings."), 8);
+    private void holdsEverywhere(LinearLayout c, Expander.Part how) {
+        addRow(c, note(StrongMode.line(StrongMode.state(this))), 12);
+        addRow(c, Ui.statusRow(this, "Usage access", "Lets Dinacharya Launcher see which app is in front",
+                StrongMode.hasUsage(this), "Allow", () -> UsageAccess.ask(this, true)), 6);
+        addRow(c, Ui.statusRow(this, "Display over other apps", "Lets the lock screen appear over an app",
+                StrongMode.hasOverlay(this), "Allow", () -> StrongMode.askOverlayExplained(this)), 2);
+        addRow(how.body, note(strongOn()
+                ? "A lock also holds an app opened from Recents, App info, a notification, a widget or another home app, "
+                + "and one that is open when the lock starts."
+                : "For now a lock holds only when you open an app from this home screen. Allow the two things below and it also holds "
+                + "an app opened from Recents, App info, a notification, a widget or another home app, and one that is open when the lock starts."), 8);
+        addRow(how.body, note("It shows a small notification while it runs. It looks only at the name of the app in front, on this phone, "
+                + "and keeps and sends nothing. The phone, Settings, the keyboard and system screens are never blocked. If your phone stops "
+                + "background apps to save battery and the lock stops holding, allow Dinacharya Launcher to run in the background in the "
+                + "phone's battery settings."), 8);
     }
 
     private void hiddenCard() {

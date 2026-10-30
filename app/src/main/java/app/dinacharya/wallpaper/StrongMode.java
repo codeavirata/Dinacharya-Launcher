@@ -264,8 +264,8 @@ final class StrongMode {
                     : "Pauses hold wherever the app is opened from.";
         }
         if (on) {
-            return locks ? "For now locks hold only when you open an app from this home screen. Allow the two things in the Strong lock card in the home settings and they hold everywhere."
-                    : "For now pauses work only when you open an app from this home screen. Allow the two things in the Strong lock card in the home settings and they hold everywhere.";
+            return locks ? "For now locks hold only when you open an app from this home screen. Allow the two things in Settings > Locked apps and they hold everywhere."
+                    : "For now pauses work only when you open an app from this home screen. Allow the two things in Settings > Locked apps and they hold everywhere.";
         }
         return locks ? "Locks apply when you open an app from this home screen. The strong lock in the home settings holds them everywhere."
                 : "Pauses work when you open an app from this home screen. The strong lock in the home settings holds them everywhere.";

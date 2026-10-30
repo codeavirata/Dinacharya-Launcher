@@ -85,13 +85,13 @@ final class SettingsPage extends Page {
                 () -> a.startActivity(new Intent(a, SetupActivity.class).putExtra(SetupActivity.EXTRA_REVIEW, true)));
         LinearLayout home = Ui.section(a, body, "Home screen", null);
         homeItem(home, Glyph.HOME, "Home app", "Make it your home app, and the wallpaper", LauncherSettingsActivity.SEC_HOME, "home");
-        homeItem(home, Glyph.GEAR, "Swipes", "What swiping left and right opens", LauncherSettingsActivity.SEC_HOME, "swipes");
+        homeItem(home, Glyph.GEAR, "Shortcut", "What swiping left and right opens", LauncherSettingsActivity.SEC_HOME, "swipes");
         homeItem(home, Glyph.CHART, "App list", "Colours, text size and the keyboard in the list of all apps", LauncherSettingsActivity.SEC_HOME, "list");
         homeItem(home, Glyph.PERSON, "Hidden apps", "Apps kept out of the list of all apps", LauncherSettingsActivity.SEC_HOME, "hidden");
         item(home, Glyph.PALETTE, "Home screen look", "Colours, clock, phone time, spacing", LOOK);
         LinearLayout focus = Ui.section(a, body, "Focus and locks", null);
         homeItem(focus, Glyph.TARGET, "Focus", "A short wait before apps open", LauncherSettingsActivity.SEC_FOCUS, "pauses");
-        homeItem(focus, Glyph.SHIELD, "Locked apps", "Lock apps for a time, and the strong lock", LauncherSettingsActivity.SEC_FOCUS, "locks");
+        homeItem(focus, Glyph.SHIELD, "Locked apps", "Lock apps for a time", LauncherSettingsActivity.SEC_FOCUS, "locks");
         homeItem(focus, Glyph.ROUTINE, "Phone use in slots", "See when you pick up the phone during a slot", LauncherSettingsActivity.SEC_FOCUS, "use");
         LinearLayout card2 = Ui.section(a, body, "Alarms and phone", null);
         item(card2, Glyph.BELL, "Alarms", "On or off, test alarm, phone checklist", ALARMS);
