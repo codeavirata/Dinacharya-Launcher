@@ -217,9 +217,20 @@ public final class GuardRules {
         return state(true, usageAccess, overlayAllowed);
     }
 
-    /** True when the watcher has to run: the strong lock is switched on and something is locked or paused. */
+    /**
+     * True when the strong lock has a reason to be on: a strict lock with apps in it, or a strict pause. The strict choice is what
+     * switches it on; there is no separate switch. (The old {@code strong} setting is still read and kept, but nothing depends on it.)
+     */
+    public static boolean wantsStrong(LauncherConfig c) {
+        if (c == null) return false;
+        for (LauncherConfig.Rule r : c.rules) if (r.mode == LauncherConfig.RULE_STRICT) return true;
+        for (LauncherConfig.Group g : c.groups) if (g.strict && !g.apps.isEmpty()) return true;
+        return false;
+    }
+
+    /** True when the watcher has to run: a strict lock or a strict pause is set. */
     public static boolean shouldRun(LauncherConfig c) {
-        return c != null && c.strong && worthWatching(c);
+        return wantsStrong(c) && worthWatching(c);
     }
 
     /** True when a permission is missing, so locks hold on the home screen only. */

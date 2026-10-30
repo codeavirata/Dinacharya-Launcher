@@ -38,7 +38,7 @@ final class StrongMode {
 
     static boolean enabled(Context c) {
         try {
-            return LauncherStore.load(c).strong;
+            return GuardRules.wantsStrong(LauncherStore.load(c));
         } catch (RuntimeException e) {
             return false;
         }
@@ -64,7 +64,7 @@ final class StrongMode {
     static int state(Context c) {
         try {
             LauncherConfig cfg = LauncherStore.load(c);
-            return GuardRules.state(cfg.strong, GuardRules.worthWatching(cfg), hasUsage(c), hasOverlay(c));
+            return GuardRules.state(GuardRules.wantsStrong(cfg), GuardRules.worthWatching(cfg), hasUsage(c), hasOverlay(c));
         } catch (RuntimeException e) {
             return GuardRules.OFF;
         }
@@ -267,8 +267,8 @@ final class StrongMode {
             return locks ? "For now locks hold only when you open an app from this home screen. Allow the two things in Settings > Locked apps and they hold everywhere."
                     : "For now pauses work only when you open an app from this home screen. Allow the two things in Settings > Locked apps and they hold everywhere.";
         }
-        return locks ? "Locks apply when you open an app from this home screen. The strong lock in the home settings holds them everywhere."
-                : "Pauses work when you open an app from this home screen. The strong lock in the home settings holds them everywhere.";
+        return locks ? "Locks apply when you open an app from this home screen. A strict lock also holds when an app is opened from Recents, App info or a notification."
+                : "Pauses work when you open an app from this home screen. A strict pause also holds when an app is opened from Recents, App info or a notification.";
     }
 
     /** What the problem report says about the locks: what is wanted, what is allowed, and whether the watcher is running. */
@@ -277,7 +277,7 @@ final class StrongMode {
             LauncherConfig cfg = LauncherStore.load(c);
             boolean usage = hasUsage(c), overlay = hasOverlay(c);
             StringBuilder sb = new StringBuilder();
-            sb.append("Strong lock: ").append(cfg.strong ? "on" : "switched off by hand");
+            sb.append("Strong lock: ").append(GuardRules.wantsStrong(cfg) ? "on (a strict lock or pause is set)" : "off (no strict lock or pause)");
             sb.append("\nSomething locked or paused: ").append(GuardRules.worthWatching(cfg) ? "yes" : "no");
             sb.append("\nUsage access: ").append(usage ? "allowed" : "MISSING");
             sb.append("\nDisplay over other apps: ").append(overlay ? "allowed" : "MISSING");
@@ -286,7 +286,7 @@ final class StrongMode {
             if (running()) sb.append("running");
             else if (beat > 0) sb.append("not running (last look ").append(Math.max(0, (System.currentTimeMillis() - beat) / 1000L)).append(" s ago)");
             else sb.append("has not run since the app started");
-            sb.append(GuardRules.state(cfg.strong, GuardRules.worthWatching(cfg), usage, overlay) == GuardRules.ON && !running()
+            sb.append(GuardRules.state(GuardRules.wantsStrong(cfg), GuardRules.worthWatching(cfg), usage, overlay) == GuardRules.ON && !running()
                     ? "\nIt should be running and is not: Android may have stopped it." : "");
             return sb.toString();
         } catch (RuntimeException e) {

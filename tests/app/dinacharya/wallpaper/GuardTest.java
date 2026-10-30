@@ -273,9 +273,10 @@ public class GuardTest {
         // ---------- build 26: the lock is part of the launcher, not a setting to find
         ok("run: nothing runs while nothing is locked or paused, even with the strong lock on", !GuardRules.shouldRun(new LauncherConfig())
                 && !GuardRules.shouldRun(emptyGroupOnly()));
-        ok("run: a lock or a pause starts the watcher by itself, and switching the strong lock off by hand stops it",
-                GuardRules.shouldRun(locked(false)) && !GuardRules.shouldRun(lockedOff()) && GuardRules.shouldRun(pausedOnly())
-                && !GuardRules.shouldRun(null));
+        ok("run: only a strict lock or a strict pause starts the watcher (the strict choice is the switch); an ordinary lock or pause does not",
+                GuardRules.shouldRun(locked(true)) && !GuardRules.shouldRun(locked(false)) && !GuardRules.shouldRun(pausedOnly())
+                && GuardRules.shouldRun(strictPaused()) && !GuardRules.shouldRun(null));
+        ok("run: a strict lock with no apps in it does not start it", !GuardRules.shouldRun(emptyStrictGroup()));
         ok("state: with nothing to hold it is idle and asks for nothing; with something to hold it says what is missing",
                 GuardRules.state(true, false, false, false) == GuardRules.IDLE && GuardRules.state(false, true, true, true) == GuardRules.OFF
                 && GuardRules.state(true, true, false, true) == GuardRules.NEEDS_USAGE && GuardRules.state(true, true, true, false) == GuardRules.NEEDS_OVERLAY
@@ -354,7 +355,7 @@ public class GuardTest {
         GuardLoop.Out go2 = new GuardLoop().look(hidden, other.front(), "", sf, "app.dinacharya.wallpaper", DayPass.FREE, g0 + 300, Z, new GuardRules.Tracker(), quiet);
         ok("other launcher: its own screen is left alone, and an app opened from it is held", !go.present && go2.present);
         // 6. the strong lock switched off by hand holds nothing here: the service is simply not running (shouldRun false)
-        ok("off by hand: the watcher does not run, so nothing is held outside the home screen", !GuardRules.shouldRun(lockedOff()));
+        ok("no strict lock: the watcher does not run, so nothing is held outside the home screen", !GuardRules.shouldRun(locked(false)));
 
         System.out.println(fails == 0 ? "ALL PASS" : fails + " FAILS");
         if (fails > 0) System.exit(1);
@@ -370,6 +371,18 @@ public class GuardTest {
     static LauncherConfig lockedOff() {
         LauncherConfig c = locked(false);
         c.strong = false;
+        return c;
+    }
+
+    static LauncherConfig strictPaused() {
+        LauncherConfig c = new LauncherConfig();
+        c.setRule(k("p"), LauncherConfig.RULE_STRICT, 0, false);
+        return c;
+    }
+
+    static LauncherConfig emptyStrictGroup() {
+        LauncherConfig c = new LauncherConfig();
+        c.addGroup("Empty").strict = true;
         return c;
     }
 

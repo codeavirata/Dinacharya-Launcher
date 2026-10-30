@@ -441,7 +441,7 @@ public final class LauncherConfig {
                         case "focusKinds": c.focusKinds = num(v, 1 << Routine.TASK, 0, (1 << Routine.KIND_NAMES.length) - 1); break;
                         case "pauseSec": c.pauseSec = num(v, 10, 3, 60); break;
                         case "strictSec": c.strictSec = num(v, 30, 5, 120); break;
-                        case "strong": break;   // the strong lock has no switch any more: it is always on, and starts when something is locked or paused
+                        case "strong": c.strong = v.trim().equals("1"); break;
                         case "trackUse": c.trackUse = v.trim().equals("1"); break;
                         case "swipes": newSwipes = true; break;
                         case "swipeLeft": c.swipeLeft = AppKey.valid(v.trim()) ? v.trim() : ""; break;

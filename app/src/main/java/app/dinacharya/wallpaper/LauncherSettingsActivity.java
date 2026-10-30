@@ -587,7 +587,7 @@ public class LauncherSettingsActivity extends LangActivity {
 
     /** True when the strong lock is on and has what it needs (whether or not anything is locked yet). */
     private boolean strongOn() {
-        return cfg.strong && StrongMode.hasUsage(this) && StrongMode.hasOverlay(this);
+        return GuardRules.wantsStrong(cfg) && StrongMode.hasUsage(this) && StrongMode.hasOverlay(this);
     }
 
     /**
@@ -596,16 +596,19 @@ public class LauncherSettingsActivity extends LangActivity {
      * A group's own "strict" choice is separate: it only decides whether that lock can be broken.
      */
     private void holdsEverywhere(LinearLayout c, Expander.Part how) {
-        addRow(c, note(StrongMode.line(StrongMode.state(this))), 12);
-        addRow(c, Ui.statusRow(this, "Usage access", "Lets Dinacharya Launcher see which app is in front",
-                StrongMode.hasUsage(this), "Allow", () -> UsageAccess.ask(this, true)), 6);
-        addRow(c, Ui.statusRow(this, "Display over other apps", "Lets the lock screen appear over an app",
-                StrongMode.hasOverlay(this), "Allow", () -> StrongMode.askOverlayExplained(this)), 2);
+        if (GuardRules.wantsStrong(cfg)) {   // only while a strict lock or pause is set: the strict choice is what switches it on
+            addRow(c, note(StrongMode.line(StrongMode.state(this))), 12);
+            addRow(c, Ui.statusRow(this, "Usage access", "Lets Dinacharya Launcher see which app is in front",
+                    StrongMode.hasUsage(this), "Allow", () -> UsageAccess.ask(this, true)), 6);
+            addRow(c, Ui.statusRow(this, "Display over other apps", "Lets the lock screen appear over an app",
+                    StrongMode.hasOverlay(this), "Allow", () -> StrongMode.askOverlayExplained(this)), 2);
+        }
         addRow(how.body, note(strongOn()
-                ? "A lock also holds an app opened from Recents, App info, a notification, a widget or another home app, "
+                ? "A strict lock also holds an app opened from Recents, App info, a notification, a widget or another home app, "
                 + "and one that is open when the lock starts."
-                : "For now a lock holds only when you open an app from this home screen. Allow the two things below and it also holds "
-                + "an app opened from Recents, App info, a notification, a widget or another home app, and one that is open when the lock starts."), 8);
+                : "A lock holds when you open an app from this home screen. A strict lock also holds an app opened from Recents, App info, "
+                + "a notification, a widget or another home app, and one that is open when the lock starts. For that, allow the two things "
+                + "that show once a strict lock is set."), 8);
         addRow(how.body, note("It shows a small notification while it runs. It looks only at the name of the app in front, on this phone, "
                 + "and keeps and sends nothing. The phone, Settings, the keyboard and system screens are never blocked. If your phone stops "
                 + "background apps to save battery and the lock stops holding, allow Dinacharya Launcher to run in the background in the "
