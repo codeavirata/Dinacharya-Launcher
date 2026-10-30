@@ -21,11 +21,11 @@ final class DayOffDialog {
      * the other ways to a day off do. {@code changed} runs once the day is off (and after the plan question).
      */
     static android.widget.TextView chip(final Activity a, final Runnable changed) {
-        android.widget.TextView t = Ui.label(a, "Day off", 13, Ui.TEAL_DARK, true);
+        android.widget.TextView t = Ui.label(a, "Day off", 14, Ui.TEAL_DARK, true);
         t.setGravity(android.view.Gravity.CENTER);
         t.setMinHeight(Ui.dp(a, 34));
         t.setPadding(Ui.dp(a, 14), Ui.dp(a, 6), Ui.dp(a, 14), Ui.dp(a, 6));
-        t.setBackground(Ui.pressable(a, Ui.TONAL, 0, 17, 0x300E7C7B));
+        t.setBackground(Ui.pressable(a, Ui.SURFACE, Ui.TEAL, 17, 0x300E7C7B));
         t.setContentDescription(Lang.tr("Take the rest of today off"));
         t.setOnClickListener(v -> {
             boolean off = false;

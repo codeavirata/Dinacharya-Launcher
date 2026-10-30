@@ -59,14 +59,17 @@ final class HomePage extends Page {
         words.addView(hello);
         words.addView(dateLine, Ui.wide(a, 2));
         head.addView(words, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        LinearLayout.LayoutParams dop = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dop.rightMargin = a.dp(10);
-        head.addView(DayOffDialog.chip(a, this::afterChange), dop);
         avatar = Ui.label(a, "", 18, 0xFFFFFFFF, true);
         avatar.setGravity(Gravity.CENTER);
         avatar.setOnClickListener(v -> a.go(MainActivity.TAB_BACKUP));
         head.addView(avatar, new LinearLayout.LayoutParams(a.dp(44), a.dp(44)));
         body.addView(head);
+        // a small "Day off" chip on its own line, so the greeting keeps its room
+        LinearLayout dayOffRow = new LinearLayout(a);
+        dayOffRow.setOrientation(LinearLayout.HORIZONTAL);
+        dayOffRow.setGravity(Gravity.END);
+        dayOffRow.addView(DayOffDialog.chip(a, this::afterChange));
+        body.addView(dayOffRow, Ui.wide(a, 8));
 
         crashBox = new LinearLayout(a);
         crashBox.setOrientation(LinearLayout.VERTICAL);
