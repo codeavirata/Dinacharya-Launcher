@@ -70,6 +70,17 @@ public class LauncherActivity extends LangActivity {
 
     /** Kept while the app process lives, so the list is there at once when Home is pressed again. */
     private static List<AppEntry> cachedApps = new ArrayList<>();
+    private final android.os.Handler appsLater = new android.os.Handler(android.os.Looper.getMainLooper());
+    private final Runnable reloadApps = this::loadApps;
+    private boolean watchingPackages;
+    /** An app was installed, removed, updated, turned off or turned on: read the list again (after the burst of broadcasts is over). */
+    private final android.content.BroadcastReceiver packageChanged = new android.content.BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            appsLater.removeCallbacks(reloadApps);
+            appsLater.postDelayed(reloadApps, 600);
+        }
+    };
 
     /** The slot running now, as far as the home screen needs it. */
     private static final class Now {
@@ -201,6 +212,20 @@ public class LauncherActivity extends LangActivity {
             // Android only tells the watcher about changes while it is watching, and it stops when this screen does. An app that was
             // turned off or on in Settings (or installed or removed) in the meantime would be missing or stale, so read the list again.
             loadApps();
+            // Turning an app off or on is told by the package broadcast on every Android version (the watcher above can miss it), and
+            // the phone can still be finishing the change when this screen comes back, so the list is read once more a moment later.
+            if (!watchingPackages) {
+                IntentFilter pf = new IntentFilter(Intent.ACTION_PACKAGE_CHANGED);
+                pf.addAction(Intent.ACTION_PACKAGE_ADDED);
+                pf.addAction(Intent.ACTION_PACKAGE_REMOVED);
+                pf.addAction(Intent.ACTION_PACKAGE_REPLACED);
+                pf.addDataScheme("package");
+                if (Build.VERSION.SDK_INT >= 33) registerReceiver(packageChanged, pf, Context.RECEIVER_NOT_EXPORTED);
+                else registerReceiver(packageChanged, pf);
+                watchingPackages = true;
+            }
+            appsLater.removeCallbacks(reloadApps);
+            appsLater.postDelayed(reloadApps, 1500);
         } catch (RuntimeException e) {
             CrashLog.note(this, "home screen watch", e);
         }
@@ -220,6 +245,8 @@ public class LauncherActivity extends LangActivity {
             cfg = LauncherStore.load(this);
             if (overlayKind == NONE) {
                 buildScreen();
+            } else if (overlayKind == DRAWER) {
+                refreshDrawer();   // an app shown again (or hidden) in the settings is shown (or gone) at once
             }
             tellAboutPass();
             refreshNow();
@@ -259,6 +286,15 @@ public class LauncherActivity extends LangActivity {
     @Override
     protected void onStop() {
         source.unwatch();
+        appsLater.removeCallbacks(reloadApps);
+        if (watchingPackages) {
+            try {
+                unregisterReceiver(packageChanged);
+            } catch (RuntimeException ignored) {
+                // not registered any more
+            }
+            watchingPackages = false;
+        }
         super.onStop();
     }
 
@@ -1226,12 +1262,26 @@ public class LauncherActivity extends LangActivity {
 
     // ------------------------------------------------------------------ the press-and-hold menu
 
-    /** True for an app the person installed in the main profile: Android then asks to confirm and removes it. Phone apps and work apps are not offered. */
+    /**
+     * True for an app in the main profile that Android can remove: one the person installed, or a phone app that has had updates
+     * (Android then takes the updates off). A phone app with no updates can only be turned off, in App info; work apps are not offered.
+     */
     private boolean canUninstall(AppEntry e) {
         if (getPackageName().equals(e.pkg) || AppKey.user(e.key) != 0) return false;
         try {
             android.content.pm.ApplicationInfo ai = getPackageManager().getApplicationInfo(e.pkg, 0);
-            return (ai.flags & android.content.pm.ApplicationInfo.FLAG_SYSTEM) == 0;
+            boolean system = (ai.flags & android.content.pm.ApplicationInfo.FLAG_SYSTEM) != 0;
+            boolean updated = (ai.flags & android.content.pm.ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0;
+            return !system || updated;
+        } catch (android.content.pm.PackageManager.NameNotFoundException | RuntimeException ex) {
+            return false;
+        }
+    }
+
+    /** True for a phone app with updates: "Uninstall" then removes the updates and leaves the app that came with the phone. */
+    private boolean removesUpdatesOnly(AppEntry e) {
+        try {
+            return (getPackageManager().getApplicationInfo(e.pkg, 0).flags & android.content.pm.ApplicationInfo.FLAG_SYSTEM) != 0;
         } catch (android.content.pm.PackageManager.NameNotFoundException | RuntimeException ex) {
             return false;
         }
@@ -1263,7 +1313,7 @@ public class LauncherActivity extends LangActivity {
             }
         });
         if (canUninstall(e)) {
-            labels.add("Uninstall");
+            labels.add(removesUpdatesOnly(e) ? "Uninstall updates" : "Uninstall");
             acts.add(() -> {
                 try {
                     startActivity(new Intent(Intent.ACTION_DELETE, android.net.Uri.parse("package:" + e.pkg)));
