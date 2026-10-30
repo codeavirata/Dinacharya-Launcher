@@ -264,7 +264,8 @@ final class GroupDialog {
         });
         moreBody.addView(strict, Ui.wide(c, 2));
         TextView note = Ui.label(c, "Without strict, you can still break a lock: wait 30 seconds and type a sentence. "
-                + "A strict lock cannot be broken, and cannot be changed while it holds. "
+                + "A strict lock cannot be broken, and cannot be changed while it holds, so it can hold for 12 hours in a row at most "
+                + "and leaves at least 2 free hours every day. "
                 + StrongMode.holdsLine(c, true), 12, Ui.MUTED, false);
         note.setLineSpacing(Ui.dp(c, 2), 1f);
         moreBody.addView(note, Ui.wide(c, 6));
@@ -326,6 +327,29 @@ final class GroupDialog {
             }
             final boolean named = DayPass.has(open[0], DayPass.LOCK_MORE);
             final boolean strictOk = DayPass.has(open[0], DayPass.LOCK_STRICT);
+            if (d.strict && strictOk) {
+                // a strict lock cannot be broken, so it must end: not too long in a row, and some free time every day
+                LauncherConfig.Group t = new LauncherConfig().addGroup("check");
+                t.startMin = d.start;
+                t.endMin = d.end;
+                t.days = LockMode.daysToSave(d.by, d.days);
+                t.strict = true;
+                if (LockMode.keepsTypes(d.by)) t.during.addAll(d.during);
+                t.both = LockMode.bothToSave(d.by);
+                t.library = d.library;
+                Routine routine = null;
+                try {
+                    routine = Store.load(a);
+                } catch (RuntimeException ex) {
+                    // the activity part is then not checked
+                }
+                String problem = LockRules.strictProblem(t, routine, java.time.LocalDate.now(Store.zone()));
+                if (problem != null) {
+                    new DBuilder(a, theme).setTitle("This strict lock is too long")
+                            .setMessage(problem).setPositiveButton("OK", null).show();
+                    return;
+                }
+            }
             LauncherConfig.Group g = existing;
             if (g == null) g = cfg.addGroup(named ? name.getText().toString() : "Locked apps");
             if (g == null) {

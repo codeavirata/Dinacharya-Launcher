@@ -271,6 +271,86 @@ public final class LockRules {
         return best;
     }
 
+    // ------------------------------------------------------------------ a strict lock must not last for ever
+
+    /** A strict lock holds for at most this many minutes in a row. */
+    public static final int STRICT_MAX_RUN_MIN = 12 * 60;
+    /** A strict lock leaves at least this many minutes of every day unlocked. */
+    public static final int STRICT_MIN_FREE_MIN = 2 * 60;
+
+    /**
+     * Why this strict lock cannot be saved, in a sentence for the person, or null when it is fine (or not strict). A strict lock cannot be
+     * broken or changed while it holds, so it must always end: it may hold for {@value #STRICT_MAX_RUN_MIN} minutes in a row at most, and
+     * must leave {@value #STRICT_MIN_FREE_MIN} minutes of every day free. Library mode is refused because it can have no end. The week is
+     * laid out minute by minute from {@code firstDay}: the daily window, and the slots of the chosen activity types in the routine of each day.
+     * {@code routine} may be null when it could not be read (the activity part is then not checked).
+     */
+    public static String strictProblem(LauncherConfig.Group g, Routine routine, LocalDate firstDay) {
+        if (g == null || !g.strict) return null;
+        if (g.library) {
+            return "Library mode can go on without an end, so a strict lock cannot include it. "
+                    + "Switch off \"Also lock in library mode\", or switch off strict.";
+        }
+        final int day = 1440, week = 7 * day;
+        boolean[] window = new boolean[week];
+        boolean[] type = new boolean[week];
+        boolean hasWindow = g.days != 0;
+        boolean hasType = !g.during.isEmpty() && routine != null;
+        for (int i = 0; i < 7; i++) {
+            LocalDate date = firstDay.plusDays(i);
+            if (hasWindow && g.hasDay(date.getDayOfWeek())) {
+                int from = i * day + g.startMin;
+                int to = i * day + (g.endMin > g.startMin ? g.endMin : g.endMin + day);
+                for (int m = from; m < to; m++) window[m % week] = true;
+            }
+            if (hasType) {
+                Routine r;
+                try {
+                    r = routine.forDay(date);
+                } catch (RuntimeException e) {
+                    r = routine;
+                }
+                for (Routine.Slot sl : r.compute().slots) {
+                    if (sl.block.skipped) continue;
+                    if (!g.during.contains(LauncherConfig.typeKey(sl.block.kind, sl.block.sub))
+                            && !g.during.contains(LauncherConfig.anyKey(sl.block.kind))) continue;
+                    for (int m = sl.start; m < sl.end; m++) type[(i * day + m) % week] = true;
+                }
+            }
+        }
+        boolean[] locked = new boolean[week];
+        boolean both = combined(g) && hasType;
+        for (int m = 0; m < week; m++) {
+            locked[m] = both ? window[m] && type[m] : (hasWindow && window[m]) || (hasType && type[m]);
+        }
+        int first = -1;
+        for (int m = 0; m < week; m++) if (!locked[m]) {
+            first = m;
+            break;
+        }
+        int longest = first < 0 ? week : 0, run = 0;
+        for (int k = 1; first >= 0 && k <= week; k++) {
+            if (locked[(first + k) % week]) {
+                run++;
+                longest = Math.max(longest, run);
+            } else {
+                run = 0;
+            }
+        }
+        if (longest > STRICT_MAX_RUN_MIN) {
+            return "A strict lock can hold for 12 hours in a row at most, because there is no way past it. "
+                    + "Shorten the hours, or choose fewer activity types.";
+        }
+        for (int i = 0; i < 7; i++) {
+            int n = 0;
+            for (int m = i * day; m < (i + 1) * day; m++) if (locked[m]) n++;
+            if (day - n < STRICT_MIN_FREE_MIN) {
+                return "A strict lock has to leave at least 2 free hours every day. Shorten the hours, or pick fewer days.";
+            }
+        }
+        return null;
+    }
+
     /** True when this group is locked now (by hand or by its daily window). */
     public static boolean groupLocked(LauncherConfig.Group g, long nowMs, ZoneId zone) {
         return lockedUntil(g, nowMs, zone) != 0;
