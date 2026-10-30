@@ -765,7 +765,7 @@ after its developer registers it. Do this once with your own Google account:
    - **Data access:** add the scopes `.../auth/drive.appdata`, `.../auth/userinfo.email` and
      `.../auth/userinfo.profile`.
 4. **Clients** (or **Credentials > Create credentials > OAuth client ID**): choose **Android**.
-   - Package name: `app.dinacharya.wallpaper`
+   - Package name: `app.dinacharya.launcher`
    - SHA-1 certificate fingerprint: `48:94:D3:1F:BE:2F:4A:60:ED:4A:B2:1F:E9:00:61:FE:3D:8C:E8:B8`
 
    That fingerprint belongs to the signing key included in this project
@@ -949,7 +949,7 @@ in a row** before Google lets you publish publicly. Start that as early as you c
    integrity > App signing** and copy the **SHA-1 of the app signing key certificate** (also
    the SHA-1 of the upload key, for builds you install yourself from the bundle). In Google Cloud,
    open **Google Auth Platform > Clients > Create client > Android**, with package
-   `app.dinacharya.wallpaper` and that SHA-1. Make one client for each SHA-1; keep the one for
+   `app.dinacharya.launcher` and that SHA-1. Make one client for each SHA-1; keep the one for
    the test key too. Wait about 10 minutes. The consent screen must be **In production**.
 9. **Apply for production** once the closed test has run its 14 days (Play Console shows a
    countdown and an **Apply for production** button), then choose countries and roll out.
