@@ -347,22 +347,36 @@ public class LauncherSettingsActivity extends LangActivity {
         return sb.toString();
     }
 
+    /** The kinds of slot that count as focus time, as a short line for the closed "Pause during" part. */
+    private String focusKindsText() {
+        StringBuilder sb = new StringBuilder();
+        for (int k = 0; k < Routine.KIND_NAMES.length; k++) {
+            if (!cfg.isFocusKind(k)) continue;
+            if (sb.length() > 0) sb.append(", ");
+            sb.append(kindTime(k));
+        }
+        return sb.length() == 0 ? "None" : sb.toString();
+    }
+
     private void focusCard(final int open) {
         LinearLayout c = card("pauses", "Focus",
                 cfg.rules.isEmpty() ? "A pause before apps open: none yet"
                         : cfg.rules.size() == 1 ? "1 app has a pause" : cfg.rules.size() + " apps have a pause").body;
-        Expander.Part focusHow = Expander.more(this, c, "How it works", "set_focus_how", false);
+        final Accordion focusParts = new Accordion();   // "How it works" and "Pause during": one open at a time
+        Expander.Part focusHow = focusParts.add(Expander.more(this, c, "How it works", "set_focus_how", false));
         // whole sentences, so that each can be translated as one piece
         addRow(focusHow.body, note("Pick apps that pull you away. "
                 + (strongOn() ? "When you open one, it waits a few seconds first, so you can go back or carry on. "
                 : "When you open one from this home screen, it waits a few seconds first, so you can go back or carry on. ")
                 + "It never locks you out: Open anyway is always there."), 4);
-        addRow(c, Ui.label(this, "Pause during", 14, Ui.MUTED, true), 12);
+        final Expander.Part during = focusParts.add(Expander.more(this, c, "Pause during", "set_focus_during", false));
+        during.setSummary(focusKindsText());
         for (int k = 0; k < Routine.KIND_NAMES.length; k++) {
             final int kind = k;
-            addRow(c, Ui.toggle(this, kindTime(k), cfg.isFocusKind(k), (b, on) -> {
+            addRow(during.body, Ui.toggle(this, kindTime(k), cfg.isFocusKind(k), (b, on) -> {
                 cfg.setFocusKind(kind, on);
                 save();
+                during.setSummary(focusKindsText());
             }), 0);
         }
         addRow(c, stepper("Short pause", cfg.pauseSec, " s", 3, 60, 1, v -> {

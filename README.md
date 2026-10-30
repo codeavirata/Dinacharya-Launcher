@@ -1190,7 +1190,7 @@ close the app: they are written down and that one job is skipped.
 
 **1.0 (first release on Google Play)**
 - **Pro has two plans:** **Rs 50 a month** (a Google Play subscription, product `pro_monthly`) or **Rs 499 once for life** (the one-time product `pro_unlock`). The Pro screen shows both side by side with the prices Google Play reports; Pro is on while either is active. A monthly subscriber who buys lifetime is told to cancel the monthly plan in Google Play, and "Manage subscription" opens Google Play's page for it. Anyone who bought `pro_unlock` before keeps Pro. In Play Console create the subscription and set `pro_unlock` to Rs 499 (see "Pro purchase: monthly and lifetime").
-- The app is named **Dinacharya Launcher** and is credited "© 2026 | Developed by ASG" on one line (home screen mark, Settings > About, store text, privacy page). The version shown in Settings > About is **1.0**. Google Play's internal build number (`versionCode`) is **33** and goes up by one with every build you install or upload, because Google only accepts a number higher than every one it has seen. Settings > About shows it after the version ("1.0 (build 33)"), so you can tell which build is on the phone. The notes below, from 2.2 to 3.0.1, are the private test builds that came before.
+- The app is named **Dinacharya Launcher** and is credited "© 2026 | Developed by ASG" on one line (home screen mark, Settings > About, store text, privacy page). The version shown in Settings > About is **1.0**. Google Play's internal build number (`versionCode`) is **34** and goes up by one with every build you install or upload, because Google only accepts a number higher than every one it has seen. Settings > About shows it after the version ("1.0 (build 34)"), so you can tell which build is on the phone. The notes below, from 2.2 to 3.0.1, are the private test builds that came before.
 
 **2.2**
 - **Dinacharya is now a home screen (launcher), not a wallpaper app.** No apps on it: the whole screen is your
@@ -1391,6 +1391,8 @@ Android 8.0 or newer.
 **1.0, build 28:** the small "Day off" chip is now white with a teal outline so it stands out, and on Home it sits on its own line under the greeting (right side) instead of sharing the greeting row. Nothing else changed.
 
 **1.0, build 29:** the small "Day off" chip is removed from the Routine tab (it stays on Home). Nothing else changed.
+
+**1.0, build 34:** in the Focus card the "Pause during" switches are in their own dropdown (it shows the ticked kinds when closed), so the card is shorter. Nothing else changed.
 
 **1.0, build 33:** "Swipes" is now **Shortcut**. The strong lock has no switch of its own any more: the **strict** choice switches it on. A strict lock group (or a strict pause, both Pro) makes the watcher run, so the lock also holds an app opened from Recents, App info, a notification, a widget or another home app, and one that is already open when the lock starts. Ordinary locks and pauses hold when an app is opened from the home screen, as before. The two things the strong lock needs (Usage access, Display over other apps) show in the **Locked apps** card only while a strict lock or pause is set, and Android asks for them when the strict lock is saved. The Focus card now shows only pauses, Locked apps only locks and Phone use in slots only phone use.
 
