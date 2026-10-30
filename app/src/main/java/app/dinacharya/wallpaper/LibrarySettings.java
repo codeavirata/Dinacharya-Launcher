@@ -1,0 +1,168 @@
+package app.dinacharya.wallpaper;
+
+import android.app.TimePickerDialog;
+import android.view.Gravity;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Switch;
+import android.widget.TextView;
+
+/**
+ * Library mode in the Alarms settings: switch it on or off by hand, let it come on by itself at fixed hours on chosen days, and choose
+ * whether the phone's ringer also goes to vibrate. Every change is saved at once.
+ */
+final class LibrarySettings {
+    private final MainActivity a;
+    private boolean binding;
+    private Expander.Part part;
+    private TextView status;
+    private Button handButton;
+    private Switch autoSwitch;
+    private LinearLayout autoBox;
+    private Button fromButton;
+    private Button toButton;
+    private LinearLayout dayRow;
+    private TextView dayNote;
+    private Switch ringerSwitch;
+
+    LibrarySettings(MainActivity host) {
+        this.a = host;
+    }
+
+    void build(LinearLayout root) {
+        part = Expander.more(a, root, "Library mode", "alarm_library", false);
+        LinearLayout body = part.body;
+        body.addView(Ui.label(a, "For the library, a class or an exam. While library mode is on, every alarm of the app only vibrates, with no "
+                + "sound: the start-of-day alarm, the slot alarms, the bedtime question and the break timers. The questions still appear, "
+                + "and groups of apps set to lock in library mode are locked.", 13, Ui.MUTED, false), Ui.wide(a, 4));
+        status = Ui.label(a, "", 15, Ui.INK, true);
+        body.addView(status, Ui.wide(a, 10));
+        handButton = Ui.button(a, "Turn on", true, v -> {
+            LibraryMode lib = Store.library(a);
+            long now = System.currentTimeMillis();
+            if (lib.untilMs > now) LibraryDialog.turnOff(a, this::refresh);
+            else LibraryDialog.turnOn(a, this::refresh);
+        });
+        body.addView(handButton, Ui.wide(a, 8));
+
+        autoSwitch = Ui.toggle(a, "Turn it on by itself at fixed hours", false, (b, on) -> {
+            if (binding) return;
+            LibraryMode lib = Store.library(a);
+            lib.auto = on;
+            save(lib);
+        });
+        body.addView(autoSwitch, Ui.wide(a, 12));
+
+        autoBox = new LinearLayout(a);
+        autoBox.setOrientation(LinearLayout.VERTICAL);
+        body.addView(autoBox, Ui.wide(a, 0));
+        LinearLayout times = new LinearLayout(a);
+        times.setOrientation(LinearLayout.HORIZONTAL);
+        fromButton = Ui.button(a, "", false, v -> {
+            final LibraryMode lib = Store.library(a);
+            new TimePickerDialog(a, (tp, h, m) -> {
+                lib.startMin = h * 60 + m;
+                save(lib);
+            }, lib.startMin / 60, lib.startMin % 60, a.routine().fmt24).show();
+        });
+        toButton = Ui.button(a, "", false, v -> {
+            final LibraryMode lib = Store.library(a);
+            new TimePickerDialog(a, (tp, h, m) -> {
+                lib.endMin = h * 60 + m;
+                save(lib);
+            }, lib.endMin / 60, lib.endMin % 60, a.routine().fmt24).show();
+        });
+        LinearLayout.LayoutParams l1 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+        l1.rightMargin = a.dp(4);
+        LinearLayout.LayoutParams l2 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+        l2.leftMargin = a.dp(4);
+        times.addView(fromButton, l1);
+        times.addView(toButton, l2);
+        autoBox.addView(times, Ui.wide(a, 4));
+        autoBox.addView(Ui.label(a, "On these days", 12, Ui.MUTED, true), Ui.wrap(a, 12));
+        dayRow = new LinearLayout(a);
+        dayRow.setOrientation(LinearLayout.HORIZONTAL);
+        autoBox.addView(dayRow, Ui.wide(a, 4));
+        LinearLayout presets = new LinearLayout(a);
+        presets.setOrientation(LinearLayout.HORIZONTAL);
+        presets.addView(preset("Every day", LockRules.EVERY_DAY));
+        presets.addView(preset("Weekdays", LockRules.WEEKDAYS));
+        presets.addView(preset("Weekends", LockRules.WEEKENDS));
+        autoBox.addView(presets, Ui.wide(a, 4));
+        dayNote = Ui.label(a, "", 12, Ui.MUTED, false);
+        autoBox.addView(dayNote, Ui.wide(a, 4));
+
+        ringerSwitch = Ui.toggle(a, "Also put the phone on vibrate", false, (b, on) -> {
+            if (binding) return;
+            LibraryMode lib = Store.library(a);
+            lib.ringer = on;
+            save(lib);
+        });
+        body.addView(ringerSwitch, Ui.wide(a, 12));
+        body.addView(Ui.label(a, "Calls and messages stop making sound as well. When library mode ends, the ringer goes back to how it was, "
+                + "unless you changed it yourself. If your phone asks for Do Not Disturb access to do this, the ringer is left as it is.",
+                12, Ui.MUTED, false), Ui.wide(a, 2));
+    }
+
+    private TextView preset(String text, final int mask) {
+        TextView t = Ui.label(a, text, 13, Ui.TEAL, true);
+        t.setPadding(0, a.dp(6), a.dp(16), a.dp(6));
+        t.setOnClickListener(v -> {
+            LibraryMode lib = Store.library(a);
+            lib.days = mask;
+            save(lib);
+        });
+        return t;
+    }
+
+    private void save(LibraryMode lib) {
+        Store.saveLibrary(a, lib);
+        SlotNow.changed();
+        LibraryRinger.refresh(a);
+        a.previewChanged();
+        refresh();
+    }
+
+    void refresh() {
+        if (status == null) return;
+        LibraryMode lib = Store.library(a);
+        long now = System.currentTimeMillis();
+        boolean h24 = a.routine().fmt24;
+        boolean on = lib.on(now, Store.zone());
+        binding = true;
+        autoSwitch.setChecked(lib.auto);
+        ringerSwitch.setChecked(lib.ringer);
+        binding = false;
+        String line = lib.status(now, Store.zone(), h24);
+        status.setText(line);
+        part.setSummary(on ? "On" : lib.auto && lib.nextStartMs(now, Store.zone()) > 0 ? "Off, by the clock" : "Off");
+        boolean byHand = lib.untilMs > now;
+        handButton.setText(Lang.tr(byHand ? "Turn off" : "Turn on"));
+        handButton.setVisibility(on && !byHand ? ViewGroup.GONE : ViewGroup.VISIBLE);
+        autoBox.setVisibility(lib.auto ? ViewGroup.VISIBLE : ViewGroup.GONE);
+        fromButton.setText(Lang.tr("From " + Routine.formatTime(lib.startMin, h24)));
+        toButton.setText(Lang.tr("Until " + Routine.formatTime(lib.endMin, h24)));
+        dayRow.removeAllViews();
+        for (int i = 0; i < 7; i++) {
+            final int bit = 1 << i;
+            boolean set = (lib.days & bit) != 0;
+            TextView t = Ui.label(a, LockRules.dayName(i).substring(0, 1), 14, set ? 0xFFFFFFFF : Ui.INK, true);
+            t.setGravity(Gravity.CENTER);
+            t.setBackground(Ui.box(a, set ? Ui.TEAL : Ui.SOFT, set ? 0 : Ui.LINE, 20));
+            t.setContentDescription(LockRules.dayName(i));
+            t.setOnClickListener(v -> {
+                LibraryMode l = Store.library(a);
+                l.days ^= bit;
+                save(l);
+            });
+            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(0, a.dp(40), 1f);
+            p.rightMargin = a.dp(4);
+            dayRow.addView(t, p);
+        }
+        if (lib.days == 0) dayNote.setText("Pick at least one day, or it never comes on.");
+        else if (lib.endMin <= lib.startMin) dayNote.setText("It runs from " + Routine.formatTime(lib.startMin, h24) + " into the next morning, until "
+                + Routine.formatTime(lib.endMin, h24) + ".");
+        else dayNote.setText(LockRules.daysText(lib.days) + ", " + Routine.formatTime(lib.startMin, h24) + " to " + Routine.formatTime(lib.endMin, h24) + ".");
+    }
+}

@@ -19,7 +19,7 @@ import java.util.Locale;
  * yes or no. Shown on Home (a short summary) and on Settings > Alarms (the full list).
  */
 final class AlarmHealth {
-    static final int ON = 0, NOTIF = 1, EXACT = 2, FULL = 3, BATTERY = 4, PHONE = 5, POPUP = 6;
+    static final int ON = 0, NOTIF = 1, EXACT = 2, FULL = 3, BATTERY = 4, PHONE = 5, POPUP = 6, VOLUME = 7;
 
     /** Fine. */
     static final int OK = 0;
@@ -56,6 +56,8 @@ final class AlarmHealth {
                 fullScreenOk(c) ? OK : ADVICE));
         out.add(new Item(POPUP, "Alarm pop-up allowed", "Shows the question on top while you use the phone.",
                 popupOk(c) ? OK : NEEDED));
+        out.add(new Item(VOLUME, "Alarm volume", "The phone's alarm volume is turned right down, so an alarm would not make a sound.",
+                volumeOk(c) ? OK : NEEDED));
         out.add(new Item(BATTERY, "No battery limits", "Stops the phone from putting the app to sleep. Set Battery to Unrestricted on the app info page.",
                 batteryOk(c) ? OK : ADVICE));
         if (knownPhoneMaker()) {
@@ -105,6 +107,25 @@ final class AlarmHealth {
             return nm == null || nm.canUseFullScreenIntent();
         } catch (RuntimeException e) {
             return true;
+        }
+    }
+
+    /** False when the phone's alarm volume is all the way down (then an alarm only vibrates). */
+    static boolean volumeOk(Context c) {
+        try {
+            android.media.AudioManager am = (android.media.AudioManager) c.getSystemService(Context.AUDIO_SERVICE);
+            return am == null || am.getStreamVolume(android.media.AudioManager.STREAM_ALARM) > 0;
+        } catch (RuntimeException e) {
+            return true;
+        }
+    }
+
+    /** The phone's sound settings, where the alarm volume is. */
+    static void openSoundSettings(Activity a) {
+        try {
+            a.startActivity(new Intent(Settings.ACTION_SOUND_SETTINGS));
+        } catch (RuntimeException e) {
+            say(a, "Open Settings, Sound, and turn the alarm volume up");
         }
     }
 

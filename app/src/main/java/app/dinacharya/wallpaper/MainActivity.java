@@ -1,6 +1,5 @@
 package app.dinacharya.wallpaper;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -10,10 +9,16 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.AbsSeekBar;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,6 +89,7 @@ public class MainActivity extends LangActivity {
         PassSettle.run(this);   // a video pass that ended while the app was closed gives its changes back first
         passEpoch = PassSettle.epoch();
         routine = Store.load(this);
+        startOfDayByDefault();
         Store.since(this);
         extras = new ExtraSections(this);
         pages[TAB_HOME] = new HomePage(this);
@@ -146,7 +152,15 @@ public class MainActivity extends LangActivity {
             ((SettingsPage) pages[TAB_SETTINGS]).open(SettingsPage.LOOK);
         } else if ("ready".equals(open)) {
             showReady();
+        } else if ("plan".equals(open)) {
+            openPlan();
         }
+    }
+
+    /** Takes the person to the routine so the day can be planned again (after a day off). */
+    void openPlan() {
+        go(TAB_ROUTINE);
+        toastText("Make the schedule for the rest of today, then save it");
     }
 
     /** The end of the first-run welcome: everything is set up, and what to do next. */
@@ -172,6 +186,21 @@ public class MainActivity extends LangActivity {
         }
     }
 
+    /**
+     * The first slot is the start-of-day alarm by default. A routine saved before that was so gets it once, here; after that the choice
+     * is the person's (the slot's bell undoes it) and is never put back.
+     */
+    private void startOfDayByDefault() {
+        try {
+            android.content.SharedPreferences p = Store.prefs(this);
+            if (p.getBoolean("start_of_day_default", false)) return;
+            p.edit().putBoolean("start_of_day_default", true).apply();
+            if (routine.wakeIndex() < 0 && routine.setWake(0, true)) Store.save(this, routine);
+        } catch (RuntimeException e) {
+            CrashLog.note(this, "start of day default", e);
+        }
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle out) {
         super.onSaveInstanceState(out);
@@ -181,11 +210,15 @@ public class MainActivity extends LangActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        syncAlarmSwitch();   // a setup screen may have switched alarms on while this one was behind it
         if (AlarmService.showIfRinging(this)) return;
         Pro.get(this).start();
         settlePass();
         HomeRole.look(this);
-        StrongMode.ensure(this);   // the strong lock runs whenever it is switched on and allowed
+        StrongMode.afterReturn(this);   // the strong lock runs whenever something is locked or paused and it is allowed; asks for the next permission
+        LibraryRinger.refresh(this);   // library mode may have begun or ended while the app was closed
+        // The alarms and the wallpaper are looked at again every time the dashboard comes up (settlePass above saved first).
+        Keeper.ensure(this, "dashboard");
         if (HomeRole.lost(this) && !homeOffered) {
             homeOffered = true;   // once each time the dashboard is opened
             ui.postDelayed(() -> HomeRole.offerBack(this, 0), 600);
@@ -326,6 +359,24 @@ public class MainActivity extends LangActivity {
         return false;
     }
 
+    /**
+     * The setup steps switch alarms on by saving the routine themselves, and this screen keeps its own copy of it. Without taking the
+     * saved switch over, the dashboard would still say "Alarms are off", and the next thing it saved would switch them off again and
+     * cancel them in Android.
+     */
+    void syncAlarmSwitch() {
+        try {
+            boolean saved = Store.load(this).alarmOn;
+            if (routine == null || saved == routine.alarmOn) return;
+            routine.alarmOn = saved;
+            extras.routineChanged();
+            refreshAlarmViews();
+            refreshVisible();
+        } catch (RuntimeException e) {
+            CrashLog.note(this, "alarm switch", e);
+        }
+    }
+
     /** Tells every built page that alarms were switched or their permissions changed. */
     void refreshAlarmViews() {
         for (Page p : pages) {
@@ -341,6 +392,15 @@ public class MainActivity extends LangActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Permissions.REQ_WALL) {
+            // Back from Android's wallpaper preview: the wallpaper starts a moment later, so look again once it has.
+            WallpaperSetup.noteResult(this, resultCode == RESULT_OK);
+            ui.postDelayed(() -> {
+                if (isFinishing() || isDestroyed()) return;
+                refreshAlarmViews();
+            }, 1500);
+            return;
+        }
         if (requestCode != REQ_GOOGLE) return;
         PickerAuth.Callback cb = googleCallback;
         googleCallback = null;
@@ -389,7 +449,7 @@ public class MainActivity extends LangActivity {
         root.setBackgroundColor(0xFFEDF2F1);
         LinearLayout column = new LinearLayout(this);
         column.setOrientation(LinearLayout.VERTICAL);
-        content = new FrameLayout(this);
+        content = new SwipeFrame(this);
         column.addView(content, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
 
         LinearLayout nav = new LinearLayout(this);
@@ -459,6 +519,240 @@ public class MainActivity extends LangActivity {
         setContentView(root);
     }
 
+    /**
+     * The area the pages sit in. A quick, mostly sideways swipe on it moves to the next tab (swipe left) or the previous one (swipe right),
+     * and the pages follow the finger while it moves: the page you are on slides out and the next one slides in beside it. Let go early
+     * and it slides back. A touch that lands on something that uses sideways moves itself (a slider, a switch, a row that swipes to
+     * delete, a strip that scrolls sideways) or that a child takes at once (a drag handle) is left alone. The decision is made by
+     * {@link TabSwipe}.
+     */
+    private final class SwipeFrame extends FrameLayout {
+        private final TabSwipe swipe;
+        private boolean touching;
+        private boolean dragging;
+        private float grabX;
+        /** The tab whose page is sliding in beside the current one, or -1. */
+        private int neighbour = -1;
+        /** True when that page was built or refreshed for the drag, so it must be told when it is not shown after all. */
+        private boolean neighbourFresh;
+
+        SwipeFrame(Context c) {
+            super(c);
+            swipe = new TabSwipe(ViewConfiguration.get(c).getScaledTouchSlop(), Ui.dp(c, 72), Ui.dp(c, 40));
+        }
+
+        @Override
+        public void requestDisallowInterceptTouchEvent(boolean disallow) {
+            if (disallow && touching) swipe.cancel();   // a child grabbed the finger the moment it touched down
+            super.requestDisallowInterceptTouchEvent(disallow);
+        }
+
+        @Override
+        public boolean dispatchTouchEvent(MotionEvent e) {
+            if (e.getActionMasked() != MotionEvent.ACTION_DOWN) return super.dispatchTouchEvent(e);
+            swipe.down(e.getX(), e.getY(), e.getEventTime(), tab >= 0 && !usesSideways(this, e.getX(), e.getY()));
+            touching = true;
+            try {
+                return super.dispatchTouchEvent(e);
+            } finally {
+                touching = false;
+            }
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(MotionEvent e) {
+            switch (e.getActionMasked()) {
+                case MotionEvent.ACTION_POINTER_DOWN:
+                case MotionEvent.ACTION_CANCEL:
+                    swipe.cancel();
+                    return false;
+                case MotionEvent.ACTION_MOVE:
+                    if (!swipe.takes(e.getX(), e.getY())) return false;
+                    beginDrag(e.getX());   // clearly sideways: the page below gets a cancel, so no tap follows
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent e) {
+            switch (e.getActionMasked()) {
+                case MotionEvent.ACTION_POINTER_DOWN:
+                case MotionEvent.ACTION_CANCEL:
+                    swipe.cancel();
+                    if (dragging) endDrag(TabSwipe.STAY, 0);
+                    return true;
+                case MotionEvent.ACTION_MOVE:
+                    if (!dragging && swipe.takes(e.getX(), e.getY())) beginDrag(e.getX());   // nothing below wanted this finger
+                    if (dragging) dragTo(e.getX() - grabX);
+                    return true;
+                case MotionEvent.ACTION_UP: {
+                    int next = swipe.release(e.getX(), e.getY(), e.getEventTime(), tab, pages.length, getWidth());
+                    if (dragging) endDrag(next, e.getX() - grabX);
+                    else if (next != TabSwipe.STAY) go(next);
+                    return true;
+                }
+                default:
+                    return true;   // DOWN: nothing below wanted this finger, so follow it to see whether it swipes
+            }
+        }
+
+        private void beginDrag(float x) {
+            if (tab < 0) return;
+            dragging = true;
+            grabX = x;
+            hideStrays(tab);
+            View cur = pages[tab].view();
+            cur.animate().cancel();
+            cur.setAlpha(1f);
+            cur.setTranslationX(0f);
+        }
+
+        /** The pages follow the finger: {@code offset} is how far it has moved since the swipe was recognised. */
+        private void dragTo(float offset) {
+            if (tab < 0) return;
+            View cur = pages[tab].view();
+            int w = Math.max(1, cur.getWidth());
+            int dir = offset < 0 ? 1 : offset > 0 ? -1 : 0;
+            int want = dir == 0 ? -1 : tab + dir;
+            if (want < 0 || want >= pages.length) want = -1;
+            if (want != neighbour) {
+                retire(neighbour);
+                neighbour = want;
+                if (want >= 0) bring(want);
+            }
+            float progress = Math.min(1f, Math.abs(offset) / w);
+            if (neighbour < 0) {
+                // no tab on that side: the page only gives a little, like a stretched band
+                cur.setTranslationX(offset * 0.3f);
+                cur.setAlpha(1f);
+                return;
+            }
+            View nb = pages[neighbour].view();
+            cur.setTranslationX(offset);
+            cur.setAlpha(1f - 0.4f * progress);
+            nb.setTranslationX(offset + dir * w);   // the next page waits one page width away on the side the finger is going to
+            nb.setAlpha(0.6f + 0.4f * progress);
+        }
+
+        /** The finger was lifted: finish the move to {@code next}, or slide back when that is {@link TabSwipe#STAY}. */
+        private void endDrag(int next, float offset) {
+            dragging = false;
+            if (tab < 0) {
+                neighbour = -1;
+                return;
+            }
+            final View cur = pages[tab].view();
+            int w = Math.max(1, cur.getWidth());
+            float left = 1f - Math.min(1f, Math.abs(offset) / w);   // how much of the way is still to go
+            long ms = 110 + (long) (140 * left);
+            if (next == TabSwipe.STAY || next < 0 || next >= pages.length) {
+                final int back = neighbour;
+                final boolean fresh = neighbourFresh;
+                neighbour = -1;
+                neighbourFresh = false;
+                cur.animate().translationX(0f).alpha(1f).setDuration(ms).setInterpolator(new DecelerateInterpolator()).start();
+                if (back >= 0) {
+                    final View nb = pages[back].view();
+                    int dir = back > tab ? 1 : -1;
+                    nb.animate().translationX(dir * w).setDuration(ms).setInterpolator(new DecelerateInterpolator())
+                            .withEndAction(() -> {
+                                if (!inUse(nb)) hidePage(nb);
+                            }).start();
+                    if (fresh) pages[back].hidden();
+                }
+                return;
+            }
+            int dir = next > tab ? 1 : -1;
+            if (neighbour != next) {
+                retire(neighbour);
+                neighbour = next;
+                bring(next);
+                pages[next].view().setTranslationX(cur.getTranslationX() + dir * w);
+            }
+            final View nb = pages[next].view();
+            boolean fresh = neighbourFresh;
+            neighbour = -1;
+            neighbourFresh = false;
+            pages[tab].hidden();
+            final View old = cur;
+            tab = next;
+            markTab(next);
+            if (!fresh) pages[next].refresh();
+            old.animate().translationX(-dir * w).alpha(0f).setDuration(ms).setInterpolator(new DecelerateInterpolator())
+                    .withEndAction(() -> {
+                        if (!inUse(old)) hidePage(old);
+                    }).start();
+            nb.animate().translationX(0f).alpha(1f).setDuration(ms).setInterpolator(new DecelerateInterpolator()).start();
+        }
+
+        /** True for the page that is shown or is being slid in. */
+        private boolean inUse(View v) {
+            return tab >= 0 && (pages[tab].view() == v || (neighbour >= 0 && pages[neighbour].view() == v));
+        }
+
+        /** Forgets a move in progress (the pages were all built again). */
+        void reset() {
+            dragging = false;
+            neighbour = -1;
+            neighbourFresh = false;
+            swipe.cancel();
+        }
+
+        /** Puts the page of tab {@code t} beside the current one, ready to slide in. */
+        private void bring(int t) {
+            boolean first = !pages[t].built();
+            View v = pages[t].view();
+            if (v.getParent() == null) {
+                addView(v, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            }
+            v.animate().cancel();
+            v.setVisibility(View.VISIBLE);
+            v.setAlpha(0.6f);
+            neighbourFresh = first;
+            if (first) pages[t].refresh();   // a page seen for the first time would be empty until it is refreshed
+        }
+
+        /** Takes a page that was brought beside the current one away again. */
+        private void retire(int t) {
+            if (t < 0) return;
+            if (neighbourFresh) pages[t].hidden();
+            neighbourFresh = false;
+            hidePage(pages[t].view());
+        }
+    }
+
+    private static void hidePage(View v) {
+        v.animate().cancel();
+        v.setVisibility(View.GONE);
+        v.setTranslationX(0f);
+        v.setAlpha(1f);
+    }
+
+    /** Hides every page except the one of tab {@code keep} (one that was still sliding away when a new move starts). */
+    private void hideStrays(int keep) {
+        for (int i = 0; i < pages.length; i++) {
+            if (i == keep || pages[i] == null || !pages[i].built()) continue;
+            View v = pages[i].view();
+            if (v.getVisibility() == View.VISIBLE) hidePage(v);
+        }
+    }
+
+    /** True when a view at this point (in the parent's coordinates) is one that uses sideways finger moves itself. */
+    private static boolean usesSideways(ViewGroup parent, float x, float y) {
+        for (int i = parent.getChildCount() - 1; i >= 0; i--) {
+            View c = parent.getChildAt(i);
+            if (c.getVisibility() != View.VISIBLE) continue;
+            float cx = x + parent.getScrollX() - c.getLeft();
+            float cy = y + parent.getScrollY() - c.getTop();
+            if (cx < 0 || cy < 0 || cx >= c.getWidth() || cy >= c.getHeight()) continue;
+            if (c instanceof SwipeRow || c instanceof HorizontalScrollView || c instanceof AbsSeekBar || c instanceof Switch) return true;
+            if (c instanceof ViewGroup && usesSideways((ViewGroup) c, cx, cy)) return true;
+        }
+        return false;
+    }
+
     /** Shows a tab. */
     void go(int t) {
         if (t < 0 || t >= pages.length) t = TAB_HOME;
@@ -475,9 +769,18 @@ public class MainActivity extends LangActivity {
         if (v.getParent() == null) {
             content.addView(v, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         }
+        v.animate().cancel();   // it may still be sliding from an earlier swipe
         v.setVisibility(View.VISIBLE);
         v.setAlpha(0f);
+        v.setTranslationX(0f);
         v.animate().alpha(1f).setDuration(160).start();
+        hideStrays(t);
+        markTab(t);
+        pages[t].refresh();
+    }
+
+    /** Lights the tab on the bottom bar. */
+    private void markTab(int t) {
         for (int i = 0; i < 5; i++) {
             boolean on = i == t;
             tabIcons[i].setColor(on ? Ui.TEAL_DARK : Ui.MUTED);
@@ -485,7 +788,6 @@ public class MainActivity extends LangActivity {
             tabLabels[i].setTypeface(on ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
             tabPills[i].setBackground(on ? Ui.box(this, Ui.TONAL, 0, 16) : null);
         }
-        pages[t].refresh();
     }
 
     int currentTab() {
@@ -547,10 +849,12 @@ public class MainActivity extends LangActivity {
             // A finished video pass changed the saved routine behind this screen's back: keep that, read it again.
             passEpoch = PassSettle.epoch();
             ui.post(this::reloadAll);
+            AlarmScheduler.reschedule(this);   // the alarms follow the routine that was kept, not the one on this screen
             return;
         }
         try {
             Store.save(this, routine);
+            SlotActions.noticeReplan(this, routine);
         } catch (RuntimeException e) {
             CrashLog.note(this, "save", e);
             toastText("Could not save. Please try again.");
@@ -625,6 +929,7 @@ public class MainActivity extends LangActivity {
     /** After a restore: read everything again and start from Home. */
     void reloadAll() {
         routine.replaceWith(Store.load(this));
+        if (content instanceof SwipeFrame) ((SwipeFrame) content).reset();
         content.removeAllViews();
         previews.clear();
         extras = new ExtraSections(this);

@@ -39,12 +39,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * The strong lock. While it is on, this small foreground service looks at which app is in front of the screen (through the
+ * The strong lock. While something is locked or paused (and it is not switched off), this small foreground service looks at which app is in front of the screen (through the
  * Usage access the daily limits already use) a few times a second, and when that app is locked or paused by a rule
  * ({@link GuardRules}) it puts a cover over it at once and brings up the lock or pause screen ({@link GuardActivity}).
  * Nothing is recorded or sent: the name of the app in front is compared with the person's own rules and forgotten.
  *
- * It stops itself when it is switched off or a permission is taken away, looks at nothing while the screen is off or the
+ * It stops itself when it is switched off, nothing is locked or paused any more, or a permission is taken away, looks at nothing while the screen is off or the
  * phone is locked, and never covers the phone, settings, system screens, the keyboard, a home app or Dinacharya itself.
  */
 public class GuardService extends Service {
@@ -55,6 +55,8 @@ public class GuardService extends Service {
     private static final long FALLBACK_MS = 1500L;
 
     private static volatile GuardService live;
+    /** When the watcher last looked at the screen (0 if it has not since the app started). */
+    private static volatile long lastBeat;
 
     private final Handler main = new Handler(Looper.getMainLooper());
     private HandlerThread thread;
@@ -67,6 +69,8 @@ public class GuardService extends Service {
     private long safeBuilt;
     private LauncherConfig cfg = new LauncherConfig();
     private String cfgText;
+    /** True once the settings have been read; until then nothing is decided from the empty ones. */
+    private boolean cfgOk;
     private SlotNow slot;
     private long slotAt;
     private volatile boolean screenOn = true;
@@ -82,6 +86,11 @@ public class GuardService extends Service {
     static void passed(String pkg) {
         GuardService s = live;
         if (s != null) s.tracker.passed(pkg, System.currentTimeMillis());
+    }
+
+    /** When the watcher last looked at the screen, or 0. A beat older than a few seconds means it is not running. */
+    static long lastBeat() {
+        return lastBeat;
     }
 
     /** The tracker of who was let through, or null when the service is not running. */
@@ -124,6 +133,7 @@ public class GuardService extends Service {
             return;
         }
         live = this;
+        lastBeat = System.currentTimeMillis();
         PowerManager power = (PowerManager) getSystemService(Context.POWER_SERVICE);
         screenOn = power == null || power.isInteractive();
         thread = new HandlerThread("strong-lock");
@@ -141,9 +151,17 @@ public class GuardService extends Service {
         return START_STICKY;
     }
 
+    /** Some phones stop the whole app when its task is swiped away; ask to be started again in a moment. */
+    @Override
+    public void onTaskRemoved(Intent rootIntent) {
+        StrongMode.restartSoon(this);
+        super.onTaskRemoved(rootIntent);
+    }
+
     @Override
     public void onDestroy() {
         live = null;
+        lastBeat = 0;
         try {
             unregisterReceiver(screen);
         } catch (RuntimeException ignored) {
@@ -219,10 +237,14 @@ public class GuardService extends Service {
 
     /** One look at the screen. Returns how long to wait before the next one. */
     private long step() {
-        if (!StrongMode.enabled(this) || !StrongMode.hasUsage(this) || !StrongMode.hasOverlay(this)) {
-            main.post(this::stopSelf);   // switched off, or a permission was taken away
+        final long now = System.currentTimeMillis();
+        lastBeat = now;
+        refreshConfig(now);
+        if ((cfgOk && !GuardRules.shouldRun(cfg)) || !StrongMode.hasUsage(this) || !StrongMode.hasOverlay(this)) {
+            main.post(this::stopSelf);   // switched off by hand, nothing locked or paused any more, or a permission was taken away
             return 5000L;
         }
+        if (!cfgOk) return 2000L;   // the settings could not be read yet: look again rather than stop
         if (!screenOn) return GuardRules.pollMs(true, false, false);
         KeyguardManager km = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
         if (km != null && km.isKeyguardLocked()) {
@@ -231,8 +253,6 @@ public class GuardService extends Service {
             loop.clear();
             return 1000L;
         }
-        final long now = System.currentTimeMillis();
-        refreshConfig(now);
         readEvents(now);
         GuardLoop.Out out = loop.look(cfg, front.front(), coverPackage, safeSet(now), getPackageName(), Pro.open(this), now,
                 Store.zone(), tracker, env);
@@ -280,6 +300,7 @@ public class GuardService extends Service {
                 cfg = LauncherConfig.parse(text);
                 cfgText = text;
             }
+            cfgOk = true;
         } catch (RuntimeException e) {
             CrashLog.note(this, "strong lock config", e);
         }

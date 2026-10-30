@@ -6852,14 +6852,14 @@
 },
 {
 "id": 936,
-"en": "{1} is part of Pro, a one-time purchase that also removes the ads.",
+"en": "{1} is part of Pro, which also removes the ads.",
 "src": [
 "ProPrompt.java:38"
 ]
 },
 {
 "id": 937,
-"en": "{1} is open now. To finish, you also need: {2}. It has its own video, or it is part of Pro, a one-time purchase that also removes the ads.",
+"en": "{1} is open now. To finish, you also need: {2}. It has its own video, or it is part of Pro, which also removes the ads.",
 "src": [
 "ProPrompt.java:44"
 ]
@@ -10106,7 +10106,7 @@
 },
 {
 "id": 1393,
-"en": "One payment, or a short video for a day",
+"en": "Monthly or once, or a short video for a day",
 "src": [
 "TourArt.java:384"
 ]
@@ -10267,7 +10267,7 @@
 },
 {
 "id": 1416,
-"en": "You have watched a lot of videos today. Try again tomorrow, or get Pro: it is one payment, opens everything for good and removes the ads.",
+"en": "You have watched a lot of videos today. Try again tomorrow, or get Pro: it opens everything and removes the ads.",
 "src": [
 "VideoPass.java:355"
 ]
@@ -13014,6 +13014,3590 @@
 {
 "id": 5364,
 "en": "{1}–{2} of {3}",
+"src": [
+"added"
+]
+},
+{
+"id": 5365,
+"en": "Choose a monthly plan or pay once for life. Paid through Google Play.",
+"src": [
+"added"
+]
+},
+{
+"id": 5366,
+"en": "Your monthly plan is active. It renews every month until you cancel it in Google Play.",
+"src": [
+"added"
+]
+},
+{
+"id": 5367,
+"en": "Monthly plan",
+"src": [
+"added"
+]
+},
+{
+"id": 5368,
+"en": "Lifetime plan",
+"src": [
+"added"
+]
+},
+{
+"id": 5369,
+"en": "{1} a month",
+"src": [
+"added"
+]
+},
+{
+"id": 5370,
+"en": "{1} once",
+"src": [
+"added"
+]
+},
+{
+"id": 5371,
+"en": "Pro for as long as you subscribe. Renews every month; cancel any time in Google Play.",
+"src": [
+"added"
+]
+},
+{
+"id": 5372,
+"en": "Pay once and keep Pro for good.",
+"src": [
+"added"
+]
+},
+{
+"id": 5373,
+"en": "Subscribe monthly",
+"src": [
+"added"
+]
+},
+{
+"id": 5374,
+"en": "Get lifetime Pro",
+"src": [
+"added"
+]
+},
+{
+"id": 5375,
+"en": "Manage subscription",
+"src": [
+"added"
+]
+},
+{
+"id": 5376,
+"en": "If you buy lifetime, cancel the monthly plan in Google Play so it does not renew.",
+"src": [
+"added"
+]
+},
+{
+"id": 5377,
+"en": "Pro is a monthly plan or one payment for life, through Google Play. ",
+"src": [
+"added"
+]
+},
+{
+"id": 5378,
+"en": "Pro is {1} a month, or {2} once for life, through Google Play. ",
+"src": [
+"added"
+]
+},
+{
+"id": 5379,
+"en": "Free with small ads. Dinacharya Pro, monthly or for life, removes the ads and unlocks the extras.",
+"src": [
+"added"
+]
+},
+{
+"id": 5380,
+"en": "Alarm volume",
+"src": [
+"added"
+]
+},
+{
+"id": 5381,
+"en": "The phone's alarm volume is turned right down, so an alarm would not make a sound.",
+"src": [
+"added"
+]
+},
+{
+"id": 5382,
+"en": "Open Settings, Sound, and turn the alarm volume up",
+"src": [
+"added"
+]
+},
+{
+"id": 5383,
+"en": "{1} of {2} shakes",
+"src": [
+"added"
+]
+},
+{
+"id": 5384,
+"en": "0 of {1} shakes",
+"src": [
+"added"
+]
+},
+{
+"id": 5385,
+"en": "To turn this alarm off, solve three quick sums.",
+"src": [
+"added"
+]
+},
+{
+"id": 5386,
+"en": "To turn this alarm off, take a short pause and breathe.",
+"src": [
+"added"
+]
+},
+{
+"id": 5387,
+"en": "To turn this alarm off, shake your phone.",
+"src": [
+"added"
+]
+},
+{
+"id": 5388,
+"en": "To turn this alarm off, type a short sentence.",
+"src": [
+"added"
+]
+},
+{
+"id": 5389,
+"en": "Another quote",
+"src": [
+"added"
+]
+},
+{
+"id": 5390,
+"en": "Take the day off",
+"src": [
+"added"
+]
+},
+{
+"id": 5391,
+"en": "Enjoy your day off.",
+"src": [
+"added"
+]
+},
+{
+"id": 5392,
+"en": "Type this to start your day",
+"src": [
+"added"
+]
+},
+{
+"id": 5393,
+"en": "Take a short pause",
+"src": [
+"added"
+]
+},
+{
+"id": 5394,
+"en": "The alarm stops when the last breath is done. Leaving this screen starts the breaths again.",
+"src": [
+"added"
+]
+},
+{
+"id": 5395,
+"en": "This phone cannot tell when it is shaken, so here are three sums instead.",
+"src": [
+"added"
+]
+},
+{
+"id": 5396,
+"en": "Shake your phone",
+"src": [
+"added"
+]
+},
+{
+"id": 5397,
+"en": "Hold it firmly and shake it up and down. The alarm stops after the last shake.",
+"src": [
+"added"
+]
+},
+{
+"id": 5398,
+"en": "Plan your day?",
+"src": [
+"added"
+]
+},
+{
+"id": 5399,
+"en": "Your day is off",
+"src": [
+"added"
+]
+},
+{
+"id": 5400,
+"en": "Plan your day now, later, or leave it?",
+"src": [
+"added"
+]
+},
+{
+"id": 5401,
+"en": "No alarm rings until you plan your day again.",
+"src": [
+"added"
+]
+},
+{
+"id": 5402,
+"en": "Plan now",
+"src": [
+"added"
+]
+},
+{
+"id": 5403,
+"en": "Leave it",
+"src": [
+"added"
+]
+},
+{
+"id": 5404,
+"en": "Enjoy your day off. Your alarms are back tomorrow.",
+"src": [
+"added"
+]
+},
+{
+"id": 5405,
+"en": "Your day is off. Plan it now, later, or leave it. Tap to answer.",
+"src": [
+"added"
+]
+},
+{
+"id": 5406,
+"en": "No alarm will ring for the rest of today. The slot going on ends now, and the slots still to come count as taken off. Tomorrow starts as usual.",
+"src": [
+"added"
+]
+},
+{
+"id": 5407,
+"en": "In {1} hours",
+"src": [
+"added"
+]
+},
+{
+"id": 5408,
+"en": "This evening, {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5409,
+"en": "Take the rest of today off?",
+"src": [
+"added"
+]
+},
+{
+"id": 5410,
+"en": "Take it off",
+"src": [
+"added"
+]
+},
+{
+"id": 5411,
+"en": "The day could not be taken off",
+"src": [
+"added"
+]
+},
+{
+"id": 5412,
+"en": "Your day is off, so no alarm will ring until you plan it again. Plan it now, later, or leave it?",
+"src": [
+"added"
+]
+},
+{
+"id": 5413,
+"en": "In 1 hour",
+"src": [
+"added"
+]
+},
+{
+"id": 5414,
+"en": "Ask me again",
+"src": [
+"added"
+]
+},
+{
+"id": 5415,
+"en": "“{1}” was to end at {2}. Finish it now, and “{3}” starts early. It still ends at {4}, so it gets the time that was left.",
+"src": [
+"added"
+]
+},
+{
+"id": 5416,
+"en": "Start “{1}” after a while",
+"src": [
+"added"
+]
+},
+{
+"id": 5417,
+"en": "Finish “{1}” early?",
+"src": [
+"added"
+]
+},
+{
+"id": 5418,
+"en": "Back at {1}, and “{2}” goes on.",
+"src": [
+"added"
+]
+},
+{
+"id": 5419,
+"en": "“{1}” starts at {2}.",
+"src": [
+"added"
+]
+},
+{
+"id": 5420,
+"en": "Start “{1}” later",
+"src": [
+"added"
+]
+},
+{
+"id": 5421,
+"en": "“{1}” has started",
+"src": [
+"added"
+]
+},
+{
+"id": 5422,
+"en": "Enjoy your break. “{1}” goes on at {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5423,
+"en": "“{1}” starts at {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5424,
+"en": "this slot",
+"src": [
+"added"
+]
+},
+{
+"id": 5425,
+"en": "the next slot",
+"src": [
+"added"
+]
+},
+{
+"id": 5426,
+"en": "The next slot",
+"src": [
+"added"
+]
+},
+{
+"id": 5427,
+"en": "Take a break first",
+"src": [
+"added"
+]
+},
+{
+"id": 5428,
+"en": "Take the rest of today off",
+"src": [
+"added"
+]
+},
+{
+"id": 5429,
+"en": "That cannot be done now",
+"src": [
+"added"
+]
+},
+{
+"id": 5430,
+"en": "Choose one slot as your start-of-day alarm from its bell on the Routine tab. It has to be the first alarm of the day. It keeps ringing until you start the day, put it off or take the day off. Before you can turn it off you can be asked to solve a sum, take a pause, shake the phone or type a sentence, and you see a motivating quote.",
+"src": [
+"added"
+]
+},
+{
+"id": 5431,
+"en": "Taking the day off silences every alarm for the rest of today. You are asked if you want to plan the day now, later or leave it.",
+"src": [
+"added"
+]
+},
+{
+"id": 5432,
+"en": "Today’s quote:  “{1}”{2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5433,
+"en": "To turn the alarm off and start the day",
+"src": [
+"added"
+]
+},
+{
+"id": 5434,
+"en": "Just tap Start my day",
+"src": [
+"added"
+]
+},
+{
+"id": 5435,
+"en": "Take a short pause (four slow breaths)",
+"src": [
+"added"
+]
+},
+{
+"id": 5436,
+"en": "Shake the phone",
+"src": [
+"added"
+]
+},
+{
+"id": 5437,
+"en": "The alarm keeps ringing until it is done. A phone that cannot sense a shake asks for the sums instead.",
+"src": [
+"added"
+]
+},
+{
+"id": 5438,
+"en": "Show a motivating quote",
+"src": [
+"added"
+]
+},
+{
+"id": 5439,
+"en": "Offer “Take the day off”",
+"src": [
+"added"
+]
+},
+{
+"id": 5440,
+"en": "Locked only while a {1} slot is going on, {2} from {3} to {4}.",
+"src": [
+"added"
+]
+},
+{
+"id": 5441,
+"en": "Locked in the times above, and also whenever a {1} slot is going on.",
+"src": [
+"added"
+]
+},
+{
+"id": 5442,
+"en": "Locked {1}, {2} to {3}, but only during the activity types below.",
+"src": [
+"added"
+]
+},
+{
+"id": 5443,
+"en": "Only when both hold: the times above and these activity types",
+"src": [
+"added"
+]
+},
+{
+"id": 5444,
+"en": "Also lock in library mode",
+"src": [
+"added"
+]
+},
+{
+"id": 5445,
+"en": "While library mode is on, these apps are locked too, whatever the times and activity types say.",
+"src": [
+"added"
+]
+},
+{
+"id": 5446,
+"en": "Locks during {1}, {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5447,
+"en": "Locked until library mode is switched off",
+"src": [
+"added"
+]
+},
+{
+"id": 5448,
+"en": "  ·  and in library mode",
+"src": [
+"added"
+]
+},
+{
+"id": 5449,
+"en": "Locks in library mode",
+"src": [
+"added"
+]
+},
+{
+"id": 5450,
+"en": "Library mode is on",
+"src": [
+"added"
+]
+},
+{
+"id": 5451,
+"en": "Until library mode is switched off",
+"src": [
+"added"
+]
+},
+{
+"id": 5452,
+"en": "Break until {1}   ·   {2} left",
+"src": [
+"added"
+]
+},
+{
+"id": 5453,
+"en": "Then back to {1}, which ends at {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5454,
+"en": "Starts at {1}   ·   in {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5455,
+"en": "It was to start at {1}, and ends at {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5456,
+"en": "Started late, at {1} instead of {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5457,
+"en": "Started early, at {1} instead of {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5458,
+"en": "Carried on, so it ends at {1} instead of {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5459,
+"en": "Finished early, at {1} instead of {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5460,
+"en": "DAY OFF",
+"src": [
+"added"
+]
+},
+{
+"id": 5461,
+"en": "STARTING LATER",
+"src": [
+"added"
+]
+},
+{
+"id": 5462,
+"en": "Enjoy your day off",
+"src": [
+"added"
+]
+},
+{
+"id": 5463,
+"en": "No alarm will ring until you plan the day again, or tomorrow.",
+"src": [
+"added"
+]
+},
+{
+"id": 5464,
+"en": "Plan the day",
+"src": [
+"added"
+]
+},
+{
+"id": 5465,
+"en": "Back to my schedule",
+"src": [
+"added"
+]
+},
+{
+"id": 5466,
+"en": "Your schedule is back. The alarms ring again.",
+"src": [
+"added"
+]
+},
+{
+"id": 5467,
+"en": "Finish early",
+"src": [
+"added"
+]
+},
+{
+"id": 5468,
+"en": "Library mode",
+"src": [
+"added"
+]
+},
+{
+"id": 5469,
+"en": "On",
+"src": [
+"added"
+]
+},
+{
+"id": 5470,
+"en": "Off",
+"src": [
+"added"
+]
+},
+{
+"id": 5471,
+"en": "Every alarm only vibrates, with no sound.",
+"src": [
+"added"
+]
+},
+{
+"id": 5472,
+"en": "Keeps every alarm silent, with vibration only, for the library, a class or an exam.",
+"src": [
+"added"
+]
+},
+{
+"id": 5473,
+"en": "Turn off",
+"src": [
+"added"
+]
+},
+{
+"id": 5474,
+"en": "Change the hours",
+"src": [
+"added"
+]
+},
+{
+"id": 5475,
+"en": "1 hour",
+"src": [
+"added"
+]
+},
+{
+"id": 5476,
+"en": "2 hours",
+"src": [
+"added"
+]
+},
+{
+"id": 5477,
+"en": "4 hours",
+"src": [
+"added"
+]
+},
+{
+"id": 5478,
+"en": "Until I switch it off",
+"src": [
+"added"
+]
+},
+{
+"id": 5479,
+"en": "Every alarm only vibrates while it is on, with no sound. Apps in locks that include library mode are locked too. How long?",
+"src": [
+"added"
+]
+},
+{
+"id": 5480,
+"en": "On until {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5481,
+"en": "Off. Next: {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5482,
+"en": "On until you switch it off",
+"src": [
+"added"
+]
+},
+{
+"id": 5483,
+"en": "For the library, a class or an exam. While library mode is on, every alarm of the app only vibrates, with no sound: the start-of-day alarm, the slot alarms, the bedtime question and the break timers. The questions still appear, and groups of apps set to lock in library mode are locked.",
+"src": [
+"added"
+]
+},
+{
+"id": 5484,
+"en": "Calls and messages stop making sound as well. When library mode ends, the ringer goes back to how it was, unless you changed it yourself. If your phone asks for Do Not Disturb access to do this, the ringer is left as it is.",
+"src": [
+"added"
+]
+},
+{
+"id": 5485,
+"en": "It runs from {1} into the next morning, until {2}.",
+"src": [
+"added"
+]
+},
+{
+"id": 5486,
+"en": "Turn it on by itself at fixed hours",
+"src": [
+"added"
+]
+},
+{
+"id": 5487,
+"en": "Also put the phone on vibrate",
+"src": [
+"added"
+]
+},
+{
+"id": 5488,
+"en": "Off, by the clock",
+"src": [
+"added"
+]
+},
+{
+"id": 5489,
+"en": "Pick at least one day, or it never comes on.",
+"src": [
+"added"
+]
+},
+{
+"id": 5490,
+"en": "Delayed start",
+"src": [
+"added"
+]
+},
+{
+"id": 5491,
+"en": "Day off",
+"src": [
+"added"
+]
+},
+{
+"id": 5492,
+"en": "Make the schedule for the rest of today, then save it",
+"src": [
+"added"
+]
+},
+{
+"id": 5493,
+"en": "STARTS AT  {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5494,
+"en": "LIBRARY MODE",
+"src": [
+"added"
+]
+},
+{
+"id": 5495,
+"en": "DAY OFF  ·  no alarms",
+"src": [
+"added"
+]
+},
+{
+"id": 5496,
+"en": "STARTED LATE",
+"src": [
+"added"
+]
+},
+{
+"id": 5497,
+"en": "RAN LONGER",
+"src": [
+"added"
+]
+},
+{
+"id": 5498,
+"en": "STARTED EARLY",
+"src": [
+"added"
+]
+},
+{
+"id": 5499,
+"en": "FINISHED EARLY",
+"src": [
+"added"
+]
+},
+{
+"id": 5500,
+"en": "Open Google Play, then your profile picture, Payments and subscriptions, Subscriptions.",
+"src": [
+"added"
+]
+},
+{
+"id": 5501,
+"en": "{1} (build {2})",
+"src": [
+"added"
+]
+},
+{
+"id": 5502,
+"en": "I am awake and ready to begin",
+"src": [
+"added"
+]
+},
+{
+"id": 5503,
+"en": "Today I do what I planned",
+"src": [
+"added"
+]
+},
+{
+"id": 5504,
+"en": "I start my day on purpose",
+"src": [
+"added"
+]
+},
+{
+"id": 5505,
+"en": "A good day begins right now",
+"src": [
+"added"
+]
+},
+{
+"id": 5506,
+"en": "I rise and I start",
+"src": [
+"added"
+]
+},
+{
+"id": 5507,
+"en": "{1}, {2} to {3}.",
+"src": [
+"added"
+]
+},
+{
+"id": 5508,
+"en": "{1}, {2} to {3}",
+"src": [
+"added"
+]
+},
+{
+"id": 5509,
+"en": "The journey of a thousand miles begins with a single step.",
+"src": [
+"added"
+]
+},
+{
+"id": 5510,
+"en": "It does not matter how slowly you go as long as you do not stop.",
+"src": [
+"added"
+]
+},
+{
+"id": 5511,
+"en": "Arise, awake, and stop not till the goal is reached.",
+"src": [
+"added"
+]
+},
+{
+"id": 5512,
+"en": "Dream, dream, dream. Dreams transform into thoughts and thoughts result in action.",
+"src": [
+"added"
+]
+},
+{
+"id": 5513,
+"en": "If you want to shine like a sun, first burn like a sun.",
+"src": [
+"added"
+]
+},
+{
+"id": 5514,
+"en": "Look to this day, for it is life, the very life of life.",
+"src": [
+"added"
+]
+},
+{
+"id": 5515,
+"en": "At dawn, when you have trouble getting out of bed, tell yourself: I have to go to work as a human being.",
+"src": [
+"added"
+]
+},
+{
+"id": 5516,
+"en": "Begin at once to live, and count each separate day as a separate life.",
+"src": [
+"added"
+]
+},
+{
+"id": 5517,
+"en": "While we are postponing, life speeds by.",
+"src": [
+"added"
+]
+},
+{
+"id": 5518,
+"en": "The early morning has gold in its mouth.",
+"src": [
+"added"
+]
+},
+{
+"id": 5519,
+"en": "You may delay, but time will not.",
+"src": [
+"added"
+]
+},
+{
+"id": 5520,
+"en": "Lost time is never found again.",
+"src": [
+"added"
+]
+},
+{
+"id": 5521,
+"en": "Energy and persistence conquer all things.",
+"src": [
+"added"
+]
+},
+{
+"id": 5522,
+"en": "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
+"src": [
+"added"
+]
+},
+{
+"id": 5523,
+"en": "Do what you can, with what you have, where you are.",
+"src": [
+"added"
+]
+},
+{
+"id": 5524,
+"en": "It always seems impossible until it is done.",
+"src": [
+"added"
+]
+},
+{
+"id": 5525,
+"en": "Courage is not the absence of fear, but the triumph over it.",
+"src": [
+"added"
+]
+},
+{
+"id": 5526,
+"en": "Start where you are. Use what you have. Do what you can.",
+"src": [
+"added"
+]
+},
+{
+"id": 5527,
+"en": "Make each day your masterpiece.",
+"src": [
+"added"
+]
+},
+{
+"id": 5528,
+"en": "Success is the sum of small efforts, repeated day in and day out.",
+"src": [
+"added"
+]
+},
+{
+"id": 5529,
+"en": "How we spend our days is, of course, how we spend our lives.",
+"src": [
+"added"
+]
+},
+{
+"id": 5530,
+"en": "Do not watch the clock; do what it does. Keep going.",
+"src": [
+"added"
+]
+},
+{
+"id": 5531,
+"en": "Discipline is the bridge between goals and accomplishment.",
+"src": [
+"added"
+]
+},
+{
+"id": 5532,
+"en": "The only way to do great work is to love what you do.",
+"src": [
+"added"
+]
+},
+{
+"id": 5533,
+"en": "Small deeds done are better than great deeds planned.",
+"src": [
+"added"
+]
+},
+{
+"id": 5534,
+"en": "What you do today can improve all your tomorrows.",
+"src": [
+"added"
+]
+},
+{
+"id": 5535,
+"en": "A year from now you may wish you had started today.",
+"src": [
+"added"
+]
+},
+{
+"id": 5536,
+"en": "We must use time as a tool, not as a couch.",
+"src": [
+"added"
+]
+},
+{
+"id": 5537,
+"en": "The key is not to prioritize what is on your schedule, but to schedule your priorities.",
+"src": [
+"added"
+]
+},
+{
+"id": 5538,
+"en": "Each day is a little life.",
+"src": [
+"added"
+]
+},
+{
+"id": 5539,
+"en": "With the new day comes new strength and new thoughts.",
+"src": [
+"added"
+]
+},
+{
+"id": 5540,
+"en": "The sun itself is weak when it first rises, and gathers strength and courage as the day goes on.",
+"src": [
+"added"
+]
+},
+{
+"id": 5541,
+"en": "Nothing will work unless you do.",
+"src": [
+"added"
+]
+},
+{
+"id": 5542,
+"en": "Happiness depends upon ourselves.",
+"src": [
+"added"
+]
+},
+{
+"id": 5543,
+"en": "and",
+"src": [
+"added"
+]
+},
+{
+"id": 5544,
+"en": "Each slot can ring when it starts and ask one question: carry on, or change the plan? At bedtime it asks when you went to sleep, and if you need more time it tells you what that costs in sleep. The question comes up by itself, and again when you wake the phone or come back to the home screen. The start-of-day alarm can ask for a sum, a short pause, a shake or a sentence before it stops, and shows a motivating quote. Finished early? Tap Finish early on Home. Library mode keeps every alarm silent, with only vibration.",
+"src": [
+"added"
+]
+},
+{
+"id": 5545,
+"en": "Shut the apps that eat your time for hours you choose: every day or on some days, or just for the next hour. A locked app is greyed in the list, and the lock screen shows when it opens again. You can break a lock by waiting half a minute and typing a sentence. Free: lock two apps. Pro: groups of apps, as many locks as you like, and strict locks that cannot be broken. A group can also lock only while an activity type such as Study is going on, only when both the hours and the activity hold, or in library mode. Set it up in the home settings.",
+"src": [
+"added"
+]
+},
+{
+"id": 5546,
+"en": "Lock by",
+"src": [
+"added"
+]
+},
+{
+"id": 5547,
+"en": "Time",
+"src": [
+"added"
+]
+},
+{
+"id": 5548,
+"en": "Time + activity",
+"src": [
+"added"
+]
+},
+{
+"id": 5549,
+"en": "Time or activity",
+"src": [
+"added"
+]
+},
+{
+"id": 5550,
+"en": "Locked at the hours you set, whatever you are doing.",
+"src": [
+"added"
+]
+},
+{
+"id": 5551,
+"en": "Locked whenever a slot of the types you pick is going on, at any hour.",
+"src": [
+"added"
+]
+},
+{
+"id": 5552,
+"en": "Locked only when a slot of the types you pick is going on inside the hours you set.",
+"src": [
+"added"
+]
+},
+{
+"id": 5553,
+"en": "Locked in the hours you set, and also whenever a slot of the types you pick is going on.",
+"src": [
+"added"
+]
+},
+{
+"id": 5554,
+"en": "More options",
+"src": [
+"added"
+]
+},
+{
+"id": 5555,
+"en": "No activity types chosen yet.",
+"src": [
+"added"
+]
+},
+{
+"id": 5556,
+"en": "A break, a slot you took off and the time between slots do not lock.",
+"src": [
+"added"
+]
+},
+{
+"id": 5557,
+"en": "Choose at least one activity type",
+"src": [
+"added"
+]
+},
+{
+"id": 5558,
+"en": "Locked while a {1} slot is going on.",
+"src": [
+"added"
+]
+},
+{
+"id": 5559,
+"en": "Phone use in slots",
+"src": [
+"added"
+]
+},
+{
+"id": 5560,
+"en": "Off. Mark the phone use that is not part of a slot's activity",
+"src": [
+"added"
+]
+},
+{
+"id": 5561,
+"en": "On. Every app counts as phone use",
+"src": [
+"added"
+]
+},
+{
+"id": 5562,
+"en": "On. Apps chosen for 1 activity",
+"src": [
+"added"
+]
+},
+{
+"id": 5563,
+"en": "On. Apps chosen for {1} activities",
+"src": [
+"added"
+]
+},
+{
+"id": 5564,
+"en": "See when you pick up the phone during a slot. The home screen marks it with the exact times and the reports count it. Apps you choose for an activity are part of it and are never marked.",
+"src": [
+"added"
+]
+},
+{
+"id": 5565,
+"en": "Show phone use during slots",
+"src": [
+"added"
+]
+},
+{
+"id": 5566,
+"en": "Needed to see which apps are used, and when",
+"src": [
+"added"
+]
+},
+{
+"id": 5567,
+"en": "Apps that are part of an activity",
+"src": [
+"added"
+]
+},
+{
+"id": 5568,
+"en": "Choose for each activity the apps it needs (a notes app for Study, say). Any other app used during that activity's slot is marked. This app is always part of the slot.",
+"src": [
+"added"
+]
+},
+{
+"id": 5569,
+"en": "No apps chosen yet",
+"src": [
+"added"
+]
+},
+{
+"id": 5570,
+"en": "1 activity has apps",
+"src": [
+"added"
+]
+},
+{
+"id": 5571,
+"en": "{1} activities have apps",
+"src": [
+"added"
+]
+},
+{
+"id": 5572,
+"en": "No apps chosen",
+"src": [
+"added"
+]
+},
+{
+"id": 5573,
+"en": "Choose",
+"src": [
+"added"
+]
+},
+{
+"id": 5574,
+"en": "Up to {1} apps for one activity",
+"src": [
+"added"
+]
+},
+{
+"id": 5575,
+"en": "Apps for {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5576,
+"en": "Up to {1} activities can have apps",
+"src": [
+"added"
+]
+},
+{
+"id": 5577,
+"en": "This clears the swipes, the look, the hidden apps, the pause rules, the locked groups and the phone use choices. Your routine and reports are not touched.",
+"src": [
+"added"
+]
+},
+{
+"id": 5578,
+"en": "Slot analysis",
+"src": [
+"added"
+]
+},
+{
+"id": 5579,
+"en": "How each slot went",
+"src": [
+"added"
+]
+},
+{
+"id": 5580,
+"en": "No slot has run yet, so there is nothing to look at.",
+"src": [
+"added"
+]
+},
+{
+"id": 5581,
+"en": "Focus is the share of a slot's time with no other phone use. Apps chosen for an activity do not count against it.",
+"src": [
+"added"
+]
+},
+{
+"id": 5582,
+"en": "Time devoted",
+"src": [
+"added"
+]
+},
+{
+"id": 5583,
+"en": "Other phone use",
+"src": [
+"added"
+]
+},
+{
+"id": 5584,
+"en": "Longest focus",
+"src": [
+"added"
+]
+},
+{
+"id": 5585,
+"en": "By slot",
+"src": [
+"added"
+]
+},
+{
+"id": 5586,
+"en": "By activity",
+"src": [
+"added"
+]
+},
+{
+"id": 5587,
+"en": "selected",
+"src": [
+"added"
+]
+},
+{
+"id": 5588,
+"en": "not selected",
+"src": [
+"added"
+]
+},
+{
+"id": 5589,
+"en": "No activity has run yet.",
+"src": [
+"added"
+]
+},
+{
+"id": 5590,
+"en": "1 other slot has not started or was taken off.",
+"src": [
+"added"
+]
+},
+{
+"id": 5591,
+"en": "{1} other slots have not started or were taken off.",
+"src": [
+"added"
+]
+},
+{
+"id": 5592,
+"en": "focus",
+"src": [
+"added"
+]
+},
+{
+"id": 5593,
+"en": "{1}% focus",
+"src": [
+"added"
+]
+},
+{
+"id": 5594,
+"en": "Phone use was not available",
+"src": [
+"added"
+]
+},
+{
+"id": 5595,
+"en": "Devoted {1} of {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5596,
+"en": "In the slot",
+"src": [
+"added"
+]
+},
+{
+"id": 5597,
+"en": "Timeline",
+"src": [
+"added"
+]
+},
+{
+"id": 5598,
+"en": "No other phone use in this slot.",
+"src": [
+"added"
+]
+},
+{
+"id": 5599,
+"en": "Red marks show other phone use.",
+"src": [
+"added"
+]
+},
+{
+"id": 5600,
+"en": "Other phone use, with the exact times",
+"src": [
+"added"
+]
+},
+{
+"id": 5601,
+"en": "Showing the latest {1} of {2}.",
+"src": [
+"added"
+]
+},
+{
+"id": 5602,
+"en": "The exact times were not saved for this day.",
+"src": [
+"added"
+]
+},
+{
+"id": 5603,
+"en": "Apps used in this slot",
+"src": [
+"added"
+]
+},
+{
+"id": 5604,
+"en": "Time in slots",
+"src": [
+"added"
+]
+},
+{
+"id": 5605,
+"en": "Interruptions",
+"src": [
+"added"
+]
+},
+{
+"id": 5606,
+"en": "Apps used in these slots",
+"src": [
+"added"
+]
+},
+{
+"id": 5607,
+"en": "Phone in total",
+"src": [
+"added"
+]
+},
+{
+"id": 5608,
+"en": "{1} of the phone time was in apps chosen for this activity.",
+"src": [
+"added"
+]
+},
+{
+"id": 5609,
+"en": "Timeline of the slot: no other phone use",
+"src": [
+"added"
+]
+},
+{
+"id": 5610,
+"en": "Timeline of the slot: 1 stretch of other phone use",
+"src": [
+"added"
+]
+},
+{
+"id": 5611,
+"en": "Timeline of the slot: {1} stretches of other phone use",
+"src": [
+"added"
+]
+},
+{
+"id": 5612,
+"en": "Devoted {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5613,
+"en": "No other phone use",
+"src": [
+"added"
+]
+},
+{
+"id": 5614,
+"en": "Longest focus {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5615,
+"en": "Other phone use {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5616,
+"en": "Devoted {1}  ·  No other phone use",
+"src": [
+"added"
+]
+},
+{
+"id": 5617,
+"en": "Devoted {1}  ·  Other phone use {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5618,
+"en": "Focus, slot by slot",
+"src": [
+"added"
+]
+},
+{
+"id": 5619,
+"en": "{1}  +{2} more",
+"src": [
+"added"
+]
+},
+{
+"id": 5620,
+"en": "What I noticed",
+"src": [
+"added"
+]
+},
+{
+"id": 5621,
+"en": "Try this",
+"src": [
+"added"
+]
+},
+{
+"id": 5622,
+"en": "Watch",
+"src": [
+"added"
+]
+},
+{
+"id": 5623,
+"en": "Set up",
+"src": [
+"added"
+]
+},
+{
+"id": 5624,
+"en": "{1} need attention",
+"src": [
+"added"
+]
+},
+{
+"id": 5625,
+"en": "{1} going well",
+"src": [
+"added"
+]
+},
+{
+"id": 5626,
+"en": "{1} not set up yet",
+"src": [
+"added"
+]
+},
+{
+"id": 5627,
+"en": "A slot you often take off",
+"src": [
+"added"
+]
+},
+{
+"id": 5628,
+"en": "A slot you often rename",
+"src": [
+"added"
+]
+},
+{
+"id": 5629,
+"en": "Late to bed",
+"src": [
+"added"
+]
+},
+{
+"id": 5630,
+"en": "Phone during a task",
+"src": [
+"added"
+]
+},
+{
+"id": 5631,
+"en": "Phone before bed",
+"src": [
+"added"
+]
+},
+{
+"id": 5632,
+"en": "One app takes the most",
+"src": [
+"added"
+]
+},
+{
+"id": 5633,
+"en": "Pauses that are skipped",
+"src": [
+"added"
+]
+},
+{
+"id": 5634,
+"en": "You stopped yourself",
+"src": [
+"added"
+]
+},
+{
+"id": 5635,
+"en": "Time that is not planned",
+"src": [
+"added"
+]
+},
+{
+"id": 5636,
+"en": "A plan that is too long",
+"src": [
+"added"
+]
+},
+{
+"id": 5637,
+"en": "Little time to rest",
+"src": [
+"added"
+]
+},
+{
+"id": 5638,
+"en": "A habit that works",
+"src": [
+"added"
+]
+},
+{
+"id": 5639,
+"en": "A solid day",
+"src": [
+"added"
+]
+},
+{
+"id": 5640,
+"en": "Not enough days yet",
+"src": [
+"added"
+]
+},
+{
+"id": 5641,
+"en": "You took off {1} on {2} of the last {3} days.",
+"src": [
+"added"
+]
+},
+{
+"id": 5642,
+"en": "You renamed {1} to {2} on {3} days.",
+"src": [
+"added"
+]
+},
+{
+"id": 5643,
+"en": "You went to sleep about {1} late on average over the last {2} nights.",
+"src": [
+"added"
+]
+},
+{
+"id": 5644,
+"en": "You spent {1} on your phone during {2} ({3}% of the block).",
+"src": [
+"added"
+]
+},
+{
+"id": 5645,
+"en": "You used the phone for {1} in the hour before bed.",
+"src": [
+"added"
+]
+},
+{
+"id": 5646,
+"en": "{1} took {2}, {3}% of your phone time.",
+"src": [
+"added"
+]
+},
+{
+"id": 5647,
+"en": "The home screen paused you {1} times and you opened the app anyway {2} times; {3} pulled you most.",
+"src": [
+"added"
+]
+},
+{
+"id": 5648,
+"en": "You stopped yourself {1} times at the home screen.",
+"src": [
+"added"
+]
+},
+{
+"id": 5649,
+"en": "{1} of your 24 hours are not planned.",
+"src": [
+"added"
+]
+},
+{
+"id": 5650,
+"en": "Your blocks add up to {1} more than 24 hours.",
+"src": [
+"added"
+]
+},
+{
+"id": 5651,
+"en": "Only {1}% of your awake time is rest.",
+"src": [
+"added"
+]
+},
+{
+"id": 5652,
+"en": "You have kept {1} for {2} days in a row.",
+"src": [
+"added"
+]
+},
+{
+"id": 5653,
+"en": "A solid day.",
+"src": [
+"added"
+]
+},
+{
+"id": 5654,
+"en": "Not enough days yet for suggestions.",
+"src": [
+"added"
+]
+},
+{
+"id": 5655,
+"en": "Make it shorter, or move it to a quieter time.",
+"src": [
+"added"
+]
+},
+{
+"id": 5656,
+"en": "Change it in the routine so the plan matches your day.",
+"src": [
+"added"
+]
+},
+{
+"id": 5657,
+"en": "Move bedtime and wake-up later in the app, or start winding down earlier.",
+"src": [
+"added"
+]
+},
+{
+"id": 5658,
+"en": "Keep the phone in another room for that block.",
+"src": [
+"added"
+]
+},
+{
+"id": 5659,
+"en": "A screen-free hour helps you fall asleep.",
+"src": [
+"added"
+]
+},
+{
+"id": 5660,
+"en": "Set a daily limit for it in Settings > Home screen, or in Android's Digital Wellbeing.",
+"src": [
+"added"
+]
+},
+{
+"id": 5661,
+"en": "Make it Strict, or give it a daily limit, in Settings > Home screen.",
+"src": [
+"added"
+]
+},
+{
+"id": 5662,
+"en": "That is focus working.",
+"src": [
+"added"
+]
+},
+{
+"id": 5663,
+"en": "Add a block for that time.",
+"src": [
+"added"
+]
+},
+{
+"id": 5664,
+"en": "Shorten something.",
+"src": [
+"added"
+]
+},
+{
+"id": 5665,
+"en": "Short breaks between tasks help you stay focused.",
+"src": [
+"added"
+]
+},
+{
+"id": 5666,
+"en": "It is a good place for your hardest work.",
+"src": [
+"added"
+]
+},
+{
+"id": 5667,
+"en": "Keep the same routine tomorrow.",
+"src": [
+"added"
+]
+},
+{
+"id": 5668,
+"en": "Keep the alarms on and check back in a few days.",
+"src": [
+"added"
+]
+},
+{
+"id": 5669,
+"en": "NO PHONE USE  ·  focused {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5670,
+"en": "PHONE IN USE NOW  ·  {1} so far",
+"src": [
+"added"
+]
+},
+{
+"id": 5671,
+"en": "PHONE USE  ·  {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5672,
+"en": "Focused for {1} since",
+"src": [
+"added"
+]
+},
+{
+"id": 5673,
+"en": "phone {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5674,
+"en": "Watch {1} short videos and everything in Pro is open for 24 hours. Nothing is charged. When the day is up, what you set up with it goes back to the free version.",
+"src": [
+"added"
+]
+},
+{
+"id": 5675,
+"en": "Free and Pro",
+"src": [
+"added"
+]
+},
+{
+"id": 5676,
+"en": "Everything the app does, side by side. Open a group to see what each one gives.",
+"src": [
+"added"
+]
+},
+{
+"id": 5677,
+"en": "Your whole day, and today's report",
+"src": [
+"added"
+]
+},
+{
+"id": 5678,
+"en": "Everything, and no ads",
+"src": [
+"added"
+]
+},
+{
+"id": 5679,
+"en": "Try it, or keep it",
+"src": [
+"added"
+]
+},
+{
+"id": 5680,
+"en": "You have Pro",
+"src": [
+"added"
+]
+},
+{
+"id": 5681,
+"en": "Try Pro free for a day",
+"src": [
+"added"
+]
+},
+{
+"id": 5682,
+"en": "Everything in this list is open for you, and there are no ads.",
+"src": [
+"added"
+]
+},
+{
+"id": 5683,
+"en": "See Pro plans",
+"src": [
+"added"
+]
+},
+{
+"id": 5684,
+"en": "pauses for more than {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5685,
+"en": "more than {1} in a lock",
+"src": [
+"added"
+]
+},
+{
+"id": 5686,
+"en": "Pauses: more than {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5687,
+"en": "Locks: more than {1} in a lock",
+"src": [
+"added"
+]
+},
+{
+"id": 5688,
+"en": "goals",
+"src": [
+"added"
+]
+},
+{
+"id": 5689,
+"en": "the deeper analysis in Performance",
+"src": [
+"added"
+]
+},
+{
+"id": 5690,
+"en": "Goals: a goal for a slot, with its own to-dos",
+"src": [
+"added"
+]
+},
+{
+"id": 5691,
+"en": "Performance: slot analysis, habits, phone use in slots",
+"src": [
+"added"
+]
+},
+{
+"id": 5692,
+"en": "Deeper analysis",
+"src": [
+"added"
+]
+},
+{
+"id": 5693,
+"en": "everything in Pro",
+"src": [
+"added"
+]
+},
+{
+"id": 5694,
+"en": "Notes worked out from your last days: where the day slips, what is going well, and one thing to try. Part of Pro.",
+"src": [
+"added"
+]
+},
+{
+"id": 5695,
+"en": "Pause rules for more than {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5696,
+"en": "Free: a pause rule for {1} ({2} used). Pro has no limit. ",
+"src": [
+"added"
+]
+},
+{
+"id": 5697,
+"en": "Every {1} slot",
+"src": [
+"added"
+]
+},
+{
+"id": 5698,
+"en": "Locking more than {1} (a group of apps)",
+"src": [
+"added"
+]
+},
+{
+"id": 5699,
+"en": "Apps to lock ({1} free)",
+"src": [
+"added"
+]
+},
+{
+"id": 5700,
+"en": "time reached",
+"src": [
+"added"
+]
+},
+{
+"id": 5701,
+"en": "Setting a goal",
+"src": [
+"added"
+]
+},
+{
+"id": 5702,
+"en": "Any day with this slot",
+"src": [
+"added"
+]
+},
+{
+"id": 5703,
+"en": "Add a slot to your routine first (Routine tab)",
+"src": [
+"added"
+]
+},
+{
+"id": 5704,
+"en": "Slot",
+"src": [
+"added"
+]
+},
+{
+"id": 5705,
+"en": "To-do list (optional)",
+"src": [
+"added"
+]
+},
+{
+"id": 5706,
+"en": "The list is full",
+"src": [
+"added"
+]
+},
+{
+"id": 5707,
+"en": "That is on the list already",
+"src": [
+"added"
+]
+},
+{
+"id": 5708,
+"en": "Phone use in slots · Pro",
+"src": [
+"added"
+]
+},
+{
+"id": 5709,
+"en": " Your choices are kept and work again with Pro.",
+"src": [
+"added"
+]
+},
+{
+"id": 5710,
+"en": "Days · Pro",
+"src": [
+"added"
+]
+},
+{
+"id": 5711,
+"en": "The week chart, your average score and the tips that come from it. Today's report stays free.",
+"src": [
+"added"
+]
+},
+{
+"id": 5712,
+"en": "Saved days are part of Pro",
+"src": [
+"added"
+]
+},
+{
+"id": 5713,
+"en": "Open the report of any past day, with its slot analysis and a PDF to save or share. Today's report stays free.",
+"src": [
+"added"
+]
+},
+{
+"id": 5714,
+"en": "Free: {1}. Pro: any number, strict and playful",
+"src": [
+"added"
+]
+},
+{
+"id": 5715,
+"en": "Free: {1}, {2}. Pro: groups and strict locks",
+"src": [
+"added"
+]
+},
+{
+"id": 5716,
+"en": "Included",
+"src": [
+"added"
+]
+},
+{
+"id": 5717,
+"en": "Home screen and live wallpaper of your day",
+"src": [
+"added"
+]
+},
+{
+"id": 5718,
+"en": "Slot alarms that ask one question",
+"src": [
+"added"
+]
+},
+{
+"id": 5719,
+"en": "Start-of-day alarm, finish early, breaks, library mode",
+"src": [
+"added"
+]
+},
+{
+"id": 5720,
+"en": "Backup to your own Google Drive",
+"src": [
+"added"
+]
+},
+{
+"id": 5721,
+"en": "Home screen and alarms",
+"src": [
+"added"
+]
+},
+{
+"id": 5722,
+"en": "All free",
+"src": [
+"added"
+]
+},
+{
+"id": 5723,
+"en": "A to-do list for every slot",
+"src": [
+"added"
+]
+},
+{
+"id": 5724,
+"en": "To-dos that repeat every day or on chosen days",
+"src": [
+"added"
+]
+},
+{
+"id": 5725,
+"en": "To-dos",
+"src": [
+"added"
+]
+},
+{
+"id": 5726,
+"en": "Today's report, with a PDF to save or share",
+"src": [
+"added"
+]
+},
+{
+"id": 5727,
+"en": "Every saved day",
+"src": [
+"added"
+]
+},
+{
+"id": 5728,
+"en": "The week view and its tips",
+"src": [
+"added"
+]
+},
+{
+"id": 5729,
+"en": "Slot analysis: focus and phone use, slot by slot",
+"src": [
+"added"
+]
+},
+{
+"id": 5730,
+"en": "Habit cards",
+"src": [
+"added"
+]
+},
+{
+"id": 5731,
+"en": "Free: today's report. Pro: every day and the deeper analysis",
+"src": [
+"added"
+]
+},
+{
+"id": 5732,
+"en": "A goal for a slot of your routine",
+"src": [
+"added"
+]
+},
+{
+"id": 5733,
+"en": "A to-do list inside a goal, in step with the slot's",
+"src": [
+"added"
+]
+},
+{
+"id": 5734,
+"en": "Streaks for goals",
+"src": [
+"added"
+]
+},
+{
+"id": 5735,
+"en": "Pro: a goal for a slot, with its own to-dos",
+"src": [
+"added"
+]
+},
+{
+"id": 5736,
+"en": "Apps with a pause before they open",
+"src": [
+"added"
+]
+},
+{
+"id": 5737,
+"en": "Any number",
+"src": [
+"added"
+]
+},
+{
+"id": 5738,
+"en": "Playful pauses: a sum, a sentence, breathing, why",
+"src": [
+"added"
+]
+},
+{
+"id": 5739,
+"en": "Locks for a time",
+"src": [
+"added"
+]
+},
+{
+"id": 5740,
+"en": "As many as you like",
+"src": [
+"added"
+]
+},
+{
+"id": 5741,
+"en": "Apps in a lock",
+"src": [
+"added"
+]
+},
+{
+"id": 5742,
+"en": "Groups of apps",
+"src": [
+"added"
+]
+},
+{
+"id": 5743,
+"en": "Strict locks that cannot be broken",
+"src": [
+"added"
+]
+},
+{
+"id": 5744,
+"en": "Weekday, weekend and one-day routines",
+"src": [
+"added"
+]
+},
+{
+"id": 5745,
+"en": "Colour looks",
+"src": [
+"added"
+]
+},
+{
+"id": 5746,
+"en": "Small ads",
+"src": [
+"added"
+]
+},
+{
+"id": 5747,
+"en": "Routines and looks",
+"src": [
+"added"
+]
+},
+{
+"id": 5748,
+"en": "Free: one routine and one look. Pro: all of them, and no ads",
+"src": [
+"added"
+]
+},
+{
+"id": 5749,
+"en": "Watch {1} short videos",
+"src": [
+"added"
+]
+},
+{
+"id": 5750,
+"en": "Watch {1} short videos and everything in Pro is open for 24 hours: every saved day and the week in Performance, the deeper analysis, more pauses and locks, routines, goals and the colour looks. Nothing is charged. When the day is up, what you set up with it goes back to the free version (Pro keeps it for good).",
+"src": [
+"added"
+]
+},
+{
+"id": 5751,
+"en": "Everything the app does, Free and Pro side by side, in groups you open one at a time.",
+"src": [
+"added"
+]
+},
+{
+"id": 5752,
+"en": "Compare Free and Pro",
+"src": [
+"added"
+]
+},
+{
+"id": 5753,
+"en": "{1}\n\nOr watch {2} short videos and use everything in Pro free for a day.",
+"src": [
+"added"
+]
+},
+{
+"id": 5754,
+"en": "Only the videos you watch to the end count, and the ones you watched today stay counted if you stop. When the day is up, everything closes again and what you set up with Pro goes back to the free version.",
+"src": [
+"added"
+]
+},
+{
+"id": 5755,
+"en": "Everything in Pro: open until {1}.",
+"src": [
+"added"
+]
+},
+{
+"id": 5756,
+"en": "No ads, every saved day and deeper analysis, goals, more pauses and locks, routines, colours. Or watch {1} short videos for a free day of Pro",
+"src": [
+"added"
+]
+},
+{
+"id": 5757,
+"en": "No ads, every saved day and deeper analysis, goals, more pauses and locks, routines, colours",
+"src": [
+"added"
+]
+},
+{
+"id": 5758,
+"en": "Slot analysis · Pro",
+"src": [
+"added"
+]
+},
+{
+"id": 5759,
+"en": "Goal · {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5760,
+"en": "A goal with no to-dos is ticked by you, or by the time when its target is reached. A goal with to-dos is done when all of them are. Goals and their to-dos are set in Insights.",
+"src": [
+"added"
+]
+},
+{
+"id": 5761,
+"en": "Goals of this slot",
+"src": [
+"added"
+]
+},
+{
+"id": 5762,
+"en": "Free: the home screen, alarms, to-dos, today's report, one paused app and one locked app. {1}It adds goals with their own to-dos, every saved day and the deeper analysis, more pauses and locks, more routines, every colour look, and no ads.{2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5763,
+"en": " Or watch {1} short videos and everything in Pro is open for a day. What you set up with it goes back to the free version when the day is up. The last screen shows it all side by side.",
+"src": [
+"added"
+]
+},
+{
+"id": 5764,
+"en": "Pick the apps that pull you away. During focus time they wait a few seconds before they open, and you can always open them anyway. Free: one app. Pro: any number, strict pauses, daily limits, and playful pauses: a quick sum, a sentence to type, slow breaths, or saying why you are opening it.",
+"src": [
+"added"
+]
+},
+{
+"id": 5765,
+"en": "Shut the apps that eat your time for hours you choose: every day or on some days, or just for the next hour. A locked app is greyed in the list, and the lock screen shows when it opens again. You can break a lock by waiting half a minute and typing a sentence. Free: one lock with one app. Pro: groups of apps, as many locks as you like, and strict locks that cannot be broken. A group can also lock only while an activity type such as Study is going on, only when both the hours and the activity hold, or in library mode. Set it up in the home settings.",
+"src": [
+"added"
+]
+},
+{
+"id": 5766,
+"en": "A score for today, phone time by hour and by app, and plain suggestions, with a PDF to save or share. Today's report is free. Pro adds every saved day, the weekly view, the slot-by-slot analysis and habit cards, and goals: set one for a slot, give it its own to-do list, and watch the streak.",
+"src": [
+"added"
+]
+},
+{
+"id": 5767,
+"en": "Alarms and to-dos",
+"src": [
+"added"
+]
+},
+{
+"id": 5768,
+"en": "1 paused app",
+"src": [
+"added"
+]
+},
+{
+"id": 5769,
+"en": "1 locked app",
+"src": [
+"added"
+]
+},
+{
+"id": 5770,
+"en": "Goals with to-dos",
+"src": [
+"added"
+]
+},
+{
+"id": 5771,
+"en": "More routines",
+"src": [
+"added"
+]
+},
+{
+"id": 5772,
+"en": "Monthly or once, or 3 short videos for a day",
+"src": [
+"added"
+]
+},
+{
+"id": 5773,
+"en": "Watch {1} more videos to open everything in Pro for a day.",
+"src": [
+"added"
+]
+},
+{
+"id": 5774,
+"en": "{1}\n\nOr stop here: the videos you watched today stay counted.",
+"src": [
+"added"
+]
+},
+{
+"id": 5775,
+"en": "{1} more open everything in Pro for a day.",
+"src": [
+"added"
+]
+},
+{
+"id": 5776,
+"en": "Everything is open already.",
+"src": [
+"added"
+]
+},
+{
+"id": 5777,
+"en": "Watch one more video to open everything in Pro for a day.",
+"src": [
+"added"
+]
+},
+{
+"id": 5778,
+"en": "One more opens everything in Pro for a day.",
+"src": [
+"added"
+]
+},
+{
+"id": 5779,
+"en": "Watch {1} videos: everything in Pro free for a day",
+"src": [
+"added"
+]
+},
+{
+"id": 5780,
+"en": "Watch {1}: everything in Pro free for a day",
+"src": [
+"added"
+]
+},
+{
+"id": 5781,
+"en": "{1} of {2} videos watched today",
+"src": [
+"added"
+]
+},
+{
+"id": 5782,
+"en": "Without a to-do list, the goal is a to-do of its slot: tick it, or it ticks itself when the time is reached. With one, the goal ticks only when every to-do is done. The same list shows in the slot's to-dos.",
+"src": [
+"added"
+]
+},
+{
+"id": 5783,
+"en": "A goal counts on days whose schedule has the slot. Kept slots count towards it. Days in a row you reach it make a streak.",
+"src": [
+"added"
+]
+},
+{
+"id": 5784,
+"en": "Set a daily target for a slot of your routine, for example 2 hours for Morning study, with its own to-do list, and see it fill up through the day.",
+"src": [
+"added"
+]
+},
+{
+"id": 5785,
+"en": "Free: a pause rule for {1} app. Pro adds strict pauses, daily limits, playful pauses (a sum, a sentence, breathing), as many apps as you like, and removes the ads.",
+"src": [
+"added"
+]
+},
+{
+"id": 5786,
+"en": "Free: one lock that holds {1} app. Pro adds groups of apps, as many locks as you like, and strict locks.",
+"src": [
+"added"
+]
+},
+{
+"id": 5787,
+"en": "See when you pick up the phone during a slot, with the exact times, and mark the apps that belong to an activity so they are never counted against you. The reports then show it slot by slot.",
+"src": [
+"added"
+]
+},
+{
+"id": 5788,
+"en": "Focus and phone use slot by slot, with a timeline and the exact times, and the same by activity. Today's report above stays free.",
+"src": [
+"added"
+]
+},
+{
+"id": 5789,
+"en": "{1} to-dos",
+"src": [
+"added"
+]
+},
+{
+"id": 5790,
+"en": "1 to-do",
+"src": [
+"added"
+]
+},
+{
+"id": 5791,
+"en": "To-do list",
+"src": [
+"added"
+]
+},
+{
+"id": 5792,
+"en": "1 more video",
+"src": [
+"added"
+]
+},
+{
+"id": 5793,
+"en": "Watch 2 more videos: everything in Pro free for a day",
+"src": [
+"added"
+]
+},
+{
+"id": 5794,
+"en": "Watch 1 more video: everything in Pro free for a day",
+"src": [
+"added"
+]
+},
+{
+"id": 5795,
+"en": "Skip this slot, start “{1}” now",
+"src": [
+"added"
+]
+},
+{
+"id": 5796,
+"en": ", {1} before your plan",
+"src": [
+"added"
+]
+},
+{
+"id": 5797,
+"en": "Skip this slot and go to sleep",
+"src": [
+"added"
+]
+},
+{
+"id": 5798,
+"en": "Skip this slot, start the next one now",
+"src": [
+"added"
+]
+},
+{
+"id": 5799,
+"en": "The next slot has started",
+"src": [
+"added"
+]
+},
+{
+"id": 5800,
+"en": "Early sleep",
+"src": [
+"added"
+]
+},
+{
+"id": 5801,
+"en": "Going to sleep early?",
+"src": [
+"added"
+]
+},
+{
+"id": 5802,
+"en": "Not yet",
+"src": [
+"added"
+]
+},
+{
+"id": 5803,
+"en": "Missed alarm",
+"src": [
+"added"
+]
+},
+{
+"id": 5804,
+"en": "This alarm did not ring because Android had closed the app. It is set again now.",
+"src": [
+"added"
+]
+},
+{
+"id": 5805,
+"en": "It was closed from App info (Force stop).",
+"src": [
+"added"
+]
+},
+{
+"id": 5806,
+"en": "Android stopped it when the user was switched.",
+"src": [
+"added"
+]
+},
+{
+"id": 5807,
+"en": "It crashed.",
+"src": [
+"added"
+]
+},
+{
+"id": 5808,
+"en": "It stopped answering and Android closed it.",
+"src": [
+"added"
+]
+},
+{
+"id": 5809,
+"en": "Android closed it to free memory.",
+"src": [
+"added"
+]
+},
+{
+"id": 5810,
+"en": "Android closed it because a permission was changed.",
+"src": [
+"added"
+]
+},
+{
+"id": 5811,
+"en": "It was closed to be updated.",
+"src": [
+"added"
+]
+},
+{
+"id": 5812,
+"en": "Android closed it because it was switched off or on.",
+"src": [
+"added"
+]
+},
+{
+"id": 5813,
+"en": "Android closed it for using too much of the phone.",
+"src": [
+"added"
+]
+},
+{
+"id": 5814,
+"en": "It could not start.",
+"src": [
+"added"
+]
+},
+{
+"id": 5815,
+"en": "Android closed it because something it needs stopped.",
+"src": [
+"added"
+]
+},
+{
+"id": 5816,
+"en": "Android ended it.",
+"src": [
+"added"
+]
+},
+{
+"id": 5817,
+"en": "It was closed.",
+"src": [
+"added"
+]
+},
+{
+"id": 5818,
+"en": "Android clears every alarm of an app when it is closed this way, so the alarms and the live wallpaper were gone until you came back. They are in place again now.",
+"src": [
+"added"
+]
+},
+{
+"id": 5819,
+"en": "Android keeps the alarms of an app that stops this way. They have been checked and are in place.",
+"src": [
+"added"
+]
+},
+{
+"id": 5820,
+"en": "Sleep was to begin at {1}. If you go to sleep now, “{2}” ends here and your wake-up alarm stays as planned.",
+"src": [
+"added"
+]
+},
+{
+"id": 5821,
+"en": "Your day was to start at {1}. Start it now, and “{2}” begins early. It still ends at {3}, so it gets the time that was left.",
+"src": [
+"added"
+]
+},
+{
+"id": 5822,
+"en": "Wake up early?",
+"src": [
+"added"
+]
+},
+{
+"id": 5823,
+"en": "Go to sleep early?",
+"src": [
+"added"
+]
+},
+{
+"id": 5824,
+"en": "the first slot",
+"src": [
+"added"
+]
+},
+{
+"id": 5825,
+"en": "Start my day now",
+"src": [
+"added"
+]
+},
+{
+"id": 5826,
+"en": "Early wake",
+"src": [
+"added"
+]
+},
+{
+"id": 5827,
+"en": "{1} starts at {2} instead of {3} (you woke early)",
+"src": [
+"added"
+]
+},
+{
+"id": 5828,
+"en": "Android closed the app and cleared the alarm set for {1}. It is set again now.",
+"src": [
+"added"
+]
+},
+{
+"id": 5829,
+"en": "Last time Android ended the app: {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5830,
+"en": "Android removes a live wallpaper when the app is closed from App info. The home screen still shows your day. Bring the wallpaper back for the lock screen and recent apps.",
+"src": [
+"added"
+]
+},
+{
+"id": 5831,
+"en": "Wallpaper",
+"src": [
+"added"
+]
+},
+{
+"id": 5832,
+"en": "Your day wallpaper is gone",
+"src": [
+"added"
+]
+},
+{
+"id": 5833,
+"en": "Only the lock screen has your day",
+"src": [
+"added"
+]
+},
+{
+"id": 5834,
+"en": "Your day wallpaper is not set",
+"src": [
+"added"
+]
+},
+{
+"id": 5835,
+"en": "It shows your day on the lock screen and in recent apps. Android asks you to confirm once.",
+"src": [
+"added"
+]
+},
+{
+"id": 5836,
+"en": "Bring it back",
+"src": [
+"added"
+]
+},
+{
+"id": 5837,
+"en": "Bring back your day wallpaper",
+"src": [
+"added"
+]
+},
+{
+"id": 5838,
+"en": "Set your day wallpaper",
+"src": [
+"added"
+]
+},
+{
+"id": 5839,
+"en": "On. Nothing is locked or paused yet, so nothing is being watched.",
+"src": [
+"added"
+]
+},
+{
+"id": 5840,
+"en": "Not holding yet: allow Usage access below.",
+"src": [
+"added"
+]
+},
+{
+"id": 5841,
+"en": "Not holding yet: allow Display over other apps below.",
+"src": [
+"added"
+]
+},
+{
+"id": 5842,
+"en": "Not holding yet: allow the two things below.",
+"src": [
+"added"
+]
+},
+{
+"id": 5843,
+"en": "On: nothing is locked or paused yet",
+"src": [
+"added"
+]
+},
+{
+"id": 5844,
+"en": "Needs your permission: locks hold only from this home screen",
+"src": [
+"added"
+]
+},
+{
+"id": 5845,
+"en": "Locks hold wherever the app is opened from.",
+"src": [
+"added"
+]
+},
+{
+"id": 5846,
+"en": "Pauses hold wherever the app is opened from.",
+"src": [
+"added"
+]
+},
+{
+"id": 5847,
+"en": "For now locks hold only when you open an app from this home screen.",
+"src": [
+"added"
+]
+},
+{
+"id": 5848,
+"en": "For now pauses work only when you open an app from this home screen.",
+"src": [
+"added"
+]
+},
+{
+"id": 5849,
+"en": "Allow the two things in the Strong lock card in the home settings and they hold everywhere.",
+"src": [
+"added"
+]
+},
+{
+"id": 5850,
+"en": "Make your locks hold everywhere",
+"src": [
+"added"
+]
+},
+{
+"id": 5851,
+"en": "Your locks hold only on the home screen",
+"src": [
+"added"
+]
+},
+{
+"id": 5852,
+"en": "An app can still be opened from Recents or App info.",
+"src": [
+"added"
+]
+},
+{
+"id": 5853,
+"en": "Allow what Android asks for, and a lock holds wherever the app is opened from.",
+"src": [
+"added"
+]
+},
+{
+"id": 5854,
+"en": "Hold them everywhere",
+"src": [
+"added"
+]
+},
+{
+"id": 5855,
+"en": "Allow display over other apps?",
+"src": [
+"added"
+]
+},
+{
+"id": 5856,
+"en": "To hold a lock when an app is opened from Recents, App info or a notification, Dinacharya Launcher shows its lock screen in front of that app.",
+"src": [
+"added"
+]
+},
+{
+"id": 5857,
+"en": "Android asks you to allow this.",
+"src": [
+"added"
+]
+},
+{
+"id": 5858,
+"en": "To hold a lock when an app is opened from Recents, App info or a notification, it also needs to see which app is in front.",
+"src": [
+"added"
+]
+},
+{
+"id": 5859,
+"en": "Only the name of that app is compared with your own list of locked apps.",
+"src": [
+"added"
+]
+},
+{
+"id": 5860,
+"en": "Nothing is saved or sent.",
+"src": [
+"added"
+]
+},
+{
+"id": 5861,
+"en": "A lock that only works when you open an app from this home screen is easy to get around: open the app from Recents or App info instead.",
+"src": [
+"added"
+]
+},
+{
+"id": 5862,
+"en": "With the strong lock on, Dinacharya Launcher also holds an app opened from Recents, App info, a notification, a widget or another home app, and an app that is already open when a lock starts.",
+"src": [
+"added"
+]
+},
+{
+"id": 5863,
+"en": "It starts by itself as soon as something is locked or paused.",
+"src": [
+"added"
+]
+},
+{
+"id": 5864,
+"en": "The phone, Settings, the keyboard and system screens are never blocked.",
+"src": [
+"added"
+]
+},
+{
+"id": 5865,
+"en": "It shows a small notification while it runs.",
+"src": [
+"added"
+]
+},
+{
+"id": 5866,
+"en": "It looks only at the name of the app in front, on this phone, and keeps and sends nothing.",
+"src": [
+"added"
+]
+},
+{
+"id": 5867,
+"en": "If your phone stops background apps to save battery and the lock stops holding, allow Dinacharya Launcher to run in the background in the phone's battery settings.",
+"src": [
+"added"
+]
+},
+{
+"id": 5868,
+"en": "The strong lock is on, so a lock also holds an app opened from Recents, App info, a notification, a widget or another home app, and one that is open when the lock starts.",
+"src": [
+"added"
+]
+},
+{
+"id": 5869,
+"en": "For now a lock holds only when you open an app from this home screen.",
+"src": [
+"added"
+]
+},
+{
+"id": 5870,
+"en": "Allow the two things in the Strong lock card below and it also holds an app opened from Recents, App info, a notification, a widget or another home app, and one that is open when the lock starts.",
+"src": [
+"added"
+]
+},
+{
+"id": 5871,
+"en": "Locks work when you open an app from this home screen.",
+"src": [
+"added"
+]
+},
+{
+"id": 5872,
+"en": "They cannot stop an app that is already open, or one opened from Recents, a notification or another home app.",
+"src": [
+"added"
+]
+},
+{
+"id": 5873,
+"en": "The strong lock below does.",
+"src": [
+"added"
+]
+},
+{
+"id": 5874,
+"en": "To hold them whichever way they open, allow the two things in the Strong lock card below.",
+"src": [
+"added"
+]
+},
+{
+"id": 5875,
+"en": "Without strict, you can still break a lock: wait 30 seconds and type a sentence.",
+"src": [
+"added"
+]
+},
+{
+"id": 5876,
+"en": "A strict lock cannot be broken, and cannot be changed while it holds.",
 "src": [
 "added"
 ]

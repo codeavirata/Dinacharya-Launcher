@@ -35,8 +35,23 @@ public final class HistoryStore {
             ensure();
             Files.write(log.toPath(), (e.line() + "\n").getBytes(StandardCharsets.UTF_8),
                     StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+            forgetCache();
         } catch (IOException ignored) {
             // History is a convenience; losing one line must never break the alarm.
+        }
+    }
+
+    // The poster asks for the events every minute and the Home screen every time it draws, so the last reading is kept while the file is
+    // the same (same path, size and time of change). It is shared by every HistoryStore on that file.
+    private static final Object CACHE_LOCK = new Object();
+    private static String cachePath = "";
+    private static long cacheLen = -1L;
+    private static long cacheMod = -1L;
+    private static List<Ev> cacheList = new ArrayList<>();
+
+    private static void forgetCache() {
+        synchronized (CACHE_LOCK) {
+            cacheLen = -1L;
         }
     }
 
@@ -44,9 +59,21 @@ public final class HistoryStore {
         List<Ev> out = new ArrayList<>();
         try {
             if (!log.exists()) return out;
+            String path = log.getPath();
+            long len = log.length();
+            long mod = log.lastModified();
+            synchronized (CACHE_LOCK) {
+                if (path.equals(cachePath) && len == cacheLen && mod == cacheMod && len > 0) return new ArrayList<>(cacheList);
+            }
             for (String ln : Files.readAllLines(log.toPath(), StandardCharsets.UTF_8)) {
                 Ev e = Ev.parse(ln);
                 if (e != null) out.add(e);
+            }
+            synchronized (CACHE_LOCK) {
+                cachePath = path;
+                cacheLen = len;
+                cacheMod = mod;
+                cacheList = new ArrayList<>(out);
             }
         } catch (IOException ignored) {
             // return what we have
@@ -68,6 +95,7 @@ public final class HistoryStore {
         if (kept == all.size()) return;
         try {
             Files.write(log.toPath(), sb.toString().getBytes(StandardCharsets.UTF_8));
+            forgetCache();
         } catch (IOException ignored) {
             // try again next time
         }

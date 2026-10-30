@@ -1,6 +1,5 @@
 package app.dinacharya.wallpaper;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -9,23 +8,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 /**
- * Dinacharya Pro: what is free, what Pro adds, the price Google Play shows, and the buy and restore buttons. Every
+ * Dinacharya Pro: what is free, what Pro adds, the two plans (monthly, or lifetime) with the prices Google Play shows, and the
+ * subscribe, buy, manage and restore buttons. Every
  * "See Pro" button in the app opens this one screen, on top of whatever the person was doing, so Back returns to it.
  */
 public class ProActivity extends LangActivity {
-    /** Feature, what is free, what Pro adds. */
-    private static final String[][] TABLE = {
-            {"Home screen, alarms, reports of today, backup", "Everything", "Everything"},
-            {"Performance", "Today and the last " + Limits.FREE_REPORT_DAYS + " days", "Every saved day, the weekly view and tips"},
-            {"Pause before an app", "Up to " + FocusRules.FREE_APPS + " apps, a short wait", "Any number of apps, strict pauses, daily limits, "
-                    + "and playful pauses (a sum, a sentence, breathing, say why)"},
-            {"Lock apps for a time", "Up to " + LockRules.FREE_GROUP_APPS + " apps", "Groups of apps, any number of locks, and strict locks"},
-            {"Routines", "One routine", "Weekday, weekend and exam-day routines"},
-            {"Goals and type totals", "Not included", "Daily goals with streaks"},
-            {"Colour looks of the home screen", "The first look", "All the looks"},
-            {"Ads", "Small ads in the dashboard", "No ads"},
-    };
-
     private final Pro.Listener listener = this::render;
     private LinearLayout body;
 
@@ -71,15 +58,24 @@ public class ProActivity extends LangActivity {
             body.removeAllViews();
             final Pro p = Pro.get(this);
             boolean owned = p.owned();
+            boolean life = p.lifetimeOwned();
+            boolean month = p.monthlyOwned();
             body.addView(Ui.eyebrow(this, "Dinacharya"));
             body.addView(Ui.label(this, "Dinacharya Pro", 28, Ui.INK, true), Ui.wide(this, 4));
-            body.addView(Ui.label(this, owned ? "You have Pro. Thank you!" : "One purchase, no subscription. Paid once through Google Play.",
+            body.addView(Ui.label(this, owned ? "You have Pro. Thank you!"
+                    : "Choose a monthly plan or pay once for life. Paid through Google Play.",
                     15, owned ? Ui.TEAL : Ui.MUTED, owned), Ui.wide(this, 6));
 
-            if (!owned) {
-                String price = p.price();
-                body.addView(Ui.button(this, price.isEmpty() ? "Get Pro" : "Get Pro for " + price, true, v -> p.buy(this)), Ui.wide(this, 16));
-                if (price.isEmpty()) {
+            if (month && !life) {
+                body.addView(small("Your monthly plan is active. It renews every month until you cancel it in Google Play.", Ui.MUTED),
+                        Ui.wide(this, 6));
+                body.addView(Ui.button(this, "Manage subscription", false, v -> p.manageSubscription(this)), Ui.wide(this, 12));
+            }
+
+            if (!owned || (month && !life)) {
+                if (!owned) addMonthly(p);
+                addLifetime(p, month);
+                if (!owned && p.monthlyPrice().isEmpty() && p.price().isEmpty()) {
                     TextView note = Ui.label(this, "The price comes from Google Play. It shows here once Play answers, and Pro can only be "
                             + "bought in a copy of the app that was installed from Google Play.", 12, Ui.MUTED, false);
                     note.setLineSpacing(Ui.dp(this, 2), 1f);
@@ -90,40 +86,17 @@ public class ProActivity extends LangActivity {
             }
 
             if (!owned && VideoPass.offered(this)) {
-                LinearLayout trial = Ui.section(this, body, "Try it first", "Watch short videos, use Pro features for a while");
-                String running = VideoPass.line(this);
-                if (!running.isEmpty()) trial.addView(small(running, Ui.TEAL), Ui.wide(this, 8));
-                trial.addView(small("Pick a feature, then choose how many short videos to watch: 1 video opens just that feature for a day, "
-                        + "2 videos for 3 days, 3 videos the whole group it is in (all the pauses, say). Each feature has its own video "
-                        + "and its own time, so opening one never opens another. Nothing is charged. When the time is up, what you set up "
-                        + "with it goes back to the free version (Pro keeps it for good).", Ui.MUTED), Ui.wide(this, 8));
-                int lastArea = -1;
-                final int open = p.open();
-                for (int f = DayPass.FIRST; f <= DayPass.LAST; f++) {
-                    final int feature = f;
-                    int area = DayPass.area(f);
-                    if (area != lastArea) {
-                        trial.addView(Ui.label(this, DayPass.areaName(area), 13, Ui.MUTED, true), Ui.wide(this, 12));
-                        lastArea = area;
-                    }
-                    if (DayPass.has(open, f)) {
-                        trial.addView(Ui.label(this, DayPass.title(f) + "\n" + ProPrompt.runningLine(this, f), 14, Ui.TEAL, false), Ui.wide(this, 8));
-                        ProPrompt.addExtendButton(this, trial, f, 6, this::render);
-                    } else {
-                        trial.addView(Ui.button(this, DayPass.title(f), false,
-                                v -> ProPrompt.choose(this, feature, "Open it free", DayPass.title(feature) + " is part of Pro.", 0, this::render)),
-                                Ui.wide(this, 6));
-                    }
-                }
-                VideoPass.warm(this);
+                LinearLayout trial = Ui.section(this, body, "Try Pro free for a day", "Watch " + VideoProgress.NEED + " short videos");
+                trial.addView(small("Watch " + VideoProgress.NEED + " short videos and everything in Pro is open for 24 hours: every saved day and the week "
+                        + "in Performance, the deeper analysis, more pauses and locks, routines, goals and the colour looks. Nothing is charged. "
+                        + "When the day is up, what you set up with it goes back to the free version (Pro keeps it for good).", Ui.MUTED), Ui.wide(this, 4));
+                ProPrompt.addOffer(this, trial, 10, this::render);
             }
 
             LinearLayout card = Ui.section(this, body, "What is free, and what Pro adds", null);
-            for (String[] row : TABLE) {
-                card.addView(Ui.label(this, row[0], 15, Ui.INK, true), Ui.wide(this, 14));
-                card.addView(small("Free:  " + row[1], Ui.MUTED), Ui.wide(this, 2));
-                card.addView(small("Pro:  " + row[2], Ui.TEAL), Ui.wide(this, 1));
-            }
+            card.addView(small("Everything the app does, Free and Pro side by side, in groups you open one at a time.", Ui.MUTED), Ui.wide(this, 2));
+            card.addView(Ui.button(this, "Compare Free and Pro", false, v -> startActivity(new android.content.Intent(this, CompareActivity.class))),
+                    Ui.wide(this, 12));
 
             Button restore = Ui.button(this, "Restore my purchase", false, v -> p.restore());
             body.addView(restore, Ui.wide(this, 18));
@@ -139,6 +112,25 @@ public class ProActivity extends LangActivity {
         } catch (RuntimeException e) {
             CrashLog.note(this, "pro screen", e);
         }
+    }
+
+    /** The monthly plan: its price, what it is, and the button. */
+    private void addMonthly(final Pro p) {
+        String price = p.monthlyPrice();
+        LinearLayout card = Ui.section(this, body, "Monthly plan", price.isEmpty() ? null : price + " a month");
+        card.addView(small("Pro for as long as you subscribe. Renews every month; cancel any time in Google Play.", Ui.MUTED), Ui.wide(this, 6));
+        card.addView(Ui.button(this, "Subscribe monthly", false, v -> p.buyMonthly(this)), Ui.wide(this, 12));
+    }
+
+    /** The lifetime purchase: its price, what it is, and the button. {@code subscribed} adds the note about the monthly plan. */
+    private void addLifetime(final Pro p, boolean subscribed) {
+        String price = p.price();
+        LinearLayout card = Ui.section(this, body, "Lifetime plan", price.isEmpty() ? null : price + " once");
+        card.addView(small("Pay once and keep Pro for good.", Ui.MUTED), Ui.wide(this, 6));
+        if (subscribed) {
+            card.addView(small("If you buy lifetime, cancel the monthly plan in Google Play so it does not renew.", Ui.MUTED), Ui.wide(this, 4));
+        }
+        card.addView(Ui.button(this, "Get lifetime Pro", true, v -> p.buyLifetime(this)), Ui.wide(this, 12));
     }
 
     private TextView small(String text, int color) {

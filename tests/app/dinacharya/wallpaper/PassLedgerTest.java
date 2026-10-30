@@ -3,9 +3,9 @@ package app.dinacharya.wallpaper;
 import java.util.List;
 
 /**
- * The list of video passes: every unlock is a pass of its own with its own timer, two things that are needed together need two passes
- * (the case that used to end in "a video is asked for but never plays"), an item is never opened twice, and the record can be kept
- * and read back without ever opening more than was given.
+ * The list of video passes: three videos earn one pass that opens everything for a day, an item is never opened twice, a pass is never
+ * longer than a day, passes from an earlier version still run beside it, and the record can be kept and read back without ever opening
+ * more than was given.
  */
 public class PassLedgerTest {
     static int fails = 0;
@@ -42,37 +42,26 @@ public class PassLedgerTest {
         ok("twice: the same item is refused while it is open", d.add(bit(DayPass.GOALS), DAY, t + 1, "g2") == 0 && d.size() == 1);
         ok("twice: and may be asked again after it ended", d.add(bit(DayPass.GOALS), DAY, t + DAY + 1, "g3") == bit(DayPass.GOALS) && d.size() == 2);
 
-        // ---------- a group opens only what is not open yet
+        // ---------- the three-video pass opens everything, for one day
         PassLedger g = new PassLedger();
-        g.add(bit(DayPass.PAUSE_STRICT), 3 * DAY, t, "s");
-        int rest = DayPass.stepMask(DayPass.TIER_GROUP, DayPass.PAUSE_STRICT);
-        ok("steps: the third video opens the rest of the group, not the item itself", rest == (DayPass.areaMask(DayPass.AREA_PAUSES) & ~bit(DayPass.PAUSE_STRICT))
-                && DayPass.count(rest) == 3 && DayPass.stepMask(DayPass.TIER_DAY, DayPass.PAUSE_STRICT) == bit(DayPass.PAUSE_STRICT));
-        ok("steps: the second video stretches instead of opening", DayPass.stepExtends(DayPass.TIER_3DAYS) && !DayPass.stepExtends(DayPass.TIER_DAY)
-                && !DayPass.stepExtends(DayPass.TIER_GROUP) && DayPass.stepMask(DayPass.TIER_3DAYS, DayPass.PAUSE_STRICT) == 0);
-        ok("steps: items without a group have no third step", DayPass.stepMask(DayPass.TIER_GROUP, DayPass.GOALS) == 0 && DayPass.stepMask(DayPass.TIER_GROUP, DayPass.ROUTINES) == 0);
-        int opened = g.add(rest, DAY, t + 5, "rest");
-        ok("group: the rest of the pauses open next to strict", opened == rest && g.open(t + 6) == DayPass.areaMask(DayPass.AREA_PAUSES));
-        ok("group: a pass that asks for the whole group only gets what is not open", new PassLedger().add(DayPass.areaMask(DayPass.AREA_LOOKS), DAY, t, "") == DayPass.areaMask(DayPass.AREA_LOOKS)
-                && g.add(DayPass.areaMask(DayPass.AREA_PAUSES), DAY, t + 7, "") == 0);
+        int allOpened = g.add(DayPass.ALL, DayPass.LENGTH_MS, t, "all");
+        ok("all: the pass opens every item", allOpened == DayPass.ALL && g.open(t + 1) == DayPass.ALL && DayPass.count(g.open(t + 1)) == 15);
+        ok("all: including the deeper analysis", DayPass.has(g.open(t + 1), DayPass.ANALYSIS) && DayPass.has(g.open(t + 1), DayPass.GOALS));
+        ok("all: for a day, then everything shuts at once", g.open(t + DAY - 1) == DayPass.ALL && g.open(t + DAY) == DayPass.FREE
+                && g.nextEnd(t + 1) == t + DAY);
+        ok("all: while it runs, nothing is left to open", g.free(DayPass.ALL, t + 1) == 0 && g.add(DayPass.ALL, DAY, t + 5, "") == 0 && g.size() == 1);
+        ok("all: after it ended another may be earned", g.add(DayPass.ALL, DAY, t + DAY, "again") == DayPass.ALL && g.size() == 2);
+        ok("all: the ended one is still to be put back", g.ended(t + DAY).size() == 1 && g.ended(t + DAY).get(0).note.equals("all"));
+        PassLedger part = new PassLedger();
+        part.add(bit(DayPass.PAUSE_STRICT), DAY, t, "s");
+        ok("all: a pass from an earlier version still running leaves only the rest to open", part.free(DayPass.ALL, t + 1) == (DayPass.ALL & ~bit(DayPass.PAUSE_STRICT))
+                && part.add(DayPass.ALL, DAY, t + 5, "rest") == (DayPass.ALL & ~bit(DayPass.PAUSE_STRICT)) && part.open(t + 6) == DayPass.ALL);
 
-        // ---------- three days
-        PassLedger e = new PassLedger();
-        e.add(bit(DayPass.LOOK_OCEAN), DAY, t, "o");
-        ok("extend: a day-long pass on one item can be stretched", e.canExtend(DayPass.LOOK_OCEAN, t + H));
-        ok("extend: it then runs three days from its start", e.extend(DayPass.LOOK_OCEAN, t + H) && e.covering(DayPass.LOOK_OCEAN, t + H).until == t + 3 * DAY
-                && e.open(t + 2 * DAY) == bit(DayPass.LOOK_OCEAN) && e.open(t + 3 * DAY) == DayPass.FREE);
-        ok("extend: and not again", !e.canExtend(DayPass.LOOK_OCEAN, t + H) && !e.extend(DayPass.LOOK_OCEAN, t + H));
-        PassLedger f = new PassLedger();
-        f.add(DayPass.areaMask(DayPass.AREA_LOOKS), DAY, t, "");
-        ok("extend: a pass on a group is not stretched", !f.canExtend(DayPass.LOOK_OCEAN, t + 1) && !f.extend(DayPass.LOOK_OCEAN, t + 1));
-        ok("extend: nothing running for the item, nothing to stretch", !e.canExtend(DayPass.GOALS, t) && !e.extend(DayPass.GOALS, t));
-        PassLedger two = new PassLedger();
-        two.add(bit(DayPass.GOALS), DAY, t, "");
-        two.add(bit(DayPass.ROUTINES), DAY, t + H, "");
-        two.extend(DayPass.ROUTINES, t + 2 * H);
-        ok("extend: only the pass asked for is stretched, the other keeps its time", two.covering(DayPass.GOALS, t + 2 * H).until == t + DAY
-                && two.covering(DayPass.ROUTINES, t + 2 * H).until == t + H + 3 * DAY);
+        // ---------- never longer than a day
+        ok("day: the longest a pass can last is one day", DayPass.MAX_MS == DayPass.LENGTH_MS && DayPass.LENGTH_MS == DAY);
+        ok("day: three days are refused", new PassLedger().add(DayPass.ALL, 3 * DAY, t, "") == 0 && new PassLedger().add(DayPass.ALL, DAY + 1, t, "") == 0);
+        ok("day: a record of an earlier version that ran three days opens nothing", PassLedger.parse("DINAPASSES1\n" + bit(DayPass.GOALS) + "\t" + (t - 1000) + "\t" + (t + 3 * DAY) + "\t")
+                .open(t) == 0);
 
         // ---------- bad input opens nothing
         PassLedger b = new PassLedger();
@@ -104,10 +93,10 @@ public class PassLedgerTest {
         PassLedger k = new PassLedger();
         String tricky = "DINAPASS3\nM\t12\nR\tcom.a.b\t1\t0\t0\t0\nG\tName with \\ backslash\t1\t2\tx\ty\n\n\ttabs\tand\r\nlines";
         k.add(bit(DayPass.PAUSE_STRICT), DAY, t, tricky);
-        k.add(DayPass.areaMask(DayPass.AREA_LOOKS), 3 * DAY, t + 1, "");
+        k.add(DayPass.areaMask(DayPass.AREA_LOOKS), DAY, t + 1, "");
         PassLedger back = PassLedger.parse(k.write());
         ok("keep: read back exactly, notes with tabs, lines and backslashes included", back.size() == 2 && back.entries().get(0).note.equals(tricky)
-                && back.entries().get(0).mask == bit(DayPass.PAUSE_STRICT) && back.entries().get(1).until == t + 1 + 3 * DAY
+                && back.entries().get(0).mask == bit(DayPass.PAUSE_STRICT) && back.entries().get(1).until == t + 1 + DAY
                 && back.write().equals(k.write()) && back.open(t + 2) == k.open(t + 2));
         ok("keep: nothing, rubbish and damaged text all read as an empty list", PassLedger.parse(null).size() == 0 && PassLedger.parse("").size() == 0
                 && PassLedger.parse("hello").size() == 0 && PassLedger.parse("DINAPASSES1").size() == 0 && PassLedger.parse("DINAPASSES1\nx\ty\tz\t").size() == 0
@@ -119,13 +108,25 @@ public class PassLedgerTest {
         ok("old record: one pass carries over with its note", old.size() == 1 && old.open(t + 1) == bit(DayPass.LOCK_STRICT) && old.entries().get(0).note.equals("old"));
         ok("old record: nothing there means an empty list", PassLedger.fromOnePass(0, 0, 0, "").size() == 0 && PassLedger.fromOnePass(1, t, t + DAY, "").size() == 0);
 
-        // ---------- the words on the buttons
-        ok("labels: one video, two videos, three videos", DayPass.tierLabel(DayPass.TIER_DAY, DayPass.PAUSE_STRICT).equals("1 video: strict pauses for a day")
-                && DayPass.tierLabel(DayPass.TIER_3DAYS, DayPass.PAUSE_STRICT).equals("2 videos: strict pauses for 3 days")
-                && DayPass.tierLabel(DayPass.TIER_GROUP, DayPass.PAUSE_STRICT).startsWith("3 videos: everything in Pauses")
-                && DayPass.tierLabel(DayPass.TIER_GROUP, DayPass.GOALS).isEmpty());
+        // ---------- the words, and how far the three videos have got
         ok("list: items in words", DayPass.shortList(bit(DayPass.PAUSE_APPS) | bit(DayPass.PAUSE_STRICT)).equals("More paused apps and strict pauses")
                 && DayPass.shortList(0).isEmpty());
+        ok("words: everything is everything in Pro", DayPass.maskName(DayPass.ALL).equals("everything in Pro"));
+        ok("words: one app is not 'apps'", DayPass.name(DayPass.PAUSE_APPS).equals("pauses for more than 1 app")
+                && DayPass.name(DayPass.LOCK_APPS).equals("more than 1 app in a lock"));
+        ok("videos: three earn the pass", VideoProgress.NEED == 3 && DayPass.VIDEOS == 3);
+        ok("videos: none counted at first, then one more each time", VideoProgress.counted("2026-10-26", 0, "2026-10-26") == 0
+                && VideoProgress.after(0) == 1 && VideoProgress.after(1) == 2 && !VideoProgress.earned(2) && VideoProgress.earned(VideoProgress.after(2)));
+        ok("videos: they count for the day they were watched", VideoProgress.counted("2026-10-26", 2, "2026-10-26") == 2
+                && VideoProgress.counted("2026-10-25", 2, "2026-10-26") == 0 && VideoProgress.counted(null, 2, "2026-10-26") == 0
+                && VideoProgress.counted("", 2, "2026-10-26") == 0);
+        ok("videos: a record by hand cannot hold three or more or less than none", VideoProgress.counted("d", 9, "d") == 2 && VideoProgress.counted("d", -4, "d") == 0);
+        ok("videos: what is left", VideoProgress.remaining(0) == 3 && VideoProgress.remaining(1) == 2 && VideoProgress.remaining(2) == 1
+                && VideoProgress.remaining(7) == 1 && VideoProgress.remaining(-1) == 3);
+        ok("videos: the button says how many are left", VideoProgress.buttonText(0).startsWith("Watch 3 videos")
+                && VideoProgress.buttonText(1).startsWith("Watch 2 more videos") && VideoProgress.buttonText(2).startsWith("Watch 1 more video:"));
+        ok("videos: the progress line", VideoProgress.progressText(0).isEmpty() && VideoProgress.progressText(1).equals("1 of 3 videos watched today")
+                && VideoProgress.progressText(2).equals("2 of 3 videos watched today"));
 
         System.out.println(fails == 0 ? "ALL PASS" : fails + " FAILS");
         if (fails > 0) System.exit(1);

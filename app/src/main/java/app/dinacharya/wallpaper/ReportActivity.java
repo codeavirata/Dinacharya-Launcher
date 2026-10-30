@@ -1,6 +1,5 @@
 package app.dinacharya.wallpaper;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ViewGroup;
@@ -18,6 +17,12 @@ public class ReportActivity extends LangActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String day = getIntent().getStringExtra(EXTRA_DAY);
+        // saved days are part of Pro; this screen is only reached from the list of days, but a pass can end while it is open
+        if (!Pro.has(this, DayPass.REPORT_DAYS)) {
+            Lang.toast(this, "Saved days are part of Pro", Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
         report = day == null ? null : Store.history(this).loadReport(day);
         if (report == null) {
             Lang.toast(this, "That report is no longer on the phone", Toast.LENGTH_LONG).show();
@@ -46,9 +51,21 @@ public class ReportActivity extends LangActivity {
                 : "Tip: sign in under Backup to keep every day in your Google Drive.");
         root.addView(drive);
 
-        ReportView rv = new ReportView(this);
-        rv.showDay(report, Store.load(this).fmt24);
-        root.addView(rv, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        boolean h24 = Store.load(this).fmt24;
+        ReportView head = new ReportView(this);
+        head.showDay(report, h24, ReportRenderer.HEAD);
+        root.addView(head, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        try {
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            lp.setMargins(Ui.dp(this, 14), Ui.dp(this, 6), Ui.dp(this, 14), Ui.dp(this, 8));
+            root.addView(Limits.analysisAllowed(Pro.has(this, DayPass.ANALYSIS)) ? SlotCards.build(this, report, h24)
+                    : SlotCards.locked(this, this::recreate), lp);
+        } catch (RuntimeException e) {
+            CrashLog.note(this, "slot analysis", e);
+        }
+        ReportView tail = new ReportView(this);
+        tail.showDay(report, h24, ReportRenderer.TAIL);
+        root.addView(tail, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
 
     private void addHalf(LinearLayout bar, String text, boolean primary, final Runnable r) {

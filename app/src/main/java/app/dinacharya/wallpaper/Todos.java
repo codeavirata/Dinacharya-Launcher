@@ -28,10 +28,22 @@ public final class Todos {
         public boolean done;
         /** The repeating item this came from (see {@link Repeat}), or 0 when it does not repeat. */
         public int repeatId;
+        /** How far in the row is drawn when it is shown in a list: 0, or 1 for a thing on a goal's own to-do list. */
+        public int level;
+        /** True for a goal that has to-dos of its own: it is not ticked itself, it is done when everything under it is. */
+        public boolean head;
 
         Item(String text, boolean done) {
             this.text = text;
             this.done = done;
+        }
+
+        /** A row made for showing (see {@link SlotTodo}); it is not part of any list. */
+        public Item(String text, boolean done, int level, boolean head) {
+            this.text = text;
+            this.done = done;
+            this.level = level;
+            this.head = head;
         }
     }
 
@@ -96,6 +108,12 @@ public final class Todos {
         }
     }
 
+    /**
+     * What was ticked on a goal's side, by day: "day, goal, text". The text is a thing on the goal's own to-do list; an empty text is
+     * the goal itself (a goal with no to-dos is ticked as a whole). Kept apart from the day's lists, because the things themselves
+     * live with the goal and come back every day it counts.
+     */
+    private final java.util.Set<String> goalDone = new java.util.HashSet<>();
     private final Map<String, List<Item>> lists = new LinkedHashMap<>();
     private final Map<Integer, Repeat> repeats = new LinkedHashMap<>();
     /** Which days already got their copy of which repeating item (so one that was removed for the day does not come back). */
@@ -109,6 +127,34 @@ public final class Todos {
     /** The scope of the list of the goal for a type. */
     public static String goalScope(int kind, String sub) {
         return "G" + kind + ":" + Routine.cleanSub(sub).toLowerCase(Locale.ROOT);
+    }
+
+    /** The name a goal's ticks are kept under: its slot (or, for an older goal, its type). */
+    public static String goalTickScope(Routine.Goal g) {
+        return "K" + g.ident();
+    }
+
+    private static String tickKey(LocalDate day, Routine.Goal g, String text) {
+        return day + "\t" + goalTickScope(g) + "\t" + (text == null ? "" : cleanText(text).toLowerCase(Locale.ROOT));
+    }
+
+    /** True when the goal itself (one with no to-dos), or the thing {@code text} on its to-do list, is ticked on {@code day}. */
+    public boolean goalDone(LocalDate day, Routine.Goal g, String text) {
+        return goalDone.contains(tickKey(day, g, text));
+    }
+
+    /** Ticks or unticks the goal itself ({@code text} empty) or a thing on its to-do list. */
+    public void setGoalDone(LocalDate day, Routine.Goal g, String text, boolean done) {
+        String k = tickKey(day, g, text);
+        if (done) goalDone.add(k);
+        else goalDone.remove(k);
+    }
+
+    /** How many things on the goal's to-do list are ticked on {@code day}. */
+    public int goalDoneCount(LocalDate day, Routine.Goal g) {
+        int n = 0;
+        for (String t : g.todos) if (goalDone(day, g, t)) n++;
+        return n;
     }
 
     /** The scope of a repeating item of a slot: it goes to the first slot of the day with this kind and name. */
@@ -288,12 +334,24 @@ public final class Todos {
                 any = true;
             }
         }
+        for (java.util.Iterator<String> it = goalDone.iterator(); it.hasNext(); ) {
+            String k = it.next();
+            try {
+                if (LocalDate.parse(k.substring(0, k.indexOf('\t'))).isBefore(oldest)) {
+                    it.remove();
+                    any = true;
+                }
+            } catch (RuntimeException e) {
+                it.remove();
+                any = true;
+            }
+        }
         return any;
     }
 
-    /** True when there is nothing at all: no lists and nothing that repeats. */
+    /** True when there is nothing at all: no lists, nothing that repeats and no goal ticks. */
     public boolean isEmpty() {
-        return lists.isEmpty() && repeats.isEmpty();
+        return lists.isEmpty() && repeats.isEmpty() && goalDone.isEmpty();
     }
 
     /**
@@ -363,7 +421,8 @@ public final class Todos {
 
     /*
      * One line each. An item: day, scope, done (1 or 0, then "@" and its repeat number when it has one), text. A repeating item:
-     * "R", number, mode, weekdays, first day, scope, text. A day that already got its copy: "M", day, number. Lines this version does not
+     * "R", number, mode, weekdays, first day, scope, text. A day that already got its copy: "M", day, number. A goal's tick: "K", day, goal,
+     * text. Lines this version does not
      * know are skipped, and so are the new kinds of line by an older version.
      */
     public String serialize() {
@@ -373,6 +432,7 @@ public final class Todos {
                     .append('\t').append(r.scope).append('\t').append(r.text).append('\n');
         }
         for (String m : made) sb.append("M\t").append(m).append('\n');
+        for (String k : goalDone) sb.append("K\t").append(k).append('\n');
         for (Map.Entry<String, List<Item>> e : lists.entrySet()) {
             for (Item i : e.getValue()) {
                 sb.append(e.getKey()).append('\t').append(i.done ? 1 : 0);
@@ -405,6 +465,13 @@ public final class Todos {
                     LocalDate.parse(p[1]);
                     Integer.parseInt(p[2].trim());
                     t.made.add(p[1] + "\t" + p[2].trim());
+                    continue;
+                }
+                if (ln.startsWith("K\t")) {
+                    String[] p = ln.split("\t", 4);
+                    if (p.length < 3 || p[2].isEmpty()) continue;
+                    LocalDate.parse(p[1]);
+                    t.goalDone.add(p[1] + "\t" + p[2] + "\t" + (p.length > 3 ? p[3] : ""));
                     continue;
                 }
                 String[] p = ln.split("\t", 4);

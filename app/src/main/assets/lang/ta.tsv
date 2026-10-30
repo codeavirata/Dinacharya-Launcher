@@ -754,8 +754,8 @@ Free:  {1}	இலவசம்:  {1}
 Pro:  {1}	Pro:  {1}
 Restore my purchase	என் வாங்குதலை மீட்டெடு
 Tied to your Google Play account, so it comes back on a new phone. Refunds follow Google Play's rules. If Pro ever ends (a refund, say), nothing you made is taken away: a routine, a lock or a pause that goes past the free limit stays saved and starts working again with Pro. A video pass is different: when its time is up, what you set up with it goes back to the free version.	உங்கள் Google Play கணக்குடன் இணைக்கப்பட்டுள்ளது, எனவே புதிய ஃபோனில் திரும்பக் கிடைக்கும். பணத்தைத் திரும்பப் பெறுதல் Google Play விதிகளின்படி நடக்கும். Pro எப்போதாவது முடிந்தால் (எ.கா. பணம் திரும்பப் பெறப்பட்டால்), நீங்கள் உருவாக்கியது எதுவும் நீக்கப்படாது: இலவச வரம்பைத் தாண்டிய வழக்கம், லாக் அல்லது இடைநிறுத்தம் சேமிக்கப்பட்டிருக்கும், Pro உடன் மீண்டும் வேலை செய்யும். வீடியோ பாஸ் வேறு: அதன் நேரம் முடிந்ததும், அதனுடன் நீங்கள் அமைத்தது இலவசப் பதிப்புக்குத் திரும்பும்.
-{1} is part of Pro, a one-time purchase that also removes the ads.	{1} Pro-வின் பகுதி, இது ஒருமுறை வாங்குதல்; விளம்பரங்களையும் நீக்கும்.
-{1} is open now. To finish, you also need: {2}. It has its own video, or it is part of Pro, a one-time purchase that also removes the ads.	{1} இப்போது திறந்துள்ளது. முடிக்க உங்களுக்கு இதுவும் தேவை: {2}. இதற்குத் தனி வீடியோ உள்ளது, அல்லது இது Pro-வின் பகுதி, இது ஒருமுறை வாங்குதல்; விளம்பரங்களையும் நீக்கும்.
+{1} is part of Pro, which also removes the ads.	{1} Pro-வின் பகுதி; இது விளம்பரங்களையும் நீக்கும்.
+{1} is open now. To finish, you also need: {2}. It has its own video, or it is part of Pro, which also removes the ads.	{1} இப்போது திறந்துள்ளது. முடிக்க உங்களுக்கு இதுவும் தேவை: {2}. இதற்குத் தனி வீடியோ உள்ளது, அல்லது இது Pro-வின் பகுதி; இது விளம்பரங்களையும் நீக்கும்.
 Part of Pro	Pro-வின் பகுதி
 {1}\n\nOr watch short videos to use it free. You choose how many:	{1}\n\nஅல்லது இலவசமாகப் பயன்படுத்த சிறு வீடியோக்களைப் பாருங்கள். எத்தனை என்பதை நீங்களே தேர்ந்தெடுங்கள்:
 When the time is up, what you set up with it goes back to the free version.	 நேரம் முடிந்ததும், அதனுடன் நீங்கள் அமைத்தது இலவசப் பதிப்புக்குத் திரும்பும்.
@@ -1159,7 +1159,7 @@ Last 3 days	கடந்த 3 நாட்கள்
 2 locked apps	லாக் செய்யப்பட்ட 2 ஆப்கள்
 All saved days	சேமித்த எல்லா நாட்களும்
 Weekly view	வாரக் காட்சி
-One payment, or a short video for a day	ஒருமுறை கட்டணம், அல்லது ஒரு நாளுக்கு ஒரு சிறு வீடியோ
+Monthly or once, or a short video for a day	மாதத்திற்கு அல்லது ஒருமுறை, அல்லது ஒரு நாளுக்கு ஒரு சிறு வீடியோ
 Time, date	நேரம், தேதி
 and phone time	மற்றும் ஃபோன் நேரம்
 The slot you	நீங்கள் இருக்கும்
@@ -1175,7 +1175,7 @@ What you set up with it goes back to the free version then, unless you get Pro.	
 A video is already on its way.	ஒரு வீடியோ ஏற்கெனவே வந்துகொண்டிருக்கிறது.
 That cannot be kept longer.	இதை இன்னும் நீண்ட நேரம் வைத்திருக்க முடியாது.
 That is open already.	அது ஏற்கெனவே திறந்திருக்கிறது.
-You have watched a lot of videos today. Try again tomorrow, or get Pro: it is one payment, opens everything for good and removes the ads.	நீங்கள் இன்று நிறைய வீடியோக்களைப் பார்த்துவிட்டீர்கள். நாளை மீண்டும் முயலுங்கள், அல்லது Pro வாங்குங்கள்: இது ஒருமுறை கட்டணம், எல்லாவற்றையும் நிரந்தரமாகத் திறக்கும், விளம்பரங்களை நீக்கும்.
+You have watched a lot of videos today. Try again tomorrow, or get Pro: it opens everything and removes the ads.	நீங்கள் இன்று நிறைய வீடியோக்களைப் பார்த்துவிட்டீர்கள். நாளை மீண்டும் முயலுங்கள், அல்லது Pro வாங்குங்கள்: இது எல்லாவற்றையும் திறந்து விளம்பரங்களை நீக்கும்.
 That is plenty for today	இன்றைக்கு இது போதும்
 Videos are not ready yet. Check your connection and try again in a moment.	வீடியோக்கள் இன்னும் தயாராகவில்லை. உங்கள் இணைப்பைச் சரிபார்த்து சிறிது நேரத்தில் மீண்டும் முயலுங்கள்.
 A video could not be started. Try again in a moment.	ஒரு வீடியோவைத் தொடங்க முடியவில்லை. சிறிது நேரத்தில் மீண்டும் முயலுங்கள்.
@@ -1188,6 +1188,7 @@ The next video could not be found. You keep what you already earned.	அடு�
 Watch the whole video to open it. Nothing was opened.	இதைத் திறக்க முழு வீடியோவையும் பாருங்கள். எதுவும் திறக்கப்படவில்லை.
 The video could not be shown. Try again in a little while. Nothing was opened.	வீடியோவைக் காட்ட முடியவில்லை. சிறிது நேரம் கழித்து மீண்டும் முயலுங்கள். எதுவும் திறக்கப்படவில்லை.
 Video {1} of {2} watched	{2} இல் {1} வீடியோ பார்க்கப்பட்டது
+{1} more videos	இன்னும் {1} வீடியோக்கள்
 Next video	அடுத்த வீடியோ
 Stop here	இங்கேயே நிறுத்து
 It could not be opened. Please try again.	அதைத் திறக்க முடியவில்லை. மீண்டும் முயலுங்கள்.
@@ -1545,6 +1546,518 @@ Repeat	மீண்டும்
 Does not repeat	மீண்டும் வராது
 A to-do is for this day only, unless you set it to repeat with the ↻ button.	செய்ய வேண்டியவை பட்டியலில் உள்ளது இந்த நாளுக்கு மட்டுமே, ↻ பொத்தானால் மீண்டும் வருமாறு அமைக்கும் வரை.
 {1}–{2} of {3}	{3} இல் {1}–{2}
+Choose a monthly plan or pay once for life. Paid through Google Play.	மாதாந்திரத் திட்டத்தைத் தேர்ந்தெடுங்கள், அல்லது ஒருமுறை செலுத்தி என்றென்றும் பெறுங்கள். கட்டணம் Google Play மூலம் செலுத்தப்படும்.
+Your monthly plan is active. It renews every month until you cancel it in Google Play.	உங்கள் மாதாந்திரத் திட்டம் செயலில் உள்ளது. Google Play-இல் ரத்துசெய்யும் வரை அது ஒவ்வொரு மாதமும் தானாகப் புதுப்பிக்கப்படும்.
+Monthly plan	மாதாந்திரத் திட்டம்
+Lifetime plan	வாழ்நாள் திட்டம்
+{1} a month	மாதத்திற்கு {1}
+{1} once	ஒருமுறை {1}
+Pro for as long as you subscribe. Renews every month; cancel any time in Google Play.	நீங்கள் சந்தா செலுத்தும் வரை Pro. ஒவ்வொரு மாதமும் புதுப்பிக்கப்படும்; Google Play-இல் எப்போது வேண்டுமானாலும் ரத்துசெய்யலாம்.
+Pay once and keep Pro for good.	ஒருமுறை செலுத்தி Pro-வை என்றென்றும் வைத்திருங்கள்.
+Subscribe monthly	மாதாந்திரச் சந்தா பெறுங்கள்
+Get lifetime Pro	வாழ்நாள் Pro பெறுங்கள்
+Manage subscription	சந்தாவை நிர்வகிக்கவும்
+If you buy lifetime, cancel the monthly plan in Google Play so it does not renew.	வாழ்நாள் திட்டத்தை வாங்கினால், புதுப்பிக்கப்படாமல் இருக்க Google Play-இல் மாதாந்திரத் திட்டத்தை ரத்துசெய்யுங்கள்.
+Pro is a monthly plan or one payment for life, through Google Play.	Pro என்பது மாதாந்திரத் திட்டம் அல்லது வாழ்நாளுக்கான ஒருமுறைக் கட்டணம்; இரண்டும் Google Play மூலம்.
+Pro is {1} a month, or {2} once for life, through Google Play.	Pro மாதத்திற்கு {1}, அல்லது வாழ்நாளுக்கு ஒருமுறை {2}, Google Play மூலம்.
+Free with small ads. Dinacharya Pro, monthly or for life, removes the ads and unlocks the extras.	இலவசம், சிறிய விளம்பரங்களுடன். Dinacharya Pro, மாதாந்திரமாகவோ வாழ்நாளுக்கோ, விளம்பரங்களை நீக்கி கூடுதல் வசதிகளைத் திறக்கும்.
+Alarm volume	அலாரம் ஒலியளவு
+The phone's alarm volume is turned right down, so an alarm would not make a sound.	தொலைபேசியின் அலாரம் ஒலியளவு முழுவதும் குறைக்கப்பட்டுள்ளது, அதனால் அலாரம் ஒலிக்காது.
+Open Settings, Sound, and turn the alarm volume up	அமைப்புகளைத் திறந்து, ஒலி பகுதியில் அலாரம் ஒலியளவை உயர்த்துங்கள்
+{1} of {2} shakes	{2} இல் {1} முறை குலுக்கப்பட்டது
+0 of {1} shakes	{1} இல் 0 முறை குலுக்கப்பட்டது
+To turn this alarm off, solve three quick sums.	இந்த அலாரத்தை நிறுத்த மூன்று சிறிய கணக்குகளைப் போடுங்கள்.
+To turn this alarm off, take a short pause and breathe.	இந்த அலாரத்தை நிறுத்த சிறிது இடைநிறுத்தி ஆழமாக மூச்சு விடுங்கள்.
+To turn this alarm off, shake your phone.	இந்த அலாரத்தை நிறுத்த உங்கள் ஃபோனைக் குலுக்குங்கள்.
+To turn this alarm off, type a short sentence.	இந்த அலாரத்தை நிறுத்த ஒரு சிறிய வாக்கியத்தைத் தட்டச்சு செய்யுங்கள்.
+Another quote	மற்றொரு மேற்கோள்
+Take the day off	இன்று விடுப்பு எடு
+Enjoy your day off.	விடுமுறையை அனுபவியுங்கள்.
+Type this to start your day	உங்கள் நாளைத் தொடங்க இதைத் தட்டச்சு செய்யுங்கள்
+Take a short pause	சிறிது இடைநிறுத்துங்கள்
+The alarm stops when the last breath is done. Leaving this screen starts the breaths again.	கடைசி மூச்சு முடிந்ததும் அலாரம் நிற்கும். இந்தத் திரையை விட்டுச் சென்றால் மூச்சுகள் மீண்டும் தொடங்கும்.
+This phone cannot tell when it is shaken, so here are three sums instead.	இந்த ஃபோனால் குலுக்குவதை உணர முடியவில்லை, அதனால் அதற்குப் பதிலாக மூன்று கணக்குகள் உள்ளன.
+Shake your phone	உங்கள் ஃபோனைக் குலுக்குங்கள்
+Hold it firmly and shake it up and down. The alarm stops after the last shake.	உறுதியாகப் பிடித்து மேலும் கீழும் குலுக்குங்கள். கடைசி குலுக்கலுக்குப் பிறகு அலாரம் நிற்கும்.
+Plan your day?	உங்கள் நாளைத் திட்டமிடலாமா?
+Your day is off	இன்று விடுமுறை
+Plan your day now, later, or leave it?	உங்கள் நாளை இப்போது திட்டமிடலாமா, பிறகா, அல்லது விட்டுவிடலாமா?
+No alarm rings until you plan your day again.	நீங்கள் உங்கள் நாளை மீண்டும் திட்டமிடும் வரை எந்த அலாரமும் ஒலிக்காது.
+Plan now	இப்போது திட்டமிடு
+Leave it	விட்டுவிடு
+Enjoy your day off. Your alarms are back tomorrow.	விடுமுறையை அனுபவியுங்கள். உங்கள் அலாரங்கள் நாளை முதல் மீண்டும் வேலை செய்யும்.
+Your day is off. Plan it now, later, or leave it. Tap to answer.	இன்று விடுமுறை. இப்போது திட்டமிடுங்கள், பிறகு செய்யுங்கள் அல்லது விட்டுவிடுங்கள். பதிலளிக்கத் தட்டவும்.
+No alarm will ring for the rest of today. The slot going on ends now, and the slots still to come count as taken off. Tomorrow starts as usual.	இன்றைய மீதமுள்ள நேரத்தில் எந்த அலாரமும் ஒலிக்காது. நடப்பில் உள்ள ஸ்லாட் இப்போது முடியும், வரவிருக்கும் ஸ்லாட்கள் விடுப்பாகக் கணக்கிடப்படும். நாளை வழக்கம்போல் தொடங்கும்.
+In {1} hours	{1} மணி நேரத்தில்
+This evening, {1}	இன்று மாலை, {1}
+Take the rest of today off?	இன்றைய மீதமுள்ள நேரத்தை விடுப்பாக எடுக்கலாமா?
+Take it off	விடுப்பு எடு
+The day could not be taken off	விடுப்பு எடுக்க முடியவில்லை
+Your day is off, so no alarm will ring until you plan it again. Plan it now, later, or leave it?	இன்று விடுமுறை என்பதால், நீங்கள் மீண்டும் திட்டமிடும் வரை எந்த அலாரமும் ஒலிக்காது. இப்போது திட்டமிடலாமா, பிறகா, அல்லது விட்டுவிடலாமா?
+In 1 hour	1 மணி நேரத்தில்
+Ask me again	மீண்டும் கேள்
+“{1}” was to end at {2}. Finish it now, and “{3}” starts early. It still ends at {4}, so it gets the time that was left.	“{1}” {2}-க்கு முடிய வேண்டியது. இப்போதே முடித்தால் “{3}” முன்னதாகவே தொடங்கும். அது இன்னும் {4}-க்கே முடியும், அதனால் மீதமுள்ள நேரம் அதற்குக் கிடைக்கும்.
+Start “{1}” after a while	“{1}” ஐ சிறிது நேரம் கழித்துத் தொடங்கு
+Finish “{1}” early?	“{1}” ஐ முன்கூட்டியே முடிக்கலாமா?
+Back at {1}, and “{2}” goes on.	{1}-க்குத் திரும்புவீர்கள், “{2}” தொடரும்.
+“{1}” starts at {2}.	“{1}” {2}-க்குத் தொடங்கும்.
+Start “{1}” later	“{1}” ஐ பிறகு தொடங்கு
+“{1}” has started	“{1}” தொடங்கிவிட்டது
+Enjoy your break. “{1}” goes on at {2}	இடைவேளையை அனுபவியுங்கள். “{1}” {2}-க்குத் தொடரும்
+“{1}” starts at {2}	“{1}” {2}-க்குத் தொடங்கும்
+this slot	இந்த ஸ்லாட்
+the next slot	அடுத்த ஸ்லாட்
+The next slot	அடுத்த ஸ்லாட்
+Take a break first	முதலில் இடைவேளை எடு
+Take the rest of today off	இன்றைய மீதமுள்ள நேரத்தை விடுப்பாக எடு
+That cannot be done now	இதை இப்போது செய்ய முடியாது
+Choose one slot as your start-of-day alarm from its bell on the Routine tab. It has to be the first alarm of the day. It keeps ringing until you start the day, put it off or take the day off. Before you can turn it off you can be asked to solve a sum, take a pause, shake the phone or type a sentence, and you see a motivating quote.	வழக்கம் தாவலில் ஒரு ஸ்லாட்டின் மணியிலிருந்து அதை உங்கள் நாள்-தொடக்க அலாரமாகத் தேர்ந்தெடுக்கவும். அது நாளின் முதல் அலாரமாக இருக்க வேண்டும். நீங்கள் நாளைத் தொடங்கும் வரை, தள்ளிவைக்கும் வரை அல்லது அன்றைய நாளை விடுப்பாக எடுக்கும் வரை அது ஒலித்துக்கொண்டே இருக்கும். அதை நிறுத்தும் முன் ஒரு கணக்கைப் போடவோ, சிறிது இடைநிறுத்தவோ, ஃபோனைக் குலுக்கவோ அல்லது ஒரு வாக்கியத்தைத் தட்டச்சு செய்யவோ கேட்கப்படலாம்; மேலும் ஊக்கமளிக்கும் ஒரு மேற்கோளையும் காண்பீர்கள்.
+Taking the day off silences every alarm for the rest of today. You are asked if you want to plan the day now, later or leave it.	விடுப்பு எடுத்தால் இன்றைய மீதமுள்ள நேரத்தின் எல்லா அலாரங்களும் அமைதியாகும். பிறகு நாளை இப்போது திட்டமிடவா, பிறகா, அல்லது விட்டுவிடவா என்று கேட்கப்படும்.
+Today’s quote:  “{1}”{2}	இன்றைய மேற்கோள்:  “{1}”{2}
+To turn the alarm off and start the day	அலாரத்தை நிறுத்தி நாளைத் தொடங்க
+Just tap Start my day	“என் நாளைத் தொடங்கு” என்பதைத் தட்டினால் போதும்
+Take a short pause (four slow breaths)	சிறிது இடைநிறுத்து (நான்கு மெதுவான மூச்சுகள்)
+Shake the phone	ஃபோனைக் குலுக்கு
+The alarm keeps ringing until it is done. A phone that cannot sense a shake asks for the sums instead.	இது முடியும் வரை அலாரம் ஒலித்துக்கொண்டே இருக்கும். குலுக்குவதை உணர முடியாத ஃபோனில் அதற்குப் பதிலாக கணக்குகள் கேட்கப்படும்.
+Show a motivating quote	ஊக்கமளிக்கும் மேற்கோளைக் காட்டு
+Offer “Take the day off”	“இன்று விடுப்பு எடு” என்ற தேர்வைக் காட்டு
+Locked only while a {1} slot is going on, {2} from {3} to {4}.	{1} ஸ்லாட் நடக்கும்போது மட்டுமே லாக் ஆகும், {2} {3} முதல் {4} வரை.
+Locked in the times above, and also whenever a {1} slot is going on.	மேலுள்ள நேரங்களில் லாக் ஆகும், மேலும் {1} ஸ்லாட் நடக்கும்போதெல்லாம் லாக் ஆகும்.
+Locked {1}, {2} to {3}, but only during the activity types below.	லாக் {1}, {2} முதல் {3} வரை, ஆனால் கீழே உள்ள செயல்பாட்டு வகைகளின் போது மட்டும்.
+Only when both hold: the times above and these activity types	இரண்டும் பொருந்தும்போது மட்டுமே: மேலுள்ள நேரங்களும் இந்தச் செயல்பாட்டு வகைகளும்
+Also lock in library mode	நூலக பயன்முறையிலும் லாக் செய்
+While library mode is on, these apps are locked too, whatever the times and activity types say.	நூலக பயன்முறை இயக்கத்தில் இருக்கும்போது, நேரங்களும் செயல்பாட்டு வகைகளும் எதைச் சொன்னாலும் இந்த ஆப்களும் லாக் ஆகும்.
+Locks during {1}, {2}	{1} நேரத்தில் லாக், {2}
+Locked until library mode is switched off	நூலக பயன்முறை நிறுத்தப்படும் வரை லாக்
+·  and in library mode	  ·  மற்றும் நூலக பயன்முறையில்
+Locks in library mode	நூலக பயன்முறையில் லாக்
+Library mode is on	நூலக பயன்முறை இயக்கத்தில் உள்ளது
+Until library mode is switched off	நூலக பயன்முறை நிறுத்தப்படும் வரை
+Break until {1}   ·   {2} left	இடைவேளை {1} வரை   ·   {2} மீதம்
+Then back to {1}, which ends at {2}	பிறகு {1}-க்குத் திரும்புவீர்கள், அது {2}-க்கு முடியும்
+Starts at {1}   ·   in {2}	{1}-க்குத் தொடக்கம்   ·   {2} இல்
+It was to start at {1}, and ends at {2}	இது {1}-க்குத் தொடங்க வேண்டியது, {2}-க்கு முடியும்
+Started late, at {1} instead of {2}	தாமதமாகத் தொடங்கியது, {2}-க்குப் பதிலாக {1}-க்கு
+Started early, at {1} instead of {2}	முன்கூட்டியே தொடங்கியது, {2}-க்குப் பதிலாக {1}-க்கு
+Carried on, so it ends at {1} instead of {2}	தொடரப்பட்டது, அதனால் இது {2}-க்குப் பதிலாக {1}-க்கு முடியும்
+Finished early, at {1} instead of {2}	முன்கூட்டியே முடிந்தது, {2}-க்குப் பதிலாக {1}-க்கு
+DAY OFF	விடுமுறை நாள்
+STARTING LATER	பிறகு தொடங்கும்
+Enjoy your day off	விடுமுறையை அனுபவியுங்கள்
+No alarm will ring until you plan the day again, or tomorrow.	நீங்கள் நாளை மீண்டும் திட்டமிடும் வரை, அல்லது நாளை வரை, எந்த அலாரமும் ஒலிக்காது.
+Plan the day	நாளைத் திட்டமிடு
+Back to my schedule	என் அட்டவணைக்குத் திரும்பு
+Your schedule is back. The alarms ring again.	உங்கள் அட்டவணை திரும்பிவிட்டது. அலாரங்கள் மீண்டும் ஒலிக்கும்.
+Finish early	முன்கூட்டியே முடி
+Library mode	நூலக பயன்முறை
+On	இயக்கத்தில்
+Off	அணைந்துள்ளது
+Every alarm only vibrates, with no sound.	ஒவ்வொரு அலாரமும் அதிர்வு மட்டுமே தரும், ஒலி இல்லை.
+Keeps every alarm silent, with vibration only, for the library, a class or an exam.	நூலகம், வகுப்பு அல்லது தேர்வுக்காக ஒவ்வொரு அலாரத்தையும் அமைதியாக்கி, அதிர்வு மட்டும் தரும்.
+Turn off	அணை
+Change the hours	நேரங்களை மாற்று
+1 hour	1 மணி நேரம்
+2 hours	2 மணி நேரம்
+4 hours	4 மணி நேரம்
+Until I switch it off	நான் நிறுத்தும் வரை
+Every alarm only vibrates while it is on, with no sound. Apps in locks that include library mode are locked too. How long?	இது இயக்கத்தில் இருக்கும் வரை ஒவ்வொரு அலாரமும் அதிர்வு மட்டுமே தரும், ஒலி இருக்காது. நூலக பயன்முறை சேர்க்கப்பட்ட லாக்குகளில் உள்ள ஆப்களும் லாக் ஆகும். எவ்வளவு நேரத்துக்கு?
+On until {1}	{1} வரை இயக்கத்தில்
+Off. Next: {1}	அணைந்துள்ளது. அடுத்தது: {1}
+On until you switch it off	நீங்கள் நிறுத்தும் வரை இயக்கத்தில்
+For the library, a class or an exam. While library mode is on, every alarm of the app only vibrates, with no sound: the start-of-day alarm, the slot alarms, the bedtime question and the break timers. The questions still appear, and groups of apps set to lock in library mode are locked.	நூலகம், வகுப்பு அல்லது தேர்வுக்காக. நூலக பயன்முறை இயக்கத்தில் இருக்கும்போது, ஆப்பின் ஒவ்வொரு அலாரமும் அதிர்வு மட்டுமே தரும், ஒலி இருக்காது: நாள்-தொடக்க அலாரம், ஸ்லாட் அலாரங்கள், தூங்கும் கேள்வி மற்றும் இடைவேளை டைமர்கள். கேள்விகள் இன்னும் தோன்றும், நூலக பயன்முறையில் லாக் செய்ய அமைக்கப்பட்ட ஆப் குழுக்கள் லாக் ஆகும்.
+Calls and messages stop making sound as well. When library mode ends, the ringer goes back to how it was, unless you changed it yourself. If your phone asks for Do Not Disturb access to do this, the ringer is left as it is.	அழைப்புகளும் செய்திகளும் கூட ஒலி எழுப்புவதை நிறுத்தும். நூலக பயன்முறை முடிந்ததும், நீங்களே மாற்றியிருந்தால் தவிர, ரிங்கர் முன்பு இருந்தபடியே திரும்பும். இதற்காக உங்கள் ஃபோன் “தொந்தரவு செய்யாதே” அனுமதியைக் கேட்டால், ரிங்கர் உள்ளபடியே விடப்படும்.
+It runs from {1} into the next morning, until {2}.	இது {1} முதல் அடுத்த நாள் காலை {2} வரை நீடிக்கும்.
+Turn it on by itself at fixed hours	குறிப்பிட்ட நேரங்களில் தானாக இயக்கு
+Also put the phone on vibrate	ஃபோனையும் அதிர்வு நிலையில் வை
+Off, by the clock	அணைந்துள்ளது, நேரப்படி
+Pick at least one day, or it never comes on.	குறைந்தது ஒரு நாளைத் தேர்ந்தெடுங்கள், இல்லையெனில் இது ஒருபோதும் இயங்காது.
+Delayed start	தாமதமான தொடக்கம்
+Day off	விடுமுறை
+Make the schedule for the rest of today, then save it	இன்றைய மீதமுள்ள நேரத்துக்கான அட்டவணையை உருவாக்கி, பிறகு சேமிக்கவும்
+STARTS AT  {1}	{1}-க்குத் தொடக்கம்
+LIBRARY MODE	நூலக பயன்முறை
+DAY OFF  ·  no alarms	விடுமுறை  ·  அலாரம் இல்லை
+STARTED LATE	தாமதமாகத் தொடக்கம்
+RAN LONGER	நீண்டது
+STARTED EARLY	முன்கூட்டியே தொடக்கம்
+FINISHED EARLY	முன்கூட்டியே முடிவு
+Open Google Play, then your profile picture, Payments and subscriptions, Subscriptions.	Google Play ஐத் திறந்து, உங்கள் சுயவிவரப் படம், கட்டணங்களும் சந்தாக்களும், பிறகு சந்தாக்கள் என்பதைத் தேர்ந்தெடுங்கள்.
+{1} (build {2})	{1} (பில்ட் {2})
+I am awake and ready to begin	நான் விழித்துவிட்டேன் தொடங்கத் தயாராக இருக்கிறேன்
+Today I do what I planned	இன்று நான் திட்டமிட்டதைச் செய்வேன்
+I start my day on purpose	நான் என் நாளை நோக்கத்துடன் தொடங்குகிறேன்
+A good day begins right now	நல்ல நாள் இப்போதே தொடங்குகிறது
+I rise and I start	நான் எழுந்து தொடங்குகிறேன்
+{1}, {2} to {3}.	{1}, {2} முதல் {3} வரை.
+{1}, {2} to {3}	{1}, {2} முதல் {3} வரை
+The journey of a thousand miles begins with a single step.	ஆயிரம் மைல் பயணமும் ஒரு அடியில்தான் தொடங்குகிறது.
+It does not matter how slowly you go as long as you do not stop.	எவ்வளவு மெதுவாகச் சென்றாலும் பரவாயில்லை, நிற்காமல் இருந்தால் போதும்.
+Arise, awake, and stop not till the goal is reached.	எழுங்கள், விழியுங்கள், இலக்கை அடையும் வரை நிற்காதீர்கள்.
+Dream, dream, dream. Dreams transform into thoughts and thoughts result in action.	கனவு காணுங்கள், கனவு காணுங்கள், கனவு காணுங்கள். கனவுகள் எண்ணங்களாக மாறுகின்றன; எண்ணங்கள் செயலாக விளைகின்றன.
+If you want to shine like a sun, first burn like a sun.	சூரியனைப் போல ஒளிர வேண்டுமானால், முதலில் சூரியனைப் போல எரியுங்கள்.
+Look to this day, for it is life, the very life of life.	இந்த நாளைப் பாருங்கள்; இதுவே வாழ்க்கை, வாழ்க்கையின் உயிர்.
+At dawn, when you have trouble getting out of bed, tell yourself: I have to go to work as a human being.	விடியலில் படுக்கையிலிருந்து எழுவது கடினமாக இருந்தால், உங்களிடம் சொல்லிக்கொள்ளுங்கள்: நான் ஒரு மனிதனாக வேலைக்குச் செல்ல வேண்டும்.
+Begin at once to live, and count each separate day as a separate life.	உடனே வாழத் தொடங்குங்கள்; ஒவ்வொரு நாளையும் தனி வாழ்க்கையாகக் கருதுங்கள்.
+While we are postponing, life speeds by.	நாம் தள்ளிப்போடும்போதே வாழ்க்கை வேகமாகக் கடந்துவிடுகிறது.
+The early morning has gold in its mouth.	அதிகாலையின் வாயில் தங்கம் இருக்கிறது.
+You may delay, but time will not.	நீங்கள் தாமதிக்கலாம், ஆனால் காலம் தாமதிக்காது.
+Lost time is never found again.	இழந்த நேரம் மீண்டும் கிடைக்காது.
+Energy and persistence conquer all things.	ஆற்றலும் விடாமுயற்சியும் அனைத்தையும் வெல்லும்.
+We are what we repeatedly do. Excellence, then, is not an act, but a habit.	நாம் திரும்பத் திரும்பச் செய்வதே நாம். ஆகவே சிறப்பு என்பது ஒரு செயல் அல்ல, ஒரு பழக்கம்.
+Do what you can, with what you have, where you are.	உங்களால் முடிந்ததைச் செய்யுங்கள், உங்களிடம் இருப்பதைக் கொண்டு, நீங்கள் இருக்கும் இடத்திலிருந்து.
+It always seems impossible until it is done.	ஒரு செயல் முடியும் வரை அது எப்போதும் முடியாததாகவே தோன்றும்.
+Courage is not the absence of fear, but the triumph over it.	துணிவு என்பது அச்சம் இல்லாமை அல்ல, அதை வெல்வதே.
+Start where you are. Use what you have. Do what you can.	நீங்கள் இருக்கும் இடத்திலிருந்து தொடங்குங்கள். உங்களிடம் இருப்பதைப் பயன்படுத்துங்கள். உங்களால் முடிந்ததைச் செய்யுங்கள்.
+Make each day your masterpiece.	ஒவ்வொரு நாளையும் உங்கள் சிறந்த படைப்பாக்குங்கள்.
+Success is the sum of small efforts, repeated day in and day out.	வெற்றி என்பது சிறு முயற்சிகளின் கூட்டுத்தொகை, அவை நாள்தோறும் திரும்பத் திரும்பச் செய்யப்படுகின்றன.
+How we spend our days is, of course, how we spend our lives.	நம் நாட்களை எப்படிக் கழிக்கிறோமோ, அப்படித்தான் நம் வாழ்க்கையையும் கழிக்கிறோம்.
+Do not watch the clock; do what it does. Keep going.	கடிகாரத்தைப் பார்க்காதீர்கள்; அது செய்வதையே செய்யுங்கள். நகர்ந்துகொண்டே இருங்கள்.
+Discipline is the bridge between goals and accomplishment.	ஒழுக்கம் என்பது இலக்குகளுக்கும் சாதனைக்கும் இடையிலான பாலம்.
+The only way to do great work is to love what you do.	சிறந்த வேலையைச் செய்வதற்கு ஒரே வழி, நீங்கள் செய்வதை நேசிப்பதே.
+Small deeds done are better than great deeds planned.	திட்டமிட்ட பெரிய செயல்களை விட செய்து முடித்த சிறு செயல்கள் சிறந்தவை.
+What you do today can improve all your tomorrows.	நீங்கள் இன்று செய்வது உங்கள் எல்லா நாளைகளையும் மேம்படுத்தும்.
+A year from now you may wish you had started today.	ஒரு வருடம் கழித்து, இன்றே தொடங்கியிருக்கலாமே என்று நீங்கள் நினைக்கக்கூடும்.
+We must use time as a tool, not as a couch.	நாம் நேரத்தைக் கருவியாகப் பயன்படுத்த வேண்டும், சாய்விருக்கையாக அல்ல.
+The key is not to prioritize what is on your schedule, but to schedule your priorities.	முக்கியம் என்னவென்றால், உங்கள் அட்டவணையில் இருப்பவற்றுக்கு முன்னுரிமை தருவது அல்ல, உங்கள் முன்னுரிமைகளை அட்டவணையில் வைப்பதே.
+Each day is a little life.	ஒவ்வொரு நாளும் ஒரு சிறு வாழ்க்கை.
+With the new day comes new strength and new thoughts.	புதிய நாளுடன் புதிய வலிமையும் புதிய எண்ணங்களும் வருகின்றன.
+The sun itself is weak when it first rises, and gathers strength and courage as the day goes on.	சூரியனும் உதிக்கும்போது பலவீனமாகவே இருக்கிறது; நாள் செல்லச் செல்ல வலிமையையும் துணிவையும் திரட்டிக்கொள்கிறது.
+Nothing will work unless you do.	நீங்கள் உழைக்காவிட்டால் எதுவும் வேலை செய்யாது.
+Happiness depends upon ourselves.	மகிழ்ச்சி நம்மையே சார்ந்தது.
+and	மற்றும்
+Each slot can ring when it starts and ask one question: carry on, or change the plan? At bedtime it asks when you went to sleep, and if you need more time it tells you what that costs in sleep. The question comes up by itself, and again when you wake the phone or come back to the home screen. The start-of-day alarm can ask for a sum, a short pause, a shake or a sentence before it stops, and shows a motivating quote. Finished early? Tap Finish early on Home. Library mode keeps every alarm silent, with only vibration.	ஒவ்வொரு ஸ்லாட்டும் தொடங்கும்போது ஒலித்து ஒரு கேள்வி கேட்கலாம்: தொடர்வதா, திட்டத்தை மாற்றுவதா? உறங்கும் நேரத்தில் நீங்கள் எப்போது உறங்கினீர்கள் என்று கேட்கும், உங்களுக்கு மேலும் நேரம் தேவைப்பட்டால் அது உறக்கத்தில் என்ன விலை என்று சொல்லும். கேள்வி தானாகவே வரும், ஃபோனை எழுப்பும்போதோ முகப்புத் திரைக்குத் திரும்பும்போதோ மீண்டும் வரும். நாள்-தொடக்க அலாரம் நிற்கும் முன் ஒரு கணக்கு, சிறு இடைநிறுத்தம், ஃபோனைக் குலுக்குதல் அல்லது ஒரு வாக்கியத்தைக் கேட்கலாம்; ஒரு ஊக்கமளிக்கும் மேற்கோளையும் காட்டும். முன்பே முடிந்துவிட்டதா? முகப்பில் “முன்கூட்டியே முடி” என்பதைத் தட்டுங்கள். நூலக பயன்முறை ஒவ்வொரு அலாரத்தையும் அமைதியாக்கி, அதிர்வு மட்டும் தரும்.
+Shut the apps that eat your time for hours you choose: every day or on some days, or just for the next hour. A locked app is greyed in the list, and the lock screen shows when it opens again. You can break a lock by waiting half a minute and typing a sentence. Free: lock two apps. Pro: groups of apps, as many locks as you like, and strict locks that cannot be broken. A group can also lock only while an activity type such as Study is going on, only when both the hours and the activity hold, or in library mode. Set it up in the home settings.	உங்கள் நேரத்தைத் தின்னும் ஆப்களை நீங்கள் தேர்ந்தெடுக்கும் மணிகளுக்கு மூடுங்கள்: ஒவ்வொரு நாளும் அல்லது சில நாட்கள், அல்லது அடுத்த ஒரு மணி நேரத்திற்கு மட்டும். லாக் செய்த ஆப் பட்டியலில் சாம்பல் நிறத்தில் இருக்கும், அது எப்போது மீண்டும் திறக்கும் என்பதை பூட்டுத் திரை காட்டும். அரை நிமிடம் காத்திருந்து ஒரு வாக்கியம் தட்டச்சு செய்து லாக்கை உடைக்கலாம். இலவசம்: இரண்டு ஆப்களை லாக் செய்யலாம். Pro: ஆப்களின் குழுக்கள், எத்தனை லாக்குகள் வேண்டுமானாலும், உடைக்க முடியாத கண்டிப்பான லாக்குகள். ஒரு குழு படிப்பு போன்ற செயல்பாட்டு வகை நடக்கும்போது மட்டும், நேரமும் செயல்பாடும் இரண்டும் பொருந்தும்போது மட்டும், அல்லது நூலக பயன்முறையிலும் லாக் ஆகலாம். முகப்பு அமைப்புகளில் அமையுங்கள்.
+Lock by	லாக் செய்யும் முறை
+Time	நேரம்
+Time + activity	நேரம் + செயல்பாடு
+Time or activity	நேரம் அல்லது செயல்பாடு
+Locked at the hours you set, whatever you are doing.	நீங்கள் அமைத்த நேரங்களில் லாக் ஆகும், நீங்கள் எதைச் செய்தாலும்.
+Locked whenever a slot of the types you pick is going on, at any hour.	நீங்கள் தேர்ந்தெடுத்த வகைகளின் ஸ்லாட் நடக்கும்போதெல்லாம் லாக் ஆகும், எந்த நேரத்திலும்.
+Locked only when a slot of the types you pick is going on inside the hours you set.	நீங்கள் தேர்ந்தெடுத்த வகைகளின் ஸ்லாட், நீங்கள் அமைத்த நேரங்களுக்குள் நடக்கும்போது மட்டுமே லாக் ஆகும்.
+Locked in the hours you set, and also whenever a slot of the types you pick is going on.	நீங்கள் அமைத்த நேரங்களில் லாக் ஆகும், மேலும் நீங்கள் தேர்ந்தெடுத்த வகைகளின் ஸ்லாட் நடக்கும்போதும் லாக் ஆகும்.
+More options	மேலும் தேர்வுகள்
+No activity types chosen yet.	இன்னும் செயல்பாட்டு வகை எதுவும் தேர்ந்தெடுக்கப்படவில்லை.
+A break, a slot you took off and the time between slots do not lock.	இடைவேளை, நீங்கள் நீக்கிய ஸ்லாட், ஸ்லாட்டுகளுக்கு இடைப்பட்ட நேரம் ஆகியவை லாக் செய்யாது.
+Choose at least one activity type	குறைந்தது ஒரு செயல்பாட்டு வகையைத் தேர்ந்தெடுக்கவும்
+Locked while a {1} slot is going on.	{1} ஸ்லாட் நடக்கும்போது லாக்.
+Phone use in slots	ஸ்லாட்டுகளில் ஃபோன் பயன்பாடு
+Off. Mark the phone use that is not part of a slot's activity	முடக்கம். ஸ்லாட்டின் செயல்பாட்டில் சேராத ஃபோன் பயன்பாட்டைக் குறிக்கவும்
+On. Every app counts as phone use	இயக்கம். ஒவ்வொரு ஆப்பின் ஃபோன் பயன்பாடும் கணக்கிடப்படும்
+On. Apps chosen for 1 activity	இயக்கம். 1 செயல்பாட்டுக்கு ஆப்கள் தேர்வு செய்யப்பட்டுள்ளன
+On. Apps chosen for {1} activities	இயக்கம். {1} செயல்பாடுகளுக்கு ஆப்கள் தேர்வு செய்யப்பட்டுள்ளன
+See when you pick up the phone during a slot. The home screen marks it with the exact times and the reports count it. Apps you choose for an activity are part of it and are never marked.	ஸ்லாட்டின் போது நீங்கள் ஃபோனை எப்போது எடுக்கிறீர்கள் என்பதைப் பாருங்கள். முகப்புத் திரை அதைத் துல்லியமான நேரத்துடன் குறிக்கும், அறிக்கைகள் அதைக் கணக்கிடும். ஒரு செயல்பாட்டுக்கு நீங்கள் தேர்ந்தெடுக்கும் ஆப்கள் அதன் ஒரு பகுதியே, அவை ஒருபோதும் குறிக்கப்படாது.
+Show phone use during slots	ஸ்லாட்டுகளின் போது ஃபோன் பயன்பாட்டைக் காட்டு
+Needed to see which apps are used, and when	எந்த ஆப்கள் எப்போது பயன்படுத்தப்பட்டன என்பதைப் பார்க்க இது தேவை
+Apps that are part of an activity	செயல்பாட்டின் பகுதியாக உள்ள ஆப்கள்
+Choose for each activity the apps it needs (a notes app for Study, say). Any other app used during that activity's slot is marked. This app is always part of the slot.	ஒவ்வொரு செயல்பாட்டுக்கும் அதற்குத் தேவையான ஆப்களைத் தேர்ந்தெடுங்கள் (எ.கா. படிப்புக்கு குறிப்புகள் ஆப்). அந்தச் செயல்பாட்டின் ஸ்லாட்டின் போது பயன்படுத்தப்படும் மற்ற எந்த ஆப்பும் குறிக்கப்படும். இந்த ஆப் எப்போதும் ஸ்லாட்டின் ஒரு பகுதி.
+No apps chosen yet	இன்னும் ஆப்கள் தேர்ந்தெடுக்கப்படவில்லை
+1 activity has apps	1 செயல்பாட்டில் ஆப்கள் உள்ளன
+{1} activities have apps	{1} செயல்பாடுகளில் ஆப்கள் உள்ளன
+No apps chosen	ஆப்கள் எதுவும் தேர்ந்தெடுக்கப்படவில்லை
+Choose	தேர்ந்தெடு
+Up to {1} apps for one activity	ஒரு செயல்பாட்டுக்கு அதிகபட்சம் {1} ஆப்கள்
+Apps for {1}	{1}-க்கான ஆப்கள்
+Up to {1} activities can have apps	அதிகபட்சம் {1} செயல்பாடுகளுக்கு ஆப்களைத் தேர்ந்தெடுக்கலாம்
+This clears the swipes, the look, the hidden apps, the pause rules, the locked groups and the phone use choices. Your routine and reports are not touched.	இது ஸ்வைப்கள், தோற்றம், மறைக்கப்பட்ட ஆப்கள், இடைநிறுத்த விதிகள், லாக் செய்யப்பட்ட குழுக்கள் மற்றும் ஃபோன் பயன்பாட்டுத் தேர்வுகளை அழிக்கும். உங்கள் வழக்கம் மற்றும் அறிக்கைகள் மாறாது.
+Slot analysis	ஸ்லாட் பகுப்பாய்வு
+How each slot went	ஒவ்வொரு ஸ்லாட்டும் எப்படி இருந்தது
+No slot has run yet, so there is nothing to look at.	இன்னும் எந்த ஸ்லாட்டும் நடக்கவில்லை, எனவே பார்க்க எதுவும் இல்லை.
+Focus is the share of a slot's time with no other phone use. Apps chosen for an activity do not count against it.	ஃபோகஸ் என்பது ஸ்லாட்டின் நேரத்தில் வேறு ஃபோன் பயன்பாடு இல்லாத பகுதி. செயல்பாட்டுக்காகத் தேர்ந்தெடுத்த ஆப்கள் இதற்கு எதிராகக் கணக்கிடப்படாது.
+Time devoted	செலவிட்ட நேரம்
+Other phone use	பிற ஃபோன் பயன்பாடு
+Longest focus	நீண்ட ஃபோகஸ்
+By slot	ஸ்லாட் வாரியாக
+By activity	செயல்பாடு வாரியாக
+selected	தேர்ந்தெடுக்கப்பட்டது
+not selected	தேர்ந்தெடுக்கப்படவில்லை
+No activity has run yet.	இன்னும் எந்தச் செயல்பாடும் நடக்கவில்லை.
+1 other slot has not started or was taken off.	மேலும் 1 ஸ்லாட் தொடங்கவில்லை அல்லது நீக்கப்பட்டது.
+{1} other slots have not started or were taken off.	மேலும் {1} ஸ்லாட்டுகள் தொடங்கவில்லை அல்லது நீக்கப்பட்டன.
+focus	ஃபோகஸ்
+{1}% focus	{1}% ஃபோகஸ்
+Phone use was not available	ஃபோன் பயன்பாட்டுத் தகவல் கிடைக்கவில்லை
+Devoted {1} of {2}	{2}-இல் {1} செலவிடப்பட்டது
+In the slot	ஸ்லாட்டில்
+Timeline	காலவரிசை
+No other phone use in this slot.	இந்த ஸ்லாட்டில் வேறு ஃபோன் பயன்பாடு இல்லை.
+Red marks show other phone use.	சிவப்புக் குறிகள் பிற ஃபோன் பயன்பாட்டைக் காட்டுகின்றன.
+Other phone use, with the exact times	பிற ஃபோன் பயன்பாடு, துல்லியமான நேரங்களுடன்
+Showing the latest {1} of {2}.	{2}-இல் சமீபத்திய {1} காட்டப்படுகிறது.
+The exact times were not saved for this day.	இந்த நாளின் துல்லியமான நேரங்கள் சேமிக்கப்படவில்லை.
+Apps used in this slot	இந்த ஸ்லாட்டில் பயன்படுத்திய ஆப்கள்
+Time in slots	ஸ்லாட்டுகளில் நேரம்
+Interruptions	இடையூறுகள்
+Apps used in these slots	இந்த ஸ்லாட்டுகளில் பயன்படுத்திய ஆப்கள்
+Phone in total	மொத்த ஃபோன் பயன்பாடு
+{1} of the phone time was in apps chosen for this activity.	ஃபோன் நேரத்தில் {1} இந்தச் செயல்பாட்டுக்குத் தேர்ந்தெடுத்த ஆப்களில் இருந்தது.
+Timeline of the slot: no other phone use	ஸ்லாட்டின் காலவரிசை: வேறு ஃபோன் பயன்பாடு இல்லை
+Timeline of the slot: 1 stretch of other phone use	ஸ்லாட்டின் காலவரிசை: பிற ஃபோன் பயன்பாட்டின் 1 கட்டம்
+Timeline of the slot: {1} stretches of other phone use	ஸ்லாட்டின் காலவரிசை: பிற ஃபோன் பயன்பாட்டின் {1} கட்டங்கள்
+Devoted {1}	செலவிட்ட நேரம் {1}
+No other phone use	வேறு ஃபோன் பயன்பாடு இல்லை
+Longest focus {1}	நீண்ட ஃபோகஸ் {1}
+Other phone use {1}	பிற ஃபோன் பயன்பாடு {1}
+Devoted {1}  ·  No other phone use	செலவிட்ட நேரம் {1}  ·  வேறு ஃபோன் பயன்பாடு இல்லை
+Devoted {1}  ·  Other phone use {2}	செலவிட்ட நேரம் {1}  ·  பிற ஃபோன் பயன்பாடு {2}
+Focus, slot by slot	ஃபோகஸ், ஸ்லாட் வாரியாக
+{1}  +{2} more	{1}  +மேலும் {2}
+What I noticed	நான் கவனித்தவை
+Try this	இதை முயற்சிக்கவும்
+Watch	கவனியுங்கள்
+Set up	அமைக்கவும்
+{1} need attention	{1} மேம்படுத்த
+{1} going well	{1} நன்றாக நடக்கின்றன
+{1} not set up yet	{1} அமைக்க வேண்டியவை
+A slot you often take off	அடிக்கடி நீக்கும் ஸ்லாட்
+A slot you often rename	அடிக்கடி பெயர் மாற்றும் ஸ்லாட்
+Late to bed	தாமதமாகத் தூங்குதல்
+Phone during a task	பணியின் போது ஃபோன்
+Phone before bed	தூங்கும் முன் ஃபோன்
+One app takes the most	ஒரு ஆப் அதிக நேரம் எடுக்கிறது
+Pauses that are skipped	தவிர்க்கப்படும் இடைநிறுத்தங்கள்
+You stopped yourself	நீங்கள் உங்களைத் தடுத்துக்கொண்டீர்கள்
+Time that is not planned	திட்டமிடப்படாத நேரம்
+A plan that is too long	மிக நீண்ட திட்டம்
+Little time to rest	ஓய்வுக்கு குறைந்த நேரம்
+A habit that works	பலன் தரும் பழக்கம்
+A solid day	சிறப்பான நாள்
+Not enough days yet	இன்னும் போதுமான நாட்கள் இல்லை
+You took off {1} on {2} of the last {3} days.	கடந்த {3} நாட்களில் {2} நாட்கள் {1}-ஐ நீக்கினீர்கள்.
+You renamed {1} to {2} on {3} days.	{3} நாட்கள் {1}-ஐ {2} என்று பெயர் மாற்றினீர்கள்.
+You went to sleep about {1} late on average over the last {2} nights.	கடந்த {2} இரவுகளில் சராசரியாக சுமார் {1} தாமதமாகத் தூங்கினீர்கள்.
+You spent {1} on your phone during {2} ({3}% of the block).	{2} நேரத்தில் ஃபோனில் {1} செலவிட்டீர்கள் (பிளாக்கில் {3}%).
+You used the phone for {1} in the hour before bed.	தூங்கும் முன் ஒரு மணி நேரத்தில் ஃபோனை {1} பயன்படுத்தினீர்கள்.
+{1} took {2}, {3}% of your phone time.	{1} ஆப் {2} எடுத்துக்கொண்டது, அதாவது உங்கள் ஃபோன் நேரத்தில் {3}%.
+The home screen paused you {1} times and you opened the app anyway {2} times; {3} pulled you most.	முகப்புத் திரை உங்களை {1} முறை இடைநிறுத்தியது; இருந்தும் நீங்கள் {2} முறை ஆப்பைத் திறந்தீர்கள்; {3} உங்களை அதிகமாக இழுத்தது.
+You stopped yourself {1} times at the home screen.	முகப்புத் திரையில் உங்களை நீங்களே {1} முறை தடுத்துக்கொண்டீர்கள்.
+{1} of your 24 hours are not planned.	உங்கள் 24 மணி நேரத்தில் {1} திட்டமிடப்படவில்லை.
+Your blocks add up to {1} more than 24 hours.	உங்கள் பிளாக்குகள் சேர்ந்து 24 மணி நேரத்தை விட {1} அதிகம்.
+Only {1}% of your awake time is rest.	விழித்திருக்கும் நேரத்தில் {1}% மட்டுமே ஓய்வு.
+You have kept {1} for {2} days in a row.	{1}-ஐ தொடர்ந்து {2} நாட்கள் கடைப்பிடித்துள்ளீர்கள்.
+A solid day.	சிறப்பான நாள்.
+Not enough days yet for suggestions.	பரிந்துரைகளுக்கு இன்னும் போதுமான நாட்கள் இல்லை.
+Make it shorter, or move it to a quieter time.	இதைச் சுருக்குங்கள், அல்லது அமைதியான நேரத்துக்கு மாற்றுங்கள்.
+Change it in the routine so the plan matches your day.	திட்டம் உங்கள் நாளுடன் பொருந்தும்படி தினசரி வழக்கத்தில் இதை மாற்றுங்கள்.
+Move bedtime and wake-up later in the app, or start winding down earlier.	ஆப்பில் தூங்கும் மற்றும் எழும் நேரத்தைத் தாமதமாக்குங்கள், அல்லது முன்பே ஓய்வுக்குத் தயாராகத் தொடங்குங்கள்.
+Keep the phone in another room for that block.	அந்த பிளாக்குக்கு ஃபோனை வேறு அறையில் வையுங்கள்.
+A screen-free hour helps you fall asleep.	திரை இல்லாத ஒரு மணி நேரம் தூக்கம் வர உதவும்.
+Set a daily limit for it in Settings > Home screen, or in Android's Digital Wellbeing.	அமைப்புகள் > முகப்புத் திரையில், அல்லது Android-இன் டிஜிட்டல் வெல்பீயிங்கில் இதற்கு தினசரி வரம்பை அமைக்கவும்.
+Make it Strict, or give it a daily limit, in Settings > Home screen.	இதைக் கண்டிப்பானதாக்குங்கள், அல்லது அமைப்புகள் > முகப்புத் திரையில் தினசரி வரம்பு கொடுங்கள்.
+That is focus working.	ஃபோகஸ் இப்படித்தான் வேலை செய்கிறது.
+Add a block for that time.	அந்த நேரத்துக்கு ஒரு பிளாக்கைச் சேருங்கள்.
+Shorten something.	எதையாவது சுருக்குங்கள்.
+Short breaks between tasks help you stay focused.	பணிகளுக்கு இடையிலான சிறு இடைவெளிகள் ஃபோகஸைத் தக்கவைக்க உதவும்.
+It is a good place for your hardest work.	உங்கள் மிகக் கடினமான வேலைக்கு இது நல்ல நேரம்.
+Keep the same routine tomorrow.	நாளையும் இதே தினசரி வழக்கத்தைத் தொடருங்கள்.
+Keep the alarms on and check back in a few days.	அலாரங்களை இயக்கத்தில் வைத்து, சில நாட்கள் கழித்து மீண்டும் பாருங்கள்.
+NO PHONE USE  ·  focused {1}	ஃபோன் பயன்பாடு இல்லை  ·  {1} ஃபோகஸ்
+PHONE IN USE NOW  ·  {1} so far	ஃபோன் இப்போது பயன்பாட்டில்  ·  இதுவரை {1}
+PHONE USE  ·  {1}	ஃபோன் பயன்பாடு  ·  {1}
+Focused for {1} since	அதன் பிறகு {1} ஃபோகஸ்
+phone {1}	ஃபோன் {1}
+Watch {1} short videos and everything in Pro is open for 24 hours. Nothing is charged. When the day is up, what you set up with it goes back to the free version.	{1} சிறு வீடியோக்களைப் பாருங்கள், 24 மணி நேரத்துக்கு Pro-வில் உள்ள அனைத்தும் திறக்கும். எந்தக் கட்டணமும் வசூலிக்கப்படாது. நாள் முடிந்ததும், அதன் மூலம் நீங்கள் அமைத்தவை இலவசப் பதிப்புக்குத் திரும்பும்.
+Free and Pro	இலவசம் மற்றும் Pro
+Everything the app does, side by side. Open a group to see what each one gives.	ஆப் செய்யும் அனைத்தும், அருகருகே. ஒவ்வொரு குழுவும் என்ன தருகிறது என்று பார்க்க அதைத் திறங்கள்.
+Your whole day, and today's report	உங்கள் முழு நாளும், இன்றைய அறிக்கையும்
+Everything, and no ads	அனைத்தும், விளம்பரங்கள் இல்லாமல்
+Try it, or keep it	முயன்று பாருங்கள், அல்லது வைத்துக்கொள்ளுங்கள்
+You have Pro	உங்களிடம் Pro உள்ளது
+Try Pro free for a day	Pro-வை ஒரு நாள் இலவசமாக முயன்று பாருங்கள்
+Everything in this list is open for you, and there are no ads.	இந்தப் பட்டியலில் உள்ள அனைத்தும் உங்களுக்குத் திறந்திருக்கின்றன, விளம்பரங்களும் இல்லை.
+See Pro plans	Pro திட்டங்களைப் பாருங்கள்
+pauses for more than {1}	{1}க்கு மேலானவற்றுக்கான இடைநிறுத்தங்கள்
+more than {1} in a lock	ஒரு லாக்கில் {1}க்கு மேல்
+Pauses: more than {1}	இடைநிறுத்தங்கள்: {1}க்கு மேல்
+Locks: more than {1} in a lock	லாக்குகள்: ஒரு லாக்கில் {1}க்கு மேல்
+goals	இலக்குகள்
+the deeper analysis in Performance	செயல்திறனில் ஆழமான பகுப்பாய்வு
+Goals: a goal for a slot, with its own to-dos	இலக்குகள்: ஒரு ஸ்லாட்டுக்கான இலக்கு, அதன் சொந்த செய்ய வேண்டியவை பட்டியலுடன்
+Performance: slot analysis, habits, phone use in slots	செயல்திறன்: ஸ்லாட் பகுப்பாய்வு, பழக்கங்கள், ஸ்லாட்களில் போன் பயன்பாடு
+Deeper analysis	ஆழமான பகுப்பாய்வு
+everything in Pro	Pro-வில் உள்ள அனைத்தும்
+Notes worked out from your last days: where the day slips, what is going well, and one thing to try. Part of Pro.	உங்கள் கடந்த நாட்களிலிருந்து எடுக்கப்பட்ட குறிப்புகள்: நாள் எங்கே நழுவுகிறது, எது நன்றாகப் போகிறது, முயன்று பார்க்க ஒரு விஷயம். Pro-வின் ஒரு பகுதி.
+Pause rules for more than {1}	{1}க்கு மேலானவற்றுக்கான இடைநிறுத்த விதிகள்
+Free: a pause rule for {1} ({2} used). Pro has no limit.	இலவசம்: {1}க்கு ஒரு இடைநிறுத்த விதி ({2} பயன்படுத்தப்பட்டது). Pro-வில் வரம்பு இல்லை.
+Every {1} slot	ஒவ்வொரு {1} ஸ்லாட்டும்
+Locking more than {1} (a group of apps)	{1}க்கு மேல் லாக் செய்வது (ஆப்களின் குழு)
+Apps to lock ({1} free)	லாக் செய்ய வேண்டிய ஆப்கள் ({1} இலவசம்)
+time reached	நேரம் எட்டப்பட்டது
+Setting a goal	இலக்கு அமைத்தல்
+Any day with this slot	இந்த ஸ்லாட் உள்ள எந்த நாளும்
+Add a slot to your routine first (Routine tab)	முதலில் உங்கள் வழக்கத்தில் ஒரு ஸ்லாட்டைச் சேருங்கள் (வழக்கம் டேப்)
+Slot	ஸ்லாட்
+To-do list (optional)	செய்ய வேண்டியவை பட்டியல் (விருப்பத்துக்குரியது)
+The list is full	பட்டியல் நிரம்பிவிட்டது
+That is on the list already	இது ஏற்கனவே பட்டியலில் உள்ளது
+Phone use in slots · Pro	ஸ்லாட்களில் போன் பயன்பாடு · Pro
+Your choices are kept and work again with Pro.	உங்கள் தேர்வுகள் அப்படியே இருக்கும், Pro-வுடன் மீண்டும் செயல்படும்.
+Days · Pro	நாட்கள் · Pro
+The week chart, your average score and the tips that come from it. Today's report stays free.	வாரத்தின் விளக்கப்படம், உங்கள் சராசரி மதிப்பெண், அதிலிருந்து வரும் குறிப்புகள். இன்றைய அறிக்கை இலவசமாகவே இருக்கும்.
+Saved days are part of Pro	சேமித்த நாட்கள் Pro-வின் ஒரு பகுதி
+Open the report of any past day, with its slot analysis and a PDF to save or share. Today's report stays free.	எந்த முந்தைய நாளின் அறிக்கையையும் திறக்கலாம், அதன் ஸ்லாட் பகுப்பாய்வு மற்றும் சேமிக்க அல்லது பகிர ஒரு PDF உடன். இன்றைய அறிக்கை இலவசமாகவே இருக்கும்.
+Free: {1}. Pro: any number, strict and playful	இலவசம்: {1}. Pro: எத்தனை வேண்டுமானாலும், கண்டிப்பான மற்றும் விளையாட்டான
+Free: {1}, {2}. Pro: groups and strict locks	இலவசம்: {1}, {2}. Pro: குழுக்கள் மற்றும் கண்டிப்பான லாக்குகள்
+Included	உள்ளடக்கம்
+Home screen and live wallpaper of your day	உங்கள் நாளின் முகப்புத் திரையும் நேரடி வால்பேப்பரும்
+Slot alarms that ask one question	ஒரு கேள்வி கேட்கும் ஸ்லாட் அலாரங்கள்
+Start-of-day alarm, finish early, breaks, library mode	நாள் தொடக்க அலாரம், முன்கூட்டியே முடித்தல், இடைவேளைகள், நூலக பயன்முறை
+Backup to your own Google Drive	உங்கள் சொந்த Google Drive-இல் காப்புப் பிரதி
+Home screen and alarms	முகப்புத் திரை மற்றும் அலாரங்கள்
+All free	அனைத்தும் இலவசம்
+A to-do list for every slot	ஒவ்வொரு ஸ்லாட்டுக்கும் செய்ய வேண்டியவை பட்டியல்
+To-dos that repeat every day or on chosen days	தினமும் அல்லது தேர்ந்த நாட்களில் திரும்ப வரும் செய்ய வேண்டியவை
+To-dos	செய்ய வேண்டியவை பட்டியல்கள்
+Today's report, with a PDF to save or share	இன்றைய அறிக்கை, சேமிக்க அல்லது பகிர ஒரு PDF உடன்
+Every saved day	சேமித்த ஒவ்வொரு நாளும்
+The week view and its tips	வாரக் காட்சியும் அதன் குறிப்புகளும்
+Slot analysis: focus and phone use, slot by slot	ஸ்லாட் பகுப்பாய்வு: ஸ்லாட் வாரியாக கவனமும் போன் பயன்பாடும்
+Habit cards	பழக்க அட்டைகள்
+Free: today's report. Pro: every day and the deeper analysis	இலவசம்: இன்றைய அறிக்கை. Pro: ஒவ்வொரு நாளும், ஆழமான பகுப்பாய்வும்
+A goal for a slot of your routine	உங்கள் வழக்கத்தின் ஒரு ஸ்லாட்டுக்கான இலக்கு
+A to-do list inside a goal, in step with the slot's	இலக்குக்குள் ஒரு செய்ய வேண்டியவை பட்டியல், ஸ்லாட்டின் பட்டியலுடன் இணைந்து
+Streaks for goals	இலக்குகளுக்கான தொடர்ச்சி
+Pro: a goal for a slot, with its own to-dos	Pro: ஒரு ஸ்லாட்டுக்கான இலக்கு, அதன் சொந்த செய்ய வேண்டியவை பட்டியலுடன்
+Apps with a pause before they open	திறப்பதற்கு முன் இடைநிறுத்தம் உள்ள ஆப்கள்
+Any number	எத்தனை வேண்டுமானாலும்
+Playful pauses: a sum, a sentence, breathing, why	விளையாட்டான இடைநிறுத்தங்கள்: ஒரு கூட்டல், ஒரு வாக்கியம், மூச்சு, காரணம்
+Locks for a time	ஒரு நேரத்துக்கான லாக்குகள்
+As many as you like	நீங்கள் விரும்பும் அளவுக்கு
+Apps in a lock	லாக்கில் உள்ள ஆப்கள்
+Groups of apps	ஆப்களின் குழுக்கள்
+Strict locks that cannot be broken	உடைக்க முடியாத கண்டிப்பான லாக்குகள்
+Weekday, weekend and one-day routines	வார நாள், வார இறுதி மற்றும் ஒரு நாள் வழக்கங்கள்
+Colour looks	நிறத் தோற்றங்கள்
+Small ads	சிறு விளம்பரங்கள்
+Routines and looks	வழக்கங்களும் தோற்றங்களும்
+Free: one routine and one look. Pro: all of them, and no ads	இலவசம்: ஒரு வழக்கமும் ஒரு தோற்றமும். Pro: அனைத்தும், விளம்பரங்கள் இல்லாமல்
+Watch {1} short videos	{1} சிறு வீடியோக்களைப் பாருங்கள்
+Watch {1} short videos and everything in Pro is open for 24 hours: every saved day and the week in Performance, the deeper analysis, more pauses and locks, routines, goals and the colour looks. Nothing is charged. When the day is up, what you set up with it goes back to the free version (Pro keeps it for good).	{1} சிறு வீடியோக்களைப் பாருங்கள், 24 மணி நேரத்துக்கு Pro-வில் உள்ள அனைத்தும் திறக்கும்: சேமித்த ஒவ்வொரு நாளும் செயல்திறனில் வாரமும், ஆழமான பகுப்பாய்வு, கூடுதல் இடைநிறுத்தங்களும் லாக்குகளும், வழக்கங்கள், இலக்குகள் மற்றும் நிறத் தோற்றங்கள். எந்தக் கட்டணமும் வசூலிக்கப்படாது. நாள் முடிந்ததும், அதன் மூலம் நீங்கள் அமைத்தவை இலவசப் பதிப்புக்குத் திரும்பும் (Pro அவற்றை நிரந்தரமாக வைத்திருக்கும்).
+Everything the app does, Free and Pro side by side, in groups you open one at a time.	ஆப் செய்யும் அனைத்தும், இலவசமும் Pro-வும் அருகருகே, ஒரு நேரத்தில் ஒன்றாகத் திறக்கும் குழுக்களில்.
+Compare Free and Pro	இலவசம் மற்றும் Pro-வை ஒப்பிடுங்கள்
+{1}\n\nOr watch {2} short videos and use everything in Pro free for a day.	{1}\n\nஅல்லது {2} சிறு வீடியோக்களைப் பார்த்து, ஒரு நாளுக்கு Pro-வில் உள்ள அனைத்தையும் இலவசமாகப் பயன்படுத்துங்கள்.
+Only the videos you watch to the end count, and the ones you watched today stay counted if you stop. When the day is up, everything closes again and what you set up with Pro goes back to the free version.	நீங்கள் இறுதிவரை பார்க்கும் வீடியோக்கள் மட்டுமே கணக்கிடப்படும், நீங்கள் நிறுத்திவிட்டாலும் இன்று பார்த்தவை கணக்கில் இருக்கும். நாள் முடிந்ததும் அனைத்தும் மீண்டும் மூடப்படும், Pro-வுடன் நீங்கள் அமைத்தவை இலவசப் பதிப்புக்குத் திரும்பும்.
+Everything in Pro: open until {1}.	Pro-வில் உள்ள அனைத்தும்: {1} வரை திறந்திருக்கும்.
+No ads, every saved day and deeper analysis, goals, more pauses and locks, routines, colours. Or watch {1} short videos for a free day of Pro	விளம்பரங்கள் இல்லை, சேமித்த ஒவ்வொரு நாளும் ஆழமான பகுப்பாய்வும், இலக்குகள், கூடுதல் இடைநிறுத்தங்களும் லாக்குகளும், வழக்கங்கள், நிறங்கள். அல்லது {1} சிறு வீடியோக்களைப் பார்த்து Pro-வின் ஒரு நாளை இலவசமாகப் பெறுங்கள்
+No ads, every saved day and deeper analysis, goals, more pauses and locks, routines, colours	விளம்பரங்கள் இல்லை, சேமித்த ஒவ்வொரு நாளும் ஆழமான பகுப்பாய்வும், இலக்குகள், கூடுதல் இடைநிறுத்தங்களும் லாக்குகளும், வழக்கங்கள், நிறங்கள்
+Slot analysis · Pro	ஸ்லாட் பகுப்பாய்வு · Pro
+Goal · {1}	இலக்கு · {1}
+A goal with no to-dos is ticked by you, or by the time when its target is reached. A goal with to-dos is done when all of them are. Goals and their to-dos are set in Insights.	செய்ய வேண்டியவை இல்லாத இலக்கை நீங்கள் டிக் செய்வீர்கள், அல்லது அதன் நேர இலக்கு எட்டப்படும்போது அது தானாகவே டிக் ஆகும். செய்ய வேண்டியவை உள்ள இலக்கு, அவை அனைத்தும் முடிந்ததும் முடிந்ததாகும். இலக்குகளும் அவற்றின் செய்ய வேண்டியவை பட்டியல்களும் இன்சைட்ஸில் அமைக்கப்படுகின்றன.
+Goals of this slot	இந்த ஸ்லாட்டின் இலக்குகள்
+Free: the home screen, alarms, to-dos, today's report, one paused app and one locked app. {1}It adds goals with their own to-dos, every saved day and the deeper analysis, more pauses and locks, more routines, every colour look, and no ads.{2}	இலவசம்: முகப்புத் திரை, அலாரங்கள், செய்ய வேண்டியவை பட்டியல்கள், இன்றைய அறிக்கை, இடைநிறுத்தம் உள்ள ஒரு ஆப் மற்றும் லாக் செய்த ஒரு ஆப். {1}இதில் சொந்த செய்ய வேண்டியவை பட்டியலுடன் கூடிய இலக்குகள், சேமித்த ஒவ்வொரு நாளும் ஆழமான பகுப்பாய்வும், கூடுதல் இடைநிறுத்தங்களும் லாக்குகளும், கூடுதல் வழக்கங்கள், ஒவ்வொரு நிறத் தோற்றமும், விளம்பரங்கள் இல்லாமையும் சேரும்.{2}
+Or watch {1} short videos and everything in Pro is open for a day. What you set up with it goes back to the free version when the day is up. The last screen shows it all side by side.	அல்லது {1} சிறு வீடியோக்களைப் பாருங்கள், ஒரு நாளுக்கு Pro-வில் உள்ள அனைத்தும் திறக்கும். நாள் முடிந்ததும் அதன் மூலம் நீங்கள் அமைத்தவை இலவசப் பதிப்புக்குத் திரும்பும். கடைசித் திரை அனைத்தையும் அருகருகே காட்டுகிறது.
+Pick the apps that pull you away. During focus time they wait a few seconds before they open, and you can always open them anyway. Free: one app. Pro: any number, strict pauses, daily limits, and playful pauses: a quick sum, a sentence to type, slow breaths, or saying why you are opening it.	உங்களைத் திசைதிருப்பும் ஆப்களைத் தேர்ந்தெடுங்கள். கவன நேரத்தில் அவை திறக்கும் முன் சில வினாடிகள் காத்திருக்கும், நீங்கள் விரும்பினால் அப்போதும் திறக்கலாம். இலவசம்: ஒரு ஆப். Pro: எத்தனை வேண்டுமானாலும், கண்டிப்பான இடைநிறுத்தங்கள், தினசரி வரம்புகள், விளையாட்டான இடைநிறுத்தங்கள்: ஒரு விரைவுக் கூட்டல், தட்டச்சு செய்ய ஒரு வாக்கியம், மெதுவான மூச்சு, அல்லது ஏன் திறக்கிறீர்கள் என்று சொல்வது.
+Shut the apps that eat your time for hours you choose: every day or on some days, or just for the next hour. A locked app is greyed in the list, and the lock screen shows when it opens again. You can break a lock by waiting half a minute and typing a sentence. Free: one lock with one app. Pro: groups of apps, as many locks as you like, and strict locks that cannot be broken. A group can also lock only while an activity type such as Study is going on, only when both the hours and the activity hold, or in library mode. Set it up in the home settings.	உங்கள் நேரத்தை உண்ணும் ஆப்களை நீங்கள் தேர்ந்த மணி நேரங்களுக்கு மூடுங்கள்: தினமும் அல்லது சில நாட்களில், அல்லது அடுத்த ஒரு மணி நேரத்துக்கு மட்டும். லாக் செய்த ஆப் பட்டியலில் மங்கலாகத் தெரியும், அது எப்போது மீண்டும் திறக்கும் என்பதை லாக் திரை காட்டும். அரை நிமிடம் காத்திருந்து ஒரு வாக்கியத்தைத் தட்டச்சு செய்து லாக்கை உடைக்கலாம். இலவசம்: ஒரு ஆப் கொண்ட ஒரு லாக். Pro: ஆப்களின் குழுக்கள், நீங்கள் விரும்பும் அளவு லாக்குகள், உடைக்க முடியாத கண்டிப்பான லாக்குகள். படிப்பு போன்ற ஒரு செயல்பாட்டு வகை நடக்கும்போது மட்டும், அல்லது மணி நேரமும் செயல்பாடும் இரண்டும் பொருந்தும்போது மட்டும், அல்லது நூலக பயன்முறையில் ஒரு குழு லாக் ஆகலாம். இதை முகப்பு அமைப்புகளில் அமையுங்கள்.
+A score for today, phone time by hour and by app, and plain suggestions, with a PDF to save or share. Today's report is free. Pro adds every saved day, the weekly view, the slot-by-slot analysis and habit cards, and goals: set one for a slot, give it its own to-do list, and watch the streak.	இன்றைய மதிப்பெண், மணி வாரியாகவும் ஆப் வாரியாகவும் போன் நேரம், எளிய பரிந்துரைகள், சேமிக்க அல்லது பகிர ஒரு PDF உடன். இன்றைய அறிக்கை இலவசம். Pro-வில் சேமித்த ஒவ்வொரு நாளும், வாரக் காட்சி, ஸ்லாட் வாரியான பகுப்பாய்வு மற்றும் பழக்க அட்டைகள், இலக்குகள் சேரும்: ஒரு ஸ்லாட்டுக்கு ஒரு இலக்கை வையுங்கள், அதற்குச் சொந்த செய்ய வேண்டியவை பட்டியலைக் கொடுங்கள், தொடர்ச்சியைப் பாருங்கள்.
+Alarms and to-dos	அலாரங்களும் செய்ய வேண்டியவை பட்டியல்களும்
+1 paused app	இடைநிறுத்தம் உள்ள 1 ஆப்
+1 locked app	லாக் செய்த 1 ஆப்
+Goals with to-dos	செய்ய வேண்டியவை உள்ள இலக்குகள்
+More routines	கூடுதல் வழக்கங்கள்
+Monthly or once, or 3 short videos for a day	மாதந்தோறும் அல்லது ஒருமுறை, அல்லது ஒரு நாளுக்கு 3 சிறு வீடியோக்கள்
+Watch {1} more videos to open everything in Pro for a day.	ஒரு நாளுக்கு Pro-வில் உள்ள அனைத்தையும் திறக்க இன்னும் {1} வீடியோக்களைப் பாருங்கள்.
+{1}\n\nOr stop here: the videos you watched today stay counted.	{1}\n\nஅல்லது இங்கேயே நிறுத்துங்கள்: இன்று பார்த்த வீடியோக்கள் கணக்கில் இருக்கும்.
+{1} more open everything in Pro for a day.	இன்னும் {1} பார்த்தால் ஒரு நாளுக்கு Pro-வில் உள்ள அனைத்தும் திறக்கும்.
+Everything is open already.	அனைத்தும் ஏற்கனவே திறந்துள்ளது.
+Watch one more video to open everything in Pro for a day.	ஒரு நாளுக்கு Pro-வில் உள்ள அனைத்தையும் திறக்க இன்னும் ஒரு வீடியோவைப் பாருங்கள்.
+One more opens everything in Pro for a day.	இன்னும் ஒன்று பார்த்தால் ஒரு நாளுக்கு Pro-வில் உள்ள அனைத்தும் திறக்கும்.
+Watch {1} videos: everything in Pro free for a day	{1} வீடியோக்களைப் பாருங்கள்: ஒரு நாளுக்கு Pro-வில் உள்ள அனைத்தும் இலவசம்
+Watch {1}: everything in Pro free for a day	{1} பாருங்கள்: ஒரு நாளுக்கு Pro-வில் உள்ள அனைத்தும் இலவசம்
+{1} of {2} videos watched today	இன்று {2} இல் {1} வீடியோ பார்க்கப்பட்டது
+Without a to-do list, the goal is a to-do of its slot: tick it, or it ticks itself when the time is reached. With one, the goal ticks only when every to-do is done. The same list shows in the slot's to-dos.	செய்ய வேண்டியவை இல்லாத இலக்கு, அதன் ஸ்லாட்டின் ஒரு செய்ய வேண்டியது போன்றது: அதை டிக் செய்யுங்கள், அல்லது நேரம் எட்டப்படும்போது அது தானாகவே டிக் ஆகும். பட்டியல் இருந்தால், அதிலுள்ள ஒவ்வொன்றும் முடிந்தால் மட்டுமே இலக்கு டிக் ஆகும். அதே பட்டியல் ஸ்லாட்டின் செய்ய வேண்டியவை பட்டியலிலும் தெரியும்.
+A goal counts on days whose schedule has the slot. Kept slots count towards it. Days in a row you reach it make a streak.	அந்த ஸ்லாட் இருக்கும் அட்டவணை கொண்ட நாட்களில் இலக்கு கணக்கிடப்படும். கடைப்பிடித்த ஸ்லாட்கள் அதற்குக் கணக்கில் சேரும். தொடர்ச்சியாக எத்தனை நாட்கள் நீங்கள் அதை எட்டுகிறீர்களோ அதுவே தொடர்ச்சியாகும்.
+Set a daily target for a slot of your routine, for example 2 hours for Morning study, with its own to-do list, and see it fill up through the day.	உங்கள் வழக்கத்தின் ஒரு ஸ்லாட்டுக்கு தினசரி இலக்கை அமையுங்கள், எடுத்துக்காட்டாக காலைப் படிப்புக்கு 2 மணி நேரம், அதன் சொந்த செய்ய வேண்டியவை பட்டியலுடன், நாள் முழுவதும் அது நிரம்புவதைப் பாருங்கள்.
+Free: a pause rule for {1} app. Pro adds strict pauses, daily limits, playful pauses (a sum, a sentence, breathing), as many apps as you like, and removes the ads.	இலவசம்: {1}க்கு ஒரு இடைநிறுத்த விதி. Pro-வில் கண்டிப்பான இடைநிறுத்தங்கள், தினசரி வரம்புகள், விளையாட்டான இடைநிறுத்தங்கள் (கூட்டல், வாக்கியம், மூச்சு), எத்தனை ஆப்கள் வேண்டுமானாலும் சேரும், விளம்பரங்கள் நீங்கும்.
+Free: one lock that holds {1} app. Pro adds groups of apps, as many locks as you like, and strict locks.	இலவசம்: {1} கொண்ட ஒரு லாக். Pro-வில் ஆப்களின் குழுக்கள், நீங்கள் விரும்பும் அளவு லாக்குகள், கண்டிப்பான லாக்குகள் சேரும்.
+See when you pick up the phone during a slot, with the exact times, and mark the apps that belong to an activity so they are never counted against you. The reports then show it slot by slot.	ஸ்லாட்டின் போது நீங்கள் போனை எப்போது எடுக்கிறீர்கள் என்பதை சரியான நேரங்களுடன் பாருங்கள், ஒரு செயல்பாட்டின் பகுதியாக இருக்கும் ஆப்களைக் குறியுங்கள், அவை உங்களுக்கு எதிராக ஒருபோதும் கணக்கிடப்படாது. அறிக்கைகள் அதை ஸ்லாட் வாரியாகக் காட்டும்.
+Focus and phone use slot by slot, with a timeline and the exact times, and the same by activity. Today's report above stays free.	ஸ்லாட் வாரியாக கவனமும் போன் பயன்பாடும், காலவரிசையும் சரியான நேரங்களுடனும், அதே செயல்பாட்டு வாரியாகவும். மேலே உள்ள இன்றைய அறிக்கை இலவசமாகவே இருக்கும்.
+{1} to-dos	{1} செய்ய வேண்டியவை
+1 to-do	1 செய்ய வேண்டியது
+To-do list	செய்ய வேண்டியவை பட்டியல்
+1 more video	இன்னும் 1 வீடியோ
+Watch 2 more videos: everything in Pro free for a day	இன்னும் 2 வீடியோக்களைப் பாருங்கள்: ஒரு நாளுக்கு Pro-வில் உள்ள அனைத்தும் இலவசம்
+Watch 1 more video: everything in Pro free for a day	இன்னும் 1 வீடியோவைப் பாருங்கள்: ஒரு நாளுக்கு Pro-வில் உள்ள அனைத்தும் இலவசம்
+Skip this slot, start “{1}” now	இந்த ஸ்லாட்டைத் தவிர், “{1}” ஐ இப்போது தொடங்கு
+, {1} before your plan	, உங்கள் திட்டத்துக்கு {1} முன்
+Skip this slot and go to sleep	இந்த ஸ்லாட்டைத் தவிர்த்து உறங்கச் செல்
+Skip this slot, start the next one now	இந்த ஸ்லாட்டைத் தவிர், அடுத்ததை இப்போது தொடங்கு
+The next slot has started	அடுத்த ஸ்லாட் தொடங்கிவிட்டது
+Early sleep	முன்கூட்டியே உறக்கம்
+Going to sleep early?	முன்கூட்டியே உறங்கப் போகிறீர்களா?
+Not yet	இன்னும் இல்லை
+Missed alarm	தவறிய அலாரம்
+This alarm did not ring because Android had closed the app. It is set again now.	Android ஆப்பை மூடியிருந்ததால் இந்த அலாரம் ஒலிக்கவில்லை. இப்போது அது மீண்டும் அமைக்கப்பட்டுவிட்டது.
+It was closed from App info (Force stop).	இது ஆப் தகவலிலிருந்து மூடப்பட்டது (வலுக்கட்டாயமாக நிறுத்து).
+Android stopped it when the user was switched.	பயனர் மாற்றப்பட்டபோது Android இதை நிறுத்தியது.
+It crashed.	இது செயலிழந்தது.
+It stopped answering and Android closed it.	இது பதிலளிக்காமல் போனதால் Android இதை மூடியது.
+Android closed it to free memory.	நினைவகத்தை விடுவிக்க Android இதை மூடியது.
+Android closed it because a permission was changed.	ஒரு அனுமதி மாற்றப்பட்டதால் Android இதை மூடியது.
+It was closed to be updated.	புதுப்பிப்புக்காக இது மூடப்பட்டது.
+Android closed it because it was switched off or on.	இது அணைக்கப்பட்டதால் அல்லது இயக்கப்பட்டதால் Android இதை மூடியது.
+Android closed it for using too much of the phone.	ஃபோனின் வளங்களை அதிகமாகப் பயன்படுத்தியதால் Android இதை மூடியது.
+It could not start.	இதைத் தொடங்க முடியவில்லை.
+Android closed it because something it needs stopped.	இதற்குத் தேவையான ஒன்று நின்றுபோனதால் Android இதை மூடியது.
+Android ended it.	Android இதை நிறுத்தியது.
+It was closed.	இது மூடப்பட்டது.
+Android clears every alarm of an app when it is closed this way, so the alarms and the live wallpaper were gone until you came back. They are in place again now.	ஒரு ஆப் இப்படி மூடப்படும்போது Android அதன் எல்லா அலாரங்களையும் நீக்கிவிடும், அதனால் நீங்கள் திரும்பி வரும் வரை அலாரங்களும் லைவ் வால்பேப்பரும் இல்லாமல் இருந்தன. இப்போது அவை மீண்டும் இடத்தில் உள்ளன.
+Android keeps the alarms of an app that stops this way. They have been checked and are in place.	இப்படி நிற்கும் ஆப்பின் அலாரங்களை Android வைத்திருக்கும். அவை சரிபார்க்கப்பட்டு இடத்தில் உள்ளன.
+Sleep was to begin at {1}. If you go to sleep now, “{2}” ends here and your wake-up alarm stays as planned.	உறக்கம் {1} மணிக்குத் தொடங்க இருந்தது. நீங்கள் இப்போது உறங்கச் சென்றால், “{2}” இங்கேயே முடியும்; உங்களை எழுப்பும் அலாரம் திட்டமிட்டபடியே இருக்கும்.
+Your day was to start at {1}. Start it now, and “{2}” begins early. It still ends at {3}, so it gets the time that was left.	உங்கள் நாள் {1} மணிக்குத் தொடங்க இருந்தது. இப்போது தொடங்குங்கள், “{2}” முன்கூட்டியே தொடங்கும். அது இன்னும் {3} மணிக்கே முடியும், அதனால் மீதமிருந்த நேரம் அதற்குக் கிடைக்கும்.
+Wake up early?	முன்கூட்டியே எழுந்திருக்கிறீர்களா?
+Go to sleep early?	முன்கூட்டியே உறங்கச் செல்கிறீர்களா?
+the first slot	முதல் ஸ்லாட்
+Start my day now	என் நாளை இப்போதே தொடங்கு
+Early wake	முன்கூட்டியே எழுதல்
+{1} starts at {2} instead of {3} (you woke early)	{1} {3}க்குப் பதிலாக {2}க்குத் தொடங்குகிறது (நீங்கள் முன்கூட்டியே எழுந்தீர்கள்)
+Android closed the app and cleared the alarm set for {1}. It is set again now.	Android ஆப்பை மூடி, {1}க்கு அமைத்த அலாரத்தை நீக்கியிருந்தது. இப்போது அது மீண்டும் அமைக்கப்பட்டுவிட்டது.
+Last time Android ended the app: {1}	Android கடைசியாக ஆப்பை மூடியது: {1}
+Android removes a live wallpaper when the app is closed from App info. The home screen still shows your day. Bring the wallpaper back for the lock screen and recent apps.	ஆப் தகவலிலிருந்து ஆப்பை மூடும்போது Android லைவ் வால்பேப்பரை நீக்கிவிடும். முகப்புத் திரையில் உங்கள் நாள் இன்னும் தெரிகிறது. பூட்டுத் திரை மற்றும் சமீபத்திய ஆப்களுக்காக வால்பேப்பரைத் திரும்பக் கொண்டுவாருங்கள்.
+Wallpaper	வால்பேப்பர்
+Your day wallpaper is gone	உங்கள் நாளின் வால்பேப்பர் போய்விட்டது
+Only the lock screen has your day	உங்கள் நாள் பூட்டுத் திரையில் மட்டுமே உள்ளது
+Your day wallpaper is not set	உங்கள் நாளின் வால்பேப்பர் அமைக்கப்படவில்லை
+It shows your day on the lock screen and in recent apps. Android asks you to confirm once.	இது பூட்டுத் திரையிலும் சமீபத்திய ஆப்களிலும் உங்கள் நாளைக் காட்டும். Android ஒருமுறை உறுதிப்படுத்தக் கேட்கும்.
+Bring it back	திரும்பக் கொண்டுவா
+Bring back your day wallpaper	உங்கள் நாளின் வால்பேப்பரைத் திரும்பக் கொண்டுவாருங்கள்
+Set your day wallpaper	உங்கள் நாளின் வால்பேப்பரை அமைக்கவும்
+On. Nothing is locked or paused yet, so nothing is being watched.	இயக்கத்தில் உள்ளது. இன்னும் எதுவும் லாக் செய்யப்படவில்லை அல்லது இடைநிறுத்தப்படவில்லை, எனவே எதுவும் கண்காணிக்கப்படவில்லை.
+Not holding yet: allow Usage access below.	இன்னும் செயல்படவில்லை: கீழே பயன்பாட்டு அணுகலுக்கு அனுமதி வழங்கவும்.
+Not holding yet: allow Display over other apps below.	இன்னும் செயல்படவில்லை: கீழே “பிற ஆப்களின் மேல் காட்டு” என்பதற்கு அனுமதி வழங்கவும்.
+Not holding yet: allow the two things below.	இன்னும் செயல்படவில்லை: கீழே உள்ள இரண்டிற்கும் அனுமதி வழங்கவும்.
+On: nothing is locked or paused yet	இயக்கத்தில்: இன்னும் எதுவும் லாக் அல்லது இடைநிறுத்தப்படவில்லை
+Needs your permission: locks hold only from this home screen	உங்கள் அனுமதி தேவை: லாக்குகள் இந்த முகப்புத் திரையிலிருந்து திறக்கும்போது மட்டுமே செயல்படும்
+Locks hold wherever the app is opened from.	ஆப் எங்கிருந்து திறக்கப்பட்டாலும் லாக்குகள் செயல்படும்.
+Pauses hold wherever the app is opened from.	ஆப் எங்கிருந்து திறக்கப்பட்டாலும் இடைநிறுத்தங்கள் செயல்படும்.
+For now locks hold only when you open an app from this home screen.	இப்போதைக்கு, இந்த முகப்புத் திரையிலிருந்து ஆப்பைத் திறக்கும்போது மட்டுமே லாக்குகள் செயல்படும்.
+For now pauses work only when you open an app from this home screen.	இப்போதைக்கு, இந்த முகப்புத் திரையிலிருந்து ஆப்பைத் திறக்கும்போது மட்டுமே இடைநிறுத்தங்கள் செயல்படும்.
+Allow the two things in the Strong lock card in the home settings and they hold everywhere.	முகப்பு அமைப்புகளில் உள்ள ஸ்ட்ராங் லாக் கார்டில் இரண்டிற்கும் அனுமதி வழங்குங்கள்; பிறகு அவை எல்லா இடங்களிலும் செயல்படும்.
+Make your locks hold everywhere	உங்கள் லாக்குகளை எல்லா இடங்களிலும் செயல்பட வையுங்கள்
+Your locks hold only on the home screen	உங்கள் லாக்குகள் முகப்புத் திரையில் மட்டுமே செயல்படுகின்றன
+An app can still be opened from Recents or App info.	ஆப்பை இன்னும் சமீபத்திய ஆப்கள் அல்லது ஆப் தகவலிலிருந்து திறக்க முடியும்.
+Allow what Android asks for, and a lock holds wherever the app is opened from.	Android கேட்கும் அனுமதியை வழங்குங்கள்; பிறகு ஆப் எங்கிருந்து திறக்கப்பட்டாலும் லாக் செயல்படும்.
+Hold them everywhere	இவற்றை எல்லா இடங்களிலும் செயல்படுத்துங்கள்
+Allow display over other apps?	பிற ஆப்களின் மேல் காட்ட அனுமதிக்கவா?
+To hold a lock when an app is opened from Recents, App info or a notification, Dinacharya Launcher shows its lock screen in front of that app.	சமீபத்திய ஆப்கள், ஆப் தகவல் அல்லது அறிவிப்பிலிருந்து ஆப் திறக்கப்பட்டாலும் லாக்கை நிலைநிறுத்த, அந்த ஆப்பின் முன்னால் Dinacharya Launcher-இன் லாக் திரை காட்டப்படுகிறது.
+Android asks you to allow this.	இதற்கு Android உங்களிடம் அனுமதி கேட்கிறது.
+To hold a lock when an app is opened from Recents, App info or a notification, it also needs to see which app is in front.	சமீபத்திய ஆப்கள், ஆப் தகவல் அல்லது அறிவிப்பிலிருந்து ஆப் திறக்கப்பட்டாலும் லாக்கை நிலைநிறுத்த, எந்த ஆப் முன்னால் உள்ளது என்பதையும் பார்க்க வேண்டும்.
+Only the name of that app is compared with your own list of locked apps.	அந்த ஆப்பின் பெயர் மட்டுமே உங்கள் லாக் செய்த ஆப்கள் பட்டியலுடன் ஒப்பிடப்படுகிறது.
+Nothing is saved or sent.	எதுவும் சேமிக்கப்படுவதோ அனுப்பப்படுவதோ இல்லை.
+A lock that only works when you open an app from this home screen is easy to get around: open the app from Recents or App info instead.	இந்த முகப்புத் திரையிலிருந்து ஆப்பைத் திறக்கும்போது மட்டுமே வேலை செய்யும் லாக்கைத் தவிர்ப்பது எளிது: ஆப்பை சமீபத்திய ஆப்கள் அல்லது ஆப் தகவலிலிருந்து திறந்துவிடலாம்.
+With the strong lock on, Dinacharya Launcher also holds an app opened from Recents, App info, a notification, a widget or another home app, and an app that is already open when a lock starts.	ஸ்ட்ராங் லாக் இயக்கத்தில் இருக்கும்போது, சமீபத்திய ஆப்கள், ஆப் தகவல், அறிவிப்பு, விட்ஜெட் அல்லது மற்றொரு முகப்பு ஆப்பிலிருந்து திறக்கப்பட்ட ஆப்பையும், லாக் தொடங்கும்போது ஏற்கனவே திறந்திருக்கும் ஆப்பையும் Dinacharya Launcher தடுக்கிறது.
+It starts by itself as soon as something is locked or paused.	எதையாவது லாக் செய்தவுடன் அல்லது இடைநிறுத்தியவுடன் இது தானாகவே தொடங்கும்.
+The phone, Settings, the keyboard and system screens are never blocked.	ஃபோன், அமைப்புகள், விசைப்பலகை மற்றும் சிஸ்டம் திரைகள் ஒருபோதும் தடுக்கப்படுவதில்லை.
+It shows a small notification while it runs.	இயங்கும்போது இது ஒரு சிறிய அறிவிப்பைக் காட்டும்.
+It looks only at the name of the app in front, on this phone, and keeps and sends nothing.	இது இந்த ஃபோனிலேயே முன்னால் உள்ள ஆப்பின் பெயரை மட்டும் பார்க்கிறது; எதையும் சேமிக்கவோ அனுப்பவோ செய்யாது.
+If your phone stops background apps to save battery and the lock stops holding, allow Dinacharya Launcher to run in the background in the phone's battery settings.	பேட்டரியைச் சேமிக்க உங்கள் ஃபோன் பின்னணி ஆப்களை நிறுத்தி, லாக் செயல்படுவது நின்றுவிட்டால், ஃபோனின் பேட்டரி அமைப்புகளில் Dinacharya Launcher-ஐ பின்னணியில் இயங்க அனுமதியுங்கள்.
+The strong lock is on, so a lock also holds an app opened from Recents, App info, a notification, a widget or another home app, and one that is open when the lock starts.	ஸ்ட்ராங் லாக் இயக்கத்தில் உள்ளது, எனவே சமீபத்திய ஆப்கள், ஆப் தகவல், அறிவிப்பு, விட்ஜெட் அல்லது மற்றொரு முகப்பு ஆப்பிலிருந்து திறக்கப்பட்ட ஆப்பையும், லாக் தொடங்கும்போது திறந்திருக்கும் ஆப்பையும் லாக் தடுக்கும்.
+For now a lock holds only when you open an app from this home screen.	இப்போதைக்கு, இந்த முகப்புத் திரையிலிருந்து ஆப்பைத் திறக்கும்போது மட்டுமே லாக் செயல்படும்.
+Allow the two things in the Strong lock card below and it also holds an app opened from Recents, App info, a notification, a widget or another home app, and one that is open when the lock starts.	கீழே உள்ள ஸ்ட்ராங் லாக் கார்டில் இரண்டிற்கும் அனுமதி வழங்குங்கள்; பிறகு சமீபத்திய ஆப்கள், ஆப் தகவல், அறிவிப்பு, விட்ஜெட் அல்லது மற்றொரு முகப்பு ஆப்பிலிருந்து திறக்கப்பட்ட ஆப்பையும், லாக் தொடங்கும்போது திறந்திருக்கும் ஆப்பையும் இது தடுக்கும்.
+Locks work when you open an app from this home screen.	இந்த முகப்புத் திரையிலிருந்து ஆப்பைத் திறக்கும்போது லாக்குகள் செயல்படும்.
+They cannot stop an app that is already open, or one opened from Recents, a notification or another home app.	ஏற்கனவே திறந்திருக்கும் ஆப்பையோ, சமீபத்திய ஆப்கள், அறிவிப்பு அல்லது மற்றொரு முகப்பு ஆப்பிலிருந்து திறக்கப்பட்ட ஆப்பையோ இவை தடுக்க முடியாது.
+The strong lock below does.	கீழே உள்ள ஸ்ட்ராங் லாக் அதைச் செய்கிறது.
+To hold them whichever way they open, allow the two things in the Strong lock card below.	எவ்வாறு திறக்கப்பட்டாலும் இவற்றைச் செயல்படுத்த, கீழே உள்ள ஸ்ட்ராங் லாக் கார்டில் இரண்டிற்கும் அனுமதி வழங்குங்கள்.
+Without strict, you can still break a lock: wait 30 seconds and type a sentence.	கண்டிப்பானதாக இல்லாவிட்டால் லாக்கை உடைக்கலாம்: 30 விநாடிகள் காத்திருந்து ஒரு வாக்கியத்தை தட்டச்சு செய்யுங்கள்.
+A strict lock cannot be broken, and cannot be changed while it holds.	கண்டிப்பான லாக்கை உடைக்க முடியாது; அது செயல்பாட்டில் இருக்கும்போது மாற்றவும் முடியாது.
 # the same texts without the marks at their ends
 {1} after your plan	உங்கள் திட்டத்துக்குப் பின் {1}
 Made	உருவாக்கப்பட்டது
@@ -1578,3 +2091,5 @@ not today	இன்று இல்லை
 hides its apps	ஆப்களை மறைக்கும்
 and during {1}	மேலும் {1} நேரத்தில்
 when this slot ends	இந்த ஸ்லாட் முடியும்போது
+and in library mode	மற்றும் நூலக பயன்முறையில்
+{1} before your plan	உங்கள் திட்டத்துக்கு {1} முன்

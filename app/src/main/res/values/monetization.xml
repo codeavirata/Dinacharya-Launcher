@@ -3,8 +3,11 @@
     <!--
         Money settings. Read the README section "Earn from the app" before you publish.
 
-        pro_product_id: the ID of the one-time product you create in Google Play Console
-        (Monetize > Products > In-app products). It must match exactly.
+        pro_product_id: the ID of the LIFETIME purchase, a one-time product you create in Google Play Console
+        (Monetize > Products > In-app products). It must match exactly. Set its price (Rs 499) there.
+
+        pro_monthly_product_id: the ID of the MONTHLY plan, a subscription you create in Google Play Console
+        (Monetize > Products > Subscriptions) with one auto-renewing base plan billed every month (Rs 50). It must match exactly.
 
         admob_app_id / admob_banner_id / admob_rewarded_id: these are Google's TEST values. They show test ads
         that pay nothing and are safe to tap. Before you publish, make an AdMob account (admob.google.com),
@@ -22,6 +25,7 @@
         ads_enabled: set to false to build an app with no ads at all.
     -->
     <string name="pro_product_id" translatable="false">pro_unlock</string>
+    <string name="pro_monthly_product_id" translatable="false">pro_monthly</string>
     <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     <string name="admob_banner_id" translatable="false">ca-app-pub-3940256099942544/9214589741</string>
     <string name="admob_rewarded_id" translatable="false">ca-app-pub-3940256099942544/5224354917</string>

@@ -115,8 +115,10 @@ public class LauncherTest {
         ok("'also outside' pauses outside focus slots", FocusRules.decide(r, k("yt"), true, Routine.REST, 0).type == FocusRules.NUDGE
                 && FocusRules.decide(r, k("yt"), true, -1, 0).type == FocusRules.NUDGE);
         ok("free: strict becomes a nudge", FocusRules.decide(r, k("ig"), false, Routine.TASK, 0).type == FocusRules.NUDGE);
-        ok("free: only the first two rules count", FocusRules.FREE_APPS == 2
-                && FocusRules.decide(r, k("yt"), false, Routine.TASK, 0).type == FocusRules.NUDGE
+        ok("free: only the first rule counts", FocusRules.FREE_APPS == 1
+                && FocusRules.decide(r, k("ig"), false, Routine.TASK, 0).type == FocusRules.NUDGE
+                && FocusRules.decide(r, k("yt"), false, Routine.TASK, 0).type == FocusRules.ALLOW
+                && FocusRules.decide(r, k("yt"), true, Routine.TASK, 0).type == FocusRules.NUDGE
                 && FocusRules.decide(r, k("x3"), false, Routine.TASK, 0).type == FocusRules.ALLOW
                 && FocusRules.decide(r, k("x4"), false, Routine.TASK, 0).type == FocusRules.ALLOW
                 && FocusRules.decide(r, k("x4"), true, Routine.TASK, 0).type == FocusRules.NUDGE);
@@ -318,23 +320,24 @@ public class LauncherTest {
         LauncherConfig.Group fg = fc.addGroup("Social");
         for (String a : new String[]{"a", "b", "c", "d"}) fc.setInGroup(fg, k(a), true);
         fg.days = LockRules.EVERY_DAY; fg.startMin = 0; fg.endMin = 0;
-        ok("free: a lock holds the first two apps only", LockRules.check(fc, k("a"), false, at(19, 10, 0), Z) != null
-                && LockRules.check(fc, k("b"), false, at(19, 10, 0), Z) != null
+        ok("free: a lock holds the first app only", LockRules.check(fc, k("a"), false, at(19, 10, 0), Z) != null
+                && LockRules.check(fc, k("b"), false, at(19, 10, 0), Z) == null
                 && LockRules.check(fc, k("c"), false, at(19, 10, 0), Z) == null && LockRules.check(fc, k("d"), false, at(19, 10, 0), Z) == null);
         ok("pro: a lock holds every app in the group", LockRules.check(fc, k("c"), true, at(19, 10, 0), Z) != null
                 && LockRules.check(fc, k("d"), true, at(19, 10, 0), Z) != null);
-        ok("held apps list: two for free, all for pro", LockRules.heldApps(fc, fg, false).size() == 2 && LockRules.heldApps(fc, fg, true).size() == 4
-                && LockRules.FREE_GROUP_APPS == 2 && LockRules.FREE_GROUPS == 1);
-        ok("free: saved days a person can open", Limits.reportDays(false, 10) == 3 && Limits.reportDays(false, 2) == 2
+        ok("held apps list: one for free, all for pro", LockRules.heldApps(fc, fg, false).size() == 1 && LockRules.heldApps(fc, fg, true).size() == 4
+                && LockRules.FREE_GROUP_APPS == 1 && LockRules.FREE_GROUPS == 1);
+        ok("free: only today's report, no saved day", Limits.FREE_REPORT_DAYS == 0 && Limits.reportDays(false, 10) == 0 && Limits.reportDays(false, 2) == 0
                 && Limits.reportDays(false, 0) == 0 && Limits.reportDays(true, 10) == 10 && Limits.reportDays(true, 0) == 0);
         ok("the week view is part of pro", !Limits.weekAllowed(false) && Limits.weekAllowed(true));
+        ok("the deeper analysis is part of pro", !Limits.analysisAllowed(false) && Limits.analysisAllowed(true));
         ok("an old saved 'icons' line is ignored", LauncherConfig.parse("DINALAUNCH1\nswipes=2\nicons=0\ntheme=1\n").theme == 1);
         ok("an old config without groups loads", LauncherConfig.parse("DINALAUNCH1\nswipes=2\ntheme=1\n").groups.isEmpty());
 
         // ---------- the one-day video pass: ONE item per video, never a whole area and never the whole app
         long t0 = at(19, 10, 0), t1 = DayPass.endOf(t0);
         ok("a pass lasts exactly a day", t1 - t0 == 24L * 3600000L);
-        ok("there are 14 items, numbered 1 to 14", DayPass.FIRST == 1 && DayPass.LAST == 14 && Integer.bitCount(DayPass.ALL) == 14
+        ok("there are 15 items, numbered 1 to 15", DayPass.FIRST == 1 && DayPass.LAST == 15 && Integer.bitCount(DayPass.ALL) == 15
                 && DayPass.FREE == 0);
         boolean exactlyOne = true, nothingBefore = true, nothingAfter = true;
         for (int itm = DayPass.FIRST; itm <= DayPass.LAST; itm++) {
@@ -344,71 +347,49 @@ public class LauncherTest {
             if (DayPass.mask(itm, t0, t1, t0 - 1) != DayPass.FREE) nothingBefore = false;
             if (DayPass.mask(itm, t0, t1, t1) != DayPass.FREE) nothingAfter = false;
         }
-        ok("a video for any item opens exactly that item and no other (all 14 checked)", exactlyOne);
+        ok("a video for any item opens exactly that item and no other (all 15 checked)", exactlyOne);
         ok("a pass opens nothing before it starts (clock set back) and nothing at its end", nothingBefore && nothingAfter);
-        ok("Pro (the purchase) opens all 14 items", DayPass.has(DayPass.ALL, DayPass.REPORT_DAYS) && DayPass.has(DayPass.ALL, DayPass.LOOK_GRAPHITE)
-                && DayPass.has(DayPass.ALL, DayPass.PAUSE_STRICT) && !DayPass.has(DayPass.ALL, DayPass.NONE) && !DayPass.has(DayPass.ALL, 15));
+        ok("Pro (the purchase) opens all 15 items", DayPass.has(DayPass.ALL, DayPass.REPORT_DAYS) && DayPass.has(DayPass.ALL, DayPass.LOOK_GRAPHITE)
+                && DayPass.has(DayPass.ALL, DayPass.ANALYSIS) && DayPass.has(DayPass.ALL, DayPass.PAUSE_STRICT) && !DayPass.has(DayPass.ALL, DayPass.NONE)
+                && !DayPass.has(DayPass.ALL, 16));
         ok("the free version opens none", !DayPass.has(DayPass.FREE, DayPass.PAUSE_APPS) && !DayPass.has(DayPass.FREE, DayPass.GOALS));
         ok("a pass is open from its first moment to the last before its end", DayPass.covers(DayPass.LOCK_STRICT, DayPass.LOCK_STRICT, t0, t1, t0)
                 && DayPass.covers(DayPass.LOCK_STRICT, DayPass.LOCK_STRICT, t0, t1, t1 - 1) && !DayPass.covers(DayPass.LOCK_STRICT, DayPass.LOCK_STRICT, t0, t1, t1));
         ok("covers is true only for the item the pass is for", !DayPass.covers(DayPass.LOCK_APPS, DayPass.LOCK_STRICT, t0, t1, t0 + 1)
                 && !DayPass.covers(DayPass.PAUSE_STRICT, DayPass.PAUSE_LIMIT, t0, t1, t0 + 1));
-        ok("a pass longer than three days is refused", !DayPass.running(DayPass.PAUSE_STRICT, t0, t0 + 73L * 3600000L, t0 + 1000)
-                && DayPass.running(DayPass.PAUSE_STRICT, t0, t0 + 72L * 3600000L, t0 + 1000)
+        ok("a pass longer than a day is refused", !DayPass.running(DayPass.PAUSE_STRICT, t0, t0 + 25L * 3600000L, t0 + 1000)
+                && !DayPass.running(DayPass.PAUSE_STRICT, t0, t0 + 72L * 3600000L, t0 + 1000)
                 && DayPass.running(DayPass.PAUSE_STRICT, t0, t0 + 24L * 3600000L, t0 + 1000));
         ok("an empty or reversed pass never opens anything", !DayPass.running(DayPass.PAUSE_STRICT, t0, t0, t0) && !DayPass.running(DayPass.PAUSE_STRICT, t1, t0, t0 + 1000)
                 && !DayPass.running(DayPass.NONE, t0, t1, t0 + 1000) && !DayPass.running(99, t0, t1, t0 + 1000));
-        ok("only the 14 items count", DayPass.valid(DayPass.REPORT_DAYS) && DayPass.valid(DayPass.LOOK_GRAPHITE) && !DayPass.valid(0) && !DayPass.valid(15)
-                && !DayPass.covers(0, 0, t0, t1, t0 + 1000) && DayPass.bit(0) == 0 && DayPass.bit(15) == 0);
+        ok("only the 15 items count", DayPass.valid(DayPass.REPORT_DAYS) && DayPass.valid(DayPass.ANALYSIS) && !DayPass.valid(0) && !DayPass.valid(16)
+                && !DayPass.covers(0, 0, t0, t1, t0 + 1000) && DayPass.bit(0) == 0 && DayPass.bit(16) == 0);
         ok("one video at a time", !DayPass.canStart(DayPass.PAUSE_STRICT, t0, t1, t0 + 5000) && DayPass.canStart(DayPass.PAUSE_STRICT, t0, t1, t1)
                 && DayPass.canStart(DayPass.NONE, 0, 0, t0));
 
-        // ---------- the reward layers: 1 video = one item for a day, 2 = the same item for 3 days, 3 = the whole group for a day
-        ok("tiers: the numbers of videos", DayPass.videosFor(DayPass.TIER_DAY) == 1 && DayPass.videosFor(DayPass.TIER_3DAYS) == 2
-                && DayPass.videosFor(DayPass.TIER_GROUP) == 3);
-        ok("tiers: one video opens exactly the item, for a day", DayPass.tierMask(DayPass.TIER_DAY, DayPass.PAUSE_STRICT) == DayPass.bit(DayPass.PAUSE_STRICT)
-                && DayPass.tierLength(DayPass.TIER_DAY) == 24L * 3600000L);
-        ok("tiers: two videos open exactly the same item, for three days", DayPass.tierMask(DayPass.TIER_3DAYS, DayPass.PAUSE_STRICT) == DayPass.bit(DayPass.PAUSE_STRICT)
-                && DayPass.tierLength(DayPass.TIER_3DAYS) == 72L * 3600000L && DayPass.tierLength(DayPass.TIER_3DAYS) == DayPass.MAX_MS);
+        // ---------- the offer: 3 videos = everything in Pro for a day
+        ok("the offer: three videos, a day, everything", DayPass.VIDEOS == 3 && DayPass.LENGTH_MS == 24L * 3600000L && DayPass.MAX_MS == DayPass.LENGTH_MS
+                && DayPass.count(DayPass.ALL) == 15);
         int pauseGroup = DayPass.bit(DayPass.PAUSE_APPS) | DayPass.bit(DayPass.PAUSE_STRICT) | DayPass.bit(DayPass.PAUSE_LIMIT) | DayPass.bit(DayPass.PAUSE_PLAYFUL);
-        ok("tiers: three videos open every pause, for a day, and nothing outside the group",
-                DayPass.tierMask(DayPass.TIER_GROUP, DayPass.PAUSE_LIMIT) == pauseGroup && DayPass.areaMask(DayPass.AREA_PAUSES) == pauseGroup
-                        && !DayPass.has(pauseGroup, DayPass.LOCK_MORE) && !DayPass.has(pauseGroup, DayPass.REPORT_DAYS)
-                        && DayPass.tierLength(DayPass.TIER_GROUP) == 24L * 3600000L);
-        ok("tiers: the group of the locks, the looks and the reports", DayPass.count(DayPass.tierMask(DayPass.TIER_GROUP, DayPass.LOCK_APPS)) == 3
-                && DayPass.count(DayPass.tierMask(DayPass.TIER_GROUP, DayPass.LOOK_OCEAN)) == 3
-                && DayPass.count(DayPass.tierMask(DayPass.TIER_GROUP, DayPass.REPORT_WEEK)) == 2);
-        ok("tiers: the group reward is only offered where there is a group", DayPass.tierOffered(DayPass.TIER_GROUP, DayPass.PAUSE_APPS)
-                && !DayPass.tierOffered(DayPass.TIER_GROUP, DayPass.ROUTINES) && !DayPass.tierOffered(DayPass.TIER_GROUP, DayPass.GOALS)
-                && DayPass.tierOffered(DayPass.TIER_DAY, DayPass.GOALS) && DayPass.tierOffered(DayPass.TIER_3DAYS, DayPass.ROUTINES)
-                && !DayPass.tierOffered(DayPass.TIER_DAY, 0) && !DayPass.tierOffered(7, DayPass.GOALS)
-                && DayPass.tierMask(DayPass.TIER_GROUP, DayPass.GOALS) == DayPass.bit(DayPass.GOALS));
-        ok("tiers: videos watched earn the tier in order, a single item never jumps to a group",
-                DayPass.tierForVideos(0, DayPass.PAUSE_APPS) == 0 && DayPass.tierForVideos(1, DayPass.PAUSE_APPS) == DayPass.TIER_DAY
-                        && DayPass.tierForVideos(2, DayPass.PAUSE_APPS) == DayPass.TIER_3DAYS && DayPass.tierForVideos(3, DayPass.PAUSE_APPS) == DayPass.TIER_GROUP
-                        && DayPass.tierForVideos(5, DayPass.PAUSE_APPS) == DayPass.TIER_GROUP && DayPass.tierForVideos(3, DayPass.GOALS) == DayPass.TIER_3DAYS);
-        long u3 = t0 + DayPass.MAX_MS;
-        ok("pass: a three-day pass is open the whole time and not a moment after", DayPass.openMask(DayPass.bit(DayPass.PAUSE_STRICT), t0, u3, t0 + 71L * 3600000L) == DayPass.bit(DayPass.PAUSE_STRICT)
-                && DayPass.openMask(DayPass.bit(DayPass.PAUSE_STRICT), t0, u3, u3) == DayPass.FREE && DayPass.openMask(DayPass.bit(DayPass.PAUSE_STRICT), t0, u3, t0 - 1) == DayPass.FREE);
+        ok("the groups: the pauses are four items, the reports three", DayPass.areaMask(DayPass.AREA_PAUSES) == pauseGroup
+                && !DayPass.has(pauseGroup, DayPass.LOCK_MORE) && !DayPass.has(pauseGroup, DayPass.REPORT_DAYS)
+                && DayPass.count(DayPass.areaMask(DayPass.AREA_REPORTS)) == 3 && DayPass.has(DayPass.areaMask(DayPass.AREA_REPORTS), DayPass.ANALYSIS));
+        long u1 = t0 + DayPass.MAX_MS;
+        ok("pass: it is open the whole day and not a moment after", DayPass.openMask(DayPass.ALL, t0, u1, t0 + 23L * 3600000L) == DayPass.ALL
+                && DayPass.openMask(DayPass.ALL, t0, u1, u1) == DayPass.FREE && DayPass.openMask(DayPass.ALL, t0, u1, t0 - 1) == DayPass.FREE);
         ok("pass: a group pass opens all of its items and no other", DayPass.openMask(pauseGroup, t0, t1, t0 + 1000) == pauseGroup
                 && !DayPass.has(DayPass.openMask(pauseGroup, t0, t1, t0 + 1000), DayPass.LOCK_STRICT));
-        ok("pass: a window over three days, an empty or reversed one, or no items opens nothing", DayPass.openMask(pauseGroup, t0, t0 + 73L * 3600000L, t0 + 1000) == DayPass.FREE
+        ok("pass: a window over a day, an empty or reversed one, or no items opens nothing", DayPass.openMask(pauseGroup, t0, t0 + 25L * 3600000L, t0 + 1000) == DayPass.FREE
                 && DayPass.openMask(pauseGroup, t0, t0, t0) == DayPass.FREE && DayPass.openMask(pauseGroup, t1, t0, t0 + 1000) == DayPass.FREE
                 && DayPass.openMask(0, t0, t1, t0 + 1000) == DayPass.FREE && DayPass.openMask(1 << 20, t0, t1, t0 + 1000) == DayPass.FREE
-                && !DayPass.validMask(0) && !DayPass.validMask(1) && DayPass.validMask(DayPass.ALL) && !DayPass.validMask(DayPass.ALL | (1 << 15)));
-        ok("pass: Pro still opens everything whatever the record says", DayPass.count(DayPass.ALL) == 14);
-        ok("extend: one more video stretches a day-long pass on one item to three days, nothing else",
-                DayPass.canExtend(DayPass.bit(DayPass.GOALS), t0, t1, t0 + 5000) && DayPass.extendedUntil(t0) == u3
-                        && !DayPass.canExtend(DayPass.bit(DayPass.GOALS), t0, u3, t0 + 5000)   // already three days
-                        && !DayPass.canExtend(pauseGroup, t0, t1, t0 + 5000)   // a group pass is not stretched
-                        && !DayPass.canExtend(DayPass.bit(DayPass.GOALS), t0, t1, t1)   // already over
-                        && !DayPass.canExtend(0, t0, t1, t0 + 5000));
+                && !DayPass.validMask(0) && !DayPass.validMask(1) && DayPass.validMask(DayPass.ALL) && !DayPass.validMask(DayPass.ALL | (1 << 16)));
+        ok("pass: Pro still opens everything whatever the record says", DayPass.count(DayPass.ALL) == 15);
         ok("words: one item, a whole group, a few", DayPass.maskName(DayPass.bit(DayPass.PAUSE_STRICT)).equals("strict pauses")
                 && DayPass.maskName(pauseGroup).equals("everything in Pauses")
                 && DayPass.maskName(DayPass.areaMask(DayPass.AREA_LOOKS)).equals("everything in Looks")
-                && DayPass.maskName(DayPass.bit(DayPass.GOALS) | DayPass.bit(DayPass.ROUTINES)).equals("2 Pro features") && DayPass.maskName(0).isEmpty());
-        ok("mask helpers", DayPass.firstItem(pauseGroup) == DayPass.PAUSE_APPS && DayPass.firstItem(0) == DayPass.NONE && DayPass.count(pauseGroup) == 4
-                && DayPass.hasGroup(DayPass.LOCK_MORE) && !DayPass.hasGroup(DayPass.GOALS) && !DayPass.hasGroup(0));
+                && DayPass.maskName(DayPass.bit(DayPass.GOALS) | DayPass.bit(DayPass.ROUTINES)).equals("2 Pro features") && DayPass.maskName(0).isEmpty()
+                && DayPass.maskName(DayPass.ALL).equals("everything in Pro"));
+        ok("mask helpers", DayPass.firstItem(pauseGroup) == DayPass.PAUSE_APPS && DayPass.firstItem(0) == DayPass.NONE && DayPass.count(pauseGroup) == 4);
         boolean words = true;
         for (int itm = DayPass.FIRST; itm <= DayPass.LAST; itm++) {
             if (DayPass.name(itm).length() < 4 || DayPass.title(itm).length() < 4 || DayPass.shortName(itm).length() < 4 || DayPass.area(itm) < 0) words = false;
@@ -417,7 +398,7 @@ public class LauncherTest {
         ok("the groups: reports, pauses, locks, routines, goals, looks", DayPass.area(DayPass.REPORT_WEEK) == DayPass.AREA_REPORTS
                 && DayPass.area(DayPass.PAUSE_PLAYFUL) == DayPass.AREA_PAUSES && DayPass.area(DayPass.LOCK_MORE) == DayPass.AREA_LOCKS
                 && DayPass.area(DayPass.ROUTINES) == DayPass.AREA_ROUTINES && DayPass.area(DayPass.GOALS) == DayPass.AREA_GOALS
-                && DayPass.area(DayPass.LOOK_OCEAN) == DayPass.AREA_LOOKS);
+                && DayPass.area(DayPass.LOOK_OCEAN) == DayPass.AREA_LOOKS && DayPass.area(DayPass.ANALYSIS) == DayPass.AREA_REPORTS);
         ok("each colour look is its own item", DayPass.lookItem(1) == DayPass.LOOK_SUNSET && DayPass.lookItem(2) == DayPass.LOOK_OCEAN
                 && DayPass.lookItem(3) == DayPass.LOOK_GRAPHITE && DayPass.lookItem(0) == DayPass.NONE && DayPass.lookOf(DayPass.LOOK_OCEAN) == 2
                 && DayPass.lookOf(DayPass.GOALS) == -1);
@@ -428,14 +409,14 @@ public class LauncherTest {
 
         // pauses: each of the four items lifts only its own limit
         final int[] pauseItems = {DayPass.PAUSE_APPS, DayPass.PAUSE_STRICT, DayPass.PAUSE_LIMIT, DayPass.PAUSE_PLAYFUL};
-        LauncherConfig pc = fcfg(3);   // a and b are free, c is over the free number
+        LauncherConfig pc = fcfg(3);   // a is free, b and c are over the free number
         LauncherConfig.Rule pr = pc.setRule(k("a"), LauncherConfig.RULE_STRICT, 30, true, PauseChallenge.MATH);
         boolean appsOnlyForApps = true;
         for (int itm = DayPass.FIRST; itm <= DayPass.LAST; itm++) {
             boolean active = FocusRules.active(pc, k("c"), DayPass.bit(itm));
             if (active != (itm == DayPass.PAUSE_APPS)) appsOnlyForApps = false;
         }
-        ok("only 'pauses for more apps' makes a third app's pause work (all 14 items tried)", appsOnlyForApps
+        ok("only 'pauses for more apps' makes a third app's pause work (all 15 items tried)", appsOnlyForApps
                 && FocusRules.active(pc, k("a"), DayPass.FREE) && FocusRules.active(pc, k("c"), DayPass.ALL) && !FocusRules.active(pc, k("c"), DayPass.FREE));
         int slot = Routine.TASK;
         pc.setFocusKind(slot, true);
@@ -460,7 +441,7 @@ public class LauncherTest {
             FocusRules.Decision d = FocusRules.decide(pc, k("a"), DayPass.bit(itm), slot, 31 * MIN);
             if (d.type != dFree.type || d.challenge != dFree.challenge) otherItemsChangeNothing = false;
         }
-        ok("a video for anything else (11 other items) changes nothing about a pause", otherItemsChangeNothing);
+        ok("a pass for anything else (12 other items) changes nothing about a pause", otherItemsChangeNothing);
 
         // locks: each of the three items lifts only its own limit
         boolean moreOnlyForMore = true;
@@ -473,13 +454,13 @@ public class LauncherTest {
         for (int itm = DayPass.FIRST; itm <= DayPass.LAST; itm++) {
             if (LockRules.active(lc, l2, DayPass.bit(itm)) != (itm == DayPass.LOCK_MORE)) moreOnlyForMore = false;
         }
-        ok("only 'more than one lock' makes the second lock work (all 14 items tried)", moreOnlyForMore && LockRules.active(lc, l1, DayPass.FREE)
+        ok("only 'more than one lock' makes the second lock work (all 15 items tried)", moreOnlyForMore && LockRules.active(lc, l1, DayPass.FREE)
                 && LockRules.active(lc, l2, DayPass.ALL));
         ok("a video for 'more apps in a lock' holds all four apps, and still not a second lock",
                 LockRules.heldApps(lc, l1, DayPass.bit(DayPass.LOCK_APPS)).size() == 4 && LockRules.heldApps(lc, l2, DayPass.bit(DayPass.LOCK_APPS)).isEmpty());
-        ok("free: a lock holds two apps", LockRules.heldApps(lc, l1, DayPass.FREE).size() == 2);
-        ok("a video for a second lock still holds only two apps in each lock",
-                LockRules.heldApps(lc, l1, DayPass.bit(DayPass.LOCK_MORE)).size() == 2 && LockRules.heldApps(lc, l2, DayPass.bit(DayPass.LOCK_MORE)).size() == 2);
+        ok("free: a lock holds one app", LockRules.heldApps(lc, l1, DayPass.FREE).size() == 1);
+        ok("a pass for a second lock still holds only one app in each lock",
+                LockRules.heldApps(lc, l1, DayPass.bit(DayPass.LOCK_MORE)).size() == 1 && LockRules.heldApps(lc, l2, DayPass.bit(DayPass.LOCK_MORE)).size() == 1);
         LockRules.Hit hFree = LockRules.check(lc, k("a"), DayPass.FREE, at(19, 10, 0), Z);
         LockRules.Hit hStrict = LockRules.check(lc, k("a"), DayPass.bit(DayPass.LOCK_STRICT), at(19, 10, 0), Z);
         ok("a lock is strict only while 'strict locks' is open", hFree != null && !hFree.strict && hStrict != null && hStrict.strict
@@ -495,6 +476,8 @@ public class LauncherTest {
                 && !Limits.weekAllowed(DayPass.has(DayPass.bit(DayPass.REPORT_DAYS), DayPass.REPORT_WEEK)));
         ok("every saved day is part of its own item", Limits.reportDays(DayPass.has(DayPass.bit(DayPass.REPORT_DAYS), DayPass.REPORT_DAYS), 10) == 10
                 && Limits.reportDays(DayPass.has(DayPass.bit(DayPass.REPORT_WEEK), DayPass.REPORT_DAYS), 10) == Limits.FREE_REPORT_DAYS);
+        ok("the deeper analysis is its own item", Limits.analysisAllowed(DayPass.has(DayPass.bit(DayPass.ANALYSIS), DayPass.ANALYSIS))
+                && !Limits.analysisAllowed(DayPass.has(DayPass.bit(DayPass.REPORT_DAYS) | DayPass.bit(DayPass.REPORT_WEEK), DayPass.ANALYSIS)));
 
         // ---------- the Home button: noticing that Dinacharya lost the home role
         ok("home: asked when it was home, is not now, and not snoozed", HomeWatch.shouldAsk(true, false, 0, t0));

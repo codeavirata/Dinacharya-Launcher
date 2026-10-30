@@ -242,10 +242,14 @@ final class ScreenTime {
             all.finish(to);
             Map<String, Long> names = new LinkedHashMap<>();
             Map<String, List<long[]>> times = new HashMap<>();
+            Map<String, List<long[]>> byPkg = new HashMap<>();
+            Map<String, String> pkgNames = new HashMap<>();
             for (Map.Entry<String, Accumulator> en : per.entrySet()) {
                 long ms = en.getValue().finish(to).totalMs;
                 if (ms <= 0) continue;
                 String label = appLabel(c, en.getKey());
+                pkgNames.put(en.getKey(), label);
+                if (en.getValue().intervals() != null) byPkg.put(en.getKey(), new ArrayList<>(en.getValue().intervals()));
                 Long prev = names.get(label);
                 names.put(label, (prev == null ? 0L : prev) + ms);
                 List<long[]> mine = times.get(label);
@@ -255,7 +259,7 @@ final class ScreenTime {
                 }
                 if (en.getValue().intervals() != null) mine.addAll(en.getValue().intervals());
             }
-            return new UsageDetail(from, to, all.intervals(), names, times);
+            return new UsageDetail(from, to, all.intervals(), names, times, byPkg, pkgNames);
         } catch (RuntimeException ex) {
             return null;
         }

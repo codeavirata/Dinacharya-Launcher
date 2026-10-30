@@ -78,6 +78,20 @@ public final class Plan {
         return Integer.toHexString(sb.toString().hashCode());
     }
 
+    /**
+     * Like {@link #signature} but also covering the routines made for one date. A number of a slot means a place in a list, so anything
+     * remembered by slot number is only good while this stays the same.
+     */
+    public static String scheduleSignature(Routine base) {
+        StringBuilder sb = new StringBuilder(signature(base));
+        for (Routine t : base.temps) {
+            if (t.tempDate == null) continue;
+            sb.append('#').append(t.tempDate).append(':').append(t.compute().start);
+            for (Routine.Block b : t.blocks) sb.append('|').append(b.kind).append(':').append(b.mins).append(':').append(b.title);
+        }
+        return Integer.toHexString(sb.toString().hashCode());
+    }
+
     private static void sign(StringBuilder sb, Routine r) {
         sb.append(r.compute().start);
         for (Routine.Block b : r.blocks) {
@@ -100,7 +114,7 @@ public final class Plan {
 
     private static long startMsOf(LocalDate d, int baseStart, Overrides ov, ZoneId zone) {
         Overrides.Shift sh = ov == null ? null : ov.shiftFor(d);
-        int abs = baseStart + (sh == null ? 0 : sh.mins);
+        int abs = baseStart + (sh == null ? 0 : sh.mins) - (ov == null ? 0 : ov.earlyFor(d));
         return d.atStartOfDay(zone).plusMinutes(abs).toInstant().toEpochMilli();
     }
 
@@ -133,9 +147,22 @@ public final class Plan {
             startAbs += sh.mins;
             adjusted = true;
         }
+        // The person woke early and started the day: it begins that much earlier, and its first slot keeps its end, so it gets the time.
+        int early = ov == null ? 0 : ov.earlyFor(day);
+        if (early > 0 && !blocks.isEmpty()) {
+            blocks.get(0).mins += early;
+            startAbs -= early;
+            adjusted = true;
+        }
         Overrides.Shift nx = ov == null ? null : ov.shiftFor(day.plusDays(1));
         if (nx != null) {
             extendTail(blocks, nx.mins, true);
+            adjusted = true;
+        }
+        // ...and the night before it ends that much earlier.
+        int wokeEarly = ov == null ? 0 : ov.earlyFor(day.plusDays(1));
+        if (wokeEarly > 0) {
+            shortenNight(blocks, wokeEarly);
             adjusted = true;
         }
         if (ov != null) {
@@ -375,6 +402,21 @@ public final class Plan {
         extendTail(blocks, d, true);
     }
 
+    /**
+     * Ends the night {@code d} minutes sooner because the next day was started early. Only this night: the sleep that was planned stays
+     * what it was (the cut is taken off {@code extended} as well), so a report still compares the sleep with the plan.
+     */
+    static void shortenNight(List<Routine.Block> blocks, int d) {
+        for (int i = blocks.size() - 1; i >= 0 && d > 0; i--) {
+            Routine.Block b = blocks.get(i);
+            int take = Math.min(d, b.mins - 1);
+            if (take <= 0) continue;
+            b.mins -= take;
+            if (b.kind == Routine.SLEEP) b.extended -= take;
+            d -= take;
+        }
+    }
+
     /** Shortens the end of the day by {@code d} minutes because the next day starts that much earlier. */
     static void trimTail(List<Routine.Block> blocks, int d) {
         for (int i = blocks.size() - 1; i >= 0 && d > 0; i--) {
@@ -419,6 +461,7 @@ public final class Plan {
                                                ZoneId zone, boolean h24) {
         Overrides plain = (ov == null ? new Overrides() : ov.copy());
         plain.setShift(day.plusDays(1), 0, 0);
+        plain.setEarly(day.plusDays(1), 0);
         DayPlan today = plan(base, plain, day, zone);
         DayPlan tomorrow = plan(base, plain, day.plusDays(1), zone);
         long normalWake = tomorrow.startMs;

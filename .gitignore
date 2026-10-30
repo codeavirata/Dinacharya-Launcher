@@ -3,3 +3,10 @@ build/
 local.properties
 .idea/
 *.iml
+
+# Never commit your Google Play upload key or its passwords (README, "Publish on Google Play")
+upload.jks
+upload-key-secrets.txt
+*.aab
+# compiled test classes
+*.class

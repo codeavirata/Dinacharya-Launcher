@@ -39,11 +39,12 @@ final class PdfActions {
     static void saved(final Activity a, final DayReport r, final Uri uri) {
         if (uri == null) return;
         final boolean h24 = Store.load(a).fmt24;
+        final boolean analysis = Limits.analysisAllowed(Pro.has(a, DayPass.ANALYSIS));
         new Thread(() -> {
             String msg;
             try (OutputStream os = a.getContentResolver().openOutputStream(uri)) {
                 if (os == null) throw new IOException("could not open the file");
-                ReportPdf.write(r, h24, os);
+                ReportPdf.write(r, h24, analysis, os);
                 msg = "PDF saved";
             } catch (IOException | RuntimeException e) {
                 msg = "Could not save the PDF: " + e.getMessage();
@@ -56,6 +57,7 @@ final class PdfActions {
     /** Makes the PDF and opens the share sheet. */
     static void share(final Activity a, final DayReport r) {
         final boolean h24 = Store.load(a).fmt24;
+        final boolean analysis = Limits.analysisAllowed(Pro.has(a, DayPass.ANALYSIS));
         new Thread(() -> {
             try {
                 File dir = new File(a.getCacheDir(), "shared");
@@ -63,7 +65,7 @@ final class PdfActions {
                 final String name = fileName(r).replace(' ', '-');
                 File f = new File(dir, name);
                 try (FileOutputStream os = new FileOutputStream(f)) {
-                    ReportPdf.write(r, h24, os);
+                    ReportPdf.write(r, h24, analysis, os);
                 }
                 final Uri uri = Uri.parse("content://" + ReportProvider.AUTHORITY + "/" + Uri.encode(name));
                 a.runOnUiThread(() -> {

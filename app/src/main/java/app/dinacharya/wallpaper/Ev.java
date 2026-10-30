@@ -27,6 +27,28 @@ public final class Ev {
      * was starting; b = the number of the slot that went on; title = that slot's name.
      */
     public static final String EXTEND = "extend";
+    /**
+     * A slot was finished early and the next one began before its planned time. ts = when it was answered; a = the moment the slot
+     * before ended and this one began (milliseconds, earlier than this slot's planned start); src = the slot that begins; b = the number
+     * of the slot that ended early; title = that slot's name.
+     */
+    public static final String EARLY = "early";
+    /**
+     * A slot was skipped when it began, and the next one began at once. ts = when it was answered; a = the moment the next slot began
+     * (milliseconds, earlier than its planned start); src = the slot that was skipped; b = the number of the slot that begins; title =
+     * the skipped slot's name.
+     */
+    public static final String SKIP = "skip";
+    /**
+     * The person woke before the alarm and started the day. ts = when; day = the day that began; src = its first slot; a = when the day
+     * was to begin (milliseconds); b = how many minutes earlier it began; title = the first slot's name.
+     */
+    public static final String WOKE = "woke";
+    /**
+     * The rest of the schedule day was taken off (a = the schedule day's end in milliseconds), or the day off was ended because the day was
+     * planned again or the person went back to the schedule (a = "0"). ts = when; src = -1.
+     */
+    public static final String DAYOFF = "dayoff";
 
     public final long ts;
     public final String type;
@@ -76,6 +98,26 @@ public final class Ev {
 
     public static Ev extend(long ts, String day, int src, int prevSrc, String prevTitle, long untilMs) {
         return new Ev(ts, EXTEND, day, src, String.valueOf(untilMs), String.valueOf(prevSrc), prevTitle);
+    }
+
+    public static Ev early(long ts, String day, int src, int prevSrc, String prevTitle, long boundaryMs) {
+        return new Ev(ts, EARLY, day, src, String.valueOf(boundaryMs), String.valueOf(prevSrc), prevTitle);
+    }
+
+    public static Ev skip(long ts, String day, int src, String title, int nextSrc, long boundaryMs) {
+        return new Ev(ts, SKIP, day, src, String.valueOf(boundaryMs), String.valueOf(nextSrc), title);
+    }
+
+    public static Ev woke(long ts, String day, int firstSrc, String firstTitle, long plannedStartMs, int minutesEarlier) {
+        return new Ev(ts, WOKE, day, firstSrc, String.valueOf(plannedStartMs), String.valueOf(minutesEarlier), firstTitle);
+    }
+
+    public static Ev dayOff(long ts, String day, long dayEndMs) {
+        return new Ev(ts, DAYOFF, day, -1, String.valueOf(Math.max(1L, dayEndMs)), "", "");
+    }
+
+    public static Ev dayOffEnded(long ts, String day) {
+        return new Ev(ts, DAYOFF, day, -1, "0", "", "");
     }
 
     public static Ev alarms(long ts, boolean on) {

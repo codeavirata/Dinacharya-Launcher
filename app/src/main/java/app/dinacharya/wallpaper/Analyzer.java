@@ -34,7 +34,7 @@ public final class Analyzer {
         }
         r.planKept = n == 0 ? -1 : clamp(100.0 * pts / n);
 
-        // Focus: how much of your task time the phone was in use.
+        // Focus: how much of your task time the phone was in use (time in the apps chosen for the activity does not count).
         r.focus = -1;
         if (r.phoneKnown) {
             long active = 0;
@@ -42,7 +42,7 @@ public final class Analyzer {
             for (DayReport.Row row : r.rows) {
                 if (row.kind != Routine.TASK || row.status == DayReport.SKIPPED) continue;
                 active += row.activeMs;
-                phone += row.phoneMs;
+                phone += row.offMs();   // time in the activity's own apps does not break focus
             }
             if (active >= MIN_TASK_MS) {
                 r.focus = clamp(100.0 - 100.0 * ((double) phone / active) / FOCUS_ZERO_AT);

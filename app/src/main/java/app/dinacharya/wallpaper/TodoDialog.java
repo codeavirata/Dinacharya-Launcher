@@ -1,6 +1,5 @@
 package app.dinacharya.wallpaper;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -49,12 +48,18 @@ final class TodoDialog {
     private final Runnable changed;
     private final Todos todos;
     private final LinearLayout box;
+    /** For the to-do list of a slot: the day's slots, the slot, the plan it is in and the goals that count that day (else null). */
+    private final List<Routine.Block> blocks;
+    private Routine.Block slot;
+    private Plan.DayPlan plan;
+    private List<Routine.Goal> goals;
 
     private TodoDialog(Context c, LocalDate day, List<Section> sections, List<Routine.Block> blocks, Runnable changed) {
         this.c = c;
         this.day = day;
         this.sections = sections;
         this.changed = changed;
+        this.blocks = blocks;
         this.todos = Store.todosFor(c, day, blocks);
         this.box = new LinearLayout(c);
         box.setOrientation(LinearLayout.VERTICAL);
@@ -77,6 +82,66 @@ final class TodoDialog {
                 .setView(sv)
                 .setPositiveButton("Done", null)
                 .show();
+    }
+
+    /**
+     * The to-do list of one slot of the saved plan: its own things (to add, tick, remove and repeat), then its goals. A goal with no
+     * to-dos of its own is one more thing to tick (or the time does it); a goal with to-dos heads its list and is done when all of them are.
+     */
+    static void showSlot(Context c, Plan.DayPlan plan, Routine.Block slot, List<Routine.Goal> goals, List<Section> sections, Runnable changed) {
+        List<Routine.Block> blocks = new ArrayList<>();
+        for (Routine.Slot s : plan.sc.slots) blocks.add(s.block);
+        TodoDialog d = new TodoDialog(c, plan.day, sections, blocks, changed);
+        d.slot = slot;
+        d.plan = plan;
+        d.goals = goals;
+        d.fill();
+        ScrollView sv = new ScrollView(c);
+        sv.addView(d.box, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        new DBuilder(c)
+                .setTitle("To-do")
+                .setView(sv)
+                .setPositiveButton("Done", null)
+                .show();
+    }
+
+    /** The goals of the slot under its own list: tick them here, the same ticks as on the home screen and the wallpaper. */
+    private void addGoalRows() {
+        if (slot == null || plan == null || goals == null) return;
+        List<SlotTodo.Row> rows = SlotTodo.rows(todos, day, blocks, slot.slotSrc(), goals, SlotTodo.passedMinutes(plan, slot.slotSrc()));
+        boolean any = false;
+        for (SlotTodo.Row r : rows) if (r.type != SlotTodo.ITEM) any = true;
+        if (!any) return;
+        box.addView(Ui.label(c, "Goals of this slot", 13, Ui.TEAL_DARK, true), Ui.wide(c, 18));
+        for (final SlotTodo.Row r : rows) {
+            if (r.type == SlotTodo.ITEM) continue;
+            if (r.type == SlotTodo.HEAD) {
+                LinearLayout hl = new LinearLayout(c);
+                hl.setOrientation(LinearLayout.HORIZONTAL);
+                TextView h = Ui.label(c, r.text, 15, r.done ? Ui.MUTED : Ui.INK, true);
+                if (r.done) h.setPaintFlags(h.getPaintFlags() | android.graphics.Paint.STRIKE_THRU_TEXT_FLAG);
+                hl.addView(h, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+                hl.addView(Ui.label(c, r.ticked + " of " + r.total, 13, Ui.MUTED, false));
+                box.addView(hl, Ui.wide(c, 8));
+                continue;
+            }
+            CheckBox cb = new CheckBox(c);
+            cb.setChecked(r.done);
+            cb.setText(r.byTime ? r.text + "  ·  " + Lang.tr("time reached") : r.text);
+            cb.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 16);
+            cb.setTextColor(r.done ? Ui.MUTED : Ui.INK);
+            cb.setEnabled(r.tickable());
+            cb.setOnCheckedChangeListener((b, on) -> {
+                if (!SlotTodo.tick(todos, day, r, on)) return;
+                save();
+                fill();
+            });
+            LinearLayout.LayoutParams lp = Ui.wide(c, 2);
+            if (r.type == SlotTodo.STEP) lp.leftMargin = Ui.dp(c, 22);
+            box.addView(cb, lp);
+        }
+        box.addView(Ui.label(c, "A goal with no to-dos is ticked by you, or by the time when its target is reached. A goal with to-dos is done "
+                + "when all of them are. Goals and their to-dos are set in Insights.", 12, Ui.MUTED, false), Ui.wide(c, 8));
     }
 
     private void save() {
@@ -229,6 +294,7 @@ final class TodoDialog {
             paint.run();
         }
         box.addView(Ui.label(c, "A to-do is for this day only, unless you set it to repeat with the ↻ button.", 12, Ui.MUTED, false), Ui.wide(c, 14));
+        addGoalRows();
         Lang.watch(box);
     }
 

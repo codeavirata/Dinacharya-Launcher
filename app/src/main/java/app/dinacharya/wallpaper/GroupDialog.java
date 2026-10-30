@@ -37,6 +37,10 @@ final class GroupDialog {
         long untilMs;
         final List<String> during = new ArrayList<>();
         boolean hide;
+        boolean both;
+        boolean library;
+        /** How the group locks: by time, by activity, or both (see {@link LockMode}). */
+        int by = LockMode.TIME;
     }
 
     private GroupDialog() {
@@ -66,6 +70,11 @@ final class GroupDialog {
             d.untilMs = existing.untilMs;
             d.during.addAll(existing.during);
             d.hide = existing.hide;
+            d.both = existing.both;
+            d.library = existing.library;
+            d.by = LockMode.of(existing.days, existing.during.size(), existing.both);
+            // a lock by activity has no days; these are the ones it would use if the person switches to a lock by time
+            if (d.by == LockMode.ACTIVITY) d.days = LockRules.EVERY_DAY;
         }
 
         final AlertDialog.Builder b = new DBuilder(a, theme);
@@ -98,14 +107,46 @@ final class GroupDialog {
         box.addView(choose, Ui.wide(c, 6));
         setApps(appsText, apps, d);
 
-        // ---- window
-        box.addView(Ui.label(c, "Locked between", 14, Ui.MUTED, true), Ui.wide(c, 14));
-        final TextView summary = Ui.label(c, "", 13, Ui.MUTED, false);
+        final Runnable[] redraw = new Runnable[1];
+
+        // ---- how it locks: by time, by activity, or by both together
+        box.addView(Ui.label(c, "Lock by", 14, Ui.MUTED, true), Ui.wide(c, 16));
+        final int[] ways = d.by == LockMode.EITHER
+                ? new int[]{LockMode.TIME, LockMode.ACTIVITY, LockMode.BOTH, LockMode.EITHER}   // the fourth only for a lock made before this choice
+                : new int[]{LockMode.TIME, LockMode.ACTIVITY, LockMode.BOTH};
+        final TextView[] chips = new TextView[ways.length];
+        LinearLayout chipRow = new LinearLayout(c);
+        chipRow.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout chipRow2 = new LinearLayout(c);
+        chipRow2.setOrientation(LinearLayout.HORIZONTAL);
+        for (int i = 0; i < ways.length; i++) {
+            final int way = ways[i];
+            TextView t = Ui.label(c, LockMode.name(way), 13, Ui.INK, true);
+            t.setGravity(Gravity.CENTER);
+            t.setPadding(Ui.dp(c, 4), Ui.dp(c, 10), Ui.dp(c, 4), Ui.dp(c, 10));
+            t.setOnClickListener(v -> {
+                d.by = way;
+                redraw[0].run();
+            });
+            LinearLayout.LayoutParams cp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+            cp.rightMargin = Ui.dp(c, 4);
+            (i < 3 ? chipRow : chipRow2).addView(t, cp);
+            chips[i] = t;
+        }
+        box.addView(chipRow, Ui.wide(c, 6));
+        if (ways.length > 3) box.addView(chipRow2, Ui.wide(c, 4));
+        final TextView howNote = Ui.label(c, "", 12, Ui.MUTED, false);
+        howNote.setLineSpacing(Ui.dp(c, 2), 1f);
+        box.addView(howNote, Ui.wide(c, 8));
+
+        // ---- the hours and days (a lock by time, and by time with activity)
+        final LinearLayout timePanel = new LinearLayout(c);
+        timePanel.setOrientation(LinearLayout.VERTICAL);
+        timePanel.addView(Ui.label(c, "Locked between", 14, Ui.MUTED, true), Ui.wide(c, 8));
         LinearLayout times = new LinearLayout(c);
         times.setOrientation(LinearLayout.HORIZONTAL);
         final Button from = Ui.button(c, "", false, null);
         final Button to = Ui.button(c, "", false, null);
-        final Runnable[] redraw = new Runnable[1];
         from.setOnClickListener(v -> new TimePickerDialog(c, theme, (tp, h, m) -> {
             d.start = h * 60 + m;
             redraw[0].run();
@@ -120,12 +161,11 @@ final class GroupDialog {
         l2.leftMargin = Ui.dp(c, 4);
         times.addView(from, l1);
         times.addView(to, l2);
-        box.addView(times, Ui.wide(c, 4));
-
-        box.addView(Ui.label(c, "On these days", 14, Ui.MUTED, true), Ui.wide(c, 12));
+        timePanel.addView(times, Ui.wide(c, 4));
+        timePanel.addView(Ui.label(c, "On these days", 14, Ui.MUTED, true), Ui.wide(c, 12));
         final LinearLayout dayRow = new LinearLayout(c);
         dayRow.setOrientation(LinearLayout.HORIZONTAL);
-        box.addView(dayRow, Ui.wide(c, 4));
+        timePanel.addView(dayRow, Ui.wide(c, 4));
         LinearLayout presets = new LinearLayout(c);
         presets.setOrientation(LinearLayout.HORIZONTAL);
         presets.addView(preset(c, "Every day", () -> {
@@ -140,15 +180,48 @@ final class GroupDialog {
             d.days = LockRules.WEEKENDS;
             redraw[0].run();
         }));
-        presets.addView(preset(c, "None", () -> {
-            d.days = 0;
-            redraw[0].run();
-        }));
-        box.addView(presets, Ui.wide(c, 6));
-        box.addView(summary, Ui.wide(c, 8));
+        timePanel.addView(presets, Ui.wide(c, 4));
+        box.addView(timePanel, Ui.wide(c, 0));
 
-        // ---- lock now
-        box.addView(Ui.label(c, "Lock now for", 14, Ui.MUTED, true), Ui.wide(c, 16));
+        // ---- the activity types (a lock by activity, and by time with activity)
+        final LinearLayout typePanel = new LinearLayout(c);
+        typePanel.setOrientation(LinearLayout.VERTICAL);
+        typePanel.addView(Ui.label(c, "Activity types", 14, Ui.MUTED, true), Ui.wide(c, 8));
+        final TextView duringText = Ui.label(c, "", 14, Ui.INK, false);
+        typePanel.addView(duringText, Ui.wide(c, 4));
+        typePanel.addView(Ui.button(c, "Choose activity types", false, v -> chooseTypes(a, theme, d, () -> redraw[0].run())), Ui.wide(c, 6));
+        TextView duringNote = Ui.label(c, "A break, a slot you took off and the time between slots do not lock.", 12, Ui.MUTED, false);
+        duringNote.setLineSpacing(Ui.dp(c, 2), 1f);
+        typePanel.addView(duringNote, Ui.wide(c, 4));
+        box.addView(typePanel, Ui.wide(c, 0));
+
+        // what the choices come to
+        final TextView summary = Ui.label(c, "", 13, Ui.INK, true);
+        summary.setLineSpacing(Ui.dp(c, 2), 1f);
+        box.addView(summary, Ui.wide(c, 12));
+
+        // ---- more options: kept out of sight unless one of them is already set
+        final boolean moreSet = d.untilMs > nowMs || d.library || d.hide || d.strict;
+        final LinearLayout moreBody = new LinearLayout(c);
+        moreBody.setOrientation(LinearLayout.VERTICAL);
+        moreBody.setVisibility(moreSet ? View.VISIBLE : View.GONE);
+        LinearLayout moreHead = new LinearLayout(c);
+        moreHead.setOrientation(LinearLayout.HORIZONTAL);
+        moreHead.setGravity(Gravity.CENTER_VERTICAL);
+        moreHead.setPadding(0, Ui.dp(c, 8), 0, Ui.dp(c, 8));
+        final TextView moreArrow = Ui.label(c, moreSet ? "\u25B4" : "\u25BE", 14, Ui.TEAL, true);
+        moreHead.addView(Ui.label(c, "More options", 14, Ui.TEAL, true), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        moreHead.addView(moreArrow, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        moreHead.setOnClickListener(v -> {
+            boolean shown = moreBody.getVisibility() != View.VISIBLE;
+            moreBody.setVisibility(shown ? View.VISIBLE : View.GONE);
+            moreArrow.setText(shown ? "\u25B4" : "\u25BE");
+        });
+        box.addView(moreHead, Ui.wide(c, 8));
+        box.addView(moreBody, Ui.wide(c, 0));
+
+        // lock now
+        moreBody.addView(Ui.label(c, "Lock now for", 14, Ui.MUTED, true), Ui.wide(c, 4));
         LinearLayout nowRow = new LinearLayout(c);
         nowRow.setOrientation(LinearLayout.HORIZONTAL);
         final TextView nowNote = Ui.label(c, "", 13, Ui.MUTED, false);
@@ -165,34 +238,19 @@ final class GroupDialog {
             p.rightMargin = Ui.dp(c, 2);
             nowRow.addView(chip, p);
         }
-        box.addView(nowRow, Ui.wide(c, 4));
-        box.addView(nowNote, Ui.wide(c, 4));
+        moreBody.addView(nowRow, Ui.wide(c, 4));
+        moreBody.addView(nowNote, Ui.wide(c, 4));
         TextView clear = Ui.label(c, "Unlock now", 14, Ui.TEAL, true);
         clear.setPadding(0, Ui.dp(c, 6), 0, Ui.dp(c, 6));
         clear.setOnClickListener(v -> {
             d.untilMs = 0;
             redraw[0].run();
         });
-        box.addView(clear, Ui.wide(c, 0));
+        moreBody.addView(clear, Ui.wide(c, 0));
 
-        // ---- activity types
-        box.addView(Ui.label(c, "Also lock during", 14, Ui.MUTED, true), Ui.wide(c, 16));
-        final TextView duringText = Ui.label(c, "", 14, Ui.INK, false);
-        box.addView(duringText, Ui.wide(c, 4));
-        box.addView(Ui.button(c, "Choose activity types", false, v -> chooseTypes(a, theme, d, () -> redraw[0].run())), Ui.wide(c, 6));
-        TextView duringNote = Ui.label(c, "The apps are locked while a slot of one of these types is going on, and open again when it ends. "
-                + "A break, a slot you took off, and the time between slots do not lock.", 12, Ui.MUTED, false);
-        duringNote.setLineSpacing(Ui.dp(c, 2), 1f);
-        box.addView(duringNote, Ui.wide(c, 4));
-
-        // ---- hide
-        box.addView(Ui.toggle(c, "Hide the apps while they are locked", d.hide, (sw, on) -> d.hide = on), Ui.wide(c, 14));
-        TextView hideNote = Ui.label(c, "A locked app then does not show in the list of all apps or in search. It comes back when the lock ends.",
-                12, Ui.MUTED, false);
-        hideNote.setLineSpacing(Ui.dp(c, 2), 1f);
-        box.addView(hideNote, Ui.wide(c, 4));
-
-        // ---- strict
+        // library mode, hiding, strict
+        moreBody.addView(Ui.toggle(c, "Also lock in library mode", d.library, (sw, on) -> d.library = on), Ui.wide(c, 6));
+        moreBody.addView(Ui.toggle(c, "Hide the apps while they are locked", d.hide, (sw, on) -> d.hide = on), Ui.wide(c, 2));
         final Switch strict = Ui.toggle(c, strictText(open[0]), d.strict && DayPass.has(open[0], DayPass.LOCK_STRICT), (sw, on) -> {
             if (on && !DayPass.has(open[0], DayPass.LOCK_STRICT)) {
                 sw.setChecked(false);
@@ -204,27 +262,27 @@ final class GroupDialog {
             }
             d.strict = on;
         });
-        box.addView(strict, Ui.wide(c, 14));
+        moreBody.addView(strict, Ui.wide(c, 2));
         TextView note = Ui.label(c, "Without strict, you can still break a lock: wait 30 seconds and type a sentence. "
                 + "A strict lock cannot be broken, and cannot be changed while it holds. "
-                + (cfg.strong ? "With the strong lock on, locks hold wherever the app is opened from."
-                : "Locks apply when you open an app from this home screen. The strong lock in the home settings holds them everywhere."), 12, Ui.MUTED, false);
+                + StrongMode.holdsLine(c, true), 12, Ui.MUTED, false);
         note.setLineSpacing(Ui.dp(c, 2), 1f);
-        box.addView(note, Ui.wide(c, 6));
+        moreBody.addView(note, Ui.wide(c, 6));
 
         redraw[0] = () -> {
+            for (int i = 0; i < ways.length; i++) {
+                boolean on = ways[i] == d.by;
+                chips[i].setTextColor(on ? 0xFFFFFFFF : Ui.INK);
+                chips[i].setBackground(Ui.box(c, on ? Ui.TEAL : Ui.SOFT, on ? 0 : Ui.LINE, 20));
+            }
+            howNote.setText(LockMode.about(d.by));
+            timePanel.setVisibility(d.by == LockMode.ACTIVITY ? View.GONE : View.VISIBLE);
+            typePanel.setVisibility(d.by == LockMode.TIME ? View.GONE : View.VISIBLE);
             from.setText("From " + Routine.formatTime(d.start, h24));
             to.setText("to " + Routine.formatTime(d.end, h24));
             drawDays(c, dayRow, d, redraw[0]);
-            duringText.setText(d.during.isEmpty() ? "Not locked by activity." : LockRules.duringText(d.during) + ".");
-            if (d.days == 0) {
-                summary.setText(d.during.isEmpty() ? "No daily schedule. Use Lock now, pick days, or lock during an activity type."
-                        : "No daily times. This group locks during the activity types below.");
-            } else {
-                summary.setText("Locked " + LockRules.daysText(d.days).toLowerCase(java.util.Locale.ROOT) + ", "
-                        + Routine.formatTime(d.start, h24) + " to " + Routine.formatTime(d.end, h24)
-                        + (d.end <= d.start ? (d.end == d.start ? " (the whole day)" : " (into the next morning)") : "") + ".");
-            }
+            duringText.setText(d.during.isEmpty() ? "No activity types chosen yet." : LockRules.duringText(d.during) + ".");
+            summary.setText(summaryText(d, h24));
             long now = System.currentTimeMillis();
             nowNote.setText(d.untilMs > now ? "Locked by hand until " + clock(d.untilMs, h24) + " (" + LockRules.left(d.untilMs, now) + " left)."
                     : "Not locked by hand.");
@@ -250,11 +308,20 @@ final class GroupDialog {
                 return;
             }
             if (!DayPass.has(open[0], DayPass.LOCK_APPS) && d.apps.size() > LockRules.FREE_GROUP_APPS) {
-                ProPrompt.show(a, DayPass.LOCK_APPS, "Locking more than " + LockRules.FREE_GROUP_APPS + " apps (a group of apps)", theme,
+                ProPrompt.show(a, DayPass.LOCK_APPS, "Locking more than " + DayPass.appCount(LockRules.FREE_GROUP_APPS) + " (a group of apps)", theme,
                         () -> {
                             onUnlocked[0].run();
                             v.performClick();   // carry on with Save
                         });
+                return;
+            }
+            int missing = LockMode.missing(d.by, d.days, d.during.size());
+            if (missing == LockMode.NEED_TYPES) {
+                Lang.toast(c, "Choose at least one activity type", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (missing == LockMode.NEED_DAYS) {
+                Lang.toast(c, "Pick at least one day", Toast.LENGTH_SHORT).show();
                 return;
             }
             final boolean named = DayPass.has(open[0], DayPass.LOCK_MORE);
@@ -270,15 +337,18 @@ final class GroupDialog {
             g.apps.addAll(d.apps);
             g.startMin = d.start;
             g.endMin = d.end;
-            g.days = d.days;
+            g.days = LockMode.daysToSave(d.by, d.days);
             g.strict = d.strict && strictOk;
             g.untilMs = d.untilMs;
             g.during.clear();
-            g.during.addAll(d.during);
+            if (LockMode.keepsTypes(d.by)) g.during.addAll(d.during);
             g.hide = d.hide;
+            g.both = LockMode.bothToSave(d.by);
+            g.library = d.library;
             LauncherStore.save(a, cfg);
             dlg.dismiss();
             if (changed != null) changed.run();
+            StrongMode.offer(a);   // so the lock also holds from Recents and App info: asks for what Android still has to be told
         });
         if (existing != null) {
             dlg.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(v -> {
@@ -290,8 +360,30 @@ final class GroupDialog {
         }
     }
 
+    /** One line saying what the group will do, for the way chosen. */
+    private static String summaryText(Draft d, boolean h24) {
+        if (d.by != LockMode.TIME && d.during.isEmpty()) return "Choose at least one activity type";
+        String types = LockRules.duringText(d.during);
+        String days = LockRules.daysText(d.days).toLowerCase(java.util.Locale.ROOT);
+        String from = Routine.formatTime(d.start, h24), to = Routine.formatTime(d.end, h24);
+        switch (d.by) {
+            case LockMode.ACTIVITY:
+                return "Locked while a " + types + " slot is going on.";
+            case LockMode.BOTH:
+                if (d.days == 0) return "Pick at least one day";
+                return "Locked only while a " + types + " slot is going on, " + days + " from " + from + " to " + to + ".";
+            case LockMode.EITHER:
+                if (d.days == 0) return "Locked while a " + types + " slot is going on.";
+                return "Locked in the times above, and also whenever a " + types + " slot is going on.";
+            default:
+                if (d.days == 0) return "No daily schedule. Use Lock now, pick days, or lock during an activity type.";
+                return "Locked " + days + ", " + from + " to " + to
+                        + (d.end <= d.start ? (d.end == d.start ? " (the whole day)" : " (into the next morning)") : "") + ".";
+        }
+    }
+
     private static String appsLabelText(int open) {
-        return DayPass.has(open, DayPass.LOCK_APPS) ? "Apps in the group" : "Apps to lock (up to " + LockRules.FREE_GROUP_APPS + " free)";
+        return DayPass.has(open, DayPass.LOCK_APPS) ? "Apps in the group" : "Apps to lock (" + DayPass.appCount(LockRules.FREE_GROUP_APPS) + " free)";
     }
 
     private static String strictText(int open) {
@@ -403,7 +495,7 @@ final class GroupDialog {
                     if (checked) {
                         if (!DayPass.has(open[0], DayPass.LOCK_APPS) && d.apps.size() >= LockRules.FREE_GROUP_APPS) {
                             ((AlertDialog) dlg).getListView().setItemChecked(which, false);
-                            ProPrompt.show(a, DayPass.LOCK_APPS, "Locking more than " + LockRules.FREE_GROUP_APPS + " apps (a group of apps)", theme,
+                            ProPrompt.show(a, DayPass.LOCK_APPS, "Locking more than " + DayPass.appCount(LockRules.FREE_GROUP_APPS) + " (a group of apps)", theme,
                                     () -> {
                                         unlocked.run();
                                         // the app that was being added is added now

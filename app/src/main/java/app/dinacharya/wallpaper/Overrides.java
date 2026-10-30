@@ -54,6 +54,20 @@ public final class Overrides {
     public String sig = "";
     public final Map<String, Shift> shifts = new TreeMap<>();
     public final List<Edit> edits = new ArrayList<>();
+    /** Days that began before their time because the person woke early and started the day: the minutes earlier, by date. */
+    public final Map<String, Integer> wakes = new TreeMap<>();
+
+    /** How many minutes earlier than planned the day that starts on {@code d} was started (0 for none). */
+    public int earlyFor(LocalDate d) {
+        Integer m = wakes.get(d.toString());
+        return m == null ? 0 : Math.max(0, m);
+    }
+
+    /** Starts the day of {@code d} that many minutes early ("Early wake"); 0 or less takes it back. */
+    public void setEarly(LocalDate d, int mins) {
+        if (mins <= 0) wakes.remove(d.toString());
+        else wakes.put(d.toString(), Math.min(mins, 720));
+    }
 
     public Shift shiftFor(LocalDate d) {
         Shift s = shifts.get(d.toString());
@@ -76,7 +90,7 @@ public final class Overrides {
     }
 
     public boolean isEmpty() {
-        return shifts.isEmpty() && edits.isEmpty();
+        return shifts.isEmpty() && edits.isEmpty() && wakes.isEmpty();
     }
 
     public int editCount(LocalDate d) {
@@ -96,6 +110,7 @@ public final class Overrides {
     public void prune(LocalDate today) {
         String oldest = today.minusDays(3).toString();
         shifts.keySet().removeIf(k -> k.compareTo(oldest) < 0);
+        wakes.keySet().removeIf(k -> k.compareTo(oldest) < 0);
         edits.removeIf(e -> e.day.compareTo(oldest) < 0);
     }
 
@@ -104,6 +119,7 @@ public final class Overrides {
         o.sig = sig;
         for (Map.Entry<String, Shift> e : shifts.entrySet()) o.shifts.put(e.getKey(), e.getValue());
         o.edits.addAll(edits);
+        o.wakes.putAll(wakes);
         return o;
     }
 
@@ -113,6 +129,9 @@ public final class Overrides {
         for (Map.Entry<String, Shift> e : shifts.entrySet()) {
             sb.append("S\t").append(e.getKey()).append('\t').append(e.getValue().type).append('\t')
                     .append(e.getValue().mins).append('\n');
+        }
+        for (Map.Entry<String, Integer> e : wakes.entrySet()) {
+            sb.append("W\t").append(e.getKey()).append('\t').append(e.getValue()).append('\n');
         }
         for (Edit e : edits) {
             sb.append("E\t").append(e.day).append('\t').append(e.src).append('\t').append(e.skip ? 1 : 0).append('\t')
@@ -136,6 +155,11 @@ public final class Overrides {
                     String[] p = ln.split("\t", 4);
                     LocalDate.parse(p[1]);
                     o.shifts.put(p[1], new Shift(Integer.parseInt(p[2].trim()), Integer.parseInt(p[3].trim())));
+                } else if (ln.startsWith("W\t")) {
+                    String[] p = ln.split("\t", 3);
+                    LocalDate.parse(p[1]);
+                    int m = Integer.parseInt(p[2].trim());
+                    if (m > 0) o.wakes.put(p[1], Math.min(m, 720));
                 } else if (ln.startsWith("E\t")) {
                     String[] p = ln.split("\t", 6);
                     LocalDate.parse(p[1]);

@@ -16,17 +16,28 @@ public final class UsageDetail {
     public final Map<String, Long> perApp;
     /** App name to the times it was in use, as [start, end) pairs in order. Empty when they were not kept. */
     public final Map<String, List<long[]>> appIntervals;
+    /** Package name to the times that package was in use, as [start, end) pairs in order. Empty when they were not kept. */
+    public final Map<String, List<long[]>> pkgIntervals;
+    /** Package name to the name it is shown by. */
+    public final Map<String, String> pkgNames;
 
     public UsageDetail(long fromMs, long toMs, List<long[]> intervals, Map<String, Long> perApp) {
         this(fromMs, toMs, intervals, perApp, new java.util.HashMap<String, List<long[]>>());
     }
 
     public UsageDetail(long fromMs, long toMs, List<long[]> intervals, Map<String, Long> perApp, Map<String, List<long[]>> appIntervals) {
+        this(fromMs, toMs, intervals, perApp, appIntervals, new java.util.HashMap<String, List<long[]>>(), new java.util.HashMap<String, String>());
+    }
+
+    public UsageDetail(long fromMs, long toMs, List<long[]> intervals, Map<String, Long> perApp, Map<String, List<long[]>> appIntervals,
+                       Map<String, List<long[]>> pkgIntervals, Map<String, String> pkgNames) {
         this.fromMs = fromMs;
         this.toMs = toMs;
         this.intervals = intervals;
         this.perApp = perApp;
         this.appIntervals = appIntervals;
+        this.pkgIntervals = pkgIntervals;
+        this.pkgNames = pkgNames;
     }
 
     /**

@@ -338,8 +338,8 @@ final class SettingsPage extends Page {
         words.addView(Ui.label(a, owned ? "Thank you for supporting the app."
                 : !pass.isEmpty() ? pass
                 : VideoPass.offered(a)
-                ? "No ads, every day and week in reports, more pauses and locks, routines, goals, colours. Or try features free with short videos"
-                : "No ads, every day and week in reports, more pauses and locks, routines, goals, colours", 13, soft, false), Ui.wide(a, 3));
+                ? "No ads, every saved day and deeper analysis, goals, more pauses and locks, routines, colours. Or watch " + VideoProgress.NEED + " short videos for a free day of Pro"
+                : "No ads, every saved day and deeper analysis, goals, more pauses and locks, routines, colours", 13, soft, false), Ui.wide(a, 3));
         card.addView(words, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
         card.addView(new Glyph(a, Glyph.CHEVRON, owned ? Ui.MUTED : 0xFFFFFFFF), new LinearLayout.LayoutParams(a.dp(22), a.dp(22)));
         card.setOnClickListener(v -> a.openPro());
@@ -471,8 +471,8 @@ final class SettingsPage extends Page {
                 ? "No problems have been written down. If something goes wrong, the details are kept here so you can send them."
                 : "Some problems were written down. Copy them and send them to the developer."), Ui.wide(a, 4));
         rep.addView(Ui.button(a, "Copy problem report", false, v -> {
-            String text = "Dinacharya Launcher " + BackupData.APP_VERSION + " on Android " + Build.VERSION.RELEASE + " (" + Build.MANUFACTURER + " " + Build.MODEL + ")\n\n"
-                    + "Alarms:\n" + a.extras.alarmReport() + "\n\n" + Ads.get().status(a) + "\n\n"
+            String text = "Dinacharya Launcher " + buildName(a) + " on Android " + Build.VERSION.RELEASE + " (" + Build.MANUFACTURER + " " + Build.MODEL + ")\n\n"
+                    + "Alarms:\n" + a.extras.alarmReport() + "\n\n" + "Locks:\n" + StrongMode.report(a) + "\n\n" + Ads.get().status(a) + "\n\n"
                     + (crash == null ? "No crash recorded." : crash) + "\n\n" + (notes.isEmpty() ? "No handled problems." : notes);
             try {
                 ClipboardManager cm = (ClipboardManager) a.getSystemService(Context.CLIPBOARD_SERVICE);
@@ -487,16 +487,28 @@ final class SettingsPage extends Page {
 
     // ------------------------------------------------------------------ about
 
+    /** "1.0 (build 18)": the version and the build number of the app that is installed on this phone. */
+    @SuppressWarnings("deprecation")
+    private static String buildName(Context c) {
+        try {
+            android.content.pm.PackageInfo p = c.getPackageManager().getPackageInfo(c.getPackageName(), 0);
+            long code = Build.VERSION.SDK_INT >= 28 ? p.getLongVersionCode() : p.versionCode;
+            return BackupData.APP_VERSION + " (build " + code + ")";
+        } catch (android.content.pm.PackageManager.NameNotFoundException | RuntimeException e) {
+            return BackupData.APP_VERSION;
+        }
+    }
+
     private void about() {
         header("About");
         LinearLayout card = Ui.section(a, body, "Dinacharya Launcher", null);
-        card.addView(Ui.label(a, "Version " + BackupData.APP_VERSION, 15, Ui.INK, true), Ui.wide(a, 6));
+        card.addView(Ui.label(a, "Version " + buildName(a), 15, Ui.INK, true), Ui.wide(a, 6));
         card.addView(a.note("A minimal home screen that is your daily routine, with alarms for every slot, weekday and weekend routines, "
                 + "daily goals and reports, and a Google Drive backup. Dinacharya means “daily routine”."), Ui.wide(a, 6));
         BrandMark mark = new BrandMark(a);
         card.addView(mark, Ui.wide(a, 18));
         card.addView(a.note("Designed and developed by ASG."), Ui.wide(a, 4));
-        card.addView(a.note("Free with small ads. Dinacharya Pro, a one-time purchase, removes the ads and unlocks the extras."), Ui.wide(a, 8));
+        card.addView(a.note("Free with small ads. Dinacharya Pro, monthly or for life, removes the ads and unlocks the extras."), Ui.wide(a, 8));
         a.addFooter(body);
     }
 }

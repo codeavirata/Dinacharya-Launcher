@@ -7,8 +7,8 @@ package app.dinacharya.wallpaper;
  */
 public final class FocusRules {
     public static final int ALLOW = 0, NUDGE = 1, STRICT = 2, LIMIT = 3;
-    /** How many apps keep a rule in the free version; Pro has no limit and also unlocks Strict and daily limits. */
-    public static final int FREE_APPS = 2;
+    /** How many apps keep a rule in the free version (one); Pro has no limit and also unlocks Strict and daily limits. */
+    public static final int FREE_APPS = 1;
 
     public static final class Decision {
         public final int type;
@@ -37,7 +37,7 @@ public final class FocusRules {
     private FocusRules() {
     }
 
-    /** Whether this app's rule is in force (in the free version only the first few apps' rules are). */
+    /** Whether this app's rule is in force (in the free version only the first app's rule is). */
     public static boolean active(LauncherConfig c, String appKey, boolean pro) {
         return active(c, appKey, pro ? DayPass.ALL : DayPass.FREE);
     }

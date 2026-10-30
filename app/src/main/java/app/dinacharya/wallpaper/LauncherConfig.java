@@ -13,6 +13,8 @@ import java.util.Set;
 public final class LauncherConfig {
     public static final int MAX_RULES = 60;
     public static final int MAX_GROUPS = 8, MAX_GROUP_APPS = 40, MAX_DURING = 20;
+    /** Phone use in slots: how many activity types can have a list of apps, and how many apps one list holds. */
+    public static final int MAX_USE_TYPES = 40, MAX_USE_APPS = 40;
     /** The colours of the list of all apps, the pause screen and the settings. The home screen itself always shows the day poster. */
     public static final int THEME_AUTO = 0, THEME_DARK = 1, THEME_LIGHT = 2;
     public static final String[] THEME_NAMES = {"Auto", "Dark", "Light"};
@@ -68,6 +70,13 @@ public final class LauncherConfig {
         public final List<String> during = new ArrayList<>();
         /** Keep the apps of the group out of the list of all apps and out of search while their lock holds. */
         public boolean hide;
+        /**
+         * With both a daily window and activity types set: lock only while the window is open AND a slot of a chosen type is going on
+         * ("Study, but only from 9 to 5"). Off: either one locks the group.
+         */
+        public boolean both;
+        /** Also lock the group while library mode is on. */
+        public boolean library;
 
         Group(String name) {
             this.name = cleanGroupName(name);
@@ -134,12 +143,24 @@ public final class LauncherConfig {
     public int strictSec = 30;
     /**
      * Strong lock: locks and pauses are also held when an app is opened from somewhere other than this home screen
-     * (Recents, a notification, another launcher). Off until the person turns it on and allows what it needs.
+     * (Recents, App info, a notification, another launcher). On from the start, because a lock that only holds on one screen is not a
+     * lock; it works as soon as the person has allowed what Android asks for, and only while something is locked or paused. Only
+     * a person who switches it off by hand stores a 0 here.
      */
-    public boolean strong = false;
+    public boolean strong = true;
     public final List<Rule> rules = new ArrayList<>();
     /** Groups of apps that are locked for a time. */
     public final List<Group> groups = new ArrayList<>();
+    /**
+     * Phone use in slots (optional, off until the person turns it on): time in apps that are not part of the slot's activity is marked on
+     * the home screen and counted against focus in the reports.
+     */
+    public boolean trackUse = false;
+    /**
+     * For each activity type (see {@link #typeKey}), the apps that count as part of it: time in them is not phone use during a slot of that
+     * type. A type with no entry has none, so every app counts as phone use in its slots.
+     */
+    public final java.util.Map<String, List<String>> typeApps = new java.util.LinkedHashMap<>();
 
     public LauncherConfig() {
     }
@@ -229,11 +250,60 @@ public final class LauncherConfig {
         return true;
     }
 
+    // ------------------------------------------------------------------ phone use in slots
+
+    /** The apps that count as part of an activity type (never null; a copy). */
+    public List<String> appsOfType(int kind, String sub) {
+        List<String> l = typeApps.get(typeKey(kind, sub));
+        return l == null ? new ArrayList<String>() : new ArrayList<>(l);
+    }
+
+    /**
+     * Sets the apps that count as part of an activity type. Keys that are not apps, repeats and anything past the limit are left out; an empty
+     * list takes the entry away. Returns false when the type has no room left (too many types already have a list).
+     */
+    public boolean setTypeApps(int kind, String sub, List<String> keys) {
+        if (kind < 0 || kind >= Routine.KIND_NAMES.length) return false;
+        String tk = typeKey(kind, sub);
+        List<String> clean = new ArrayList<>();
+        if (keys != null) {
+            for (String k : keys) {
+                if (AppKey.valid(k) && !AppKey.isAction(k) && !clean.contains(k) && clean.size() < MAX_USE_APPS) clean.add(k);
+            }
+        }
+        if (clean.isEmpty()) {
+            typeApps.remove(tk);
+            return true;
+        }
+        if (!typeApps.containsKey(tk) && typeApps.size() >= MAX_USE_TYPES) return false;
+        typeApps.put(tk, clean);
+        return true;
+    }
+
+    /**
+     * The packages whose use counts as part of the activity of a slot (empty when phone use in slots is off, so every app counts as
+     * phone use then). Apps are matched by package, whichever profile they are in.
+     */
+    public java.util.Set<String> partPackages(int kind, String sub) {
+        java.util.Set<String> out = new LinkedHashSet<>();
+        if (!trackUse) return out;
+        List<String> l = typeApps.get(typeKey(kind, sub));
+        if (l != null) for (String k : l) out.add(AppKey.pkg(k));
+        out.remove("");
+        return out;
+    }
+
     /** Forgets an app everywhere (it was uninstalled). */
     public void forget(String key) {
         hidden.remove(key);
         removeRule(key);
         for (Group g : groups) g.apps.remove(key);
+        java.util.Iterator<java.util.Map.Entry<String, List<String>>> it = typeApps.entrySet().iterator();
+        while (it.hasNext()) {
+            List<String> l = it.next().getValue();
+            l.remove(key);
+            if (l.isEmpty()) it.remove();
+        }
         if (key.equals(swipeLeft)) swipeLeft = "";
         if (key.equals(swipeRight)) swipeRight = "";
     }
@@ -249,7 +319,8 @@ public final class LauncherConfig {
         sb.append("focusKinds=").append(focusKinds).append('\n');
         sb.append("pauseSec=").append(pauseSec).append('\n');
         sb.append("strictSec=").append(strictSec).append('\n');
-        if (strong) sb.append("strong=1\n");
+        if (!strong) sb.append("strong=").append(0).append('\n');
+        if (trackUse) sb.append("trackUse=1\n");
         sb.append("swipes=2\n");
         sb.append("swipeLeft=").append(swipeLeft).append('\n');
         sb.append("swipeRight=").append(swipeRight).append('\n');
@@ -270,6 +341,18 @@ public final class LauncherConfig {
             if (g.during.isEmpty() && !g.hide) continue;
             sb.append("GX\t").append(i).append('\t').append(g.hide ? 1 : 0);
             for (String k : g.during) sb.append('\t').append(k);
+            sb.append('\n');
+        }
+        // How the window and the activity types combine, and the library flag, by the group's place in the list. An older version leaves these out.
+        for (int i = 0; i < groups.size(); i++) {
+            Group g = groups.get(i);
+            if (!g.both && !g.library) continue;
+            sb.append("GY\t").append(i).append('\t').append(g.both ? 1 : 0).append('\t').append(g.library ? 1 : 0).append('\n');
+        }
+        // The apps that count as part of an activity type. An older version leaves these lines out.
+        for (java.util.Map.Entry<String, List<String>> en : typeApps.entrySet()) {
+            sb.append("AU\t").append(en.getKey());
+            for (String k : en.getValue()) sb.append('\t').append(k);
             sb.append('\n');
         }
         return sb.toString();
@@ -328,6 +411,22 @@ public final class LauncherConfig {
                             if (validDuring(p[k]) && !g.during.contains(p[k]) && g.during.size() < MAX_DURING) g.during.add(p[k]);
                         }
                     }
+                } else if (ln.startsWith("GY\t")) {
+                    String[] p = ln.split("\t", -1);
+                    int gi = p.length >= 4 ? num(p[1], -1, -1, MAX_GROUPS) : -1;
+                    if (gi >= 0 && gi < c.groups.size()) {
+                        c.groups.get(gi).both = p[2].trim().equals("1");
+                        c.groups.get(gi).library = p[3].trim().equals("1");
+                    }
+                } else if (ln.startsWith("AU\t")) {
+                    String[] p = ln.split("\t", -1);
+                    if (p.length >= 3 && validDuring(p[1]) && !p[1].endsWith(":*")) {
+                        List<String> keys = new ArrayList<>();
+                        for (int k = 2; k < p.length; k++) {
+                            if (AppKey.valid(p[k]) && !AppKey.isAction(p[k]) && !keys.contains(p[k]) && keys.size() < MAX_USE_APPS) keys.add(p[k]);
+                        }
+                        if (!keys.isEmpty() && (c.typeApps.containsKey(p[1]) || c.typeApps.size() < MAX_USE_TYPES)) c.typeApps.put(p[1], keys);
+                    }
                 } else {
                     int eq = ln.indexOf('=');
                     if (eq <= 0) continue;
@@ -343,6 +442,7 @@ public final class LauncherConfig {
                         case "pauseSec": c.pauseSec = num(v, 10, 3, 60); break;
                         case "strictSec": c.strictSec = num(v, 30, 5, 120); break;
                         case "strong": c.strong = v.trim().equals("1"); break;
+                        case "trackUse": c.trackUse = v.trim().equals("1"); break;
                         case "swipes": newSwipes = true; break;
                         case "swipeLeft": c.swipeLeft = AppKey.valid(v.trim()) ? v.trim() : ""; break;
                         case "swipeRight": c.swipeRight = AppKey.valid(v.trim()) ? v.trim() : ""; break;

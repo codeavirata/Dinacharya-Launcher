@@ -12,6 +12,13 @@ public class AlarmReceiver extends BroadcastReceiver {
         if (e == null) return;
         Context c = context.getApplicationContext();
         boolean test = AlarmPlanner.isTest(e);
+        // Library mode is looked at when the alarm rings, not when it was set, so switching it on or off in between is always right:
+        // an alarm that would ring only vibrates while it is on.
+        try {
+            e = e.withMode(LibraryMode.quietMode(Store.library(c), System.currentTimeMillis(), Store.zone(), e.mode));
+        } catch (RuntimeException ex) {
+            CrashLog.note(c, "library mode", ex);
+        }
         AlarmScheduler.noteFired(c, e.timeMs, test);
         if (!test) {
             try {

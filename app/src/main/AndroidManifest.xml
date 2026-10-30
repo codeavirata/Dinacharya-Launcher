@@ -26,7 +26,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- Lets the automatic backup wait for Wi-Fi when you choose "Wi-Fi only", and lets ads load. -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- The one-time "Pro" purchase through Google Play. -->
+    <!-- The "Pro" plans (monthly and lifetime) through Google Play. -->
     <uses-permission android:name="com.android.vending.BILLING" />
     <!-- Lets a swipe down on the home screen open the notification shade (an ordinary permission; if a phone
          refuses it, swiping down from the top of the screen still works). -->
@@ -142,6 +142,12 @@
             android:exported="false"
             android:label="Dinacharya Pro" />
 
+        <!-- Free and Pro side by side: the last screen of the tour, and a link from the Pro screen. -->
+        <activity
+            android:name=".CompareActivity"
+            android:exported="false"
+            android:label="Free and Pro" />
+
         <activity
             android:name=".PerformanceActivity"
             android:exported="false"
@@ -214,6 +220,11 @@
             </intent-filter>
         </receiver>
 
+        <!-- Library mode switching on or off by its hours: the ringer follows. -->
+        <receiver
+            android:name=".LibraryRinger$Receiver"
+            android:exported="false" />
+
         <receiver
             android:name=".DayCloser$DayCloseReceiver"
             android:exported="false" />
@@ -228,6 +239,12 @@
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
+        <!-- Every few hours: looks at the alarms and the wallpaper and puts back what the phone dropped. -->
+        <service
+            android:name=".HealthJob"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
         <!-- Hands a report PDF to Drive, mail or chat when you tap Share. Reads nothing else. -->
         <provider
             android:name=".ReportProvider"
@@ -235,7 +252,7 @@
             android:exported="false"
             android:grantUriPermissions="true" />
 
-        <!-- Dinacharya's live wallpaper: your day on the home screen, the lock screen and in recent apps. The launcher asks
+        <!-- Dinacharya Launcher's live wallpaper: your day on the home screen, the lock screen and in recent apps. The launcher asks
              Android to put it in place; the person confirms once on Android's own preview screen. -->
         <service
             android:name=".PosterWallpaperService"

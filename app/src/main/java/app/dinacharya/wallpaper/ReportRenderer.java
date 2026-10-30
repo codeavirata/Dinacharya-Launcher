@@ -36,7 +36,7 @@ final class ReportRenderer {
     /** A slot you renamed for the day. Not the Rest colour, so the two are not mixed up. */
     static final int CHANGED_COL = 0xFF8A63B8;
     static final int RED = 0xFFC4553B;
-    private static final int[] KIND = {0xFF0E7C7B, 0xFFC98A12, 0xFFC4553B, 0xFF4A6C94, 0xFF404685};
+    static final int[] KIND = {0xFF0E7C7B, 0xFFC98A12, 0xFFC4553B, 0xFF4A6C94, 0xFF404685};
     private static final int[] KIND_NAME_ORDER = {Routine.TASK, Routine.REST, Routine.MEAL, Routine.PERSONAL};
 
     private static final Typeface REG = Typeface.create("sans-serif", Typeface.NORMAL);
@@ -61,13 +61,36 @@ final class ReportRenderer {
 
     // ------------------------------------------------------------------ entry points
 
+    /**
+     * The whole day report (the PDF), the top half of it (up to the sleep), the rest (the table of slots and the suggestions), or the
+     * whole report without the slot-by-slot focus part, which is part of Pro (the free PDF).
+     */
+    static final int ALL = 0, HEAD = 1, TAIL = 2, BASIC = 3;
+
     /** Total height of a day report. */
     static float measure(DayReport r, boolean h24, float pageH) {
-        return new ReportRenderer(null, h24, pageH).day(r);
+        return measure(r, h24, pageH, true);
+    }
+
+    static float measure(DayReport r, boolean h24, float pageH, boolean analysis) {
+        return new ReportRenderer(null, h24, pageH).day(r, analysis ? ALL : BASIC);
     }
 
     static void draw(Canvas c, DayReport r, boolean h24, float pageH) {
-        new ReportRenderer(c, h24, pageH).day(r);
+        draw(c, r, h24, pageH, true);
+    }
+
+    static void draw(Canvas c, DayReport r, boolean h24, float pageH, boolean analysis) {
+        new ReportRenderer(c, h24, pageH).day(r, analysis ? ALL : BASIC);
+    }
+
+    /** One part of a day report on a long page, for the screen, which puts the slot analysis between the two parts. */
+    static float measurePart(DayReport r, boolean h24, int part) {
+        return new ReportRenderer(null, h24, 0).day(r, part);
+    }
+
+    static void drawPart(Canvas c, DayReport r, boolean h24, int part) {
+        new ReportRenderer(c, h24, 0).day(r, part);
     }
 
     static float measureWeek(WeekStats w, List<String> tips, boolean h24) {
@@ -204,20 +227,115 @@ final class ReportRenderer {
 
     // ------------------------------------------------------------------ the day report
 
-    private float day(DayReport r) {
+    private float day(DayReport r, int part) {
         y = M;
-        header(r);
-        breakdown(r);
-        phone(r);
-        topApps(r);
-        focus(r);
-        timeBudget(r);
-        types(TypeStats.of(r), r.partial ? "Time by activity type, so far" : "Time by activity type", false);
-        sleep(r);
-        slots(r);
-        suggestions(r.tips, "Suggestions for tomorrow");
-        y += 6;
+        if (part != TAIL) {
+            header(r);
+            breakdown(r);
+            phone(r);
+            topApps(r);
+            focus(r);
+            timeBudget(r);
+            types(TypeStats.of(r), r.partial ? "Time by activity type, so far" : "Time by activity type", false);
+            sleep(r);
+        }
+        if (part != HEAD) {
+            slots(r);
+            if (part == ALL) focusSlots(r);   // on the screen this is the card between the two parts
+            suggestions(r.tips, "Suggestions for tomorrow");
+            y += 6;
+        }
         return y;
+    }
+
+    /**
+     * The slot-by-slot analysis for the printed report: for each slot that ran, the time devoted, the focus, the longest focus and the
+     * other phone use with its times; then the same by activity. The screen shows this as dropdown cards (see {@link SlotCards}).
+     */
+    private void focusSlots(DayReport r) {
+        if (!r.phoneKnown) return;
+        List<SlotReport.Item> items = SlotReport.slots(r);
+        if (items.isEmpty()) return;
+        ensure(70);
+        eyebrow("Focus, slot by slot");
+        text(fit("Focus is the share of a slot's time with no other phone use. Apps chosen for an activity do not count against it.", 8.5f, REG, CW),
+                M, y + 8, 8.5f, MUTED, REG, Paint.Align.LEFT, 0f);
+        y += 20;
+        for (SlotReport.Item s : items) {
+            List<String> stretches = stretchLines(s);
+            float h = 36f + stretches.size() * 12f;
+            ensure(h);
+            text(clock(s.startMs), M, y + 11, 9.5f, INK, MONO, Paint.Align.LEFT, 0f);
+            dot(M + 72, y + 8, 3.2f, KIND[Math.max(0, Math.min(KIND.length - 1, s.kind))]);
+            text(fit(s.title, 10.5f, MED, 300), M + 82, y + 11, 10.5f, INK, MED, Paint.Align.LEFT, 0f);
+            int pct = s.focusPct();
+            text(pct < 0 ? "–" : pct + "%", W - M, y + 11, 11f, pct < 0 ? MUTED : toneColor(pct), BOLD, Paint.Align.RIGHT, 0f);
+            text(fit(figures(s), 9f, REG, CW - 82), M + 82, y + 24, 9f, MUTED, REG, Paint.Align.LEFT, 0f);
+            for (int i = 0; i < stretches.size(); i++) text(stretches.get(i), M + 82, y + 36 + i * 12f, 8.5f, RED, REG, Paint.Align.LEFT, 0f);
+            y += h;
+        }
+        y += 4;
+        List<SlotReport.Item> acts = SlotReport.activities(r);
+        if (!acts.isEmpty()) {
+            ensure(34);
+            text("BY ACTIVITY", M, y + 8, 8f, MUTED, BOLD, Paint.Align.LEFT, 0.12f);
+            y += 16;
+            for (SlotReport.Item a : acts) {
+                ensure(24);
+                dot(M + 4, y + 7, 3.5f, KIND[Math.max(0, Math.min(KIND.length - 1, a.kind))]);
+                text(fit(a.title, 10.5f, MED, 100), M + 12, y + 11, 10.5f, INK, MED, Paint.Align.LEFT, 0f);
+                float x0 = M + 126;
+                float x1 = W - M - 190;
+                fill(x0, y + 3, x1, y + 13, 5, SOFT);
+                float share = a.workedMs <= 0 ? 0f : Math.min(1f, a.devotedMs() / (float) a.workedMs);
+                if (share > 0) fill(x0, y + 3, x0 + Math.max(5f, (x1 - x0) * share), y + 13, 5, ACCENT);
+                String v = "Devoted " + SlotReport.dur(a.devotedMs()) + " of " + SlotReport.dur(a.workedMs);
+                text(v, W - M, y + 11, 9.5f, MUTED, REG, Paint.Align.RIGHT, 0f);
+                y += 22;
+            }
+        }
+        y += 2;
+        rule();
+    }
+
+    private static int toneColor(int pct) {
+        int t = SlotReport.tone(pct);
+        return t == SlotReport.TONE_GOOD ? ACCENT : (t == SlotReport.TONE_FAIR ? AMBER : RED);
+    }
+
+    /** The figures of a slot on one line: devoted, longest focus, other phone use. */
+    private static String figures(SlotReport.Item s) {
+        StringBuilder sb = new StringBuilder("Devoted ").append(SlotReport.dur(s.devotedMs()));
+        if (s.hasTimes()) sb.append("  ·  Longest focus ").append(SlotReport.dur(s.longestFocusMs));
+        sb.append(s.offMs() > 0 ? "  ·  Other phone use " + SlotReport.dur(s.offMs()) : "  ·  No other phone use");
+        return sb.toString();
+    }
+
+    /** The stretches of other phone use as at most two lines of text with their times. */
+    private List<String> stretchLines(SlotReport.Item s) {
+        List<String> out = new ArrayList<>();
+        if (s.uses.isEmpty()) return out;
+        StringBuilder cur = new StringBuilder();
+        int shown = 0;
+        for (SlotUse.Episode e : s.uses) {
+            String piece = clock(e.startMs) + "–" + clock(e.endMs) + (e.app.isEmpty() ? "" : " " + e.app);
+            String test = cur.length() == 0 ? piece : cur + ";  " + piece;
+            if (cur.length() > 0 && width(test, 8.5f, REG, 0f) > CW - 90) {
+                out.add(cur.toString());
+                if (out.size() == 2) break;
+                cur = new StringBuilder(piece);
+            } else {
+                cur = new StringBuilder(test);
+            }
+            shown++;
+        }
+        if (out.size() < 2 && cur.length() > 0) out.add(cur.toString());
+        int total = Math.max(s.useCount, s.uses.size());
+        if (shown < total && !out.isEmpty()) {
+            int last = out.size() - 1;
+            out.set(last, out.get(last) + "  +" + (total - shown) + " more");
+        }
+        return out;
     }
 
     private void header(DayReport r) {

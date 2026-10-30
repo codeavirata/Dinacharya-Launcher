@@ -13,16 +13,24 @@ final class ReportView extends View {
     private List<String> tips;
     private boolean h24;
     private float contentH = 100f;
+    /** Which part of the day report is shown (see {@link ReportRenderer#ALL}). */
+    private int part = ReportRenderer.ALL;
 
     ReportView(Context context) {
         super(context);
     }
 
     void showDay(DayReport r, boolean h24) {
+        showDay(r, h24, ReportRenderer.ALL);
+    }
+
+    /** One part of the day report: {@link ReportRenderer#HEAD} or {@link ReportRenderer#TAIL} (the screen puts the slot analysis between them). */
+    void showDay(DayReport r, boolean h24, int part) {
         this.day = r;
         this.week = null;
         this.h24 = h24;
-        this.contentH = ReportRenderer.measure(r, h24, 0);
+        this.part = part;
+        this.contentH = ReportRenderer.measurePart(r, h24, part);
         requestLayout();
         invalidate();
     }
@@ -50,7 +58,7 @@ final class ReportView extends View {
         canvas.drawColor(0xFFFFFFFF);
         canvas.save();
         canvas.scale(scale, scale);
-        if (day != null) ReportRenderer.draw(canvas, day, h24, 0);
+        if (day != null) ReportRenderer.drawPart(canvas, day, h24, part);
         else if (week != null) ReportRenderer.drawWeek(canvas, week, tips, h24);
         canvas.restore();
     }

@@ -14,9 +14,13 @@ import android.service.wallpaper.WallpaperService;
 import android.view.SurfaceHolder;
 
 /**
- * The Dinacharya live wallpaper, which comes with the home screen. It redraws the poster at the start of every minute
+ * The Dinacharya Launcher live wallpaper, which comes with the home screen. It redraws the poster at the start of every minute
  * while the screen is visible, so the date rolls over at midnight, the old day scrolls away towards the next wake-up
  * time, and the highlighted slot moves on by itself.
+ *
+ * Nothing in here may throw: when a wallpaper service keeps failing, Android gives up on it and puts the phone's own wallpaper back.
+ * Every callback is therefore wrapped, a failure is written to the problem log and the frame is skipped, and the upkeep that keeps the
+ * alarms set runs a moment after the wallpaper is up, not while it starts.
  */
 public class PosterWallpaperService extends WallpaperService {
 
@@ -40,45 +44,62 @@ public class PosterWallpaperService extends WallpaperService {
         private final Runnable tick = new Runnable() {
             @Override
             public void run() {
-                drawFrame();
-                refreshScreen();
-                scheduleNext();
+                safe("tick", () -> {
+                    drawFrame();
+                    refreshScreen();
+                    scheduleNext();
+                });
             }
         };
 
         private final BroadcastReceiver clockChanged = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                drawFrame();
-                refreshScreen();
-                scheduleNext();
+                safe("clock", () -> {
+                    drawFrame();
+                    refreshScreen();
+                    scheduleNext();
+                });
             }
         };
+
+        /** Runs one step so that a failure in it is written down and skipped instead of closing the wallpaper. */
+        private void safe(String what, Runnable step) {
+            try {
+                step.run();
+            } catch (RuntimeException | LinkageError | OutOfMemoryError e) {
+                CrashLog.note(PosterWallpaperService.this, "wallpaper " + what, e);
+            }
+        }
 
         @Override
         public void onCreate(SurfaceHolder holder) {
             super.onCreate(holder);
-            setTouchEventsEnabled(false);
-            Store.prefs(PosterWallpaperService.this).registerOnSharedPreferenceChangeListener(this);
-            IntentFilter f = new IntentFilter();
-            f.addAction(Intent.ACTION_TIME_CHANGED);
-            f.addAction(Intent.ACTION_TIMEZONE_CHANGED);
-            f.addAction(Intent.ACTION_DATE_CHANGED);
-            if (Build.VERSION.SDK_INT >= 33) {
-                registerReceiver(clockChanged, f, Context.RECEIVER_NOT_EXPORTED);
-            } else {
-                registerReceiver(clockChanged, f);
-            }
-            receiverOn = true;
+            safe("start", () -> {
+                setTouchEventsEnabled(false);
+                Store.prefs(PosterWallpaperService.this).registerOnSharedPreferenceChangeListener(this);
+                IntentFilter f = new IntentFilter();
+                f.addAction(Intent.ACTION_TIME_CHANGED);
+                f.addAction(Intent.ACTION_TIMEZONE_CHANGED);
+                f.addAction(Intent.ACTION_DATE_CHANGED);
+                if (Build.VERSION.SDK_INT >= 33) {
+                    registerReceiver(clockChanged, f, Context.RECEIVER_NOT_EXPORTED);
+                } else {
+                    registerReceiver(clockChanged, f);
+                }
+                receiverOn = true;
+            });
+            safe("screens", () -> {
+                if (!isPreview()) {
+                    screens = currentScreens();
+                    WallpaperSetup.engineScreens(PosterWallpaperService.this, 0, screens);
+                }
+            });
+            // Keeps the alarms and the end-of-day report set, even if the app is never opened. A moment after the wallpaper is up,
+            // so a slow or failing step can never stop the wallpaper itself from starting.
             if (!isPreview()) {
-                screens = currentScreens();
-                WallpaperSetup.engineScreens(PosterWallpaperService.this, 0, screens);
+                handler.postDelayed(() -> safe("upkeep", () -> Keeper.ensure(PosterWallpaperService.this, "wallpaper")), 1500L);
             }
-            // Keeps the alarms and the end-of-day report set, even if the app is never opened.
-            PassSettle.run(PosterWallpaperService.this);
-            AlarmScheduler.reschedule(PosterWallpaperService.this);
-            DayCloser.schedule(PosterWallpaperService.this);
-            PassSettle.schedule(PosterWallpaperService.this);
         }
 
         /** The home screen, the lock screen or both (older phones cannot say, so the home screen is assumed). */
@@ -98,37 +119,43 @@ public class PosterWallpaperService extends WallpaperService {
         @Override
         public void onWallpaperFlagsChanged(int which) {
             super.onWallpaperFlagsChanged(which);
-            if (isPreview()) return;
-            int now = currentScreens();
-            WallpaperSetup.engineScreens(PosterWallpaperService.this, screens, now);
-            screens = now;
+            safe("screens changed", () -> {
+                if (isPreview()) return;
+                int now = currentScreens();
+                WallpaperSetup.engineScreens(PosterWallpaperService.this, screens, now);
+                screens = now;
+            });
         }
 
         @Override
         public void onDestroy() {
-            if (screens != 0) {
-                WallpaperSetup.engineScreens(PosterWallpaperService.this, screens, 0);
-                screens = 0;
-            }
-            handler.removeCallbacks(tick);
-            Store.prefs(PosterWallpaperService.this).unregisterOnSharedPreferenceChangeListener(this);
-            if (receiverOn) {
-                unregisterReceiver(clockChanged);
-                receiverOn = false;
-            }
+            safe("stop", () -> {
+                if (screens != 0) {
+                    WallpaperSetup.engineScreens(PosterWallpaperService.this, screens, 0);
+                    screens = 0;
+                }
+                handler.removeCallbacksAndMessages(null);
+                Store.prefs(PosterWallpaperService.this).unregisterOnSharedPreferenceChangeListener(this);
+                if (receiverOn) {
+                    receiverOn = false;
+                    unregisterReceiver(clockChanged);
+                }
+            });
             super.onDestroy();
         }
 
         @Override
         public void onVisibilityChanged(boolean isVisible) {
             visible = isVisible;
-            if (isVisible) {
-                drawFrame();
-                refreshScreen();
-                scheduleNext();
-            } else {
-                handler.removeCallbacks(tick);
-            }
+            safe("visibility", () -> {
+                if (isVisible) {
+                    drawFrame();
+                    refreshScreen();
+                    scheduleNext();
+                } else {
+                    handler.removeCallbacks(tick);
+                }
+            });
         }
 
         @Override
@@ -136,7 +163,7 @@ public class PosterWallpaperService extends WallpaperService {
             super.onSurfaceChanged(holder, format, w, h);
             width = w;
             height = h;
-            drawFrame();
+            safe("surface", this::drawFrame);
         }
 
         @Override
@@ -148,17 +175,21 @@ public class PosterWallpaperService extends WallpaperService {
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-            drawFrame();
-            refreshScreen();
-            scheduleNext();   // a changed to-do list may now need its pages to move
+            safe("settings changed", () -> {
+                drawFrame();
+                refreshScreen();
+                scheduleNext();   // a changed to-do list may now need its pages to move
+            });
         }
 
         /** Reads today's screen time in the background, then redraws. Does nothing if the user turned it off. */
         private void refreshScreen() {
             if (!visible) return;
             if (Store.load(PosterWallpaperService.this).showScreen) {
-                ScreenTime.refresh(PosterWallpaperService.this, () -> drawFrame());
+                ScreenTime.refresh(PosterWallpaperService.this, () -> safe("screen time", this::drawFrame));
             }
+            // phone use in the slots (only when the person turned it on; it does nothing otherwise)
+            SlotUseCache.refresh(PosterWallpaperService.this, () -> safe("slot use", this::drawFrame));
         }
 
         private void scheduleNext() {
@@ -187,10 +218,13 @@ public class PosterWallpaperService extends WallpaperService {
                     long now = System.currentTimeMillis();
                     renderer.drawLive(canvas, width, height, r, Store.overrides(PosterWallpaperService.this, r), now,
                             Store.zone(), systemIsNight(), r.showScreen ? ScreenTime.last : null,
-                            Store.posterExtras(PosterWallpaperService.this));
+                            Store.posterExtras(PosterWallpaperService.this, r));
                 }
-            } catch (RuntimeException ignored) {
-                // The surface can disappear between the check and the draw; the next frame recovers.
+            } catch (RuntimeException | OutOfMemoryError e) {
+                // The surface can disappear between the check and the draw; the next frame recovers. Anything else is written down.
+                if (!(e instanceof IllegalArgumentException) && !(e instanceof IllegalStateException)) {
+                    CrashLog.note(PosterWallpaperService.this, "wallpaper draw", e);
+                }
             } finally {
                 if (canvas != null) {
                     try {

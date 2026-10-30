@@ -1,6 +1,5 @@
 package app.dinacharya.wallpaper;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -15,12 +14,12 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.List;
 
 /**
  * A short tour of what the app does: eleven cards with a picture each, then a card that checks what is still missing from
- * the setup. It comes after the welcome and the setup the first time, and can be replayed from the settings. When it is the
- * first time, finishing it opens the dashboard with a "you're all set" message.
+ * the setup, then the last screen, which shows Free and Pro side by side (see {@link CompareActivity}). It comes after the welcome
+ * and the setup the first time, and can be replayed from the settings. When it is the first time, finishing it opens the dashboard
+ * with a "you're all set" message.
  */
 public class TourActivity extends LangActivity {
     /** Set when the tour is the last step of the first-run welcome, so that it ends in the dashboard. */
@@ -51,10 +50,10 @@ public class TourActivity extends LangActivity {
             "Every app, as a plain list over a soft blur of your day. Type to search. Slide along the A to Z strip to jump to a letter. Press and hold an app to add a pause, hide it, or open its info. Dinacharya Launcher is in the list too: tap it for the dashboard.",
             "Tap your day to open the dashboard. Swipe down for notifications. Swipe left for the camera and right for the phone: you can change both to any app. Press and hold anywhere for settings.",
             "Set your wake-up time and shape the day into slots: Study, Rest, Meals and more. Keep one routine for weekdays and others for weekends or exam days. Open the dashboard to edit them.",
-            "Each slot can ring when it starts and ask one question: carry on, or change the plan? At bedtime it asks when you went to sleep, and if you need more time it tells you what that costs in sleep. The question comes up by itself, and again when you wake the phone or come back to the home screen.",
-            "Pick the apps that pull you away. During focus time they wait a few seconds before they open, and you can always open them anyway. Free: two apps. Pro: any number, strict pauses, daily limits, and playful pauses: a quick sum, a sentence to type, slow breaths, or saying why you are opening it.",
-            "Shut the apps that eat your time for hours you choose: every day or on some days, or just for the next hour. A locked app is greyed in the list, and the lock screen shows when it opens again. You can break a lock by waiting half a minute and typing a sentence. Free: lock two apps. Pro: groups of apps, as many locks as you like, and strict locks that cannot be broken. Set it up in the home settings.",
-            "A score for each day, phone time by hour and by app, goals with streaks, and plain suggestions. Today and the last three days are free, and each can be saved as a PDF. Pro adds every saved day and the weekly view.",
+            "Each slot can ring when it starts and ask one question: carry on, or change the plan? At bedtime it asks when you went to sleep, and if you need more time it tells you what that costs in sleep. The question comes up by itself, and again when you wake the phone or come back to the home screen. The start-of-day alarm can ask for a sum, a short pause, a shake or a sentence before it stops, and shows a motivating quote. Finished early? Tap Finish early on Home. Library mode keeps every alarm silent, with only vibration.",
+            "Pick the apps that pull you away. During focus time they wait a few seconds before they open, and you can always open them anyway. Free: one app. Pro: any number, strict pauses, daily limits, and playful pauses: a quick sum, a sentence to type, slow breaths, or saying why you are opening it.",
+            "Shut the apps that eat your time for hours you choose: every day or on some days, or just for the next hour. A locked app is greyed in the list, and the lock screen shows when it opens again. You can break a lock by waiting half a minute and typing a sentence. Free: one lock with one app. Pro: groups of apps, as many locks as you like, and strict locks that cannot be broken. A group can also lock only while an activity type such as Study is going on, only when both the hours and the activity hold, or in library mode. Set it up in the home settings.",
+            "A score for today, phone time by hour and by app, and plain suggestions, with a PDF to save or share. Today's report is free. Pro adds every saved day, the weekly view, the slot-by-slot analysis and habit cards, and goals: set one for a slot, give it its own to-do list, and watch the streak.",
             "Sign in with Google to back up to a private space in your own Drive, and restore on a new phone. The home settings, your routines and your reports are all in it.",
             "",
             "The Dinacharya Launcher live wallpaper shows the time, the date and every slot of your day, with the one you are in highlighted, and keeps itself up to date. It comes with the home screen: Dinacharya Launcher asks Android to put it in place and you confirm once, so it also shows on your lock screen and in your recent apps.",
@@ -220,7 +219,7 @@ public class TourActivity extends LangActivity {
         View gap = new View(this);
         nav.addView(gap, new LinearLayout.LayoutParams(0, 1, 1f));
         next = Ui.button(this, "Next", true, v -> {
-            if (page == SETUP) finishTour();
+            if (page == SETUP) openFinal();
             else step(1);
         });
         next.setMinWidth(dp(120));
@@ -245,7 +244,7 @@ public class TourActivity extends LangActivity {
         else fillSetup();
         skip.setVisibility(setup ? View.INVISIBLE : View.VISIBLE);
         back.setVisibility(page == 0 ? View.INVISIBLE : View.VISIBLE);
-        next.setText(setup ? "Done" : "Next");
+        next.setText("Next");
         for (int i = 0; i < dots.getChildCount(); i++) {
             View dot = dots.getChildAt(i);
             dot.setBackground(Ui.box(this, i == page ? TEAL : 0x44FFFFFF, 0, 4));
@@ -257,16 +256,16 @@ public class TourActivity extends LangActivity {
 
     /** The Pro page's words, with the price Google Play shows once it has answered. */
     private String proBody() {
-        String price = Pro.get(this).price();
-        String pay = price.isEmpty() ? "Pro is one payment through Google Play, with no subscription. "
-                : "Pro is one payment of " + price + " through Google Play, with no subscription. ";
-        return "Free: the home screen, alarms, today's report and the last three days, two paused apps and two locked apps. "
+        String life = Pro.get(this).price();
+        String month = Pro.get(this).monthlyPrice();
+        String pay = life.isEmpty() || month.isEmpty() ? "Pro is a monthly plan or one payment for life, through Google Play. "
+                : "Pro is " + month + " a month, or " + life + " once for life, through Google Play. ";
+        return "Free: the home screen, alarms, to-dos, today's report, one paused app and one locked app. "
                 + pay
-                + "It adds every saved day and the weekly view, strict and playful pauses, daily limits, groups of locked apps "
-                + "and strict locks, weekday and weekend routines, goals, every colour look, and no ads."
-                + (VideoPass.offered(this) ? " Or watch short videos to open some of these for a while: 1 video opens just ONE of them for a day, 2 videos for 3 days, "
-                + "3 videos the whole group it is in. Tap \u201cWatch videos\u201d wherever you see \u201cPart of Pro\u201d, or on the Pro screen. "
-                + "What you set up with it goes back to the free version when the time is up." : "");
+                + "It adds goals with their own to-dos, every saved day and the deeper analysis, more pauses and locks, more routines, "
+                + "every colour look, and no ads."
+                + (VideoPass.offered(this) ? " Or watch " + VideoProgress.NEED + " short videos and everything in Pro is open for a day. "
+                + "What you set up with it goes back to the free version when the day is up. The last screen shows it all side by side." : "");
     }
 
     /** Moves to the next ({@code dir} 1) or previous (-1) page with a short slide and fade. */
@@ -281,6 +280,19 @@ public class TourActivity extends LangActivity {
             content.setTranslationX(shift);
             content.animate().alpha(1f).translationX(0f).setDuration(150).withEndAction(() -> busy = false).start();
         }).start();
+    }
+
+    /** After the last check: the screen that shows Free and Pro side by side. It carries on to the dashboard the first time. */
+    private void openFinal() {
+        Store.prefs(this).edit().putBoolean(LauncherActivity.PREF_TOUR_DONE, true).apply();
+        try {
+            startActivity(new Intent(this, CompareActivity.class)
+                    .putExtra(CompareActivity.EXTRA_FIRST_RUN, getIntent().getBooleanExtra(EXTRA_FIRST_RUN, false)));
+            finish();
+        } catch (RuntimeException e) {
+            CrashLog.note(this, "tour last screen", e);
+            finishTour();
+        }
     }
 
     private void finishTour() {

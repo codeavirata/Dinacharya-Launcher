@@ -11,7 +11,7 @@ android {
         minSdk 26
         // Google Play needs new apps and updates to target Android 16 (API 36) or later.
         targetSdk 36
-        versionCode 17
+        versionCode 26
         versionName '1.0'
     }
 
@@ -58,7 +58,7 @@ android {
 dependencies {
     // "Sign in with Google" account picker and Drive permission (Google Identity Services).
     implementation 'com.google.android.gms:play-services-auth:21.2.0'
-    // Google Play Billing: the one-time "Pro" purchase.
+    // Google Play Billing: the "Pro" plans (a monthly subscription and a lifetime purchase).
     implementation 'com.android.billingclient:billing:9.1.0'
     // Google AdMob: small banner ads for people who have not bought Pro, and the consent form.
     implementation 'com.google.android.gms:play-services-ads:25.5.0'

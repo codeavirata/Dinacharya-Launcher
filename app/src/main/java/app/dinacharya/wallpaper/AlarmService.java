@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ServiceInfo;
 import android.media.AudioAttributes;
+import android.media.AudioFormat;
+import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -44,6 +46,7 @@ public class AlarmService extends Service {
     private static final String CH_MISSED = "missed";
     private static final int ID_RING = 77;
     private static final int ID_MISSED = 78;
+    private static final int ID_NEVER = 79;
     private static final long TIMEOUT_MS = 5 * 60 * 1000L;
     private static final long WAKE_TIMEOUT_MS = 30 * 60 * 1000L;
     private static final String CH_SILENT = "slot_silent";
@@ -63,6 +66,8 @@ public class AlarmService extends Service {
         }
     };
     private MediaPlayer player;
+    /** A tone made by the app itself, for when no ringtone on the phone can be played. */
+    private AudioTrack beep;
     private Vibrator vibrator;
     private PowerManager.WakeLock wake;
     private AlarmPlanner.Event current;
@@ -103,6 +108,9 @@ public class AlarmService extends Service {
         if (AlarmPlanner.isTest(e)) {
             title = "Test alarm";
             text = "This is how an alarm looks. Tap to stop it.";
+        } else if (e.kind == AlarmPlanner.PLAN_ASK) {
+            title = "Plan your day?";
+            text = "Your day is off. Plan it now, later, or leave it. Tap to answer.";
         } else if (e.kind == AlarmPlanner.BREAK_END) {
             title = "Your break is over";
             text = name.isEmpty() ? "Time to get back to work. Tap to answer." : "Time to get back to " + name + ". Tap to answer.";
@@ -355,34 +363,100 @@ public class AlarmService extends Service {
         }
     }
 
+    private static AudioAttributes alarmAttributes() {
+        return new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_ALARM)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+    }
+
+    /**
+     * The sounds to try, best first: the alarm tone the person chose on the phone, then the phone's default alarm, then the
+     * notification and ringtone sounds. A phone can have none chosen, or one that cannot be read, so each is tried in turn.
+     */
+    private java.util.List<Uri> toneCandidates() {
+        java.util.List<Uri> out = new java.util.ArrayList<>();
+        int[] types = {RingtoneManager.TYPE_ALARM, RingtoneManager.TYPE_NOTIFICATION, RingtoneManager.TYPE_RINGTONE};
+        for (int type : types) {
+            Uri chosen = null;
+            try {
+                chosen = RingtoneManager.getActualDefaultRingtoneUri(this, type);
+            } catch (RuntimeException ignored) {
+                // fall back to the default below
+            }
+            if (chosen != null && !out.contains(chosen)) out.add(chosen);
+            Uri def = RingtoneManager.getDefaultUri(type);
+            if (def != null && !out.contains(def)) out.add(def);
+        }
+        return out;
+    }
+
+    /** Plays one sound over and over, or returns null when it cannot be played. */
+    private MediaPlayer play(Uri uri) {
+        MediaPlayer mp = new MediaPlayer();
+        try {
+            mp.setAudioAttributes(alarmAttributes());
+            mp.setDataSource(this, uri);
+            mp.setLooping(true);
+            mp.prepare();
+            mp.start();
+            return mp;
+        } catch (java.io.IOException | RuntimeException e) {
+            mp.release();
+            return null;
+        }
+    }
+
+    /** A plain beep, half a second on and half a second off, made by the app: the last resort when the phone has no sound to play. */
+    private AudioTrack startBeep() {
+        try {
+            final int rate = 22050;
+            final int on = rate / 2;
+            short[] pcm = new short[rate];
+            for (int i = 0; i < on; i++) {
+                double fade = Math.min(1.0, Math.min(i, on - i) / 400.0);   // short fades, so it does not click
+                pcm[i] = (short) (Math.sin(2 * Math.PI * 880 * i / rate) * 14000 * fade);
+            }
+            AudioTrack t = new AudioTrack.Builder()
+                    .setAudioAttributes(alarmAttributes())
+                    .setAudioFormat(new AudioFormat.Builder().setEncoding(AudioFormat.ENCODING_PCM_16BIT)
+                            .setSampleRate(rate).setChannelMask(AudioFormat.CHANNEL_OUT_MONO).build())
+                    .setBufferSizeInBytes(pcm.length * 2)
+                    .setTransferMode(AudioTrack.MODE_STATIC)
+                    .build();
+            t.write(pcm, 0, pcm.length);
+            t.setLoopPoints(0, pcm.length, -1);
+            t.play();
+            return t;
+        } catch (RuntimeException e) {
+            return null;
+        }
+    }
+
     /** Starts the alert: the alarm sound only for ring, and the vibration for ring and for vibration. */
+    @SuppressWarnings("deprecation")
     private void startSound(int mode) {
         stopRinging();
-        try {
-            Uri uri = null;
-            if (mode == Routine.ALERT_RING) {
-                uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-                if (uri == null) uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                if (uri == null) uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+        if (mode == Routine.ALERT_RING) {
+            for (Uri uri : toneCandidates()) {
+                player = play(uri);
+                if (player != null) break;
             }
-            if (uri != null) {
-                MediaPlayer mp = new MediaPlayer();
-                mp.setAudioAttributes(new AudioAttributes.Builder()
-                        .setUsage(AudioAttributes.USAGE_ALARM)
-                        .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                        .build());
-                mp.setDataSource(this, uri);
-                mp.setLooping(true);
-                mp.prepare();
-                mp.start();
-                player = mp;
+            if (player == null) {
+                beep = startBeep();
+                CrashLog.note(this, "alarm sound", new RuntimeException(beep != null
+                        ? "no ringtone on this phone could be played; a built-in beep was used"
+                        : "no ringtone on this phone could be played and the built-in beep failed too"));
             }
-        } catch (java.io.IOException | RuntimeException ignored) {
-            player = null;   // vibration below still tells you
         }
-        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        if (vibrator != null && vibrator.hasVibrator()) {
-            vibrator.vibrate(VibrationEffect.createWaveform(new long[]{0, 700, 500}, 0));
+        try {
+            vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            if (vibrator != null && vibrator.hasVibrator()) {
+                // Tagged as an alarm, so the phone lets it vibrate from the background and while it is set to vibrate or silent.
+                vibrator.vibrate(VibrationEffect.createWaveform(new long[]{0, 700, 500}, 0), alarmAttributes());
+            }
+        } catch (RuntimeException e) {
+            CrashLog.note(this, "alarm vibration", e);
         }
     }
 
@@ -397,6 +471,15 @@ public class AlarmService extends Service {
             }
             player.release();
             player = null;
+        }
+        if (beep != null) {
+            try {
+                beep.stop();
+            } catch (RuntimeException ignored) {
+                // already stopped
+            }
+            beep.release();
+            beep = null;
         }
         if (vibrator != null) {
             vibrator.cancel();
@@ -430,6 +513,7 @@ public class AlarmService extends Service {
             ch.setSound(null, null);
         }
         ch.enableVibration(true);
+        ch.setVibrationPattern(new long[]{0, 700, 500, 700, 500});
         ch.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         nm.createNotificationChannel(ch);
         PendingIntent pi = PendingIntent.getActivity(c, 5001, openIntent(c, e), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
@@ -443,8 +527,39 @@ public class AlarmService extends Service {
                 .setContentIntent(pi)
                 .setFullScreenIntent(pi, true)
                 .setAutoCancel(true)
+                .setTimeoutAfter(limitFor(e))   // the same time the ringing service would have gone on for
                 .build();
+        // Without the ringing service nothing else repeats the sound, so the notification does: it goes on until it is opened
+        // or its time is up. A sound that plays once and stops is easy to sleep through.
+        n.flags |= Notification.FLAG_INSISTENT;
         nm.notify(ID_RING, n);
+    }
+
+    // ------------------------------------------------------------------ never came
+
+    /**
+     * An alarm that never reached the app (the phone or the person closed the app, and Android dropped its alarms): one notification that
+     * says so, so the person knows it was not their mistake, and opens the app.
+     */
+    static void postNeverCame(Context c, String title) {
+        try {
+            NotificationManager nm = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
+            if (nm == null) return;
+            nm.createNotificationChannel(new NotificationChannel(CH_MISSED, Lang.tr("Missed alarms"), NotificationManager.IMPORTANCE_DEFAULT));
+            Intent open = new Intent(c, MainActivity.class);
+            PendingIntent pi = PendingIntent.getActivity(c, 5003, open, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+            String what = title == null || title.isEmpty() ? "" : title;
+            Notification n = new Notification.Builder(c, CH_MISSED)
+                    .setSmallIcon(R.drawable.ic_stat)
+                    .setContentTitle(what.isEmpty() ? Lang.tr("Missed alarm") : Lang.tr("Missed: " + what))
+                    .setContentText(Lang.tr("This alarm did not ring because Android had closed the app. It is set again now."))
+                    .setContentIntent(pi)
+                    .setAutoCancel(true)
+                    .build();
+            nm.notify(ID_NEVER, n);
+        } catch (RuntimeException ex) {
+            CrashLog.note(c, "missed notice", ex);
+        }
     }
 
     // ------------------------------------------------------------------ nobody answered

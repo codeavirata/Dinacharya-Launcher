@@ -76,7 +76,9 @@ public class AlertModeTest {
 
         // ---- the wake-up slot
         Routine w = Routine.sample();
-        ok("no wake-up slot at first", w.wakeIndex() == -1);
+        ok("the first alarm of a new routine is the start-of-day alarm", w.wakeIndex() == 0 && w.blocks.get(0).wake && w.blocks.get(0).alert == Routine.ALERT_RING);
+        w.setWake(0, false);
+        ok("the mark can be taken off", w.wakeIndex() == -1);
         ok("the first slot can be the wake-up", w.canBeWake(0) && w.setWake(0, true) && w.wakeIndex() == 0);
         ok("a later slot cannot be while an earlier one has an alert", !w.canBeWake(3));
         ok("only one wake-up slot: asking again moves nothing", w.setWake(3, true) == false && w.wakeIndex() == -1);
@@ -101,6 +103,61 @@ public class AlertModeTest {
         s.wake = true;
         s.setAlert(Routine.ALERT_NONE);
         ok("changing the alert to something silent drops the mark", !s.wake);
+
+        // ---- the start-of-day alarm, end to end in the planner
+        Routine def = Routine.sample();
+        def.alarmOn = true;
+        List<AlarmPlanner.Event> defUp = AlarmPlanner.upcoming(def, new Overrides(), new AlarmState(), at(21, 4, 0), Z);
+        AlarmPlanner.Event dw = defUp.get(0);
+        ok("a new routine's first alarm after 04:00 is the start-of-day alarm at the wake time",
+            dw.wake && dw.firstOfDay && dw.mode == Routine.ALERT_RING && dw.kind == AlarmPlanner.SLOT && dw.timeMs == at(21, 5, 30) && dw.day.equals("2026-10-21"));
+        int wakes = 0;
+        for (AlarmPlanner.Event e : defUp) if (e.wake) wakes++;
+        ok("one start-of-day alarm per day over the days listed", wakes >= 2 && wakes <= 4);
+        ok("it is still the start-of-day alarm after a save and load", AlarmPlanner.upcoming(Routine.parse(def.serialize()), new Overrides(), new AlarmState(), at(21, 4, 0), Z).get(0).wake);
+        ok("just after it has rung, the next start-of-day alarm is tomorrow's",
+            AlarmPlanner.upcoming(def, new Overrides(), new AlarmState(), at(21, 5, 30), Z).stream().filter(e -> e.wake).findFirst().get().timeMs == at(22, 5, 30));
+        Routine dsk = Routine.sample();
+        dsk.alarmOn = true;
+        Overrides skipOv = new Overrides();
+        skipOv.setEdit(day(21), 0, dsk.blocks.get(0).title, true, "");
+        List<AlarmPlanner.Event> skipUp = AlarmPlanner.upcoming(dsk, skipOv, new AlarmState(), at(21, 4, 0), Z);
+        ok("a skipped slot is not listed for that day only, the next day's start-of-day alarm stays",
+            skipUp.stream().noneMatch(e -> e.wake && e.day.equals("2026-10-21")) && skipUp.stream().anyMatch(e -> e.wake && e.day.equals("2026-10-22")));
+
+        // every alert mode x master switch x silent questions: what is listed, and whether it is the start-of-day alarm
+        int[] modes = {Routine.ALERT_RING, Routine.ALERT_VIBRATE, Routine.ALERT_SILENT, Routine.ALERT_NONE};
+        boolean matrixOk = true;
+        String matrixWhy = "";
+        for (int m : modes) for (int on = 0; on < 2; on++) for (int ask = 0; ask < 2; ask++) {
+            Routine mx = Routine.sample();
+            mx.blocks.get(0).setAlert(m);
+            if (mx.blocks.get(0).sounds()) mx.setWake(0, true);
+            mx.alarmOn = on == 1;
+            mx.askSilent = ask == 1;
+            AlarmPlanner.Event ev = eventFor(AlarmPlanner.upcoming(mx, new Overrides(), new AlarmState(), at(21, 4, 0), Z), 0);
+            boolean listed = on == 1 && m != Routine.ALERT_NONE && (m != Routine.ALERT_SILENT || ask == 1);
+            boolean sounds = m == Routine.ALERT_RING || m == Routine.ALERT_VIBRATE;
+            boolean good = listed ? (ev != null && ev.mode == m && ev.wake == sounds && ev.timeMs == at(21, 5, 30)) : ev == null;
+            if (!good) { matrixOk = false; matrixWhy += " [mode " + m + " on " + on + " ask " + ask + "]"; }
+        }
+        ok("alert mode x alarms on/off x silent questions: listed only when it should be, wake only when it sounds" + matrixWhy, matrixOk);
+        Routine only = Routine.sample();
+        only.blocks.get(0).setAlert(Routine.ALERT_NONE);
+        ok("a start-of-day alarm needs a sound: with no alert on the first slot nothing is marked", only.wakeIndex() == -1);
+        ok("the bedtime slot can never be a start-of-day alarm",
+            AlarmPlanner.upcoming(def, new Overrides(), new AlarmState(), at(21, 4, 0), Z).stream().noneMatch(e -> e.kind == AlarmPlanner.BEDTIME && e.wake));
+        AlarmState later = new AlarmState();
+        later.againAt = at(21, 5, 40);
+        later.againSrc = 0;
+        later.againTitle = def.blocks.get(0).title;
+        later.againDay = "2026-10-21";
+        later.againWake = true;
+        AlarmPlanner.Event again = AlarmPlanner.upcoming(def, new Overrides(), later, at(21, 5, 31), Z).get(0);
+        ok("delaying the start-of-day alarm brings it back as the start-of-day alarm", again.kind == AlarmPlanner.START_AGAIN && again.wake && again.timeMs == at(21, 5, 40));
+        def.alarmOn = false;
+        ok("with the master switch off the delayed start-of-day alarm is only a buzz, and not a wake event", AlarmPlanner.upcoming(def, new Overrides(), later, at(21, 5, 31), Z).get(0).mode == Routine.ALERT_VIBRATE
+            && !AlarmPlanner.upcoming(def, new Overrides(), later, at(21, 5, 31), Z).get(0).wake);
 
         // ---- timers
         AlarmState t = new AlarmState();

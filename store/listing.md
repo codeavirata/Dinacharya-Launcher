@@ -27,14 +27,14 @@ Character limits are Google's.
 
     A PAUSE BEFORE DISTRACTIONS
     Choose the apps that pull you away. During focus time they wait a few seconds before they open, so
-    you can go back or carry on. Open anyway is always there. Two apps are free. Pro adds strict pauses,
+    you can go back or carry on. Open anyway is always there. One app is free. Pro adds strict pauses,
     daily limits, any number of apps and playful pauses: a quick sum, a sentence, slow breaths or saying why.
 
     LOCK APPS FOR A WHILE
     Put the apps that eat your time in a group, such as Social, and lock it for the hours you choose, or just
     for the next hour. A group can also lock while an activity type is on, such as Social during Study, and
-    hide its apps while locked. You can break a lock by waiting half a minute and typing a sentence. Two apps
-    are free; Pro adds locked groups with many apps and strict locks that cannot be broken.
+    hide its apps while locked. You can break a lock by waiting half a minute and typing a sentence. One app is free; Pro adds
+    groups, more locks and strict locks that cannot be broken.
 
     STRONG LOCK (OPTIONAL)
     Off by default. Locks and pauses then also hold an app opened from recent apps, a notification or
@@ -58,7 +58,7 @@ Character limits are Google's.
     keeps its length. Add routines for weekends or exam days, or one just for tomorrow, and see the day shared by type.
 
     GOALS, SCORE AND REPORTS
-    Set a daily goal for Study or any other type, every day, alternate days or chosen days, and keep a streak.
+    Set a daily goal for a slot of your day, with its own to-do list, and keep a streak.
     Every day gets a score. See today by type and the time in each app and without apps. Weekly trends,
     suggestions, any day as a PDF.
 
@@ -66,12 +66,12 @@ Character limits are Google's.
     Sign in with Google and back up daily, weekly or monthly to a private space in your own Google Drive.
     Restore on a new phone in a tap. Nothing is sent to the developer.
 
-    FREE, WITH AN OPTIONAL ONE-TIME UPGRADE
+    FREE, WITH AN OPTIONAL UPGRADE
     Dinacharya Launcher is free, with a small ad on three dashboard screens (never on the home screen, alarms, pause or
-    lock screens). Dinacharya Pro is a one-time purchase (Rs 99) that removes the ads and unlocks every day and
-    the weekly view, any number of pauses and locks, locked groups, extra routines, daily goals and all colour
-    themes. No subscription. Want to try first? Watch short videos: 1 opens one Pro item for a day, 2 for three
-    days, 3 a whole group; then it goes back to the free version.
+    lock screens). Free keeps the home screen, alarms, to-dos and today's report. Dinacharya Pro is Rs 50 a month, or Rs 499
+    once for life, and removes the ads and unlocks goals, every saved day, the weekly view, deeper analysis, any number of
+    pauses and locks, locked groups, extra routines and all colour themes. Cancel monthly any time. To try first, watch
+    three short videos: everything in Pro opens for a day, then goes back.
 
     PRIVACY
     Your routine, answers and reports stay on your phone. The list of your apps and phone-use time are read on

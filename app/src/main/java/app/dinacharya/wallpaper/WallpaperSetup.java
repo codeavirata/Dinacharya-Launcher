@@ -9,7 +9,7 @@ import android.content.Intent;
 import android.widget.Toast;
 
 /**
- * The Dinacharya live wallpaper is part of the launcher: it shows your day on the home screen, on the lock
+ * The Dinacharya Launcher live wallpaper is part of the launcher: it shows your day on the home screen, on the lock
  * screen and in the list of recent apps. Android never lets an app swap the live wallpaper silently, so the
  * launcher asks the system for it, and the person confirms once on Android's own preview screen.
  */
@@ -21,8 +21,10 @@ final class WallpaperSetup {
     static final int HOME = WallpaperManager.FLAG_SYSTEM, LOCK = WallpaperManager.FLAG_LOCK;
 
     private static final String STATE = "wallpaper_state";
-    private static final String K_LIVE = "live", K_OK_AT = "confirmed_at";
-    private static final long CONFIRMED_FOR_MS = 30L * 24 * 3600000L;
+    private static final String K_LIVE = "live", K_OK_AT = "confirmed_at", K_EVER = "ever", K_LOST_AT = "lost_at";
+
+    /** The screens our own wallpaper engine is drawing for right now. Only true while it runs in this process. */
+    private static volatile int engineBits;
 
     private static android.content.SharedPreferences state(Context c) {
         return c.getApplicationContext().getSharedPreferences(STATE, Context.MODE_PRIVATE);
@@ -32,12 +34,8 @@ final class WallpaperSetup {
         return info != null && c.getPackageName().equals(info.getPackageName());
     }
 
-    /**
-     * Which screens show the Dinacharya wallpaper (HOME and/or LOCK; 0 for none). Two witnesses are used, because
-     * some phones do not report a live wallpaper through the usual call: what Android says is set, and what the
-     * wallpaper itself knows (it records when it is running for real, as opposed to in a preview).
-     */
-    static int where(Context c) {
+    /** What Android itself says: the screens that show the Dinacharya Launcher wallpaper. */
+    private static int reported(Context c) {
         int w = 0;
         try {
             WallpaperManager wm = WallpaperManager.getInstance(c);
@@ -47,37 +45,92 @@ final class WallpaperSetup {
             }
             if (matches(wm.getWallpaperInfo(), c)) w |= HOME;
         } catch (RuntimeException e) {
-            // fall back on what the wallpaper itself recorded
-        }
-        try {
-            w |= state(c).getInt(K_LIVE, 0) & (HOME | LOCK);
-        } catch (RuntimeException ignored) {
-            // no record
+            // the wallpaper engine, if it is running, still tells
         }
         return w;
     }
 
-    /** Whether the Dinacharya live wallpaper is the one behind the home screen. */
+    /** How long this process has been running, in milliseconds (-1 when not known). */
+    private static long processAge() {
+        try {
+            return android.os.SystemClock.elapsedRealtime() - android.os.Process.getStartElapsedRealtime();
+        } catch (RuntimeException e) {
+            return -1;
+        }
+    }
+
+    private static long sinceConfirmed(Context c) {
+        long at = state(c).getLong(K_OK_AT, 0);
+        return at > 0 ? Math.max(0, System.currentTimeMillis() - at) : -1;
+    }
+
+    /**
+     * Which screens show the Dinacharya Launcher wallpaper right now (HOME and/or LOCK; 0 for none). Two witnesses: what Android says,
+     * and the wallpaper engine itself when it is running in this process (some phones do not report a live wallpaper through the usual
+     * call). A note kept from an earlier run is not one: closing the app from App info drops the wallpaper without the engine ever
+     * saying so, so an old note would go on claiming it is there.
+     */
+    static int where(Context c) {
+        return (reported(c) | engineBits) & (HOME | LOCK);
+    }
+
+    /**
+     * The state of the wallpaper, one of the {@link WallpaperWatch} answers: in place, being put in place, lost (it was there before),
+     * never set, or on the lock screen only. Looks at the phone every time; notes the first moment it found the wallpaper lost.
+     */
+    static int status(Context c) {
+        try {
+            android.content.SharedPreferences p = state(c);
+            boolean ever = p.getBoolean(K_EVER, false);
+            int st = WallpaperWatch.status(reported(c), engineBits, p.getInt(K_LIVE, 0), processAge(), sinceConfirmed(c), ever);
+            if (st == WallpaperWatch.OK) {
+                boolean wasLost = p.getLong(K_LOST_AT, 0) != 0;
+                if (!ever || wasLost) {
+                    android.content.SharedPreferences.Editor ed = p.edit().putBoolean(K_EVER, true);
+                    if (wasLost) ed.remove(K_LOST_AT);
+                    ed.apply();
+                }
+            } else if (st == WallpaperWatch.LOST && p.getLong(K_LOST_AT, 0) == 0) {
+                p.edit().putLong(K_LOST_AT, System.currentTimeMillis()).apply();
+                CrashLog.note(c, "wallpaper", new RuntimeException("The Dinacharya Launcher wallpaper was no longer in place when the home screen came up; it is asked for again."));
+            }
+            return st;
+        } catch (RuntimeException e) {
+            return WallpaperWatch.OK;   // cannot tell: do not nag
+        }
+    }
+
+    /** When the wallpaper was first found gone and is still gone (milliseconds); 0 when it is in place or was never set. */
+    static long lostAt(Context c) {
+        try {
+            return state(c).getLong(K_LOST_AT, 0);
+        } catch (RuntimeException e) {
+            return 0;
+        }
+    }
+
+    /** When to look again, if the last answer was "being put in place" (milliseconds from now; 0 for never). */
+    static long checkAgainMs(Context c) {
+        try {
+            return WallpaperWatch.checkAgainMs(processAge(), sinceConfirmed(c));
+        } catch (RuntimeException e) {
+            return 0;
+        }
+    }
+
+    /** Whether the Dinacharya Launcher live wallpaper is the one behind the home screen (or is about to be). */
     static boolean isOurs(Context c) {
-        return (where(c) & HOME) != 0;
+        return WallpaperWatch.inPlace(status(c));
     }
 
     /** True when it is on the lock screen but not behind the home screen (the person picked "Lock screen" only). */
     static boolean lockOnly(Context c) {
-        int w = where(c);
-        return (w & LOCK) != 0 && (w & HOME) == 0;
+        return status(c) == WallpaperWatch.LOCK_ONLY;
     }
 
-    /**
-     * Whether to stop asking: it is in place, or the person confirmed Android's preview recently and nothing says it
-     * went to the lock screen only. (Some phones do not report the wallpaper back, and asking again every day was wrong.)
-     */
+    /** Whether it is in place (or about to be), so nothing needs asking. */
     static boolean settled(Context c) {
-        int w = where(c);
-        if ((w & HOME) != 0) return true;
-        if ((w & LOCK) != 0) return false;
-        long at = state(c).getLong(K_OK_AT, 0);
-        return at > 0 && System.currentTimeMillis() - at < CONFIRMED_FOR_MS;
+        return WallpaperWatch.inPlace(status(c));
     }
 
     /** Remembers how Android's preview ended: confirmed (the person tapped Set) or not. */
@@ -95,6 +148,7 @@ final class WallpaperSetup {
     /** Called by the wallpaper when its screens change while it is running for real (not in a preview). */
     static void engineScreens(Context c, int before, int after) {
         try {
+            engineBits = ((engineBits & ~before) | after) & (HOME | LOCK);
             int live = state(c).getInt(K_LIVE, 0);
             live = (live & ~before) | after;
             state(c).edit().putInt(K_LIVE, live & (HOME | LOCK)).apply();
@@ -103,7 +157,7 @@ final class WallpaperSetup {
         }
     }
 
-    /** The request to Android: preview the Dinacharya wallpaper, where one tap sets it. */
+    /** The request to Android: preview the Dinacharya Launcher wallpaper, where one tap sets it. */
     static Intent intent(Context c) {
         Intent i = new Intent(WallpaperManager.ACTION_CHANGE_LIVE_WALLPAPER);
         i.putExtra(WallpaperManager.EXTRA_LIVE_WALLPAPER_COMPONENT, new ComponentName(c, PosterWallpaperService.class));
@@ -111,7 +165,7 @@ final class WallpaperSetup {
     }
 
     /**
-     * Asks Android to put the Dinacharya wallpaper in place. The result (OK when the person confirmed) comes back
+     * Asks Android to put the Dinacharya Launcher wallpaper in place. The result (OK when the person confirmed) comes back
      * to {@code onActivityResult} with {@code requestCode}. Returns false when this phone has no live wallpaper screen.
      */
     static boolean request(Activity a, int requestCode) {

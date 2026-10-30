@@ -32,6 +32,31 @@ public final class DayReport {
         public long extMs;
         /** The apps used while the slot's own activity was going on (breaks and put-off time left out), longest first. */
         public final List<App> apps = new ArrayList<>();
+        /** Time in apps chosen as part of the slot's activity (a part of {@link #phoneMs}); 0 unless phone use in slots was on. */
+        public long partMs;
+        /** The longest stretch of the slot with no other phone use; -1 when not known (an older report, or no phone use data). */
+        public long longestFocusMs = -1;
+        /** How many separate stretches of other phone use there were; {@link #uses} may hold fewer. */
+        public int useCount;
+        /** The stretches of other phone use with their exact times, in order. */
+        public final List<SlotUse.Episode> uses = new ArrayList<>();
+
+        /** Time in other apps: phone use that was not part of the activity. */
+        public long offMs() {
+            return Math.max(0, phoneMs - partMs);
+        }
+
+        /** The slot's time that went to its activity: its worked time without the other phone use. */
+        public long devotedMs() {
+            return Math.max(0, activeMs - offMs());
+        }
+
+        /** 0..100: the share of the slot's time with no other phone use; -1 when the slot has not run. */
+        public int focusPct() {
+            if (activeMs <= 0) return -1;
+            double f = 100.0 * (activeMs - Math.min(activeMs, offMs())) / activeMs;
+            return (int) Math.max(0, Math.min(100, Math.round(f)));
+        }
 
         /** The slot's own time that has passed: its length so far without breaks and the put-off start. */
         public long workedMs() {
@@ -128,8 +153,20 @@ public final class DayReport {
                         .append(r.lentMs).append('\t').append(r.extMs).append('\n');
             }
             for (App a : r.apps) sb.append("RA\t").append(i).append('\t').append(a.ms).append('\t').append(a.name).append('\n');
+            if (r.partMs != 0 || r.longestFocusMs >= 0 || r.useCount != 0) {
+                sb.append("RF\t").append(i).append('\t').append(r.partMs).append('\t').append(r.longestFocusMs).append('\t')
+                        .append(r.useCount).append('\n');
+            }
+            for (SlotUse.Episode e : r.uses) {
+                sb.append("RU\t").append(i).append('\t').append(e.startMs).append('\t').append(e.endMs).append('\t')
+                        .append(Routine.clean(e.app)).append('\n');
+            }
         }
-        for (Routine.Goal g : goals) sb.append("G\t").append(g.kind).append('\t').append(g.mins).append('\t').append(g.sub).append('\n');
+        for (Routine.Goal g : goals) {
+            sb.append("G\t").append(g.kind).append('\t').append(g.mins).append('\t').append(g.sub);
+            if (g.bound()) sb.append('\t').append(g.slot);   // the slot comes last, so a report from before still reads the same
+            sb.append('\n');
+        }
         for (App a : apps) sb.append("A\t").append(a.ms).append('\t').append(a.name).append('\n');
         for (String t : tips) sb.append("T\t").append(Routine.clean(t)).append('\n');
         if (!schedule.isEmpty()) {
@@ -172,9 +209,21 @@ public final class DayReport {
                 } else if (ln.startsWith("RA\t")) {
                     String[] p = ln.split("\t", 4);
                     r.rows.get(Integer.parseInt(p[1].trim())).apps.add(new App(p[3], Long.parseLong(p[2].trim())));
+                } else if (ln.startsWith("RF\t")) {
+                    String[] p = ln.split("\t", 5);
+                    Row row = r.rows.get(Integer.parseInt(p[1].trim()));
+                    row.partMs = Long.parseLong(p[2].trim());
+                    row.longestFocusMs = Long.parseLong(p[3].trim());
+                    row.useCount = Integer.parseInt(p[4].trim());
+                } else if (ln.startsWith("RU\t")) {
+                    String[] p = ln.split("\t", 5);
+                    Row row = r.rows.get(Integer.parseInt(p[1].trim()));
+                    row.uses.add(new SlotUse.Episode(Long.parseLong(p[2].trim()), Long.parseLong(p[3].trim()), p.length > 4 ? p[4] : ""));
                 } else if (ln.startsWith("G\t")) {
-                    String[] p = ln.split("\t", 4);
-                    r.goals.add(new Routine.Goal(Integer.parseInt(p[1]), p[3], Integer.parseInt(p[2])));
+                    String[] p = ln.split("\t", 5);
+                    Routine.Goal g = new Routine.Goal(Integer.parseInt(p[1]), p[3], Integer.parseInt(p[2]));
+                    if (p.length > 4) g.slot = Routine.cleanSlot(p[4]);
+                    r.goals.add(g);
                 } else if (ln.startsWith("A\t")) {
                     String[] p = ln.split("\t", 3);
                     r.apps.add(new App(p[2], Long.parseLong(p[1])));

@@ -105,7 +105,6 @@ final class PosterRenderer {
         return new int[]{p.bg, p.ink, p.accent, p.k[0], p.k[1], p.k[2], p.k[3], p.k[4]};
     }
 
-    private final RectF markRect = new RectF();
     private static final Typeface REG = Typeface.create("sans-serif", Typeface.NORMAL);
     private static final Typeface MED = Typeface.create("sans-serif-medium", Typeface.NORMAL);
     private static final Typeface BOLD = Typeface.create("sans-serif", Typeface.BOLD);
@@ -136,6 +135,31 @@ final class PosterRenderer {
     private boolean scrolling;
     private static final float TODO_COMFORT_SCALE = 0.85f;
 
+    /** The colour of other phone use on the poster: the same on every theme, since it is a warning. */
+    private static final int WARN = 0xFFE5604F;
+    private static final int MAX_USE_LINES = 3;
+    private static final int USE_SUMMARY = 0, USE_STRETCH = 1, USE_GOOD = 2;
+
+    /** One line of the phone-use block of the current card. */
+    private static final class UseLine {
+        final int type;
+        /** For a summary or a good line: the whole text (translated as one piece). For a stretch: the times and the app. */
+        final String text;
+        /** For a stretch: how long it lasted. */
+        final long ms;
+
+        UseLine(int type, String text, long ms) {
+            this.type = type;
+            this.text = text;
+            this.ms = ms;
+        }
+    }
+
+    /** The phone-use lines of the current card in the list being drawn, and how many of them it has room for. */
+    private final java.util.List<UseLine> useLines = new java.util.ArrayList<>();
+    private int curUse;
+    private long drawNowMs;
+
     // ------------------------------------------------------------------ entry point
 
     /**
@@ -158,12 +182,14 @@ final class PosterRenderer {
     /** Same, with the to-do list of the slot that is going on and a note while a break is on. */
     void drawLive(Canvas c, int w, int h, Routine base, Overrides ov, long nowMs, ZoneId zone, boolean systemNight,
                   ScreenTime.Result screen, PosterExtras extras) {
-        Plan.DayPlan day = Plan.resolve(base, ov, nowMs, zone);
-        live = extras == null ? PosterExtras.NOTHING : extras.at(day, nowMs);
+        Plan.DayPlan saved = Plan.resolve(base, ov, nowMs, zone);
+        // the day as it is going: a start put off, breaks, the slot before carried on, a slot finished early, the day off
+        Plan.DayPlan day = extras == null ? saved : extras.live(saved, nowMs);
+        live = extras == null ? PosterExtras.NOTHING : extras.at(day, nowMs, zone);
         liveTick = nowMs / Todos.PAGE_MS;
         scrolling = false;
         try {
-            draw(c, w, h, day, Plan.transition(base, ov, day, nowMs, zone), nowMs, systemNight, screen);
+            draw(c, w, h, day, Plan.transition(base, ov, saved, nowMs, zone), nowMs, systemNight, screen);
         } finally {
             live = PosterExtras.NOTHING;
         }
@@ -178,6 +204,8 @@ final class PosterRenderer {
         boolean night = isNight(r, systemNight);
         Palette pal = palette(r.palette, night);
         float u = w / 1080f;
+        drawNowMs = nowMs;
+        buildUse(r.fmt24);
 
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(nowMs);
@@ -213,21 +241,38 @@ final class PosterRenderer {
         c.restoreToCount(keep);
     }
 
-    /** The small "Developed by ASG" mark under the list: a monogram badge and one line of text. */
+    /**
+     * The small credit under the list, on one line: "© 2026 | Developed by ASG". The year and the words are quiet, a hairline in the
+     * accent colour stands between them and the name is a little stronger. It shrinks, never wraps, when the screen is narrow.
+     */
     private void mark(Canvas c, int w, float u, float cy, Palette pal) {
-        String words = "DEVELOPED BY ASG";
-        float size = 19 * u;
-        float tw = measure(words, size, BOLD, 0.16f);
-        float badge = 34 * u;
-        float gap = 12 * u;
-        float x0 = (w - (badge + gap + tw)) / 2f;
+        final String year = "© 2026", by = "Developed by", who = "ASG";
+        float size = 21 * u;
+        float gap = 17 * u;
+        float space = 7 * u;
+        float bar = 2 * u;
+        float natural = plain(null, year, 0, 0, size, 0, MED, 0.04f) + gap + bar + gap
+                + plain(null, by, 0, 0, size, 0, REG, 0.04f) + space + plain(null, who, 0, 0, size, 0, BOLD, 0.1f);
+        float room = w - 112 * u;
+        float s = natural > room ? room / natural : 1f;
+        size *= s;
+        gap *= s;
+        space *= s;
+        bar *= s;
+        float total = plain(null, year, 0, 0, size, 0, MED, 0.04f) + gap + bar + gap
+                + plain(null, by, 0, 0, size, 0, REG, 0.04f) + space + plain(null, who, 0, 0, size, 0, BOLD, 0.1f);
+        float x = (w - total) / 2f;
+        float base = cy + 0.36f * size;
+        int quiet = (pal.muted & 0x00FFFFFF) | 0xCC000000;
+        int strong = (pal.ink & 0x00FFFFFF) | 0xE6000000;
         p.setShader(null);
         p.setStyle(Paint.Style.FILL);
-        p.setColor((pal.accent & 0x00FFFFFF) | 0xD9000000);
-        markRect.set(x0, cy - badge / 2f, x0 + badge, cy + badge / 2f);
-        c.drawRoundRect(markRect, 9 * u, 9 * u, p);
-        text(c, "ASG", x0 + badge / 2f, cy + 5f * u, 13 * u, pal.accentInk, BOLD, Paint.Align.CENTER, 0.02f);
-        text(c, words, x0 + badge + gap, cy + 6.5f * u, size, (pal.muted & 0x00FFFFFF) | 0xCC000000, BOLD, Paint.Align.LEFT, 0.16f);
+        x += plain(c, year, x, base, size, quiet, MED, 0.04f) + gap;
+        p.setColor((pal.accent & 0x00FFFFFF) | 0xB3000000);
+        c.drawRect(x, cy - 0.5f * size, x + bar, cy + 0.5f * size, p);
+        x += bar + gap;
+        x += plain(c, by, x, base, size, quiet, REG, 0.04f) + space;
+        plain(c, who, x, base, size, strong, BOLD, 0.1f);
     }
 
     // ------------------------------------------------------------------ background and header
@@ -289,7 +334,9 @@ final class PosterRenderer {
             float x = m;
             float dw = text(c, digits, x, baseline, clockSize, pal.ink, MED, Paint.Align.LEFT, -0.02f);
             if (ap != null) text(c, ap, x + dw + apGap, baseline, 38 * u, pal.accent, BOLD, Paint.Align.LEFT, 0.1f);
-            if (adjusted) pill(c, "ADJUSTED FOR TODAY", m, top + 34 * u, 24 * u, pal.k[Routine.REST], pal, false);
+            float pillX = m;
+            if (adjusted) pillX += pill(c, "ADJUSTED FOR TODAY", pillX, top + 34 * u, 24 * u, pal.k[Routine.REST], pal, false) + 12 * u;
+            if (live.libraryEndMs > 0) pill(c, "LIBRARY MODE", pillX, top + 34 * u, 24 * u, pal.accent, pal, false);
         } else {
             // No clock: the date stays on the left, as before.
             text(c, weekday, m, top + 34 * u, 34 * u, pal.accent, BOLD, Paint.Align.LEFT, 0.22f);
@@ -297,7 +344,9 @@ final class PosterRenderer {
             float mx = m + dw + 28 * u;
             text(c, month, mx, baseline - 64 * u, 58 * u, pal.ink, MED, Paint.Align.LEFT, 0f);
             text(c, year, mx, baseline, 42 * u, pal.muted, REG, Paint.Align.LEFT, 0.05f);
-            if (adjusted) pill(c, "ADJUSTED FOR TODAY", right, top + 34 * u, 24 * u, pal.k[Routine.REST], pal, true);
+            float pillX = right;
+            if (adjusted) pillX -= pill(c, "ADJUSTED FOR TODAY", pillX, top + 34 * u, 24 * u, pal.k[Routine.REST], pal, true) + 12 * u;
+            if (live.libraryEndMs > 0) pill(c, "LIBRARY MODE", pillX, top + 34 * u, 24 * u, pal.accent, pal, true);
         }
 
         String first = sc.firstTaskStart >= 0 ? Routine.formatTime(sc.firstTaskStart, r.fmt24) : "none";
@@ -412,11 +461,51 @@ final class PosterRenderer {
         float[] steps = {TODO_COMFORT_SCALE, MIN_SCALE};
         for (float limit : steps) {
             for (int k = most; k >= 1; k--) {
-                if (avail / need(sc, 0, n - 1, cur, k) >= limit) return k;
+                if (avail / need(sc, 0, n - 1, cur, k + curUse) >= limit) return k;
             }
         }
         // A crowded day already shows only a window around the current slot; two lines still fit there.
+        return avail / need(sc, 0, n - 1, cur, curUse) < MIN_SCALE ? Math.min(2, most) : 0;
+    }
+
+    /** How many of the phone-use lines the current card gets, by the same rule as the to-do lines. */
+    private int useLinesFor(Routine.Schedule sc, int cur, float avail) {
+        int n = sc.slots.size();
+        int most = Math.min(useLines.size(), MAX_USE_LINES);
+        if (most == 0 || cur < 0) return 0;
+        float[] steps = {TODO_COMFORT_SCALE, MIN_SCALE};
+        for (float limit : steps) {
+            for (int k = most; k >= 1; k--) {
+                if (avail / need(sc, 0, n - 1, cur, k) >= limit) return k;
+            }
+        }
         return avail / need(sc, 0, n - 1, cur, 0) < MIN_SCALE ? Math.min(2, most) : 0;
+    }
+
+    /**
+     * What to say about the phone in the slot going on (from {@code live}): that it has not been used, or how long it has been used in
+     * apps that are not part of the activity, and when. Nothing for the first minute of a slot, or when it could not be read.
+     */
+    private void buildUse(boolean h24) {
+        useLines.clear();
+        SlotUse.Info u = live.use;
+        if (u == null || !u.known || u.workedMs < 60000L) return;
+        if (u.episodeCount == 0) {
+            useLines.add(new UseLine(USE_GOOD, "NO PHONE USE  ·  focused " + Routine.formatDuration((int) (u.workedMs / 60000L)), 0));
+            return;
+        }
+        useLines.add(new UseLine(USE_SUMMARY, u.ongoing ? "PHONE IN USE NOW  ·  " + SlotUse.dur(u.offMs) + " so far"
+                : "PHONE USE  ·  " + SlotUse.dur(u.offMs), 0));
+        int last = u.episodes.size() - 1;
+        for (int i = last; i >= 0 && i > last - 2; i--) {
+            SlotUse.Episode e = u.episodes.get(i);
+            boolean going = u.ongoing && i == last;
+            String when = clockText(e.startMs, h24) + (going ? " \u2192" : " \u2013 " + clockText(e.endMs, h24));
+            useLines.add(new UseLine(USE_STRETCH, e.app.isEmpty() ? when : when + "  " + e.app, e.ms()));
+        }
+        if (useLines.size() < MAX_USE_LINES && !u.ongoing && u.focusSinceMs >= 60000L) {
+            useLines.add(new UseLine(USE_GOOD, "Focused for " + Routine.formatDuration((int) (u.focusSinceMs / 60000L)) + " since", 0));
+        }
     }
 
     private void list(Canvas c, int w, float u, float listTop, float bottom, Palette pal,
@@ -424,8 +513,10 @@ final class PosterRenderer {
         int n = sc.slots.size();
         if (n == 0) return;
         float avail = (bottom - listTop) / u;
+        curUse = withLive ? useLinesFor(sc, cur, avail) : 0;
         int lines = withLive ? todoLinesFor(sc, cur, avail) : 0;
         curLines = lines;
+        lines += curUse;   // the card is as tall as its to-do lines and its phone-use lines together
 
         int lo = 0;
         int hi = n - 1;
@@ -505,7 +596,8 @@ final class PosterRenderer {
 
         boolean skipped = sl.block.skipped;
         boolean renamed = sl.block.changed && !skipped;
-        boolean done = past && !skipped;
+        boolean gap = sl.block.isGap();   // a break, a put-off start or the day off: not a slot of the plan
+        boolean done = past && !skipped && !gap;
 
         int saved = -1;
         if (past || skipped) {
@@ -601,7 +693,7 @@ final class PosterRenderer {
         float titleX = chipL + chip + 18 * u;
         float titleSize = (kind == Routine.TASK ? 38f : 35f) * unit;
         String title = sl.block.title.isEmpty() ? "Untitled" : sl.block.title;
-        String tag = skipped ? "TAKEN OFF" : (renamed ? "TODAY ONLY" : null);
+        String tag = skipped ? "TAKEN OFF" : (liveTag(sl.block.live) != null ? liveTag(sl.block.live) : (renamed ? "TODAY ONLY" : null));
         float tagSize = 19 * unit;
         float tagW = tag == null ? 0 : measure(tag, tagSize, BOLD, 0.1f) + tagSize * 1.24f + 14 * u;
         title = fit(title, titleSize, MED, durRight - durW - 16 * u - titleX - tagW);
@@ -620,9 +712,12 @@ final class PosterRenderer {
 
         if (isCur) {
             int left = Math.max(0, sl.end - tt);
-            String nowText = live.breakUntilMs > 0
-                    ? "ON A BREAK  ·  back at " + clockText(live.breakUntilMs, r.fmt24)
-                    : "NOW  ·  " + Routine.formatDuration(left) + " left";
+            String nowText;
+            if (sl.block.live == Routine.LIVE_BREAK) nowText = "ON A BREAK  ·  back at " + Routine.formatTime(sl.end, r.fmt24);
+            else if (sl.block.live == Routine.LIVE_WAIT) nowText = "STARTS AT  " + Routine.formatTime(sl.end, r.fmt24);
+            else if (sl.block.live == Routine.LIVE_OFF) nowText = "DAY OFF  ·  no alarms";
+            else if (live.breakUntilMs > 0) nowText = "ON A BREAK  ·  back at " + clockText(live.breakUntilMs, r.fmt24);
+            else nowText = "NOW  ·  " + Routine.formatDuration(left) + " left";
             text(c, nowText, titleX, subBase, 25 * unit, kc, MONO_B, Paint.Align.LEFT, 0f);
             float frac = Math.min(1f, Math.max(0f, (tt - sl.start) / (float) sl.block.mins));
             float bh = 10 * unit;
@@ -638,13 +733,77 @@ final class PosterRenderer {
                 p.setColor(kc);
                 c.drawRoundRect(rect, bh / 2, bh / 2, p);
             }
+            // other phone use in this slot, as marks on the bar at the times it happened, and in words above the to-do lines
+            if (live.use != null && live.use.known && !live.use.episodes.isEmpty()) useMarks(c, bx0, bx1, by, bh, sl, tt);
+            if (curUse > 0) useBlock(c, unit, titleX, durRight, by, pal);
             if (curLines > 0) todoBlock(c, unit, titleX, durRight, by, pal, kc);
         } else if (twoLine) {
             String subLine = sl.block.sub == null || sl.block.sub.isEmpty() || Routine.isOther(sl.block.sub) ? Routine.KIND_NAMES[kind] : sl.block.sub;
-            text(c, subLine, titleX, subBase, 24 * unit, pal.muted, REG, Paint.Align.LEFT, 0f);
+            float subW = text(c, subLine, titleX, subBase, 24 * unit, pal.muted, REG, Paint.Align.LEFT, 0f);
+            // a slot that is over: how long the phone was used in it, outside the activity
+            SlotUse.Info over = done ? live.useOf(sl.block.src) : null;
+            if (over != null && over.known && over.offMs >= 60000L) {
+                String tag2 = "phone " + Routine.formatDuration((int) Math.round(over.offMs / 60000.0));
+                float tw2 = measure(tag2, 24 * unit, REG, 0f);
+                float x2 = titleX + subW + 22 * unit;
+                if (x2 + tw2 <= durRight) {
+                    text(c, "\u00b7", titleX + subW + 8 * unit, subBase, 24 * unit, pal.muted, REG, Paint.Align.LEFT, 0f);
+                    text(c, tag2, x2, subBase, 24 * unit, WARN, MED, Paint.Align.LEFT, 0f);
+                }
+            }
         }
 
         if (saved >= 0) c.restoreToCount(saved);
+    }
+
+    /**
+     * Marks on the progress bar of the current card where other phone use happened: each stretch is drawn at the place on the bar that
+     * matches its times, in the colour of a warning.
+     */
+    private void useMarks(Canvas c, float bx0, float bx1, float by, float bh, Routine.Slot sl, int tt) {
+        long len = (sl.end - sl.start) * 60000L;
+        if (len <= 0 || bx1 <= bx0) return;
+        // the start of this slot in milliseconds: now, to the minute, less the minutes the slot has been going
+        long startMs = drawNowMs - (drawNowMs % 60000L) - (long) (tt - sl.start) * 60000L;
+        p.setStyle(Paint.Style.FILL);
+        p.setColor(WARN);
+        for (SlotUse.Episode e : live.use.episodes) {
+            float a = (e.startMs - startMs) / (float) len;
+            float b = (e.endMs - startMs) / (float) len;
+            if (b <= 0f || a >= 1f) continue;
+            float x0 = bx0 + (bx1 - bx0) * Math.max(0f, a);
+            float x1 = bx0 + (bx1 - bx0) * Math.min(1f, b);
+            if (x1 - x0 < bh) {   // a short stretch still shows
+                float mid = (x0 + x1) / 2f;
+                x0 = Math.max(bx0, mid - bh / 2f);
+                x1 = Math.min(bx1, x0 + bh);
+            }
+            rect.set(x0, by, x1, by + bh);
+            c.drawRoundRect(rect, bh / 2, bh / 2, p);
+        }
+    }
+
+    /** The phone-use lines of the current card, just above its to-do lines (or its progress bar). */
+    private void useBlock(Canvas c, float unit, float x0, float x1, float barTop, Palette pal) {
+        int k = Math.min(curUse, useLines.size());
+        float size = 26 * unit;
+        for (int i = 0; i < k; i++) {
+            UseLine ln = useLines.get(i);
+            float base = barTop - 14 * unit - (curLines + k - 1 - i) * TODO_LINE * unit;
+            if (ln.type == USE_STRETCH) {
+                // the times and the app on the left, how long it lasted on the right
+                float right = text(c, SlotUse.dur(ln.ms), x1, base, size * 0.92f, WARN, MONO, Paint.Align.RIGHT, 0f);
+                float room = x1 - x0 - right - 20 * unit;
+                String shown = ln.text;
+                tp.setTextSize(size);
+                tp.setTypeface(MED);
+                tp.setLetterSpacing(0f);
+                while (shown.length() > 2 && tp.measureText(shown) > room) shown = shown.substring(0, shown.length() - 2) + "\u2026";
+                plain(c, shown, x0, base, size, pal.ink, MED, 0f);
+            } else {
+                text(c, fit(ln.text, size, MONO_B, x1 - x0), x0, base, size, ln.type == USE_GOOD ? pal.accent : WARN, MONO_B, Paint.Align.LEFT, 0f);
+            }
+        }
     }
 
     /** Whether the to-do list drawn last moves through its items, so it should be drawn again every {@link Todos#PAGE_MS}. */
@@ -665,25 +824,29 @@ final class PosterRenderer {
         if (Todos.pageCount(items, k) > 1) scrolling = true;
         float size = 27 * unit;
         float box = 22 * unit;
-        float textX = x0 + box + 14 * unit;
         for (int i = 0; i < k; i++) {
             Todos.Item it = items.get(start + i);
             float base = barTop - 14 * unit - (k - 1 - i) * TODO_LINE * unit;
             float cy = base - 9 * unit;
-            rect2.set(x0, cy - box / 2, x0 + box, cy + box / 2);
-            if (it.done) {
-                p.setStyle(Paint.Style.FILL);
-                p.setColor(pal.accent);
-                c.drawRoundRect(rect2, 6 * unit, 6 * unit, p);
-                check(c, x0 + box / 2, cy, box * 0.62f, pal.accentInk, 3f * unit);
-            } else {
-                p.setStyle(Paint.Style.STROKE);
-                p.setStrokeWidth(2.6f * unit);
-                p.setColor(accent);
-                c.drawRoundRect(rect2, 6 * unit, 6 * unit, p);
+            // a thing on a goal's own list is a step in; a goal that heads such a list has no box: it is struck when all under it is done
+            float bx = x0 + (it.level > 0 ? 26 * unit : 0f);
+            float textX = it.head ? x0 : bx + box + 14 * unit;
+            if (!it.head) {
+                rect2.set(bx, cy - box / 2, bx + box, cy + box / 2);
+                if (it.done) {
+                    p.setStyle(Paint.Style.FILL);
+                    p.setColor(pal.accent);
+                    c.drawRoundRect(rect2, 6 * unit, 6 * unit, p);
+                    check(c, bx + box / 2, cy, box * 0.62f, pal.accentInk, 3f * unit);
+                } else {
+                    p.setStyle(Paint.Style.STROKE);
+                    p.setStrokeWidth(2.6f * unit);
+                    p.setColor(accent);
+                    c.drawRoundRect(rect2, 6 * unit, 6 * unit, p);
+                }
             }
             float reserve = (i == k - 1 && paged) ? 170 * unit : 0;
-            String line = fit(it.text, size, REG, x1 - textX - reserve);
+            String line = fit(it.text, size, it.head ? MED : REG, x1 - textX - reserve);
             float tw = text(c, line, textX, base, size, it.done ? pal.muted : pal.ink, it.done ? REG : MED, Paint.Align.LEFT, 0f);
             if (it.done) {
                 p.setStyle(Paint.Style.STROKE);
@@ -696,6 +859,17 @@ final class PosterRenderer {
         if (paged) {
             // Where the window is in the list: "4–8 of 12".
             text(c, (start + 1) + "–" + (start + k) + " of " + items.size(), x1, barTop - 14 * unit, 22 * unit, pal.muted, MONO, Paint.Align.RIGHT, 0f);
+        }
+    }
+
+    /** The small tag on a part of the day that changed today, or null. */
+    private static String liveTag(int live) {
+        switch (live) {
+            case Routine.LIVE_LATE: return "STARTED LATE";
+            case Routine.LIVE_CARRIED: return "RAN LONGER";
+            case Routine.LIVE_EARLY: return "STARTED EARLY";
+            case Routine.LIVE_CUT: return "FINISHED EARLY";
+            default: return null;
         }
     }
 
@@ -784,6 +958,18 @@ final class PosterRenderer {
         tp.setLetterSpacing(spacing);
         c.drawText(s, x, y, tp);
         return tp.measureText(s);
+    }
+
+    /** Draws a piece of text that is never translated (or only measures it when c is null) and returns its width. */
+    private float plain(Canvas c, String s, float x, float y, float size, int color, Typeface tf, float spacing) {
+        tp.setTextSize(size);
+        tp.setColor(color);
+        tp.setTypeface(tf);
+        tp.setTextAlign(Paint.Align.LEFT);
+        tp.setLetterSpacing(spacing);
+        float width = tp.measureText(s);
+        if (c != null) c.drawText(s, x, y, tp);
+        return width;
     }
 
     private float measure(String s, float size, Typeface tf, float spacing) {

@@ -1,6 +1,5 @@
 package app.dinacharya.wallpaper;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -165,6 +164,8 @@ public class SetupActivity extends LangActivity {
             summary.setText(missing == 1 ? "1 step left." : missing + " steps left.");
             main.setText(guided || !tried.isEmpty() ? "Next step" : "Set up everything");
         }
+        // Once everything is set, the main button already says Close: a second Close under it would only repeat it.
+        skip.setVisibility(review && missing == 0 ? View.GONE : View.VISIBLE);
     }
 
     private void onMain() {

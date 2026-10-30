@@ -1,6 +1,5 @@
 package app.dinacharya.wallpaper;
 
-import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -13,8 +12,8 @@ import java.time.ZonedDateTime;
  * Uses no Android classes.
  */
 public final class LockRules {
-    /** Free: one lock holding up to two apps. Pro: groups (any number of locks, many apps each) and strict locks. */
-    public static final int FREE_GROUPS = 1, FREE_GROUP_APPS = 2;
+    /** Free: one lock holding one app. Pro: groups (any number of locks, many apps each) and strict locks. */
+    public static final int FREE_GROUPS = 1, FREE_GROUP_APPS = 1;
     public static final int EVERY_DAY = 127, WEEKDAYS = 31, WEEKENDS = 96;
 
     /**
@@ -26,11 +25,26 @@ public final class LockRules {
         public final int kind;
         public final String sub;
         public final long endMs;
+        /** When library mode ends (0 when it is off). An open-ended session reports a moment a day ahead and {@link #libraryOpen}. */
+        public final long libraryEndMs;
+        /** Library mode has no end: it lasts until it is switched off. */
+        public final boolean libraryOpen;
 
         public Slot(int kind, String sub, long endMs) {
+            this(kind, sub, endMs, 0L, false);
+        }
+
+        public Slot(int kind, String sub, long endMs, long libraryEndMs, boolean libraryOpen) {
             this.kind = kind;
             this.sub = sub == null ? "" : sub;
             this.endMs = endMs;
+            this.libraryEndMs = Math.max(0L, libraryEndMs);
+            this.libraryOpen = libraryOpen && libraryEndMs > 0;
+        }
+
+        /** The same slot, with library mode on until {@code endMs} (0 for off). */
+        public Slot withLibrary(long endMs, boolean open) {
+            return new Slot(kind, sub, this.endMs, endMs, open);
         }
     }
 
@@ -43,16 +57,25 @@ public final class LockRules {
         public final boolean strict;
         /** The name of the activity type that holds the lock now ("Study"), or empty when it is held by time. */
         public final String during;
+        /** True when library mode is what holds the lock; {@link #untilOpen} when that has no end. */
+        public final boolean library;
+        public final boolean untilOpen;
 
         Hit(LauncherConfig.Group group, long untilMs, boolean strict) {
             this(group, untilMs, strict, "");
         }
 
         Hit(LauncherConfig.Group group, long untilMs, boolean strict, String during) {
+            this(group, untilMs, strict, during, false, false);
+        }
+
+        Hit(LauncherConfig.Group group, long untilMs, boolean strict, String during, boolean library, boolean untilOpen) {
             this.group = group;
             this.untilMs = untilMs;
             this.strict = strict;
             this.during = during == null ? "" : during;
+            this.library = library;
+            this.untilOpen = untilOpen;
         }
     }
 
@@ -73,12 +96,12 @@ public final class LockRules {
         return i >= 0 && (DayPass.has(open, DayPass.LOCK_MORE) || i < FREE_GROUPS);
     }
 
-    /** Whether this app is held by this group's lock for this person (in the free version only the first two apps are). */
+    /** Whether this app is held by this group's lock for this person (in the free version only the first app is). */
     public static boolean holds(LauncherConfig c, LauncherConfig.Group g, String appKey, boolean pro) {
         return holds(c, g, appKey, pro ? DayPass.ALL : DayPass.FREE);
     }
 
-    /** Same, for what is open: only {@link DayPass#LOCK_APPS} lifts the limit of two apps in a lock. */
+    /** Same, for what is open: only {@link DayPass#LOCK_APPS} lifts the limit of one app in a lock. */
     public static boolean holds(LauncherConfig c, LauncherConfig.Group g, String appKey, int open) {
         if (!active(c, g, open)) return false;
         int i = g.apps.indexOf(appKey);
@@ -141,11 +164,27 @@ public final class LockRules {
         return lockedUntil(g, nowMs, zone, Slot.NONE);
     }
 
-    /** Same, with the slot going on: the group is also locked while a slot of one of its chosen types runs. */
+    /**
+     * Same, with the slot going on: the group is also locked while a slot of one of its chosen types runs, and while library mode is on
+     * when the group is set to lock then. With {@link LauncherConfig.Group#both} the daily window and the activity types hold together:
+     * the group is locked only while the window is open and a slot of a chosen type is going on (until the first of the two ends).
+     */
     public static long lockedUntil(LauncherConfig.Group g, long nowMs, ZoneId zone, Slot slot) {
         long manual = g.untilMs > nowMs ? g.untilMs : 0;
+        long window = windowEnd(g, nowMs, zone);
         long byType = during(g, slot, nowMs) ? slot.endMs : 0;
-        return Math.max(Math.max(manual, windowEnd(g, nowMs, zone)), byType);
+        long timed = combined(g) ? (window != 0 && byType != 0 ? Math.min(window, byType) : 0) : Math.max(window, byType);
+        return Math.max(Math.max(manual, timed), libraryEnd(g, slot, nowMs));
+    }
+
+    /** True when this group's window and activity types must both hold (it has both, and is set that way). */
+    public static boolean combined(LauncherConfig.Group g) {
+        return g.both && g.days != 0 && !g.during.isEmpty();
+    }
+
+    /** When library mode ends, if the group locks in library mode and it is on at {@code nowMs}; otherwise 0. */
+    public static long libraryEnd(LauncherConfig.Group g, Slot slot, long nowMs) {
+        return g != null && g.library && slot != null && slot.libraryEndMs > nowMs ? slot.libraryEndMs : 0L;
     }
 
     /** True when the slot going on is of a type that locks this group. */
@@ -174,11 +213,12 @@ public final class LockRules {
     /** Same, for a list of type keys. */
     public static String duringText(java.util.List<String> keys) {
         java.util.List<String> names = new java.util.ArrayList<>();
-        for (String k : keys) names.add(typeName(k));
+        // each name and the joining word are put into the person's language here (a text of the form "A and B" has no entry of its own)
+        for (String k : keys) names.add(Tr.t(typeName(k)));
         if (names.isEmpty()) return "";
         if (names.size() == 1) return names.get(0);
-        if (names.size() == 2) return names.get(0) + " and " + names.get(1);
-        return names.get(0) + ", " + names.get(1) + " and " + (names.size() - 2) + " more";
+        if (names.size() == 2) return names.get(0) + " " + Tr.t("and") + " " + names.get(1);
+        return names.get(0) + ", " + names.get(1) + " " + Tr.t("and " + (names.size() - 2) + " more");
     }
 
     /** The lock that holds this app right now (the one that lasts longest), or null. */
@@ -199,9 +239,13 @@ public final class LockRules {
             long until = lockedUntil(g, nowMs, zone, slot);
             if (until == 0) continue;
             if (best == null || until > best.untilMs) {
-                boolean byType = during(g, slot, nowMs) && until == slot.endMs;
+                long lib = libraryEnd(g, slot, nowMs);
+                boolean byLibrary = lib != 0 && until == lib;
+                long window = windowEnd(g, nowMs, zone);
+                boolean byType = !byLibrary && during(g, slot, nowMs)
+                        && (combined(g) ? until == Math.min(window, slot.endMs) : until == slot.endMs);
                 best = new Hit(g, until, g.strict && DayPass.has(open, DayPass.LOCK_STRICT),
-                        byType ? typeName(LauncherConfig.typeKey(slot.kind, slot.sub)) : "");
+                        byType ? typeName(LauncherConfig.typeKey(slot.kind, slot.sub)) : "", byLibrary, byLibrary && slot.libraryOpen);
             }
         }
         return best;
@@ -297,10 +341,24 @@ public final class LockRules {
     public static String status(LauncherConfig.Group g, long nowMs, ZoneId zone, boolean h24, Slot slot) {
         long until = lockedUntil(g, nowMs, zone, slot);
         String types = duringText(g);
-        if (until != 0) return "Locked until " + untilText(until, nowMs, zone, h24);
+        if (until != 0) {
+            long lib = libraryEnd(g, slot, nowMs);
+            if (lib != 0 && until == lib && slot.libraryOpen) return "Locked until library mode is switched off";
+            return "Locked until " + untilText(until, nowMs, zone, h24);
+        }
         long next = nextStart(g, nowMs, zone);
-        if (next != 0) return "Next: " + untilText(next, nowMs, zone, h24) + (types.isEmpty() ? "" : "  ·  and during " + types);
-        if (!types.isEmpty()) return "Locks during " + types;
+        String lib = g.library ? "  ·  and in library mode" : "";
+        if (combined(g)) {
+            String when = LockRules.daysText(g.days).toLowerCase(java.util.Locale.ROOT) + ", " + hm(g.startMin, h24) + " to " + hm(g.endMin, h24);
+            return "Locks during " + types + ", " + when + lib;
+        }
+        if (next != 0) return "Next: " + untilText(next, nowMs, zone, h24) + (types.isEmpty() ? "" : "  ·  and during " + types) + lib;
+        if (!types.isEmpty()) return "Locks during " + types + lib;
+        if (g.library) return "Locks in library mode";
         return "Not scheduled";
+    }
+
+    private static String hm(int minutes, boolean h24) {
+        return Routine.formatTime(minutes, h24);
     }
 }

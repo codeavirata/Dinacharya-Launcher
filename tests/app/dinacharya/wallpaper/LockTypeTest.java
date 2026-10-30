@@ -94,9 +94,10 @@ public class LockTypeTest {
         Set<String> hid = LockRules.hiddenNow(c, DayPass.ALL, now, Z, study);
         ok("a group that hides takes its locked apps out", hid.size() == 2 && hid.contains(ig) && hid.contains(yt) && !hid.contains(wa));
         ok("not locked, not hidden", LockRules.hiddenNow(c, DayPass.ALL, now, Z, LockRules.Slot.NONE).isEmpty());
-        ok("free: only the apps the lock really holds are hidden", LockRules.hiddenNow(c, DayPass.FREE, now, Z, study).size() == 2);
+        ok("free: only the apps the lock really holds are hidden", LockRules.hiddenNow(c, DayPass.FREE, now, Z, study).size() == 1
+                && LockRules.hiddenNow(c, DayPass.FREE, now, Z, study).contains(ig));
         c.setInGroup(g, wa, true);
-        ok("free: the third app is not held, so not hidden", LockRules.hiddenNow(c, DayPass.FREE, now, Z, study).size() == 2
+        ok("free: the third app is not held, so not hidden", LockRules.hiddenNow(c, DayPass.FREE, now, Z, study).size() == 1
                 && !LockRules.hiddenNow(c, DayPass.FREE, now, Z, study).contains(wa) && LockRules.hiddenNow(c, DayPass.ALL, now, Z, study).contains(wa));
         c.setInGroup(g, wa, false);
         g.untilMs = at(23, 11, 30);
@@ -114,6 +115,17 @@ public class LockTypeTest {
         g.during.add("2:*");
         g.during.add("1:nap");
         ok("many types in words", LockRules.duringText(g).equals("Study, Revision and 2 more"));
+        // in another language the names and the joining word are put into it one by one
+        java.util.Map<String, String> words = new java.util.HashMap<>();
+        words.put("Study", "S"); words.put("and", "&"); words.put("and 2 more", "+2");
+        Tr.use(x -> words.getOrDefault(x, x));
+        ok("the names and the joining word are translated", LockRules.duringText(g).equals("S, Revision +2"));
+        g.during.remove("2:*");
+        g.during.remove("1:nap");
+        ok("two types joined with the translated word", LockRules.duringText(g).equals("S & Revision"));
+        Tr.use(null);
+        g.during.add("2:*");
+        g.during.add("1:nap");
         g.during.clear();
         ok("none in words", LockRules.duringText(g).isEmpty());
 

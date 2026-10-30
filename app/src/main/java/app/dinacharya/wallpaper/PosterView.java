@@ -70,6 +70,7 @@ final class PosterView extends View {
         if (routine().showScreen) {
             ScreenTime.refresh(getContext(), () -> invalidate());
         }
+        SlotUseCache.refresh(getContext(), () -> invalidate());   // phone use in the slots, if the person turned it on
     }
 
     private void scheduleNext() {
@@ -133,7 +134,7 @@ final class PosterView extends View {
             long now = System.currentTimeMillis();
             renderer.drawLive(canvas, w, h, routine, Store.overrides(getContext(), routine), now, Store.zone(),
                     night == Configuration.UI_MODE_NIGHT_YES, routine.showScreen ? ScreenTime.last : null,
-                    Store.posterExtras(getContext()));
+                    Store.posterExtras(getContext(), routine));
             // A to-do list longer than its room moves on to its next page every few seconds (only drawn while the view is showing).
             if (renderer.scrolling()) {
                 removeCallbacks(pageTick);

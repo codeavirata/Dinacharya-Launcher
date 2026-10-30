@@ -26,7 +26,7 @@ final class DayCloser {
     static DayReport build(Context c, Routine base, Overrides ov, Plan.DayPlan p, List<Ev> events, long now) {
         long to = Math.min(now, p.endMs);
         UsageDetail u = ScreenTime.detail(c, p.startMs, to);
-        DayReport r = ReportAssembler.assemble(p, events, u, base.alarmOn, now);
+        DayReport r = ReportAssembler.assemble(p, events, u, base.alarmOn, now, SlotUseCache.parts(c));
         r.tips.clear();
         r.tips.addAll(Suggestions.generate(r, Store.history(c).recent(14), base));
         return r;

@@ -20,19 +20,17 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * "Watch short videos to open Pro features for a while." The person chooses it and chooses how many (nothing plays by itself):
- * one video opens one feature for a day, two open the same feature for three days, three open the whole group the feature is in
- * (all the pauses, say) for a day. The rewards are the {@link DayPass} tiers; the record is in {@link Pro}.
+ * "Watch three short videos to use all of Pro for a day." The person chooses it (nothing plays by itself). Each video watched to the end
+ * counts at once and is kept for the rest of the day, so stopping after one or two never loses them ({@link VideoProgress}); the third
+ * opens everything in Pro for 24 hours ({@link DayPass}), and when the time is up it all closes again. The record is in {@link Pro}.
  *
  * Ad layers: the video is asked for from up to three AdMob ad units in turn, the best paying first ({@link AdLayers}), so each
  * video earns as much as it can and one is still found when the best price is not on offer. One ad is loaded ahead of time while
  * an offer is on screen (and the next one while a video plays), so the person rarely waits.
  *
  * Fair to the person: a reward is given only when the ad has really been shown and the ad network says it was watched to the end
- * (never for a video that did not play), and it is given at that moment, one step per video, so stopping after one or two videos
- * keeps what those earned and a video that cannot be found never costs anything. Every item has its own pass: a video opens only the
- * item it was started for, and an item that needs a second thing (a strict pause on a third app) needs a second video. Someone who
- * owns Pro never sees the offer.
+ * (never for a video that did not play), and it is counted at that moment, so a video that cannot be found never costs anything.
+ * Someone who owns Pro never sees the offer.
  */
 final class VideoPass {
     /** How long one layer may take before the next is asked. */
@@ -72,7 +70,7 @@ final class VideoPass {
         return PassReset.needsResetMask(mask) ? "What you set up with it goes back to the free version then, unless you get Pro." : "";
     }
 
-    /** What the running passes open and until when, one line each ("Strict pauses: open until tomorrow 4:30 PM."), or an empty string. */
+    /** What the running passes open and until when ("Everything in Pro: open until tomorrow 4:30 PM."), or an empty string. */
     static String line(Context c) {
         try {
             List<PassLedger.Entry> run = Pro.get(c).runningPasses();
@@ -91,23 +89,12 @@ final class VideoPass {
         }
     }
 
-    /** "Strict pauses: open until tomorrow 4:30 PM." for one pass. */
+    /** "Everything in Pro: open until tomorrow 4:30 PM." for one pass. */
     private static String openLine(Context c, PassLedger.Entry e) {
         String what = DayPass.maskName(e.mask);
         if (!what.isEmpty()) what = Character.toUpperCase(what.charAt(0)) + what.substring(1);
         return what + ": open until "
                 + LockRules.untilText(e.until, System.currentTimeMillis(), Store.zone(), DateFormat.is24HourFormat(c)) + ".";
-    }
-
-    /** The same for the running passes that open any of the items in {@code mask}. */
-    private static String lineFor(Context c, int mask) {
-        StringBuilder sb = new StringBuilder();
-        for (PassLedger.Entry e : Pro.get(c).runningPasses()) {
-            if ((e.mask & mask) == 0) continue;
-            if (sb.length() > 0) sb.append('\n');
-            sb.append(openLine(c, e));
-        }
-        return sb.toString();
     }
 
     private static void say(Context c, String text) {
@@ -135,6 +122,25 @@ final class VideoPass {
             return AdLayers.dayKey(System.currentTimeMillis(), Store.zone()).equals(p.getString("day", "")) ? p.getInt("count", 0) : 0;
         } catch (RuntimeException e) {
             return 0;
+        }
+    }
+
+    /** The videos watched towards the next pass today (0 to 2). */
+    static int counted(Context c) {
+        try {
+            SharedPreferences p = c.getSharedPreferences("videos", Context.MODE_PRIVATE);
+            return VideoProgress.counted(p.getString("pday", ""), p.getInt("pcount", 0), AdLayers.dayKey(System.currentTimeMillis(), Store.zone()));
+        } catch (RuntimeException e) {
+            return 0;
+        }
+    }
+
+    private static void keepCount(Context c, int count) {
+        try {
+            String day = AdLayers.dayKey(System.currentTimeMillis(), Store.zone());
+            c.getSharedPreferences("videos", Context.MODE_PRIVATE).edit().putString("pday", day).putInt("pcount", Math.max(0, count)).apply();
+        } catch (RuntimeException e) {
+            CrashLog.note(c, "video progress", e);
         }
     }
 
@@ -274,9 +280,7 @@ final class VideoPass {
     /** The videos one choice asks for, and how far it has got. */
     private static final class Run {
         final Activity a;
-        final int item;
         final int need;
-        final boolean extend;
         final Runnable done;
         int earned;
         /** The ad on screen was really shown (the ad network said so); no reward counts before that. */
@@ -284,14 +288,14 @@ final class VideoPass {
         /** The ad network said this video was watched to the end. */
         boolean rewardThis;
         boolean over;
+        /** The third video was watched and everything in Pro was opened. */
+        boolean opened;
         Chain chain = new Chain();
         AlertDialog wait;
 
-        Run(Activity a, int item, int need, boolean extend, Runnable done) {
+        Run(Activity a, int need, Runnable done) {
             this.a = a;
-            this.item = item;
             this.need = need;
-            this.extend = extend;
             this.done = done;
         }
     }
@@ -311,49 +315,32 @@ final class VideoPass {
         activeAt = System.currentTimeMillis();
     }
 
-    /** One video for {@code item}, open for a day (the quickest way). */
-    static void watch(final Activity a, final int item, final Runnable opened) {
-        watch(a, item, DayPass.TIER_DAY, opened);
-    }
-
     /**
-     * Plays the videos a {@link DayPass} tier asks for (1, 2 or 3) for {@code item}: each video watched to the end adds its step
-     * at once (the item for a day; then three days; then the rest of its group for a day). {@code opened} (may be null) runs
-     * afterwards, on the main thread, when something was opened.
+     * Plays the videos still needed for the pass (up to three): each one watched to the end is counted at once, and the third opens
+     * everything in Pro for a day. {@code opened} (may be null) runs afterwards, on the main thread, when the pass was opened.
      */
-    static void watch(final Activity a, final int item, final int tier, final Runnable opened) {
-        if (!DayPass.tierOffered(tier, item)) return;
-        begin(new Run(a, item, DayPass.videosFor(tier), false, opened));
+    static void watch(final Activity a, final Runnable opened) {
+        final Pro pro = Pro.get(a);
+        begin(new Run(a, VideoProgress.remaining(counted(a)), opened), pro);
     }
 
-    /** One more video stretches the day-long pass on {@code item} to three days. */
-    static void extend(final Activity a, final int item, final Runnable opened) {
-        begin(new Run(a, item, 1, true, opened));
-    }
-
-    private static void begin(Run run) {
+    private static void begin(Run run, Pro pro) {
         final Activity a = run.a;
         try {
-            final Pro pro = Pro.get(a);
             if (pro.owned()) return;
             if (busy()) {
                 say(a, "A video is already on its way.");
                 return;
             }
-            if (run.extend) {
-                if (!pro.canExtendPass(run.item)) {
-                    say(a, "That cannot be kept longer.");
-                    return;
-                }
-            } else if (!pro.canStartPass(run.item)) {
+            if (!pro.canStartPass()) {
                 // Nothing is asked of the person and nothing is given: it is open already.
-                String open = lineFor(a, DayPass.bit(run.item));
-                say(a, open.isEmpty() ? "That is open already." : open);
+                String open = line(a);
+                say(a, open.isEmpty() ? "Everything is open already." : open);
                 return;
             }
             if (!AdLayers.underCap(shownToday(a))) {
-                tell(a, "That is plenty for today", "You have watched a lot of videos today. Try again tomorrow, or get Pro: it is one payment, "
-                        + "opens everything for good and removes the ads.");
+                tell(a, "That is plenty for today", "You have watched a lot of videos today. Try again tomorrow, or get Pro: it opens "
+                        + "everything and removes the ads.");
                 return;
             }
             if (!Ads.get().ready()) {
@@ -497,25 +484,24 @@ final class VideoPass {
         });
     }
 
-    /** The video was watched to the end: gives its step now, so nothing earned is ever lost. */
+    /** The video was watched to the end: counts it now, so nothing earned is ever lost; the third opens the pass. */
     private static void reward(Run run) {
         final Activity a = run.a;
         try {
-            Pro pro = Pro.get(a);
             run.earned++;
-            if (run.extend) {
-                pro.extendPass(run.item);
-            } else if (DayPass.stepExtends(run.earned)) {
-                pro.extendPass(run.item);
+            int count = VideoProgress.after(counted(a));
+            if (VideoProgress.earned(count)) {
+                keepCount(a, 0);
+                if (Pro.get(a).grantDay() != 0) run.opened = true;
             } else {
-                pro.grant(DayPass.stepMask(run.earned, run.item), DayPass.LENGTH_MS);
+                keepCount(a, count);
             }
         } catch (RuntimeException e) {
             CrashLog.note(a, "video grant", e);
         }
     }
 
-    /** Between two videos: what the next one adds, and a way to stop with what has been earned. */
+    /** Between two videos: how many are left, and a way to stop (what has been watched today stays counted). */
     private static void askNext(final Run run) {
         final Activity a = run.a;
         try {
@@ -524,22 +510,12 @@ final class VideoPass {
                 finish(run);
                 return;
             }
-            final int got = run.earned;
-            final int nextStep = got + 1;
-            final String item = DayPass.name(run.item);
-            final int left = run.need - got;
-            String ask;
-            if (DayPass.stepExtends(nextStep)) {
-                ask = left == 1 ? "Watch one more video to keep " + item + " open for 3 days."
-                        : "Watch " + left + " more videos to keep " + item + " open for 3 days.";
-            } else {
-                String group = DayPass.maskName(DayPass.tierMask(DayPass.TIER_GROUP, run.item));
-                ask = left == 1 ? "Watch one more video to open " + group + " for a day."
-                        : "Watch " + left + " more videos to open " + group + " for a day.";
-            }
-            String title = "Video " + got + " of " + run.need + " watched";
-            String message = Character.toUpperCase(item.charAt(0)) + item.substring(1) + " is open now.\n\n"
-                    + ask + "\n\nOr stop here and keep what you have.";
+            final int watched = VideoProgress.NEED - VideoProgress.remaining(counted(a));
+            final int left = VideoProgress.remaining(counted(a));
+            String title = "Video " + watched + " of " + VideoProgress.NEED + " watched";
+            String message = (left == 1 ? "Watch one more video to open everything in Pro for a day."
+                    : "Watch " + left + " more videos to open everything in Pro for a day.")
+                    + "\n\nOr stop here: the videos you watched today stay counted.";
             new DBuilder(a)
                     .setTitle(title)
                     .setMessage(message)
@@ -553,7 +529,7 @@ final class VideoPass {
         }
     }
 
-    /** The run is over, whichever way: tells the person what is open now (if anything) and lets the screen carry on. */
+    /** The run is over, whichever way: tells the person what is open now (or how far they are) and lets the screen carry on. */
     private static void finish(Run run) {
         if (run.over) return;
         run.over = true;
@@ -564,14 +540,19 @@ final class VideoPass {
         if (run.earned <= 0) return;
         try {
             Pro pro = Pro.get(a);
-            int mask = DayPass.bit(run.item) | DayPass.stepMask(DayPass.TIER_GROUP, run.item);
-            String open = lineFor(a, mask);
-            if (open.isEmpty()) {
-                if (!pro.owned()) say(a, "It could not be opened. Please try again.");
+            if (run.opened) {
+                String open = line(a);
+                if (open.isEmpty()) {
+                    if (!pro.owned()) say(a, "It could not be opened. Please try again.");
+                    return;
+                }
+                say(a, "Thank you for watching.\n" + open);
+                if (run.done != null) run.done.run();
                 return;
             }
-            say(a, "Thank you for watching.\n" + open);
-            if (run.done != null) run.done.run();
+            int left = VideoProgress.remaining(counted(a));
+            say(a, VideoProgress.progressText(VideoProgress.NEED - left) + ". "
+                    + (left == 1 ? "One more opens everything in Pro for a day." : left + " more open everything in Pro for a day."));
         } catch (RuntimeException e) {
             CrashLog.note(a, "video finish", e);
         }

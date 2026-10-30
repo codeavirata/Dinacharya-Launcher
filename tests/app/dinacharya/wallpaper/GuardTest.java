@@ -74,8 +74,10 @@ public class GuardTest {
         ok("lock: and it is held while it stays in front (a lock that starts while using the app)", v.type == GuardRules.LOCK);
         ok("lock: an app that is not in any group is left alone", GuardRules.decide(c, "q", true, DayPass.FREE, -1, 0, now, Z, t).type == GuardRules.NONE
                 && GuardRules.decide(c, "", true, DayPass.FREE, -1, 0, now, Z, t).type == GuardRules.NONE);
-        ok("lock: the free version holds the first two apps of a group only", GuardRules.decide(c, "b", true, DayPass.FREE, -1, 0, now, Z, t).type == GuardRules.LOCK
+        ok("lock: the free version holds the first app of a group only", GuardRules.decide(c, "a", true, DayPass.FREE, -1, 0, now, Z, t).type == GuardRules.LOCK
+                && GuardRules.decide(c, "b", true, DayPass.FREE, -1, 0, now, Z, t).type == GuardRules.NONE
                 && GuardRules.decide(c, "c", true, DayPass.FREE, -1, 0, now, Z, t).type == GuardRules.NONE
+                && GuardRules.decide(c, "b", true, DayPass.bit(DayPass.LOCK_APPS), -1, 0, now, Z, t).type == GuardRules.LOCK
                 && GuardRules.decide(c, "c", true, DayPass.bit(DayPass.LOCK_APPS), -1, 0, now, Z, t).type == GuardRules.LOCK
                 && GuardRules.decide(c, "c", true, DayPass.ALL, -1, 0, now, Z, t).type == GuardRules.LOCK);
         LauncherConfig off = locked(false);
@@ -91,7 +93,7 @@ public class GuardTest {
         GuardRules.Tracker t2 = new GuardRules.Tracker();
         t2.passed("a", now);
         ok("break: a lock that was broken lets the app through while it is in use", GuardRules.decide(c, "a", false, DayPass.FREE, -1, 0, now + 5000, Z, t2).type == GuardRules.NONE);
-        ok("break: but not the other apps of the group", GuardRules.decide(c, "b", true, DayPass.FREE, -1, 0, now + 5000, Z, t2).type == GuardRules.LOCK);
+        ok("break: but not the other apps of the group", GuardRules.decide(c, "b", true, DayPass.bit(DayPass.LOCK_APPS), -1, 0, now + 5000, Z, t2).type == GuardRules.LOCK);
         LauncherConfig strict = locked(true);
         GuardRules.Tracker t3 = new GuardRules.Tracker();
         t3.passed("a", now);
@@ -110,13 +112,13 @@ public class GuardTest {
         v = GuardRules.decide(pc, "p", true, DayPass.FREE, Routine.TASK, 0, now, Z, tp);
         ok("pause: an app with a pause rule is paused when it comes to the front", v.type == GuardRules.PAUSE && v.pause.type == FocusRules.NUDGE && v.key.equals(k("p")));
         ok("pause: not again while it stays in front", GuardRules.decide(pc, "p", false, DayPass.FREE, Routine.TASK, 0, now, Z, tp).type == GuardRules.NONE);
-        ok("pause: a strict rule is only a short pause without strict pauses", GuardRules.decide(pc, "s", true, DayPass.FREE, Routine.TASK, 0, now, Z, tp).pause.type == FocusRules.NUDGE
-                && GuardRules.decide(pc, "s", true, DayPass.bit(DayPass.PAUSE_STRICT), Routine.TASK, 0, now, Z, tp).pause.type == FocusRules.STRICT);
+        ok("pause: a strict rule is only a short pause without strict pauses", GuardRules.decide(pc, "s", true, DayPass.bit(DayPass.PAUSE_APPS), Routine.TASK, 0, now, Z, tp).pause.type == FocusRules.NUDGE
+                && GuardRules.decide(pc, "s", true, DayPass.bit(DayPass.PAUSE_APPS) | DayPass.bit(DayPass.PAUSE_STRICT), Routine.TASK, 0, now, Z, tp).pause.type == FocusRules.STRICT);
         ok("pause: outside a focus time only a rule that says 'at any time' pauses", GuardRules.decide(pc, "p", true, DayPass.FREE, -1, 0, now, Z, tp).type == GuardRules.PAUSE
                 && GuardRules.decide(pc, "s", true, DayPass.FREE, -1, 0, now, Z, tp).type == GuardRules.NONE);
         ok("pause: the pause is shown for the right name and words", GuardRules.pauseMessage(GuardRules.decide(pc, "p", true, DayPass.FREE, Routine.TASK, 0, now, Z, tp).pause, "Study")
                 .equals("Right now: Study.\nIs this the best use of the next few minutes?")
-                && GuardRules.pauseMessage(GuardRules.decide(pc, "s", true, DayPass.bit(DayPass.PAUSE_STRICT), Routine.TASK, 0, now, Z, tp).pause, "").equals("This is a focus time.")
+                && GuardRules.pauseMessage(GuardRules.decide(pc, "s", true, DayPass.bit(DayPass.PAUSE_APPS) | DayPass.bit(DayPass.PAUSE_STRICT), Routine.TASK, 0, now, Z, tp).pause, "").equals("This is a focus time.")
                 && GuardRules.pauseMessage(GuardRules.decide(pc, "p", true, DayPass.FREE, Routine.TASK, 0, now, Z, tp).pause, null).startsWith("Take a breath"));
         LauncherConfig lim = new LauncherConfig();
         lim.setRule(k("l"), LauncherConfig.RULE_NUDGE, 30, true);
@@ -128,8 +130,10 @@ public class GuardTest {
         ok("limit: not used up means a short pause (outside focus times too, the rule says 'at any time')", GuardRules.decide(lim, "l", true, DayPass.bit(DayPass.PAUSE_LIMIT), -1, 5 * MIN, now, Z, null).pause.type == FocusRules.NUDGE);
         LauncherConfig over = new LauncherConfig();
         for (char ch = 'a'; ch <= 'd'; ch++) over.setRule(k(String.valueOf(ch)), LauncherConfig.RULE_NUDGE, 0, true);
-        ok("pause: the free version keeps the first two rules only", GuardRules.decide(over, "a", true, DayPass.FREE, -1, 0, now, Z, null).type == GuardRules.PAUSE
+        ok("pause: the free version keeps the first rule only", GuardRules.decide(over, "a", true, DayPass.FREE, -1, 0, now, Z, null).type == GuardRules.PAUSE
+                && GuardRules.decide(over, "b", true, DayPass.FREE, -1, 0, now, Z, null).type == GuardRules.NONE
                 && GuardRules.decide(over, "c", true, DayPass.FREE, -1, 0, now, Z, null).type == GuardRules.NONE
+                && GuardRules.decide(over, "b", true, DayPass.bit(DayPass.PAUSE_APPS), -1, 0, now, Z, null).type == GuardRules.PAUSE
                 && GuardRules.decide(over, "c", true, DayPass.bit(DayPass.PAUSE_APPS), -1, 0, now, Z, null).type == GuardRules.PAUSE);
 
         // ---------- passed, and for how long
@@ -164,9 +168,12 @@ public class GuardTest {
         ok("loop: quick when there is something to watch, slow when there is not or the screen is off",
                 GuardRules.pollMs(true, true, false) < GuardRules.pollMs(false, true, false) && GuardRules.pollMs(true, true, true) <= GuardRules.pollMs(true, true, false)
                         && GuardRules.pollMs(true, false, false) >= 2000 && GuardRules.pollMs(true, true, false) <= 500);
-        ok("config: the strong lock is saved, off by default, and an old saved config loads with it off", !new LauncherConfig().strong
+        ok("config: the strong lock is on from the start, an old saved config (made before it was on by default) loads with it on, and a person's own off is kept",
+                new LauncherConfig().strong
                 && LauncherConfig.parse(withStrong(true).serialize()).strong && !LauncherConfig.parse(withStrong(false).serialize()).strong
-                && !LauncherConfig.parse("DINALAUNCH1\nswipes=2\ntheme=1\n").strong);
+                && LauncherConfig.parse("DINALAUNCH1\nswipes=2\ntheme=1\n").strong
+                && LauncherConfig.parse("DINALAUNCH1\nstrong=1\n").strong && !LauncherConfig.parse("DINALAUNCH1\nstrong=0\n").strong
+                && withStrong(false).serialize().contains("strong=0") && !withStrong(true).serialize().contains("strong="));
         LauncherConfig round = LauncherConfig.parse(locked(false).serialize());
         ok("config: locks and pauses still save and load as before", round.groups.size() == 1 && round.groups.get(0).apps.size() == 3);
 
@@ -205,7 +212,7 @@ public class GuardTest {
         lp.done();
         o = lp.look(lc, "a", "", safe, own, DayPass.FREE, n += 400, Z, lt, env);
         ok("loop: after going back, opening the app again is held again straight away", o.present && o.verdict.type == GuardRules.LOCK);
-        o = lp.look(lc, "b", "a", safe, own, DayPass.FREE, n += 400, Z, lt, env);
+        o = lp.look(lc, "b", "a", safe, own, DayPass.bit(DayPass.LOCK_APPS), n += 400, Z, lt, env);
         ok("loop: another locked app replaces the cover of the first", o.present && o.pkg.equals("b"));
 
         GuardLoop lp2 = new GuardLoop();
@@ -262,6 +269,93 @@ public class GuardTest {
         o = lp5.look(locked(true), "a", "", safe, own, DayPass.bit(DayPass.LOCK_STRICT), now + 500, Z, lt5, env);
         ok("loop: a strict lock holds the app even after it was 'passed'", o.present && o.verdict.lock.strict);
 
+
+        // ---------- build 26: the lock is part of the launcher, not a setting to find
+        ok("run: nothing runs while nothing is locked or paused, even with the strong lock on", !GuardRules.shouldRun(new LauncherConfig())
+                && !GuardRules.shouldRun(emptyGroupOnly()));
+        ok("run: a lock or a pause starts the watcher by itself, and switching the strong lock off by hand stops it",
+                GuardRules.shouldRun(locked(false)) && !GuardRules.shouldRun(lockedOff()) && GuardRules.shouldRun(pausedOnly())
+                && !GuardRules.shouldRun(null));
+        ok("state: with nothing to hold it is idle and asks for nothing; with something to hold it says what is missing",
+                GuardRules.state(true, false, false, false) == GuardRules.IDLE && GuardRules.state(false, true, true, true) == GuardRules.OFF
+                && GuardRules.state(true, true, false, true) == GuardRules.NEEDS_USAGE && GuardRules.state(true, true, true, false) == GuardRules.NEEDS_OVERLAY
+                && GuardRules.state(true, true, false, false) == GuardRules.NEEDS_BOTH && GuardRules.state(true, true, true, true) == GuardRules.ON);
+        ok("state: only a missing permission needs attention", GuardRules.needsPermission(GuardRules.NEEDS_USAGE) && GuardRules.needsPermission(GuardRules.NEEDS_OVERLAY)
+                && GuardRules.needsPermission(GuardRules.NEEDS_BOTH) && !GuardRules.needsPermission(GuardRules.ON) && !GuardRules.needsPermission(GuardRules.IDLE)
+                && !GuardRules.needsPermission(GuardRules.OFF));
+        ok("ask: Usage access first, then Display over other apps, then nothing", GuardRules.nextAsk(false, false) == GuardRules.ASK_USAGE
+                && GuardRules.nextAsk(false, true) == GuardRules.ASK_USAGE && GuardRules.nextAsk(true, false) == GuardRules.ASK_OVERLAY
+                && GuardRules.nextAsk(true, true) == GuardRules.ASK_NONE);
+        ok("ask: how many are missing", GuardRules.missing(false, false) == 2 && GuardRules.missing(true, false) == 1 && GuardRules.missing(true, true) == 0);
+        ok("ask: after a save the permissions are offered when one is missing, unless the person just said Not now",
+                GuardRules.shouldOffer(GuardRules.NEEDS_BOTH, -1) && GuardRules.shouldOffer(GuardRules.NEEDS_USAGE, GuardRules.OFFER_AGAIN_MS)
+                && !GuardRules.shouldOffer(GuardRules.NEEDS_BOTH, 60000L) && !GuardRules.shouldOffer(GuardRules.ON, -1)
+                && !GuardRules.shouldOffer(GuardRules.OFF, -1) && !GuardRules.shouldOffer(GuardRules.IDLE, -1));
+        ok("ask: the next permission is asked for only when the one just visited was given",
+                GuardRules.continueAsking(2, 1) && !GuardRules.continueAsking(2, 2) && !GuardRules.continueAsking(1, 0) && !GuardRules.continueAsking(1, 1)
+                && !GuardRules.continueAsking(2, 0));
+        ok("watching: a recent beat means it is running; none, or an old one, means it is not", GuardRules.watching(now - 3000, now)
+                && !GuardRules.watching(0, now) && !GuardRules.watching(now - GuardRules.BEAT_STALE_MS - 1, now));
+
+        // ---------- the ways round the home screen, one by one, through the watcher's own pieces
+        Set<String> sf = GuardRules.alwaysSafe();
+        sf.add("home.app");
+        sf.add("app.dinacharya.wallpaper");
+        FrontTracker ft = new FrontTracker();
+        GuardLoop gl = new GuardLoop();
+        GuardRules.Tracker gt = new GuardRules.Tracker();
+        LauncherConfig hidden = locked(false);
+        hidden.groups.get(0).hide = true;   // "hide the apps while they are locked": hidden from the list, still held when opened any other way
+        GuardLoop.Env quiet = new GuardLoop.Env() {
+            public int slotKind() { return -1; }
+            public long usedToday(String pkg) { return 0; }
+        };
+        long g0 = now;
+        ft.feed(FrontTracker.RESUMED, "home.app", "home.Main", g0);
+        // 1. Recents: the recents screen comes up, then the locked app is picked from it
+        ft.feed(FrontTracker.PAUSED, "home.app", "home.Main", g0 + 200);
+        ft.feed(FrontTracker.RESUMED, "com.android.systemui", "com.android.systemui.recents.Recents", g0 + 210);
+        GuardLoop.Out go = gl.look(hidden, ft.front(), "", sf, "app.dinacharya.wallpaper", DayPass.FREE, g0 + 400, Z, gt, quiet);
+        ok("recents: the recents screen itself is never covered", !go.present);
+        ft.feed(FrontTracker.PAUSED, "com.android.systemui", "com.android.systemui.recents.Recents", g0 + 900);
+        ft.feed(FrontTracker.RESUMED, "a", "a.Main", g0 + 910);
+        go = gl.look(hidden, ft.front(), "", sf, "app.dinacharya.wallpaper", DayPass.FREE, g0 + 1000, Z, gt, quiet);
+        ok("recents: a locked app picked from Recents is held (also when its group hides it from the list)", go.present && go.pkg.equals("a") && go.verdict.type == GuardRules.LOCK);
+        // 2. App info: Settings is in front (never covered), the Open button brings the locked app up
+        gl.done();
+        ft.feed(FrontTracker.PAUSED, "a", "a.Main", g0 + 2000);
+        ft.feed(FrontTracker.RESUMED, "com.android.settings", "com.android.settings.applications.InstalledAppDetails", g0 + 2010);
+        go = gl.look(hidden, ft.front(), "", sf, "app.dinacharya.wallpaper", DayPass.FREE, g0 + 2200, Z, gt, quiet);
+        ok("app info: the Settings page of the app is not covered", !go.present);
+        ft.feed(FrontTracker.PAUSED, "com.android.settings", "com.android.settings.applications.InstalledAppDetails", g0 + 3000);
+        ft.feed(FrontTracker.RESUMED, "b", "b.Main", g0 + 3010);
+        go = gl.look(hidden, ft.front(), "", sf, "app.dinacharya.wallpaper", DayPass.bit(DayPass.LOCK_APPS), g0 + 3200, Z, gt, quiet);
+        ok("app info: the Open button of a locked app is held", go.present && go.pkg.equals("b") && go.verdict.type == GuardRules.LOCK);
+        // 3. a notification or a widget opens the locked app from another app
+        gl.done();
+        ft.feed(FrontTracker.PAUSED, "b", "b.Main", g0 + 4000);
+        ft.feed(FrontTracker.RESUMED, "some.chat", "some.chat.Main", g0 + 4010);
+        ft.feed(FrontTracker.PAUSED, "some.chat", "some.chat.Main", g0 + 4500);
+        ft.feed(FrontTracker.RESUMED, "c", "c.Main", g0 + 4510);
+        go = gl.look(hidden, ft.front(), "", sf, "app.dinacharya.wallpaper", DayPass.bit(DayPass.LOCK_APPS), g0 + 4700, Z, gt, quiet);
+        ok("notification: a locked app opened from another app is held", go.present && go.pkg.equals("c"));
+        // 4. the watcher was started after the app was already open (the phone restarted it): the lock still holds it
+        FrontTracker late = new FrontTracker();
+        late.feed(FrontTracker.RESUMED, "a", "a.Main", g0 - 5 * MIN);
+        GuardLoop fresh = new GuardLoop();
+        go = fresh.look(hidden, late.front(), "", sf, "app.dinacharya.wallpaper", DayPass.FREE, g0, Z, new GuardRules.Tracker(), quiet);
+        ok("restart: a watcher that starts while a locked app is already open holds it at once", go.present && go.verdict.type == GuardRules.LOCK);
+        // 5. another home app is in front: its own screen is not covered, an app opened from it is
+        FrontTracker other = new FrontTracker();
+        other.feed(FrontTracker.RESUMED, "home.app", "home.Main", g0);
+        go = new GuardLoop().look(hidden, other.front(), "", sf, "app.dinacharya.wallpaper", DayPass.FREE, g0 + 100, Z, new GuardRules.Tracker(), quiet);
+        other.feed(FrontTracker.PAUSED, "home.app", "home.Main", g0 + 200);
+        other.feed(FrontTracker.RESUMED, "a", "a.Main", g0 + 210);
+        GuardLoop.Out go2 = new GuardLoop().look(hidden, other.front(), "", sf, "app.dinacharya.wallpaper", DayPass.FREE, g0 + 300, Z, new GuardRules.Tracker(), quiet);
+        ok("other launcher: its own screen is left alone, and an app opened from it is held", !go.present && go2.present);
+        // 6. the strong lock switched off by hand holds nothing here: the service is simply not running (shouldRun false)
+        ok("off by hand: the watcher does not run, so nothing is held outside the home screen", !GuardRules.shouldRun(lockedOff()));
+
         System.out.println(fails == 0 ? "ALL PASS" : fails + " FAILS");
         if (fails > 0) System.exit(1);
     }
@@ -269,6 +363,19 @@ public class GuardTest {
     static LauncherConfig emptyGroupOnly() {
         LauncherConfig c = new LauncherConfig();
         c.addGroup("Empty");
+        return c;
+    }
+
+
+    static LauncherConfig lockedOff() {
+        LauncherConfig c = locked(false);
+        c.strong = false;
+        return c;
+    }
+
+    static LauncherConfig pausedOnly() {
+        LauncherConfig c = new LauncherConfig();
+        c.setRule(k("p"), LauncherConfig.RULE_NUDGE, 0, false);
         return c;
     }
 

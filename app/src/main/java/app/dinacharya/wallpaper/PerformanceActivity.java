@@ -1,6 +1,5 @@
 package app.dinacharya.wallpaper;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -13,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /** How your days are going: today so far, the last week, and every saved day. */
@@ -41,7 +39,7 @@ public class PerformanceActivity extends LangActivity {
         LinearLayout bar = new LinearLayout(this);
         bar.setOrientation(LinearLayout.HORIZONTAL);
         bar.setPadding(Ui.dp(this, 12), Ui.dp(this, 4), Ui.dp(this, 12), Ui.dp(this, 8));
-        String[] names = {"Today", Pro.has(this, DayPass.REPORT_WEEK) ? "Week" : "Week · Pro", "Days"};
+        String[] names = {"Today", Pro.has(this, DayPass.REPORT_WEEK) ? "Week" : "Week · Pro", Pro.has(this, DayPass.REPORT_DAYS) ? "Days" : "Days · Pro"};
         for (int i = 0; i < 3; i++) {
             final int idx = i;
             Button b = Ui.button(this, names[i], false, v -> select(idx));
@@ -84,6 +82,7 @@ public class PerformanceActivity extends LangActivity {
         tab = which;
         final int gen = ++generation;
         tabs[TAB_WEEK].setText(Pro.has(this, DayPass.REPORT_WEEK) ? "Week" : "Week · Pro");
+        tabs[TAB_DAYS].setText(Pro.has(this, DayPass.REPORT_DAYS) ? "Days" : "Days · Pro");
         for (int i = 0; i < 3; i++) {
             boolean on = i == which;
             tabs[i].setTextColor(on ? Color.WHITE : Ui.INK);
@@ -98,8 +97,12 @@ public class PerformanceActivity extends LangActivity {
         final boolean daysOpen = Pro.has(this, DayPass.REPORT_DAYS);
         if (which == TAB_WEEK && !Limits.weekAllowed(Pro.has(this, DayPass.REPORT_WEEK))) {
             showLocked(DayPass.REPORT_WEEK, "The weekly view is part of Pro",
-                    "The week chart, your average score and the tips that come from it. Today and the last "
-                            + Limits.FREE_REPORT_DAYS + " days stay free.");
+                    "The week chart, your average score and the tips that come from it. Today's report stays free.");
+            return;
+        }
+        if (which == TAB_DAYS && !daysOpen) {
+            showLocked(DayPass.REPORT_DAYS, "Saved days are part of Pro",
+                    "Open the report of any past day, with its slot analysis and a PDF to save or share. Today's report stays free.");
             return;
         }
         new Thread(() -> {
@@ -148,9 +151,14 @@ public class PerformanceActivity extends LangActivity {
             body.addView(grant, Ui.lp(this, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 4));
             ((LinearLayout.LayoutParams) grant.getLayoutParams()).setMargins(Ui.dp(this, 16), Ui.dp(this, 4), Ui.dp(this, 16), Ui.dp(this, 8));
         }
-        ReportView rv = new ReportView(this);
-        rv.showDay(r, h24);
-        body.addView(rv, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        // the top of the report, then the slot analysis as dropdowns, then the table of slots and the suggestions
+        ReportView head = new ReportView(this);
+        head.showDay(r, h24, ReportRenderer.HEAD);
+        body.addView(head, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        addSlotCards(r, h24);
+        ReportView tail = new ReportView(this);
+        tail.showDay(r, h24, ReportRenderer.TAIL);
+        body.addView(tail, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         LinearLayout row = new LinearLayout(this);
         row.setOrientation(LinearLayout.HORIZONTAL);
         row.setPadding(Ui.dp(this, 14), Ui.dp(this, 8), Ui.dp(this, 14), Ui.dp(this, 24));
@@ -160,6 +168,18 @@ public class PerformanceActivity extends LangActivity {
         LinearLayout.LayoutParams b = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
         row.addView(Ui.button(this, "Share PDF", false, v -> PdfActions.share(this, r)), b);
         body.addView(row);
+    }
+
+    /** The slot-by-slot analysis of a day, as a card between the two halves of the report. */
+    private void addSlotCards(DayReport r, boolean h24) {
+        try {
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            lp.setMargins(Ui.dp(this, 14), Ui.dp(this, 6), Ui.dp(this, 14), Ui.dp(this, 8));
+            body.addView(Limits.analysisAllowed(Pro.has(this, DayPass.ANALYSIS)) ? SlotCards.build(this, r, h24)
+                    : SlotCards.locked(this, () -> select(tab)), lp);
+        } catch (RuntimeException e) {
+            CrashLog.note(this, "slot analysis", e);
+        }
     }
 
     private void showWeek(WeekStats w, List<String> tips, boolean h24) {
@@ -185,7 +205,7 @@ public class PerformanceActivity extends LangActivity {
         t.setLineSpacing(0, 1.15f);
         card.addView(t, Ui.wide(this, 8));
         card.addView(Ui.button(this, "See Pro", true, v -> ProPrompt.open(this)), Ui.wide(this, 14));
-        ProPrompt.addVideoButton(this, card, item, 8, () -> select(tab));
+        ProPrompt.addOffer(this, card, 8, () -> select(tab));
         LinearLayout.LayoutParams lp = Ui.wide(this, 8);
         lp.leftMargin = Ui.dp(this, 14);
         lp.rightMargin = Ui.dp(this, 14);
@@ -229,22 +249,6 @@ public class PerformanceActivity extends LangActivity {
             lp.leftMargin = Ui.dp(this, 14);
             lp.rightMargin = Ui.dp(this, 14);
             body.addView(card, lp);
-        }
-        if (open < everyDay.size()) {
-            int more = everyDay.size() - open;
-            LinearLayout.LayoutParams lp = Ui.wide(this, 14);
-            lp.leftMargin = Ui.dp(this, 14);
-            lp.rightMargin = Ui.dp(this, 14);
-            LinearLayout box = new LinearLayout(this);
-            box.setOrientation(LinearLayout.VERTICAL);
-            box.setPadding(0, 0, 0, 0);
-            TextView note = Ui.label(this, (more == 1 ? "1 older day is saved on this phone. " : more + " older days are saved on this phone. ")
-                    + "Opening days older than the last " + Limits.FREE_REPORT_DAYS + " days is part of Pro.", 13, Ui.MUTED, false);
-            note.setLineSpacing(0, 1.15f);
-            box.addView(note);
-            box.addView(Ui.button(this, "See Pro", false, v -> ProPrompt.open(this)), Ui.wide(this, 8));
-            ProPrompt.addVideoButton(this, box, DayPass.REPORT_DAYS, 8, () -> select(tab));
-            body.addView(box, lp);
         }
         View pad = new View(this);
         body.addView(pad, new LinearLayout.LayoutParams(1, Ui.dp(this, 24)));

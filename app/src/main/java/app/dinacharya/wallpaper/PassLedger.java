@@ -6,9 +6,8 @@ import java.util.List;
 
 /**
  * The video passes a person has earned, as a list. Every pass is its own entry: the items it opens (a {@link DayPass} mask), when it
- * started, when it ends, and the note of what existed when it began (see {@link PassReset}). Passes run side by side and are
- * independent: a video for strict pauses and a video for pauses for more apps are two passes with two timers, so needing both
- * for one thing (a strict pause on a third app, say) means watching one video for each, and neither opens the other.
+ * started, when it ends, and the note of what existed when it began (see {@link PassReset}). Three videos earn one pass that opens
+ * everything for a day; a record kept by an earlier version may hold several passes, each with its own timer, and they still work.
  *
  * An item is in at most one running pass at a time: a new pass only opens the items that are not open yet, so the notes of two passes
  * never claim the same thing. Uses no Android classes.
@@ -114,20 +113,6 @@ public final class PassLedger {
     /** Adds an entry as it is, without any check (for tests that move time). */
     void rawAdd(Entry e) {
         list.add(e.copy());
-    }
-
-    /** True when the running pass on {@code item} is a day long, for that item alone, and one more video can stretch it to three days. */
-    public boolean canExtend(int item, long now) {
-        Entry e = covering(item, now);
-        return e != null && DayPass.canExtend(e.mask, e.from, e.until, now);
-    }
-
-    /** Stretches that pass to three days from when it began. Returns false when that is not possible. */
-    public boolean extend(int item, long now) {
-        Entry e = covering(item, now);
-        if (e == null || !DayPass.canExtend(e.mask, e.from, e.until, now)) return false;
-        e.until = DayPass.extendedUntil(e.from);
-        return true;
     }
 
     // ------------------------------------------------------------------ ending

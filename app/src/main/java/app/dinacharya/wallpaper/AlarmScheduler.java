@@ -73,6 +73,16 @@ final class AlarmScheduler {
         long ringAt;          // when the ringing service last got going
         long fallbackAt;      // when the backup notification had to be used instead
         long missedFor;       // an alarm set for this time never reached the app
+        String missedTitle = "";   // what that alarm was for
+        long missedNoted;     // the missed alarm the person was told about
+        int missedExit;       // how the app had ended just before it was found missed, when that takes alarms away (see AlarmWatch); else 0
+        String armedTitle = "";    // what the alarm set in Android is for
+        long lostAt;          // when the alarm set in Android was found gone (the app had been closed from App info)
+        long lostFor;         // the time that alarm was set for
+        long exitAt;          // when Android last ended the app in a way worth telling
+        int exitReason;       // how (see AlarmWatch)
+        long exitSeen;        // the newest end of the app looked at so far
+        long checkedAt;       // when the guard last looked
     }
 
     private static android.content.SharedPreferences diagPrefs(Context c) {
@@ -92,15 +102,26 @@ final class AlarmScheduler {
             d.ringAt = p.getLong("ringAt", 0);
             d.fallbackAt = p.getLong("fallbackAt", 0);
             d.missedFor = p.getLong("missedFor", 0);
+            d.missedTitle = p.getString("missedTitle", "");
+            d.missedNoted = p.getLong("missedNoted", 0);
+            d.missedExit = p.getInt("missedExit", 0);
+            d.armedTitle = p.getString("armedTitle", "");
+            d.lostAt = p.getLong("lostAt", 0);
+            d.lostFor = p.getLong("lostFor", 0);
+            d.exitAt = p.getLong("exitAt", 0);
+            d.exitReason = p.getInt("exitReason", 0);
+            d.exitSeen = p.getLong("exitSeen", 0);
+            d.checkedAt = p.getLong("checkedAt", 0);
         } catch (RuntimeException ignored) {
             // nothing known
         }
         return d;
     }
 
-    private static void noteArmed(Context c, long forMs, boolean exact) {
+    private static void noteArmed(Context c, long forMs, boolean exact, String title) {
         try {
             diagPrefs(c).edit().putLong("armedFor", forMs).putBoolean("armedExact", exact)
+                    .putString("armedTitle", title == null ? "" : title)
                     .putLong("armedAt", System.currentTimeMillis()).apply();
         } catch (RuntimeException ignored) {
             // diagnostics only
@@ -111,7 +132,7 @@ final class AlarmScheduler {
         try {
             android.content.SharedPreferences.Editor ed = diagPrefs(c).edit().putLong("firedAt", System.currentTimeMillis())
                     .putLong("firedDue", dueMs).putBoolean("firedTest", test).putLong("ringAt", 0).putLong("fallbackAt", 0);
-            ed.remove("missedFor");   // an alarm got through, so an earlier miss is history
+            ed.remove("missedFor").remove("missedTitle").remove("missedExit");   // an alarm got through, so an earlier miss is history
             ed.apply();
         } catch (RuntimeException ignored) {
             // diagnostics only
@@ -171,9 +192,64 @@ final class AlarmScheduler {
     private static void noteIfMissed(Context c) {
         try {
             Diag d = diag(c);
-            if (d.armedFor > 0 && d.armedFor < System.currentTimeMillis() - 90000L && d.firedDue < d.armedFor) {
-                diagPrefs(c).edit().putLong("missedFor", d.armedFor).apply();
+            if (AlarmWatch.missed(d.armedFor, d.firedDue, System.currentTimeMillis()) && d.missedFor != d.armedFor) {
+                // If the app was closed from App info after this alarm was set, that is why it never came.
+                int why = d.exitAt >= d.armedAt - 1000L && AlarmWatch.clearsAlarms(d.exitReason) ? d.exitReason : 0;
+                diagPrefs(c).edit().putLong("missedFor", d.armedFor).putString("missedTitle", d.armedTitle).putInt("missedExit", why).apply();
             }
+        } catch (RuntimeException ignored) {
+            // diagnostics only
+        }
+    }
+
+    /**
+     * Called before every re-set. If an alarm was set for later and Android no longer holds it, the app was closed in a way that drops
+     * every alarm (App info > Force stop): remember when, so the person is told and the alarm is set again.
+     */
+    private static void noteIfLost(Context c) {
+        try {
+            Diag d = diag(c);
+            long now = System.currentTimeMillis();
+            if (AlarmWatch.lost(d.armedFor, isSet(c), now) && d.lostFor != d.armedFor) {
+                diagPrefs(c).edit().putLong("lostAt", now).putLong("lostFor", d.armedFor).apply();
+            }
+        } catch (RuntimeException ignored) {
+            // diagnostics only
+        }
+    }
+
+    /** True when Android still holds the alarm this app set (it is gone after the app was closed from App info). */
+    static boolean isSet(Context c) {
+        try {
+            Intent i = new Intent(c, AlarmReceiver.class);
+            i.setAction(ACTION_ALARM);
+            return PendingIntent.getBroadcast(c, 4001, i, PendingIntent.FLAG_NO_CREATE | PendingIntent.FLAG_IMMUTABLE) != null;
+        } catch (RuntimeException e) {
+            return true;   // cannot tell: do not claim it is gone
+        }
+    }
+
+    static void noteMissedTold(Context c, long missedFor) {
+        try {
+            diagPrefs(c).edit().putLong("missedNoted", missedFor).apply();
+        } catch (RuntimeException ignored) {
+            // diagnostics only
+        }
+    }
+
+    static void noteExit(Context c, long at, int reason, long seen) {
+        try {
+            android.content.SharedPreferences.Editor ed = diagPrefs(c).edit().putLong("exitSeen", seen);
+            if (at > 0) ed.putLong("exitAt", at).putInt("exitReason", reason);
+            ed.apply();
+        } catch (RuntimeException ignored) {
+            // diagnostics only
+        }
+    }
+
+    static void noteChecked(Context c) {
+        try {
+            diagPrefs(c).edit().putLong("checkedAt", System.currentTimeMillis()).apply();
         } catch (RuntimeException ignored) {
             // diagnostics only
         }
@@ -216,7 +292,10 @@ final class AlarmScheduler {
     private static void doReschedule(Context c) {
         AlarmManager am = (AlarmManager) c.getSystemService(Context.ALARM_SERVICE);
         if (am == null) return;
+        Keeper.readExit(c);   // how the app last ended, so a missed alarm can be explained
         noteIfMissed(c);
+        noteIfLost(c);
+        SlotActions.forgetOldDayOff(c);
         Routine base = Store.load(c);
         Overrides ov = Store.overrides(c, base);
         AlarmState st = Store.alarmState(c);
@@ -225,7 +304,7 @@ final class AlarmScheduler {
         PendingIntent op = operation(c, next);
         if (next == null) {
             am.cancel(op);
-            noteArmed(c, 0, false);
+            noteArmed(c, 0, false, "");
             return;
         }
         if (exactAllowed(c)) {
@@ -233,13 +312,13 @@ final class AlarmScheduler {
                 Intent open = new Intent(c, MainActivity.class);
                 PendingIntent show = PendingIntent.getActivity(c, 4002, open, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
                 am.setAlarmClock(new AlarmManager.AlarmClockInfo(next.timeMs, show), op);
-                noteArmed(c, next.timeMs, true);
+                noteArmed(c, next.timeMs, true, next.title);
                 return;
             } catch (SecurityException refused) {
                 // fall through to the normal alarm below
             }
         }
         am.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, next.timeMs, op);
-        noteArmed(c, next.timeMs, false);
+        noteArmed(c, next.timeMs, false, next.title);
     }
 }

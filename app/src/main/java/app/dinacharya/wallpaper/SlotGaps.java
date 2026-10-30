@@ -25,6 +25,12 @@ public final class SlotGaps {
         public long lentMs;
         /** Time after this slot's end that this slot went on, because it was carried into the next slot. */
         public long extMs;
+        /** When this slot really began and ended: earlier than planned when it was started or finished early, else the planned times. */
+        public long effStart;
+        public long effEnd;
+        /** Minutes (as milliseconds) before the planned start that already belonged to this slot, and the planned end that it gave back. */
+        public long preMs;
+        public long cutMs;
 
         /** All the gap time together (an overlap of two kinds counts once). */
         public long gapMs() {
@@ -90,12 +96,37 @@ public final class SlotGaps {
      */
     public static Result of(List<Ev> dayEvents, int src, long start, long end, long clip) {
         Result r = new Result();
+        r.effStart = start;
+        r.effEnd = end;
         if (src < 0) return r;
-        long stop = Math.min(end, clip);
+        // A slot started before its time begins earlier; a slot finished early ends earlier. The latest answer of each kind counts.
+        Ev began = null;
+        Ev finished = null;
+        for (Ev e : dayEvents) {
+            boolean skip = Ev.SKIP.equals(e.type);   // a slot skipped when it began: the one named in b begins at that moment
+            if (!skip && !Ev.EARLY.equals(e.type)) continue;
+            if ((skip ? toInt(e.b, -1) : e.src) == src && (began == null || e.ts >= began.ts)) began = e;
+            if (!skip && toInt(e.b, -1) == src && (finished == null || e.ts >= finished.ts)) finished = e;
+        }
+        if (began != null) {
+            long b = began.aLong(start);
+            if (b > 0 && b < start) r.effStart = b;
+        }
+        if (finished != null) {
+            long c = finished.aLong(end);
+            if (c > start && c < end) r.effEnd = c;
+        }
+        // The day taken off while this slot was going on: it ends there.
+        for (long[] period : DayOff.periods(dayEvents)) {
+            if (period[0] > r.effStart && period[0] < r.effEnd) r.effEnd = period[0];
+        }
+        long stop = Math.min(r.effEnd, clip);
+        r.preMs = Math.max(0, Math.min(start, clip) - r.effStart);
+        r.cutMs = Math.max(0, Math.min(end, clip) - Math.max(r.effEnd, start));
         List<long[]> breaks = new ArrayList<>();
         for (Ev e : latest(dayEvents, Ev.BREAK)) {
             if (e.src != src) continue;
-            long a = Math.max(e.ts, start);
+            long a = Math.max(e.ts, r.effStart);
             long b = Math.min(e.aLong(0), stop);
             if (b > a) breaks.add(new long[]{a, b});
         }
@@ -105,7 +136,7 @@ public final class SlotGaps {
         for (Ev e : dayEvents) {
             if (Ev.DELAY.equals(e.type) && e.src == src) {
                 long b = Math.min(e.aLong(0), stop);
-                if (b > start) delays.add(new long[]{start, b});
+                if (b > r.effStart) delays.add(new long[]{r.effStart, b});
             } else if (Ev.EXTEND.equals(e.type)) {
                 if (e.src == src) {
                     long b = Math.min(e.aLong(0), stop);

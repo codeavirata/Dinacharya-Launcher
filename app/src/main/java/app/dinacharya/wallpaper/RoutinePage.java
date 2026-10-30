@@ -915,11 +915,13 @@ final class RoutinePage extends Page {
         title.setBackground(null);
         title.setPadding(dp(4), dp(8), dp(4), dp(8));
         title.setFilters(new InputFilter[]{new InputFilter.LengthFilter(80)});
+        final String[] goalSlot = {b.title};   // the name the goals of this slot have now: they follow it while it is being typed
         title.addTextChangedListener(new Watcher() {
             @Override
             void changed(String s) {
                 if (s.equals(b.title)) return;
                 b.title = s;
+                if (!s.trim().isEmpty() && main().renameSlot(b.kind, goalSlot[0], s) > 0) goalSlot[0] = s;
                 a.persistSoon();
                 a.previewChanged();
             }
@@ -1114,8 +1116,7 @@ final class RoutinePage extends Page {
 
     private void afterAlertChange(Button bell, Routine.Block b, String what) {
         styleBell(bell, b);
-        a.persistSoon();
-        AlarmScheduler.reschedule(a);
+        a.persist();   // saves now and sets the alarm from what was saved (the alarm is read from the saved routine, not from this screen)
         a.toastText("“" + nameOf(b) + "”: " + what.toLowerCase(Lang.locale()));
         rebuildSoon();
     }

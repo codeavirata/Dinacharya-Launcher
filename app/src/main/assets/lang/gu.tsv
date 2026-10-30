@@ -754,8 +754,8 @@ Free:  {1}	મફત:  {1}
 Pro:  {1}	Pro:  {1}
 Restore my purchase	મારી ખરીદી પાછી મેળવો
 Tied to your Google Play account, so it comes back on a new phone. Refunds follow Google Play's rules. If Pro ever ends (a refund, say), nothing you made is taken away: a routine, a lock or a pause that goes past the free limit stays saved and starts working again with Pro. A video pass is different: when its time is up, what you set up with it goes back to the free version.	તમારા Google Play ખાતા સાથે જોડાયેલ છે, તેથી નવા ફોન પર પાછી આવે છે. રિફંડ Google Play ના નિયમો મુજબ થાય છે. જો Pro ક્યારેય પૂરું થાય (જેમ કે રિફંડથી), તો તમે બનાવેલું કંઈ છીનવાતું નથી: મફત મર્યાદાથી આગળની દિનચર્યા, લૉક કે વિરામ સચવાયેલા રહે છે અને Pro સાથે ફરી કામ કરે છે. વીડિયો પાસ અલગ છે: તેનો સમય પૂરો થાય ત્યારે, તેની સાથે તમે જે ગોઠવ્યું હતું તે મફત વર્ઝન પર પાછું જાય છે.
-{1} is part of Pro, a one-time purchase that also removes the ads.	{1} Pro નો ભાગ છે, જે એક વારની ખરીદી છે અને જાહેરાતો પણ દૂર કરે છે.
-{1} is open now. To finish, you also need: {2}. It has its own video, or it is part of Pro, a one-time purchase that also removes the ads.	{1} હમણાં ખુલ્લું છે. પૂરું કરવા માટે તમને આ પણ જોઈએ: {2}. તેનો પોતાનો વીડિયો છે, અથવા તે Pro નો ભાગ છે, જે એક વારની ખરીદી છે અને જાહેરાતો પણ દૂર કરે છે.
+{1} is part of Pro, which also removes the ads.	{1} Pro નો ભાગ છે, જે જાહેરાતો પણ દૂર કરે છે.
+{1} is open now. To finish, you also need: {2}. It has its own video, or it is part of Pro, which also removes the ads.	{1} હમણાં ખુલ્લું છે. પૂરું કરવા માટે તમને આ પણ જોઈએ: {2}. તેનો પોતાનો વીડિયો છે, અથવા તે Pro નો ભાગ છે, જે જાહેરાતો પણ દૂર કરે છે.
 Part of Pro	Pro નો ભાગ
 {1}\n\nOr watch short videos to use it free. You choose how many:	{1}\n\nઅથવા તેને મફત વાપરવા ટૂંકા વીડિયો જુઓ. કેટલા જોવા તે તમે નક્કી કરો:
 When the time is up, what you set up with it goes back to the free version.	 સમય પૂરો થાય ત્યારે, તેની સાથે તમે જે ગોઠવ્યું હતું તે મફત વર્ઝન પર પાછું જાય છે.
@@ -1159,7 +1159,7 @@ Last 3 days	છેલ્લા 3 દિવસ
 2 locked apps	લૉક કરેલી 2 એપ્સ
 All saved days	બધા સાચવેલા દિવસો
 Weekly view	સાપ્તાહિક દૃશ્ય
-One payment, or a short video for a day	એક જ વારની ચુકવણી, અથવા એક દિવસ માટે એક ટૂંકો વીડિયો
+Monthly or once, or a short video for a day	દર મહિને અથવા એક વાર, અથવા એક દિવસ માટે એક ટૂંકો વીડિયો
 Time, date	સમય, તારીખ
 and phone time	અને ફોનનો સમય
 The slot you	તમે જેમાં છો
@@ -1175,7 +1175,7 @@ What you set up with it goes back to the free version then, unless you get Pro.	
 A video is already on its way.	એક વીડિયો પહેલેથી આવી રહ્યો છે.
 That cannot be kept longer.	તેને વધુ લાંબું રાખી શકાતું નથી.
 That is open already.	તે પહેલેથી ખુલ્લું છે.
-You have watched a lot of videos today. Try again tomorrow, or get Pro: it is one payment, opens everything for good and removes the ads.	તમે આજે ઘણા વીડિયો જોયા છે. કાલે ફરી પ્રયાસ કરો, અથવા Pro લો: તે એક જ વારની ચુકવણી છે, બધું કાયમ માટે ખોલે છે અને જાહેરાતો દૂર કરે છે.
+You have watched a lot of videos today. Try again tomorrow, or get Pro: it opens everything and removes the ads.	તમે આજે ઘણા વીડિયો જોયા છે. કાલે ફરી પ્રયાસ કરો, અથવા Pro લો: તે બધું ખોલે છે અને જાહેરાતો દૂર કરે છે.
 That is plenty for today	આજ માટે આટલું પૂરતું છે
 Videos are not ready yet. Check your connection and try again in a moment.	વીડિયો હજી તૈયાર નથી. તમારું કનેક્શન તપાસો અને થોડી વારમાં ફરી પ્રયાસ કરો.
 A video could not be started. Try again in a moment.	વીડિયો શરૂ થઈ શક્યો નહીં. થોડી વારમાં ફરી પ્રયાસ કરો.
@@ -1188,6 +1188,7 @@ The next video could not be found. You keep what you already earned.	આગલ�
 Watch the whole video to open it. Nothing was opened.	તેને ખોલવા માટે આખો વીડિયો જુઓ. કંઈ ખુલ્યું નથી.
 The video could not be shown. Try again in a little while. Nothing was opened.	વીડિયો બતાવી શકાયો નહીં. થોડી વાર પછી ફરી પ્રયાસ કરો. કંઈ ખુલ્યું નથી.
 Video {1} of {2} watched	{2} માંથી {1} વીડિયો જોવાયો
+{1} more videos	વધુ {1} વીડિયો
 Next video	આગલો વીડિયો
 Stop here	અહીં અટકો
 It could not be opened. Please try again.	તે ખોલી શકાયું નહીં. કૃપા કરીને ફરી પ્રયાસ કરો.
@@ -1545,6 +1546,518 @@ Repeat	પુનરાવર્તન
 Does not repeat	પુનરાવર્તિત થતું નથી
 A to-do is for this day only, unless you set it to repeat with the ↻ button.	કરવાની યાદીની વસ્તુ ફક્ત આ દિવસ માટે જ હોય છે, જ્યાં સુધી તમે તેને ↻ બટનથી પુનરાવર્તિત થવા માટે સેટ ન કરો.
 {1}–{2} of {3}	{3} માંથી {1}–{2}
+Choose a monthly plan or pay once for life. Paid through Google Play.	માસિક પ્લાન પસંદ કરો અથવા એક જ વાર ચૂકવીને હંમેશ માટે મેળવો. ચુકવણી Google Play દ્વારા થાય છે.
+Your monthly plan is active. It renews every month until you cancel it in Google Play.	તમારો માસિક પ્લાન ચાલુ છે. તમે Google Play માં તેને રદ ન કરો ત્યાં સુધી તે દર મહિને આપમેળે રિન્યૂ થાય છે.
+Monthly plan	માસિક પ્લાન
+Lifetime plan	આજીવન પ્લાન
+{1} a month	{1} દર મહિને
+{1} once	{1} એક વાર
+Pro for as long as you subscribe. Renews every month; cancel any time in Google Play.	જ્યાં સુધી તમે સબ્સ્ક્રાઇબ રહો ત્યાં સુધી Pro. દર મહિને રિન્યૂ થાય છે; Google Play માં ગમે ત્યારે રદ કરો.
+Pay once and keep Pro for good.	એક જ વાર ચૂકવો અને Pro હંમેશ માટે રાખો.
+Subscribe monthly	માસિક સબ્સ્ક્રાઇબ કરો
+Get lifetime Pro	આજીવન Pro મેળવો
+Manage subscription	સબ્સ્ક્રિપ્શન મેનેજ કરો
+If you buy lifetime, cancel the monthly plan in Google Play so it does not renew.	જો તમે આજીવન પ્લાન લો, તો રિન્યૂ ન થાય તે માટે Google Play માં માસિક પ્લાન રદ કરો.
+Pro is a monthly plan or one payment for life, through Google Play.	Pro એક માસિક પ્લાન છે અથવા હંમેશ માટે એક વારની ચુકવણી, બંને Google Play દ્વારા.
+Pro is {1} a month, or {2} once for life, through Google Play.	Pro દર મહિને {1} છે, અથવા હંમેશ માટે એક વાર {2}, Google Play દ્વારા.
+Free with small ads. Dinacharya Pro, monthly or for life, removes the ads and unlocks the extras.	મફત, નાની જાહેરાતો સાથે. Dinacharya Pro, માસિક અથવા આજીવન, જાહેરાતો દૂર કરે છે અને વધારાની સુવિધાઓ ખોલે છે.
+Alarm volume	એલાર્મનો અવાજ
+The phone's alarm volume is turned right down, so an alarm would not make a sound.	ફોનનો એલાર્મ અવાજ સાવ ઓછો કરેલો છે, તેથી એલાર્મ અવાજ નહીં કરે.
+Open Settings, Sound, and turn the alarm volume up	સેટિંગ્સ ખોલો, પછી ધ્વનિમાં જઈને એલાર્મનો અવાજ વધારો
+{1} of {2} shakes	{2} માંથી {1} વાર હલાવ્યો
+0 of {1} shakes	{1} માંથી 0 વાર હલાવ્યો
+To turn this alarm off, solve three quick sums.	આ એલાર્મ બંધ કરવા ત્રણ નાના સવાલ ઉકેલો.
+To turn this alarm off, take a short pause and breathe.	આ એલાર્મ બંધ કરવા થોડો વિરામ લો અને ઊંડા શ્વાસ લો.
+To turn this alarm off, shake your phone.	આ એલાર્મ બંધ કરવા તમારો ફોન હલાવો.
+To turn this alarm off, type a short sentence.	આ એલાર્મ બંધ કરવા એક નાનું વાક્ય ટાઇપ કરો.
+Another quote	બીજો સુવિચાર
+Take the day off	આજે રજા લો
+Enjoy your day off.	રજાનો આનંદ માણો.
+Type this to start your day	તમારો દિવસ શરૂ કરવા આ ટાઇપ કરો
+Take a short pause	થોડો વિરામ લો
+The alarm stops when the last breath is done. Leaving this screen starts the breaths again.	છેલ્લો શ્વાસ પૂરો થતાં એલાર્મ બંધ થશે. આ સ્ક્રીન છોડશો તો શ્વાસ ફરીથી શરૂ થશે.
+This phone cannot tell when it is shaken, so here are three sums instead.	આ ફોન હલાવવાની ઓળખ કરી શકતો નથી, તેથી તેના બદલે ત્રણ સવાલ છે.
+Shake your phone	તમારો ફોન હલાવો
+Hold it firmly and shake it up and down. The alarm stops after the last shake.	તેને મજબૂતીથી પકડીને ઉપર-નીચે હલાવો. છેલ્લી વાર હલાવ્યા પછી એલાર્મ બંધ થશે.
+Plan your day?	તમારા દિવસનું આયોજન કરવું છે?
+Your day is off	આજે રજા છે
+Plan your day now, later, or leave it?	દિવસનું આયોજન હમણાં કરવું, પછી કરવું, કે છોડી દેવું?
+No alarm rings until you plan your day again.	તમે દિવસનું ફરીથી આયોજન ન કરો ત્યાં સુધી કોઈ એલાર્મ વાગશે નહીં.
+Plan now	હમણાં આયોજન કરો
+Leave it	રહેવા દો
+Enjoy your day off. Your alarms are back tomorrow.	રજાનો આનંદ માણો. તમારા એલાર્મ આવતીકાલથી ફરી ચાલુ થશે.
+Your day is off. Plan it now, later, or leave it. Tap to answer.	આજે રજા છે. હમણાં આયોજન કરો, પછી કરો કે રહેવા દો. જવાબ આપવા ટૅપ કરો.
+No alarm will ring for the rest of today. The slot going on ends now, and the slots still to come count as taken off. Tomorrow starts as usual.	આજના બાકીના દિવસમાં કોઈ એલાર્મ વાગશે નહીં. ચાલુ સ્લૉટ હવે પૂરો થશે અને આવનારા સ્લૉટ રજામાં ગણાશે. આવતીકાલ હંમેશની જેમ શરૂ થશે.
+In {1} hours	{1} કલાકમાં
+This evening, {1}	આજે સાંજે, {1}
+Take the rest of today off?	આજનો બાકીનો દિવસ રજા લેવી છે?
+Take it off	રજા લો
+The day could not be taken off	રજા લઈ શકાઈ નહીં
+Your day is off, so no alarm will ring until you plan it again. Plan it now, later, or leave it?	આજે રજા છે, તેથી તમે દિવસનું ફરીથી આયોજન ન કરો ત્યાં સુધી કોઈ એલાર્મ વાગશે નહીં. હમણાં આયોજન કરવું, પછી કરવું કે રહેવા દેવું?
+In 1 hour	1 કલાકમાં
+Ask me again	મને ફરી પૂછો
+“{1}” was to end at {2}. Finish it now, and “{3}” starts early. It still ends at {4}, so it gets the time that was left.	“{1}” {2} એ પૂરું થવાનું હતું. તેને હમણાં પૂરું કરો તો “{3}” વહેલું શરૂ થશે. તે છતાં {4} એ જ પૂરું થશે, એટલે બચેલો સમય તેને મળશે.
+Start “{1}” after a while	“{1}” થોડી વાર પછી શરૂ કરો
+Finish “{1}” early?	“{1}” વહેલું પૂરું કરવું છે?
+Back at {1}, and “{2}” goes on.	{1} એ પાછા, અને “{2}” ચાલુ રહેશે.
+“{1}” starts at {2}.	“{1}” {2} એ શરૂ થશે.
+Start “{1}” later	“{1}” પછી શરૂ કરો
+“{1}” has started	“{1}” શરૂ થઈ ગયું છે
+Enjoy your break. “{1}” goes on at {2}	બ્રેકનો આનંદ માણો. “{1}” {2} એ ચાલુ રહેશે
+“{1}” starts at {2}	“{1}” {2} એ શરૂ થશે
+this slot	આ સ્લૉટ
+the next slot	આગળનો સ્લૉટ
+The next slot	આગળનો સ્લૉટ
+Take a break first	પહેલા બ્રેક લો
+Take the rest of today off	આજનો બાકીનો દિવસ રજા લો
+That cannot be done now	આ હમણાં થઈ શકે તેમ નથી
+Choose one slot as your start-of-day alarm from its bell on the Routine tab. It has to be the first alarm of the day. It keeps ringing until you start the day, put it off or take the day off. Before you can turn it off you can be asked to solve a sum, take a pause, shake the phone or type a sentence, and you see a motivating quote.	દિનચર્યા ટૅબમાં કોઈ સ્લૉટની ઘંટડીથી તેને તમારા દિવસ-શરૂ એલાર્મ તરીકે પસંદ કરો. તે દિવસનું પહેલું એલાર્મ હોવું જોઈએ. તમે દિવસ શરૂ કરો, મુલતવી રાખો અથવા દિવસની રજા લો ત્યાં સુધી તે વાગતું રહે છે. તેને બંધ કરતા પહેલાં તમને કોઈ સવાલ ઉકેલવા, થોડો વિરામ લેવા, ફોન હલાવવા અથવા એક વાક્ય ટાઇપ કરવા કહેવામાં આવી શકે છે, અને તમને એક પ્રેરક સુવિચાર દેખાય છે.
+Taking the day off silences every alarm for the rest of today. You are asked if you want to plan the day now, later or leave it.	રજા લેવાથી આજના બાકીના દિવસના બધા એલાર્મ બંધ થઈ જાય છે. પછી તમને પૂછવામાં આવે છે કે દિવસનું આયોજન હમણાં કરવું, પછી કરવું કે રહેવા દેવું.
+Today’s quote:  “{1}”{2}	આજનો સુવિચાર:  “{1}”{2}
+To turn the alarm off and start the day	એલાર્મ બંધ કરવા અને દિવસ શરૂ કરવા માટે
+Just tap Start my day	બસ “મારો દિવસ શરૂ કરો” પર ટૅપ કરો
+Take a short pause (four slow breaths)	થોડો વિરામ લો (ચાર ધીમા શ્વાસ)
+Shake the phone	ફોન હલાવો
+The alarm keeps ringing until it is done. A phone that cannot sense a shake asks for the sums instead.	તે પૂરું થાય ત્યાં સુધી એલાર્મ વાગતું રહે છે. જે ફોન હલાવવાનું ઓળખી શકતો નથી, તેમાં તેના બદલે સવાલ પૂછવામાં આવે છે.
+Show a motivating quote	પ્રેરક સુવિચાર બતાવો
+Offer “Take the day off”	“આજે રજા લો” વિકલ્પ આપો
+Locked only while a {1} slot is going on, {2} from {3} to {4}.	ફક્ત {1} સ્લૉટ ચાલુ હોય ત્યારે જ લૉક રહે છે, {2} {3} થી {4}.
+Locked in the times above, and also whenever a {1} slot is going on.	ઉપરના સમયમાં લૉક રહે છે, અને જ્યારે પણ {1} સ્લૉટ ચાલુ હોય ત્યારે પણ.
+Locked {1}, {2} to {3}, but only during the activity types below.	લૉક {1}, {2} થી {3}, પરંતુ ફક્ત નીચેના પ્રવૃત્તિ પ્રકારો દરમિયાન.
+Only when both hold: the times above and these activity types	બંને લાગુ હોય ત્યારે જ: ઉપરના સમય અને આ પ્રવૃત્તિ પ્રકારો
+Also lock in library mode	લાઇબ્રેરી મોડમાં પણ લૉક કરો
+While library mode is on, these apps are locked too, whatever the times and activity types say.	લાઇબ્રેરી મોડ ચાલુ હોય ત્યારે આ એપ્સ પણ લૉક રહે છે, સમય અને પ્રવૃત્તિ પ્રકારો ગમે તે કહે.
+Locks during {1}, {2}	{1} દરમિયાન લૉક, {2}
+Locked until library mode is switched off	લાઇબ્રેરી મોડ બંધ થાય ત્યાં સુધી લૉક
+·  and in library mode	  ·  અને લાઇબ્રેરી મોડમાં
+Locks in library mode	લાઇબ્રેરી મોડમાં લૉક
+Library mode is on	લાઇબ્રેરી મોડ ચાલુ છે
+Until library mode is switched off	લાઇબ્રેરી મોડ બંધ થાય ત્યાં સુધી
+Break until {1}   ·   {2} left	બ્રેક {1} સુધી   ·   {2} બાકી
+Then back to {1}, which ends at {2}	પછી {1} પર પાછા, જે {2} એ પૂરું થશે
+Starts at {1}   ·   in {2}	{1} એ શરૂ   ·   {2} માં
+It was to start at {1}, and ends at {2}	તે {1} એ શરૂ થવાનું હતું, અને {2} એ પૂરું થશે
+Started late, at {1} instead of {2}	મોડું શરૂ થયું, {2} ને બદલે {1} એ
+Started early, at {1} instead of {2}	વહેલું શરૂ થયું, {2} ને બદલે {1} એ
+Carried on, so it ends at {1} instead of {2}	ચાલુ રાખ્યું, એટલે તે {2} ને બદલે {1} એ પૂરું થશે
+Finished early, at {1} instead of {2}	વહેલું પૂરું થયું, {2} ને બદલે {1} એ
+DAY OFF	રજાનો દિવસ
+STARTING LATER	પછી શરૂ થશે
+Enjoy your day off	રજાનો આનંદ માણો
+No alarm will ring until you plan the day again, or tomorrow.	તમે દિવસનું ફરીથી આયોજન ન કરો ત્યાં સુધી, અથવા આવતીકાલ સુધી, કોઈ એલાર્મ વાગશે નહીં.
+Plan the day	દિવસનું આયોજન કરો
+Back to my schedule	મારા શેડ્યૂલ પર પાછા
+Your schedule is back. The alarms ring again.	તમારું શેડ્યૂલ પાછું આવી ગયું છે. એલાર્મ ફરી વાગશે.
+Finish early	વહેલું પૂરું કરો
+Library mode	લાઇબ્રેરી મોડ
+On	ચાલુ
+Off	બંધ
+Every alarm only vibrates, with no sound.	દરેક એલાર્મ ફક્ત વાઇબ્રેટ થાય છે, અવાજ નહીં.
+Keeps every alarm silent, with vibration only, for the library, a class or an exam.	લાઇબ્રેરી, ક્લાસ કે પરીક્ષા માટે દરેક એલાર્મને શાંત રાખે છે, ફક્ત વાઇબ્રેશન સાથે.
+Turn off	બંધ કરો
+Change the hours	સમય બદલો
+1 hour	1 કલાક
+2 hours	2 કલાક
+4 hours	4 કલાક
+Until I switch it off	હું બંધ ન કરું ત્યાં સુધી
+Every alarm only vibrates while it is on, with no sound. Apps in locks that include library mode are locked too. How long?	તે ચાલુ હોય ત્યાં સુધી દરેક એલાર્મ ફક્ત વાઇબ્રેટ થાય છે, અવાજ નહીં. જે લૉકમાં લાઇબ્રેરી મોડ સામેલ છે તેની એપ્સ પણ લૉક રહે છે. કેટલા સમય માટે?
+On until {1}	{1} સુધી ચાલુ
+Off. Next: {1}	બંધ. આગળનું: {1}
+On until you switch it off	તમે બંધ ન કરો ત્યાં સુધી ચાલુ
+For the library, a class or an exam. While library mode is on, every alarm of the app only vibrates, with no sound: the start-of-day alarm, the slot alarms, the bedtime question and the break timers. The questions still appear, and groups of apps set to lock in library mode are locked.	લાઇબ્રેરી, ક્લાસ કે પરીક્ષા માટે. લાઇબ્રેરી મોડ ચાલુ હોય ત્યારે એપનો દરેક એલાર્મ ફક્ત વાઇબ્રેટ થાય છે, અવાજ નહીં: દિવસ-શરૂ એલાર્મ, સ્લૉટના એલાર્મ, સૂવાનો સવાલ અને બ્રેકના ટાઇમર. સવાલ તો પણ દેખાય છે, અને લાઇબ્રેરી મોડમાં લૉક કરવા સેટ કરેલા એપ્સના જૂથો લૉક રહે છે.
+Calls and messages stop making sound as well. When library mode ends, the ringer goes back to how it was, unless you changed it yourself. If your phone asks for Do Not Disturb access to do this, the ringer is left as it is.	કૉલ અને સંદેશા પણ અવાજ કરવાનું બંધ કરે છે. લાઇબ્રેરી મોડ પૂરો થાય ત્યારે રિંગર પહેલાં જેવું થઈ જાય છે, જો તમે તેને જાતે બદલ્યું ન હોય. જો આ માટે તમારો ફોન “ખલેલ પાડશો નહીં” ની પરવાનગી માગે, તો રિંગર જેમ છે તેમ જ રહે છે.
+It runs from {1} into the next morning, until {2}.	તે {1} થી બીજી સવારે {2} સુધી ચાલે છે.
+Turn it on by itself at fixed hours	નક્કી કરેલા સમયે આપમેળે ચાલુ કરો
+Also put the phone on vibrate	ફોનને વાઇબ્રેટ પર પણ રાખો
+Off, by the clock	બંધ, સમય મુજબ
+Pick at least one day, or it never comes on.	ઓછામાં ઓછો એક દિવસ પસંદ કરો, નહીં તો તે ક્યારેય ચાલુ થશે નહીં.
+Delayed start	મોડી શરૂઆત
+Day off	રજા
+Make the schedule for the rest of today, then save it	આજના બાકીના દિવસનું શેડ્યૂલ બનાવો, પછી તેને સાચવો
+STARTS AT  {1}	{1} એ શરૂ
+LIBRARY MODE	લાઇબ્રેરી મોડ
+DAY OFF  ·  no alarms	રજા  ·  કોઈ એલાર્મ નહીં
+STARTED LATE	મોડું શરૂ
+RAN LONGER	વધુ ચાલ્યું
+STARTED EARLY	વહેલું શરૂ
+FINISHED EARLY	વહેલું પૂરું
+Open Google Play, then your profile picture, Payments and subscriptions, Subscriptions.	Google Play ખોલો, પછી તમારો પ્રોફાઇલ ફોટો, ચુકવણીઓ અને સબ્સ્ક્રિપ્શન, પછી સબ્સ્ક્રિપ્શન પસંદ કરો.
+{1} (build {2})	{1} (બિલ્ડ {2})
+I am awake and ready to begin	મારી ઊંઘ ઊડી ગઈ છે અને હું શરૂ કરવા તૈયાર છું
+Today I do what I planned	આજે જે નક્કી કર્યું છે તે જ કરવું છે
+I start my day on purpose	મારો દિવસ હું નક્કી કરું તેમ શરૂ થાય છે
+A good day begins right now	સારો દિવસ હમણાં જ શરૂ થાય છે
+I rise and I start	ઊઠવું છે અને શરૂ કરવું છે
+{1}, {2} to {3}.	{1}, {2} થી {3}.
+{1}, {2} to {3}	{1}, {2} થી {3}
+The journey of a thousand miles begins with a single step.	હજાર માઈલની મુસાફરી એક પગલાથી શરૂ થાય છે.
+It does not matter how slowly you go as long as you do not stop.	તમે કેટલું ધીમે ચાલો છો તેનાથી ફરક પડતો નથી, બસ અટકશો નહીં.
+Arise, awake, and stop not till the goal is reached.	ઊઠો, જાગો, અને લક્ષ્ય પ્રાપ્ત ન થાય ત્યાં સુધી અટકશો નહીં.
+Dream, dream, dream. Dreams transform into thoughts and thoughts result in action.	સપના જુઓ, સપના જુઓ, સપના જુઓ. સપનાં વિચારોમાં ફેરવાય છે અને વિચારો કાર્યમાં પરિણમે છે.
+If you want to shine like a sun, first burn like a sun.	જો સૂરજની જેમ ચમકવું હોય, તો પહેલાં સૂરજની જેમ તપો.
+Look to this day, for it is life, the very life of life.	આ દિવસ તરફ જુઓ, કારણ કે તે જ જીવન છે, જીવનનું પણ જીવન.
+At dawn, when you have trouble getting out of bed, tell yourself: I have to go to work as a human being.	સવારે પથારીમાંથી ઊઠવું મુશ્કેલ લાગે, ત્યારે જાતને કહો: મારે એક માણસ તરીકે કામ પર જવાનું છે.
+Begin at once to live, and count each separate day as a separate life.	હમણાં જ જીવવાનું શરૂ કરો, અને દરેક દિવસને એક અલગ જીવન ગણો.
+While we are postponing, life speeds by.	આપણે મુલતવી રાખતા રહીએ છીએ ત્યારે જીવન ઝડપથી પસાર થઈ જાય છે.
+The early morning has gold in its mouth.	વહેલી સવારના મોંમાં સોનું હોય છે.
+You may delay, but time will not.	તમે મોડું કરી શકો, પણ સમય નહીં કરે.
+Lost time is never found again.	ગુમાવેલો સમય ફરી ક્યારેય મળતો નથી.
+Energy and persistence conquer all things.	ઊર્જા અને દૃઢતા બધું જીતી લે છે.
+We are what we repeatedly do. Excellence, then, is not an act, but a habit.	આપણે વારંવાર જે કરીએ છીએ તે જ આપણે છીએ. એટલે શ્રેષ્ઠતા કોઈ એક કાર્ય નથી, પણ એક ટેવ છે.
+Do what you can, with what you have, where you are.	જે કરી શકો તે કરો, જે તમારી પાસે છે તેનાથી, જ્યાં તમે છો ત્યાંથી.
+It always seems impossible until it is done.	કામ પૂરું ન થાય ત્યાં સુધી તે હંમેશાં અશક્ય જ લાગે છે.
+Courage is not the absence of fear, but the triumph over it.	હિંમત એટલે ડરનો અભાવ નહીં, પણ તેના પર વિજય.
+Start where you are. Use what you have. Do what you can.	જ્યાં છો ત્યાંથી શરૂ કરો. જે તમારી પાસે છે તેનો ઉપયોગ કરો. જે કરી શકો તે કરો.
+Make each day your masterpiece.	દરેક દિવસને તમારી શ્રેષ્ઠ કૃતિ બનાવો.
+Success is the sum of small efforts, repeated day in and day out.	સફળતા એ નાના પ્રયત્નોનો સરવાળો છે, જે દિવસે-દિવસે વારંવાર કરવામાં આવે છે.
+How we spend our days is, of course, how we spend our lives.	આપણે આપણા દિવસો કેવી રીતે વિતાવીએ છીએ, તે જ તો આપણે આપણું જીવન કેવી રીતે વિતાવીએ છીએ તે છે.
+Do not watch the clock; do what it does. Keep going.	ઘડિયાળ સામે ન જુઓ; તે જે કરે છે તે કરો. ચાલતા રહો.
+Discipline is the bridge between goals and accomplishment.	શિસ્ત એ લક્ષ્ય અને સિદ્ધિ વચ્ચેનો પુલ છે.
+The only way to do great work is to love what you do.	મહાન કામ કરવાનો એકમાત્ર રસ્તો એ છે કે તમે જે કરો છો તેને પ્રેમ કરો.
+Small deeds done are better than great deeds planned.	યોજેલાં મોટાં કાર્યો કરતાં કરેલાં નાનાં કાર્યો વધુ સારાં.
+What you do today can improve all your tomorrows.	તમે આજે જે કરો છો તે તમારા બધા આવતીકાલોને સારા બનાવી શકે છે.
+A year from now you may wish you had started today.	એક વર્ષ પછી તમને થશે કે કાશ મેં આજે શરૂ કર્યું હોત.
+We must use time as a tool, not as a couch.	આપણે સમયનો ઉપયોગ સાધન તરીકે કરવો જોઈએ, સોફાની જેમ નહીં.
+The key is not to prioritize what is on your schedule, but to schedule your priorities.	ચાવી એ નથી કે તમારા શેડ્યૂલમાં જે છે તેને પ્રાથમિકતા આપો, પણ એ છે કે તમારી પ્રાથમિકતાઓને શેડ્યૂલમાં મૂકો.
+Each day is a little life.	દરેક દિવસ એક નાનું જીવન છે.
+With the new day comes new strength and new thoughts.	નવા દિવસ સાથે નવી શક્તિ અને નવા વિચારો આવે છે.
+The sun itself is weak when it first rises, and gathers strength and courage as the day goes on.	સૂરજ પણ ઊગતી વખતે નબળો હોય છે, અને દિવસ આગળ વધતાં શક્તિ અને હિંમત મેળવતો જાય છે.
+Nothing will work unless you do.	તમે મહેનત ન કરો ત્યાં સુધી કશું કામ નહીં કરે.
+Happiness depends upon ourselves.	સુખ આપણા પર જ નિર્ભર છે.
+and	અને
+Each slot can ring when it starts and ask one question: carry on, or change the plan? At bedtime it asks when you went to sleep, and if you need more time it tells you what that costs in sleep. The question comes up by itself, and again when you wake the phone or come back to the home screen. The start-of-day alarm can ask for a sum, a short pause, a shake or a sentence before it stops, and shows a motivating quote. Finished early? Tap Finish early on Home. Library mode keeps every alarm silent, with only vibration.	દરેક સ્લૉટ શરૂ થાય ત્યારે વાગી શકે છે અને એક પ્રશ્ન પૂછી શકે છે: ચાલુ રાખવું, કે યોજના બદલવી? સૂવાના સમયે તે પૂછે છે કે તમે ક્યારે સૂતા, અને જો તમને વધુ સમય જોઈએ તો ઊંઘમાં તેની કેટલી કિંમત ચૂકવવી પડશે તે જણાવે છે. પ્રશ્ન આપમેળે આવે છે, અને ફોન જગાડો કે હોમ સ્ક્રીન પર પાછા આવો ત્યારે ફરી આવે છે. દિવસ-શરૂ એલાર્મ બંધ થતાં પહેલાં તે કોઈ સવાલ, થોડો વિરામ, ફોન હલાવવો કે એક વાક્ય માગી શકે છે, અને એક પ્રેરક સુવિચાર બતાવે છે. વહેલું પતી ગયું? હોમ પર “વહેલું પૂરું કરો” પર ટૅપ કરો. લાઇબ્રેરી મોડ દરેક એલાર્મને શાંત રાખે છે, ફક્ત વાઇબ્રેશન સાથે.
+Shut the apps that eat your time for hours you choose: every day or on some days, or just for the next hour. A locked app is greyed in the list, and the lock screen shows when it opens again. You can break a lock by waiting half a minute and typing a sentence. Free: lock two apps. Pro: groups of apps, as many locks as you like, and strict locks that cannot be broken. A group can also lock only while an activity type such as Study is going on, only when both the hours and the activity hold, or in library mode. Set it up in the home settings.	તમારો સમય ખાતી એપ્સને તમે પસંદ કરેલા કલાકો માટે બંધ કરો: દરરોજ કે અમુક દિવસે, અથવા ફક્ત આગલા કલાક માટે. લૉક કરેલી એપ યાદીમાં ઝાંખી દેખાય છે, અને લૉક સ્ક્રીન બતાવે છે કે તે ફરી ક્યારે ખુલશે. તમે અડધી મિનિટ રાહ જોઈને અને એક વાક્ય ટાઇપ કરીને લૉક તોડી શકો છો. મફત: બે એપ્સ લૉક કરો. Pro: એપ્સના જૂથ, ગમે તેટલા લૉક, અને ન તોડી શકાય એવા કડક લૉક. કોઈ જૂથ ફક્ત અભ્યાસ જેવો પ્રવૃત્તિ પ્રકાર ચાલુ હોય ત્યારે, ફક્ત કલાકો અને પ્રવૃત્તિ બંને લાગુ હોય ત્યારે, અથવા લાઇબ્રેરી મોડમાં પણ લૉક થઈ શકે છે. તેને હોમ સેટિંગ્સમાં સેટ કરો.
+Lock by	લૉક કરવાની રીત
+Time	સમય
+Time + activity	સમય + પ્રવૃત્તિ
+Time or activity	સમય અથવા પ્રવૃત્તિ
+Locked at the hours you set, whatever you are doing.	તમે નક્કી કરેલા કલાકોમાં લૉક રહે છે, તમે ગમે તે કરતા હો.
+Locked whenever a slot of the types you pick is going on, at any hour.	તમે પસંદ કરેલા પ્રકારનો સ્લૉટ ચાલુ હોય ત્યારે લૉક રહે છે, કોઈ પણ સમયે.
+Locked only when a slot of the types you pick is going on inside the hours you set.	ફક્ત તમે પસંદ કરેલા પ્રકારનો સ્લૉટ તમે નક્કી કરેલા કલાકોમાં ચાલુ હોય ત્યારે જ લૉક રહે છે.
+Locked in the hours you set, and also whenever a slot of the types you pick is going on.	તમે નક્કી કરેલા કલાકોમાં લૉક રહે છે, અને તમે પસંદ કરેલા પ્રકારનો સ્લૉટ ચાલુ હોય ત્યારે પણ.
+More options	વધુ વિકલ્પો
+No activity types chosen yet.	હજી કોઈ પ્રવૃત્તિ પ્રકાર પસંદ કર્યો નથી.
+A break, a slot you took off and the time between slots do not lock.	બ્રેક, તમે હટાવેલો સ્લૉટ અને સ્લૉટ વચ્ચેનો સમય લૉક કરતા નથી.
+Choose at least one activity type	ઓછામાં ઓછો એક પ્રવૃત્તિ પ્રકાર પસંદ કરો
+Locked while a {1} slot is going on.	{1} સ્લૉટ ચાલુ હોય ત્યારે લૉક.
+Phone use in slots	સ્લૉટમાં ફોનનો ઉપયોગ
+Off. Mark the phone use that is not part of a slot's activity	બંધ. સ્લૉટની પ્રવૃત્તિનો ભાગ ન હોય તેવો ફોન ઉપયોગ ચિહ્નિત કરો
+On. Every app counts as phone use	ચાલુ. દરેક એપનો ફોન ઉપયોગ ગણાય છે
+On. Apps chosen for 1 activity	ચાલુ. 1 પ્રવૃત્તિ માટે એપ પસંદ કરેલી છે
+On. Apps chosen for {1} activities	ચાલુ. {1} પ્રવૃત્તિઓ માટે એપ પસંદ કરેલી છે
+See when you pick up the phone during a slot. The home screen marks it with the exact times and the reports count it. Apps you choose for an activity are part of it and are never marked.	સ્લૉટ દરમિયાન તમે ફોન ક્યારે ઉપાડો છો તે જુઓ. હોમ સ્ક્રીન તેને ચોક્કસ સમય સાથે ચિહ્નિત કરે છે અને રિપોર્ટ તેને ગણે છે. પ્રવૃત્તિ માટે તમે પસંદ કરેલી એપ તે પ્રવૃત્તિનો જ ભાગ છે અને ક્યારેય ચિહ્નિત થતી નથી.
+Show phone use during slots	સ્લૉટ દરમિયાન ફોનનો ઉપયોગ બતાવો
+Needed to see which apps are used, and when	કઈ એપ ક્યારે વપરાઈ તે જોવા માટે જરૂરી
+Apps that are part of an activity	પ્રવૃત્તિનો ભાગ હોય તેવી એપ
+Choose for each activity the apps it needs (a notes app for Study, say). Any other app used during that activity's slot is marked. This app is always part of the slot.	દરેક પ્રવૃત્તિ માટે તેને જોઈતી એપ પસંદ કરો (જેમ કે અભ્યાસ માટે નોટ્સ એપ). તે પ્રવૃત્તિના સ્લૉટ દરમિયાન વપરાયેલી બીજી કોઈ પણ એપ ચિહ્નિત થાય છે. આ એપ હંમેશાં સ્લૉટનો ભાગ છે.
+No apps chosen yet	હજી કોઈ એપ પસંદ કરેલી નથી
+1 activity has apps	1 પ્રવૃત્તિમાં એપ પસંદ કરેલી છે
+{1} activities have apps	{1} પ્રવૃત્તિઓમાં એપ પસંદ કરેલી છે
+No apps chosen	કોઈ એપ પસંદ કરેલી નથી
+Choose	પસંદ કરો
+Up to {1} apps for one activity	એક પ્રવૃત્તિ માટે વધુમાં વધુ {1} એપ
+Apps for {1}	{1} માટે એપ
+Up to {1} activities can have apps	વધુમાં વધુ {1} પ્રવૃત્તિઓમાં એપ પસંદ કરી શકાય છે
+This clears the swipes, the look, the hidden apps, the pause rules, the locked groups and the phone use choices. Your routine and reports are not touched.	આનાથી સ્વાઇપ, લુક, છુપાવેલી એપ્સ, વિરામના નિયમો, લૉક કરેલા જૂથો અને ફોન ઉપયોગની પસંદગીઓ સાફ થઈ જશે. તમારી દિનચર્યા અને રિપોર્ટને અસર થશે નહીં.
+Slot analysis	સ્લૉટનું વિશ્લેષણ
+How each slot went	દરેક સ્લૉટ કેવો રહ્યો
+No slot has run yet, so there is nothing to look at.	હજી કોઈ સ્લૉટ ચાલ્યો નથી, તેથી જોવા જેવું કંઈ નથી.
+Focus is the share of a slot's time with no other phone use. Apps chosen for an activity do not count against it.	ફોકસ એટલે સ્લૉટના સમયનો તે ભાગ જેમાં બીજો કોઈ ફોન ઉપયોગ ન હોય. પ્રવૃત્તિ માટે પસંદ કરેલી એપ તેની વિરુદ્ધ ગણાતી નથી.
+Time devoted	આપેલો સમય
+Other phone use	બીજો ફોન ઉપયોગ
+Longest focus	સૌથી લાંબું ફોકસ
+By slot	સ્લૉટ પ્રમાણે
+By activity	પ્રવૃત્તિ પ્રમાણે
+selected	પસંદ કરેલ
+not selected	પસંદ કરેલ નથી
+No activity has run yet.	હજી કોઈ પ્રવૃત્તિ થઈ નથી.
+1 other slot has not started or was taken off.	વધુ 1 સ્લૉટ શરૂ થયો નથી અથવા કાઢી નાખ્યો હતો.
+{1} other slots have not started or were taken off.	વધુ {1} સ્લૉટ શરૂ થયા નથી અથવા કાઢી નાખ્યા હતા.
+focus	ફોકસ
+{1}% focus	{1}% ફોકસ
+Phone use was not available	ફોન ઉપયોગ ઉપલબ્ધ નહોતો
+Devoted {1} of {2}	{2} માંથી {1} આપ્યો
+In the slot	સ્લૉટમાં
+Timeline	સમયરેખા
+No other phone use in this slot.	આ સ્લૉટમાં બીજો કોઈ ફોન ઉપયોગ નથી.
+Red marks show other phone use.	લાલ નિશાન બીજો ફોન ઉપયોગ બતાવે છે.
+Other phone use, with the exact times	બીજો ફોન ઉપયોગ, ચોક્કસ સમય સાથે
+Showing the latest {1} of {2}.	{2} માંથી તાજેતરના {1} બતાવ્યા છે.
+The exact times were not saved for this day.	આ દિવસના ચોક્કસ સમય સાચવ્યા નહોતા.
+Apps used in this slot	આ સ્લૉટમાં વપરાયેલી એપ
+Time in slots	સ્લૉટમાં સમય
+Interruptions	અવરોધો
+Apps used in these slots	આ સ્લૉટમાં વપરાયેલી એપ
+Phone in total	કુલ ફોન ઉપયોગ
+{1} of the phone time was in apps chosen for this activity.	ફોનના સમયમાંથી {1} આ પ્રવૃત્તિ માટે પસંદ કરેલી એપમાં હતો.
+Timeline of the slot: no other phone use	સ્લૉટની સમયરેખા: બીજો કોઈ ફોન ઉપયોગ નથી
+Timeline of the slot: 1 stretch of other phone use	સ્લૉટની સમયરેખા: બીજા ફોન ઉપયોગનો 1 તબક્કો
+Timeline of the slot: {1} stretches of other phone use	સ્લૉટની સમયરેખા: બીજા ફોન ઉપયોગના {1} તબક્કા
+Devoted {1}	આપેલો સમય {1}
+No other phone use	બીજો કોઈ ફોન ઉપયોગ નથી
+Longest focus {1}	સૌથી લાંબું ફોકસ {1}
+Other phone use {1}	બીજો ફોન ઉપયોગ {1}
+Devoted {1}  ·  No other phone use	આપેલો સમય {1}  ·  બીજો કોઈ ફોન ઉપયોગ નથી
+Devoted {1}  ·  Other phone use {2}	આપેલો સમય {1}  ·  બીજો ફોન ઉપયોગ {2}
+Focus, slot by slot	ફોકસ, સ્લૉટ પ્રમાણે
+{1}  +{2} more	{1}  +વધુ {2}
+What I noticed	મેં શું જોયું
+Try this	આ અજમાવો
+Watch	ધ્યાન આપો
+Set up	સેટ કરો
+{1} need attention	{1} સુધારવા માટે
+{1} going well	{1} સારા ચાલી રહ્યા છે
+{1} not set up yet	{1} સેટ કરવાના છે
+A slot you often take off	વારંવાર કાઢી નાખો છો તે સ્લૉટ
+A slot you often rename	વારંવાર નામ બદલો છો તે સ્લૉટ
+Late to bed	મોડેથી સૂવું
+Phone during a task	કામ દરમિયાન ફોન
+Phone before bed	સૂતા પહેલાં ફોન
+One app takes the most	એક એપ સૌથી વધુ સમય લે છે
+Pauses that are skipped	છોડી દેવાતા વિરામ
+You stopped yourself	તમે જાતને રોકી
+Time that is not planned	આયોજન વગરનો સમય
+A plan that is too long	ખૂબ લાંબુ આયોજન
+Little time to rest	આરામ માટે ઓછો સમય
+A habit that works	કામ કરતી આદત
+A solid day	સરસ દિવસ
+Not enough days yet	હજી પૂરતા દિવસો થયા નથી
+You took off {1} on {2} of the last {3} days.	તમે છેલ્લા {3} દિવસમાંથી {2} દિવસ {1} કાઢી નાખ્યો.
+You renamed {1} to {2} on {3} days.	તમે {3} દિવસ {1} નું નામ બદલીને {2} કર્યું.
+You went to sleep about {1} late on average over the last {2} nights.	છેલ્લી {2} રાતોમાં તમે સરેરાશ લગભગ {1} મોડા સૂતા.
+You spent {1} on your phone during {2} ({3}% of the block).	{2} દરમિયાન તમે ફોન પર {1} વિતાવ્યા (બ્લૉકના {3}%).
+You used the phone for {1} in the hour before bed.	સૂતા પહેલાંના કલાકમાં તમે {1} ફોન વાપર્યો.
+{1} took {2}, {3}% of your phone time.	{1} એ {2} લીધા, એટલે કે તમારા ફોન સમયના {3}%.
+The home screen paused you {1} times and you opened the app anyway {2} times; {3} pulled you most.	હોમ સ્ક્રીને તમને {1} વાર રોક્યા અને તમે છતાં {2} વાર એપ ખોલી; {3} એ તમને સૌથી વધુ ખેંચ્યા.
+You stopped yourself {1} times at the home screen.	તમે હોમ સ્ક્રીન પર જાતને {1} વાર રોકી.
+{1} of your 24 hours are not planned.	તમારા 24 કલાકમાંથી {1} નું આયોજન નથી.
+Your blocks add up to {1} more than 24 hours.	તમારા બ્લૉક મળીને 24 કલાક કરતાં {1} વધારે થાય છે.
+Only {1}% of your awake time is rest.	તમારા જાગવાના સમયમાંથી માત્ર {1}% આરામ છે.
+You have kept {1} for {2} days in a row.	તમે {1} સતત {2} દિવસ સુધી જાળવ્યું છે.
+A solid day.	સરસ દિવસ.
+Not enough days yet for suggestions.	સૂચનો આપવા માટે હજી પૂરતા દિવસો થયા નથી.
+Make it shorter, or move it to a quieter time.	તેને ટૂંકું કરો, અથવા શાંત સમયે ખસેડો.
+Change it in the routine so the plan matches your day.	દિનચર્યામાં તેને બદલો, જેથી આયોજન તમારા દિવસ સાથે મેળ ખાય.
+Move bedtime and wake-up later in the app, or start winding down earlier.	એપમાં સૂવાનો અને જાગવાનો સમય મોડો રાખો, અથવા વહેલેથી આરામની તૈયારી શરૂ કરો.
+Keep the phone in another room for that block.	તે બ્લૉક માટે ફોન બીજા રૂમમાં રાખો.
+A screen-free hour helps you fall asleep.	સ્ક્રીન વગરનો એક કલાક ઊંઘ આવવામાં મદદ કરે છે.
+Set a daily limit for it in Settings > Home screen, or in Android's Digital Wellbeing.	સેટિંગ્સ > હોમ સ્ક્રીનમાં, અથવા Android ના ડિજિટલ વેલબીઇંગમાં તેની રોજની મર્યાદા સેટ કરો.
+Make it Strict, or give it a daily limit, in Settings > Home screen.	તેને કડક કરો, અથવા સેટિંગ્સ > હોમ સ્ક્રીનમાં રોજની મર્યાદા આપો.
+That is focus working.	ફોકસ આમ જ કામ આવે છે.
+Add a block for that time.	તે સમય માટે એક બ્લૉક ઉમેરો.
+Shorten something.	કંઈક ટૂંકું કરો.
+Short breaks between tasks help you stay focused.	કામો વચ્ચેના ટૂંકા વિરામ ફોકસ જાળવવામાં મદદ કરે છે.
+It is a good place for your hardest work.	તમારા સૌથી અઘરા કામ માટે આ સારો સમય છે.
+Keep the same routine tomorrow.	કાલે પણ આ જ દિનચર્યા રાખો.
+Keep the alarms on and check back in a few days.	એલાર્મ ચાલુ રાખો અને થોડા દિવસ પછી ફરી જુઓ.
+NO PHONE USE  ·  focused {1}	ફોન ઉપયોગ નથી  ·  {1} ફોકસમાં
+PHONE IN USE NOW  ·  {1} so far	ફોન હમણાં વપરાશમાં  ·  અત્યાર સુધી {1}
+PHONE USE  ·  {1}	ફોન ઉપયોગ  ·  {1}
+Focused for {1} since	ત્યારથી {1} ફોકસમાં
+phone {1}	ફોન {1}
+Watch {1} short videos and everything in Pro is open for 24 hours. Nothing is charged. When the day is up, what you set up with it goes back to the free version.	{1} ટૂંકા વીડિયો જુઓ અને 24 કલાક માટે Proમાંનું બધું ખુલ્લું થઈ જાય છે. કોઈ ચાર્જ લેવાતો નથી. દિવસ પૂરો થાય ત્યારે, તેનાથી તમે જે સેટ કર્યું તે મફત આવૃત્તિમાં પાછું જાય છે.
+Free and Pro	મફત અને Pro
+Everything the app does, side by side. Open a group to see what each one gives.	એપ જે કંઈ કરે છે તે બધું, સાથે-સાથે. દરેક જૂથમાં શું મળે છે તે જોવા તેને ખોલો.
+Your whole day, and today's report	તમારો આખો દિવસ અને આજનો રિપોર્ટ
+Everything, and no ads	બધું, અને કોઈ જાહેરાત નહીં
+Try it, or keep it	અજમાવો, અથવા રાખો
+You have Pro	તમારી પાસે Pro છે
+Try Pro free for a day	એક દિવસ માટે Pro મફત અજમાવો
+Everything in this list is open for you, and there are no ads.	આ યાદીમાંનું બધું તમારા માટે ખુલ્લું છે, અને કોઈ જાહેરાત નથી.
+See Pro plans	Pro પ્લાન જુઓ
+pauses for more than {1}	{1} કરતાં વધુ માટે વિરામ
+more than {1} in a lock	એક લૉકમાં {1} કરતાં વધુ
+Pauses: more than {1}	વિરામ: {1} કરતાં વધુ
+Locks: more than {1} in a lock	લૉક: એક લૉકમાં {1} કરતાં વધુ
+goals	લક્ષ્યો
+the deeper analysis in Performance	પ્રદર્શનમાં ઊંડું વિશ્લેષણ
+Goals: a goal for a slot, with its own to-dos	લક્ષ્યો: એક સ્લૉટનું લક્ષ્ય, પોતાની કરવાની યાદી સાથે
+Performance: slot analysis, habits, phone use in slots	પ્રદર્શન: સ્લૉટ વિશ્લેષણ, ટેવો, સ્લૉટમાં ફોનનો ઉપયોગ
+Deeper analysis	ઊંડું વિશ્લેષણ
+everything in Pro	Proમાંનું બધું
+Notes worked out from your last days: where the day slips, what is going well, and one thing to try. Part of Pro.	તમારા છેલ્લા દિવસોમાંથી તારવેલી નોંધો: દિવસ ક્યાં સરકી જાય છે, શું સારું ચાલે છે અને અજમાવવા જેવી એક વાત. Proનો ભાગ.
+Pause rules for more than {1}	{1} કરતાં વધુ માટે વિરામના નિયમો
+Free: a pause rule for {1} ({2} used). Pro has no limit.	મફત: {1} માટે એક વિરામ નિયમ ({2} વપરાયા). Proમાં કોઈ મર્યાદા નથી.
+Every {1} slot	દરેક {1} સ્લૉટ
+Locking more than {1} (a group of apps)	{1} કરતાં વધુ લૉક કરવું (એપ્સનું જૂથ)
+Apps to lock ({1} free)	લૉક કરવાની એપ્સ ({1} મફત)
+time reached	સમય પૂરો થયો
+Setting a goal	લક્ષ્ય નક્કી કરવું
+Any day with this slot	આ સ્લૉટ ધરાવતો કોઈ પણ દિવસ
+Add a slot to your routine first (Routine tab)	પહેલા તમારી દિનચર્યામાં એક સ્લૉટ ઉમેરો (દિનચર્યા ટૅબ)
+Slot	સ્લૉટ
+To-do list (optional)	કરવાની યાદી (વૈકલ્પિક)
+The list is full	યાદી ભરાઈ ગઈ છે
+That is on the list already	તે યાદીમાં પહેલેથી છે
+Phone use in slots · Pro	સ્લૉટમાં ફોનનો ઉપયોગ · Pro
+Your choices are kept and work again with Pro.	તમારી પસંદગીઓ સચવાયેલી રહે છે અને Pro સાથે ફરી કામ કરે છે.
+Days · Pro	દિવસો · Pro
+The week chart, your average score and the tips that come from it. Today's report stays free.	અઠવાડિયાનો ચાર્ટ, તમારો સરેરાશ સ્કોર અને તેમાંથી મળતી ટિપ્સ. આજનો રિપોર્ટ મફત રહે છે.
+Saved days are part of Pro	સાચવેલા દિવસો Proનો ભાગ છે
+Open the report of any past day, with its slot analysis and a PDF to save or share. Today's report stays free.	કોઈ પણ વીતેલા દિવસનો રિપોર્ટ ખોલો, તેના સ્લૉટ વિશ્લેષણ અને સાચવવા કે શેર કરવા માટે PDF સાથે. આજનો રિપોર્ટ મફત રહે છે.
+Free: {1}. Pro: any number, strict and playful	મફત: {1}. Pro: ગમે તેટલી, કડક અને મજેદાર
+Free: {1}, {2}. Pro: groups and strict locks	મફત: {1}, {2}. Pro: જૂથો અને કડક લૉક
+Included	સામેલ
+Home screen and live wallpaper of your day	તમારા દિવસની હોમ સ્ક્રીન અને લાઇવ વૉલપેપર
+Slot alarms that ask one question	એક પ્રશ્ન પૂછતા સ્લૉટ અલાર્મ
+Start-of-day alarm, finish early, breaks, library mode	દિવસ શરૂ થવાનો અલાર્મ, વહેલું પૂરું કરવું, બ્રેક, લાઇબ્રેરી મોડ
+Backup to your own Google Drive	તમારા પોતાના Google Driveમાં બૅકઅપ
+Home screen and alarms	હોમ સ્ક્રીન અને અલાર્મ
+All free	બધું મફત
+A to-do list for every slot	દરેક સ્લૉટ માટે કરવાની યાદી
+To-dos that repeat every day or on chosen days	દરરોજ કે પસંદ કરેલા દિવસોએ ફરી આવતી કરવાની બાબતો
+To-dos	કરવાની યાદીઓ
+Today's report, with a PDF to save or share	આજનો રિપોર્ટ, સાચવવા કે શેર કરવા માટે PDF સાથે
+Every saved day	દરેક સાચવેલો દિવસ
+The week view and its tips	અઠવાડિયાનું દૃશ્ય અને તેની ટિપ્સ
+Slot analysis: focus and phone use, slot by slot	સ્લૉટ વિશ્લેષણ: સ્લૉટ પ્રમાણે ફોકસ અને ફોનનો ઉપયોગ
+Habit cards	ટેવ કાર્ડ
+Free: today's report. Pro: every day and the deeper analysis	મફત: આજનો રિપોર્ટ. Pro: દરેક દિવસ અને ઊંડું વિશ્લેષણ
+A goal for a slot of your routine	તમારી દિનચર્યાના એક સ્લૉટ માટે લક્ષ્ય
+A to-do list inside a goal, in step with the slot's	લક્ષ્યની અંદર કરવાની યાદી, જે સ્લૉટની યાદી સાથે તાલમેલમાં રહે છે
+Streaks for goals	લક્ષ્યોની સળંગ સિદ્ધિ
+Pro: a goal for a slot, with its own to-dos	Pro: એક સ્લૉટનું લક્ષ્ય, પોતાની કરવાની યાદી સાથે
+Apps with a pause before they open	ખૂલતા પહેલાં વિરામ ધરાવતી એપ્સ
+Any number	ગમે તેટલી
+Playful pauses: a sum, a sentence, breathing, why	મજેદાર વિરામ: એક સરવાળો, એક વાક્ય, શ્વાસ, કારણ
+Locks for a time	થોડા સમય માટે લૉક
+As many as you like	જેટલા જોઈએ તેટલા
+Apps in a lock	લૉકમાં એપ્સ
+Groups of apps	એપ્સના જૂથો
+Strict locks that cannot be broken	કડક લૉક જે તોડી શકાતા નથી
+Weekday, weekend and one-day routines	અઠવાડિયાના દિવસો, વીકએન્ડ અને એક દિવસની દિનચર્યાઓ
+Colour looks	રંગરૂપ
+Small ads	નાની જાહેરાતો
+Routines and looks	દિનચર્યાઓ અને રંગરૂપ
+Free: one routine and one look. Pro: all of them, and no ads	મફત: એક દિનચર્યા અને એક રંગરૂપ. Pro: બધાં, અને કોઈ જાહેરાત નહીં
+Watch {1} short videos	{1} ટૂંકા વીડિયો જુઓ
+Watch {1} short videos and everything in Pro is open for 24 hours: every saved day and the week in Performance, the deeper analysis, more pauses and locks, routines, goals and the colour looks. Nothing is charged. When the day is up, what you set up with it goes back to the free version (Pro keeps it for good).	{1} ટૂંકા વીડિયો જુઓ અને 24 કલાક માટે Proમાંનું બધું ખુલ્લું થઈ જાય છે: દરેક સાચવેલો દિવસ અને પ્રદર્શનમાં અઠવાડિયું, ઊંડું વિશ્લેષણ, વધુ વિરામ અને લૉક, દિનચર્યાઓ, લક્ષ્યો અને રંગરૂપ. કોઈ ચાર્જ લેવાતો નથી. દિવસ પૂરો થાય ત્યારે, તેનાથી તમે જે સેટ કર્યું તે મફત આવૃત્તિમાં પાછું જાય છે (Pro તેને કાયમ માટે રાખે છે).
+Everything the app does, Free and Pro side by side, in groups you open one at a time.	એપ જે કંઈ કરે છે તે બધું, મફત અને Pro સાથે-સાથે, એક વારમાં એક ખોલી શકાય તેવા જૂથોમાં.
+Compare Free and Pro	મફત અને Proની સરખામણી કરો
+{1}\n\nOr watch {2} short videos and use everything in Pro free for a day.	{1}\n\nઅથવા {2} ટૂંકા વીડિયો જુઓ અને એક દિવસ માટે Proમાંનું બધું મફત વાપરો.
+Only the videos you watch to the end count, and the ones you watched today stay counted if you stop. When the day is up, everything closes again and what you set up with Pro goes back to the free version.	ફક્ત તમે અંત સુધી જોયેલા વીડિયો ગણાય છે, અને તમે અટકી જાઓ તો પણ આજે જોયેલા ગણાયેલા રહે છે. દિવસ પૂરો થાય ત્યારે બધું ફરી બંધ થઈ જાય છે અને Pro સાથે તમે જે સેટ કર્યું તે મફત આવૃત્તિમાં પાછું જાય છે.
+Everything in Pro: open until {1}.	Proમાંનું બધું: {1} સુધી ખુલ્લું.
+No ads, every saved day and deeper analysis, goals, more pauses and locks, routines, colours. Or watch {1} short videos for a free day of Pro	કોઈ જાહેરાત નહીં, દરેક સાચવેલો દિવસ અને ઊંડું વિશ્લેષણ, લક્ષ્યો, વધુ વિરામ અને લૉક, દિનચર્યાઓ, રંગો. અથવા {1} ટૂંકા વીડિયો જોઈને Proનો એક દિવસ મફત મેળવો
+No ads, every saved day and deeper analysis, goals, more pauses and locks, routines, colours	કોઈ જાહેરાત નહીં, દરેક સાચવેલો દિવસ અને ઊંડું વિશ્લેષણ, લક્ષ્યો, વધુ વિરામ અને લૉક, દિનચર્યાઓ, રંગો
+Slot analysis · Pro	સ્લૉટ વિશ્લેષણ · Pro
+Goal · {1}	લક્ષ્ય · {1}
+A goal with no to-dos is ticked by you, or by the time when its target is reached. A goal with to-dos is done when all of them are. Goals and their to-dos are set in Insights.	કરવાની યાદી વગરના લક્ષ્યને તમે ટિક કરો છો, અથવા તેનો સમય લક્ષ્ય પૂરું થાય ત્યારે તે જાતે ટિક થઈ જાય છે. કરવાની યાદી ધરાવતું લક્ષ્ય તેની બધી બાબતો પૂરી થાય ત્યારે પૂરું ગણાય છે. લક્ષ્યો અને તેમની કરવાની યાદીઓ ઇનસાઇટ્સમાં નક્કી થાય છે.
+Goals of this slot	આ સ્લૉટના લક્ષ્યો
+Free: the home screen, alarms, to-dos, today's report, one paused app and one locked app. {1}It adds goals with their own to-dos, every saved day and the deeper analysis, more pauses and locks, more routines, every colour look, and no ads.{2}	મફત: હોમ સ્ક્રીન, અલાર્મ, કરવાની યાદીઓ, આજનો રિપોર્ટ, વિરામવાળી એક એપ અને લૉક કરેલી એક એપ. {1}તેમાં પોતાની કરવાની યાદી સાથેનાં લક્ષ્યો, દરેક સાચવેલો દિવસ અને ઊંડું વિશ્લેષણ, વધુ વિરામ અને લૉક, વધુ દિનચર્યાઓ, દરેક રંગરૂપ અને કોઈ જાહેરાત નહીં એટલું ઉમેરાય છે.{2}
+Or watch {1} short videos and everything in Pro is open for a day. What you set up with it goes back to the free version when the day is up. The last screen shows it all side by side.	અથવા {1} ટૂંકા વીડિયો જુઓ અને એક દિવસ માટે Proમાંનું બધું ખુલ્લું થઈ જાય છે. દિવસ પૂરો થાય ત્યારે તેનાથી તમે જે સેટ કર્યું તે મફત આવૃત્તિમાં પાછું જાય છે. છેલ્લી સ્ક્રીન બધું સાથે-સાથે બતાવે છે.
+Pick the apps that pull you away. During focus time they wait a few seconds before they open, and you can always open them anyway. Free: one app. Pro: any number, strict pauses, daily limits, and playful pauses: a quick sum, a sentence to type, slow breaths, or saying why you are opening it.	જે એપ્સ તમને ભટકાવે છે તે પસંદ કરો. ફોકસ સમય દરમિયાન તે ખૂલતા પહેલાં થોડી સેકન્ડ રાહ જુએ છે, અને તમે તેમ છતાં તેને ખોલી શકો છો. મફત: એક એપ. Pro: ગમે તેટલી, કડક વિરામ, દૈનિક મર્યાદાઓ અને મજેદાર વિરામ: એક ઝટપટ સરવાળો, લખવા માટે એક વાક્ય, ધીમા શ્વાસ, અથવા તમે તેને કેમ ખોલો છો તે કહેવું.
+Shut the apps that eat your time for hours you choose: every day or on some days, or just for the next hour. A locked app is greyed in the list, and the lock screen shows when it opens again. You can break a lock by waiting half a minute and typing a sentence. Free: one lock with one app. Pro: groups of apps, as many locks as you like, and strict locks that cannot be broken. A group can also lock only while an activity type such as Study is going on, only when both the hours and the activity hold, or in library mode. Set it up in the home settings.	તમારો સમય ખાતી એપ્સને તમે પસંદ કરેલા કલાકો માટે બંધ કરો: દરરોજ કે અમુક દિવસે, અથવા ફક્ત આવતા એક કલાક માટે. લૉક કરેલી એપ યાદીમાં ઝાંખી દેખાય છે, અને લૉક સ્ક્રીન બતાવે છે કે તે ક્યારે ફરી ખૂલશે. અડધી મિનિટ રાહ જોઈને અને એક વાક્ય લખીને તમે લૉક તોડી શકો છો. મફત: એક એપ સાથે એક લૉક. Pro: એપ્સના જૂથો, જોઈએ તેટલા લૉક, અને કડક લૉક જે તોડી શકાતા નથી. અભ્યાસ જેવો કોઈ પ્રવૃત્તિ પ્રકાર ચાલુ હોય ત્યારે જ, અથવા કલાકો અને પ્રવૃત્તિ બંને મળે ત્યારે જ, અથવા લાઇબ્રેરી મોડમાં પણ જૂથ લૉક થઈ શકે છે. તેને હોમ સેટિંગ્સમાં સેટ કરો.
+A score for today, phone time by hour and by app, and plain suggestions, with a PDF to save or share. Today's report is free. Pro adds every saved day, the weekly view, the slot-by-slot analysis and habit cards, and goals: set one for a slot, give it its own to-do list, and watch the streak.	આજનો સ્કોર, કલાક પ્રમાણે અને એપ પ્રમાણે ફોનનો સમય, અને સીધી-સાદી સલાહ, સાચવવા કે શેર કરવા માટે PDF સાથે. આજનો રિપોર્ટ મફત છે. Proમાં દરેક સાચવેલો દિવસ, સાપ્તાહિક દૃશ્ય, સ્લૉટ પ્રમાણે વિશ્લેષણ અને ટેવ કાર્ડ, અને લક્ષ્યો ઉમેરાય છે: કોઈ સ્લૉટ માટે એક લક્ષ્ય રાખો, તેને પોતાની કરવાની યાદી આપો અને સળંગ સિદ્ધિ જુઓ.
+Alarms and to-dos	અલાર્મ અને કરવાની યાદીઓ
+1 paused app	વિરામવાળી 1 એપ
+1 locked app	લૉકવાળી 1 એપ
+Goals with to-dos	કરવાની યાદી સાથેનાં લક્ષ્યો
+More routines	વધુ દિનચર્યાઓ
+Monthly or once, or 3 short videos for a day	દર મહિને કે એક વાર, અથવા એક દિવસ માટે 3 ટૂંકા વીડિયો
+Watch {1} more videos to open everything in Pro for a day.	એક દિવસ માટે Proમાંનું બધું ખોલવા વધુ {1} વીડિયો જુઓ.
+{1}\n\nOr stop here: the videos you watched today stay counted.	{1}\n\nઅથવા અહીં જ અટકો: આજે જોયેલા વીડિયો ગણાયેલા રહે છે.
+{1} more open everything in Pro for a day.	વધુ {1} થી એક દિવસ માટે Proમાંનું બધું ખુલ્લું થઈ જાય છે.
+Everything is open already.	બધું પહેલેથી ખુલ્લું છે.
+Watch one more video to open everything in Pro for a day.	એક દિવસ માટે Proમાંનું બધું ખોલવા વધુ એક વીડિયો જુઓ.
+One more opens everything in Pro for a day.	વધુ એકથી એક દિવસ માટે Proમાંનું બધું ખુલ્લું થઈ જાય છે.
+Watch {1} videos: everything in Pro free for a day	{1} વીડિયો જુઓ: એક દિવસ માટે Proમાંનું બધું મફત
+Watch {1}: everything in Pro free for a day	{1} જુઓ: એક દિવસ માટે Proમાંનું બધું મફત
+{1} of {2} videos watched today	આજે {2} માંથી {1} વીડિયો જોવાયા
+Without a to-do list, the goal is a to-do of its slot: tick it, or it ticks itself when the time is reached. With one, the goal ticks only when every to-do is done. The same list shows in the slot's to-dos.	કરવાની યાદી વગર લક્ષ્ય તેના સ્લૉટની કરવાની બાબત જેવું છે: તેને ટિક કરો, અથવા સમય પૂરો થાય ત્યારે તે જાતે ટિક થઈ જાય છે. યાદી સાથે, લક્ષ્ય ત્યારે જ ટિક થાય છે જ્યારે તેની દરેક બાબત પૂરી થાય. એ જ યાદી સ્લૉટની કરવાની યાદીમાં પણ દેખાય છે.
+A goal counts on days whose schedule has the slot. Kept slots count towards it. Days in a row you reach it make a streak.	લક્ષ્ય એવા દિવસોએ ગણાય છે જેના શેડ્યૂલમાં તે સ્લૉટ હોય. નિભાવેલા સ્લૉટ તેમાં ગણાય છે. સળંગ જેટલા દિવસ તમે તેને પૂરું કરો તેનાથી સિલસિલો બને છે.
+Set a daily target for a slot of your routine, for example 2 hours for Morning study, with its own to-do list, and see it fill up through the day.	તમારી દિનચર્યાના કોઈ સ્લૉટ માટે રોજનું લક્ષ્ય રાખો, જેમ કે સવારના અભ્યાસ માટે 2 કલાક, પોતાની કરવાની યાદી સાથે, અને આખા દિવસ દરમિયાન તેને ભરાતું જુઓ.
+Free: a pause rule for {1} app. Pro adds strict pauses, daily limits, playful pauses (a sum, a sentence, breathing), as many apps as you like, and removes the ads.	મફત: {1} માટે એક વિરામ નિયમ. Proમાં કડક વિરામ, દૈનિક મર્યાદાઓ, મજેદાર વિરામ (સરવાળો, વાક્ય, શ્વાસ), જોઈએ તેટલી એપ્સ ઉમેરાય છે, અને જાહેરાતો હટી જાય છે.
+Free: one lock that holds {1} app. Pro adds groups of apps, as many locks as you like, and strict locks.	મફત: {1} ધરાવતું એક લૉક. Proમાં એપ્સના જૂથો, જોઈએ તેટલા લૉક અને કડક લૉક ઉમેરાય છે.
+See when you pick up the phone during a slot, with the exact times, and mark the apps that belong to an activity so they are never counted against you. The reports then show it slot by slot.	સ્લૉટ દરમિયાન તમે ફોન ક્યારે ઉપાડો છો તે ચોક્કસ સમય સાથે જુઓ, અને કોઈ પ્રવૃત્તિનો ભાગ હોય તેવી એપ્સને ચિહ્નિત કરો જેથી તે ક્યારેય તમારી વિરુદ્ધ ગણાય નહીં. રિપોર્ટ પછી તે સ્લૉટ પ્રમાણે બતાવે છે.
+Focus and phone use slot by slot, with a timeline and the exact times, and the same by activity. Today's report above stays free.	સ્લૉટ પ્રમાણે ફોકસ અને ફોનનો ઉપયોગ, ટાઇમલાઇન અને ચોક્કસ સમય સાથે, અને એ જ પ્રવૃત્તિ પ્રમાણે. ઉપરનો આજનો રિપોર્ટ મફત રહે છે.
+{1} to-dos	{1} કરવાની બાબતો
+1 to-do	1 કરવાની બાબત
+To-do list	કરવાની યાદી
+1 more video	વધુ 1 વીડિયો
+Watch 2 more videos: everything in Pro free for a day	વધુ 2 વીડિયો જુઓ: એક દિવસ માટે Proમાંનું બધું મફત
+Watch 1 more video: everything in Pro free for a day	વધુ 1 વીડિયો જુઓ: એક દિવસ માટે Proમાંનું બધું મફત
+Skip this slot, start “{1}” now	આ સ્લૉટ છોડી દો, “{1}” હમણાં શરૂ કરો
+, {1} before your plan	, તમારી યોજના પહેલાં {1}
+Skip this slot and go to sleep	આ સ્લૉટ છોડી દો અને સૂવા જાઓ
+Skip this slot, start the next one now	આ સ્લૉટ છોડી દો, આગલો હમણાં શરૂ કરો
+The next slot has started	આગલો સ્લૉટ શરૂ થઈ ગયો છે
+Early sleep	વહેલી ઊંઘ
+Going to sleep early?	શું તમે વહેલા સૂવા જઈ રહ્યા છો?
+Not yet	હજી નહીં
+Missed alarm	ચૂકી ગયેલો એલાર્મ
+This alarm did not ring because Android had closed the app. It is set again now.	Android એ એપ બંધ કરી દીધી હતી, તેથી આ એલાર્મ વાગ્યો નહીં. હવે તે ફરીથી સેટ થઈ ગયો છે.
+It was closed from App info (Force stop).	તેને એપની માહિતીમાંથી બંધ કરવામાં આવી હતી (ફરજિયાત રોકો).
+Android stopped it when the user was switched.	વપરાશકર્તા બદલાતાં Android એ તેને રોકી દીધી.
+It crashed.	તે ક્રેશ થઈ ગઈ.
+It stopped answering and Android closed it.	તેણે જવાબ આપવાનું બંધ કર્યું, તેથી Android એ તેને બંધ કરી દીધી.
+Android closed it to free memory.	મેમરી ખાલી કરવા માટે Android એ તેને બંધ કરી દીધી.
+Android closed it because a permission was changed.	કોઈ પરવાનગી બદલાઈ, તેથી Android એ તેને બંધ કરી દીધી.
+It was closed to be updated.	અપડેટ માટે તેને બંધ કરવામાં આવી હતી.
+Android closed it because it was switched off or on.	તેને બંધ અથવા ચાલુ કરવામાં આવી, તેથી Android એ તેને બંધ કરી દીધી.
+Android closed it for using too much of the phone.	ફોનના ઘણા સંસાધનો વાપરવાને કારણે Android એ તેને બંધ કરી દીધી.
+It could not start.	તે શરૂ થઈ શકી નહીં.
+Android closed it because something it needs stopped.	તેને જરૂરી કોઈ વસ્તુ બંધ થઈ ગઈ, તેથી Android એ તેને બંધ કરી દીધી.
+Android ended it.	Android એ તેને બંધ કરી દીધી.
+It was closed.	તેને બંધ કરવામાં આવી હતી.
+Android clears every alarm of an app when it is closed this way, so the alarms and the live wallpaper were gone until you came back. They are in place again now.	એપને આ રીતે બંધ કરવામાં આવે ત્યારે Android તેના બધા એલાર્મ દૂર કરી દે છે, તેથી તમે પાછા ફર્યા ત્યાં સુધી એલાર્મ અને લાઇવ વૉલપેપર ગાયબ હતા. હવે તે ફરી જગ્યાએ છે.
+Android keeps the alarms of an app that stops this way. They have been checked and are in place.	આ રીતે બંધ થતી એપના એલાર્મ Android રાખે છે. તે તપાસી લેવામાં આવ્યા છે અને જગ્યાએ છે.
+Sleep was to begin at {1}. If you go to sleep now, “{2}” ends here and your wake-up alarm stays as planned.	સૂવાનો સમય {1} વાગ્યે શરૂ થવાનો હતો. જો તમે હમણાં સૂવા જાઓ, તો “{2}” અહીં જ પૂરું થશે અને તમારો જગાડતો એલાર્મ નક્કી કર્યા મુજબ જ રહેશે.
+Your day was to start at {1}. Start it now, and “{2}” begins early. It still ends at {3}, so it gets the time that was left.	તમારો દિવસ {1} વાગ્યે શરૂ થવાનો હતો. તેને હમણાં શરૂ કરો, તો “{2}” વહેલું શરૂ થશે. તે છતાં {3} વાગ્યે જ પૂરું થશે, તેથી તેને બાકી રહેલો સમય મળશે.
+Wake up early?	વહેલા ઊઠવું છે?
+Go to sleep early?	વહેલા સૂવા જવું છે?
+the first slot	પહેલો સ્લૉટ
+Start my day now	મારો દિવસ હમણાં શરૂ કરો
+Early wake	વહેલું જાગવું
+{1} starts at {2} instead of {3} (you woke early)	{1} {3} ને બદલે {2} વાગ્યે શરૂ થાય છે (તમે વહેલા ઊઠ્યા)
+Android closed the app and cleared the alarm set for {1}. It is set again now.	Android એ એપ બંધ કરીને {1} માટે સેટ કરેલો એલાર્મ દૂર કરી દીધો હતો. હવે તે ફરીથી સેટ થઈ ગયો છે.
+Last time Android ended the app: {1}	Android એ એપને છેલ્લે બંધ કરી: {1}
+Android removes a live wallpaper when the app is closed from App info. The home screen still shows your day. Bring the wallpaper back for the lock screen and recent apps.	એપની માહિતીમાંથી એપ બંધ કરવામાં આવે ત્યારે Android લાઇવ વૉલપેપર દૂર કરે છે. હોમ સ્ક્રીન પર તમારો દિવસ હજી દેખાય છે. લૉક સ્ક્રીન અને તાજેતરની એપ્સ માટે વૉલપેપર પાછું લાવો.
+Wallpaper	વૉલપેપર
+Your day wallpaper is gone	તમારા દિવસનું વૉલપેપર જતું રહ્યું છે
+Only the lock screen has your day	તમારો દિવસ ફક્ત લૉક સ્ક્રીન પર છે
+Your day wallpaper is not set	તમારા દિવસનું વૉલપેપર સેટ નથી
+It shows your day on the lock screen and in recent apps. Android asks you to confirm once.	તે લૉક સ્ક્રીન પર અને તાજેતરની એપ્સમાં તમારો દિવસ બતાવે છે. Android એક વાર પુષ્ટિ માટે પૂછે છે.
+Bring it back	પાછું લાવો
+Bring back your day wallpaper	તમારા દિવસનું વૉલપેપર પાછું લાવો
+Set your day wallpaper	તમારા દિવસનું વૉલપેપર સેટ કરો
+On. Nothing is locked or paused yet, so nothing is being watched.	ચાલુ છે. હજી કંઈ લૉક કે વિરામ પર નથી, એટલે કશા પર નજર રાખવામાં આવતી નથી.
+Not holding yet: allow Usage access below.	હજી લાગુ નથી: નીચે ઉપયોગની ઍક્સેસની પરવાનગી આપો.
+Not holding yet: allow Display over other apps below.	હજી લાગુ નથી: નીચે “બીજી એપ્સ પર બતાવો”ની પરવાનગી આપો.
+Not holding yet: allow the two things below.	હજી લાગુ નથી: નીચેની બંને બાબતોની પરવાનગી આપો.
+On: nothing is locked or paused yet	ચાલુ: હજી કંઈ લૉક કે વિરામ પર નથી
+Needs your permission: locks hold only from this home screen	તમારી પરવાનગી જોઈએ: લૉક ફક્ત આ હોમ સ્ક્રીન પરથી ખોલવા પર જ લાગુ થાય છે
+Locks hold wherever the app is opened from.	એપ ગમે ત્યાંથી ખોલવામાં આવે, લૉક લાગુ રહે છે.
+Pauses hold wherever the app is opened from.	એપ ગમે ત્યાંથી ખોલવામાં આવે, વિરામ લાગુ રહે છે.
+For now locks hold only when you open an app from this home screen.	હાલમાં લૉક ફક્ત ત્યારે જ લાગુ થાય છે જ્યારે તમે એપ આ હોમ સ્ક્રીન પરથી ખોલો.
+For now pauses work only when you open an app from this home screen.	હાલમાં વિરામ ફક્ત ત્યારે જ કામ કરે છે જ્યારે તમે એપ આ હોમ સ્ક્રીન પરથી ખોલો.
+Allow the two things in the Strong lock card in the home settings and they hold everywhere.	હોમ સેટિંગ્સના સ્ટ્રૉંગ લૉક કાર્ડમાં બંને બાબતોની પરવાનગી આપો, પછી તે બધે લાગુ થશે.
+Make your locks hold everywhere	તમારા લૉક બધે લાગુ કરો
+Your locks hold only on the home screen	તમારા લૉક ફક્ત હોમ સ્ક્રીન પર જ લાગુ છે
+An app can still be opened from Recents or App info.	એપ હજી પણ તાજેતરની એપ્સ અથવા એપની માહિતીમાંથી ખોલી શકાય છે.
+Allow what Android asks for, and a lock holds wherever the app is opened from.	Android જે પરવાનગી માગે છે તે આપો, પછી એપ ગમે ત્યાંથી ખોલાય, લૉક લાગુ રહેશે.
+Hold them everywhere	તેમને બધે લાગુ કરો
+Allow display over other apps?	બીજી એપ્સ પર બતાવવાની પરવાનગી આપવી છે?
+To hold a lock when an app is opened from Recents, App info or a notification, Dinacharya Launcher shows its lock screen in front of that app.	તાજેતરની એપ્સ, એપની માહિતી અથવા સૂચનામાંથી એપ ખુલે ત્યારે પણ લૉક લાગુ રાખવા માટે તે એપની સામે Dinacharya Launcherની લૉક સ્ક્રીન બતાવવામાં આવે છે.
+Android asks you to allow this.	આ માટે Android તમારી પરવાનગી માગે છે.
+To hold a lock when an app is opened from Recents, App info or a notification, it also needs to see which app is in front.	તાજેતરની એપ્સ, એપની માહિતી અથવા સૂચનામાંથી એપ ખુલે ત્યારે પણ લૉક લાગુ રાખવા માટે કઈ એપ સામે છે તે પણ જોવું જરૂરી છે.
+Only the name of that app is compared with your own list of locked apps.	ફક્ત તે એપના નામની તમારી પોતાની લૉક કરેલી એપ્સની યાદી સાથે સરખામણી થાય છે.
+Nothing is saved or sent.	કંઈ સાચવવામાં કે મોકલવામાં આવતું નથી.
+A lock that only works when you open an app from this home screen is easy to get around: open the app from Recents or App info instead.	જે લૉક ફક્ત આ હોમ સ્ક્રીન પરથી એપ ખોલવા પર જ કામ કરે છે, તેને ચકમો આપવો સહેલો છે: એપને તાજેતરની એપ્સ અથવા એપની માહિતીમાંથી ખોલી લો.
+With the strong lock on, Dinacharya Launcher also holds an app opened from Recents, App info, a notification, a widget or another home app, and an app that is already open when a lock starts.	સ્ટ્રૉંગ લૉક ચાલુ હોય ત્યારે Dinacharya Launcher તાજેતરની એપ્સ, એપની માહિતી, સૂચના, વિજેટ અથવા બીજી હોમ એપમાંથી ખોલેલી એપને તેમજ લૉક શરૂ થાય ત્યારે પહેલેથી ખુલ્લી એપને પણ રોકે છે.
+It starts by itself as soon as something is locked or paused.	કંઈપણ લૉક કે વિરામ પર થતાં જ તે આપમેળે શરૂ થઈ જાય છે.
+The phone, Settings, the keyboard and system screens are never blocked.	ફોન, સેટિંગ્સ, કીબોર્ડ અને સિસ્ટમ સ્ક્રીન ક્યારેય રોકવામાં આવતી નથી.
+It shows a small notification while it runs.	ચાલતી વખતે તે એક નાની સૂચના બતાવે છે.
+It looks only at the name of the app in front, on this phone, and keeps and sends nothing.	તે આ જ ફોન પર ફક્ત સામેની એપનું નામ જુએ છે, અને કંઈ સાચવતું કે મોકલતું નથી.
+If your phone stops background apps to save battery and the lock stops holding, allow Dinacharya Launcher to run in the background in the phone's battery settings.	જો તમારો ફોન બેટરી બચાવવા બૅકગ્રાઉન્ડ એપ્સ બંધ કરી દે અને લૉક લાગુ થવાનું બંધ થઈ જાય, તો ફોનના બેટરી સેટિંગ્સમાં Dinacharya Launcherને બૅકગ્રાઉન્ડમાં ચાલવા દો.
+The strong lock is on, so a lock also holds an app opened from Recents, App info, a notification, a widget or another home app, and one that is open when the lock starts.	સ્ટ્રૉંગ લૉક ચાલુ છે, એટલે લૉક તાજેતરની એપ્સ, એપની માહિતી, સૂચના, વિજેટ અથવા બીજી હોમ એપમાંથી ખોલેલી એપને તેમજ લૉક શરૂ થાય ત્યારે ખુલ્લી એપને પણ રોકે છે.
+For now a lock holds only when you open an app from this home screen.	હાલમાં લૉક ફક્ત ત્યારે જ લાગુ થાય છે જ્યારે તમે એપ આ હોમ સ્ક્રીન પરથી ખોલો.
+Allow the two things in the Strong lock card below and it also holds an app opened from Recents, App info, a notification, a widget or another home app, and one that is open when the lock starts.	નીચેના સ્ટ્રૉંગ લૉક કાર્ડમાં બંને બાબતોની પરવાનગી આપો, પછી તે તાજેતરની એપ્સ, એપની માહિતી, સૂચના, વિજેટ અથવા બીજી હોમ એપમાંથી ખોલેલી એપને તેમજ લૉક શરૂ થાય ત્યારે ખુલ્લી એપને પણ રોકશે.
+Locks work when you open an app from this home screen.	એપ આ હોમ સ્ક્રીન પરથી ખોલો ત્યારે લૉક કામ કરે છે.
+They cannot stop an app that is already open, or one opened from Recents, a notification or another home app.	તે પહેલેથી ખુલ્લી એપને, અથવા તાજેતરની એપ્સ, સૂચના કે બીજી હોમ એપમાંથી ખોલેલી એપને રોકી શકતા નથી.
+The strong lock below does.	નીચેનું સ્ટ્રૉંગ લૉક આ કરે છે.
+To hold them whichever way they open, allow the two things in the Strong lock card below.	તેમને ગમે તે રીતે ખોલવામાં આવે તો પણ લાગુ રાખવા માટે નીચેના સ્ટ્રૉંગ લૉક કાર્ડમાં બંને બાબતોની પરવાનગી આપો.
+Without strict, you can still break a lock: wait 30 seconds and type a sentence.	કડક ન હોય તો પણ તમે લૉક તોડી શકો છો: 30 સેકન્ડ રાહ જુઓ અને એક વાક્ય ટાઇપ કરો.
+A strict lock cannot be broken, and cannot be changed while it holds.	કડક લૉક તોડી શકાતું નથી, અને તે લાગુ હોય ત્યારે બદલી પણ શકાતું નથી.
 # the same texts without the marks at their ends
 {1} after your plan	તમારી યોજના પછી {1}
 Made	બનાવ્યું
@@ -1578,3 +2091,5 @@ not today	આજે નહીં
 hides its apps	એપ્સ છુપાવે છે
 and during {1}	અને {1} દરમિયાન
 when this slot ends	આ સ્લૉટ પૂરો થાય ત્યારે
+and in library mode	અને લાઇબ્રેરી મોડમાં
+{1} before your plan	તમારી યોજના પહેલાં {1}

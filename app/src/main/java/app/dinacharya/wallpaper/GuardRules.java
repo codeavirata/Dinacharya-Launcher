@@ -22,8 +22,17 @@ public final class GuardRules {
     public static final int NONE = 0, LOCK = 1, PAUSE = 2;
     /** How long an app that was let through stays let through after it leaves the front (a quick glance elsewhere). */
     public static final long GRACE_MS = 30000L;
-    /** The state of the strong lock as the settings show it. */
-    public static final int OFF = 0, NEEDS_USAGE = 1, NEEDS_OVERLAY = 2, NEEDS_BOTH = 3, ON = 4;
+    /**
+     * The state of the strong lock as the settings show it. {@link #IDLE}: switched on, but nothing is locked or paused yet, so there is
+     * nothing to watch and nothing runs.
+     */
+    public static final int OFF = 0, NEEDS_USAGE = 1, NEEDS_OVERLAY = 2, NEEDS_BOTH = 3, ON = 4, IDLE = 5;
+    /** Which of Android's two pages to open next. */
+    public static final int ASK_NONE = 0, ASK_USAGE = 1, ASK_OVERLAY = 2;
+    /** After the person says "Not now", the permissions are not offered again right after a save for this long. */
+    public static final long OFFER_AGAIN_MS = 30 * 60000L;
+    /** The watcher writes a beat at every look; one older than this means it is not running. */
+    public static final long BEAT_STALE_MS = 15000L;
 
     /** The answer for one app in front. */
     public static final class Verdict {
@@ -114,9 +123,9 @@ public final class GuardRules {
         return false;
     }
 
-    /** True when a group is locked by activity type, so the slot has to be known at every look and not only when an app comes to the front. */
+    /** True when a group is locked by activity type or in library mode, so the slot has to be known at every look and not only when an app comes to the front. */
     public static boolean anyDuring(LauncherConfig c) {
-        for (LauncherConfig.Group g : c.groups) if (!g.during.isEmpty() && !g.apps.isEmpty()) return true;
+        for (LauncherConfig.Group g : c.groups) if ((!g.during.isEmpty() || g.library) && !g.apps.isEmpty()) return true;
         return false;
     }
 
@@ -199,6 +208,56 @@ public final class GuardRules {
         if (!usageAccess) return NEEDS_USAGE;
         if (!overlayAllowed) return NEEDS_OVERLAY;
         return ON;
+    }
+
+    /** Same, knowing whether anything is locked or paused: with nothing to hold, no permission is wanted yet. */
+    public static int state(boolean enabled, boolean somethingToHold, boolean usageAccess, boolean overlayAllowed) {
+        if (!enabled) return OFF;
+        if (!somethingToHold) return IDLE;
+        return state(true, usageAccess, overlayAllowed);
+    }
+
+    /** True when the watcher has to run: the strong lock is switched on and something is locked or paused. */
+    public static boolean shouldRun(LauncherConfig c) {
+        return c != null && c.strong && worthWatching(c);
+    }
+
+    /** True when a permission is missing, so locks hold on the home screen only. */
+    public static boolean needsPermission(int state) {
+        return state == NEEDS_USAGE || state == NEEDS_OVERLAY || state == NEEDS_BOTH;
+    }
+
+    /** How many of the two permissions are still missing. */
+    public static int missing(boolean usageAccess, boolean overlayAllowed) {
+        return (usageAccess ? 0 : 1) + (overlayAllowed ? 0 : 1);
+    }
+
+    /** Which of Android's pages to open next: Usage access first, then Display over other apps. */
+    public static int nextAsk(boolean usageAccess, boolean overlayAllowed) {
+        if (!usageAccess) return ASK_USAGE;
+        if (!overlayAllowed) return ASK_OVERLAY;
+        return ASK_NONE;
+    }
+
+    /**
+     * Whether to offer the permissions now, right after a lock or a pause was saved: when one is missing and the person did not just say
+     * "Not now". {@code sinceDeclinedMs} is negative when they never did.
+     */
+    public static boolean shouldOffer(int state, long sinceDeclinedMs) {
+        return needsPermission(state) && (sinceDeclinedMs < 0 || sinceDeclinedMs >= OFFER_AGAIN_MS);
+    }
+
+    /**
+     * Coming back from one of Android's pages: carry on to the next one only when the page just visited was given (fewer are missing
+     * than before), so a person who backed out is not sent round again.
+     */
+    public static boolean continueAsking(int missingBefore, int missingNow) {
+        return missingNow > 0 && missingNow < missingBefore;
+    }
+
+    /** True when the watcher has written a beat lately, which means it is running. */
+    public static boolean watching(long lastBeatMs, long nowMs) {
+        return lastBeatMs > 0 && nowMs - lastBeatMs <= BEAT_STALE_MS;
     }
 
     /** How long to wait before looking at the screen again. */

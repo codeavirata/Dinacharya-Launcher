@@ -38,6 +38,13 @@ public final class Routine {
     private static final String MAGIC = "DINACHARYA1";
 
     /** One block of the day. */
+    /**
+     * What happened to a part of today's schedule, as the home screen shows it: it began late, the slot before was carried on into it, a
+     * break, a wait before a later start, it began before its time, the slot before was finished early, or the rest of the day is off.
+     */
+    public static final int LIVE_NONE = 0, LIVE_LATE = 1, LIVE_CARRIED = 2, LIVE_BREAK = 3, LIVE_WAIT = 4, LIVE_EARLY = 5, LIVE_CUT = 6,
+            LIVE_OFF = 7;
+
     public static final class Block {
         public int kind;
         public String title;
@@ -64,6 +71,10 @@ public final class Routine {
         public String origTitle;
         /** Minutes added to this block's end because the next morning starts later. */
         public int extended;
+        /** What happened to this part of the day so far, for the schedule on the home screen (see {@link LivePlan}). Never saved. */
+        public int live = LIVE_NONE;
+        /** For a break or waiting part made inside a slot: the number of that slot. Never saved. */
+        public int owner = -1;
 
         public Block(int kind, String title, int mins) {
             this.kind = clampKind(kind);
@@ -84,6 +95,8 @@ public final class Routine {
             b.changed = changed;
             b.origTitle = origTitle;
             b.extended = extended;
+            b.live = live;
+            b.owner = owner;
             return b;
         }
 
@@ -92,6 +105,16 @@ public final class Routine {
             alert = (mode >= ALERT_SILENT && mode <= ALERT_NONE) ? mode : ALERT_RING;
             alarm = alert == ALERT_RING || alert == ALERT_VIBRATE;
             if (!alarm) wake = false;
+        }
+
+        /** The slot this part belongs to: its own number, or for a break or waiting part the slot it sits in; -1 for none. */
+        public int slotSrc() {
+            return src >= 0 ? src : owner;
+        }
+
+        /** True for a part of today made for a break, a wait before a later start, or the day off (not a slot of the plan). */
+        public boolean isGap() {
+            return live == LIVE_BREAK || live == LIVE_WAIT || live == LIVE_OFF;
         }
 
         /** True when the start makes a sound or vibrates. */
@@ -112,10 +135,15 @@ public final class Routine {
     }
 
     /**
-     * A target for one activity type, such as 6 hours of Study. It applies on the days its rule says, and only when that day's schedule
-     * has the type (and, when it names others, at least one of them).
+     * A target. A goal belongs to one slot of the routine (such as "Reading" in the morning): it is the time to spend in that slot, with
+     * an optional to-do list of its own. An older goal belongs to a whole activity type instead (6 hours of Study) and still works as it
+     * did. It applies on the days its rule says, and only when that day's schedule has the slot (or the type) and, when it names
+     * others, at least one of them.
      */
     public static final class Goal {
+        /** How many things a goal's own to-do list holds. */
+        public static final int MAX_TODOS = 12;
+
         /** How it repeats: every day, every second day from {@link #date}, on chosen weekdays, or on one day only ({@link #date}). */
         public static final int DAILY = 0, ALTERNATE = 1, WEEKDAYS = 2, ONCE = 3;
 
@@ -129,11 +157,22 @@ public final class Routine {
         public int daysMask = 0x7F;
         /** Other types the day's schedule must have (at least one of them) for the goal to count that day. Empty: no condition. */
         public final List<Sub> with = new ArrayList<>();
+        /** The name of the slot the goal belongs to, or empty for an older goal that covers a whole activity type. */
+        public String slot = "";
+        /** The goal's own to-do list: the same things on every day the goal counts, ticked fresh each day. */
+        public final List<String> todos = new ArrayList<>();
 
         public Goal(int kind, String sub, int mins) {
             this.kind = clampKind(kind);
             this.sub = cleanSub(sub);
             this.mins = clamp(mins, 5, 1440);
+        }
+
+        /** A goal for one slot of the routine (by its kind and name). */
+        public static Goal forSlot(int kind, String slot, int mins) {
+            Goal g = new Goal(kind, "", mins);
+            g.slot = cleanSlot(slot);
+            return g;
         }
 
         /** A goal for one day only. */
@@ -144,8 +183,44 @@ public final class Routine {
             return g;
         }
 
+        /** A goal for one slot, for one day only. */
+        public static Goal onceForSlot(int kind, String slot, int mins, LocalDate day) {
+            Goal g = forSlot(kind, slot, mins);
+            g.repeat = ONCE;
+            g.date = day;
+            return g;
+        }
+
+        /** True when the goal belongs to one slot (and not to a whole activity type). */
+        public boolean bound() {
+            return !slot.isEmpty();
+        }
+
+        /** The name shown for the goal: its slot, or the activity type of an older goal. */
         public String label() {
+            if (bound()) return slot;
             return sub.isEmpty() ? KIND_NAMES[kind] : sub;
+        }
+
+        /** Adds a thing to the goal's to-do list; false when the text is empty, already there, or the list is full. */
+        public boolean addTodo(String text) {
+            String t = cleanTodo(text);
+            if (t.isEmpty() || todos.size() >= MAX_TODOS) return false;
+            for (String x : todos) if (x.equalsIgnoreCase(t)) return false;
+            todos.add(t);
+            return true;
+        }
+
+        /** Tells the same goal apart from another: the slot (or the type of an older goal), not the day. */
+        public String ident() {
+            return bound() ? kind + "#" + slot.toLowerCase(java.util.Locale.ROOT) : kind + ":" + sub.toLowerCase(java.util.Locale.ROOT);
+        }
+
+        /** True when the block is a slot this goal counts: not taken off, and of its kind and name (or, for an older goal, its type). */
+        public boolean covers(Block b) {
+            if (b == null || b.skipped || b.kind != kind) return false;
+            if (bound()) return savedTitle(b).equalsIgnoreCase(slot);
+            return sub.isEmpty() || sub.equalsIgnoreCase(b.sub);
         }
 
         public boolean repeats() {
@@ -167,13 +242,16 @@ public final class Routine {
             }
         }
 
-        /** True when one of the (not taken off) blocks is of this goal's type. */
+        /** True when one of the (not taken off) blocks is this goal's slot, or of its type for an older goal. */
         public boolean presentIn(List<Block> schedule) {
-            for (Block b : schedule) {
-                if (b.skipped || b.kind != kind) continue;
-                if (sub.isEmpty() || sub.equalsIgnoreCase(b.sub)) return true;
-            }
+            for (Block b : schedule) if (covers(b)) return true;
             return false;
+        }
+
+        /** The first block of the schedule that is a slot of this goal (the one its to-do list belongs to), or null. */
+        public Block firstSlot(List<Block> schedule) {
+            for (Block b : schedule) if (b.src >= 0 && covers(b)) return b;
+            return null;
         }
 
         /** True when there is no condition on other types, or the schedule has at least one of them. */
@@ -187,9 +265,9 @@ public final class Routine {
             return false;
         }
 
-        /** Tells goals apart: the type, and for a one-day goal the day. */
+        /** Tells goals apart: the slot or type, and for a one-day goal the day. */
         public String key() {
-            return kind + ":" + sub.toLowerCase(java.util.Locale.ROOT) + (repeat == ONCE && date != null ? "@" + date : "");
+            return ident() + (repeat == ONCE && date != null ? "@" + date : "");
         }
 
         /** The rule in words, for lists: "Every day", "Every other day", "Mon, Wed, Fri", "Today only". */
@@ -230,6 +308,8 @@ public final class Routine {
             g.date = date;
             g.daysMask = daysMask;
             g.with.addAll(with);
+            g.slot = slot;
+            g.todos.addAll(todos);
             return g;
         }
     }
@@ -312,6 +392,16 @@ public final class Routine {
     public int wakeChallenge = CHALLENGE_NONE;
     /** The person's own quote for the wake-up, or empty to use the built-in ones. */
     public String wakeQuote = "";
+    /**
+     * What has to be done to turn the start-of-day alarm off by starting the day: nothing (a tap), a few sums, a short pause (slow
+     * breathing), shaking the phone, or a sentence typed.
+     */
+    public static final int OFF_NONE = 0, OFF_SUM = 1, OFF_PAUSE = 2, OFF_SHAKE = 3, OFF_TYPE = 4;
+    public int wakeOff = OFF_NONE;
+    /** A motivating quote is shown on the start-of-day alarm (on unless turned off). */
+    public boolean wakeQuoteOn = true;
+    /** The start-of-day alarm offers "Take the day off" (on unless turned off). */
+    public boolean wakeDayOff = true;
 
     public Routine() {
         addDefaultSubs();
@@ -382,7 +472,7 @@ public final class Routine {
                 if (b.kind == s.kind && b.sub.equalsIgnoreCase(s.name)) b.sub = OTHER;
             }
         }
-        goals.removeIf(g -> g.kind == s.kind && g.sub.equalsIgnoreCase(s.name));
+        goals.removeIf(g -> !g.bound() && g.kind == s.kind && g.sub.equalsIgnoreCase(s.name));
         for (Goal g : goals) g.with.removeIf(w -> w.kind == s.kind && w.name.equalsIgnoreCase(s.name));
     }
 
@@ -594,24 +684,68 @@ public final class Routine {
         wakeDelayMin = o.wakeDelayMin;
         wakeChallenge = o.wakeChallenge;
         wakeQuote = o.wakeQuote;
+        wakeOff = o.wakeOff;
+        wakeQuoteOn = o.wakeQuoteOn;
+        wakeDayOff = o.wakeDayOff;
     }
 
     // ---------------------------------------------------------------- goals
 
-    /** The repeating goal for a type (one-day goals are not counted), or null. */
+    /** The name a slot is known by: the saved name, also on a day it was renamed. */
+    public static String savedTitle(Block b) {
+        return clean(b.changed && b.origTitle != null ? b.origTitle : b.title).trim();
+    }
+
+    /** A slot's name as a goal keeps it. */
+    static String cleanSlot(String t) {
+        return clean(t).trim();
+    }
+
+    /** A thing on a goal's to-do list: one line, no separators, a sensible length. */
+    static String cleanTodo(String t) {
+        if (t == null) return "";
+        String c = t.replace('\t', ' ').replace('\n', ' ').replace('\r', ' ').replace('|', '/').trim();
+        return c.length() > Todos.MAX_LEN ? c.substring(0, Todos.MAX_LEN).trim() : c;
+    }
+
+    /** The repeating goal for an activity type that covers the whole type (one-day goals and goals of one slot are not counted), or null. */
     public Goal findGoal(int kind, String sub) {
         String n = cleanSub(sub);
-        for (Goal g : goals) if (g.repeats() && g.kind == kind && g.sub.equalsIgnoreCase(n)) return g;
+        for (Goal g : goals) if (g.repeats() && !g.bound() && g.kind == kind && g.sub.equalsIgnoreCase(n)) return g;
         return null;
     }
 
-    /** The one-day goal for a type on a day, or null. */
+    /** The one-day goal for an activity type on a day, or null. */
     public Goal findOnce(int kind, String sub, LocalDate day) {
         String n = cleanSub(sub);
         for (Goal g : goals) {
-            if (!g.repeats() && g.kind == kind && g.sub.equalsIgnoreCase(n) && day != null && day.equals(g.date)) return g;
+            if (!g.repeats() && !g.bound() && g.kind == kind && g.sub.equalsIgnoreCase(n) && day != null && day.equals(g.date)) return g;
         }
         return null;
+    }
+
+    /** The repeating goal of one slot (by its kind and name), or null. */
+    public Goal findSlotGoal(int kind, String slot) {
+        String n = cleanSlot(slot);
+        if (n.isEmpty()) return null;
+        for (Goal g : goals) if (g.repeats() && g.bound() && g.kind == kind && g.slot.equalsIgnoreCase(n)) return g;
+        return null;
+    }
+
+    /** The one-day goal of one slot on a day, or null. */
+    public Goal findSlotOnce(int kind, String slot, LocalDate day) {
+        String n = cleanSlot(slot);
+        if (n.isEmpty() || day == null) return null;
+        for (Goal g : goals) {
+            if (!g.repeats() && g.bound() && g.kind == kind && g.slot.equalsIgnoreCase(n) && day.equals(g.date)) return g;
+        }
+        return null;
+    }
+
+    /** The goal that would be replaced by {@code g}: the same slot (or type) with the same kind of rule (repeating, or the same day). */
+    public Goal findSame(Goal g) {
+        if (g.bound()) return g.repeats() ? findSlotGoal(g.kind, g.slot) : findSlotOnce(g.kind, g.slot, g.date);
+        return g.repeats() ? findGoal(g.kind, g.sub) : findOnce(g.kind, g.sub, g.date);
     }
 
     /** Sets (or with 0 minutes removes) the every-day target for a type. */
@@ -621,9 +755,9 @@ public final class Routine {
         if (mins > 0) goals.add(new Goal(kind, sub, mins));
     }
 
-    /** Adds a goal. It replaces the repeating goal of the same type, or the one-day goal of the same type and day. */
+    /** Adds a goal. It replaces the repeating goal of the same slot (or type), or the one-day goal of the same slot (or type) and day. */
     public void putGoal(Goal g) {
-        Goal old = g.repeats() ? findGoal(g.kind, g.sub) : findOnce(g.kind, g.sub, g.date);
+        Goal old = findSame(g);
         if (old != null) goals.remove(old);
         goals.add(g);
     }
@@ -636,30 +770,86 @@ public final class Routine {
 
     /**
      * The goals that count on {@code day}, given the blocks of that day's schedule: the rule must say so, the schedule must have the
-     * type (and one of the types it asks for). A one-day goal replaces the repeating goal of the same type for its day.
+     * slot (or, for an older goal, the type) and one of the types it asks for. A one-day goal replaces the repeating goal of the same
+     * slot (or type) for its day.
      */
     public List<Goal> goalsFor(LocalDate day, List<Block> schedule) {
         List<Goal> out = new ArrayList<>();
         java.util.Set<String> onceTypes = new java.util.HashSet<>();
         for (Goal g : goals) {
-            if (!g.repeats() && g.ruleMatches(day) && g.presentIn(schedule)) onceTypes.add(g.kind + ":" + g.sub.toLowerCase(java.util.Locale.ROOT));
+            if (!g.repeats() && g.ruleMatches(day) && g.presentIn(schedule)) onceTypes.add(g.ident());
         }
         for (Goal g : goals) {
             if (!g.ruleMatches(day) || !g.presentIn(schedule)) continue;
             if (g.repeats()) {
                 if (!g.withMet(schedule)) continue;
-                if (onceTypes.contains(g.kind + ":" + g.sub.toLowerCase(java.util.Locale.ROOT))) continue;
+                if (onceTypes.contains(g.ident())) continue;
             }
             out.add(g);
         }
         return out;
     }
 
-    /** True when some goal (of any rule) has this type. */
+    /** True when some goal (of any rule) covers this activity type as a whole or belongs to a slot of this type. */
     public boolean hasGoalFor(int kind, String sub) {
         String n = cleanSub(sub);
-        for (Goal g : goals) if (g.kind == kind && g.sub.equalsIgnoreCase(n)) return true;
+        for (Goal g : goals) if (g.kind == kind && (g.bound() ? slotHasSub(g, n) : g.sub.equalsIgnoreCase(n))) return true;
         return false;
+    }
+
+    private boolean slotHasSub(Goal g, String sub) {
+        for (Routine r : everyRoutine()) {
+            for (Block b : r.blocks) if (g.covers(b) && b.sub.equalsIgnoreCase(sub)) return true;
+        }
+        return false;
+    }
+
+    /** The activity type of the first slot of this kind and name in any routine (for its colour), or empty. */
+    public String slotSub(int kind, String title) {
+        String n = cleanSlot(title);
+        for (Routine r : everyRoutine()) {
+            for (Block b : r.blocks) if (b.kind == kind && clean(b.title).trim().equalsIgnoreCase(n)) return b.sub;
+        }
+        return "";
+    }
+
+    /** True when some routine (the main one, the others and the one-day ones) has a slot of this kind and name. */
+    public boolean hasSlot(int kind, String title) {
+        String n = cleanSlot(title);
+        for (Routine r : everyRoutine()) {
+            for (Block b : r.blocks) if (b.kind == kind && clean(b.title).trim().equalsIgnoreCase(n)) return true;
+        }
+        return false;
+    }
+
+    /**
+     * A slot was renamed in the routine: the goals of that slot follow it, unless another slot still has the old name or a goal for the
+     * new name exists already (then the goals stay as they are). Returns how many goals moved.
+     */
+    public int renameSlot(int kind, String oldTitle, String newTitle) {
+        String from = cleanSlot(oldTitle);
+        String to = cleanSlot(newTitle);
+        if (from.isEmpty() || to.isEmpty() || from.equalsIgnoreCase(to) || hasSlot(kind, from)) return 0;
+        int moved = 0;
+        for (Goal g : new ArrayList<>(goals)) {
+            if (!g.bound() || g.kind != kind || !g.slot.equalsIgnoreCase(from)) continue;
+            g.slot = to;
+            if (findSameOther(g) != null) {   // the new name has a goal of this kind already: keep that one
+                g.slot = from;
+                continue;
+            }
+            moved++;
+        }
+        return moved;
+    }
+
+    private Goal findSameOther(Goal g) {
+        for (Goal o : goals) {
+            if (o == g || o.bound() != g.bound() || o.kind != g.kind || !o.slot.equalsIgnoreCase(g.slot)) continue;
+            if (o.repeats() != g.repeats()) continue;
+            if (o.repeats() || (o.date != null && o.date.equals(g.date))) return o;
+        }
+        return null;
     }
 
     // ---------------------------------------------------------------- scheduling
@@ -753,6 +943,9 @@ public final class Routine {
         sb.append("askSilent=").append(askSilent ? 1 : 0).append('\n');
         sb.append("wakeDelay=").append(wakeDelayMin).append('\n');
         sb.append("wakeChallenge=").append(wakeChallenge).append('\n');
+        sb.append("wakeOff=").append(wakeOff).append('\n');
+        sb.append("wakeQuoteOn=").append(wakeQuoteOn ? 1 : 0).append('\n');
+        sb.append("wakeDayOff=").append(wakeDayOff ? 1 : 0).append('\n');
         if (!cleanQuote(wakeQuote).isEmpty()) sb.append("Q\t").append(cleanQuote(wakeQuote)).append('\n');
         sb.append("mark=").append(showMark ? 1 : 0).append('\n');
         sb.append("N\t").append(cleanName(name)).append('\n');
@@ -762,11 +955,17 @@ public final class Routine {
         }
         for (Goal g : goals) {
             sb.append("G\t").append(g.kind).append('\t').append(g.mins).append('\t').append(g.sub);
-            if (g.repeat != Goal.DAILY || !g.with.isEmpty()) {
+            if (g.repeat != Goal.DAILY || !g.with.isEmpty() || g.bound() || !g.todos.isEmpty()) {
                 sb.append('\t').append(g.repeat).append('\t').append(g.date == null ? "" : g.date.toString())
                         .append('\t').append(g.daysMask).append('\t');
                 for (int i = 0; i < g.with.size(); i++) {
                     sb.append(i == 0 ? "" : "|").append(g.with.get(i).kind).append(':').append(g.with.get(i).name.replace('|', '/'));
+                }
+                // The slot and the to-do list come last, so an older reader still gets the rest right.
+                if (g.bound() || !g.todos.isEmpty()) {
+                    sb.append('\t').append(g.slot);
+                    sb.append('\t');
+                    for (int i = 0; i < g.todos.size(); i++) sb.append(i == 0 ? "" : "|").append(cleanTodo(g.todos.get(i)));
                 }
             }
             sb.append('\n');
@@ -872,7 +1071,7 @@ public final class Routine {
                 continue;
             }
             if (ln.startsWith("G\t")) {
-                String[] p = ln.split("\t", 8);
+                String[] p = ln.split("\t", 10);
                 if (p.length < 4) continue;
                 try {
                     Goal g = new Goal(Integer.parseInt(p[1].trim()), p[3], Integer.parseInt(p[2].trim()));
@@ -888,9 +1087,13 @@ public final class Routine {
                                 g.with.add(new Sub(Integer.parseInt(w.substring(0, c).trim()), w.substring(c + 1)));
                             }
                         }
+                        if (p.length >= 9) g.slot = cleanSlot(p[8]);
+                        if (p.length >= 10) {
+                            for (String t : p[9].split("\\|")) g.addTodo(t);
+                        }
                         if ((g.repeat == Goal.ONCE && g.date == null)) continue;
                     }
-                    boolean dup = g.repeats() ? r.findGoal(g.kind, g.sub) != null : r.findOnce(g.kind, g.sub, g.date) != null;
+                    boolean dup = r.findSame(g) != null;
                     if (!dup) r.goals.add(g);
                 } catch (NumberFormatException | java.time.format.DateTimeParseException ignored) {
                     // skip a damaged line
@@ -964,6 +1167,9 @@ public final class Routine {
                 case "askSilent": r.askSilent = v != 0; break;
                 case "wakeDelay": r.wakeDelayMin = clamp(v, 1, 120); break;
                 case "wakeChallenge": r.wakeChallenge = (v >= CHALLENGE_NONE && v <= CHALLENGE_TYPE) ? v : CHALLENGE_NONE; break;
+                case "wakeOff": r.wakeOff = (v >= OFF_NONE && v <= OFF_TYPE) ? v : OFF_NONE; break;
+                case "wakeQuoteOn": r.wakeQuoteOn = v != 0; break;
+                case "wakeDayOff": r.wakeDayOff = v != 0; break;
                 case "mark": r.showMark = v == 1; break;
                 default: break;
             }
@@ -1092,6 +1298,9 @@ public final class Routine {
         r.wakeDelayMin = wakeDelayMin;
         r.wakeChallenge = wakeChallenge;
         r.wakeQuote = wakeQuote;
+        r.wakeOff = wakeOff;
+        r.wakeQuoteOn = wakeQuoteOn;
+        r.wakeDayOff = wakeDayOff;
         r.showMark = showMark;
         r.name = name;
         r.subs.clear();
@@ -1126,6 +1335,7 @@ public final class Routine {
         for (String[] t : types) {
             for (Block b : r.blocks) if (b.title.equals(t[0])) b.sub = t[1];
         }
+        r.blocks.get(0).wake = true;   // the first alarm of the day is the start-of-day alarm, unless the person changes it
         return r;
     }
 

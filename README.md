@@ -5,10 +5,10 @@ and a Google Drive backup come with it.
 
 - **Home screen (launcher):** no icons and no app list. The whole screen is your day: the time on the
   left, today's date on the right, phone use today and every slot of the day with the current one
-  highlighted, in four colour themes (light and night). It is shown by the **Dinacharya live wallpaper**,
+  highlighted, in four colour themes (light and night). It is shown by the **Dinacharya Launcher live wallpaper**,
   which comes with the launcher: Dinacharya asks Android to put it in place and you confirm once (Android
   never lets an app do that silently). Being the real wallpaper, it also shows on the lock screen and in the
-  recent-apps screen. A small "Developed by ASG" mark sits at the bottom (it can be hidden). Tap
+  recent-apps screen. A small one-line "© 2026 | Developed by ASG" credit sits at the bottom (it can be hidden). Tap
   your day to open the dashboard, swipe up for every app (a plain list with search and an A to Z strip, over a
   blurred view of your day; Dinacharya is in it too and opens the dashboard), swipe down for notifications, left for the camera
   and right for the phone (both can be any app), press and hold for settings. Apps that pull you away can wait a
@@ -28,14 +28,15 @@ and a Google Drive backup come with it.
 - **Google sign-in and backup:** like WhatsApp: sign in with your Google account, back up daily,
   weekly or monthly to a private space in your Drive, and restore on a new phone.
 - **Free, with an optional Pro:** the app is free with a small ad on Home and Insights. Free keeps the useful
-  core: the home screen, alarms, today's report with the last 3 saved days, pauses on 2 apps and locks on 2 apps.
-  A one-time **Dinacharya Pro** purchase (set to Rs 99 in Play Console) removes the ads and unlocks every saved day
-  and the weekly view, any number of pauses and locks, locked groups, strict locks, extra routines, goals and colour
-  themes. The **See Pro** screen shows the two side by side. See "Dinacharya Pro and ads" and "Earn from the app".
+  core: the home screen, alarms, a to-do list for every slot, **today's report** (with a PDF), one pause rule for one app and one lock on one app.
+  **Dinacharya Pro**, Rs 50 a month or Rs 499 once for life (both set in Play Console), removes the ads and unlocks **goals** (a goal for a slot of your
+  routine, with its own to-dos), every saved day, the weekly view and the deeper analysis, any number of pauses and locks, locked groups, strict locks,
+  extra routines and colour themes. Anyone can open all of it for a day, free, by watching **three short videos**; when the day is over it closes again.
+  The **Free and Pro** screen (the last page of the tour, and a button on the Pro screen) shows the two side by side. See "Dinacharya Pro and ads" and "Earn from the app".
 
 The **dashboard** has five tabs at the bottom: **Home** (now and next, today's goals, a preview of the home screen),
 **Routine**, **Insights**, **Backup** and **Settings** (Dinacharya Pro, home screen, home screen look, alarms,
-permissions, help, about). You open it from the home screen (tap your day, or pick the dashboard for a swipe in the home settings)
+permissions, help, about). Tap a tab, or swipe left or right on the page to move to the next or the previous tab (the pages follow your finger and slide back if you let go early; a slider, a switch or a card you swipe to delete keeps its own swipe). You open it from the home screen (tap your day, or pick the dashboard for a swipe in the home settings)
 (Dinacharya is also in the list of all apps: opening it there shows the dashboard). The app's one icon opens a welcome the first time and the dashboard after that. The home screen itself has no icon (it is what Android shows when you press Home) and is kept out of the list of recent apps, so Dinacharya shows there once.
 
 ## Get the APK
@@ -49,7 +50,7 @@ Pick one way. Each gives you `app-debug.apk`, which you can install on your phon
    If the upload skips `.github`, open **Add file > Create new file**, type
    `.github/workflows/build-apk.yml` as the name, and paste in the contents of that file.
 3. Open the **Actions** tab, choose **Build APK**, then **Run workflow**.
-4. When it turns green, open the run and download **Dinacharya-wallpaper-apk** at the bottom.
+4. When it turns green, open the run and download **Dinacharya-Launcher-apk** at the bottom.
    Unzip it to get `app-debug.apk`.
 
 ### B. Build it in Android Studio (on a PC or Mac)
@@ -98,9 +99,11 @@ and is read out by a screen reader as "expanded" or "collapsed". The app remembe
 - **Routine:** a slot card shows one line (type · length · alarm); the arrow opens its type, kind, length buttons, alarm and ⋮ menu.
   **Time by type**, **How to edit slots**, **More tools** and **Activity types** are closed to begin with.
 - **Insights:** a goal row shows its name and streak, and opens to its plan, its apps and its buttons. **Slots so far**, **Phone today**,
-  **Time by type today**, **All your goals** and **Habits** are closed to begin with, each with a one-line summary.
+  **Time by type today**, **All your goals** and **Habits** are closed to begin with, each with a one-line summary. **Habits** (Pro) is a short list of cards
+  (one thing noticed on each, with a colour stripe, a title and a badge: **Good**, **Watch** or **Set up**); a card opens to **What I noticed** and
+  **Try this**, and opening one closes the one that was open.
 - **Backup:** **Settings**, **Restore**, **Other ways to sign in** and the long note about the backup are closed to begin with.
-- **Settings:** in **Home screen**, **Focus**, **Locked apps**, **Strong lock**, **Hidden apps**, **Swipes**, **Look** and **Today** each
+- **Settings:** in **Home screen**, **Focus**, **Phone use in slots**, **Locked apps**, **Strong lock**, **Hidden apps**, **Swipes**, **Look** and **Today** each
   show a summary and open on tap, with the long explanations under **How it works**. Alarms has **Slots without a sound**,
   **Start-of-day alarm** and **Is the phone ready?**; Help has one fold-out per topic.
 - At an alarm, the choices open under their button, one at a time.
@@ -118,13 +121,20 @@ time: **Settings > Home screen > Change home app**, or Android's own **Settings 
 **What it shows.** No apps at all: your day. The Dinacharya day poster is the phone's wallpaper (a live
 wallpaper that redraws every minute while the screen is on). It shows the time, the date, phone use today and
 every slot, with the one you are in highlighted. **Putting it in place:** the first-start setup asks Android to
-switch to the Dinacharya wallpaper; if you skip it, the launcher asks again at most once a day until it is on (the
-home screen has no button for it). It can also be done from the dashboard's Home tab, the tour and the home settings.
+switch to the Dinacharya Launcher wallpaper. The wallpaper is part of the launcher, not an extra, so the launcher **looks at it every
+time the home screen comes up** (and when the dashboard opens, after a restart or an update, and every few hours in the background)
+instead of trusting an old note. If it is not in place, the launcher **paints your day itself at once**, so the home screen is never
+plain, and shows a small chip, **Bring back your day wallpaper**; the dashboard's Home tab shows an amber card ("Your day wallpaper
+is gone", "Only the lock screen has your day" or "Your day wallpaper is not set") with a **Bring it back** button. A wallpaper that
+was in place and then lost is asked for again **at once**, and again after 10 minutes if you turned the preview down; one that was
+never set is asked for once a day. It can also be done from the dashboard's Home tab, the tour and the home settings.
 Android shows its own preview with a **Set wallpaper** button; tap it (on Android 14 and later it may ask where:
 choose **Home screen** or **Home and lock screen**; "Lock screen" alone leaves the home screen on the old picture, and
-the app says so). Some phones do not report a live wallpaper back to apps, so the app also notes when its own
-wallpaper is really running, and once you have confirmed the preview it stops asking for 30 days. This is why the
-recent-apps screen shows your day instead of another picture. **At midnight** the old schedule scrolls up and out while the next day rises from below, and it has
+the app says so). Some phones do not report a live wallpaper back to apps, so the app also counts its own wallpaper engine as proof
+while it is running and the preview you just confirmed for two minutes; an old note is never proof. **Closing the app from App info
+(Force stop) makes Android remove a live wallpaper and cancel every alarm of the app, and Android tells the app nothing about it.**
+The app cannot prevent that; it finds out the next time it starts and puts both back (see "If Android closes the app" under Alarms).
+This is why the recent-apps screen shows your day instead of another picture. **At midnight** the old schedule scrolls up and out while the next day rises from below, and it has
 fully taken its place by your wake-up time, so the day on the screen is never stale. Its colours, clock, phone time and
 spacing are in **Settings > Home screen look** in the dashboard (also reached from **Settings > Home screen >
 Look > Change what the home screen shows**). **Auto, Dark, Light** in the home settings colour the list of all
@@ -144,7 +154,7 @@ apps and the pause screen, not the day.
 **Pause before distractions.** In **Settings > Home screen > Focus** (or press and hold an app in the
 all-apps list) give an app a pause. When you open it during the kinds of slot you chose (Task by default),
 a screen counts down a few seconds with **Go back** and **Open anyway**. It is friction, not a lock: you can
-always open the app after the wait. Free: a short pause for up to 2 apps. **Pro:** strict (longer) pauses,
+always open the app after the wait. Free: a short pause for **1 app**. **Pro:** strict (longer) pauses,
 a daily limit in minutes per app (uses Usage access), any number of apps, and **playful pauses**: pick how the
 pause goes for each app (**Settings > Home screen > Focus**, or press and hold the app): a **quick sum** (addition,
 subtraction or multiplication; three of them for a strict pause or a used-up limit), a **sentence to type**,
@@ -155,43 +165,66 @@ use it ("went back 4 times", "opened anyway 6 times").
 
 *Pauses apply when you open an app from this home screen (its all-apps list or a shortcut).* On their own they
 cannot stop an app that is opened from the recent-apps screen, a notification or another app: Android does not let a
-launcher do that. The optional **Strong lock** (below) can; it needs two permissions and is off until you turn it on.
+launcher do that. The **Strong lock** (below) can; it needs two permissions, which the app asks for when you save a lock or a pause.
 
 **Locked groups.** In **Settings > Home screen > Locked groups** make a group (for example *Social*), choose its
-apps and the hours it is locked (from, to, and the days; a window can run past midnight, and the same hour for
-start and end means the whole day), or lock it **now** for 30 minutes to 8 hours. While a group is locked, its apps
+apps and how it locks: by **time** (hours and days), by **activity** (while a kind of slot is going on) or both (see
+"The group editor" below), or lock it **now** for 30 minutes to 8 hours. While a group is locked, its apps
 are greyed with "locked" in the all-apps list, and opening one shows a screen with the group, the time it ends and
 the time left, with **Go back**. You can break a lock yourself: tap **Break the lock**, wait 30 seconds, and type a
-sentence. When the lock runs out while the screen is showing, the app opens. Free: **one lock of up to 2 apps** (the first two in it hold; if an older lock has more, its row says "only 2 held, needs Pro"). **Pro:** locked **groups**, with a name for each, any
+sentence. When the lock runs out while the screen is showing, the app opens. Free: **one lock on one app** (the first app in it holds; if an older lock has more, its row says "only 1 held, needs Pro"). **Pro:** locked **groups**, with a name for each, any
 number of groups (up to 8, with up to 40 apps each) and **strict locks**, which cannot be broken and cannot be
 changed or deleted while they hold. A lock that was set up while Pro was on and is left after Pro ends keeps its
 group but stops holding, apart from the first group. Opening a locked app and going back counts as a pause in the
 day report; a lock is checked before a pause rule, so a locked app is never also paused.
 
-**Lock during an activity type.** A group can also be locked **while a kind of activity is going on**, for example *Social* during
-Study. In the group's settings, under **Also lock during**, tap **Choose activity types** and tick any of: "Any task", "Any rest"…
-or single types such as Study or Exercise (Other is there too). The group is then locked when the slot of your day that is going
-on has one of those types, as well as in its hours; with no hours set it is locked by activity alone. Back-to-back slots of the same type are one
-stretch. A break, a slot taken off, and the gap between slots lift this lock, and the lock screen says "While you are on: Study".
-It uses the same limits as other groups (free: one group of up to 2 apps; strict locks are Pro), and it also holds through the
-Strong lock.
+**The group editor: choose how it locks.** Tap **Add a locked group** (or **Edit** on a group). The screen is short on purpose: the
+apps, then **Lock by** with a choice of three, and under it only the settings for the choice you made.
+
+- **Time**: locked at the hours you set. Pick the from and to times (a window can run past midnight, and the same hour for both means the
+  whole day) and the days (**Every day**, **Weekdays**, **Weekends**, or tap single days). This is the choice a new group starts with.
+- **Activity**: locked whenever a slot of the types you pick is going on, at any hour, for example *Social* while a *Study* slot runs. Tap
+  **Choose activity types** and tick any of "Any task", "Any rest"… or single types such as Study or Exercise (Other is there too). There are
+  no hours to set. Back-to-back slots of the same type are one stretch. A break, a slot taken off, and the gap between slots do not lock, and
+  the lock screen says "While you are on: Study".
+- **Time + activity**: locked only when **both** hold, for example *Social* on weekdays 09:00 to 17:00 **but only while a Study slot is going
+  on in those hours**. You set the hours and days and pick the types.
+
+A line under the settings says in plain words what the choice comes to ("Locked while a Study slot is going on."). Save asks for what is
+missing (an activity type for the last two, a day for **Time + activity**). The older way of mixing them, locked in the hours **and also**
+whenever the types are going on, is not offered for new locks; a group that was made that way shows a fourth choice, **Time or activity**, so
+it keeps working as it did and can be changed.
+
+**More options** is closed unless one of its settings is already on (a tap opens it):
+
+- **Lock now for** 30 min to 8 h, and **Unlock now**: a lock by hand, on top of the choice above. It always holds.
+- **Also lock in library mode**: while library mode is on (see "Library mode") the group is locked as well, whatever the choice above says; the
+  lock screen says "Locked until library mode is switched off" when it is an open-ended session.
+- **Hide the apps while they are locked** and **Strict** (Pro), explained below.
+
+The choice uses the same limits as other groups (free: one lock on one app; groups of apps and strict locks are Pro), and it also holds through the
+Strong lock. Groups saved by an earlier build keep their meaning: with no activity types they are a lock by time; with types and no days,
+by activity; with types, days and the "only when both hold" switch, **Time + activity**.
 
 **Hide locked apps.** Turn on **Hide the apps while they are locked** in a group and its apps are left out of the list of all apps
 and out of search while the lock holds, and come back when it ends. (Locks still hold on any other way of opening an app, such as recents
 or notifications, with the Strong lock.)
 
-*Like pauses, locks apply when you open an app from this home screen.* On their own they cannot stop an app that is
-already open, or one opened from the recent-apps screen, a notification, another app or another home app: the
-optional **Strong lock** (below) does. A strict lock is
+*Locks hold wherever an app is opened from.* On the home screen itself a lock is checked when you open an app; for an app
+already open, or opened from the recent-apps screen, **App info**, a notification, another app or another home app, the
+**Strong lock** (below) holds it. It is on from the start and needs two permissions that you give once (you are asked right after saving
+a lock); until then a lock holds on the home screen only, and the app says so. A strict lock is
 self-control, not a security wall: while it holds, the home settings cannot be reset and a backup restore leaves
 the groups alone, but you could still switch the home app, open the app from its Android app info, or uninstall
 Dinacharya. Calls still arrive and the emergency call on the lock screen is unaffected.
 
-**Strong lock (optional, off by default).** Without it, a lock or a pause only works when you open an app from
-Dinacharya's home screen, so an app can still be opened from the recent-apps screen, a notification, a widget, another
-home app, or kept open when a lock starts, and nothing is held at all while another launcher is the home app. Turn on
-**Settings > Home screen > Strong lock** and Dinacharya also holds those. It needs two things that Android makes you
-allow yourself, each with a button in that card: **Usage access** (the same permission the daily limits use, so it can see
+**Strong lock (on from the start; part of a lock).** Without it, a lock or a pause only works when you open an app from
+Dinacharya's home screen, so an app can still be opened from the recent-apps screen, App info, a notification, a widget, another
+home app, or kept open when a lock starts, and nothing is held at all while another launcher is the home app. It runs by itself as
+soon as something is locked or paused, and does nothing (no notification either) while nothing is. It needs two things that Android makes you
+allow yourself: saving a lock or a pause asks for them (a plain message first, then Android's page, and the second after the first is given),
+the home screen shows the chip **Make your locks hold everywhere** and the dashboard a card until both are given, and each has a button in
+**Settings > Home screen > Strong lock**, which can also switch it off by hand: **Usage access** (the same permission the daily limits use, so it can see
 which app is in front) and **Display over other apps** (so the lock or pause screen can appear in front of an app).
 How it works: a small foreground service (`GuardService`, with a quiet notification "Strong lock is on") looks at the app in
 front about three times a second while the screen is on (`FrontTracker` reads Android's usage events; nothing while the
@@ -206,7 +239,7 @@ come up (some phones restrict starting screens from the background), the cover k
 Go back button (and, for a pause, **Open anyway** after the wait). `GuardLoop` holds this one-look logic and is tested.
 **Never covered:** Dinacharya itself, the phone and dialer, emergency calls, Settings, the permission screens, the package
 installer, system screens, Google Play services, the keyboard and any home app, so you can always call, undo the setting or
-uninstall. It stops itself when you switch it off or take a permission away, starts again after a restart, and only the
+uninstall. It stops itself when you switch it off, when nothing is locked or paused any more, or when you take a permission away, starts again after a restart, an update, every time the home screen or dashboard comes up, on the three-hourly job and when its task is swiped away (`StrongMode`, with a beat written at every look so the problem report can say whether it runs), and only the
 name of the app in front is compared with your own list (nothing is saved or sent). The settings card, the Pro prompts and the
 text next to locks and pauses say whether it is on.
 
@@ -227,7 +260,7 @@ app** and **Open Dinacharya**, so a problem here can never leave the phone witho
 **Not in the app, on purpose:** double-tap to lock the screen (it needs an accessibility service, which
 Google Play reviews very strictly), an accessibility service of any kind, app icons in the list, and a request for the
 "see all apps" permission. The app list comes from Android's launcher interface, which needs no special permission. A lock
-that also works from outside this home screen is the optional Strong lock above.
+that also works from outside this home screen is the Strong lock above.
 
 If a big clock or the status bar covers the top of your day, raise **Space at top** in
 **Settings > Home screen look**. Changes made from an alarm are for today only.
@@ -243,8 +276,11 @@ Under the slot that is going on, the **Now** card on **Home** has two buttons.
   (the same − and +, again only up to the end of the slot) or to go on. A break is not available in Sleep, in a slot that was taken
   off, or when the slot is almost over. Pause rules that depend on the slot and locks by activity type (see "Locked groups") are
   lifted during a break.
-- **To-do** opens the small tasks of this slot: tick, add and remove them. A to-do belongs to its slot only. Under the card, **Your to-do
-  list** shows every item with a tick box ("3 of 5 done" when it is closed), so nothing is hidden in the app.
+- **To-do** opens the small tasks of this slot: tick, add and remove them. Under the card, **Your to-do
+  list** shows every item with a tick box ("3 of 5 done" when it is closed), so nothing is hidden in the app. The list of a slot has two kinds of
+  line: the things you added to the slot, and the **goals of that slot** (see "Goals and streaks"): a goal with no to-dos of its own is one more thing to do (tick it,
+  or time ticks it when the target is reached); a goal with to-dos is a heading with its own to-dos under it, struck only when all of them are done. The goal's
+  to-dos can be ticked here, on Home, in the to-do box or in Insights, and it is one tick everywhere. To-dos are free; goals are Pro.
 
 **A to-do can repeat.** Next to the box where you type a new item is a **↻** button: **Does not repeat** (the default),
 **Every day**, **Every other day** or **On chosen days** (day buttons appear). It goes back to "does not repeat" after each item you add.
@@ -257,6 +293,65 @@ copies that already exist. Up to 20 things can repeat. A to-do that does not rep
 screen is not moved. Up to 8 lines are shown. When there are more, the finished items scroll up out of sight first; if none are
 finished, the list pages down through the rest every 8 seconds (a small "7–14 of 14" tells where you are). A short list stays still,
 and nothing moves while the screen is off.
+
+## When the day does not go as planned
+
+The schedule on **Home** and on the live wallpaper is a picture of **your day as it really goes**, not only as it was planned. The
+saved routine is never changed by any of this (alarms, reports and locks go on using it); only what you see is adjusted, and the
+next day starts clean.
+
+**What Home and the wallpaper show.** A slot you **start later** shows "STARTING LATER" with the time it will start, and the slot
+before it carries on until then ("Carried on, so it ends at … instead of …"). A slot that begins late shows "STARTED LATE" with the
+real time ("Started late, at 9:10 instead of 9:00"), and the same for a slot that **ran longer** because you continued the previous
+one, or one that began early or ended early. A **break** shows as its own row, "Break until 4:30 · 12 min left", and then "Back
+to <slot>, which ends at …". The row, the time left and the note under the slot's name all follow the clock on their own, so you do not
+have to do anything.
+
+**Finish early.** Under the slot that is going on, next to **Take a break** and **To-do**, is **Finish early**. It asks what comes next:
+
+- **Start "next slot" now**: the slot you are in ends now and the next one starts at once. It still ends at its planned time, so it gets
+  the time that was left.
+- **Take a break first**: a break of 5 minutes at a time (− and +), then the next slot goes on. A break never reaches past the time the next
+  slot was to begin.
+- **Start "next slot" after a while**: the same − and +; the next slot starts at that time.
+- **Take the rest of today off**: see "Taking a day off" below.
+
+The break and "after a while" buttons are not shown when there is no room for at least 5 minutes. There is no "finish early" in a slot
+that was taken off, one that was carried on or cut, or when fewer than 3 minutes are left. A slot after the next that was taken off is passed over: the
+next slot that is on begins. **Every slot can be finished early**, sleep and the slot before it too, and the button says what it does:
+
+- **Finish early** in an ordinary slot, as above.
+- **Early sleep** in the slot just before sleep: "Go to sleep early?" opens the bedtime question ("Early sleep", "Going to sleep early?"), and when you set the wake-up
+  alarm sleep begins at that moment instead of at the planned time, the slot before it ends there, and the bedtime question that was to ring at the planned time stays
+  quiet. You wake at the normal time (more sleep, nothing else changes). "Not yet" closes it and nothing changes.
+- **Early wake** in sleep (all night, from when sleep begins): "Wake up early?" with **Start my day now**. The next day begins now: its first slot keeps its planned end and gets
+  the time, the night ends now, the alarm of the first slot is not rung, and every other slot stays where it was. "Changed for today only" on the dashboard lists it ("Tomorrow starts at
+  4:00 instead of 5:30 (you woke early)") and **Undo today's changes** takes it back. Reports show the planned sleep and the real bedtime as before.
+
+**Skip a slot when it starts.** On the slot-start question (see "Alarms") **Skip this slot, start "next slot" now** takes the slot off for today and starts the next one at
+once; the next slot ends when it was planned to, so it gets the skipped slot's time. The report shows the skipped slot as skipped and counts the next from the moment it began;
+Home shows "Started early". A skip is not offered on the bedtime question (sleep has **Early wake** instead).
+
+### Taking a day off
+
+There are two ways in: the **Take the rest of today off** button of **Finish early**, and, on the **start-of-day alarm**, the button
+**Take the day off** (it is there when **Offer "Take the day off"** is on in **Settings > Alarms > Start-of-day alarm**, which it is by
+default). Either way the app first asks you to confirm. After that:
+
+- The slot going on ends now, and **every alarm of today is silent**: no slot alarm, no bedtime question, no break timer and no
+  reminders. Home says "Enjoy your day off", and the wallpaper shows the rest of the day as a day off.
+- The app asks: **Plan your day now, later, or leave it?**
+  - **Plan now** opens the Routine tab so you can make the schedule for what is left of today. The app knows you have planned the
+    day again when the day's slots or its start time are different from what they were when you took the day off (a slot added, removed,
+    renamed or resized, or a new start time). Then the alarms come back and the new plan is used for the rest of today. A small
+    change for today only (for example a skipped slot) does not count; use **Back to my schedule** for that.
+  - **Later** asks when to ask again: in 1 hour, 2 hours, 4 hours, or this evening at 18:00 (that last one only when it is at least 3 hours away).
+    At that time a notification brings the question back.
+  - **Leave it** keeps the day off. Nothing rings until tomorrow, or until you plan the day yourself.
+- On Home, a day off shows **Plan the day** and **Back to my schedule**. The second one ends the day off at once and turns your own schedule and
+  alarms back on.
+- The day off ends by itself when that schedule day is over (at the next start of day), so tomorrow is never affected. A day off also
+  silences the bedtime question that evening; if you want it, tap **Back to my schedule** first.
 
 ## Weekday, weekend and other routines
 
@@ -333,22 +428,29 @@ and suggestions treat the slot as its main kind, so a Study slot counts as a Tas
 
 ## Goals and streaks
 
-*(Adding a new goal is part of Dinacharya Pro. Goals that already exist keep working.)*
+*(Goals are part of Dinacharya Pro. Goals that already exist keep working in Free, and what a free-day pass added goes back when the day is over.)*
 
-On **Insights**, tap **Add a goal**: pick an activity type (such as Study) and a daily amount (such as 6 h). Through the day
-the goal fills up with kept slots of that type; slots without an alarm count as done because the app cannot ask. A 🔥 streak
-counts the days in a row you reached it. Tap a goal to change or remove it. Today's goals also show on **Home**, and every
-report and PDF has a **Time by activity type** section.
+A goal belongs to **one slot of your routine**: "2 hours of Morning study", not "2 hours of Study". On **Insights**, tap **Add a goal**, pick the
+**slot** (the list shows the slots of your routine, by name; with no slot yet it asks you to add one in the Routine tab first), a daily amount
+(such as 2 h), how it repeats, and, if you like, a **to-do list** for the goal. Through the day the goal fills up with the kept time of that
+slot. A 🔥 streak counts the days in a row you reached it. Tap a goal to change or remove it. Today's goals also show on **Home**, and the goal appears under its slot
+and on the live wallpaper.
 
-- **Only for activities that are in the schedule.** The types you can choose are the ones in that day's routine. A goal for
-  **today only** offers only the activities still to come today (the slot running now counts; finished and taken-off slots are not offered).
-- **Repeat.** A goal can be for **today only**, **every day**, **every other day** or **on chosen days**, and, for the repeating
-  ones, **only on days with** certain activities (for example Revision only on days with a Study slot). A today-only goal is
-  cleared by itself once the day has passed. A goal counts on a day only when that
-  day's schedule has the activity; on other days it neither counts nor breaks the streak. **All your goals** lists each goal
-  with its rule and whether it counts today.
-- **To-dos belong to slots, not goals.** A goal only counts time. Small tasks are added to a slot with the **To-do** button on Home
-  (see "Take a break, and to-do lists").
+- **A goal without to-dos is a to-do of its slot.** It shows in the slot's to-do list as one line: you can tick it, or it ticks itself when the time
+  target is reached (the goal bar, the streak and the reports stay time-based). A goal that time has ticked cannot be unticked.
+- **A goal with to-dos is a heading over them.** The to-dos of the goal (up to 12, the same on every day the goal counts, ticked fresh each day) are
+  listed under the goal in the slot's list, on Home, in the Insights goal card and on the live wallpaper. The goal itself is struck only when **every one of
+  its to-dos is done**; the heading cannot be ticked by hand. A goal's to-dos are not copied anywhere: a tick made on Home, in the to-do box, in Insights or in the
+  list under the slot is the same tick everywhere (and the live wallpaper shows it).
+- **Two kinds of to-do, one list.** A to-do added to a slot with the **To-do** button belongs to that slot only; a to-do inside a goal belongs to the goal and shows in the slot too.
+- **Repeat.** A goal can be for **today only**, **every day**, **every other day** or **on chosen days**, and can be limited to days that also have
+  another activity (**Only on days with…**). It counts on a day only when that day's schedule has the slot; on other days it neither counts nor breaks the streak. **All your goals** lists each goal with its rule and whether it counts today.
+  A today-only goal is cleared by itself once the day has passed.
+- **If a slot is renamed** (in the Routine tab) its goals follow it. A goal's slot cannot be changed in the goal editor: to move a goal to another slot, remove
+  it and add it again. If the slot is deleted or its activity type is changed, the goal stays in the list but counts on no day until a slot of that kind and
+  name exists again (remove the goal if it is not needed).
+- **Older goals** that were made for a whole activity type (such as Study 6 h) keep working as before and are not deleted; new goals always take a slot.
+- The time of a goal is measured against its first matching slot of the day.
 
 ## Insights: Today so far
 
@@ -426,6 +528,10 @@ Under it are two quiet choices that open when tapped (one open at a time, so the
   not counted as worked, and the app asks again when the time is up;
 - **Start later** > **Continue "previous slot" until** a time (the current time plus 10 minutes to begin with, moved with − and +). The
   slot before keeps going and this one starts later. The later start is cut so it never reaches into the slot after this one;
+- **Skip this slot, start "next slot" now** (under the two quiet choices, and on the start-of-day screen for the first slot of the day): the slot is taken off for
+  today and the next slot begins at once. It keeps its planned end, so it gets the time of the skipped slot, and the rest of the day stays where it was. Its own alarm at the
+  planned time stays quiet. When the next slot is sleep the button reads **Skip this slot and go to sleep** and opens the bedtime question. On the start-of-day screen, if
+  you chose a way to turn that alarm off (sums, a pause, a shake, a sentence), skipping asks for it too;
 - **Other options** > **Other plan**, which is the old **Change** (a new name for today);
 - **Other options** > **Take it off for today**.
 
@@ -435,6 +541,19 @@ minutes long) are not shown.
 
 If you do not answer, the alarm stops by itself after 5 minutes, is logged as "no answer" and
 leaves a notification. Your schedule is not changed.
+
+### If Android closes the app
+
+**Closing the app from App info (Force stop) makes Android cancel every alarm the app had set and remove its live wallpaper, and Android does not tell
+the app.** Nothing can ring or draw until the app runs again; that is Android's rule and the app cannot get round it. A crash does **not** clear the alarms, and
+the wallpaper is guarded so that one error cannot make it crash over and over (Android drops a wallpaper that does).
+
+What the app does about it: every time it starts (the home screen coming up, the dashboard, a restart or update of the phone, the wallpaper starting, and a background check
+every three hours) it **sets the next alarm again, checks that Android still holds it, and checks the wallpaper**. It also asks Android why it was last closed (Android 11
+and later). When an alarm that was set never reached the app, you get a **Missed alarm** notification ("This alarm did not ring because Android had closed the app. It is set
+again now."), the Alarms card on Home says "Android closed the app and cleared the alarm set for …", and **Settings > Alarms** (the diagnosis) shows when and how Android last
+ended the app. Changing the routine, the bell of a slot or the day's schedule saves and sets the alarms at once. The one thing to do yourself: after a Force stop, open the app
+once. If you are never sure, **Settings > Alarms > Ring a test alarm in 10 seconds** shows whether alarms work.
 
 ### What a slot does when it starts
 
@@ -452,7 +571,7 @@ and the question is there, as you asked for.
 
 ### The start-of-day alarm
 
-Make one slot the **start-of-day alarm** from its bell: **Make this the start-of-day alarm**. There can be only one, it has to
+In a new routine the **first slot is the start-of-day alarm already**. On a phone that had the app before, the first slot is made the start-of-day alarm once, the first time this version opens, if none was chosen (the bell on that slot takes it off again). To choose another slot, open its bell: **Make this the start-of-day alarm**. There can be only one, it has to
 ring or vibrate, and it has to be the first alarm of the day, so the slots before it must be set to **No notification** first (the app tells
 you if it cannot). It then works like this:
 
@@ -462,7 +581,21 @@ you if it cannot). It then works like this:
 - **Before it can be put off, a line is shown**: a line that comes with the app, in your language (a different one each day), or
   your own line from **Settings > Alarms > Your own line to read**.
 - **Challenge before putting it off** (Settings > Alarms): none, three quick sums, or a sentence to type. The challenge only
-  guards the delay; starting the day is always one tap.
+  guards the delay; starting the day is always one tap. (This one is for people who tend to press delay in their sleep.)
+- **To turn the alarm off** (Settings > Alarms > Start-of-day alarm): you choose how the alarm is switched off. **Just tap Start my
+  day** (the default), **three quick sums**, **Take a short pause (four slow breaths)**, **Shake the phone**, or **type a short
+  sentence**. The alarm keeps ringing until the task is done, and the screen tells you what to do:
+  - *Sums*: three small sums, each answered right before the next.
+  - *Pause*: a circle that grows and shrinks; you breathe in and out four times. It is timed by the clock, and if you leave the screen the
+    breaths start again.
+  - *Shake*: shake the phone firmly (the count is on screen). A phone that has no motion sensor, or does not report shakes, asks for the
+    sums instead, so the alarm can never be stuck.
+  - *Type*: a short sentence in your language, for example "Today I do what I planned" (capitals, spaces and the full stop do not matter).
+- **A motivating quote** is shown on the alarm screen, under the time (switch it off with **Show a motivating quote**). There are 49
+  lines: 15 sayings and 34 well-known lines by named people. A different one comes each day, **Another quote** shows the next, and your own
+  line from **Your own line to read** is used instead when you wrote one. The lines are translated into the six languages; the names stay as
+  they are.
+- **Take the day off** is a button on this alarm (see "Taking a day off").
 
 **Bedtime.** When the Sleep slot starts it asks **Going to sleep** or **More time**.
 More time asks after how many minutes to ask again (10, 15, 30, 60 or your own number; the one
@@ -504,16 +637,69 @@ with an **Undo** button. Editing the saved routine in the app clears them.
    force-stopped it.
    The one-tap "allow background" pop-up is deliberately not used: Google Play only accepts it for a few kinds
    of app (chat, safety, automation), not alarms.
-5. If the phone never delivered an alarm, the Home card says so, and **Settings > Help > Copy problem
+5. **Sound.** An alarm tries the phone's alarm tone, then its notification tone, then its ringtone, then a built-in beep, so a missing or unreadable tone can never leave it silent; the vibration is tagged as an alarm so the phone does not mute it. If Android refuses to run the ringing service, the backup notification repeats its sound and vibration until you answer it, or until 5 minutes have passed (30 for the start-of-day alarm), and then stops by itself. The checklist's **Alarm volume** line catches the alarm volume being turned right down and opens the phone's Sound settings.
+6. If the phone never delivered an alarm, the Home card says so, and **Settings > Help > Copy problem
    report** includes when the last alarm was set, fired and rang, which tells us where it stopped.
+
+### Library mode
+
+For the library, a class or an exam. While **library mode** is on, **every alarm of the app only vibrates, with no sound**: the
+start-of-day alarm, the slot alarms, the bedtime question and the break and later-start timers. The questions are still asked (on
+the screen and in the notification), and a slot set to a silent notification or to no notification stays that way. It is looked at at
+the moment an alarm rings, so switching library mode on or off between an alarm being set and ringing is always right.
+
+- **On Home** there is a **Library mode** card. **Turn on** asks how long: **1 hour**,
+  **2 hours**, **4 hours** or **Until I switch it off**. While it is on the card says "On until 16:30" (or "On until you switch it off") with **Turn off**.
+- **Settings > Alarms > Library mode** has the same, plus:
+  - **Turn it on by itself at fixed hours**: choose the days, and **From** and **Until** (an end at or before the start runs into the next
+    morning, and the settings say so).
+  - **Also put the phone on vibrate**: the phone's ringer is set to vibrate while library mode is on, so calls and messages stop making a
+    sound too, and set back to what it was when library mode ends (unless you changed the ringer yourself in between). Some phones only let an app do
+    this with **Do Not Disturb access**; if the phone refuses, the app leaves the ringer as it is and the alarms still vibrate only.
+- **Locks in library mode.** Groups of apps with **Also lock in library mode** switched on (see "Locked groups") are locked for as long as
+  library mode lasts, and a library lock never ends before library mode does.
+- A restart of the phone or an update of the app puts the ringer and the timers back in order.
+
+## Phone use in slots
+
+Optional (part of Pro), and **off** until you switch it on. It shows, on the live wallpaper and in the reports, when you picked up the phone during a slot
+and how much of the slot you really gave to the activity.
+
+**Switch it on:** Settings > **Phone use in slots** > **Show phone use during slots**. It needs **Usage access** (the same permission as the
+phone time on Home); the card shows whether it is allowed and takes you to the place to allow it. With the switch off the wallpaper shows nothing
+about phone use and nothing in the app behaves differently from before.
+
+**Choose the apps that belong to an activity.** Under **Apps that are part of an activity** every activity type of your routine is listed
+(Task, Rest, Meal, Personal), each with a **Choose** button: up to 40 apps for one activity type, and up to 40 activity types. The choice is
+per activity type, not per slot: a notes app chosen for Study is part of every Study slot. **Dinacharya Launcher itself is always part of
+every slot** while the switch is on (looking at your day is not a distraction).
+
+- **Other phone use** is time in any app that is not chosen for that slot's activity, while the slot is going on. Breaks and a put-off start are
+  not part of the slot. Use less than 15 seconds apart (switching from one app to another) is one stretch. At most the newest 40 stretches
+  are kept for a slot.
+- **Focus** is the share of the slot's time with no other phone use. **Time devoted** is the slot's time without other phone use.
+  **Longest focus** is the longest run inside the slot with none.
+- **On the live wallpaper**, the card of the slot going on gets red marks on its bar at the times other phone use happened, and lines under the
+  name: **NO PHONE USE · focused 25 min** while there has been none; otherwise **PHONE IN USE NOW · 4 min so far** (or **PHONE USE · 6 min**),
+  then the latest two stretches with their exact times and the app used longest in each (**10:12 – 10:16  Instagram**, or **10:40 →** while it goes
+  on), and **Focused for 12 min since** once the phone is put down. A slot that is over shows **· phone 6 min** after its activity when the
+  phone was used for a minute or more. Nothing shows in a slot's first minute, and a crowded routine gets fewer lines.
+- **In the reports** (see "Slot analysis" below) every stretch is saved with the day, so an older day can show the exact times too. Days saved
+  before build 23 have no exact times; their analysis says so.
+- **The Focus part of the score** and the suggestions use the same other phone use. With the switch off, or with no apps chosen, they count all
+  phone use in a slot, as before.
+- **Reset these settings** (at the end of Settings) also clears these choices. Your routine and reports are never touched.
 
 ## Performance, reports and PDF
 
 Open **Insights > Performance and reports**.
 
-- **Today:** the report so far.
-- **Week:** score trend, phone time per day, best and weakest slots and suggestions.
-- **Days:** every saved day. Tap one to read the full report.
+- **Today:** the report so far. This is the only report in Free (with its PDF).
+- **Week** (Pro): score trend, phone time per day, best and weakest slots and suggestions.
+- **Days** (Pro): every saved day. Tap one to read the full report.
+
+In Free, **Days** and **Week** show a short note and a "Pro" button (or the free-day offer) instead of the list; the **How each slot went** analysis, the habit cards
+in Insights and the **Phone use in slots** choices show as locked lines the same way. Anything already chosen under Phone use in slots is kept and works again with Pro.
 
 When a schedule day ends (from one wake-up to the next), its report is saved on the phone. It
 shows each slot as kept, changed, taken off, no answer or not tracked; phone use by hour laid
@@ -524,11 +710,25 @@ planned against actual; planned against kept time; and suggestions.
 
 - Plan kept: kept counts 1, changed counts half, taken off or no answer count 0.
 - Focus: how little of your task time went on the phone (35% of task time on the phone scores 0).
-  Needs at least 10 minutes of task time.
+  Needs at least 10 minutes of task time. When **Phone use in slots** is on, time in the apps chosen for
+  the activity does not count against it.
 - Sleep: half for going to bed near the planned time, half for how much you slept.
 
 A part that cannot be measured (alarms off, no usage access, bedtime not answered) is left out
 and the other weights are scaled up, so it is never counted as a zero.
+
+**Slot analysis.** On the report of today and of every saved day, between the sleep part and the slots table, **How each slot went** shows
+four tiles (**Focus**, **Time devoted**, **Other phone use**, **Longest focus**) and a switch between **By slot** and **By activity**.
+It is always shown; the apps you chose for an activity (see "Phone use in slots") only count when that switch is on.
+
+- **By slot:** one line for every slot that ran, with its time, name, a short line ("Devoted 45 min · Other phone use 6 min") and a
+  badge with its focus (75% and over is teal, 50 to 74 amber, below 50 red). A line opens to: the figures, a **Timeline** bar with red
+  marks where other phone use happened, **Other phone use, with the exact times** (time range, app, length; the latest 40), and the apps used
+  in the slot. Taken-off and not-yet-started slots are not listed; a footer says how many.
+- **By activity:** the same for each activity type, adding the number of slots and the interruptions, and the apps used across its slots.
+- Only one line is open at a time: opening another closes the one before.
+- Without Usage access it says so instead of showing zeros. The PDF has the same analysis as **Focus, slot by slot** and a **By activity**
+  list with bars (the dropdowns are for the screen; the PDF shows the figures).
 
 **Suggestions and habits** come from plain rules on your own days (for example: a slot you
 take off 3 times, a task slot where the phone eats a quarter of the time, late nights, phone in
@@ -600,7 +800,7 @@ left out of it on purpose).
 **Settings > Language** (or the line on the welcome screen) lets the person pick **English, हिन्दी, मराठी, ગુજરાતી, বাংলা, தமிழ் or తెలుగు**;
 the default, **Automatic**, follows the phone's language when the app has it and is English otherwise. The change shows at once.
 Numbers, times and dates stay in 0-9 so a schedule reads the same everywhere. Names (Dinacharya, Pro, Google, Drive), the app names
-on the phone and anything the person typed (slot titles, notes, group names) are never translated. "Developed by ASG" stays in English.
+on the phone and anything the person typed (slot titles, notes, group names) are never translated. "© 2026 | Developed by ASG" stays in English.
 
 How it works (so it can be corrected): the program's text is English. `Translator` (plain Java, tested) looks each text up in a
 word list, `app/src/main/assets/lang/<code>.tsv` (`English TAB translation`; `{1}`, `{2}` mark a changing part such as a number or a
@@ -620,38 +820,35 @@ real put-together sentences (the video buttons, reports, the Pro page) come out 
 
 ## Dinacharya Pro and ads
 
-**Free:** the home screen, the tour, one routine with every slot feature, alarms,
-bedtime flow, today's report and the **last 3 saved days** (with PDF), existing goals, backup and restore, the default
-Teal colours, short pauses for up to **2 apps** and one lock for up to **2 apps**. The free version shows one small banner ad at the bottom of the dashboard's
+**Free:** the home screen, the tour, one routine with every slot feature, alarms, bedtime flow, a **to-do list for every slot** (also repeating
+to-dos), **today's report** (score, phone time by hour and app, suggestions, and a PDF of it), backup and restore, the default Teal colours,
+a short pause for **one app** and one lock on **one app**. The free version shows one small banner ad at the bottom of the dashboard's
 **Home** and **Insights** tabs and of the report screen. There are never ads on the home screen, the all-apps list,
 an alarm, the pause and lock screens or in a PDF.
 
-**Pro (one-time purchase through Google Play, no subscription; Rs 99 as set in Play Console):** removes the ads, and unlocks
-every saved day in the report and the **week** view (older days and the week tab show a "See Pro" button for free users),
-**locked groups** (many groups, many apps each, strict locks), and
-creating more routines (weekday and weekend), adding goals and type totals, the other colour
-themes, and the full focus rules (strict pauses, daily limits, pauses for any number of apps, playful pauses). If someone had a second routine, goals or a colour before, they keep them: nothing already
-made is taken away or locked.
+**Pro (through Google Play: Rs 50 a month, or Rs 499 once for life, as set in Play Console):** removes the ads, and adds
 
-**Try Pro items for a while, for short videos: 1 video = 1 item for a day, 2 videos = the same item for 3 days, 3 videos
-= the whole group for a day.** Anyone who has not bought Pro can choose to watch rewarded videos (Google AdMob) and have
-Pro items open. There are 14 items in 6 groups, and the person picks how many videos to watch: **1 video** opens exactly
-the one item that was asked for, for **24 hours**; **2 videos** open the same item for **3 days**; **3 videos** open **every
-item of the group it is in** for 24 hours (all four pauses, all three locks, both report views or all three colour looks;
-Routines and Goals have no group, so they offer only 1 and 2). Never the whole app. The items: *Performance* (every saved
-day; the week view), *Pauses* (pauses for more than two apps; strict pauses; daily limits; playful pauses), *Locks* (more
-than one lock; more than two apps in a lock; strict locks), *Routines*, *Goals*, and each colour look (*Sunset*, *Ocean*,
-*Graphite*). The rule classes take a mask with one bit per item (`DayPass.has(mask, item)`), so a strict-pauses video
-makes pauses strict and does nothing else. It is offered, never forced, in three places: the **"Watch videos"** choice in
-the "Part of Pro" message that appears wherever a Pro item is tapped, under the locked Week tab and older days in
-Performance and in the pause and lock sections of the home settings (one button per item), and the **"Try it first"** list
-on the Pro screen. Fair play: only a video watched to the end counts; between videos a message says what the next one adds
-and offers **Stop here**, which keeps what the videos so far earned (one video = the item for a day, two = three days); a
-later video that cannot be found never costs the earlier ones; while a one-item day pass runs, **"Keep it for 3 days: watch 1
-more video"** stretches it. At most 12 videos a day are offered (`AdLayers.DAILY_CAP`). Every pass is its own entry with its own timer (`PassLedger`): a video for strict pauses opens strict pauses and nothing else, and
-needing two things (strict pauses on a third app, say) means one video for each; neither opens the other, and a reward is
-counted only when an ad was really shown and finished. The offer disappears when Pro is bought or ads are off in the build (`ads_enabled`).
-Having Pro (the purchase) opens all 14.
+- **Goals:** a goal for a slot of your routine, with its own to-do list (see "Goals and streaks"). Goals that already exist keep working in Free.
+- **Reports:** every saved day (with its PDF), the **Week** view and its suggestions, and the **deeper analysis**: the slot-by-slot analysis
+  (**How each slot went**), the habit cards and phone use in slots. Free keeps today's report only; past days, the week and the analysis show a
+  "Pro" mark and a short note, never an empty screen.
+- **Pauses and locks:** pauses for any number of apps, strict pauses, daily limits and playful pauses; any number of locks, locked **groups** of apps and strict locks.
+- **Routines and looks:** weekday, weekend and one-day routines, and the Sunset, Ocean and Graphite colour looks.
+
+If someone had a second routine, goals, several paused or locked apps or a colour before, they keep them: nothing already made is taken away or
+deleted. What Free cannot use is kept and works again with Pro (the pause and lock rows say "needs Pro").
+
+**Try everything in Pro for a day, for three short videos.** Anyone who has not bought Pro can choose to watch **3 rewarded videos** (Google AdMob). The
+**third** opens **everything in Pro for 24 hours**: there is one offer, with one button, and no choosing of items. Each video watched to the end
+counts at once, so stopping after one or two keeps them for the rest of that day (a message between videos says how many are left and offers
+**Stop here**); the next morning the count starts again. A video that cannot be found never costs the ones already counted. The offer is made in
+the "Part of Pro" message that appears wherever a Pro item is tapped (under the Days and Week tabs and the analysis in Performance, in goals, and in the pause and lock sections
+of the home settings), on the **Pro screen** ("Try Pro free for a day") and on the last page of the tour. While the day runs, the Pro screen says
+"Everything in Pro: open until ..." and the offer is not shown again; when it is over, it is offered again. At most 12 videos a day are offered
+(`AdLayers.DAILY_CAP`). The rule classes take a mask with one bit per item (`DayPass.has(mask, item)`; the pass opens all 15 items: saved
+days, week view, deeper analysis, pauses for more apps, strict pauses, daily limits, playful pauses, more locks, more apps in a lock, strict
+locks, routines, goals and the three colour looks), so each feature is still gated on its own. Having Pro (the purchase) opens all of them for good.
+The offer disappears when Pro is bought or ads are off in the build (`ads_enabled`). Counting is in `VideoProgress.java` and the passes are kept in `PassLedger.java` (both tested).
 
 **Ad layers (more earnings from the same video, without more videos).** `VideoPass` asks for the video from up to three AdMob
 **Rewarded** ad units in turn, **the best paying first** (`admob_rewarded_id`, then `_2`, then `_3`; set a high eCPM floor on
@@ -665,32 +862,36 @@ are no ads on the home screen, the all-apps list, alarms, pause or lock screens.
 the asking is in `VideoPass.java`. Layers with the test id or a repeated id are skipped, so the shipped build with the test
 ids has one layer.
 
-**When the time is up (a day, or three), the pass's changes go back to the free version.** The pass is a trial, so what was made
-with it does not stay. When a pass starts, the phone takes a note of what existed for that feature (`PassReset.capture`);
+**When the day is up, what the pass opened closes and what was set up with it goes back to the free version.** The pass is a trial, so what was made
+with it does not stay. When a pass starts, the phone takes a note of what existed for each feature (`PassReset.capture`);
 when the pass has ended, whatever was added or switched on with it is removed or set back, and everything that was there
-before stays as it was. A pass for a whole group is put back item by item, in the same order, with the same rules as a pass for the single item. Each item puts back only its own part: *more paused apps*: rules beyond the free two apps are
+before stays as it was. Each item puts back only its own part: *more paused apps*: rules beyond the free one app are
 removed; *strict pauses*: a pause that was made strict goes back to the short pause; *daily limits*: a limit set goes back
 to none (or to the older limit); *playful pauses*: the kind goes back to the plain wait; *more locks*: extra locks are
-removed; *more apps in a lock*: a lock holds two apps again (or the number it held before); *strict locks*: a lock that
+removed; *more apps in a lock*: a lock holds one app again (or the number it held before); *strict locks*: a lock that
 was made strict stops being strict; *Routines*: the weekday, weekend and other routines made are removed (those days use
-the main routine again); *Goals*: the goals added are removed; *a colour look*: that look goes back to the earlier one;
-*saved days, week view*: nothing is stored, so nothing needs to go back. Choices the free version allows are never touched, the main
+the main routine again); *Goals*: the goals added (with their own to-dos) are removed; *a colour look*: that look goes back to the earlier one;
+*saved days, week view, deeper analysis*: nothing is stored, so nothing needs to go back. Choices the free version allows are never touched, the main
 routine is never touched, and having Pro (bought before the day ends, too) keeps everything. A message on the dashboard
 says what went back ("Your video pass has ended ..."), and the Pro prompt, the Pro screen, the tour and the home settings say
 beforehand that this will happen. The reset runs at the moment the day ends (a system alarm, `PassSettle`), after a restart,
 and whenever the dashboard, the home screen, its settings or the wallpaper starts, so it does not depend on the app being
 open; restoring a backup during a pass makes the restored settings the "before", so a restore is never undone by a pass. The
 rules are in `PassReset.java` and `DayPass.java` (tested); the record and the note are kept on the phone next to the Pro
-record, outside any backup, and a pass that is longer than three days or has not started yet counts for nothing, so setting
-the clock back does not give a longer pass. (A pass that was running when the app was updated from 2.6 is still understood.) The video needs a network connection and the consent form answered (a "No video right now"
+record, outside any backup, and a pass that is longer than a day or has not started yet counts for nothing, so setting
+the clock back does not give a longer pass. (Passes kept by an earlier build, which could be one item for a day or three, are still understood.) The video needs a network connection and the consent form answered (a "No video right now"
 message says so otherwise, and **Settings > Copy problem report** shows the last video result). Change
-`DayPass.LENGTH_MS` (a day) and `DayPass.MAX_MS` (three days) for different lengths.
+`DayPass.LENGTH_MS` (a day) for a different length.
 
 - **See Pro** (Settings > Dinacharya Pro, and every "See Pro" button in the app: the pause and lock screens in
-  the home settings, the report's older days and Week tab, the Pro prompts) opens one screen of its own with a
-  Free against Pro table, the price, **Get Pro** and **Restore my purchase** (for a new phone, a reinstall, or a
-  purchase made on another phone with the same Google account). The price shown is whatever Google Play reports
-  for `pro_unlock`; the app does not hard-code it, so set it to **99** in Play Console (see "One-time Pro purchase").
+  the home settings, the report's older days and Week tab, the Pro prompts) opens one screen of its own with the offer of a free day, a **Compare Free and Pro** button, the two plans (**Subscribe monthly** and **Get lifetime Pro**, each with its price) and **Restore my purchase** (for a new phone, a reinstall, or a
+  purchase made on another phone with the same Google account). The prices shown are whatever Google Play reports
+  for `pro_monthly` and `pro_unlock`; the app does not hard-code them, so set them to **50** and **499** in Play Console (see "Pro purchase: monthly and lifetime").
+- **The Free and Pro screen** (`CompareActivity`; the last page of the tour, and **Compare Free and Pro** on the Pro screen) puts everything the
+  app does on one page, **Free** on the left and **Pro** on the right, in groups that open one at a time (Home screen and alarms, To-dos,
+  Reports, Goals, Pauses, Locks, Routines and looks). A group shows what Free gives and what Pro adds, with a tick or a "Pro" mark on each line. The lines come
+  from one table (`PlanTable.java`, tested), the same limits the app enforces, so the screen cannot say something the app does not do. Anyone who
+  has Pro sees "You have Pro"; anyone else sees the free-day offer and **See Pro plans**.
 - Ads: the banner shows a status line ("Loading an ad…", or "No ad right now (code N)") instead of an empty gap,
   retries every 45 seconds up to 6 times, and **Settings > Copy problem report** includes the ad and consent
   status. A banner also sits at the bottom of the report screen (free only). Ads need a network connection and, where
@@ -774,19 +975,25 @@ in a row** before Google lets you publish publicly. Start that as early as you c
 
 Nothing here changes how the app works; it is the account setup that only you can do.
 
-### One-time Pro purchase
+### Pro purchase: monthly and lifetime
 
 1. Upload your first build (step 7 above), at least to **Internal testing**. Google only lets you
    create products for an app that already has a build with the Billing permission in it.
-2. **Monetize with Play > Products > In-app products > Create product.** Product ID exactly
-   `pro_unlock`. Name "Dinacharya Pro", a description, the price **Rs 99** (India; Play Console converts it
-   for other countries, and you can edit each country's price), status **Active**. (Details in
-   `store/data-safety-and-declarations.md`, section 8.)
-3. Finish the **payments profile** (Play Console > Setup > Payments profile) and your **tax**
+2. **The lifetime plan: Monetize with Play > Products > In-app products > Create product.** Product ID exactly
+   `pro_unlock`. Name "Dinacharya Pro (lifetime)", a description, the price **Rs 499** (India; Play Console converts it
+   for other countries, and you can edit each country's price), status **Active**. If you made it earlier at Rs 99,
+   change the price to 499; people who already bought it keep Pro.
+3. **The monthly plan: Monetize with Play > Products > Subscriptions > Create subscription.** Product ID exactly
+   `pro_monthly`. Name "Dinacharya Pro (monthly)", then **Add base plan**: auto-renewing, billing period **Monthly**, price
+   **Rs 50** (India), then **Activate** it. One base plan only. (Details in `store/data-safety-and-declarations.md`, section 8.)
+   The app shows both plans on its Pro screen. Pro is on while either the lifetime purchase is owned or the monthly plan is
+   running; if a monthly plan lapses, Pro turns off the next time the app starts online.
+4. Finish the **payments profile** (Play Console > Setup > Payments profile) and your **tax**
    information, or the purchase will not work in production.
-4. **Test it without paying:** **Settings > License testing**, add your own Gmail and your testers'.
-   They get test purchases that charge nothing. Install the app from the testing track (the
-   purchase only works for an app installed from Google Play).
+5. **Test both without paying:** **Settings > License testing**, add your own Gmail and your testers'.
+   They get test purchases that charge nothing (test subscriptions renew every few minutes and stop after a few
+   cycles, so you can see a plan lapse). Install the app from the testing track (a purchase only works for an app
+   installed from Google Play).
 
 ### Ads (AdMob)
 
@@ -850,6 +1057,43 @@ one copy per day, a renamed or removed slot, stopping a repeat, the 20-item limi
 scrolling up first, paging through the rest). The screens of 3.0 (the parts that open and close, the break box, the slot-start
 screen) compile against the real Android library, but their layout, sizes and animations have not been seen on a screen.
 
+Build 21 added tests for the day as it really goes (`LiveDayTest`, 116 checks): the schedule that Home and the wallpaper show when a start is put
+off, a break is taken, the slot before is carried on, a slot starts or ends early, or the day is taken off (and that the saved plan is never changed); the
+alarms that must not ring on a day off, in a break or before a later start; when "Finish early" is offered and what each answer does; the reports for early
+starts and early finishes; and library mode (when it is on, when it ends, fixed hours that run past midnight, and the steps that put the phone's ringer on
+vibrate and back). `WakeLockTest` (113 checks) covers the locks by time, by activity type and by both together, and in library mode, the quotes (a different one
+each day, "another quote", your own line), the shake counter (the count, a sensor that never reports), the start-of-day settings and how a day off is shown in
+reports. `LangFilesTest` also checks that the new sentences (breaks, late and early starts, lock lines, library mode, day off), all 49 quotes and the sentences to type come out with no English left in all six languages, and that the sentences to start the day have no comma or full stop to mistype.
+These are logic tests of the pure-Java part; the screens, the alarm ringing in vibrate-only, the phone's sensor and ringer, and the lock-screen display have **not**
+run on a phone.
+
+Build 23 added `SlotUseTest` (other phone use against the apps of an activity, joined stretches, focus, longest focus, a focus that is running, the 40-stretch limit,
+a slot with a break, no permission), `SlotReportTest` (the slot and activity lines of the analysis, the timeline marks, the one-line-open rule
+with thousands of random taps, saving and loading a report with its stretches, a 4000-round random check) and `HabitsTest` (the habit cards agree with the
+old suggestion rules in 6000 random days, tones, heads and the "not enough days" case). `SlotUseTest` also covers saving and loading the per-activity apps. Tests and
+language checks cover the new sentences in all six languages. The wallpaper marks and the PDF analysis were drawn to images and looked at. The settings card, the
+dropdowns of the analysis (and the switch between By slot and By activity), the habit cards and the arrows that turn **have not been seen on a phone**: they compile
+against the Android library, but their layout, sizes and animation are untested.
+
+Build 24 added `SlotGoalTest` (a goal for one slot: which days and slots it counts, a slot renamed or taken off, a goal with no to-dos ticked by hand or by time and
+not un-tickable once time did it, a goal with to-dos struck only when all are done, the to-do list of a slot as Home, the to-do box and the wallpaper build it, one tick
+everywhere, older goals for a whole type, saving, loading and damaged lines) and `PlanScreenTest` (the Free and Pro table agrees with the limits the app enforces, and the
+slot choices of the goal editor). `PassLedgerTest`, `PassResetTest`, `LauncherTest`, `GuardTest` and `LockTypeTest` were brought to the new rules: three videos open everything for a day and then it all goes back,
+one paused app and one locked app in Free, today's report only. `LangFilesTest` checks the new sentences in all six languages. The wallpaper poster with goal headings and
+their to-dos and the PDF were drawn to images and looked at. The new screens (the Free and Pro page, the goal editor with its to-do list, the locked notes in Performance,
+the to-do rows with headings) compile against the Android library but **have not been seen on a phone**.
+
+Build 26 extended `GuardTest`: the lock follows the settings (nothing runs while nothing is locked, a lock or a pause starts it, switching it off by hand stops it, an old saved config now loads with it on),
+which permission is asked first and when the next one is, and the ways round the home screen replayed through the watcher's own pieces (Recents, App info > Open, a notification, a watcher that starts while the app is
+already open, another launcher, an app whose group hides it from the list). `LangFilesTest` checks the new sentences in the six languages.
+
+Build 25 added `AlarmWatchTest` (when an alarm counts as missed or lost, which ways of closing the app clear the alarms, when the wallpaper counts as in place or lost and when it is asked
+for again), `AlarmChainTest` (the alarm planner followed day after day through eleven routine options, with slots taken off and a day off: the alarms come forward in time, once each,
+and the start-of-day alarm is there every morning; the marks of slots started early are dropped when the schedule changes) and `EarlySkipTest` (a day that starts early: the plan of both
+days, the alarms and the bedtime choices; Finish early, Early sleep and Early wake offered in every slot; skipping a slot, also over slots that are off, the first slot and the one before
+sleep; the report and the history). A fuzz run of random routines through the alarm planner found nothing wrong. The new screens and flows (the skip button, Early sleep, Early wake, the
+wallpaper chip and card, the Missed alarm notification) compile against the Android library but **have not been seen on a phone**, and Force stop could not be tried.
+
 The home screen's logic (search, the pause rules, the settings text, the pause counts in reports) is covered by
 automated tests (`LauncherTest`). Its screens, the tour and its pictures are compiled against the real
 Android 14 library; the tour's pictures were also drawn to images and checked. The home screen itself, the
@@ -880,12 +1124,77 @@ close the app: they are written down and that one job is skipped.
 
 ### Version notes
 
+**1.0, build 26: locks hold wherever an app is opened from**
+- **Why locks failed.** A lock (and a pause) held only when an app was opened from this home screen. Opened from **Recents**, from **App info** (Settings > Apps > the app > Open), from a notification
+  or from another launcher, it opened as if nothing was locked. The part that holds those ways, the **Strong lock**, was an extra that was **off until you found it in the home settings**,
+  needed two permissions that nothing asked for, and nothing started it again if Android stopped it. So a person who made a lock had a lock that looked set and did not hold.
+- **Now it is part of a lock.** The Strong lock is **on from the start** and runs by itself as soon as something is locked or paused (and not at all while nothing is, so there is no
+  notification and no battery use before that). Saving a lock or a pause **asks for the two permissions at once** (a plain message first, then Android's page; the second after the first is given).
+  While one is missing, the home screen shows the chip **Make your locks hold everywhere** and the dashboard a card **Your locks hold only on the home screen** with **Hold them everywhere**; the lock
+  and pause notes say the same instead of claiming it holds. Anyone can still switch the Strong lock off by hand (Settings > Home screen > Strong lock); that is kept.
+- **Kept running.** The watcher is looked at every time the home screen or dashboard comes up, after a restart or an update, on the three-hourly job, and when its task is swiped away (it asks Android to
+  start it again in two seconds). It writes a beat at every look, and **Settings > Help > Copy problem report** now has a **Locks** section: switched on or off, something locked or not, each permission,
+  and whether the watcher is running. **A Force stop of the app from App info still ends it** (Android stops everything the app has, alarms and the live wallpaper too) until the app is opened or Home is pressed; that is Android's rule.
+- Texts that were never translated are now in all six languages: the Strong lock card, the lock and pause notes, and the first sentences of the group editor's note (they went through a helper the text finder skips).
+  About 40 other help sentences in Settings and the Backup page are still English in the six languages (found by checking, not changed in this build).
+
+**1.0, build 25: alarms and the wallpaper checked and put back by the app, skip a slot, Early sleep and Early wake**
+- **The wallpaper is part of the launcher.** It is checked every time the home screen comes up, from the dashboard, after a restart and every few hours; when it is gone the
+  launcher paints your day itself at once, shows **Bring back your day wallpaper** and asks Android for it again at once (and after 10 minutes if turned down). The old rule that
+  trusted a note and stopped asking for 30 days is gone. The wallpaper's callbacks are guarded, so an error in one cannot make Android drop it. See "The home screen".
+- **Alarms check themselves.** Each time the app starts it sets the next alarm again, checks that Android still holds it and notes when one that was set never arrived (a **Missed
+  alarm** notification and a line on Home). It also asks Android why it was last closed and says so in Settings > Alarms. A background check runs every three hours. **A Force stop
+  from App info still clears Android's alarms and the live wallpaper until the app is opened again; that is Android's rule.** All eleven routine options (every day, weekday and
+  weekend routines, a routine for today only or one date, taking slots off, a day off) were run through the alarm planner in tests: the alarms come in order, once each, and the
+  start-of-day alarm is there every morning. The marks that keep a slot's own alarm quiet are tied to the schedule they were made for. See "If Android closes the app".
+- **Skip this slot** on the slot-start question: the slot is taken off and the next one begins now. **Every slot has an early finish**: **Finish early**, **Early sleep** (the slot
+  before sleep) and **Early wake** (sleep). See "When the day does not go as planned".
+- New texts were translated into the six languages by the developer: please read them once on a phone. Nothing in this build was seen on a phone.
+
+**1.0, build 24: goals for slots with to-dos, one free day for three videos, a Free and Pro page**
+- **Goals belong to a slot** of your routine (not to a whole activity type) and can have **their own to-do list**. A goal with no to-dos is one more to-do of its
+  slot (tick it, or time ticks it at the target); a goal with to-dos is a heading, struck only when all its to-dos are done. They are one list: a tick anywhere is a tick
+  everywhere (Home, the to-do box, Insights, the live wallpaper, the reports). Goals that were made before keep working. See "Goals and streaks".
+- **Free keeps** the home screen, alarms, to-dos, **today's report** (with its PDF), one paused app and one locked app. **Pro adds** goals, every saved day, the week view,
+  the deeper analysis (slot analysis, habit cards, phone use in slots), more pauses and locks, routines and colour looks, and removes the ads. Nothing already made is deleted.
+- **Three short videos open everything in Pro for a day**, then it all goes back (the old per-item videos and 3-day passes are gone from the screens). One button, one offer.
+- A new **Free and Pro** page (the last page of the tour and a button on the Pro screen) shows both side by side, in groups that open one at a time.
+- Everything else is as in build 23. New texts were translated into the six languages by the developer: please read them once on a phone.
+
+**1.0, build 23: phone use in slots, slot analysis, habit cards**
+- **Phone use in slots** (optional, Settings > Phone use in slots, off to begin with): choose the apps that belong to each activity; any other
+  phone use during a slot is marked on the live wallpaper with the exact times and in the reports. See "Phone use in slots".
+- **Slot analysis** on the report (and in the PDF): for each slot and each activity, the focus, the time devoted, the other phone use with exact times, the
+  longest focus and the apps used. See "Performance, reports and PDF".
+- **Habits** in Insights is now a short list of cards that open one at a time (what I noticed, try this), not a long block of text.
+- The Focus part of the score and the suggestions count only other phone use when apps are chosen and the switch is on; otherwise nothing changed.
+- Everything else is as in build 22. New texts were translated into the six languages by the developer: please read them once on a phone.
+
+**1.0, build 22: a simpler lock editor**
+- The editor for a locked group is shorter. A **Lock by** choice at the top (**Time**, **Activity** or **Time + activity**) shows only what that
+  choice needs; Lock now, library mode, hide and strict moved into a closed **More options**. Locks saved before keep working the same way.
+  Nothing else changed. See "The group editor: choose how it locks".
+
+**1.0, build 21: the day as it really goes**
+- **Home and the wallpaper follow what you do.** Starting a slot later, carrying the last slot on, taking a break, starting early or finishing early
+  now change the schedule you see ("STARTING LATER", "STARTED LATE", "RAN LONGER", "STARTED EARLY", "FINISHED EARLY", a break row). The saved routine and the
+  alarms are not changed by it. See "When the day does not go as planned".
+- **Finish early** under the slot going on: start the next slot now, take a break first, start it after a while, or take the rest of today off.
+- **Take the day off** from Finish early or from the start-of-day alarm: no alarm rings; the app asks "Plan your day now, later, or leave it?"
+  and the alarms come back when you plan the day again, or tomorrow.
+- **Locks** can now be by time, by activity type, or by both together (a switch on the group), and a group can also be locked in library mode.
+- **Start-of-day alarm:** turn it off by a tap, three sums, a short pause (four breaths), a shake of the phone, or a typed sentence;
+  a motivating quote (49 lines, a different one each day); and a **Take the day off** button.
+- **Library mode** (Home card and Settings > Alarms): every alarm only vibrates; optional fixed hours and days; optional ringer on vibrate; locks in library mode.
+- New texts were translated into the six languages by the developer, not by a native speaker: please read them once on a phone.
+
 **1.0 (first release on Google Play)**
-- The app is named **Dinacharya Launcher** and is credited "Developed by ASG" (home screen mark, Settings > About, store text, privacy page). The version shown in Settings > About is **1.0**. Google Play's internal build number (`versionCode`) stays at 17 because Google only accepts a number higher than every one it has seen; users never see it. The notes below, from 2.2 to 3.0.1, are the private test builds that came before.
+- **Pro has two plans:** **Rs 50 a month** (a Google Play subscription, product `pro_monthly`) or **Rs 499 once for life** (the one-time product `pro_unlock`). The Pro screen shows both side by side with the prices Google Play reports; Pro is on while either is active. A monthly subscriber who buys lifetime is told to cancel the monthly plan in Google Play, and "Manage subscription" opens Google Play's page for it. Anyone who bought `pro_unlock` before keeps Pro. In Play Console create the subscription and set `pro_unlock` to Rs 499 (see "Pro purchase: monthly and lifetime").
+- The app is named **Dinacharya Launcher** and is credited "© 2026 | Developed by ASG" on one line (home screen mark, Settings > About, store text, privacy page). The version shown in Settings > About is **1.0**. Google Play's internal build number (`versionCode`) is **26** and goes up by one with every build you install or upload, because Google only accepts a number higher than every one it has seen. Settings > About shows it after the version ("1.0 (build 26)"), so you can tell which build is on the phone. The notes below, from 2.2 to 3.0.1, are the private test builds that came before.
 
 **2.2**
 - **Dinacharya is now a home screen (launcher), not a wallpaper app.** No apps on it: the whole screen is your
-  day (the time, the date and every slot, the current one highlighted), shown by the Dinacharya live wallpaper that
+  day (the time, the date and every slot, the current one highlighted), shown by the Dinacharya Launcher live wallpaper that
   comes with the launcher. It asks Android to put the wallpaper in place (you confirm once), so your day is also on
   the lock screen and in the recent-apps screen; until then the launcher paints the same day itself. Tap your day for
   the dashboard, swipe up for all apps, swipe down for notifications, left for the camera and right for the phone
@@ -913,7 +1222,7 @@ close the app: they are written down and that one job is skipped.
   comes with the one-time "Allow restricted settings" steps.
 - **Free and Pro, reshaped:** free users see today and the last 3 saved days of the report (the week tab and older
   days are Pro), pause 2 apps (was 3) and lock 2 apps in one lock; groups, many locks, strict locks and playful
-  pauses are Pro. Pro is a one-time Rs 99 (set in Play Console).
+  pauses are Pro. Pro is Rs 50 a month or Rs 499 once for life (both set in Play Console).
 - **A See Pro screen** of its own (Free against Pro, the price, Get Pro, Restore). The old "See Pro" button in the
   home settings did nothing because Android did not pass the request on to the dashboard; all of them now open this
   screen directly.
@@ -960,7 +1269,7 @@ close the app: they are written down and that one job is skipped.
 - Version 12 (2.6).
 
 **2.7**
-- **Strong lock (optional).** Locks and pauses now also hold an app opened from the recent-apps screen, a notification, a widget
+- **Strong lock (optional; on from the start since build 26).** Locks and pauses now also hold an app opened from the recent-apps screen, a notification, a widget
   or another launcher, and an app that is open when a lock starts, which they could not before (they worked only from
   Dinacharya's home screen, and not at all while another launcher was the home app). It is off by default; turn it on in
   Settings > Home screen > Strong lock and allow Usage access and Display over other apps (see "The home screen"). The phone,
@@ -1021,7 +1330,7 @@ close the app: they are written down and that one job is skipped.
 - **Alarms:** a Home card, guided permission steps, a test alarm, a phone checklist with buttons for
   each setting (including common phone makers' background lists), and a notice when an alarm
   never reached the app. The ringing service uses Android's "system exempted" type for alarm apps.
-- **Dinacharya Pro** (one-time purchase through Google Play) and small ads with a consent form.
+- **Dinacharya Pro** (Rs 50 a month or Rs 499 once, through Google Play) and small ads with a consent form.
 - **Google Play ready:** targets Android 16, edge-to-edge screens, swipe-back support, a separate
   upload key for Google Play, a bundle (`.aab`) workflow, a privacy policy page and store listing text.
 - Usage access is now explained in a message before Android's settings open.
@@ -1061,11 +1370,11 @@ owned. The developer runs no server and receives no data. The app asks for:
 | Notifications, full-screen notifications | Show the alarm question, also when the phone is locked |
 | Alarms and reminders (exact alarms) | Ring each alarm at the exact minute a slot starts |
 | Foreground service (system exempted), keep awake, vibrate | Ring the alarm, and keep the phone awake while it rings |
-| Display over other apps (you grant it in Settings; only for the optional Strong lock) | Show your own lock or pause screen in front of an app you locked or paused |
-| Foreground service (special use; only while the Strong lock is on) | Keep watching which app is in front so a lock or pause holds wherever the app was opened from |
+| Display over other apps (you grant it in Settings; only for the Strong lock, which runs while something is locked or paused) | Show your own lock or pause screen in front of an app you locked or paused |
+| Foreground service (special use; only while something is locked or paused and the Strong lock is on) | Keep watching which app is in front so a lock or pause holds wherever the app was opened from |
 | Run at start-up | Set the alarms and the backup schedule again after a restart |
 | Internet, network state | Google sign-in, the Drive backup, ads, and checking Pro with Google Play |
-| Google Play billing | The one-time Pro purchase |
+| Google Play billing | The Pro purchase (monthly plan or lifetime) |
 | Advertising ID (added by the ads library) | Ads in the free version |
 | Google account (when you sign in) | Your name and email, and the app's own private space in your Drive. The app cannot see your other Drive files. |
 

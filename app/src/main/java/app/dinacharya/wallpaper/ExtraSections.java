@@ -48,6 +48,10 @@ final class ExtraSections {
     private Spinner challengeSpin;
     private EditText quoteEdit;
     private TextView quotePreview;
+    private Spinner offSpin;
+    private Switch quoteOnBox;
+    private Switch dayOffBox;
+    private LibrarySettings librarySettings;
 
     ExtraSections(MainActivity host) {
         this.a = host;
@@ -90,6 +94,17 @@ final class ExtraSections {
                     : " (the morning moves later, bedtime stays)"));
             shiftKeys.add(e.getKey());
         }
+        final List<String> wakeKeys = new ArrayList<>();
+        for (Map.Entry<String, Integer> e : ov.wakes.entrySet()) {
+            if (e.getKey().compareTo(dayKey) < 0) continue;
+            LocalDate d = LocalDate.parse(e.getKey());
+            int baseStart = base.forDay(d).compute().start;
+            Plan.DayPlan dp = Plan.plan(base, ov, d, zone);
+            String which = d.equals(p.day) ? "Today" : (d.equals(p.day.plusDays(1)) ? "Tomorrow" : d.toString());
+            lines.add(which + " starts at " + Routine.formatTime(dp.sc.start, base.fmt24) + " instead of "
+                    + Routine.formatTime(baseStart, base.fmt24) + " (you woke early)");
+            wakeKeys.add(e.getKey());
+        }
         for (Overrides.Edit e : ov.edits) {
             if (!e.day.equals(dayKey)) continue;
             lines.add(e.skip ? e.orig + " is taken off" : e.orig + " is called “" + e.name + "”");
@@ -111,6 +126,7 @@ final class ExtraSections {
             Overrides o = Store.overrides(a, b);
             o.clearEdits(p.day);
             for (String k : shiftKeys) o.setShift(LocalDate.parse(k), 0, 0);
+            for (String k : wakeKeys) o.setEarly(LocalDate.parse(k), 0);
             Store.saveOverrides(a, b, o);
             AlarmScheduler.reschedule(a);
             DayCloser.schedule(a);
@@ -151,7 +167,8 @@ final class ExtraSections {
         // The start-of-day alarm.
         Expander.Part wake = Expander.more(a, root, "Start-of-day alarm", "alarm_wake", false);
         wake.body.addView(Ui.label(a, "Choose one slot as your start-of-day alarm from its bell on the Routine tab. It has to be the first alarm of "
-                + "the day. It keeps ringing until you start the day or put it off, and before you can put it off you read a line you chose.",
+                + "the day. It keeps ringing until you start the day, put it off or take the day off. Before you can turn it off you can be asked to "
+                + "solve a sum, take a pause, shake the phone or type a sentence, and you see a motivating quote.",
                 13, Ui.MUTED, false), Ui.wide(a, 4));
         LinearLayout delayRow = new LinearLayout(a);
         delayRow.setOrientation(LinearLayout.HORIZONTAL);
@@ -163,6 +180,44 @@ final class ExtraSections {
         delayRow.addView(delayText, new LinearLayout.LayoutParams(a.dp(76), ViewGroup.LayoutParams.WRAP_CONTENT));
         delayRow.addView(Ui.iconButton(a, "+", Ui.TEAL_DARK, v -> stepWakeDelay(SlotPlay.STEP)));
         wake.body.addView(delayRow, Ui.wide(a, 10));
+
+        wake.body.addView(Ui.label(a, "To turn the alarm off and start the day", 12, Ui.MUTED, true), Ui.wrap(a, 12));
+        offSpin = new Spinner(a);
+        ArrayAdapter<String> offAd = Lang.adapter(a, android.R.layout.simple_spinner_item,
+                new String[]{"Just tap Start my day", "Solve three quick sums", "Take a short pause (four slow breaths)", "Shake the phone",
+                        "Type a sentence"});
+        offAd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        offSpin.setAdapter(offAd);
+        offSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (binding || position == routine().wakeOff) return;
+                routine().wakeOff = position;
+                a.persistRoutine();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        wake.body.addView(offSpin, Ui.wide(a, 0));
+        wake.body.addView(Ui.label(a, "The alarm keeps ringing until it is done. A phone that cannot sense a shake asks for the sums instead.",
+                12, Ui.MUTED, false), Ui.wide(a, 2));
+
+        quoteOnBox = Ui.toggle(a, "Show a motivating quote", routine().wakeQuoteOn, (b, on) -> {
+            if (binding) return;
+            routine().wakeQuoteOn = on;
+            a.persistRoutine();
+        });
+        wake.body.addView(quoteOnBox, Ui.wide(a, 10));
+        dayOffBox = Ui.toggle(a, "Offer \u201cTake the day off\u201d", routine().wakeDayOff, (b, on) -> {
+            if (binding) return;
+            routine().wakeDayOff = on;
+            a.persistRoutine();
+        });
+        wake.body.addView(dayOffBox, Ui.wide(a, 0));
+        wake.body.addView(Ui.label(a, "Taking the day off silences every alarm for the rest of today. You are asked if you want to plan the day "
+                + "now, later or leave it.", 12, Ui.MUTED, false), Ui.wide(a, 2));
 
         wake.body.addView(Ui.label(a, "Challenge before putting it off", 12, Ui.MUTED, true), Ui.wrap(a, 12));
         challengeSpin = new Spinner(a);
@@ -213,6 +268,9 @@ final class ExtraSections {
         quotePreview.setPadding(a.dp(14), a.dp(10), a.dp(14), a.dp(10));
         quotePreview.setBackground(Ui.box(a, Ui.AMBER_SOFT, Ui.LINE, 14));
         wake.body.addView(quotePreview, Ui.wide(a, 8));
+
+        librarySettings = new LibrarySettings(a);
+        librarySettings.build(root);
 
         nextAlarm = Ui.label(a, "", 14, Ui.INK, true);
         root.addView(nextAlarm, Ui.wide(a, 18));
@@ -297,6 +355,7 @@ final class ExtraSections {
             case AlarmHealth.BATTERY: openBatterySettings(); break;
             case AlarmHealth.POPUP: openAlarmChannelSettings(); break;
             case AlarmHealth.PHONE: AlarmHealth.openPhoneSettings(a); break;
+            case AlarmHealth.VOLUME: AlarmHealth.openSoundSettings(a); break;
             default: break;
         }
     }
@@ -396,8 +455,19 @@ final class ExtraSections {
                 .append(d.armedExact ? " (exact)." : ". Android may deliver it a few minutes late.");
         else sb.append("Nothing is set in Android right now.");
         if (d.missedFor > 0) {
-            sb.append("\nAn alarm set for ").append(when(d.missedFor))
-                    .append(" never reached the app. The phone was off, or it stopped the app. See the checklist above.");
+            if (d.missedExit != 0) {
+                sb.append("\nAndroid closed the app and cleared the alarm set for ").append(when(d.missedFor))
+                        .append(". It is set again now.");
+            } else {
+                sb.append("\nAn alarm set for ").append(when(d.missedFor))
+                        .append(" never reached the app. The phone was off, or it stopped the app. See the checklist above.");
+            }
+        }
+        // How the app last ended, when that matters to the alarms and the wallpaper (Android 11 and later tells).
+        if (d.exitAt > 0 && System.currentTimeMillis() - d.exitAt < 3L * 24 * 3600000L) {
+            sb.append("\nLast time Android ended the app: ").append(when(d.exitAt));
+            sb.append("\n").append(AlarmWatch.what(d.exitReason));
+            sb.append("\n").append(AlarmWatch.consequence(d.exitReason));
         }
         if (d.firedAt > 0) {
             sb.append("\nLast alarm Android gave the app: ").append(when(d.firedAt)).append(d.firedTest ? " (test)" : "");
@@ -436,8 +506,8 @@ final class ExtraSections {
     /** Shows the line the wake-up screen would show today, so the choice can be judged. */
     private void showQuotePreview() {
         if (quotePreview == null) return;
-        String q = WakeQuotes.forDay(routine().wakeQuote, LocalDate.now(Store.zone()));
-        quotePreview.setText("Shown before you put the start off:  “" + Tr.t(q) + "”");
+        WakeQuotes.Quote q = WakeQuotes.quote(routine().wakeQuote, LocalDate.now(Store.zone()), 0);
+        quotePreview.setText("Today\u2019s quote:  “" + Tr.t(q.text) + "”" + (q.author.isEmpty() ? "" : "  \u2014 " + q.author));
     }
 
     private void refreshAlarms() {
@@ -447,9 +517,13 @@ final class ExtraSections {
         askSilentBox.setChecked(r.askSilent);
         delayText.setText(r.wakeDelayMin + " min");
         challengeSpin.setSelection(Math.max(0, Math.min(2, r.wakeChallenge)));
+        offSpin.setSelection(Math.max(0, Math.min(Routine.OFF_TYPE, r.wakeOff)));
+        quoteOnBox.setChecked(r.wakeQuoteOn);
+        dayOffBox.setChecked(r.wakeDayOff);
         if (!quoteEdit.getText().toString().equals(r.wakeQuote)) quoteEdit.setText(r.wakeQuote);
         binding = false;
         showQuotePreview();
+        if (librarySettings != null) librarySettings.refresh();
         String next = "";
         if (r.alarmOn) {
             AlarmPlanner.Event e = nextEvent();
@@ -465,7 +539,7 @@ final class ExtraSections {
         if (readyPart != null) readyPart.setSummary(missing.isEmpty() ? "All set" : "Still to allow: " + missing);
         for (final AlarmHealth.Item it : checked) {
             if (it.id == AlarmHealth.ON) continue;   // the switch above is that
-            String action = it.id == AlarmHealth.PHONE ? "Open" : "Allow";
+            String action = it.id == AlarmHealth.PHONE || it.id == AlarmHealth.VOLUME ? "Open" : "Allow";
             boolean ok = it.state == AlarmHealth.OK;
             healthBox.addView(Ui.statusRow(a, it.title, it.why, ok, action, () -> fix(it.id)));
         }
@@ -474,54 +548,121 @@ final class ExtraSections {
 
     // ------------------------------------------------------------------ habits
 
+    private Expander.Part habitsPart;
+    /** Which habit was open, so that it stays open when the notes are worked out again. */
+    private int habitsOpen = -1;
+
     void buildHabits(LinearLayout page) {
-        LinearLayout root = Expander.card(a, page, "Habits", null, "What your days are telling you", "ins_habits", false).body;
+        habitsPart = Expander.card(a, page, "Habits", null, Limits.analysisAllowed(Pro.has(a, DayPass.ANALYSIS)) ? "What your days are telling you" : "Part of Pro", "ins_habits", false);
+        LinearLayout root = habitsPart.body;
         habitsBox = new LinearLayout(a);
         habitsBox.setOrientation(LinearLayout.VERTICAL);
-        habitsBox.setPadding(Ui.dp(a, 14), Ui.dp(a, 12), Ui.dp(a, 14), Ui.dp(a, 12));
-        habitsBox.setBackground(Ui.box(a, Ui.SOFT, 0, 16));
         root.addView(habitsBox, Ui.wide(a, 10));
         root.addView(Ui.label(a, "Worked out on this phone from your own days with simple rules. No AI service, nothing leaves the phone.",
-                12, Ui.MUTED, false), Ui.wide(a, 6));
+                12, Ui.MUTED, false), Ui.wide(a, 10));
+    }
+
+    /** The habit notes are part of Pro: the free version says what they are, with the way to Pro. */
+    private void showHabitsLocked() {
+        if (habitsBox == null) return;
+        habitsBox.removeAllViews();
+        TextView t = Ui.label(a, "Notes worked out from your last days: where the day slips, what is going well, and one thing to try. "
+                + "Part of Pro.", 14, Ui.MUTED, false);
+        t.setLineSpacing(Ui.dp(a, 2), 1f);
+        habitsBox.addView(t);
+        habitsBox.addView(Ui.button(a, "See Pro", true, v -> ProPrompt.open(a)), Ui.wide(a, 12));
+        ProPrompt.addOffer(a, habitsBox, 8, this::refreshHabits);
+        if (habitsPart != null) habitsPart.setSummary("Part of Pro");
     }
 
     void refreshHabits() {
+        if (!Limits.analysisAllowed(Pro.has(a, DayPass.ANALYSIS))) {
+            showHabitsLocked();
+            return;
+        }
         final Context app = a.getApplicationContext();
         final Routine base = routine();
         new Thread(() -> {
-            List<String> found;
+            List<Suggestions.Habit> found;
             boolean empty;
             try {
                 List<DayReport> recent = Store.history(app).recent(14);
                 empty = recent.isEmpty();
-                found = empty ? new ArrayList<String>() : Suggestions.generate(null, recent, base);
+                found = empty ? new ArrayList<Suggestions.Habit>() : Suggestions.habits(null, recent, base);
             } catch (RuntimeException e) {
                 CrashLog.note(app, "habits", e);
                 empty = true;
                 found = new ArrayList<>();
             }
-            final List<String> tips = found;
+            final List<Suggestions.Habit> notes = found;
             final boolean none = empty;
             a.runOnUiThread(() -> {
-                if (!a.isFinishing()) showHabits(tips, none);
+                if (!a.isFinishing()) showHabits(notes, none);
             });
         }, "habits").start();
     }
 
-    private void showHabits(List<String> tips, boolean none) {
+    private static int habitStripe(int tone) {
+        return tone == Suggestions.Habit.GOOD ? Ui.TEAL : tone == Suggestions.Habit.WATCH ? Ui.AMBER : 0xFF4A6C94;
+    }
+
+    private static int habitInk(int tone) {
+        return tone == Suggestions.Habit.GOOD ? Ui.TEAL_DARK : tone == Suggestions.Habit.WATCH ? 0xFF8A5A00 : 0xFF2F4F78;
+    }
+
+    private static int habitFill(int tone) {
+        return tone == Suggestions.Habit.GOOD ? Ui.TONAL : tone == Suggestions.Habit.WATCH ? Ui.AMBER_SOFT : 0xFFE6EEF7;
+    }
+
+    private static String habitWord(int tone) {
+        return tone == Suggestions.Habit.GOOD ? "Good" : tone == Suggestions.Habit.WATCH ? "Watch" : "Set up";
+    }
+
+    /** The habits as small cards that open one at a time: a heading and a badge closed, what was seen and what to try open. */
+    private void showHabits(List<Suggestions.Habit> habits, boolean none) {
         if (habitsBox == null) return;
         habitsBox.removeAllViews();
+        String summary = "What your days are telling you";
         if (none) {
             habitsBox.addView(Ui.label(a, "Notes appear after your first full day. Turn on alarms and usage access so the app can see how the day went.",
                     14, Ui.MUTED, false));
+        } else if (habits.isEmpty()) {
+            habitsBox.addView(Ui.label(a, "Nothing to flag. Keep going.", 14, Ui.MUTED, false));
         } else {
-            for (int i = 0; i < tips.size() && i < 3; i++) {
-                habitsBox.addView(Ui.label(a, "• " + tips.get(i), 14, Ui.INK, false), Ui.wide(a, i == 0 ? 0 : 8));
+            int watch = 0, good = 0, setup = 0;
+            final Accordion acc = new Accordion();
+            for (int i = 0; i < habits.size(); i++) {
+                Suggestions.Habit h = habits.get(i);
+                if (h.tone == Suggestions.Habit.GOOD) good++;
+                else if (h.tone == Suggestions.Habit.WATCH) watch++;
+                else setup++;
+                Drop d = acc.add(new Drop(a, habitStripe(h.tone), "", h.head, "", habitWord(h.tone), "", habitInk(h.tone), habitFill(h.tone),
+                        habitWord(h.tone)));
+                if (!h.saw.isEmpty()) {
+                    d.body.addView(Ui.label(a, "What I noticed", 13, Ui.TEAL_DARK, true));
+                    TextView t = Ui.label(a, h.saw, 15, Ui.INK, false);
+                    t.setLineSpacing(Ui.dp(a, 2), 1f);
+                    d.body.addView(t, Ui.wide(a, 4));
+                }
+                if (!h.advice.isEmpty()) {
+                    d.body.addView(Ui.label(a, "Try this", 13, Ui.TEAL_DARK, true), Ui.wide(a, h.saw.isEmpty() ? 0 : 12));
+                    TextView t = Ui.label(a, h.advice, 15, Ui.INK, false);
+                    t.setLineSpacing(Ui.dp(a, 2), 1f);
+                    d.body.addView(t, Ui.wide(a, 4));
+                }
+                habitsBox.addView(d.root, Ui.wide(a, i == 0 ? 0 : 8));
             }
-            if (tips.isEmpty()) habitsBox.addView(Ui.label(a, "Nothing to flag. Keep going.", 14, Ui.MUTED, false));
+            acc.onChanged(() -> habitsOpen = acc.open());
+            acc.show(habitsOpen);
+            StringBuilder sb = new StringBuilder();
+            if (watch > 0) sb.append(watch).append(" need attention");
+            if (good > 0) sb.append(sb.length() > 0 ? ", " : "").append(good).append(" going well");
+            if (setup > 0) sb.append(sb.length() > 0 ? ", " : "").append(setup).append(" not set up yet");
+            summary = sb.toString();
         }
+        if (habitsPart != null) habitsPart.setSummary(summary);
         habitsBox.addView(Ui.button(a, "Open Performance", false,
-                v -> open(PerformanceActivity.class)), Ui.wide(a, 10));
+                v -> open(PerformanceActivity.class)), Ui.wide(a, 12));
     }
 
     // ------------------------------------------------------------------ refresh

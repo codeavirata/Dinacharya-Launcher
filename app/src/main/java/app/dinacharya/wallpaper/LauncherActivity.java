@@ -3,7 +3,6 @@ package app.dinacharya.wallpaper;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -40,10 +39,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,9 +67,6 @@ public class LauncherActivity extends LangActivity {
     private static final int NONE = 0, DRAWER = 1, PAUSE = 2, LOCK = 3;
     private static final int REQ_ROLE = 7311;
     private static final int REQ_WALL = 7312;
-
-    /** Android is asked for the wallpaper once each time the app starts; the button stays until it is set. */
-    private static boolean askedWallpaper;
 
     /** Kept while the app process lives, so the list is there at once when Home is pressed again. */
     private static List<AppEntry> cachedApps = new ArrayList<>();
@@ -102,11 +96,29 @@ public class LauncherActivity extends LangActivity {
     private TextView defaultPill;
     private Now now = new Now();
     /**
-     * The day poster the launcher draws itself. It shows only while the Dinacharya live wallpaper is not the phone's
+     * The day poster the launcher draws itself. It shows only while the Dinacharya Launcher live wallpaper is not the phone's
      * wallpaper yet; once it is, the wallpaper (which shows the same poster) is what is behind the screen.
      */
     private PosterView posterView;
     private boolean ours;
+    /** The small button that brings the wallpaper back while it is not in place. */
+    private TextView wallPill;
+    /** Shown while something is locked or paused and Android has not been told to let the lock hold everywhere. */
+    private TextView lockPill;
+    /** Android's preview is about to be opened (so it is not asked for twice). */
+    private boolean askPending;
+    private final Runnable lookAgain = new Runnable() {
+        @Override
+        public void run() {
+            if (isFinishing() || isDestroyed() || root == null) return;
+            try {
+                updatePill();
+                askForWallpaper();
+            } catch (RuntimeException e) {
+                CrashLog.note(LauncherActivity.this, "wallpaper look again", e);
+            }
+        }
+    };
 
     private GestureDetector gestures;
     private GestureDetector drawerGestures;
@@ -199,7 +211,7 @@ public class LauncherActivity extends LangActivity {
             // An alarm is ringing and nobody answered (the screen did not come up, or you came home first): show it now.
             if (AlarmService.showIfRinging(this)) return;
             HomeRole.look(this);   // remembers that Dinacharya is the home app, so a later loss can be noticed
-            StrongMode.ensure(this);   // the strong lock runs whenever it is switched on and allowed
+            StrongMode.afterReturn(this);   // the strong lock runs whenever something is locked or paused and it is allowed; asks for the next permission
             PassSettle.run(this);   // a video pass that has ended gives back what was made with it
             passEpoch = PassSettle.epoch();
             cfg = LauncherStore.load(this);
@@ -219,6 +231,9 @@ public class LauncherActivity extends LangActivity {
                 receiving = true;
             }
             checkProDaily();
+            // Every time Home is pressed the alarms and the wallpaper are looked at again: Android drops both, without a word, when the
+            // app is closed from App info or stopped by the phone.
+            Keeper.ensure(this, "home");
         } catch (RuntimeException | LinkageError e) {
             CrashLog.note(this, "home screen resume", e);
         }
@@ -266,7 +281,7 @@ public class LauncherActivity extends LangActivity {
             updatePill();
             // Next in the same setup: the wallpaper.
             if (HomeRole.isDefault(this) && !WallpaperSetup.settled(this)) {
-                askedWallpaper = true;
+                Store.prefs(this).edit().putLong(PREF_WALL_ASKED, System.currentTimeMillis()).apply();
                 WallpaperSetup.request(this, REQ_WALL);
             }
         } else if (requestCode == REQ_WALL) {
@@ -338,12 +353,25 @@ public class LauncherActivity extends LangActivity {
         syncWallpaper();
     }
 
-    /** Shows the launcher's own poster only until the live wallpaper (which draws the same thing) is in place. */
+    /**
+     * Shows the launcher's own poster whenever the live wallpaper (which draws the same thing) is not really in place, so the home screen
+     * is never plain. The wallpaper is looked at on the phone every time, not taken from an old note.
+     */
     private void syncWallpaper() {
-        ours = WallpaperSetup.isOurs(this);
+        int st = WallpaperSetup.status(this);
+        ours = WallpaperWatch.inPlace(st);
         if (posterView != null) posterView.setVisibility(ours ? View.GONE : View.VISIBLE);
         // With the wallpaper in place the window is see-through, so the wallpaper itself is what you see.
         root.setBackgroundColor(ours ? 0x00000000 : th.bg);
+        if (wallPill != null) {
+            boolean setupDone = Store.prefs(this).getBoolean(SetupActivity.PREF_SETUP_DONE, false);
+            wallPill.setVisibility(setupDone && WallpaperWatch.needsAttention(st) ? View.VISIBLE : View.GONE);
+            wallPill.setText(st == WallpaperWatch.LOST ? "Bring back your day wallpaper" : "Set your day wallpaper");
+        }
+        // Just started, or just confirmed: Android may still be putting it in place, so look once more a moment later.
+        long again = WallpaperSetup.checkAgainMs(this);
+        ui.removeCallbacks(lookAgain);
+        if (again > 0) ui.postDelayed(lookAgain, again);
     }
 
     /** Status and navigation bar icons that read against what is behind them: the poster, or the list's own colour. */
@@ -384,6 +412,27 @@ public class LauncherActivity extends LangActivity {
         home.setPadding(side, dp(24), side, dp(6));
         home.addView(new View(this), new LinearLayout.LayoutParams(1, 0, 1f));
 
+        wallPill = chip("Bring back your day wallpaper", 13, 0xFFA6EEE9);
+        wallPill.setPadding(dp(16), dp(9), dp(16), dp(9));
+        wallPill.setVisibility(View.GONE);
+        wallPill.setOnClickListener(v -> {
+            Store.prefs(this).edit().putLong(PREF_WALL_ASKED, System.currentTimeMillis()).apply();
+            WallpaperSetup.request(this, REQ_WALL);
+        });
+        LinearLayout.LayoutParams wp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        wp.gravity = Gravity.CENTER_HORIZONTAL;
+        wp.bottomMargin = dp(6);
+        home.addView(wallPill, wp);
+
+        lockPill = chip("Make your locks hold everywhere", 13, 0xFFA6EEE9);
+        lockPill.setPadding(dp(16), dp(9), dp(16), dp(9));
+        lockPill.setVisibility(View.GONE);
+        lockPill.setOnClickListener(v -> StrongMode.ask(this));
+        LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp2.gravity = Gravity.CENTER_HORIZONTAL;
+        lp2.bottomMargin = dp(6);
+        home.addView(lockPill, lp2);
+
         defaultPill = chip("Make this your home app", 13, 0xFFA6EEE9);
         defaultPill.setPadding(dp(16), dp(9), dp(16), dp(9));
         defaultPill.setOnClickListener(v -> {
@@ -410,25 +459,37 @@ public class LauncherActivity extends LangActivity {
     private void updatePill() {
         if (defaultPill == null) return;
         syncWallpaper();
+        if (lockPill != null) {
+            boolean setupDone = Store.prefs(this).getBoolean(SetupActivity.PREF_SETUP_DONE, false);
+            lockPill.setVisibility(setupDone && StrongMode.needsAttention(this) ? View.VISIBLE : View.GONE);
+        }
         // Only "make this your home app" is ever shown here; the wallpaper is asked for in the first-start setup.
         defaultPill.setVisibility(HomeRole.isDefault(this) ? View.GONE : View.VISIBLE);
     }
 
     /**
-     * The wallpaper is part of the launcher: after the first-start setup, if it is still not in place, Android's own
-     * preview is shown again, at most once a day, and never over a list or a pause. There is no button on the home screen.
+     * The wallpaper is part of the launcher. After the first-start setup, whenever it is not in place Android's own preview is opened:
+     * at once when it was there and is gone (the app was closed from App info), and again after ten minutes if the person turned the
+     * preview down; once a day when it was never set. Never over a list or a pause. The poster the launcher paints itself, and the
+     * button on the home screen, cover the time in between.
      */
     private void askForWallpaper() {
-        if (ours || askedWallpaper || overlayKind != NONE || isFinishing() || WallpaperSetup.settled(this)) return;
-        if (!Store.prefs(this).getBoolean(SetupActivity.PREF_SETUP_DONE, false)) return;
-        long last = Store.prefs(this).getLong(PREF_WALL_ASKED, 0);
-        if (System.currentTimeMillis() - last < 24L * 3600000L) return;
-        askedWallpaper = true;
+        if (askPending || overlayKind != NONE || isFinishing()) return;
+        if (!wantsWallpaperAsk()) return;
+        askPending = true;
         ui.postDelayed(() -> {
-            if (isFinishing() || isDestroyed() || WallpaperSetup.settled(this)) return;
+            askPending = false;
+            if (isFinishing() || isDestroyed() || overlayKind != NONE || !wantsWallpaperAsk()) return;
             Store.prefs(this).edit().putLong(PREF_WALL_ASKED, System.currentTimeMillis()).apply();
             WallpaperSetup.request(this, REQ_WALL);
         }, 600);
+    }
+
+    private boolean wantsWallpaperAsk() {
+        boolean setupDone = Store.prefs(this).getBoolean(SetupActivity.PREF_SETUP_DONE, false);
+        long last = Store.prefs(this).getLong(PREF_WALL_ASKED, 0);
+        long since = last == 0 ? -1 : Math.max(0, System.currentTimeMillis() - last);
+        return WallpaperWatch.shouldAsk(WallpaperSetup.status(this), setupDone, since);
     }
 
     /** Works out which slot is running, for the focus rules and the log of paused apps. */

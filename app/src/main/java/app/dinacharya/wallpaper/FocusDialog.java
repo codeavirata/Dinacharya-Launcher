@@ -6,7 +6,6 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -148,7 +147,7 @@ final class FocusDialog {
         TextView foot = new TextView(c);
         int used = cfg.rules.size();
         final int usedRules = used;
-        foot.setText(footText(open[0], cfg, usedRules));
+        foot.setText(footText(c, open[0], cfg, usedRules));
         foot.setTextSize(12);
         foot.setAlpha(0.65f);
         LinearLayout.LayoutParams fl = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -176,7 +175,7 @@ final class FocusDialog {
             }
             if (!DayPass.has(open[0], DayPass.PAUSE_APPS) && now == null && cfg.rules.size() >= FocusRules.FREE_APPS
                     && (m != LauncherConfig.RULE_NONE || lim > 0)) {
-                ProPrompt.show(a, DayPass.PAUSE_APPS, "Pause rules for more than " + FocusRules.FREE_APPS + " apps", theme, () -> {
+                ProPrompt.show(a, DayPass.PAUSE_APPS, "Pause rules for more than " + DayPass.appCount(FocusRules.FREE_APPS), theme, () -> {
                     onUnlocked[0].run();
                     v.performClick();
                 });
@@ -192,6 +191,7 @@ final class FocusDialog {
                     : "Pause set for " + app.shown() + ". It starts the next time you open it from the home screen.",
                     android.widget.Toast.LENGTH_LONG).show();
             if (lim > 0 && !ScreenTime.hasAccess(a)) UsageAccess.ask(a);
+            else if (m != LauncherConfig.RULE_NONE || lim > 0) StrongMode.offer(a);   // so the pause also holds from Recents and App info
             if (changed != null) changed.run();
         }));
         d.show();
@@ -203,7 +203,7 @@ final class FocusDialog {
             how.setAdapter(Lang.adapter(c, android.R.layout.simple_spinner_dropdown_item, howTexts(DayPass.has(open[0], DayPass.PAUSE_PLAYFUL))));
             how.setSelection(Math.max(0, keep));
             limitLabel.setText("Daily limit" + (DayPass.has(open[0], DayPass.PAUSE_LIMIT) ? "" : "  • Pro"));
-            foot.setText(footText(open[0], cfg, usedRules));
+            foot.setText(footText(c, open[0], cfg, usedRules));
         };
     }
 
@@ -215,13 +215,12 @@ final class FocusDialog {
         return htxt;
     }
 
-    private static String footText(int open, LauncherConfig cfg, int used) {
+    private static String footText(Context c, int open, LauncherConfig cfg, int used) {
         StringBuilder sb = new StringBuilder();
         if (DayPass.has(open, DayPass.PAUSE_APPS)) sb.append("Pause rules for as many apps as you like. ");
-        else sb.append("Free: pause rules for up to ").append(FocusRules.FREE_APPS).append(" apps (").append(used).append(" used). Pro has no limit. ");
+        else sb.append("Free: a pause rule for ").append(DayPass.appCount(FocusRules.FREE_APPS)).append(" (").append(used).append(" used). Pro has no limit. ");
         if (DayPass.has(open, DayPass.PAUSE_STRICT)) sb.append("Strict pauses apply in focus times: ").append(focusNames(cfg)).append(". ");
-        sb.append(cfg.strong ? "With the strong lock on, pauses hold wherever the app is opened from."
-                : "Pauses work when you open an app from this home screen. The strong lock in the home settings holds them everywhere.");
+        sb.append(StrongMode.holdsLine(c, false));
         return sb.toString();
     }
 

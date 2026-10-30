@@ -13,9 +13,10 @@ final class ReportPdf {
     private ReportPdf() {
     }
 
-    static void write(DayReport r, boolean h24, OutputStream out) throws IOException {
+    /** {@code analysis} false leaves out the slot-by-slot focus part (it is part of Pro). */
+    static void write(DayReport r, boolean h24, boolean analysis, OutputStream out) throws IOException {
         float pageH = ReportRenderer.PAGE_H;
-        float total = ReportRenderer.measure(r, h24, pageH);
+        float total = ReportRenderer.measure(r, h24, pageH, analysis);
         int pages = Math.max(1, (int) Math.ceil((total - 1) / pageH));
         PdfDocument doc = new PdfDocument();
         try {
@@ -31,7 +32,7 @@ final class ReportPdf {
                 c.save();
                 c.translate(0, -i * pageH);
                 c.clipRect(0, i * pageH, ReportRenderer.W, (i + 1) * pageH);
-                ReportRenderer.draw(c, r, h24, pageH);
+                ReportRenderer.draw(c, r, h24, pageH, analysis);
                 c.restore();
                 c.drawText(Lang.tr("Made on your phone by Dinacharya Launcher  ·  page " + (i + 1) + " of " + pages),
                         ReportRenderer.W / 2f, pageH - 16f, foot);

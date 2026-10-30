@@ -17,6 +17,11 @@ final class UsageAccess {
     }
 
     static void ask(final Activity a) {
+        ask(a, false);
+    }
+
+    /** {@code forLocks}: asked so that a lock can see which app is in front, which the explanation then says too. */
+    static void ask(final Activity a, final boolean forLocks) {
         try {
             AlertDialog.Builder b = new DBuilder(a)
                     .setTitle("Allow usage access?")
@@ -28,11 +33,17 @@ final class UsageAccess {
                             + "apps you used most) go to your own private space in your own Drive, and nowhere else.\n\n"
                             + "Next, Android's settings open. Find Dinacharya Launcher in the list and switch it on. "
                             + "You can switch it off there at any time."
+                            + (forLocks
+                            ? "\n\nTo hold a lock when an app is opened from Recents, App info or a notification, it also needs to see which app is in front. "
+                            + "Only the name of that app is compared with your own list of locked apps. Nothing is saved or sent."
+                            : "")
                             + (RestrictedSettings.likely(a)
                             ? "\n\nIf the switch is greyed out (“Restricted setting”), tap “Greyed out?” for the one-time unlock."
                             : ""))
                     .setPositiveButton("Continue", (d, w) -> open(a))
-                    .setNegativeButton("Not now", null);
+                    .setNegativeButton("Not now", (d, w) -> {
+                        if (forLocks) StrongMode.declined(a);
+                    });
             if (RestrictedSettings.likely(a)) {
                 b.setNeutralButton("Greyed out?", (d, w) -> RestrictedSettings.explain(a));
             }

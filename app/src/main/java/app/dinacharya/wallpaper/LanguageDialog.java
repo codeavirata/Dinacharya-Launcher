@@ -1,7 +1,6 @@
 package app.dinacharya.wallpaper;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 
 /**
  * The choice of the app's language: "Automatic" (the phone's language, when the app has it) and each language written in its own

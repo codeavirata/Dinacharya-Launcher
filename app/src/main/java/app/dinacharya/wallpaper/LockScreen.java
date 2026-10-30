@@ -100,14 +100,20 @@ final class LockScreen {
         col.addView(kind, wide(12));
 
         long now = System.currentTimeMillis();
+        boolean why = !hit.during.isEmpty() || hit.library;
         if (!hit.during.isEmpty()) {
-            TextView why = text("While you are on: " + hit.during, 14, th.muted, false);
-            why.setGravity(Gravity.CENTER);
-            col.addView(why, wide(8));
+            TextView w = text("While you are on: " + hit.during, 14, th.muted, false);
+            w.setGravity(Gravity.CENTER);
+            col.addView(w, wide(8));
+        } else if (hit.library) {
+            TextView w = text("Library mode is on", 14, th.muted, false);
+            w.setGravity(Gravity.CENTER);
+            col.addView(w, wide(8));
         }
-        TextView until = text("Until " + LockRules.untilText(hit.untilMs, now, Store.zone(), h24), 22, th.text, true);
+        TextView until = text(hit.untilOpen ? "Until library mode is switched off" : "Until " + LockRules.untilText(hit.untilMs, now, Store.zone(), h24),
+                hit.untilOpen ? 19 : 22, th.text, true);
         until.setGravity(Gravity.CENTER);
-        col.addView(until, wide(hit.during.isEmpty() ? 22 : 14));
+        col.addView(until, wide(why ? 14 : 22));
 
         left = text("", 17, th.muted, false);
         left.setGravity(Gravity.CENTER);
@@ -168,7 +174,7 @@ final class LockScreen {
             if (!ended) showEnded();
             return;
         }
-        left.setText(LockRules.left(hit.untilMs, now) + " left");
+        left.setText(hit.untilOpen ? "" : LockRules.left(hit.untilMs, now) + " left");
         if (breaking && !phraseShown) {
             if (root.getWindowVisibility() != View.VISIBLE) {
                 breakStart = SystemClock.uptimeMillis();   // left the screen: the wait starts again

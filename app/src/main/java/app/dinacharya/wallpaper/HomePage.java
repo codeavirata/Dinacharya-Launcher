@@ -19,7 +19,6 @@ import android.widget.TextView;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 
 /** The Home tab: a greeting, what is happening now and next, today's changes, a preview of the home screen and today's goals. */
 final class HomePage extends Page {
@@ -29,6 +28,7 @@ final class HomePage extends Page {
     private LinearLayout crashBox;
     private LinearLayout nowBox;
     private LinearLayout alarmBox;
+    private LinearLayout libraryBox;
     private LinearLayout homeBox;
     private LinearLayout goalsBox;
     private AdSlot adSlot;
@@ -37,6 +37,7 @@ final class HomePage extends Page {
         public void run() {
             refreshNow();
             refreshAlarmCard();
+            refreshLibrary();
             scroll.postDelayed(this, 60000L - (System.currentTimeMillis() % 60000L) + 200L);
         }
     };
@@ -75,6 +76,10 @@ final class HomePage extends Page {
         alarmBox = new LinearLayout(a);
         alarmBox.setOrientation(LinearLayout.VERTICAL);
         body.addView(alarmBox, Ui.wide(a, 0));
+
+        libraryBox = new LinearLayout(a);
+        libraryBox.setOrientation(LinearLayout.VERTICAL);
+        body.addView(libraryBox, Ui.wide(a, 0));
 
         a.extras.buildChanges(body);
 
@@ -136,6 +141,7 @@ final class HomePage extends Page {
         refreshNow();
         a.extras.refresh();
         refreshAlarmCard();
+        refreshLibrary();
         refreshGoals();
         adSlot.refresh();
         scroll.removeCallbacks(tick);
@@ -176,9 +182,12 @@ final class HomePage extends Page {
         nowBox.removeAllViews();
         Routine m = a.routine();
         long now = System.currentTimeMillis();
+        Plan.DayPlan saved;
         Plan.DayPlan p;
         try {
-            p = Plan.resolve(m, Store.overrides(a, m), now, Store.zone());
+            saved = Plan.resolve(m, Store.overrides(a, m), now, Store.zone());
+            // The day as it is going: a start put off, a break, a slot carried on or finished early, the day off.
+            p = Store.livePlan(a, m, saved, now);
         } catch (RuntimeException e) {
             CrashLog.note(a, "now card", e);
             return;
@@ -196,158 +205,254 @@ final class HomePage extends Page {
         int next = -1;
         for (int i = 0; i < p.sc.slots.size(); i++) {
             Routine.Slot s = p.sc.slots.get(i);
-            if (s.start > p.tt && !s.block.skipped) {
+            if (s.start > p.tt && !s.block.skipped && !s.block.isGap()) {
                 next = i;
                 break;
             }
         }
         final AlarmState state = Store.alarmState(a);
-        final boolean onBreak = p.cur >= 0 && state.onBreak(now) && SlotPlay.canBreak(p);
+        Routine.Block now0 = p.cur >= 0 ? p.sc.slots.get(p.cur).block : null;
+        final boolean dayOff = now0 != null && now0.live == Routine.LIVE_OFF;
+        final boolean onBreak = now0 != null && now0.live == Routine.LIVE_BREAK;
+        final boolean waiting = now0 != null && now0.live == Routine.LIVE_WAIT;
         if (p.cur >= 0) {
             Routine.Slot s = p.sc.slots.get(p.cur);
             Routine.Block b = s.block;
-            TextView eb = Ui.label(a, (onBreak ? "ON A BREAK" : "NOW") + (b.sub.isEmpty() || Routine.isOther(b.sub) ? "" : "  ·  " + b.sub.toUpperCase(Lang.locale())), 11, 0xCCFFFFFF, true);
+            Routine.Block owner = ownerBlock(saved, b);
+            String sub = owner.sub.isEmpty() || Routine.isOther(owner.sub) ? "" : "  ·  " + owner.sub.toUpperCase(Lang.locale());
+            String head = dayOff ? "DAY OFF" : onBreak ? "ON A BREAK" : waiting ? "STARTING LATER" : "NOW";
+            TextView eb = Ui.label(a, head + (dayOff ? "" : sub), 11, 0xCCFFFFFF, true);
             eb.setLetterSpacing(0.14f);
             card.addView(eb);
-            card.addView(Ui.label(a, b.title.isEmpty() ? Routine.KIND_NAMES[b.kind] : b.title, 22, 0xFFFFFFFF, true), Ui.wide(a, 4));
+            card.addView(Ui.label(a, dayOff ? "Enjoy your day off" : titleOf(owner), 22, 0xFFFFFFFF, true), Ui.wide(a, 4));
             int left = Math.max(0, s.end - p.tt);
-            card.addView(Ui.label(a, Routine.formatTime(s.start, m.fmt24) + " – " + Routine.formatTime(s.end, m.fmt24)
-                    + "   ·   " + Routine.formatDuration(left) + " left", 14, 0xE6FFFFFF, false), Ui.wide(a, 2));
-            // progress
-            FrameLayout bar = new FrameLayout(a);
-            bar.setBackground(Ui.box(a, 0x40FFFFFF, 0, 4));
-            View fill = new View(a);
-            fill.setBackground(Ui.box(a, 0xFFFFFFFF, 0, 4));
-            float frac = Math.max(0.02f, Math.min(1f, (p.tt - s.start) / (float) Math.max(1, s.end - s.start)));
-            bar.addView(fill, new FrameLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT));
-            final float f = frac;
-            bar.post(() -> {
-                ViewGroup.LayoutParams lp = fill.getLayoutParams();
-                lp.width = Math.round(bar.getWidth() * f);
-                fill.setLayoutParams(lp);
-            });
-            card.addView(bar, Ui.lp(a, ViewGroup.LayoutParams.MATCH_PARENT, a.dp(6), 12));
-            if (b.note != null && !b.note.trim().isEmpty()) {
-                TextView note = Ui.label(a, "📝  " + b.note.trim(), 13, 0xF0FFFFFF, false);
+            if (dayOff) {
+                card.addView(Ui.label(a, "No alarm will ring until you plan the day again, or tomorrow.", 14, 0xE6FFFFFF, false), Ui.wide(a, 4));
+                if (state.planAt > now) {
+                    card.addView(Ui.label(a, "I will ask again at " + Routine.formatTime(minuteOf(state.planAt), m.fmt24), 14, 0xFFFFFFFF, true),
+                            Ui.wide(a, 8));
+                }
+            } else if (onBreak) {
+                card.addView(Ui.label(a, "Break until " + Routine.formatTime(s.end, m.fmt24) + "   ·   " + Routine.formatDuration(left) + " left",
+                        14, 0xE6FFFFFF, false), Ui.wide(a, 2));
+                card.addView(Ui.label(a, "Then back to " + titleOf(owner) + ", which ends at " + Routine.formatTime(slotEnd(saved, owner), m.fmt24),
+                        13, 0xCCFFFFFF, false), Ui.wide(a, 2));
+            } else if (waiting) {
+                card.addView(Ui.label(a, "Starts at " + Routine.formatTime(s.end, m.fmt24) + "   ·   in " + Routine.formatDuration(left),
+                        14, 0xE6FFFFFF, false), Ui.wide(a, 2));
+                card.addView(Ui.label(a, "It was to start at " + Routine.formatTime(slotStart(saved, owner), m.fmt24) + ", and ends at "
+                        + Routine.formatTime(slotEnd(saved, owner), m.fmt24), 13, 0xCCFFFFFF, false), Ui.wide(a, 2));
+            } else {
+                card.addView(Ui.label(a, Routine.formatTime(s.start, m.fmt24) + " – " + Routine.formatTime(s.end, m.fmt24)
+                        + "   ·   " + Routine.formatDuration(left) + " left", 14, 0xE6FFFFFF, false), Ui.wide(a, 2));
+                String changed = changeNote(b, s, saved, owner, m.fmt24);
+                if (!changed.isEmpty()) card.addView(Ui.label(a, changed, 13, 0xFFFFFFFF, true), Ui.wide(a, 4));
+            }
+            if (!dayOff) {
+                // progress
+                FrameLayout bar = new FrameLayout(a);
+                bar.setBackground(Ui.box(a, 0x40FFFFFF, 0, 4));
+                View fill = new View(a);
+                fill.setBackground(Ui.box(a, 0xFFFFFFFF, 0, 4));
+                float frac = Math.max(0.02f, Math.min(1f, (p.tt - s.start) / (float) Math.max(1, s.end - s.start)));
+                bar.addView(fill, new FrameLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT));
+                final float f = frac;
+                bar.post(() -> {
+                    ViewGroup.LayoutParams lp = fill.getLayoutParams();
+                    lp.width = Math.round(bar.getWidth() * f);
+                    fill.setLayoutParams(lp);
+                });
+                card.addView(bar, Ui.lp(a, ViewGroup.LayoutParams.MATCH_PARENT, a.dp(6), 12));
+            }
+            if (!dayOff && owner.note != null && !owner.note.trim().isEmpty()) {
+                TextView note = Ui.label(a, "📝  " + owner.note.trim(), 13, 0xF0FFFFFF, false);
                 note.setMaxLines(3);
                 card.addView(note, Ui.wide(a, 10));
             }
-            addNowActions(card, p, m, now, state, onBreak);
+            if (dayOff) addDayOffActions(card);
+            else addNowActions(card, saved, p, now, state);
         } else {
             TextView eb = Ui.label(a, "NOW", 11, 0xCCFFFFFF, true);
             eb.setLetterSpacing(0.14f);
             card.addView(eb);
             card.addView(Ui.label(a, "Free time", 22, 0xFFFFFFFF, true), Ui.wide(a, 4));
         }
-        if (next >= 0) {
+        if (next >= 0 && !dayOff) {
             Routine.Slot s = p.sc.slots.get(next);
             View rule = new View(a);
             rule.setBackgroundColor(0x33FFFFFF);
             card.addView(rule, Ui.lp(a, ViewGroup.LayoutParams.MATCH_PARENT, a.dp(1), 14));
             int in = Math.max(0, s.start - p.tt);
-            TextView nx = Ui.label(a, "Next:  " + (s.block.title.isEmpty() ? Routine.KIND_NAMES[s.block.kind] : s.block.title)
+            TextView nx = Ui.label(a, "Next:  " + titleOf(s.block)
                     + "  at " + Routine.formatTime(s.start, m.fmt24) + "  (in " + Routine.formatDuration(in) + ")", 14, 0xFFFFFFFF, false);
             nx.setTypeface(Typeface.DEFAULT_BOLD);
             card.addView(nx, Ui.wide(a, 10));
-            final int nextIndex = next;
-            final Plan.DayPlan plan = p;
+            final int nextIndex = SlotPlay.indexOfSrc(saved, s.block.slotSrc());
+            final Plan.DayPlan plan = saved;
             nx.setOnClickListener(v -> openTodos(plan, nextIndex));
             card.addView(Ui.label(a, "Tap it to add a to-do list for it.", 12, 0xCCFFFFFF, false), Ui.wide(a, 2));
         }
         nowBox.addView(card);
     }
 
-    // ------------------------------------------------------------------ break and to-do
+    private static String titleOf(Routine.Block b) {
+        return b.title.isEmpty() ? Routine.KIND_NAMES[b.kind] : b.title;
+    }
 
-    /** Under the slot that is going on: a button to take a break (or to end the one that is on) and the to-do list of the slot. */
-    private void addNowActions(LinearLayout card, final Plan.DayPlan p, Routine m, long now, AlarmState state, boolean onBreak) {
+    /** The block of the saved plan this part of the live day belongs to (a break or a wait belongs to the slot it sits in). */
+    private static Routine.Block ownerBlock(Plan.DayPlan saved, Routine.Block b) {
+        int i = SlotPlay.indexOfSrc(saved, b.slotSrc());
+        return i >= 0 ? saved.sc.slots.get(i).block : b;
+    }
+
+    private static int slotStart(Plan.DayPlan saved, Routine.Block owner) {
+        int i = SlotPlay.indexOfSrc(saved, owner.src);
+        return i >= 0 ? saved.sc.slots.get(i).start : 0;
+    }
+
+    private static int slotEnd(Plan.DayPlan saved, Routine.Block owner) {
+        int i = SlotPlay.indexOfSrc(saved, owner.src);
+        return i >= 0 ? saved.sc.slots.get(i).end : 0;
+    }
+
+    /** One line under the time when the slot began or ended other than planned: "Started late", "Carried on", "Started early". */
+    private static String changeNote(Routine.Block b, Routine.Slot s, Plan.DayPlan saved, Routine.Block owner, boolean h24) {
+        int ps = slotStart(saved, owner);
+        int pe = slotEnd(saved, owner);
+        switch (b.live) {
+            case Routine.LIVE_LATE:
+                return "Started late, at " + Routine.formatTime(s.start, h24) + " instead of " + Routine.formatTime(ps, h24);
+            case Routine.LIVE_EARLY:
+                return "Started early, at " + Routine.formatTime(s.start, h24) + " instead of " + Routine.formatTime(ps, h24);
+            case Routine.LIVE_CARRIED:
+                return "Carried on, so it ends at " + Routine.formatTime(s.end, h24) + " instead of " + Routine.formatTime(pe, h24);
+            case Routine.LIVE_CUT:
+                return "Finished early, at " + Routine.formatTime(s.end, h24) + " instead of " + Routine.formatTime(pe, h24);
+            default:
+                return "";
+        }
+    }
+
+    // ------------------------------------------------------------------ break, finishing early and to-do
+
+    /** Under a day off: plan the day, or go back to the schedule as it was. */
+    private void addDayOffActions(LinearLayout card) {
+        LinearLayout row = new LinearLayout(a);
+        row.setOrientation(LinearLayout.HORIZONTAL);
+        row.addView(Ui.button(a, "Plan the day", true, v -> DayOffDialog.openPlanner(a)),
+                new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+        lp.leftMargin = a.dp(8);
+        row.addView(Ui.button(a, "Back to my schedule", false, v -> {
+            SlotActions.endDayOff(a);
+            a.toastText("Your schedule is back. The alarms ring again.");
+            afterChange();
+        }), lp);
+        card.addView(row, Ui.wide(a, 14));
+    }
+
+    /** Under the slot that is going on: a button to take a break (or to end the one that is on), the to-do list and "Finish early". */
+    private void addNowActions(LinearLayout card, final Plan.DayPlan saved, final Plan.DayPlan p, long now, AlarmState state) {
         Routine.Block b = p.sc.slots.get(p.cur).block;
-        if (onBreak) {
-            card.addView(Ui.label(a, "On a break until " + Routine.formatTime(minuteOf(state.breakTo), m.fmt24), 15, 0xFFFFFFFF, true), Ui.wide(a, 12));
-        }
-        if (!onBreak && state.againAt > now && state.againSrc == b.src && state.againDay.equals(p.day.toString())) {
-            card.addView(Ui.label(a, "You said you would start at " + Routine.formatTime(minuteOf(state.againAt), m.fmt24), 15, 0xFFFFFFFF, true), Ui.wide(a, 12));
-        }
+        final boolean onBreak = b.live == Routine.LIVE_BREAK;
         LinearLayout row = new LinearLayout(a);
         row.setOrientation(LinearLayout.HORIZONTAL);
         boolean canBreak = SlotPlay.canBreak(p);
-        if (canBreak) {
+        if (onBreak || canBreak) {
             android.widget.Button br = Ui.button(a, onBreak ? "Back to work" : "Take a break", false, v -> {
                 if (onBreak) {
                     SlotActions.endBreak(a);
-                    a.previewChanged();
-                    refreshNow();
+                    afterChange();
                 } else {
                     askBreak(p);
                 }
             });
             row.addView(br, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
         }
-        if (b.src >= 0 && !b.skipped) {
-            List<Routine.Block> blocks = new java.util.ArrayList<>();
-            for (Routine.Slot sl : p.sc.slots) blocks.add(sl.block);
-            Todos t = Store.todosFor(a, p.day, blocks);
-            List<Todos.Item> items = t.forSlot(p.day, b.src, b.kind, b.sub, null);
-            int done = 0;
-            for (Todos.Item it : items) if (it.done) done++;
-            android.widget.Button td = Ui.button(a, items.isEmpty() ? "To-do" : "To-do  " + done + "/" + items.size(), false,
-                    v -> openTodos(p, p.cur));
+        final int sIdx = SlotPlay.indexOfSrc(saved, b.slotSrc());
+        if (sIdx >= 0 && !saved.sc.slots.get(sIdx).block.skipped) {
+            Routine.Block ob = saved.sc.slots.get(sIdx).block;
+            Todos t = Store.todosFor(a, saved.day, blocksOf(saved));
+            int[] cnt = SlotTodo.counts(todoRows(saved, ob, t));   // the slot's things, its goals and what is on their lists
+            android.widget.Button td = Ui.button(a, cnt[1] == 0 ? "To-do" : "To-do  " + cnt[0] + "/" + cnt[1], false,
+                    v -> openTodos(saved, sIdx));
             LinearLayout.LayoutParams tp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
-            if (canBreak) tp.leftMargin = a.dp(8);
+            if (row.getChildCount() > 0) tp.leftMargin = a.dp(8);
             row.addView(td, tp);
         }
-        if (row.getChildCount() > 0) card.addView(row, Ui.wide(a, onBreak ? 8 : 14));
-        addInlineTodos(card, p);
+        if (row.getChildCount() > 0) card.addView(row, Ui.wide(a, 14));
+        final EarlyFinish.Offer offer = onBreak || b.live == Routine.LIVE_WAIT ? null : EarlyFinish.of(p, nextDayOf(p), now);
+        if (offer != null) {
+            card.addView(Ui.button(a, offer.label(), false, v -> EarlyDialog.show(a, offer, this::afterChange)), Ui.wide(a, 8));
+        }
+        addInlineTodos(card, saved, sIdx);
+    }
+
+    /** The plan of the day after {@code p}: the night's sleep is the last slot of its day, and "Early wake" starts the next one. */
+    private Plan.DayPlan nextDayOf(Plan.DayPlan p) {
+        try {
+            Routine m = a.routine();
+            return Plan.plan(m, Store.overrides(a, m), p.day.plusDays(1), Store.zone());
+        } catch (RuntimeException e) {
+            return null;
+        }
+    }
+
+    /** The whole list of a slot of the saved plan: its own things, then its goals with the things on their lists (see {@link SlotTodo}). */
+    private List<SlotTodo.Row> todoRows(Plan.DayPlan saved, Routine.Block b, Todos t) {
+        List<Routine.Block> blocks = blocksOf(saved);
+        return SlotTodo.rows(t, saved.day, blocks, b.slotSrc(), a.routine().goalsFor(saved.day, blocks), SlotTodo.passedMinutes(saved, b.slotSrc()));
+    }
+
+    private static List<Routine.Block> blocksOf(Plan.DayPlan p) {
+        List<Routine.Block> blocks = new java.util.ArrayList<>();
+        for (Routine.Slot sl : p.sc.slots) blocks.add(sl.block);
+        return blocks;
     }
 
     /**
      * Every to-do of the slot going on, right on the card: tick them here, and add or repeat them with
      * the To-do button. The list opens and closes (it stays as it was left).
      */
-    private void addInlineTodos(LinearLayout card, final Plan.DayPlan p) {
-        Routine.Block b = p.sc.slots.get(p.cur).block;
+    private void addInlineTodos(LinearLayout card, final Plan.DayPlan saved, int sIdx) {
+        if (sIdx < 0) return;
+        Routine.Block b = saved.sc.slots.get(sIdx).block;
         if (b.src < 0 || b.skipped) return;
-        List<Routine.Block> blocks = new java.util.ArrayList<>();
-        for (Routine.Slot sl : p.sc.slots) blocks.add(sl.block);
-        final Todos t = Store.todosFor(a, p.day, blocks);
-        final List<TodoDialog.Section> secs = TodoDialog.sectionsFor(a.routine().forDay(p.day), p.day, b, blocks);
-        int total = 0;
-        int done = 0;
-        int filled = 0;
-        for (TodoDialog.Section sec : secs) {
-            int n = t.count(p.day, sec.scope);
-            total += n;
-            done += t.doneCount(p.day, sec.scope);
-            if (n > 0) filled++;
-        }
-        if (total == 0) return;
+        final Todos t = Store.todosFor(a, saved.day, blocksOf(saved));
+        List<SlotTodo.Row> rows = todoRows(saved, b, t);
+        int[] cnt = SlotTodo.counts(rows);
+        if (cnt[1] == 0) return;
         Expander.Part part = Expander.moreOnDark(a, card, "Your to-do list", "home_todo", true);
-        part.setSummary(done + " of " + total + " done");
-        for (final TodoDialog.Section sec : secs) {
-            List<Todos.Item> items = t.items(p.day, sec.scope);
-            if (items.isEmpty()) continue;
-            if (filled > 1) {
-                TextView h = Ui.label(a, sec.heading, 12, 0xCCFFFFFF, true);
-                part.body.addView(h, Ui.wide(a, 8));
+        part.setSummary(cnt[0] + " of " + cnt[1] + " done");
+        for (final SlotTodo.Row row : rows) {
+            if (row.type == SlotTodo.HEAD) {
+                // a goal with its own to-dos: not a thing to tick, it heads its list and is done when everything under it is
+                LinearLayout hl = new LinearLayout(a);
+                hl.setOrientation(LinearLayout.HORIZONTAL);
+                TextView h = Ui.label(a, row.text, 13, 0xE6FFFFFF, true);
+                if (row.done) h.setPaintFlags(h.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                hl.addView(h, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+                hl.addView(Ui.label(a, row.ticked + " of " + row.total, 13, 0xCCFFFFFF, false));
+                part.body.addView(hl, Ui.wide(a, 8));
+                continue;
             }
-            for (int i = 0; i < items.size(); i++) {
-                final int index = i;
-                Todos.Item it = items.get(i);
-                CheckBox cb = new CheckBox(a);
-                cb.setText(it.text);
-                cb.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 15);
-                cb.setTextColor(it.done ? 0xB3FFFFFF : 0xFFFFFFFF);
-                cb.setButtonTintList(ColorStateList.valueOf(0xFFFFFFFF));
-                if (it.done) cb.setPaintFlags(cb.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                cb.setChecked(it.done);
-                cb.setOnCheckedChangeListener((v, on) -> {
-                    t.setDone(p.day, sec.scope, index, on);
-                    Store.saveTodos(a, t);
-                    a.previewChanged();
-                    refreshNow();
-                });
-                part.body.addView(cb, Ui.wide(a, 0));
-            }
+            CheckBox cb = new CheckBox(a);
+            cb.setText(row.byTime ? row.text + "  ·  " + Lang.tr("time reached") : row.text);
+            cb.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 15);
+            cb.setTextColor(row.done ? 0xB3FFFFFF : 0xFFFFFFFF);
+            cb.setButtonTintList(ColorStateList.valueOf(0xFFFFFFFF));
+            if (row.done) cb.setPaintFlags(cb.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            cb.setChecked(row.done);
+            cb.setEnabled(row.tickable());
+            cb.setOnCheckedChangeListener((v, on) -> {
+                if (!SlotTodo.tick(t, saved.day, row, on)) return;
+                Store.saveTodos(a, t);
+                a.previewChanged();
+                refreshNow();
+            });
+            LinearLayout.LayoutParams lp = Ui.wide(a, 0);
+            if (row.type == SlotTodo.STEP) lp.leftMargin = a.dp(22);
+            part.body.addView(cb, lp);
         }
     }
 
@@ -357,7 +462,16 @@ final class HomePage extends Page {
         return cal.get(java.util.Calendar.HOUR_OF_DAY) * 60 + cal.get(java.util.Calendar.MINUTE);
     }
 
-    /** The to-do list of one slot of today's plan. */
+    /** Redraws what a change of the day touches: the Now card, the next alarm and the library card. */
+    private void afterChange() {
+        a.previewChanged();
+        refreshNow();
+        refreshAlarmCard();
+        refreshLibrary();
+        a.extras.refresh();
+    }
+
+    /** The to-do list of one slot of today's saved plan (index in the saved plan). */
     private void openTodos(Plan.DayPlan p, int index) {
         if (index < 0 || index >= p.sc.slots.size()) return;
         Routine.Block b = p.sc.slots.get(index).block;
@@ -365,9 +479,8 @@ final class HomePage extends Page {
             a.toastText("This slot is taken off, so it has no to-do list");
             return;
         }
-        List<Routine.Block> blocks = new java.util.ArrayList<>();
-        for (Routine.Slot sl : p.sc.slots) blocks.add(sl.block);
-        TodoDialog.show(a, p.day, "To-do", TodoDialog.sectionsFor(a.routine().forDay(p.day), p.day, b, blocks), blocks, () -> {
+        List<Routine.Block> blocks = blocksOf(p);
+        TodoDialog.showSlot(a, p, b, a.routine().goalsFor(p.day, blocks), TodoDialog.sectionsFor(a.routine().forDay(p.day), p.day, b, blocks), () -> {
             a.previewChanged();
             refreshNow();
         });
@@ -419,8 +532,7 @@ final class HomePage extends Page {
                         return;
                     }
                     a.toastText("Enjoy your break. Back at " + Routine.formatTime(minuteOf(end), a.routine().fmt24));
-                    a.previewChanged();
-                    refreshNow();
+                    afterChange();
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
@@ -464,6 +576,7 @@ final class HomePage extends Page {
                 card.addView(Ui.eyebrow(a, "Alarms"));
                 card.addView(Ui.label(a, "Alarms need your attention", 18, Ui.INK, true), Ui.wide(a, 4));
                 String why = !missing.isEmpty() ? "Allow: " + missing + "."
+                        : diag.missedExit != 0 ? "Android closed the app and cleared the alarm set for " + a.extras.when(diag.missedFor) + ". It is set again now."
                         : "The alarm set for " + a.extras.when(diag.missedFor) + " never reached the app. The phone may be stopping it.";
                 card.addView(Ui.label(a, why, 13, Ui.MUTED, false), Ui.wide(a, 4));
                 card.addView(Ui.button(a, "Fix now", true, v -> openAlarmSettings()), Ui.wide(a, 12));
@@ -505,6 +618,99 @@ final class HomePage extends Page {
             alarmBox.addView(card, Ui.wide(a, 16));
         } catch (RuntimeException e) {
             CrashLog.note(a, "alarm card", e);
+        }
+        addWallpaperCard();
+        addLockCard();
+    }
+
+    /**
+     * The wallpaper is part of the launcher, so when it is not in place the dashboard says so at the top and has the way back. Android
+     * removes a live wallpaper when the app is closed from App info; the home screen shows the day by itself meanwhile.
+     */
+    private void addWallpaperCard() {
+        try {
+            if (!Store.prefs(a).getBoolean(SetupActivity.PREF_SETUP_DONE, false)) return;
+            int st = WallpaperSetup.status(a);
+            if (!WallpaperWatch.needsAttention(st)) return;
+            LinearLayout card = new LinearLayout(a);
+            card.setOrientation(LinearLayout.VERTICAL);
+            card.setPadding(a.dp(16), a.dp(14), a.dp(16), a.dp(14));
+            card.setBackground(Ui.box(a, Ui.AMBER_SOFT, Ui.AMBER, 22));
+            card.addView(Ui.eyebrow(a, "Wallpaper"));
+            card.addView(Ui.label(a, st == WallpaperWatch.LOST ? "Your day wallpaper is gone"
+                    : st == WallpaperWatch.LOCK_ONLY ? "Only the lock screen has your day" : "Your day wallpaper is not set", 18, Ui.INK, true), Ui.wide(a, 4));
+            card.addView(Ui.label(a, st == WallpaperWatch.LOST
+                    ? "Android removes a live wallpaper when the app is closed from App info. The home screen still shows your day. "
+                    + "Bring the wallpaper back for the lock screen and recent apps."
+                    : "It shows your day on the lock screen and in recent apps. Android asks you to confirm once.", 13, Ui.MUTED, false), Ui.wide(a, 4));
+            card.addView(Ui.button(a, "Bring it back", true, v -> {
+                Store.prefs(a).edit().putLong("wallpaper_asked_at", System.currentTimeMillis()).apply();
+                WallpaperSetup.request(a, Permissions.REQ_WALL);
+            }), Ui.wide(a, 12));
+            alarmBox.addView(card, Ui.wide(a, 16));
+        } catch (RuntimeException e) {
+            CrashLog.note(a, "wallpaper card", e);
+        }
+    }
+
+    /**
+     * Locks are part of the launcher too. While something is locked or paused and a permission Android keeps for itself is missing, the
+     * lock holds only when an app is opened from the home screen; the dashboard says so, and has the way to fix it.
+     */
+    private void addLockCard() {
+        try {
+            if (!StrongMode.needsAttention(a)) return;
+            LinearLayout card = new LinearLayout(a);
+            card.setOrientation(LinearLayout.VERTICAL);
+            card.setPadding(a.dp(16), a.dp(14), a.dp(16), a.dp(14));
+            card.setBackground(Ui.box(a, Ui.AMBER_SOFT, Ui.AMBER, 22));
+            card.addView(Ui.eyebrow(a, "Locks"));
+            card.addView(Ui.label(a, "Your locks hold only on the home screen", 18, Ui.INK, true), Ui.wide(a, 4));
+            card.addView(Ui.label(a, "An app can still be opened from Recents or App info. Allow what Android asks for, and a lock "
+                    + "holds wherever the app is opened from.", 13, Ui.MUTED, false), Ui.wide(a, 4));
+            card.addView(Ui.button(a, "Hold them everywhere", true, v -> StrongMode.ask(a)), Ui.wide(a, 12));
+            alarmBox.addView(card, Ui.wide(a, 16));
+        } catch (RuntimeException e) {
+            CrashLog.note(a, "lock card", e);
+        }
+    }
+
+    // ------------------------------------------------------------------ library mode
+
+    /** Library mode: on or off, for how long, and the way to turn it on or off. */
+    private void refreshLibrary() {
+        if (libraryBox == null) return;
+        libraryBox.removeAllViews();
+        try {
+            final LibraryMode lib = Store.library(a);
+            long now = System.currentTimeMillis();
+            boolean on = lib.on(now, Store.zone());
+            boolean byHand = lib.untilMs > now;
+            LinearLayout card = new LinearLayout(a);
+            card.setOrientation(LinearLayout.VERTICAL);
+            card.setPadding(a.dp(16), a.dp(14), a.dp(16), a.dp(14));
+            card.setBackground(Ui.box(a, on ? Ui.TONAL : Ui.SURFACE, 0, 22));
+            card.setElevation(a.dp(1.5f));
+            card.addView(Ui.eyebrow(a, "Library mode"));
+            card.addView(Ui.label(a, on ? lib.status(now, Store.zone(), a.routine().fmt24) : "Off", 16, Ui.INK, true), Ui.wide(a, 2));
+            card.addView(Ui.label(a, on
+                    ? "Every alarm only vibrates, with no sound."
+                    : "Keeps every alarm silent, with vibration only, for the library, a class or an exam.", 12, Ui.MUTED, false), Ui.wide(a, 2));
+            LinearLayout row = new LinearLayout(a);
+            row.setOrientation(LinearLayout.HORIZONTAL);
+            String label = byHand ? "Turn off" : on ? "Change the hours" : "Turn on";
+            row.addView(Ui.button(a, label, !on, v -> {
+                if (lib.untilMs > System.currentTimeMillis()) LibraryDialog.turnOff(a, this::afterChange);
+                else if (lib.on(System.currentTimeMillis(), Store.zone())) openAlarmSettings();
+                else LibraryDialog.turnOn(a, this::afterChange);
+            }), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+            lp.leftMargin = a.dp(8);
+            row.addView(Ui.button(a, "Settings", false, v -> openAlarmSettings()), lp);
+            card.addView(row, Ui.wide(a, 10));
+            libraryBox.addView(card, Ui.wide(a, 12));
+        } catch (RuntimeException e) {
+            CrashLog.note(a, "library card", e);
         }
     }
 

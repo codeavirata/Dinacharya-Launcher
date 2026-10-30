@@ -374,14 +374,14 @@ final class TourArt extends View {
             outline(l2, top, l2 + lw, bottom, 18 * d, AMBER, 1.6f * d);
             text("Free", l1 + 16 * d, top + 30 * d, 17 * d, WHITE, 0, true, false);
             text("Pro", l2 + 16 * d, top + 30 * d, 17 * d, AMBER, 0, true, false);
-            String[] free = {"Home screen", "Alarms", "Today's report", "Last 3 days", "2 paused apps", "2 locked apps"};
-            String[] pro = {"No ads", "All saved days", "Weekly view", "Strict pauses", "Playful pauses", "Locked groups"};
+            String[] free = {"Home screen", "Alarms and to-dos", "Today's report", "1 paused app", "1 locked app", "One routine"};
+            String[] pro = {"No ads", "Goals with to-dos", "All saved days", "Strict pauses", "Locked groups", "More routines"};
             float y = top + 62 * d, step = Math.min(26 * d, (bottom - top - 100 * d) / 6f);
             for (int i = 0; i < free.length; i++) {
                 text(free[i], l1 + 16 * d, y + i * step, 13 * d, MUTED, 0, false, false);
                 text(pro[i], l2 + 16 * d, y + i * step, 13 * d, WHITE, 0, false, false);
             }
-            text("One payment, or a short video for a day", w / 2, bottom + 22 * d, 12 * d, MUTED, 1, false, false);
+            text("Monthly or once, or 3 short videos for a day", w / 2, bottom + 22 * d, 12 * d, MUTED, 1, false, false);
         }
 
         void wallpaper() {

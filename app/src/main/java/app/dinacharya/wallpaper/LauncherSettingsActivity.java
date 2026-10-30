@@ -1,9 +1,7 @@
 package app.dinacharya.wallpaper;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -17,8 +15,10 @@ import android.widget.Toast;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /** Settings for the minimal home screen: the swipes, the look, the pause rules and the tour. */
 public class LauncherSettingsActivity extends LangActivity {
@@ -79,7 +79,7 @@ public class LauncherSettingsActivity extends LangActivity {
     protected void onResume() {
         super.onResume();
         render();
-        StrongMode.ensure(this);   // coming back from Android's permission pages starts (or stops) the strong lock
+        StrongMode.afterReturn(this);   // coming back from Android's permission pages starts (or stops) the strong lock, and asks for the next one
     }
 
     @Override
@@ -202,6 +202,7 @@ public class LauncherSettingsActivity extends LangActivity {
         lookCard();
         final int open = Pro.open(this);   // what is open now: everything with Pro, or the one item a video opened
         focusCard(open);
+        useCard();
         lockCard(open);
         strongCard();
         hiddenCard();
@@ -345,7 +346,8 @@ public class LauncherSettingsActivity extends LangActivity {
                 + (strongOn() ? "When you open one, it waits a few seconds first, so you can go back or carry on. "
                 : "When you open one from this home screen, it waits a few seconds first, so you can go back or carry on. ")
                 + "It never locks you out: Open anyway is always there."
-                + (strongOn() ? "" : " To hold them whichever way they open, turn on the strong lock below.")), 4);
+                + (strongOn() ? "" : cfg.strong ? " To hold them whichever way they open, allow the two things in the Strong lock card below."
+                : " To hold them whichever way they open, turn on the strong lock below.")), 4);
         addRow(c, Ui.label(this, "Pause during", 14, Ui.MUTED, true), 12);
         for (int k = 0; k < Routine.KIND_NAMES.length; k++) {
             final int kind = k;
@@ -382,16 +384,135 @@ public class LauncherSettingsActivity extends LangActivity {
                 }));
         addRow(c, add, 10);
         if (!Pro.get(this).owned()) {
-            addRow(c, note("Free: pause rules for up to " + FocusRules.FREE_APPS + " apps. Pro adds strict pauses, daily limits, "
+            addRow(c, note("Free: a pause rule for " + FocusRules.FREE_APPS + " app. Pro adds strict pauses, daily limits, "
                     + "playful pauses (a sum, a sentence, breathing), as many apps as you like, and removes the ads."), 10);
             addRow(c, Ui.button(this, "See Pro", true, v -> ProPrompt.open(this)), 8);
-            ProPrompt.addTryList(this, c, new int[]{DayPass.PAUSE_APPS, DayPass.PAUSE_STRICT, DayPass.PAUSE_LIMIT, DayPass.PAUSE_PLAYFUL},
-                    8, this::render);
+            LinearLayout offer = new LinearLayout(this);
+            offer.setOrientation(LinearLayout.VERTICAL);
+            ProPrompt.addOffer(this, offer, 0, this::render);
+            if (offer.getChildCount() > 0) addRow(c, offer, 8);
         }
         if (DayPass.has(open, DayPass.PAUSE_LIMIT)) {
             addRow(c, Ui.statusRow(this, "Usage access", "Needed to count the minutes for daily limits",
                     ScreenTime.hasAccess(this), "Allow", () -> UsageAccess.ask(this)), 10);
         }
+    }
+
+    // ------------------------------------------------------------------ phone use in slots
+
+    /** Which kind's dropdown was open in the card for phone use in slots (kept when the page is drawn again). */
+    private int useOpen = -1;
+
+    private static String useKindName(int kind) {
+        return Routine.KIND_NAMES[Math.max(0, Math.min(Routine.KIND_NAMES.length - 1, kind))];
+    }
+
+    /** The apps chosen for an activity as a short line: "Notes, Docs +2", or that none are chosen. */
+    private String useAppsText(int kind, String sub) {
+        List<String> keys = cfg.appsOfType(kind, sub);
+        if (keys.isEmpty()) return "No apps chosen";
+        StringBuilder sb = new StringBuilder();
+        int shown = 0;
+        for (String k : keys) {
+            if (shown == 2) break;
+            if (shown > 0) sb.append(", ");
+            sb.append(nameOf(k));
+            shown++;
+        }
+        if (keys.size() > shown) sb.append(" +").append(keys.size() - shown);
+        return sb.toString();
+    }
+
+    private void useCard() {
+        int n = cfg.typeApps.size();
+        String summary = !cfg.trackUse ? "Off. Mark the phone use that is not part of a slot's activity"
+                : n == 0 ? "On. Every app counts as phone use"
+                : n == 1 ? "On. Apps chosen for 1 activity" : "On. Apps chosen for " + n + " activities";
+        if (!Limits.analysisAllowed(Pro.has(this, DayPass.ANALYSIS))) {
+            LinearLayout locked = Expander.card(this, body, "Phone use in slots · Pro", null, "Part of Pro", "set_use", false).body;
+            addRow(locked, note("See when you pick up the phone during a slot, with the exact times, and mark the apps that belong to an "
+                    + "activity so they are never counted against you. The reports then show it slot by slot." + (cfg.trackUse
+                    ? " Your choices are kept and work again with Pro." : "")), 4);
+            addRow(locked, Ui.button(this, "See Pro", true, v -> ProPrompt.open(this)), 8);
+            LinearLayout offer = new LinearLayout(this);
+            offer.setOrientation(LinearLayout.VERTICAL);
+            ProPrompt.addOffer(this, offer, 0, this::render);
+            if (offer.getChildCount() > 0) addRow(locked, offer, 8);
+            return;
+        }
+        LinearLayout c = Expander.card(this, body, "Phone use in slots", null, summary, "set_use", false).body;
+        addRow(c, note("See when you pick up the phone during a slot. The home screen marks it with the exact times and the reports "
+                + "count it. Apps you choose for an activity are part of it and are never marked."), 4);
+        addRow(c, Ui.toggle(this, "Show phone use during slots", cfg.trackUse, (b, on) -> {
+            if (on == cfg.trackUse) return;
+            cfg.trackUse = on;
+            save();
+            render();
+        }), 6);
+        if (!cfg.trackUse) return;
+        addRow(c, Ui.statusRow(this, "Usage access", "Needed to see which apps are used, and when", ScreenTime.hasAccess(this),
+                "Allow", () -> UsageAccess.ask(this)), 6);
+
+        addRow(c, Ui.label(this, "Apps that are part of an activity", 14, Ui.MUTED, true), 12);
+        addRow(c, note("Choose for each activity the apps it needs (a notes app for Study, say). Any other app used during that "
+                + "activity's slot is marked. This app is always part of the slot."), 4);
+        Routine routine;
+        try {
+            routine = Store.load(this);
+        } catch (RuntimeException e) {
+            CrashLog.note(this, "phone use settings", e);
+            return;
+        }
+        final Accordion kinds = new Accordion();
+        for (int k = 0; k < Routine.SLEEP; k++) {
+            final int kind = k;
+            List<Routine.Sub> subs = routine.subsOf(kind);
+            int with = 0;
+            for (Routine.Sub s : subs) if (!cfg.appsOfType(kind, s.name).isEmpty()) with++;
+            Expander.Part p = kinds.add(Expander.more(this, c, useKindName(kind), null, false));
+            p.setSummary(with == 0 ? "No apps chosen yet" : with == 1 ? "1 activity has apps" : with + " activities have apps");
+            for (final Routine.Sub s : subs) {
+                addRow(p.body, row(s.name, useAppsText(kind, s.name), "Choose", () -> chooseUseApps(kind, s.name)), 0);
+            }
+        }
+        kinds.onChanged(() -> useOpen = kinds.open());
+        kinds.show(useOpen);
+    }
+
+    /** The list of apps for one activity: tick the ones that are part of it. Nothing is kept until Done. */
+    private void chooseUseApps(final int kind, final String sub) {
+        final List<AppEntry> list = ruleApps();
+        final Set<String> picked = new LinkedHashSet<>(cfg.appsOfType(kind, sub));   // an app that is gone from the list stays as it is
+        final String[] names = new String[list.size()];
+        final boolean[] on = new boolean[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            names[i] = list.get(i).shown();
+            on[i] = picked.contains(list.get(i).key);
+        }
+        new DBuilder(this, DIALOG).setAppChoices(names, on, (dlg, which, checked) -> {
+                    String key = list.get(which).key;
+                    if (!checked) {
+                        picked.remove(key);
+                        return;
+                    }
+                    if (picked.size() >= LauncherConfig.MAX_USE_APPS) {
+                        ((AlertDialog) dlg).getListView().setItemChecked(which, false);
+                        Lang.toast(this, "Up to " + LauncherConfig.MAX_USE_APPS + " apps for one activity", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    picked.add(key);
+                })
+                .setTitle("Apps for " + sub)
+                .setPositiveButton("Done", (dlg, w) -> {
+                    if (!cfg.setTypeApps(kind, sub, new ArrayList<>(picked))) {
+                        Lang.toast(this, "Up to " + LauncherConfig.MAX_USE_TYPES + " activities can have apps", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    save();
+                    render();
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 
     private void lockCard(final int open) {
@@ -442,42 +563,54 @@ public class LauncherSettingsActivity extends LangActivity {
         });
         addRow(c, add, 10);
         addRow(lockHow.body, note(strongOn()
-                ? "The strong lock is on, so a lock also holds an app opened from Recents, a notification, a widget or another home app, "
+                ? "The strong lock is on, so a lock also holds an app opened from Recents, App info, a notification, a widget or another home app, "
                 + "and one that is open when the lock starts."
+                : cfg.strong
+                ? "For now a lock holds only when you open an app from this home screen. Allow the two things in the Strong lock card below and it also holds "
+                + "an app opened from Recents, App info, a notification, a widget or another home app, and one that is open when the lock starts."
                 : "Locks work when you open an app from this home screen. They cannot stop an app that is already open, "
                 + "or one opened from Recents, a notification or another home app. The strong lock below does."), 8);
         if (!Pro.get(this).owned()) {
-            addRow(c, note("Free: lock up to " + LockRules.FREE_GROUP_APPS + " apps. Pro adds groups of apps, as many locks as you like, "
+            addRow(c, note("Free: one lock that holds " + LockRules.FREE_GROUP_APPS + " app. Pro adds groups of apps, as many locks as you like, "
                     + "and strict locks."), 6);
             addRow(c, Ui.button(this, "See Pro", true, v -> ProPrompt.open(this)), 8);
-            ProPrompt.addTryList(this, c, new int[]{DayPass.LOCK_MORE, DayPass.LOCK_APPS, DayPass.LOCK_STRICT}, 8, this::render);
+            LinearLayout offer = new LinearLayout(this);
+            offer.setOrientation(LinearLayout.VERTICAL);
+            ProPrompt.addOffer(this, offer, 0, this::render);
+            if (offer.getChildCount() > 0) addRow(c, offer, 8);
         }
     }
 
-    /** True when the strong lock is on and has what it needs. */
+    /** True when the strong lock is on and has what it needs (whether or not anything is locked yet). */
     private boolean strongOn() {
-        return cfg.strong && StrongMode.state(this) == GuardRules.ON;
+        return cfg.strong && StrongMode.hasUsage(this) && StrongMode.hasOverlay(this);
     }
 
     private void strongCard() {
+        int shown = StrongMode.state(this);
         LinearLayout c = Expander.card(this, body, "Strong lock", null,
-                cfg.strong ? "On: holds locks and pauses everywhere" : "Off: locks hold only from this home screen", "set_strong", false).body;
+                shown == GuardRules.ON ? "On: holds locks and pauses everywhere"
+                        : shown == GuardRules.IDLE ? "On: nothing is locked or paused yet"
+                        : GuardRules.needsPermission(shown) ? "Needs your permission: locks hold only from this home screen"
+                        : "Off: locks hold only from this home screen", "set_strong", false).body;
         Expander.Part strongHow = Expander.more(this, c, "How it works", "set_strong_how", false);
-        addRow(strongHow.body, note("Without this, a lock or a pause only works when you open an app from this home screen. Turn it on and "
-                + "Dinacharya Launcher also holds an app opened from Recents, a notification, a widget or another home app, and an app that "
-                + "is already open when a lock starts. The phone, Settings, the keyboard and system screens are never blocked."), 4);
+        addRow(strongHow.body, note("A lock that only works when you open an app from this home screen is easy to get around: open the app "
+                + "from Recents or App info instead. With the strong lock on, Dinacharya Launcher also holds an app opened from Recents, "
+                + "App info, a notification, a widget or another home app, and an app that is already open when a lock starts. It starts "
+                + "by itself as soon as something is locked or paused. The phone, Settings, the keyboard and system screens are never blocked."), 4);
         addRow(c, Ui.toggle(this, "Strong lock", cfg.strong, (b, on) -> {
             cfg.strong = on;
             save();
             StrongMode.ensure(this);
             render();
+            if (on) StrongMode.ask(this);
         }), 8);
         addRow(c, note(StrongMode.line(StrongMode.state(this))), 2);
         if (cfg.strong) {
             addRow(c, Ui.statusRow(this, "Usage access", "Lets Dinacharya Launcher see which app is in front",
-                    StrongMode.hasUsage(this), "Allow", () -> UsageAccess.ask(this)), 10);
+                    StrongMode.hasUsage(this), "Allow", () -> UsageAccess.ask(this, true)), 10);
             addRow(c, Ui.statusRow(this, "Display over other apps", "Lets the lock screen appear over an app",
-                    StrongMode.hasOverlay(this), "Allow", () -> StrongMode.askOverlay(this)), 2);
+                    StrongMode.hasOverlay(this), "Allow", () -> StrongMode.askOverlayExplained(this)), 2);
         }
         addRow(strongHow.body, note("It shows a small notification while it runs. It looks only at the name of the app in front, on this phone, "
                 + "and keeps and sends nothing. If your phone stops background apps to save battery and the lock stops holding, "
@@ -554,7 +687,7 @@ public class LauncherSettingsActivity extends LangActivity {
             }
             new DBuilder(this, DIALOG)
                     .setTitle("Reset the home screen?")
-                    .setMessage("This clears the swipes, the look, the hidden apps, the pause rules and the locked groups. "
+                    .setMessage("This clears the swipes, the look, the hidden apps, the pause rules, the locked groups and the phone use choices. "
                             + "Your routine and reports are not touched.")
                     .setPositiveButton("Reset", (d, w) -> {
                         LauncherStore.save(this, new LauncherConfig());

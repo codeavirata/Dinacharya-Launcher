@@ -15,6 +15,7 @@ final class Store {
     private static final String KEY_ALARM = "alarmstate";
     private static final String KEY_SINCE = "since";
     private static final String KEY_TODOS = "todos";
+    private static final String KEY_LIBRARY = "library";
 
     private Store() {
     }
@@ -82,13 +83,50 @@ final class Store {
         prefs(c).edit().putString(KEY_TODOS, t.serialize()).apply();
     }
 
-    /** What the poster shows besides the routine: the to-do list of the slot going on and a note while a break is on. */
+    /** What the poster shows besides the routine: the day as it is going, the to-do list of the slot going on and the library pill. */
     static PosterExtras posterExtras(Context c) {
+        return posterExtras(c, null);
+    }
+
+    static PosterExtras posterExtras(Context c, Routine main) {
         try {
-            return new PosterExtras(todos(c), alarmState(c));
+            Routine r = main != null ? main : load(c);
+            // how the slots went as far as phone use goes: only when the person turned that on
+            SlotUse.Snapshot use = SlotUseCache.on(c, LauncherStore.load(c)) ? SlotUseCache.snapshot() : null;
+            return new PosterExtras(todos(c), alarmState(c), history(c).events(), r, library(c), use);
         } catch (RuntimeException e) {
             return PosterExtras.NONE;
         }
+    }
+
+    /** Library mode: when it is on, every alarm only vibrates. */
+    static LibraryMode library(Context c) {
+        return LibraryMode.parse(prefs(c).getString(KEY_LIBRARY, null));
+    }
+
+    static void saveLibrary(Context c, LibraryMode m) {
+        prefs(c).edit().putString(KEY_LIBRARY, m.serialize()).apply();
+    }
+
+    /**
+     * Today's plan as it is going: {@code p} (the saved plan with today's changes) with a start put off, breaks, the slot before carried on,
+     * a slot finished early and a day off applied. The same object comes back when nothing changed. Anything that asks "which slot is
+     * going on now" (the Home card, the locks, a break, finishing early) must read this one; the alarms keep reading the saved plan.
+     */
+    static Plan.DayPlan livePlan(Context c, Routine base, Plan.DayPlan p, long nowMs) {
+        try {
+            AlarmState st = alarmState(c);
+            return LivePlan.apply(p, history(c).events(), st, DayOff.active(base, st, p.day), nowMs);
+        } catch (RuntimeException e) {
+            CrashLog.note(c, "live plan", e);
+            return p;
+        }
+    }
+
+    /** The plan going on now, as it is going (see {@link #livePlan}). */
+    static Plan.DayPlan livePlanNow(Context c, Routine base, long nowMs) {
+        Plan.DayPlan p = Plan.resolve(base, overrides(c, base), nowMs, zone());
+        return livePlan(c, base, p, nowMs);
     }
 
     static HistoryStore history(Context c) {

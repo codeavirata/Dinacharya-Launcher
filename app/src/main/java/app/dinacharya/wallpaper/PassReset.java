@@ -24,7 +24,7 @@ import java.util.Set;
  *   More apps in a lock    - a lock holds the free number of apps again (or the number it held before).
  *   Strict locks           - a lock that was made strict is no longer strict.
  *   Routines               - the weekday, weekend and other routines made are removed (those days use the main routine).
- *   Goals                  - the goals added are removed.
+ *   Goals                  - the goals added are removed (with the to-dos on them).
  *   A colour look          - that look goes back to the one used before.
  *   Saved days, week view  - nothing is stored, so nothing needs to go back.
  *
@@ -146,7 +146,11 @@ public final class PassReset {
             for (Routine t : r.temps) if (t.tempDate != null) sb.append("T\t").append(t.tempDate).append('\n');
         }
         if (DayPass.has(m, DayPass.GOALS)) {
-            for (Routine.Goal g : r.goals) sb.append("L\t").append(g.kind).append('\t').append(clean(g.sub)).append('\t').append(g.repeats() ? "R" : "O" + g.date).append('\n');
+            for (Routine.Goal g : r.goals) {
+                sb.append("L\t").append(g.kind).append('\t').append(clean(g.sub)).append('\t').append(g.repeats() ? "R" : "O" + g.date);
+                if (g.bound()) sb.append('\t').append(clean(g.slot));   // the slot of a goal comes last, as in notes from before
+                sb.append('\n');
+            }
         }
         if (anyLook(m)) {
             sb.append("P\t").append(r.palette).append('\n');
@@ -353,16 +357,24 @@ public final class PassReset {
     private static int undoGoals(List<String[]> rows, Routine r) {
         Set<String> before = new HashSet<>();
         for (String[] p : rows) {
-            if (p[0].equals("L") && p.length >= 3) before.add(goalKey(num(p[1], -1), p[2]) + "|" + (p.length >= 4 ? p[3] : "R"));
+            if (p[0].equals("L") && p.length >= 3) {
+                String slot = p.length >= 5 ? p[4] : "";
+                before.add((slot.isEmpty() ? goalKey(num(p[1], -1), p[2]) : slotKey(num(p[1], -1), slot)) + "|" + (p.length >= 4 ? p[3] : "R"));
+            }
         }
         int changes = 0;
         for (Routine.Goal g : new ArrayList<>(r.goals)) {
-            if (!before.contains(goalKey(g.kind, g.sub) + "|" + (g.repeats() ? "R" : "O" + g.date))) {
+            String mine = g.bound() ? slotKey(g.kind, g.slot) : goalKey(g.kind, g.sub);
+            if (!before.contains(mine + "|" + (g.repeats() ? "R" : "O" + g.date))) {
                 r.goals.remove(g);
                 changes++;
             }
         }
         return changes;
+    }
+
+    private static String slotKey(int kind, String slot) {
+        return kind + "#" + clean(slot).trim().toLowerCase(java.util.Locale.ROOT);
     }
 
     private static String goalKey(int kind, String sub) {

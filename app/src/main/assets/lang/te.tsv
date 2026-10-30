@@ -754,8 +754,8 @@ Free:  {1}	ఉచితం:  {1}
 Pro:  {1}	Pro:  {1}
 Restore my purchase	నా కొనుగోలును పునరుద్ధరించండి
 Tied to your Google Play account, so it comes back on a new phone. Refunds follow Google Play's rules. If Pro ever ends (a refund, say), nothing you made is taken away: a routine, a lock or a pause that goes past the free limit stays saved and starts working again with Pro. A video pass is different: when its time is up, what you set up with it goes back to the free version.	మీ Google Play ఖాతాకు అనుసంధానమై ఉంటుంది, కాబట్టి కొత్త ఫోన్‌లో తిరిగి వస్తుంది. రీఫండ్‌లు Google Play నియమాల ప్రకారం ఉంటాయి. Pro ఎప్పుడైనా ముగిస్తే (ఉదా. రీఫండ్ వల్ల), మీరు చేసినదేదీ తొలగించబడదు: ఉచిత పరిమితి దాటిన దినచర్య, లాక్ లేదా విరామం సేవ్ అయి ఉంటుంది మరియు Pro తో మళ్లీ పనిచేస్తుంది. వీడియో పాస్ భిన్నమైనది: దాని సమయం ముగిసినప్పుడు, దానితో మీరు సెట్ చేసినది ఉచిత వెర్షన్‌కు తిరిగి వెళ్తుంది.
-{1} is part of Pro, a one-time purchase that also removes the ads.	{1} Pro లో భాగం, ఇది ఒకసారి కొనుగోలు మరియు ప్రకటనలను కూడా తొలగిస్తుంది.
-{1} is open now. To finish, you also need: {2}. It has its own video, or it is part of Pro, a one-time purchase that also removes the ads.	{1} ఇప్పుడు తెరిచి ఉంది. పూర్తి చేయడానికి మీకు ఇది కూడా కావాలి: {2}. దానికి సొంత వీడియో ఉంది, లేదా అది Pro లో భాగం, ఇది ఒకసారి కొనుగోలు మరియు ప్రకటనలను కూడా తొలగిస్తుంది.
+{1} is part of Pro, which also removes the ads.	{1} Pro లో భాగం, ఇది ప్రకటనలను కూడా తొలగిస్తుంది.
+{1} is open now. To finish, you also need: {2}. It has its own video, or it is part of Pro, which also removes the ads.	{1} ఇప్పుడు తెరిచి ఉంది. పూర్తి చేయడానికి మీకు ఇది కూడా కావాలి: {2}. దానికి సొంత వీడియో ఉంది, లేదా అది Pro లో భాగం, ఇది ప్రకటనలను కూడా తొలగిస్తుంది.
 Part of Pro	Pro లో భాగం
 {1}\n\nOr watch short videos to use it free. You choose how many:	{1}\n\nలేదా ఉచితంగా వాడటానికి చిన్న వీడియోలు చూడండి. ఎన్ని చూడాలో మీరే ఎంచుకోండి:
 When the time is up, what you set up with it goes back to the free version.	 సమయం ముగిసినప్పుడు, దానితో మీరు సెట్ చేసినది ఉచిత వెర్షన్‌కు తిరిగి వెళ్తుంది.
@@ -1159,7 +1159,7 @@ Last 3 days	గత 3 రోజులు
 2 locked apps	లాక్ చేసిన 2 యాప్‌లు
 All saved days	సేవ్ చేసిన అన్ని రోజులు
 Weekly view	వారపు వీక్షణ
-One payment, or a short video for a day	ఒకసారి చెల్లింపు, లేదా ఒక రోజుకు ఒక చిన్న వీడియో
+Monthly or once, or a short video for a day	నెలకు లేదా ఒకసారి, లేదా ఒక రోజుకు ఒక చిన్న వీడియో
 Time, date	సమయం, తేదీ
 and phone time	మరియు ఫోన్ సమయం
 The slot you	మీరు ఉన్న
@@ -1175,7 +1175,7 @@ What you set up with it goes back to the free version then, unless you get Pro.	
 A video is already on its way.	ఒక వీడియో ఇప్పటికే వస్తోంది.
 That cannot be kept longer.	దీన్ని ఇంకా ఎక్కువసేపు ఉంచలేరు.
 That is open already.	అది ఇప్పటికే తెరిచి ఉంది.
-You have watched a lot of videos today. Try again tomorrow, or get Pro: it is one payment, opens everything for good and removes the ads.	మీరు ఈ రోజు చాలా వీడియోలు చూశారు. రేపు మళ్లీ ప్రయత్నించండి, లేదా Pro తీసుకోండి: ఇది ఒకసారి చేసే చెల్లింపు, ప్రతిదాన్ని శాశ్వతంగా తెరుస్తుంది మరియు ప్రకటనలను తొలగిస్తుంది.
+You have watched a lot of videos today. Try again tomorrow, or get Pro: it opens everything and removes the ads.	మీరు ఈ రోజు చాలా వీడియోలు చూశారు. రేపు మళ్లీ ప్రయత్నించండి, లేదా Pro తీసుకోండి: ఇది అన్నీ తెరుస్తుంది మరియు ప్రకటనలను తొలగిస్తుంది.
 That is plenty for today	ఈ రోజుకు ఇది చాలు
 Videos are not ready yet. Check your connection and try again in a moment.	వీడియోలు ఇంకా సిద్ధంగా లేవు. మీ కనెక్షన్‌ను తనిఖీ చేసి కొద్దిసేపట్లో మళ్లీ ప్రయత్నించండి.
 A video could not be started. Try again in a moment.	వీడియోను ప్రారంభించలేకపోయాము. కొద్దిసేపట్లో మళ్లీ ప్రయత్నించండి.
@@ -1188,6 +1188,7 @@ The next video could not be found. You keep what you already earned.	తర్�
 Watch the whole video to open it. Nothing was opened.	దీన్ని తెరవడానికి వీడియో మొత్తం చూడండి. ఏదీ తెరవలేదు.
 The video could not be shown. Try again in a little while. Nothing was opened.	వీడియోను చూపించలేకపోయాము. కొద్దిసేపటి తర్వాత మళ్లీ ప్రయత్నించండి. ఏదీ తెరవలేదు.
 Video {1} of {2} watched	{2} లో {1} వీడియో చూశారు
+{1} more videos	ఇంకా {1} వీడియోలు
 Next video	తర్వాతి వీడియో
 Stop here	ఇక్కడే ఆపండి
 It could not be opened. Please try again.	దాన్ని తెరవలేకపోయాము. దయచేసి మళ్లీ ప్రయత్నించండి.
@@ -1545,6 +1546,518 @@ Repeat	పునరావృతం
 Does not repeat	పునరావృతం కాదు
 A to-do is for this day only, unless you set it to repeat with the ↻ button.	చేయవలసిన పని ఈ రోజుకు మాత్రమే, మీరు దానిని ↻ బటన్‌తో పునరావృతం అయ్యేలా సెట్ చేస్తే తప్ప.
 {1}–{2} of {3}	{3} లో {1}–{2}
+Choose a monthly plan or pay once for life. Paid through Google Play.	నెలవారీ ప్లాన్‌ను ఎంచుకోండి, లేదా ఒకసారి చెల్లించి ఎప్పటికీ పొందండి. చెల్లింపు Google Play ద్వారా జరుగుతుంది.
+Your monthly plan is active. It renews every month until you cancel it in Google Play.	మీ నెలవారీ ప్లాన్ యాక్టివ్‌గా ఉంది. మీరు Google Play లో రద్దు చేసే వరకు అది ప్రతి నెలా ఆటోమేటిక్‌గా రెన్యూ అవుతుంది.
+Monthly plan	నెలవారీ ప్లాన్
+Lifetime plan	జీవితకాల ప్లాన్
+{1} a month	నెలకు {1}
+{1} once	ఒకసారి {1}
+Pro for as long as you subscribe. Renews every month; cancel any time in Google Play.	మీరు సబ్‌స్క్రైబ్ అయి ఉన్నంత కాలం Pro. ప్రతి నెలా రెన్యూ అవుతుంది; Google Play లో ఎప్పుడైనా రద్దు చేయండి.
+Pay once and keep Pro for good.	ఒకసారి చెల్లించి Pro ని ఎప్పటికీ ఉంచుకోండి.
+Subscribe monthly	నెలవారీగా సబ్‌స్క్రైబ్ చేయండి
+Get lifetime Pro	జీవితకాల Pro పొందండి
+Manage subscription	సబ్‌స్క్రిప్షన్‌ను నిర్వహించండి
+If you buy lifetime, cancel the monthly plan in Google Play so it does not renew.	మీరు జీవితకాల ప్లాన్ కొంటే, రెన్యూ కాకుండా ఉండేందుకు Google Play లో నెలవారీ ప్లాన్‌ను రద్దు చేయండి.
+Pro is a monthly plan or one payment for life, through Google Play.	Pro అనేది నెలవారీ ప్లాన్ లేదా జీవితకాలం కోసం ఒకసారి చెల్లింపు; రెండూ Google Play ద్వారా.
+Pro is {1} a month, or {2} once for life, through Google Play.	Pro నెలకు {1}, లేదా జీవితకాలం కోసం ఒకసారి {2}, Google Play ద్వారా.
+Free with small ads. Dinacharya Pro, monthly or for life, removes the ads and unlocks the extras.	ఉచితం, చిన్న ప్రకటనలతో. Dinacharya Pro, నెలవారీగా లేదా జీవితకాలం, ప్రకటనలను తొలగించి అదనపు సౌకర్యాలను తెరుస్తుంది.
+Alarm volume	అలారం వాల్యూమ్
+The phone's alarm volume is turned right down, so an alarm would not make a sound.	ఫోన్ అలారం వాల్యూమ్ పూర్తిగా తగ్గించబడింది, కాబట్టి అలారం శబ్దం చేయదు.
+Open Settings, Sound, and turn the alarm volume up	సెట్టింగ్‌లు తెరిచి, సౌండ్‌లో అలారం వాల్యూమ్‌ను పెంచండి
+{1} of {2} shakes	{2} లో {1} సార్లు ఊపారు
+0 of {1} shakes	{1} లో 0 సార్లు ఊపారు
+To turn this alarm off, solve three quick sums.	ఈ అలారం ఆపడానికి మూడు చిన్న లెక్కలు చేయండి.
+To turn this alarm off, take a short pause and breathe.	ఈ అలారం ఆపడానికి కొంచెం ఆగి, లోతుగా శ్వాస తీసుకోండి.
+To turn this alarm off, shake your phone.	ఈ అలారం ఆపడానికి మీ ఫోన్‌ను ఊపండి.
+To turn this alarm off, type a short sentence.	ఈ అలారం ఆపడానికి ఒక చిన్న వాక్యం టైప్ చేయండి.
+Another quote	మరో సూక్తి
+Take the day off	ఈ రోజు సెలవు తీసుకోండి
+Enjoy your day off.	సెలవును ఆనందించండి.
+Type this to start your day	మీ రోజును ప్రారంభించడానికి దీన్ని టైప్ చేయండి
+Take a short pause	కొంచెం ఆగండి
+The alarm stops when the last breath is done. Leaving this screen starts the breaths again.	చివరి శ్వాస పూర్తయినప్పుడు అలారం ఆగుతుంది. ఈ స్క్రీన్ వదిలి వెళ్తే శ్వాసలు మళ్లీ మొదలవుతాయి.
+This phone cannot tell when it is shaken, so here are three sums instead.	ఈ ఫోన్ ఊపడాన్ని గుర్తించలేదు, అందుకే దానికి బదులుగా మూడు లెక్కలు ఇస్తున్నాం.
+Shake your phone	మీ ఫోన్‌ను ఊపండి
+Hold it firmly and shake it up and down. The alarm stops after the last shake.	దీన్ని గట్టిగా పట్టుకుని పైకీ కిందికీ ఊపండి. చివరి ఊపు తర్వాత అలారం ఆగుతుంది.
+Plan your day?	మీ రోజును ప్లాన్ చేయాలా?
+Your day is off	ఈ రోజు సెలవు
+Plan your day now, later, or leave it?	మీ రోజును ఇప్పుడు ప్లాన్ చేయాలా, తర్వాతా, లేక వదిలేయాలా?
+No alarm rings until you plan your day again.	మీరు మీ రోజును మళ్లీ ప్లాన్ చేసే వరకు ఏ అలారం మోగదు.
+Plan now	ఇప్పుడే ప్లాన్ చేయండి
+Leave it	వదిలేయండి
+Enjoy your day off. Your alarms are back tomorrow.	సెలవును ఆనందించండి. మీ అలారాలు రేపటి నుండి మళ్లీ పనిచేస్తాయి.
+Your day is off. Plan it now, later, or leave it. Tap to answer.	ఈ రోజు సెలవు. ఇప్పుడే ప్లాన్ చేయండి, తర్వాత చేయండి లేదా వదిలేయండి. సమాధానం ఇవ్వడానికి ట్యాప్ చేయండి.
+No alarm will ring for the rest of today. The slot going on ends now, and the slots still to come count as taken off. Tomorrow starts as usual.	ఈ రోజు మిగిలిన సమయంలో ఏ అలారం మోగదు. జరుగుతున్న స్లాట్ ఇప్పుడే ముగుస్తుంది, రాబోయే స్లాట్‌లు సెలవుగా లెక్కించబడతాయి. రేపు యథావిధిగా మొదలవుతుంది.
+In {1} hours	{1} గంటల్లో
+This evening, {1}	ఈ సాయంత్రం, {1}
+Take the rest of today off?	ఈ రోజు మిగిలిన సమయం సెలవు తీసుకోవాలా?
+Take it off	సెలవు తీసుకోండి
+The day could not be taken off	సెలవు తీసుకోలేకపోయాం
+Your day is off, so no alarm will ring until you plan it again. Plan it now, later, or leave it?	ఈ రోజు సెలవు కాబట్టి, మీరు మళ్లీ ప్లాన్ చేసే వరకు ఏ అలారం మోగదు. ఇప్పుడే ప్లాన్ చేయాలా, తర్వాతా, లేక వదిలేయాలా?
+In 1 hour	1 గంటలో
+Ask me again	మళ్లీ అడగండి
+“{1}” was to end at {2}. Finish it now, and “{3}” starts early. It still ends at {4}, so it gets the time that was left.	“{1}” {2}కి ముగియాల్సి ఉంది. దాన్ని ఇప్పుడే ముగిస్తే “{3}” ముందుగానే మొదలవుతుంది. అది ఇప్పటికీ {4}కే ముగుస్తుంది, కాబట్టి మిగిలిన సమయం దానికి దక్కుతుంది.
+Start “{1}” after a while	“{1}” ను కొంత సేపటి తర్వాత ప్రారంభించండి
+Finish “{1}” early?	“{1}” ను ముందుగానే ముగించాలా?
+Back at {1}, and “{2}” goes on.	{1}కి తిరిగి వస్తారు, “{2}” కొనసాగుతుంది.
+“{1}” starts at {2}.	“{1}” {2}కి మొదలవుతుంది.
+Start “{1}” later	“{1}” ను తర్వాత ప్రారంభించండి
+“{1}” has started	“{1}” మొదలైంది
+Enjoy your break. “{1}” goes on at {2}	బ్రేక్‌ను ఆనందించండి. “{1}” {2}కి కొనసాగుతుంది
+“{1}” starts at {2}	“{1}” {2}కి మొదలవుతుంది
+this slot	ఈ స్లాట్
+the next slot	తదుపరి స్లాట్
+The next slot	తదుపరి స్లాట్
+Take a break first	ముందు బ్రేక్ తీసుకోండి
+Take the rest of today off	ఈ రోజు మిగిలిన సమయం సెలవు తీసుకోండి
+That cannot be done now	ఇది ఇప్పుడు చేయడం సాధ్యం కాదు
+Choose one slot as your start-of-day alarm from its bell on the Routine tab. It has to be the first alarm of the day. It keeps ringing until you start the day, put it off or take the day off. Before you can turn it off you can be asked to solve a sum, take a pause, shake the phone or type a sentence, and you see a motivating quote.	దినచర్య ట్యాబ్‌లో ఒక స్లాట్ గంట నుండి దాన్ని మీ రోజు-ప్రారంభ అలారంగా ఎంచుకోండి. ఇది రోజులో మొదటి అలారం అయి ఉండాలి. మీరు రోజును ప్రారంభించే వరకు, వాయిదా వేసే వరకు లేదా ఆ రోజు సెలవు తీసుకునే వరకు ఇది మోగుతూనే ఉంటుంది. దీన్ని ఆపే ముందు ఒక లెక్క చేయమని, కొంచెం ఆగమని, ఫోన్‌ను ఊపమని లేదా ఒక వాక్యం టైప్ చేయమని అడగవచ్చు, అలాగే ఒక ప్రేరణాత్మక సూక్తి కనిపిస్తుంది.
+Taking the day off silences every alarm for the rest of today. You are asked if you want to plan the day now, later or leave it.	సెలవు తీసుకుంటే ఈ రోజు మిగిలిన సమయంలోని అన్ని అలారాలు ఆగిపోతాయి. తర్వాత రోజును ఇప్పుడే ప్లాన్ చేయాలా, తర్వాతా, లేక వదిలేయాలా అని అడుగుతారు.
+Today’s quote:  “{1}”{2}	ఈ రోజు సూక్తి:  “{1}”{2}
+To turn the alarm off and start the day	అలారం ఆపి రోజును ప్రారంభించడానికి
+Just tap Start my day	“నా రోజును ప్రారంభించండి” పై ట్యాప్ చేస్తే చాలు
+Take a short pause (four slow breaths)	కొంచెం ఆగండి (నాలుగు నెమ్మదైన శ్వాసలు)
+Shake the phone	ఫోన్‌ను ఊపండి
+The alarm keeps ringing until it is done. A phone that cannot sense a shake asks for the sums instead.	ఇది పూర్తయ్యే వరకు అలారం మోగుతూనే ఉంటుంది. ఊపడాన్ని గుర్తించలేని ఫోన్‌లో దానికి బదులుగా లెక్కలు అడుగుతారు.
+Show a motivating quote	ప్రేరణాత్మక సూక్తిని చూపండి
+Offer “Take the day off”	“ఈ రోజు సెలవు తీసుకోండి” ఎంపికను చూపండి
+Locked only while a {1} slot is going on, {2} from {3} to {4}.	{1} స్లాట్ జరుగుతున్నప్పుడు మాత్రమే లాక్ అవుతుంది, {2} {3} నుండి {4} వరకు.
+Locked in the times above, and also whenever a {1} slot is going on.	పైన ఉన్న సమయాల్లో లాక్ అవుతుంది, అలాగే {1} స్లాట్ జరిగినప్పుడల్లా కూడా.
+Locked {1}, {2} to {3}, but only during the activity types below.	లాక్ {1}, {2} నుండి {3} వరకు, కానీ కింద ఉన్న కార్యకలాప రకాల సమయంలో మాత్రమే.
+Only when both hold: the times above and these activity types	రెండూ వర్తించినప్పుడే: పైన ఉన్న సమయాలు మరియు ఈ కార్యకలాప రకాలు
+Also lock in library mode	లైబ్రరీ మోడ్‌లో కూడా లాక్ చేయండి
+While library mode is on, these apps are locked too, whatever the times and activity types say.	లైబ్రరీ మోడ్ ఆన్‌లో ఉన్నప్పుడు, సమయాలు మరియు కార్యకలాప రకాలు ఏం చెప్పినా ఈ యాప్‌లు కూడా లాక్ అవుతాయి.
+Locks during {1}, {2}	{1} సమయంలో లాక్, {2}
+Locked until library mode is switched off	లైబ్రరీ మోడ్ ఆపే వరకు లాక్
+·  and in library mode	  ·  మరియు లైబ్రరీ మోడ్‌లో
+Locks in library mode	లైబ్రరీ మోడ్‌లో లాక్
+Library mode is on	లైబ్రరీ మోడ్ ఆన్‌లో ఉంది
+Until library mode is switched off	లైబ్రరీ మోడ్ ఆపే వరకు
+Break until {1}   ·   {2} left	బ్రేక్ {1} వరకు   ·   {2} మిగిలి ఉంది
+Then back to {1}, which ends at {2}	తర్వాత {1}కి తిరిగి, అది {2}కి ముగుస్తుంది
+Starts at {1}   ·   in {2}	{1}కి మొదలు   ·   {2} లో
+It was to start at {1}, and ends at {2}	ఇది {1}కి మొదలవ్వాల్సి ఉంది, {2}కి ముగుస్తుంది
+Started late, at {1} instead of {2}	ఆలస్యంగా మొదలైంది, {2}కి బదులు {1}కి
+Started early, at {1} instead of {2}	ముందుగానే మొదలైంది, {2}కి బదులు {1}కి
+Carried on, so it ends at {1} instead of {2}	కొనసాగించారు, కాబట్టి ఇది {2}కి బదులు {1}కి ముగుస్తుంది
+Finished early, at {1} instead of {2}	ముందుగానే ముగిసింది, {2}కి బదులు {1}కి
+DAY OFF	సెలవు రోజు
+STARTING LATER	తర్వాత మొదలవుతుంది
+Enjoy your day off	సెలవును ఆనందించండి
+No alarm will ring until you plan the day again, or tomorrow.	మీరు రోజును మళ్లీ ప్లాన్ చేసే వరకు, లేదా రేపటి వరకు, ఏ అలారం మోగదు.
+Plan the day	రోజును ప్లాన్ చేయండి
+Back to my schedule	నా షెడ్యూల్‌కి తిరిగి వెళ్లండి
+Your schedule is back. The alarms ring again.	మీ షెడ్యూల్ తిరిగి వచ్చింది. అలారాలు మళ్లీ మోగుతాయి.
+Finish early	ముందుగానే ముగించండి
+Library mode	లైబ్రరీ మోడ్
+On	ఆన్
+Off	ఆఫ్
+Every alarm only vibrates, with no sound.	ప్రతి అలారం కేవలం వైబ్రేట్ అవుతుంది, శబ్దం ఉండదు.
+Keeps every alarm silent, with vibration only, for the library, a class or an exam.	లైబ్రరీ, క్లాస్ లేదా పరీక్ష కోసం ప్రతి అలారాన్ని నిశ్శబ్దంగా ఉంచి, వైబ్రేషన్ మాత్రమే ఇస్తుంది.
+Turn off	ఆఫ్ చేయండి
+Change the hours	సమయాలను మార్చండి
+1 hour	1 గంట
+2 hours	2 గంటలు
+4 hours	4 గంటలు
+Until I switch it off	నేను ఆపే వరకు
+Every alarm only vibrates while it is on, with no sound. Apps in locks that include library mode are locked too. How long?	ఇది ఆన్‌లో ఉన్నంతసేపు ప్రతి అలారం కేవలం వైబ్రేట్ అవుతుంది, శబ్దం ఉండదు. లైబ్రరీ మోడ్ ఉన్న లాక్‌లలోని యాప్‌లు కూడా లాక్ అవుతాయి. ఎంతసేపటికి?
+On until {1}	{1} వరకు ఆన్‌లో
+Off. Next: {1}	ఆఫ్. తదుపరిది: {1}
+On until you switch it off	మీరు ఆపే వరకు ఆన్‌లో
+For the library, a class or an exam. While library mode is on, every alarm of the app only vibrates, with no sound: the start-of-day alarm, the slot alarms, the bedtime question and the break timers. The questions still appear, and groups of apps set to lock in library mode are locked.	లైబ్రరీ, క్లాస్ లేదా పరీక్ష కోసం. లైబ్రరీ మోడ్ ఆన్‌లో ఉన్నప్పుడు యాప్‌లోని ప్రతి అలారం కేవలం వైబ్రేట్ అవుతుంది, శబ్దం ఉండదు: రోజు-ప్రారంభ అలారం, స్లాట్ అలారాలు, నిద్ర ప్రశ్న మరియు బ్రేక్ టైమర్‌లు. ప్రశ్నలు ఇంకా కనిపిస్తాయి, మరియు లైబ్రరీ మోడ్‌లో లాక్ అయ్యేలా సెట్ చేసిన యాప్‌ల సమూహాలు లాక్ అవుతాయి.
+Calls and messages stop making sound as well. When library mode ends, the ringer goes back to how it was, unless you changed it yourself. If your phone asks for Do Not Disturb access to do this, the ringer is left as it is.	కాల్స్ మరియు సందేశాలు కూడా శబ్దం చేయడం ఆపేస్తాయి. లైబ్రరీ మోడ్ ముగిసినప్పుడు, మీరే మార్చకపోతే, రింగర్ మునుపటిలా మారుతుంది. దీని కోసం మీ ఫోన్ “అంతరాయం కలిగించవద్దు” అనుమతిని అడిగితే, రింగర్ ఉన్నట్లే ఉంటుంది.
+It runs from {1} into the next morning, until {2}.	ఇది {1} నుండి మరుసటి ఉదయం {2} వరకు కొనసాగుతుంది.
+Turn it on by itself at fixed hours	నిర్ణీత సమయాల్లో దానంతట అదే ఆన్ చేయండి
+Also put the phone on vibrate	ఫోన్‌ను వైబ్రేట్‌లో కూడా ఉంచండి
+Off, by the clock	ఆఫ్, సమయం ప్రకారం
+Pick at least one day, or it never comes on.	కనీసం ఒక రోజును ఎంచుకోండి, లేకపోతే ఇది ఎప్పటికీ ఆన్ కాదు.
+Delayed start	ఆలస్యమైన ప్రారంభం
+Day off	సెలవు
+Make the schedule for the rest of today, then save it	ఈ రోజు మిగిలిన సమయానికి షెడ్యూల్ రూపొందించి, తర్వాత సేవ్ చేయండి
+STARTS AT  {1}	{1}కి మొదలు
+LIBRARY MODE	లైబ్రరీ మోడ్
+DAY OFF  ·  no alarms	సెలవు  ·  అలారాలు లేవు
+STARTED LATE	ఆలస్యంగా మొదలు
+RAN LONGER	ఎక్కువసేపు సాగింది
+STARTED EARLY	ముందుగా మొదలు
+FINISHED EARLY	ముందుగా ముగిసింది
+Open Google Play, then your profile picture, Payments and subscriptions, Subscriptions.	Google Play తెరిచి, మీ ప్రొఫైల్ చిత్రం, చెల్లింపులు మరియు సబ్‌స్క్రిప్షన్‌లు, ఆపై సబ్‌స్క్రిప్షన్‌లు ఎంచుకోండి.
+{1} (build {2})	{1} (బిల్డ్ {2})
+I am awake and ready to begin	నేను మేల్కొన్నాను ప్రారంభించడానికి సిద్ధంగా ఉన్నాను
+Today I do what I planned	ఈ రోజు నేను ప్లాన్ చేసినదే చేస్తాను
+I start my day on purpose	నేను నా రోజును ఉద్దేశంతో ప్రారంభిస్తాను
+A good day begins right now	మంచి రోజు ఇప్పుడే మొదలవుతుంది
+I rise and I start	నేను లేచి ప్రారంభిస్తాను
+{1}, {2} to {3}.	{1}, {2} నుండి {3} వరకు.
+{1}, {2} to {3}	{1}, {2} నుండి {3} వరకు
+The journey of a thousand miles begins with a single step.	వెయ్యి మైళ్ల ప్రయాణం ఒక్క అడుగుతో మొదలవుతుంది.
+It does not matter how slowly you go as long as you do not stop.	ఎంత నెమ్మదిగా వెళ్లినా పర్వాలేదు, ఆగకుండా ఉంటే చాలు.
+Arise, awake, and stop not till the goal is reached.	లేవండి, మేల్కొనండి, లక్ష్యం చేరే వరకు ఆగకండి.
+Dream, dream, dream. Dreams transform into thoughts and thoughts result in action.	కలలు కనండి, కలలు కనండి, కలలు కనండి. కలలు ఆలోచనలుగా మారతాయి, ఆలోచనలు చర్యగా మారతాయి.
+If you want to shine like a sun, first burn like a sun.	సూర్యుడిలా ప్రకాశించాలంటే, ముందు సూర్యుడిలా మండాలి.
+Look to this day, for it is life, the very life of life.	ఈ రోజును చూడండి, ఇదే జీవితం, జీవితానికే జీవం.
+At dawn, when you have trouble getting out of bed, tell yourself: I have to go to work as a human being.	తెల్లవారుజామున మంచం దిగడం కష్టంగా అనిపిస్తే, మీకు మీరే చెప్పుకోండి: నేను మనిషిగా పనికి వెళ్లాలి.
+Begin at once to live, and count each separate day as a separate life.	వెంటనే జీవించడం మొదలుపెట్టండి, ప్రతి రోజునూ ఒక ప్రత్యేక జీవితంగా భావించండి.
+While we are postponing, life speeds by.	మనం వాయిదా వేస్తూ ఉండగానే జీవితం వేగంగా గడిచిపోతుంది.
+The early morning has gold in its mouth.	తెల్లవారుజాము నోటిలో బంగారం ఉంటుంది.
+You may delay, but time will not.	మీరు ఆలస్యం చేయవచ్చు, కానీ కాలం చేయదు.
+Lost time is never found again.	పోయిన కాలం మళ్లీ దొరకదు.
+Energy and persistence conquer all things.	శక్తి మరియు పట్టుదల అన్నింటినీ గెలుస్తాయి.
+We are what we repeatedly do. Excellence, then, is not an act, but a habit.	మనం పదేపదే చేసేదే మనం. కాబట్టి ఉత్తమత్వం ఒక చర్య కాదు, ఒక అలవాటు.
+Do what you can, with what you have, where you are.	మీరు చేయగలిగింది చేయండి, మీ దగ్గర ఉన్నదానితో, మీరు ఉన్నచోటే.
+It always seems impossible until it is done.	పని పూర్తయ్యే వరకు అది ఎప్పుడూ అసాధ్యంగానే అనిపిస్తుంది.
+Courage is not the absence of fear, but the triumph over it.	ధైర్యం అంటే భయం లేకపోవడం కాదు, భయాన్ని జయించడం.
+Start where you are. Use what you have. Do what you can.	మీరు ఉన్నచోటే మొదలుపెట్టండి. మీ దగ్గర ఉన్నదాన్ని వాడండి. మీరు చేయగలిగింది చేయండి.
+Make each day your masterpiece.	ప్రతి రోజునూ మీ కళాఖండంగా మలచుకోండి.
+Success is the sum of small efforts, repeated day in and day out.	విజయం అంటే చిన్న ప్రయత్నాల మొత్తం, వాటిని రోజురోజూ పునరావృతం చేయడం.
+How we spend our days is, of course, how we spend our lives.	మన రోజులను ఎలా గడుపుతామో, అలాగే మన జీవితాన్ని గడుపుతాం.
+Do not watch the clock; do what it does. Keep going.	గడియారం వైపు చూడకండి; అది చేసేదే చేయండి. సాగుతూ ఉండండి.
+Discipline is the bridge between goals and accomplishment.	క్రమశిక్షణ లక్ష్యాలకు, సాధనకు మధ్య వంతెన.
+The only way to do great work is to love what you do.	గొప్ప పని చేయడానికి ఏకైక మార్గం, మీరు చేసే పనిని ప్రేమించడమే.
+Small deeds done are better than great deeds planned.	ప్రణాళిక వేసిన గొప్ప పనుల కంటే చేసిన చిన్న పనులే మేలు.
+What you do today can improve all your tomorrows.	మీరు ఈ రోజు చేసేది మీ రేపటి రోజులన్నింటినీ మెరుగుపరచగలదు.
+A year from now you may wish you had started today.	ఒక సంవత్సరం తర్వాత, ఈ రోజే మొదలుపెట్టి ఉంటే బాగుండేదని మీకు అనిపించవచ్చు.
+We must use time as a tool, not as a couch.	మనం కాలాన్ని పనిముట్టుగా వాడాలి, సోఫాలా కాదు.
+The key is not to prioritize what is on your schedule, but to schedule your priorities.	ముఖ్యం ఏమిటంటే, మీ షెడ్యూల్‌లో ఉన్నవాటికి ప్రాధాన్యత ఇవ్వడం కాదు, మీ ప్రాధాన్యతలను షెడ్యూల్‌లో పెట్టుకోవడం.
+Each day is a little life.	ప్రతి రోజూ ఒక చిన్న జీవితం.
+With the new day comes new strength and new thoughts.	కొత్త రోజుతో కొత్త బలం, కొత్త ఆలోచనలు వస్తాయి.
+The sun itself is weak when it first rises, and gathers strength and courage as the day goes on.	సూర్యుడు కూడా ఉదయించేటప్పుడు బలహీనంగానే ఉంటాడు, రోజు గడిచేకొద్దీ బలాన్ని, ధైర్యాన్ని సమకూర్చుకుంటాడు.
+Nothing will work unless you do.	మీరు పని చేయకపోతే ఏదీ పని చేయదు.
+Happiness depends upon ourselves.	సంతోషం మన మీదే ఆధారపడి ఉంటుంది.
+and	మరియు
+Each slot can ring when it starts and ask one question: carry on, or change the plan? At bedtime it asks when you went to sleep, and if you need more time it tells you what that costs in sleep. The question comes up by itself, and again when you wake the phone or come back to the home screen. The start-of-day alarm can ask for a sum, a short pause, a shake or a sentence before it stops, and shows a motivating quote. Finished early? Tap Finish early on Home. Library mode keeps every alarm silent, with only vibration.	ప్రతి స్లాట్ మొదలైనప్పుడు మోగి ఒక ప్రశ్న అడగవచ్చు: కొనసాగాలా, లేదా ప్రణాళిక మార్చాలా? నిద్ర సమయంలో మీరు ఎప్పుడు నిద్రపోయారో అడుగుతుంది, మీకు ఇంకా సమయం కావాలంటే నిద్రలో దాని ఖరీదు ఎంతో చెబుతుంది. ప్రశ్న దానంతట అదే వస్తుంది, ఫోన్‌ను మేల్కొలిపినప్పుడు లేదా హోమ్ స్క్రీన్‌కు తిరిగి వచ్చినప్పుడు మళ్లీ వస్తుంది. రోజు-ప్రారంభ అలారం ఆగే ముందు ఒక లెక్క, కొంచెం ఆగడం, ఫోన్‌ను ఊపడం లేదా ఒక వాక్యం అడగవచ్చు, ఒక ప్రేరణాత్మక సూక్తిని కూడా చూపిస్తుంది. ముందే అయిపోయిందా? హోమ్‌లో “ముందుగానే ముగించండి” పై ట్యాప్ చేయండి. లైబ్రరీ మోడ్ ప్రతి అలారాన్ని నిశ్శబ్దంగా ఉంచి, వైబ్రేషన్ మాత్రమే ఇస్తుంది.
+Shut the apps that eat your time for hours you choose: every day or on some days, or just for the next hour. A locked app is greyed in the list, and the lock screen shows when it opens again. You can break a lock by waiting half a minute and typing a sentence. Free: lock two apps. Pro: groups of apps, as many locks as you like, and strict locks that cannot be broken. A group can also lock only while an activity type such as Study is going on, only when both the hours and the activity hold, or in library mode. Set it up in the home settings.	మీ సమయాన్ని తినేసే యాప్‌లను మీరు ఎంచుకున్న గంటల కోసం మూసివేయండి: ప్రతి రోజు లేదా కొన్ని రోజులు, లేదా తర్వాతి ఒక గంట మాత్రమే. లాక్ చేసిన యాప్ జాబితాలో బూడిద రంగులో ఉంటుంది, అది మళ్లీ ఎప్పుడు తెరుచుకుంటుందో లాక్ స్క్రీన్ చూపిస్తుంది. అర నిమిషం వేచి ఉండి ఒక వాక్యం టైప్ చేసి లాక్‌ను విరగొట్టవచ్చు. ఉచితం: రెండు యాప్‌లను లాక్ చేయండి. Pro: యాప్‌ల సమూహాలు, మీకు కావలసినన్ని లాక్‌లు, మరియు విరగొట్టలేని కఠినమైన లాక్‌లు. ఒక సమూహం చదువు వంటి కార్యకలాప రకం జరుగుతున్నప్పుడు మాత్రమే, గంటలు మరియు కార్యకలాపం రెండూ వర్తించినప్పుడు మాత్రమే, లేదా లైబ్రరీ మోడ్‌లో కూడా లాక్ కావచ్చు. హోమ్ సెట్టింగ్‌లలో సెట్ చేయండి.
+Lock by	లాక్ చేసే విధానం
+Time	సమయం
+Time + activity	సమయం + కార్యకలాపం
+Time or activity	సమయం లేదా కార్యకలాపం
+Locked at the hours you set, whatever you are doing.	మీరు సెట్ చేసిన గంటల్లో లాక్ అవుతుంది, మీరు ఏమి చేస్తున్నా సరే.
+Locked whenever a slot of the types you pick is going on, at any hour.	మీరు ఎంచుకున్న రకాల స్లాట్ జరుగుతున్నప్పుడల్లా లాక్ అవుతుంది, ఏ సమయంలోనైనా.
+Locked only when a slot of the types you pick is going on inside the hours you set.	మీరు ఎంచుకున్న రకాల స్లాట్ మీరు సెట్ చేసిన గంటల్లో జరుగుతున్నప్పుడు మాత్రమే లాక్ అవుతుంది.
+Locked in the hours you set, and also whenever a slot of the types you pick is going on.	మీరు సెట్ చేసిన గంటల్లో లాక్ అవుతుంది, అలాగే మీరు ఎంచుకున్న రకాల స్లాట్ జరిగినప్పుడు కూడా.
+More options	మరిన్ని ఎంపికలు
+No activity types chosen yet.	ఇంకా ఏ కార్యకలాప రకమూ ఎంచుకోలేదు.
+A break, a slot you took off and the time between slots do not lock.	బ్రేక్, మీరు తొలగించిన స్లాట్, స్లాట్ల మధ్య సమయం లాక్ చేయవు.
+Choose at least one activity type	కనీసం ఒక కార్యకలాప రకాన్ని ఎంచుకోండి
+Locked while a {1} slot is going on.	{1} స్లాట్ జరుగుతున్నప్పుడు లాక్.
+Phone use in slots	స్లాట్‌లలో ఫోన్ వినియోగం
+Off. Mark the phone use that is not part of a slot's activity	ఆఫ్. స్లాట్ కార్యకలాపంలో భాగం కాని ఫోన్ వినియోగాన్ని గుర్తించండి
+On. Every app counts as phone use	ఆన్. ప్రతి యాప్ ఫోన్ వినియోగంగా లెక్కించబడుతుంది
+On. Apps chosen for 1 activity	ఆన్. 1 కార్యకలాపానికి యాప్‌లు ఎంచుకున్నారు
+On. Apps chosen for {1} activities	ఆన్. {1} కార్యకలాపాలకు యాప్‌లు ఎంచుకున్నారు
+See when you pick up the phone during a slot. The home screen marks it with the exact times and the reports count it. Apps you choose for an activity are part of it and are never marked.	స్లాట్ సమయంలో మీరు ఫోన్ ఎప్పుడు తీసుకుంటారో చూడండి. హోమ్ స్క్రీన్ దాన్ని ఖచ్చితమైన సమయాలతో గుర్తిస్తుంది, నివేదికలు దాన్ని లెక్కిస్తాయి. కార్యకలాపం కోసం మీరు ఎంచుకున్న యాప్‌లు అందులో భాగమే, వాటిని ఎప్పుడూ గుర్తించరు.
+Show phone use during slots	స్లాట్‌ల సమయంలో ఫోన్ వినియోగాన్ని చూపించు
+Needed to see which apps are used, and when	ఏ యాప్‌లు ఎప్పుడు వాడారో చూడటానికి ఇది అవసరం
+Apps that are part of an activity	కార్యకలాపంలో భాగమైన యాప్‌లు
+Choose for each activity the apps it needs (a notes app for Study, say). Any other app used during that activity's slot is marked. This app is always part of the slot.	ప్రతి కార్యకలాపానికి అవసరమైన యాప్‌లను ఎంచుకోండి (ఉదా. చదువుకు నోట్స్ యాప్). ఆ కార్యకలాపం స్లాట్ సమయంలో వాడిన ఇతర ఏ యాప్ అయినా గుర్తించబడుతుంది. ఈ యాప్ ఎల్లప్పుడూ స్లాట్‌లో భాగమే.
+No apps chosen yet	ఇంకా యాప్‌లు ఎంచుకోలేదు
+1 activity has apps	1 కార్యకలాపంలో యాప్‌లు ఉన్నాయి
+{1} activities have apps	{1} కార్యకలాపాల్లో యాప్‌లు ఉన్నాయి
+No apps chosen	యాప్‌లు ఏవీ ఎంచుకోలేదు
+Choose	ఎంచుకోండి
+Up to {1} apps for one activity	ఒక కార్యకలాపానికి గరిష్ఠంగా {1} యాప్‌లు
+Apps for {1}	{1} కోసం యాప్‌లు
+Up to {1} activities can have apps	గరిష్ఠంగా {1} కార్యకలాపాలకు యాప్‌లు ఎంచుకోవచ్చు
+This clears the swipes, the look, the hidden apps, the pause rules, the locked groups and the phone use choices. Your routine and reports are not touched.	ఇది స్వైప్‌లు, లుక్, దాచిన యాప్‌లు, విరామ నియమాలు, లాక్ చేసిన సమూహాలు మరియు ఫోన్ వినియోగ ఎంపికలను తొలగిస్తుంది. మీ దినచర్య మరియు నివేదికలు మారవు.
+Slot analysis	స్లాట్ విశ్లేషణ
+How each slot went	ప్రతి స్లాట్ ఎలా సాగింది
+No slot has run yet, so there is nothing to look at.	ఇంకా ఏ స్లాట్ జరగలేదు, కాబట్టి చూడటానికి ఏమీ లేదు.
+Focus is the share of a slot's time with no other phone use. Apps chosen for an activity do not count against it.	ఫోకస్ అంటే స్లాట్ సమయంలో ఇతర ఫోన్ వినియోగం లేని భాగం. కార్యకలాపం కోసం ఎంచుకున్న యాప్‌లు దీనికి వ్యతిరేకంగా లెక్కించబడవు.
+Time devoted	కేటాయించిన సమయం
+Other phone use	ఇతర ఫోన్ వినియోగం
+Longest focus	అతి పొడవైన ఫోకస్
+By slot	స్లాట్ వారీగా
+By activity	కార్యకలాపం వారీగా
+selected	ఎంచుకున్నది
+not selected	ఎంచుకోలేదు
+No activity has run yet.	ఇంకా ఏ కార్యకలాపం జరగలేదు.
+1 other slot has not started or was taken off.	మరో 1 స్లాట్ ప్రారంభం కాలేదు లేదా తొలగించబడింది.
+{1} other slots have not started or were taken off.	మరో {1} స్లాట్‌లు ప్రారంభం కాలేదు లేదా తొలగించబడ్డాయి.
+focus	ఫోకస్
+{1}% focus	{1}% ఫోకస్
+Phone use was not available	ఫోన్ వినియోగ సమాచారం అందుబాటులో లేదు
+Devoted {1} of {2}	{2}లో {1} కేటాయించారు
+In the slot	స్లాట్‌లో
+Timeline	కాలరేఖ
+No other phone use in this slot.	ఈ స్లాట్‌లో ఇతర ఫోన్ వినియోగం లేదు.
+Red marks show other phone use.	ఎరుపు గుర్తులు ఇతర ఫోన్ వినియోగాన్ని చూపుతాయి.
+Other phone use, with the exact times	ఇతర ఫోన్ వినియోగం, ఖచ్చితమైన సమయాలతో
+Showing the latest {1} of {2}.	{2}లో తాజా {1} చూపబడుతున్నాయి.
+The exact times were not saved for this day.	ఈ రోజు ఖచ్చితమైన సమయాలు సేవ్ కాలేదు.
+Apps used in this slot	ఈ స్లాట్‌లో వాడిన యాప్‌లు
+Time in slots	స్లాట్‌లలో సమయం
+Interruptions	అంతరాయాలు
+Apps used in these slots	ఈ స్లాట్‌లలో వాడిన యాప్‌లు
+Phone in total	మొత్తం ఫోన్ వినియోగం
+{1} of the phone time was in apps chosen for this activity.	ఫోన్ సమయంలో {1} ఈ కార్యకలాపం కోసం ఎంచుకున్న యాప్‌లలో ఉంది.
+Timeline of the slot: no other phone use	స్లాట్ కాలరేఖ: ఇతర ఫోన్ వినియోగం లేదు
+Timeline of the slot: 1 stretch of other phone use	స్లాట్ కాలరేఖ: ఇతర ఫోన్ వినియోగం యొక్క 1 దశ
+Timeline of the slot: {1} stretches of other phone use	స్లాట్ కాలరేఖ: ఇతర ఫోన్ వినియోగం యొక్క {1} దశలు
+Devoted {1}	కేటాయించిన సమయం {1}
+No other phone use	ఇతర ఫోన్ వినియోగం లేదు
+Longest focus {1}	అతి పొడవైన ఫోకస్ {1}
+Other phone use {1}	ఇతర ఫోన్ వినియోగం {1}
+Devoted {1}  ·  No other phone use	కేటాయించిన సమయం {1}  ·  ఇతర ఫోన్ వినియోగం లేదు
+Devoted {1}  ·  Other phone use {2}	కేటాయించిన సమయం {1}  ·  ఇతర ఫోన్ వినియోగం {2}
+Focus, slot by slot	ఫోకస్, స్లాట్ వారీగా
+{1}  +{2} more	{1}  +మరో {2}
+What I noticed	గమనించినవి
+Try this	దీన్ని ప్రయత్నించండి
+Watch	గమనించండి
+Set up	సెటప్ చేయండి
+{1} need attention	{1} మెరుగుపరచాలి
+{1} going well	{1} బాగా సాగుతున్నాయి
+{1} not set up yet	{1} సెటప్ చేయాలి
+A slot you often take off	తరచుగా తొలగించే స్లాట్
+A slot you often rename	తరచుగా పేరు మార్చే స్లాట్
+Late to bed	ఆలస్యంగా నిద్రపోవడం
+Phone during a task	పని సమయంలో ఫోన్
+Phone before bed	నిద్రకు ముందు ఫోన్
+One app takes the most	ఒక యాప్ ఎక్కువ సమయం తీసుకుంటోంది
+Pauses that are skipped	వదిలేస్తున్న విరామాలు
+You stopped yourself	మీరు మిమ్మల్ని ఆపుకున్నారు
+Time that is not planned	ప్రణాళిక లేని సమయం
+A plan that is too long	చాలా పొడవైన ప్రణాళిక
+Little time to rest	విశ్రాంతికి తక్కువ సమయం
+A habit that works	ఫలితమిచ్చే అలవాటు
+A solid day	చక్కని రోజు
+Not enough days yet	ఇంకా తగినన్ని రోజులు కాలేదు
+You took off {1} on {2} of the last {3} days.	గత {3} రోజుల్లో {2} రోజులు మీరు {1}ని తొలగించారు.
+You renamed {1} to {2} on {3} days.	{3} రోజులు మీరు {1} పేరును {2}గా మార్చారు.
+You went to sleep about {1} late on average over the last {2} nights.	గత {2} రాత్రుల్లో మీరు సగటున సుమారు {1} ఆలస్యంగా నిద్రపోయారు.
+You spent {1} on your phone during {2} ({3}% of the block).	{2} సమయంలో మీరు ఫోన్‌పై {1} గడిపారు (బ్లాక్‌లో {3}%).
+You used the phone for {1} in the hour before bed.	నిద్రకు ముందు గంటలో మీరు ఫోన్‌ను {1} వాడారు.
+{1} took {2}, {3}% of your phone time.	{1} {2} తీసుకుంది, అంటే మీ ఫోన్ సమయంలో {3}%.
+The home screen paused you {1} times and you opened the app anyway {2} times; {3} pulled you most.	హోమ్ స్క్రీన్ మిమ్మల్ని {1} సార్లు ఆపింది, అయినా మీరు {2} సార్లు యాప్‌ను తెరిచారు; {3} మిమ్మల్ని ఎక్కువగా లాగింది.
+You stopped yourself {1} times at the home screen.	మీరు హోమ్ స్క్రీన్‌లో మిమ్మల్ని మీరు {1} సార్లు ఆపుకున్నారు.
+{1} of your 24 hours are not planned.	మీ 24 గంటల్లో {1} ప్రణాళిక చేయలేదు.
+Your blocks add up to {1} more than 24 hours.	మీ బ్లాక్‌లన్నీ కలిపి 24 గంటల కంటే {1} ఎక్కువ.
+Only {1}% of your awake time is rest.	మీరు మేల్కొని ఉండే సమయంలో కేవలం {1}% మాత్రమే విశ్రాంతి.
+You have kept {1} for {2} days in a row.	మీరు {1}ని వరుసగా {2} రోజులు పాటించారు.
+A solid day.	చక్కని రోజు.
+Not enough days yet for suggestions.	సూచనల కోసం ఇంకా తగినన్ని రోజులు కాలేదు.
+Make it shorter, or move it to a quieter time.	దీన్ని చిన్నదిగా చేయండి, లేదా ప్రశాంత సమయానికి మార్చండి.
+Change it in the routine so the plan matches your day.	ప్రణాళిక మీ రోజుకు సరిపోయేలా దినచర్యలో దీన్ని మార్చండి.
+Move bedtime and wake-up later in the app, or start winding down earlier.	యాప్‌లో నిద్ర మరియు లేచే సమయాన్ని ఆలస్యం చేయండి, లేదా ముందుగానే విశ్రాంతికి సిద్ధం కావడం మొదలుపెట్టండి.
+Keep the phone in another room for that block.	ఆ బ్లాక్ సమయంలో ఫోన్‌ను వేరే గదిలో ఉంచండి.
+A screen-free hour helps you fall asleep.	స్క్రీన్ లేని ఒక గంట నిద్ర పట్టడానికి సహాయపడుతుంది.
+Set a daily limit for it in Settings > Home screen, or in Android's Digital Wellbeing.	సెట్టింగ్‌లు > హోమ్ స్క్రీన్‌లో, లేదా Android డిజిటల్ వెల్‌బీయింగ్‌లో దీనికి రోజువారీ పరిమితి పెట్టండి.
+Make it Strict, or give it a daily limit, in Settings > Home screen.	దీన్ని కఠినంగా చేయండి, లేదా సెట్టింగ్‌లు > హోమ్ స్క్రీన్‌లో రోజువారీ పరిమితి ఇవ్వండి.
+That is focus working.	ఫోకస్ ఇలాగే పనిచేస్తుంది.
+Add a block for that time.	ఆ సమయానికి ఒక బ్లాక్ జోడించండి.
+Shorten something.	ఏదైనా ఒకదాన్ని చిన్నది చేయండి.
+Short breaks between tasks help you stay focused.	పనుల మధ్య చిన్న విరామాలు ఫోకస్ నిలుపుకోవడానికి సహాయపడతాయి.
+It is a good place for your hardest work.	మీ అత్యంత కష్టమైన పనికి ఇది మంచి సమయం.
+Keep the same routine tomorrow.	రేపు కూడా ఇదే దినచర్యను కొనసాగించండి.
+Keep the alarms on and check back in a few days.	అలారాలను ఆన్‌లో ఉంచి, కొన్ని రోజుల తర్వాత మళ్లీ చూడండి.
+NO PHONE USE  ·  focused {1}	ఫోన్ వినియోగం లేదు  ·  {1} ఫోకస్‌లో
+PHONE IN USE NOW  ·  {1} so far	ఫోన్ ఇప్పుడు వాడుకలో  ·  ఇప్పటివరకు {1}
+PHONE USE  ·  {1}	ఫోన్ వినియోగం  ·  {1}
+Focused for {1} since	అప్పటి నుండి {1} ఫోకస్‌లో
+phone {1}	ఫోన్ {1}
+Watch {1} short videos and everything in Pro is open for 24 hours. Nothing is charged. When the day is up, what you set up with it goes back to the free version.	{1} చిన్న వీడియోలు చూడండి, 24 గంటల పాటు Proలోని అన్నీ తెరుచుకుంటాయి. ఎలాంటి ఛార్జీ ఉండదు. రోజు ముగిశాక, దీనితో మీరు సెట్ చేసినవి ఉచిత వెర్షన్‌కు తిరిగి వెళ్తాయి.
+Free and Pro	ఉచితం మరియు Pro
+Everything the app does, side by side. Open a group to see what each one gives.	యాప్ చేసే ప్రతిదీ, పక్కపక్కనే. ప్రతి సమూహం ఏమి ఇస్తుందో చూడటానికి దాన్ని తెరవండి.
+Your whole day, and today's report	మీ రోజు మొత్తం, మరియు ఈ రోజు నివేదిక
+Everything, and no ads	అన్నీ, ప్రకటనలు లేకుండా
+Try it, or keep it	ప్రయత్నించండి, లేదా ఉంచుకోండి
+You have Pro	మీ దగ్గర Pro ఉంది
+Try Pro free for a day	Proని ఒక రోజు ఉచితంగా ప్రయత్నించండి
+Everything in this list is open for you, and there are no ads.	ఈ జాబితాలోని అన్నీ మీకు తెరిచి ఉన్నాయి, ప్రకటనలు కూడా లేవు.
+See Pro plans	Pro ప్లాన్‌లు చూడండి
+pauses for more than {1}	{1} కంటే ఎక్కువ వాటికి విరామాలు
+more than {1} in a lock	ఒక లాక్‌లో {1} కంటే ఎక్కువ
+Pauses: more than {1}	విరామాలు: {1} కంటే ఎక్కువ
+Locks: more than {1} in a lock	లాక్‌లు: ఒక లాక్‌లో {1} కంటే ఎక్కువ
+goals	లక్ష్యాలు
+the deeper analysis in Performance	పనితీరులో లోతైన విశ్లేషణ
+Goals: a goal for a slot, with its own to-dos	లక్ష్యాలు: ఒక స్లాట్‌కు లక్ష్యం, దాని సొంత చేయవలసిన పనుల జాబితాతో
+Performance: slot analysis, habits, phone use in slots	పనితీరు: స్లాట్ విశ్లేషణ, అలవాట్లు, స్లాట్‌లలో ఫోన్ వినియోగం
+Deeper analysis	లోతైన విశ్లేషణ
+everything in Pro	Proలోని అన్నీ
+Notes worked out from your last days: where the day slips, what is going well, and one thing to try. Part of Pro.	మీ గత రోజుల నుండి తీసిన గమనికలు: రోజు ఎక్కడ జారిపోతోంది, ఏది బాగా సాగుతోంది, ప్రయత్నించడానికి ఒక విషయం. Proలో భాగం.
+Pause rules for more than {1}	{1} కంటే ఎక్కువ వాటికి విరామ నియమాలు
+Free: a pause rule for {1} ({2} used). Pro has no limit.	ఉచితం: {1} కోసం ఒక విరామ నియమం ({2} వాడారు). Proలో పరిమితి లేదు.
+Every {1} slot	ప్రతి {1} స్లాట్
+Locking more than {1} (a group of apps)	{1} కంటే ఎక్కువ లాక్ చేయడం (యాప్‌ల సమూహం)
+Apps to lock ({1} free)	లాక్ చేయాల్సిన యాప్‌లు ({1} ఉచితం)
+time reached	సమయం చేరుకుంది
+Setting a goal	లక్ష్యం పెట్టడం
+Any day with this slot	ఈ స్లాట్ ఉన్న ఏ రోజైనా
+Add a slot to your routine first (Routine tab)	ముందుగా మీ దినచర్యకు ఒక స్లాట్ జోడించండి (దినచర్య ట్యాబ్)
+Slot	స్లాట్
+To-do list (optional)	చేయవలసిన పనుల జాబితా (ఐచ్ఛికం)
+The list is full	జాబితా నిండిపోయింది
+That is on the list already	అది ఇప్పటికే జాబితాలో ఉంది
+Phone use in slots · Pro	స్లాట్‌లలో ఫోన్ వినియోగం · Pro
+Your choices are kept and work again with Pro.	మీ ఎంపికలు అలాగే ఉంటాయి, Proతో మళ్లీ పనిచేస్తాయి.
+Days · Pro	రోజులు · Pro
+The week chart, your average score and the tips that come from it. Today's report stays free.	వారం చార్ట్, మీ సగటు స్కోర్ మరియు దాని నుండి వచ్చే సూచనలు. ఈ రోజు నివేదిక ఉచితంగానే ఉంటుంది.
+Saved days are part of Pro	సేవ్ చేసిన రోజులు Proలో భాగం
+Open the report of any past day, with its slot analysis and a PDF to save or share. Today's report stays free.	గడిచిన ఏ రోజు నివేదికనైనా తెరవండి, దాని స్లాట్ విశ్లేషణ మరియు సేవ్ చేయడానికి లేదా షేర్ చేయడానికి PDFతో. ఈ రోజు నివేదిక ఉచితంగానే ఉంటుంది.
+Free: {1}. Pro: any number, strict and playful	ఉచితం: {1}. Pro: ఎన్నైనా, కఠినమైన మరియు సరదా విరామాలు
+Free: {1}, {2}. Pro: groups and strict locks	ఉచితం: {1}, {2}. Pro: సమూహాలు మరియు కఠినమైన లాక్‌లు
+Included	చేరినవి
+Home screen and live wallpaper of your day	మీ రోజు హోమ్ స్క్రీన్ మరియు లైవ్ వాల్‌పేపర్
+Slot alarms that ask one question	ఒక ప్రశ్న అడిగే స్లాట్ అలారాలు
+Start-of-day alarm, finish early, breaks, library mode	రోజు ప్రారంభ అలారం, ముందే ముగించడం, విరామాలు, లైబ్రరీ మోడ్
+Backup to your own Google Drive	మీ సొంత Google Driveలో బ్యాకప్
+Home screen and alarms	హోమ్ స్క్రీన్ మరియు అలారాలు
+All free	అన్నీ ఉచితం
+A to-do list for every slot	ప్రతి స్లాట్‌కు చేయవలసిన పనుల జాబితా
+To-dos that repeat every day or on chosen days	ప్రతిరోజూ లేదా ఎంచుకున్న రోజుల్లో పునరావృతమయ్యే చేయవలసిన పనులు
+To-dos	చేయవలసిన పనుల జాబితాలు
+Today's report, with a PDF to save or share	ఈ రోజు నివేదిక, సేవ్ చేయడానికి లేదా షేర్ చేయడానికి PDFతో
+Every saved day	సేవ్ చేసిన ప్రతి రోజు
+The week view and its tips	వారం వీక్షణ మరియు దాని సూచనలు
+Slot analysis: focus and phone use, slot by slot	స్లాట్ విశ్లేషణ: స్లాట్ వారీగా ఫోకస్ మరియు ఫోన్ వినియోగం
+Habit cards	అలవాటు కార్డ్‌లు
+Free: today's report. Pro: every day and the deeper analysis	ఉచితం: ఈ రోజు నివేదిక. Pro: ప్రతి రోజు మరియు లోతైన విశ్లేషణ
+A goal for a slot of your routine	మీ దినచర్యలోని ఒక స్లాట్‌కు లక్ష్యం
+A to-do list inside a goal, in step with the slot's	లక్ష్యం లోపల చేయవలసిన పనుల జాబితా, స్లాట్ జాబితాతో కలిసి నడుస్తుంది
+Streaks for goals	లక్ష్యాల వరుస విజయాలు
+Pro: a goal for a slot, with its own to-dos	Pro: ఒక స్లాట్‌కు లక్ష్యం, దాని సొంత చేయవలసిన పనుల జాబితాతో
+Apps with a pause before they open	తెరవడానికి ముందు విరామం ఉన్న యాప్‌లు
+Any number	ఎన్నైనా
+Playful pauses: a sum, a sentence, breathing, why	సరదా విరామాలు: ఒక కూడిక, ఒక వాక్యం, శ్వాస, కారణం
+Locks for a time	కొంత సమయానికి లాక్‌లు
+As many as you like	మీకు కావలసినన్ని
+Apps in a lock	లాక్‌లోని యాప్‌లు
+Groups of apps	యాప్‌ల సమూహాలు
+Strict locks that cannot be broken	విరగొట్టలేని కఠినమైన లాక్‌లు
+Weekday, weekend and one-day routines	వారపు రోజులు, వారాంతం మరియు ఒక రోజు దినచర్యలు
+Colour looks	రంగుల రూపాలు
+Small ads	చిన్న ప్రకటనలు
+Routines and looks	దినచర్యలు మరియు రూపాలు
+Free: one routine and one look. Pro: all of them, and no ads	ఉచితం: ఒక దినచర్య మరియు ఒక రూపం. Pro: అన్నీ, ప్రకటనలు లేకుండా
+Watch {1} short videos	{1} చిన్న వీడియోలు చూడండి
+Watch {1} short videos and everything in Pro is open for 24 hours: every saved day and the week in Performance, the deeper analysis, more pauses and locks, routines, goals and the colour looks. Nothing is charged. When the day is up, what you set up with it goes back to the free version (Pro keeps it for good).	{1} చిన్న వీడియోలు చూడండి, 24 గంటల పాటు Proలోని అన్నీ తెరుచుకుంటాయి: సేవ్ చేసిన ప్రతి రోజు మరియు పనితీరులో వారం, లోతైన విశ్లేషణ, మరిన్ని విరామాలు మరియు లాక్‌లు, దినచర్యలు, లక్ష్యాలు మరియు రంగుల రూపాలు. ఎలాంటి ఛార్జీ ఉండదు. రోజు ముగిశాక, దీనితో మీరు సెట్ చేసినవి ఉచిత వెర్షన్‌కు తిరిగి వెళ్తాయి (Pro వాటిని శాశ్వతంగా ఉంచుతుంది).
+Everything the app does, Free and Pro side by side, in groups you open one at a time.	యాప్ చేసే ప్రతిదీ, ఉచితం మరియు Pro పక్కపక్కనే, ఒక్కొక్కటిగా తెరిచే సమూహాలలో.
+Compare Free and Pro	ఉచితం మరియు Proని పోల్చండి
+{1}\n\nOr watch {2} short videos and use everything in Pro free for a day.	{1}\n\nలేదా {2} చిన్న వీడియోలు చూసి, ఒక రోజు పాటు Proలోని అన్నీ ఉచితంగా వాడండి.
+Only the videos you watch to the end count, and the ones you watched today stay counted if you stop. When the day is up, everything closes again and what you set up with Pro goes back to the free version.	మీరు చివరి వరకు చూసిన వీడియోలు మాత్రమే లెక్కలోకి వస్తాయి, మీరు ఆపినా ఈ రోజు చూసినవి లెక్కలోనే ఉంటాయి. రోజు ముగిశాక అన్నీ మళ్లీ మూసుకుంటాయి, Proతో మీరు సెట్ చేసినవి ఉచిత వెర్షన్‌కు తిరిగి వెళ్తాయి.
+Everything in Pro: open until {1}.	Proలోని అన్నీ: {1} వరకు తెరిచి ఉన్నాయి.
+No ads, every saved day and deeper analysis, goals, more pauses and locks, routines, colours. Or watch {1} short videos for a free day of Pro	ప్రకటనలు లేవు, సేవ్ చేసిన ప్రతి రోజు మరియు లోతైన విశ్లేషణ, లక్ష్యాలు, మరిన్ని విరామాలు మరియు లాక్‌లు, దినచర్యలు, రంగులు. లేదా {1} చిన్న వీడియోలు చూసి Pro ఒక రోజు ఉచితంగా పొందండి
+No ads, every saved day and deeper analysis, goals, more pauses and locks, routines, colours	ప్రకటనలు లేవు, సేవ్ చేసిన ప్రతి రోజు మరియు లోతైన విశ్లేషణ, లక్ష్యాలు, మరిన్ని విరామాలు మరియు లాక్‌లు, దినచర్యలు, రంగులు
+Slot analysis · Pro	స్లాట్ విశ్లేషణ · Pro
+Goal · {1}	లక్ష్యం · {1}
+A goal with no to-dos is ticked by you, or by the time when its target is reached. A goal with to-dos is done when all of them are. Goals and their to-dos are set in Insights.	చేయవలసిన పనులు లేని లక్ష్యాన్ని మీరు టిక్ చేస్తారు, లేదా దాని సమయ లక్ష్యం చేరుకున్నప్పుడు అది తనంతట తానే టిక్ అవుతుంది. చేయవలసిన పనులు ఉన్న లక్ష్యం అవన్నీ పూర్తయినప్పుడే పూర్తవుతుంది. లక్ష్యాలు మరియు వాటి చేయవలసిన పనుల జాబితాలు ఇన్‌సైట్స్‌లో సెట్ చేయబడతాయి.
+Goals of this slot	ఈ స్లాట్ లక్ష్యాలు
+Free: the home screen, alarms, to-dos, today's report, one paused app and one locked app. {1}It adds goals with their own to-dos, every saved day and the deeper analysis, more pauses and locks, more routines, every colour look, and no ads.{2}	ఉచితం: హోమ్ స్క్రీన్, అలారాలు, చేయవలసిన పనుల జాబితాలు, ఈ రోజు నివేదిక, విరామం ఉన్న ఒక యాప్ మరియు లాక్ చేసిన ఒక యాప్. {1}దీనిలో సొంత చేయవలసిన పనుల జాబితాతో లక్ష్యాలు, సేవ్ చేసిన ప్రతి రోజు మరియు లోతైన విశ్లేషణ, మరిన్ని విరామాలు మరియు లాక్‌లు, మరిన్ని దినచర్యలు, ప్రతి రంగుల రూపం, ప్రకటనలు లేకపోవడం చేరతాయి.{2}
+Or watch {1} short videos and everything in Pro is open for a day. What you set up with it goes back to the free version when the day is up. The last screen shows it all side by side.	లేదా {1} చిన్న వీడియోలు చూడండి, ఒక రోజు పాటు Proలోని అన్నీ తెరుచుకుంటాయి. రోజు ముగిశాక దీనితో మీరు సెట్ చేసినవి ఉచిత వెర్షన్‌కు తిరిగి వెళ్తాయి. చివరి స్క్రీన్ అన్నింటినీ పక్కపక్కనే చూపిస్తుంది.
+Pick the apps that pull you away. During focus time they wait a few seconds before they open, and you can always open them anyway. Free: one app. Pro: any number, strict pauses, daily limits, and playful pauses: a quick sum, a sentence to type, slow breaths, or saying why you are opening it.	మిమ్మల్ని పక్కకు లాగే యాప్‌లను ఎంచుకోండి. ఫోకస్ సమయంలో అవి తెరుచుకునే ముందు కొన్ని సెకన్లు ఆగుతాయి, మీరు కావాలంటే అప్పటికీ తెరవవచ్చు. ఉచితం: ఒక యాప్. Pro: ఎన్నైనా, కఠినమైన విరామాలు, రోజువారీ పరిమితులు, సరదా విరామాలు: ఒక చిన్న కూడిక, టైప్ చేయడానికి ఒక వాక్యం, నెమ్మదైన శ్వాస, లేదా ఎందుకు తెరుస్తున్నారో చెప్పడం.
+Shut the apps that eat your time for hours you choose: every day or on some days, or just for the next hour. A locked app is greyed in the list, and the lock screen shows when it opens again. You can break a lock by waiting half a minute and typing a sentence. Free: one lock with one app. Pro: groups of apps, as many locks as you like, and strict locks that cannot be broken. A group can also lock only while an activity type such as Study is going on, only when both the hours and the activity hold, or in library mode. Set it up in the home settings.	మీ సమయాన్ని తినేసే యాప్‌లను మీరు ఎంచుకున్న గంటలకు మూసివేయండి: ప్రతిరోజూ లేదా కొన్ని రోజుల్లో, లేదా తదుపరి ఒక గంటకు మాత్రమే. లాక్ చేసిన యాప్ జాబితాలో మసకగా కనిపిస్తుంది, అది మళ్లీ ఎప్పుడు తెరుచుకుంటుందో లాక్ స్క్రీన్ చూపిస్తుంది. అరగంట ఆగి ఒక వాక్యం టైప్ చేసి మీరు లాక్‌ను విరగొట్టవచ్చు. ఉచితం: ఒక యాప్‌తో ఒక లాక్. Pro: యాప్‌ల సమూహాలు, మీకు కావలసినన్ని లాక్‌లు, విరగొట్టలేని కఠినమైన లాక్‌లు. చదువు వంటి కార్యకలాప రకం నడుస్తున్నప్పుడు మాత్రమే, లేదా గంటలు మరియు కార్యకలాపం రెండూ సరిపోయినప్పుడు మాత్రమే, లేదా లైబ్రరీ మోడ్‌లో ఒక సమూహం లాక్ కావచ్చు. దీన్ని హోమ్ సెట్టింగ్‌లలో సెట్ చేయండి.
+A score for today, phone time by hour and by app, and plain suggestions, with a PDF to save or share. Today's report is free. Pro adds every saved day, the weekly view, the slot-by-slot analysis and habit cards, and goals: set one for a slot, give it its own to-do list, and watch the streak.	ఈ రోజు స్కోర్, గంట వారీగా మరియు యాప్ వారీగా ఫోన్ సమయం, సరళమైన సూచనలు, సేవ్ చేయడానికి లేదా షేర్ చేయడానికి PDFతో. ఈ రోజు నివేదిక ఉచితం. Proలో సేవ్ చేసిన ప్రతి రోజు, వారం వీక్షణ, స్లాట్ వారీ విశ్లేషణ మరియు అలవాటు కార్డ్‌లు, లక్ష్యాలు చేరతాయి: ఒక స్లాట్‌కు లక్ష్యం పెట్టండి, దానికి సొంత చేయవలసిన పనుల జాబితా ఇవ్వండి, వరుస విజయాలను చూడండి.
+Alarms and to-dos	అలారాలు మరియు చేయవలసిన పనుల జాబితాలు
+1 paused app	విరామం ఉన్న 1 యాప్
+1 locked app	లాక్ చేసిన 1 యాప్
+Goals with to-dos	చేయవలసిన పనులతో లక్ష్యాలు
+More routines	మరిన్ని దినచర్యలు
+Monthly or once, or 3 short videos for a day	నెలకు లేదా ఒకసారి, లేదా ఒక రోజుకు 3 చిన్న వీడియోలు
+Watch {1} more videos to open everything in Pro for a day.	ఒక రోజుకు Proలోని అన్నీ తెరవడానికి ఇంకా {1} వీడియోలు చూడండి.
+{1}\n\nOr stop here: the videos you watched today stay counted.	{1}\n\nలేదా ఇక్కడే ఆపండి: ఈ రోజు చూసిన వీడియోలు లెక్కలోనే ఉంటాయి.
+{1} more open everything in Pro for a day.	ఇంకా {1} చూస్తే ఒక రోజుకు Proలోని అన్నీ తెరుచుకుంటాయి.
+Everything is open already.	అన్నీ ఇప్పటికే తెరిచి ఉన్నాయి.
+Watch one more video to open everything in Pro for a day.	ఒక రోజుకు Proలోని అన్నీ తెరవడానికి ఇంకో వీడియో చూడండి.
+One more opens everything in Pro for a day.	ఇంకొకటి చూస్తే ఒక రోజుకు Proలోని అన్నీ తెరుచుకుంటాయి.
+Watch {1} videos: everything in Pro free for a day	{1} వీడియోలు చూడండి: ఒక రోజుకు Proలోని అన్నీ ఉచితం
+Watch {1}: everything in Pro free for a day	{1} చూడండి: ఒక రోజుకు Proలోని అన్నీ ఉచితం
+{1} of {2} videos watched today	ఈ రోజు {2} లో {1} వీడియోలు చూశారు
+Without a to-do list, the goal is a to-do of its slot: tick it, or it ticks itself when the time is reached. With one, the goal ticks only when every to-do is done. The same list shows in the slot's to-dos.	చేయవలసిన పనులు లేని లక్ష్యం తన స్లాట్‌లోని ఒక పని లాంటిది: దాన్ని టిక్ చేయండి, లేదా సమయం చేరుకున్నప్పుడు అది తనంతట తానే టిక్ అవుతుంది. జాబితా ఉంటే, అందులోని ప్రతిదీ పూర్తయినప్పుడే లక్ష్యం టిక్ అవుతుంది. అదే జాబితా స్లాట్ చేయవలసిన పనుల జాబితాలో కూడా కనిపిస్తుంది.
+A goal counts on days whose schedule has the slot. Kept slots count towards it. Days in a row you reach it make a streak.	ఆ స్లాట్ ఉన్న షెడ్యూల్ గల రోజుల్లో లక్ష్యం లెక్కించబడుతుంది. పాటించిన స్లాట్‌లు దానికి లెక్కలోకి వస్తాయి. వరుసగా ఎన్ని రోజులు మీరు దాన్ని చేరుకుంటే అంత వరుస విజయం అవుతుంది.
+Set a daily target for a slot of your routine, for example 2 hours for Morning study, with its own to-do list, and see it fill up through the day.	మీ దినచర్యలోని ఒక స్లాట్‌కు రోజువారీ లక్ష్యం పెట్టండి, ఉదాహరణకు ఉదయం చదువుకు 2 గంటలు, దాని సొంత చేయవలసిన పనుల జాబితాతో, రోజంతా అది నిండటం చూడండి.
+Free: a pause rule for {1} app. Pro adds strict pauses, daily limits, playful pauses (a sum, a sentence, breathing), as many apps as you like, and removes the ads.	ఉచితం: {1} కోసం ఒక విరామ నియమం. Proలో కఠినమైన విరామాలు, రోజువారీ పరిమితులు, సరదా విరామాలు (కూడిక, వాక్యం, శ్వాస), ఎన్ని యాప్‌లైనా చేరతాయి, ప్రకటనలు తొలగిపోతాయి.
+Free: one lock that holds {1} app. Pro adds groups of apps, as many locks as you like, and strict locks.	ఉచితం: {1} ఉంచే ఒక లాక్. Proలో యాప్‌ల సమూహాలు, మీకు కావలసినన్ని లాక్‌లు, కఠినమైన లాక్‌లు చేరతాయి.
+See when you pick up the phone during a slot, with the exact times, and mark the apps that belong to an activity so they are never counted against you. The reports then show it slot by slot.	స్లాట్ సమయంలో మీరు ఫోన్ ఎప్పుడు తీస్తారో ఖచ్చితమైన సమయాలతో చూడండి, ఒక కార్యకలాపంలో భాగమైన యాప్‌లను గుర్తించండి, అవి మీకు వ్యతిరేకంగా ఎప్పుడూ లెక్కించబడవు. నివేదికలు దాన్ని స్లాట్ వారీగా చూపిస్తాయి.
+Focus and phone use slot by slot, with a timeline and the exact times, and the same by activity. Today's report above stays free.	స్లాట్ వారీగా ఫోకస్ మరియు ఫోన్ వినియోగం, టైమ్‌లైన్ మరియు ఖచ్చితమైన సమయాలతో, అలాగే కార్యకలాపం వారీగా. పైన ఉన్న ఈ రోజు నివేదిక ఉచితంగానే ఉంటుంది.
+{1} to-dos	{1} చేయవలసిన పనులు
+1 to-do	1 చేయవలసిన పని
+To-do list	చేయవలసిన పనుల జాబితా
+1 more video	ఇంకా 1 వీడియో
+Watch 2 more videos: everything in Pro free for a day	ఇంకా 2 వీడియోలు చూడండి: ఒక రోజుకు Proలోని అన్నీ ఉచితం
+Watch 1 more video: everything in Pro free for a day	ఇంకా 1 వీడియో చూడండి: ఒక రోజుకు Proలోని అన్నీ ఉచితం
+Skip this slot, start “{1}” now	ఈ స్లాట్‌ను దాటవేయండి, “{1}” ను ఇప్పుడే ప్రారంభించండి
+, {1} before your plan	, మీ ప్రణాళిక కంటే {1} ముందు
+Skip this slot and go to sleep	ఈ స్లాట్‌ను దాటవేసి నిద్రపోండి
+Skip this slot, start the next one now	ఈ స్లాట్‌ను దాటవేయండి, తర్వాతి దాన్ని ఇప్పుడే ప్రారంభించండి
+The next slot has started	తర్వాతి స్లాట్ మొదలైంది
+Early sleep	ముందుగానే నిద్ర
+Going to sleep early?	మీరు ముందుగానే నిద్రపోతున్నారా?
+Not yet	ఇంకా కాదు
+Missed alarm	మిస్ అయిన అలారం
+This alarm did not ring because Android had closed the app. It is set again now.	Android యాప్‌ను మూసివేసినందున ఈ అలారం మోగలేదు. ఇప్పుడు అది మళ్లీ సెట్ చేయబడింది.
+It was closed from App info (Force stop).	దీన్ని యాప్ సమాచారం నుండి మూసివేశారు (ఫోర్స్ స్టాప్).
+Android stopped it when the user was switched.	వినియోగదారు మారినప్పుడు Android దీన్ని ఆపివేసింది.
+It crashed.	ఇది క్రాష్ అయింది.
+It stopped answering and Android closed it.	ఇది స్పందించడం ఆపివేసింది, కాబట్టి Android దీన్ని మూసివేసింది.
+Android closed it to free memory.	మెమరీని ఖాళీ చేయడానికి Android దీన్ని మూసివేసింది.
+Android closed it because a permission was changed.	ఒక అనుమతి మార్చబడినందున Android దీన్ని మూసివేసింది.
+It was closed to be updated.	అప్‌డేట్ కోసం దీన్ని మూసివేశారు.
+Android closed it because it was switched off or on.	దీన్ని ఆఫ్ లేదా ఆన్ చేసినందున Android దీన్ని మూసివేసింది.
+Android closed it for using too much of the phone.	ఫోన్ వనరులను ఎక్కువగా వాడినందున Android దీన్ని మూసివేసింది.
+It could not start.	ఇది ప్రారంభం కాలేకపోయింది.
+Android closed it because something it needs stopped.	దీనికి అవసరమైనది ఆగిపోయినందున Android దీన్ని మూసివేసింది.
+Android ended it.	Android దీన్ని ఆపివేసింది.
+It was closed.	ఇది మూసివేయబడింది.
+Android clears every alarm of an app when it is closed this way, so the alarms and the live wallpaper were gone until you came back. They are in place again now.	ఒక యాప్‌ను ఇలా మూసివేసినప్పుడు Android దాని అలారాలన్నింటినీ తీసివేస్తుంది, కాబట్టి మీరు తిరిగి వచ్చే వరకు అలారాలు మరియు లైవ్ వాల్‌పేపర్ లేవు. ఇప్పుడు అవి మళ్లీ తమ స్థానంలో ఉన్నాయి.
+Android keeps the alarms of an app that stops this way. They have been checked and are in place.	ఇలా ఆగిపోయే యాప్ అలారాలను Android ఉంచుతుంది. అవి తనిఖీ చేయబడ్డాయి మరియు స్థానంలో ఉన్నాయి.
+Sleep was to begin at {1}. If you go to sleep now, “{2}” ends here and your wake-up alarm stays as planned.	నిద్ర సమయం {1}కి ప్రారంభం కావాల్సి ఉంది. మీరు ఇప్పుడు నిద్రపోతే, “{2}” ఇక్కడే ముగుస్తుంది మరియు మిమ్మల్ని లేపే అలారం అనుకున్నట్లే ఉంటుంది.
+Your day was to start at {1}. Start it now, and “{2}” begins early. It still ends at {3}, so it gets the time that was left.	మీ రోజు {1}కి ప్రారంభం కావాల్సి ఉంది. దాన్ని ఇప్పుడే ప్రారంభించండి, “{2}” ముందుగానే మొదలవుతుంది. అది ఇప్పటికీ {3}కి ముగుస్తుంది, కాబట్టి మిగిలిన సమయం దానికి దక్కుతుంది.
+Wake up early?	ముందుగానే లేవాలా?
+Go to sleep early?	ముందుగానే నిద్రపోవాలా?
+the first slot	మొదటి స్లాట్
+Start my day now	నా రోజును ఇప్పుడే ప్రారంభించండి
+Early wake	ముందుగానే మేల్కొనడం
+{1} starts at {2} instead of {3} (you woke early)	{1} {3}కి బదులుగా {2}కి ప్రారంభమవుతుంది (మీరు ముందుగానే లేచారు)
+Android closed the app and cleared the alarm set for {1}. It is set again now.	Android యాప్‌ను మూసివేసి {1} కోసం సెట్ చేసిన అలారాన్ని తీసివేసింది. ఇప్పుడు అది మళ్లీ సెట్ చేయబడింది.
+Last time Android ended the app: {1}	Android చివరిసారి యాప్‌ను మూసివేసింది: {1}
+Android removes a live wallpaper when the app is closed from App info. The home screen still shows your day. Bring the wallpaper back for the lock screen and recent apps.	యాప్ సమాచారం నుండి యాప్‌ను మూసివేసినప్పుడు Android లైవ్ వాల్‌పేపర్‌ను తీసివేస్తుంది. హోమ్ స్క్రీన్‌పై మీ రోజు ఇంకా కనిపిస్తుంది. లాక్ స్క్రీన్ మరియు ఇటీవలి యాప్‌ల కోసం వాల్‌పేపర్‌ను తిరిగి తీసుకురండి.
+Wallpaper	వాల్‌పేపర్
+Your day wallpaper is gone	మీ రోజు వాల్‌పేపర్ పోయింది
+Only the lock screen has your day	మీ రోజు లాక్ స్క్రీన్‌పై మాత్రమే ఉంది
+Your day wallpaper is not set	మీ రోజు వాల్‌పేపర్ సెట్ చేయబడలేదు
+It shows your day on the lock screen and in recent apps. Android asks you to confirm once.	ఇది లాక్ స్క్రీన్‌పై మరియు ఇటీవలి యాప్‌లలో మీ రోజును చూపుతుంది. Android ఒకసారి నిర్ధారించమని అడుగుతుంది.
+Bring it back	తిరిగి తీసుకురండి
+Bring back your day wallpaper	మీ రోజు వాల్‌పేపర్‌ను తిరిగి తీసుకురండి
+Set your day wallpaper	మీ రోజు వాల్‌పేపర్‌ను సెట్ చేయండి
+On. Nothing is locked or paused yet, so nothing is being watched.	ఆన్‌లో ఉంది. ఇంకా ఏదీ లాక్ చేయలేదు లేదా విరామంలో లేదు, కాబట్టి దేనినీ గమనించడం లేదు.
+Not holding yet: allow Usage access below.	ఇంకా అమలులో లేదు: కింద వినియోగ యాక్సెస్‌కు అనుమతి ఇవ్వండి.
+Not holding yet: allow Display over other apps below.	ఇంకా అమలులో లేదు: కింద “ఇతర యాప్‌ల పైన చూపండి”కి అనుమతి ఇవ్వండి.
+Not holding yet: allow the two things below.	ఇంకా అమలులో లేదు: కింద ఉన్న రెండింటికీ అనుమతి ఇవ్వండి.
+On: nothing is locked or paused yet	ఆన్: ఇంకా ఏదీ లాక్ లేదా విరామంలో లేదు
+Needs your permission: locks hold only from this home screen	మీ అనుమతి కావాలి: లాక్‌లు ఈ హోమ్ స్క్రీన్ నుండి తెరిచినప్పుడు మాత్రమే పనిచేస్తాయి
+Locks hold wherever the app is opened from.	యాప్‌ను ఎక్కడి నుండి తెరిచినా లాక్‌లు పనిచేస్తాయి.
+Pauses hold wherever the app is opened from.	యాప్‌ను ఎక్కడి నుండి తెరిచినా విరామాలు పనిచేస్తాయి.
+For now locks hold only when you open an app from this home screen.	ప్రస్తుతానికి మీరు యాప్‌ను ఈ హోమ్ స్క్రీన్ నుండి తెరిచినప్పుడు మాత్రమే లాక్‌లు పనిచేస్తాయి.
+For now pauses work only when you open an app from this home screen.	ప్రస్తుతానికి మీరు యాప్‌ను ఈ హోమ్ స్క్రీన్ నుండి తెరిచినప్పుడు మాత్రమే విరామాలు పనిచేస్తాయి.
+Allow the two things in the Strong lock card in the home settings and they hold everywhere.	హోమ్ సెట్టింగ్‌లలోని స్ట్రాంగ్ లాక్ కార్డ్‌లో రెండింటికీ అనుమతి ఇవ్వండి, అప్పుడు అవి ప్రతిచోటా పనిచేస్తాయి.
+Make your locks hold everywhere	మీ లాక్‌లను ప్రతిచోటా పనిచేసేలా చేయండి
+Your locks hold only on the home screen	మీ లాక్‌లు హోమ్ స్క్రీన్‌లో మాత్రమే పనిచేస్తున్నాయి
+An app can still be opened from Recents or App info.	యాప్‌ను ఇప్పటికీ ఇటీవలి యాప్‌లు లేదా యాప్ సమాచారం నుండి తెరవవచ్చు.
+Allow what Android asks for, and a lock holds wherever the app is opened from.	Android అడిగే అనుమతిని ఇవ్వండి, అప్పుడు యాప్‌ను ఎక్కడి నుండి తెరిచినా లాక్ పనిచేస్తుంది.
+Hold them everywhere	వీటిని ప్రతిచోటా అమలు చేయండి
+Allow display over other apps?	ఇతర యాప్‌ల పైన చూపడానికి అనుమతి ఇవ్వాలా?
+To hold a lock when an app is opened from Recents, App info or a notification, Dinacharya Launcher shows its lock screen in front of that app.	ఇటీవలి యాప్‌లు, యాప్ సమాచారం లేదా నోటిఫికేషన్ నుండి యాప్ తెరిచినా లాక్ కొనసాగడానికి, ఆ యాప్ ముందు Dinacharya Launcher తన లాక్ స్క్రీన్‌ను చూపిస్తుంది.
+Android asks you to allow this.	దీనికి Android మీ అనుమతి అడుగుతుంది.
+To hold a lock when an app is opened from Recents, App info or a notification, it also needs to see which app is in front.	ఇటీవలి యాప్‌లు, యాప్ సమాచారం లేదా నోటిఫికేషన్ నుండి యాప్ తెరిచినా లాక్ కొనసాగడానికి, ఏ యాప్ ముందు ఉందో కూడా చూడాలి.
+Only the name of that app is compared with your own list of locked apps.	ఆ యాప్ పేరును మాత్రమే మీ స్వంత లాక్ చేసిన యాప్‌ల జాబితాతో పోలుస్తారు.
+Nothing is saved or sent.	ఏదీ సేవ్ చేయబడదు లేదా పంపబడదు.
+A lock that only works when you open an app from this home screen is easy to get around: open the app from Recents or App info instead.	ఈ హోమ్ స్క్రీన్ నుండి యాప్‌ను తెరిచినప్పుడు మాత్రమే పనిచేసే లాక్‌ను తప్పించుకోవడం సులభం: యాప్‌ను ఇటీవలి యాప్‌లు లేదా యాప్ సమాచారం నుండి తెరిచేయవచ్చు.
+With the strong lock on, Dinacharya Launcher also holds an app opened from Recents, App info, a notification, a widget or another home app, and an app that is already open when a lock starts.	స్ట్రాంగ్ లాక్ ఆన్‌లో ఉన్నప్పుడు Dinacharya Launcher ఇటీవలి యాప్‌లు, యాప్ సమాచారం, నోటిఫికేషన్, విడ్జెట్ లేదా మరొక హోమ్ యాప్ నుండి తెరిచిన యాప్‌ను, అలాగే లాక్ మొదలైనప్పుడు ఇప్పటికే తెరిచి ఉన్న యాప్‌ను కూడా ఆపుతుంది.
+It starts by itself as soon as something is locked or paused.	ఏదైనా లాక్ లేదా విరామంలో ఉంచగానే ఇది ఆటోమేటిక్‌గా మొదలవుతుంది.
+The phone, Settings, the keyboard and system screens are never blocked.	ఫోన్, సెట్టింగ్‌లు, కీబోర్డ్ మరియు సిస్టమ్ స్క్రీన్‌లు ఎప్పుడూ నిరోధించబడవు.
+It shows a small notification while it runs.	ఇది నడుస్తున్నప్పుడు ఒక చిన్న నోటిఫికేషన్‌ను చూపిస్తుంది.
+It looks only at the name of the app in front, on this phone, and keeps and sends nothing.	ఇది ఈ ఫోన్‌లోనే ముందున్న యాప్ పేరును మాత్రమే చూస్తుంది, ఏదీ సేవ్ చేయదు లేదా పంపదు.
+If your phone stops background apps to save battery and the lock stops holding, allow Dinacharya Launcher to run in the background in the phone's battery settings.	బ్యాటరీ ఆదా చేయడానికి మీ ఫోన్ బ్యాక్‌గ్రౌండ్ యాప్‌లను ఆపేసి, లాక్ పనిచేయడం ఆగిపోతే, ఫోన్ బ్యాటరీ సెట్టింగ్‌లలో Dinacharya Launcher ను బ్యాక్‌గ్రౌండ్‌లో నడవడానికి అనుమతించండి.
+The strong lock is on, so a lock also holds an app opened from Recents, App info, a notification, a widget or another home app, and one that is open when the lock starts.	స్ట్రాంగ్ లాక్ ఆన్‌లో ఉంది, కాబట్టి ఇటీవలి యాప్‌లు, యాప్ సమాచారం, నోటిఫికేషన్, విడ్జెట్ లేదా మరొక హోమ్ యాప్ నుండి తెరిచిన యాప్‌ను, అలాగే లాక్ మొదలైనప్పుడు తెరిచి ఉన్న యాప్‌ను కూడా లాక్ ఆపుతుంది.
+For now a lock holds only when you open an app from this home screen.	ప్రస్తుతానికి మీరు యాప్‌ను ఈ హోమ్ స్క్రీన్ నుండి తెరిచినప్పుడు మాత్రమే లాక్ పనిచేస్తుంది.
+Allow the two things in the Strong lock card below and it also holds an app opened from Recents, App info, a notification, a widget or another home app, and one that is open when the lock starts.	కింద ఉన్న స్ట్రాంగ్ లాక్ కార్డ్‌లో రెండింటికీ అనుమతి ఇవ్వండి, అప్పుడు ఇది ఇటీవలి యాప్‌లు, యాప్ సమాచారం, నోటిఫికేషన్, విడ్జెట్ లేదా మరొక హోమ్ యాప్ నుండి తెరిచిన యాప్‌ను, అలాగే లాక్ మొదలైనప్పుడు తెరిచి ఉన్న యాప్‌ను కూడా ఆపుతుంది.
+Locks work when you open an app from this home screen.	యాప్‌ను ఈ హోమ్ స్క్రీన్ నుండి తెరిచినప్పుడు లాక్‌లు పనిచేస్తాయి.
+They cannot stop an app that is already open, or one opened from Recents, a notification or another home app.	ఇప్పటికే తెరిచి ఉన్న యాప్‌ను, లేదా ఇటీవలి యాప్‌లు, నోటిఫికేషన్ లేదా మరొక హోమ్ యాప్ నుండి తెరిచిన యాప్‌ను ఇవి ఆపలేవు.
+The strong lock below does.	కింద ఉన్న స్ట్రాంగ్ లాక్ దాన్ని చేస్తుంది.
+To hold them whichever way they open, allow the two things in the Strong lock card below.	ఎలా తెరిచినా వీటిని కొనసాగించడానికి, కింద ఉన్న స్ట్రాంగ్ లాక్ కార్డ్‌లో రెండింటికీ అనుమతి ఇవ్వండి.
+Without strict, you can still break a lock: wait 30 seconds and type a sentence.	కఠినమైనది కాకపోతే లాక్‌ను ఛేదించవచ్చు: 30 సెకన్లు వేచి ఉండి ఒక వాక్యాన్ని టైప్ చేయండి.
+A strict lock cannot be broken, and cannot be changed while it holds.	కఠినమైన లాక్‌ను ఛేదించలేరు, అది అమలులో ఉన్నప్పుడు మార్చలేరు కూడా.
 # the same texts without the marks at their ends
 {1} after your plan	మీ ప్రణాళిక తర్వాత {1}
 Made	తయారైంది
@@ -1578,3 +2091,5 @@ not today	ఈ రోజు కాదు
 hides its apps	యాప్‌లను దాచుతుంది
 and during {1}	మరియు {1} సమయంలో
 when this slot ends	ఈ స్లాట్ ముగిసినప్పుడు
+and in library mode	మరియు లైబ్రరీ మోడ్‌లో
+{1} before your plan	మీ ప్రణాళిక కంటే {1} ముందు

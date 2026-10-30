@@ -137,9 +137,11 @@ daily app limits the user sets on the home screen."
 
 ### Strong lock: Display over other apps (`SYSTEM_ALERT_WINDOW`) and a foreground service of type `specialUse`
 
-Both are used only by the optional **Strong lock**, which is **off until the user turns it on** in Settings > Home screen >
-Strong lock. The user gives the two special permissions (Usage access, Display over other apps) in Android's own settings;
-the app explains each before sending them there. While it is on, a small foreground service (`GuardService`, type
+Both are used only by the **Strong lock**, which holds the apps the user locked or paused when they are opened from Recents, App
+info or a notification. It is **on by default but does nothing, and shows no notification, until the user has made a lock or a
+pause**; the user can switch it off in Settings > Home screen > Strong lock. Nothing is granted silently: the user gives the two
+special permissions (Usage access, Display over other apps) in Android's own settings, and the app explains each in a plain
+message first (right after the user saves a lock or a pause, or from the Strong lock card). While a lock or a pause exists and both are given, a small foreground service (`GuardService`, type
 `specialUse`, with a notification that says "Strong lock is on") looks at which app is in front, using the same Usage access the
 daily limits use, and, only when that app is one the user locked or paused, covers it with the same lock or pause screen the
 home screen shows. It reads nothing but the name of the app in front, compares it with the user's own list on the phone, keeps
@@ -151,11 +153,12 @@ What Play Console may ask, and a ready answer:
 - **Foreground service permissions > Special use:** subtype text (also in the manifest):
   "Holds the apps the person has locked or paused, wherever they are opened from, by showing the lock or pause screen in front of
   them." Why: "The user chooses apps to lock or pause for a time. To hold such an app when it is opened from recent apps, a
-  notification or another launcher, the app must keep watching which app is in front while the user's lock is on. The user turns it
-  on and off in the app, and a notification is shown the whole time it runs." Google may want a **short screen recording**: turn on
-  Strong lock, lock an app, open the app from the recent-apps screen and show the lock screen coming up in front of it.
+  notification or another launcher, the app must keep watching which app is in front while the user's lock is on. The service
+  runs only while the user has a lock or a pause, the user can switch it off in the app, and a notification is shown the whole time it runs."
+  Google may want a **short screen recording**: lock an app (the app asks for the two permissions), open the app from the recent-apps
+  screen and show the lock screen coming up in front of it.
 - **Display over other apps / `SYSTEM_ALERT_WINDOW`:** "Used only to show the user's own lock or pause screen in front of an app
-  the user locked or paused, and only when the user has switched the Strong lock on and allowed the permission in Android settings.
+  the user locked or paused, and only while the user has a lock or a pause, has not switched the Strong lock off and has allowed the permission in Android settings.
   It is not used for ads, for anything the user did not choose, or to hide what the app is doing."
 - This is not an accessibility service, and the app still does not use `QUERY_ALL_PACKAGES`. Be honest that this is a
   self-control feature the user sets up for themselves; Google's review may ask for a recording or decide that the permission is not
@@ -202,17 +205,46 @@ notification shade. If a phone refuses, nothing happens and the system's own swi
 
 ### Billing
 
-`com.android.vending.BILLING` is added for the one-time Pro purchase.
+`com.android.vending.BILLING` is added for the Pro purchase (the monthly plan and the lifetime plan).
 
-## 8. In-app product
+## 8. Pro: a lifetime product and a monthly subscription
 
-Monetize > Products > In-app products > Create product:
+Dinacharya Pro is sold two ways, and the app shows both on its Pro screen. Create both in Play Console (the app needs an
+uploaded build with the Billing permission first). **The two IDs must match** `pro_product_id` and `pro_monthly_product_id` in
+`app/src/main/res/values/monetization.xml`. The app shows whatever price Google Play reports; no price is written in the code.
 
-- Product ID: `pro_unlock` (must match `pro_product_id` in `app/src/main/res/values/monetization.xml`)
-- Name: Dinacharya Pro
-- Description: Removes ads and unlocks every saved day and the weekly view in reports, locked groups and strict locks, weekday and weekend routines, daily goals, all colour themes and the full focus rules (strict pauses, daily limits, any number of apps, playful pauses). One-time purchase.
-- Price: **Rs 99** (India). Set it once, then Google converts it to other countries' prices. The app shows whatever price Google Play reports; it is not written in the code.
+### 8a. Lifetime: Monetize > Products > In-app products > Create product
+
+- Product ID: `pro_unlock`
+- Name: Dinacharya Pro (lifetime)
+- Description: Removes ads and unlocks every saved day and the weekly view in reports, locked groups and strict locks, weekday and weekend routines, daily goals, all colour themes and the full focus rules (strict pauses, daily limits, any number of apps, playful pauses). Pay once, keep Pro for good.
+- Price: **Rs 499** (India). Set it once, then Google converts it to other countries' prices.
 - Status: Active.
+- If you already created `pro_unlock` at Rs 99 for testing: open it, change the price to **499**, save. Nobody who bought it
+  before loses Pro.
+
+### 8b. Monthly: Monetize > Products > Subscriptions > Create subscription
+
+- Product ID: `pro_monthly`
+- Name: Dinacharya Pro (monthly)
+- Benefits (up to 4 short lines): No ads; every saved day and the weekly view; locked groups and strict locks; all routines, goals and colours.
+- Press **Add base plan**: Base plan ID `monthly` (any name you like), **Auto-renewing**, Billing period **Monthly**.
+- Price: **Rs 50** (India). Set it once, then use "Update prices" to let Google convert it for other countries.
+- Leave grace period and account hold at Google's defaults. No free trial or intro offer is needed (if you add one later the app
+  still works: it offers the base plan, never the trial).
+- Press **Activate** on the base plan. A subscription that is only saved as a draft is not offered to anyone.
+- The app uses the single base plan. Do not add more than one base plan to `pro_monthly`.
+
+### 8c. What the app does with them
+
+- Pro is on while the lifetime product is owned **or** the monthly subscription is running. Someone who has both stays Pro
+  until the lifetime product is refunded and the subscription has ended. The Pro screen tells a monthly subscriber who buys lifetime
+  to cancel the monthly plan in Google Play (the app opens Google Play's own subscriptions page from "Manage subscription").
+- People who bought `pro_unlock` before the monthly plan existed keep Pro; the app counts their old purchase as the lifetime plan.
+- A monthly plan that is cancelled keeps Pro until the paid month ends; one that lapses (card declined, not renewed) loses Pro the
+  next time the app starts with a network connection. Pro already earned is never taken away offline.
+- Test both without paying: **Settings > License testing** (add your Gmail). Install from a testing track. Test subscriptions renew
+  every few minutes and stop after a few cycles, which is a quick way to see the lapse.
 
 ## 9. Before you send the app for review
 

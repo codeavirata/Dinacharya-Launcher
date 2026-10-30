@@ -78,9 +78,9 @@ public class PassResetTest {
             c.setRule(k("c"), LauncherConfig.RULE_NUDGE, 0, false);
             c.setRule(k("d"), LauncherConfig.RULE_NUDGE, 0, false);
             int n = PassReset.undoLauncher(note, c);
-            ok("more paused apps: the first two stay, the rest go", n == 2 && c.rules.size() == 2 && c.ruleFor(k("a")) != null && c.ruleFor(k("b")) != null
+            ok("more paused apps: the first one stays, the rest go", n == 3 && c.rules.size() == 1 && c.ruleFor(k("a")) != null && c.ruleFor(k("b")) == null
                     && c.ruleFor(k("c")) == null && c.ruleFor(k("d")) == null);
-            ok("more paused apps: doing it again changes nothing", PassReset.undoLauncher(note, c) == 0 && c.rules.size() == 2);
+            ok("more paused apps: doing it again changes nothing", PassReset.undoLauncher(note, c) == 0 && c.rules.size() == 1);
         }
         {
             LauncherConfig c = busy();
@@ -184,7 +184,7 @@ public class PassResetTest {
             int n = PassReset.undoLauncher(note, c);
             ok("more apps in a lock: a two-app lock goes back to its two apps, an older four-app lock to its four", night.apps.size() == 2
                     && night.apps.contains(k("a")) && night.apps.contains(k("b")) && old.apps.size() == 4 && !old.apps.contains(k("t")));
-            ok("more apps in a lock: a lock made during the pass holds two apps again", c.groups.get(2).apps.size() == 2 && n == 3);
+            ok("more apps in a lock: a lock made during the pass holds one app again", c.groups.get(2).apps.size() == 1 && n == 3);
             ok("more apps in a lock: strict and the number of locks are not touched", night.strict && old.strict && c.groups.size() == 3 && c.groups.get(2).strict);
         }
         {
@@ -268,6 +268,45 @@ public class PassResetTest {
             ok("goals: the goals made with the pass go", n == 2 && r.goals.size() == 2 && r.findGoal(Routine.MEAL, "") == null
                     && r.findGoal(Routine.PERSONAL, "Reading") == null);
             ok("goals: an earlier goal stays, even with a changed target", r.findGoal(Routine.TASK, "") != null && r.findGoal(Routine.REST, "walk") != null);
+        }
+
+        // ---------- goals of a slot, with their to-dos
+        {
+            Routine r = Routine.sample();
+            Routine.Goal before = Routine.Goal.forSlot(Routine.TASK, "Reading & notes", 60);
+            before.addTodo("Read chapter 4");
+            r.putGoal(before);
+            r.setGoal(Routine.TASK, "Study", 120);   // an older goal for a whole type
+            String note = PassReset.capture(DayPass.GOALS, new LauncherConfig(), r);
+            Routine.Goal during = Routine.Goal.forSlot(Routine.TASK, "Project work", 45);
+            during.addTodo("Fix the bug");
+            r.putGoal(during);
+            Routine.Goal once = Routine.Goal.onceForSlot(Routine.TASK, "Revision", 30, java.time.LocalDate.of(2026, 10, 26));
+            r.putGoal(once);
+            Routine.Goal changed = Routine.Goal.forSlot(Routine.TASK, "Reading & notes", 90);   // a changed target of a goal from before
+            changed.addTodo("Read chapter 4");
+            r.putGoal(changed);
+            int n = PassReset.undoRoutine(note, r);
+            ok("slot goals: the goals made with the pass go, with their to-dos", n == 2 && r.findSlotGoal(Routine.TASK, "Project work") == null
+                    && r.findSlotOnce(Routine.TASK, "Revision", java.time.LocalDate.of(2026, 10, 26)) == null);
+            ok("slot goals: a goal from before stays, with its to-dos", r.findSlotGoal(Routine.TASK, "Reading & notes") != null
+                    && r.findSlotGoal(Routine.TASK, "reading & NOTES").todos.size() == 1 && r.findGoal(Routine.TASK, "Study") != null);
+            ok("slot goals: doing it again changes nothing", PassReset.undoRoutine(note, r) == 0 && r.goals.size() == 2);
+            ok("slot goals: a slot goal is not mistaken for a goal of the same name for a type", PassReset.undoRoutine(
+                    PassReset.capture(DayPass.GOALS, new LauncherConfig(), r), r) == 0);
+            Routine r2 = Routine.sample();
+            String empty = PassReset.capture(DayPass.GOALS, new LauncherConfig(), r2);
+            r2.putGoal(Routine.Goal.forSlot(Routine.TASK, "Study", 30));
+            r2.setGoal(Routine.TASK, "Study", 30);
+            ok("slot goals: with nothing before, both the slot goal and the type goal go", PassReset.undoRoutine(empty, r2) == 2 && r2.goals.isEmpty());
+            Routine r3 = Routine.sample();
+            r3.putGoal(Routine.Goal.forSlot(Routine.TASK, "Study", 30));
+            String slotNote = PassReset.capture(DayPass.GOALS, new LauncherConfig(), r3);
+            r3.setGoal(Routine.TASK, "Study", 30);
+            ok("slot goals: an older type goal of the same words made during the pass goes, the slot goal stays",
+                    PassReset.undoRoutine(slotNote, r3) == 1 && r3.goals.size() == 1 && r3.goals.get(0).bound());
+            ok("slot goals: a note from before (no slot) still reads", PassReset.undoRoutine("DINAPASS3\nM\t" + DayPass.bit(DayPass.GOALS) + "\nL\t0\tStudy\tR\n",
+                    Routine.sample()) == 0);
         }
 
         // ---------- colour looks
@@ -368,7 +407,7 @@ public class PassResetTest {
         ok("message: nothing to say when nothing went back", PassReset.message(DayPass.PAUSE_APPS, 0).isEmpty()
                 && PassReset.message(DayPass.REPORT_DAYS, 4).isEmpty() && PassReset.message(DayPass.REPORT_WEEK, 4).isEmpty());
         ok("every item has a short name and a group", DayPass.shortName(DayPass.REPORT_DAYS).equals("Saved days") && DayPass.areaName(DayPass.area(DayPass.LOOK_OCEAN)).equals("Looks")
-                && DayPass.shortName(0).isEmpty() && DayPass.shortName(15).isEmpty());
+                && DayPass.shortName(DayPass.ANALYSIS).equals("Deeper analysis") && DayPass.shortName(0).isEmpty() && DayPass.shortName(16).isEmpty());
 
         System.out.println(fails == 0 ? "ALL PASS" : fails + " FAILS");
         if (fails > 0) System.exit(1);

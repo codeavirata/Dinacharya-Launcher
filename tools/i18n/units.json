@@ -1,0 +1,8898 @@
+{
+"picker": [
+"AccountStore.java:11"
+],
+"code": [
+"AccountStore.java:12"
+],
+"": [
+"AccountStore.java:34",
+"AdLayers.java:37",
+"AdLayers.java:50",
+"AlarmActivity.java:95",
+"AlarmActivity.java:98",
+"AlarmActivity.java:101",
+"AlarmActivity.java:211",
+"AlarmActivity.java:216",
+"AlarmActivity.java:315",
+"AlarmActivity.java:316",
+"AlarmActivity.java:329",
+"AlarmActivity.java:374",
+"AlarmActivity.java:385",
+"AlarmActivity.java:388",
+"AlarmActivity.java:396",
+"AlarmActivity.java:545",
+"AlarmActivity.java:733",
+"AlarmActivity.java:770",
+"AlarmActivity.java:839",
+"AlarmActivity.java:888",
+"AlarmActivity.java:932",
+"AlarmHealth.java:144",
+"AlarmHealth.java:145",
+"AlarmPlanner.java:106",
+"AlarmScheduler.java:53",
+"AlarmScheduler.java:53",
+"AlarmService.java:106",
+"AlarmState.java:12",
+"AlarmState.java:21",
+"AlarmState.java:23",
+"AlarmState.java:28",
+"AlarmState.java:30",
+"AlarmState.java:46",
+"AlarmState.java:50",
+"AppEntry.java:16",
+"AppKey.java:21",
+"AppKey.java:34",
+"AppKey.java:36",
+"AppKey.java:40",
+"AppKey.java:43",
+"AppKey.java:63",
+"AppSearch.java:17",
+"AppSearch.java:43",
+"AppSource.java:61",
+"AppSource.java:84",
+"BackupPage.java:70",
+"BackupPage.java:71",
+"BackupPage.java:81",
+"BackupPage.java:92",
+"BackupPage.java:132",
+"Cloud.java:50",
+"CloudDrive.java:38",
+"CloudDrive.java:44",
+"CloudDrive.java:54",
+"CloudDrive.java:55",
+"CompareActivity.java:96",
+"CrashLog.java:114",
+"CrashLog.java:117",
+"DayOff.java:96",
+"DayOff.java:99",
+"DayPass.java:54",
+"DayPass.java:72",
+"DayPass.java:90",
+"DayPass.java:105",
+"DayPass.java:110",
+"DayPass.java:115",
+"DayPass.java:131",
+"DayPass.java:207",
+"DayPass.java:246",
+"DayPass.java:251",
+"DayReport.java:22",
+"DayReport.java:24",
+"DayReport.java:26",
+"DayReport.java:82",
+"DayReport.java:103",
+"DayReport.java:114",
+"DayReport.java:126",
+"DayReport.java:199",
+"DayReport.java:200",
+"DayReport.java:221",
+"DeviceAuth.java:60",
+"DeviceAuth.java:61",
+"DeviceAuth.java:74",
+"DeviceAuth.java:75",
+"DeviceAuth.java:178",
+"DriveJob.java:27",
+"Drop.java:40",
+"Drop.java:41",
+"Drop.java:69",
+"Drop.java:137",
+"EarlyDialog.java:66",
+"Ev.java:53",
+"Ev.java:55",
+"Ev.java:56",
+"Ev.java:57",
+"Ev.java:65",
+"Ev.java:65",
+"Ev.java:69",
+"Ev.java:73",
+"Ev.java:73",
+"Ev.java:81",
+"Ev.java:85",
+"Ev.java:97",
+"Ev.java:97",
+"Ev.java:101",
+"Ev.java:101",
+"Ev.java:105",
+"Ev.java:105",
+"Ev.java:105",
+"Expander.java:48",
+"Expander.java:115",
+"ExtraSections.java:166",
+"ExtraSections.java:255",
+"ExtraSections.java:263",
+"ExtraSections.java:275",
+"ExtraSections.java:326",
+"ExtraSections.java:450",
+"ExtraSections.java:487",
+"ExtraSections.java:504",
+"ExtraSections.java:616",
+"ExtraSections.java:616",
+"ExtraSections.java:616",
+"ExtraSections.java:636",
+"ExtraSections.java:637",
+"FocusDialog.java:58",
+"FocusDialog.java:99",
+"FocusDialog.java:201",
+"FocusDialog.java:205",
+"FocusDialog.java:213",
+"FrontTracker.java:14",
+"FrontTracker.java:15",
+"FrontTracker.java:21",
+"FrontTracker.java:22",
+"FrontTracker.java:33",
+"FrontTracker.java:34",
+"FrontTracker.java:39",
+"FrontTracker.java:40",
+"FrontTracker.java:58",
+"FrontTracker.java:59",
+"GoalSlots.java:28",
+"GoalSlots.java:34",
+"GroupDialog.java:31",
+"GroupDialog.java:104",
+"GroupDialog.java:138",
+"GroupDialog.java:148",
+"GroupDialog.java:149",
+"GroupDialog.java:190",
+"GroupDialog.java:199",
+"GroupDialog.java:227",
+"GroupDialog.java:381",
+"GuardActivity.java:25",
+"GuardActivity.java:26",
+"GuardActivity.java:82",
+"GuardActivity.java:83",
+"GuardLoop.java:49",
+"GuardLoop.java:54",
+"GuardLoop.java:58",
+"GuardLoop.java:70",
+"GuardLoop.java:71",
+"GuardLoop.java:88",
+"GuardRules.java:46",
+"GuardRules.java:59",
+"GuardRules.java:77",
+"GuardRules.java:88",
+"GuardRules.java:93",
+"GuardRules.java:163",
+"GuardRules.java:176",
+"GuardRules.java:213",
+"GuardService.java:77",
+"GuardService.java:374",
+"GuardService.java:435",
+"HistoryStore.java:47",
+"HistoryStore.java:105",
+"HomePage.java:58",
+"HomePage.java:59",
+"HomePage.java:63",
+"HomePage.java:128",
+"HomePage.java:130",
+"HomePage.java:223",
+"HomePage.java:225",
+"HomePage.java:333",
+"HomePage.java:493",
+"HomePage.java:497",
+"InsightsPage.java:381",
+"InsightsPage.java:420",
+"InsightsPage.java:499",
+"InsightsPage.java:560",
+"InsightsPage.java:721",
+"InsightsPage.java:785",
+"InsightsPage.java:841",
+"Lang.java:46",
+"LauncherActivity.java:84",
+"LauncherActivity.java:85",
+"LauncherActivity.java:926",
+"LauncherConfig.java:119",
+"LauncherConfig.java:305",
+"LauncherConfig.java:306",
+"LauncherConfig.java:445",
+"LauncherConfig.java:446",
+"LauncherSettingsActivity.java:269",
+"LauncherSettingsActivity.java:351",
+"LauncherSettingsActivity.java:436",
+"LibrarySettings.java:39",
+"LibrarySettings.java:62",
+"LibrarySettings.java:69",
+"LibrarySettings.java:93",
+"LockRules.java:25",
+"LockRules.java:40",
+"LockRules.java:66",
+"LockRules.java:77",
+"LockRules.java:199",
+"LockRules.java:219",
+"LockRules.java:249",
+"LockRules.java:351",
+"LockRules.java:356",
+"LockScreen.java:118",
+"LockScreen.java:177",
+"MainActivity.java:482",
+"MiniJson.java:19",
+"MinuteStepper.java:46",
+"Overrides.java:54",
+"Overrides.java:75",
+"Overrides.java:143",
+"PassLedger.java:24",
+"PassLedger.java:30",
+"PassLedger.java:135",
+"PassLedger.java:206",
+"PassReset.java:109",
+"PassReset.java:128",
+"PassReset.java:361",
+"PassReset.java:407",
+"PauseChallenge.java:37",
+"PauseChallenge.java:118",
+"PauseScreen.java:307",
+"PdfActions.java:22",
+"PdfActions.java:76",
+"PerformanceActivity.java:239",
+"PickerAuth.java:66",
+"PickerAuth.java:94",
+"PickerAuth.java:99",
+"PickerAuth.java:108",
+"Pro.java:162",
+"Pro.java:234",
+"Pro.java:421",
+"Pro.java:423",
+"Pro.java:425",
+"Pro.java:433",
+"Pro.java:435",
+"Pro.java:437",
+"Pro.java:439",
+"ProPrompt.java:139",
+"ReportActivity.java:47",
+"ReportAssembler.java:70",
+"ReportAssembler.java:71",
+"ReportRenderer.java:321",
+"ReportRenderer.java:822",
+"Routine.java:61",
+"Routine.java:161",
+"Routine.java:173",
+"Routine.java:270",
+"Routine.java:299",
+"Routine.java:394",
+"Routine.java:706",
+"Routine.java:813",
+"Routine.java:959",
+"Routine.java:962",
+"Routine.java:968",
+"Routine.java:976",
+"Routine.java:1027",
+"Routine.java:1046",
+"Routine.java:1224",
+"Routine.java:1361",
+"Routine.java:1375",
+"Routine.java:1382",
+"Routine.java:1397",
+"RoutinePage.java:174",
+"RoutinePage.java:250",
+"RoutinePage.java:508",
+"RoutinePage.java:525",
+"RoutinePage.java:652",
+"RoutinePage.java:783",
+"RoutinePage.java:899",
+"RoutinePage.java:902",
+"RoutinePage.java:948",
+"RoutinePage.java:1021",
+"RoutinePage.java:1191",
+"RoutinePage.java:1236",
+"RoutinePage.java:1429",
+"RoutinePage.java:1431",
+"RoutinePage.java:1436",
+"RoutinePage.java:1537",
+"RoutinePage.java:1602",
+"SettingsPage.java:199",
+"SettingsPage.java:261",
+"SettingsPage.java:337",
+"SetupActivity.java:72",
+"SlotActions.java:55",
+"SlotActions.java:69",
+"SlotActions.java:88",
+"SlotActions.java:171",
+"SlotCards.java:175",
+"SlotCards.java:184",
+"SlotNow.java:12",
+"SlotNow.java:13",
+"SlotNow.java:15",
+"SlotNow.java:77",
+"SlotNow.java:94",
+"SlotReport.java:61",
+"SlotReport.java:63",
+"SlotReport.java:147",
+"SlotReport.java:147",
+"SlotTodo.java:102",
+"SlotTodo.java:125",
+"SlotUse.java:46",
+"SlotUse.java:187",
+"SlotUseCache.java:35",
+"Suggestions.java:80",
+"Suggestions.java:81",
+"TodoDialog.java:217",
+"Todos.java:138",
+"Todos.java:162",
+"Todos.java:175",
+"Todos.java:474",
+"TourActivity.java:60",
+"TourActivity.java:162",
+"TourActivity.java:191",
+"TourActivity.java:195",
+"TourActivity.java:270",
+"TourActivity.java:328",
+"TypeStats.java:24",
+"UsageAccess.java:33",
+"VideoPass.java:70",
+"VideoPass.java:77",
+"VideoPass.java:88",
+"VideoPass.java:259",
+"VideoPass.java:387",
+"VideoProgress.java:46",
+"WakeQuotes.java:27",
+"WakeQuotes.java:28",
+"WakeQuotes.java:29",
+"WakeQuotes.java:30",
+"WakeQuotes.java:31",
+"WakeQuotes.java:32",
+"WakeQuotes.java:33",
+"WakeQuotes.java:34",
+"WakeQuotes.java:35",
+"WakeQuotes.java:36",
+"WakeQuotes.java:37",
+"WakeQuotes.java:38",
+"WakeQuotes.java:39",
+"WakeQuotes.java:40",
+"WakeQuotes.java:41",
+"WakeQuotes.java:124",
+"WeekStats.java:17",
+"WeekStats.java:19",
+"WeekStats.java:68"
+],
+"method": [
+"AccountStore.java:49",
+"BackupPage.java:458"
+],
+"email": [
+"AccountStore.java:59",
+"CloudDrive.java:205"
+],
+"name": [
+"AccountStore.java:63",
+"CloudDrive.java:120",
+"CloudDrive.java:205"
+],
+"codeClientId": [
+"AccountStore.java:88"
+],
+"codeClientSecret": [
+"AccountStore.java:93"
+],
+"freq": [
+"AccountStore.java:108",
+"AccountStore.java:119"
+],
+"0": [
+"AccountStore.java:123",
+"AccountStore.java:127",
+"DayOff.java:114",
+"DeviceAuth.java:76",
+"Ev.java:101",
+"Ev.java:105",
+"InsightsPage.java:635"
+],
+"wifiOnly": [
+"AccountStore.java:123",
+"AccountStore.java:127"
+],
+"1": [
+"AccountStore.java:127",
+"Ev.java:105"
+],
+"lastOk": [
+"AccountStore.java:131"
+],
+"lastSize": [
+"AccountStore.java:135"
+],
+"error": [
+"AccountStore.java:139",
+"AccountStore.java:147",
+"CloudDrive.java:90",
+"DeviceAuth.java:108",
+"DeviceAuth.java:131",
+"DeviceAuth.java:170"
+],
+"Backup failed": [
+"AccountStore.java:147"
+],
+"restoreAsked": [
+"AccountStore.java:152",
+"AccountStore.java:156"
+],
+"failed, code {1}: {2}": [
+"AdSlot.java:69"
+],
+"No ad right now (code {1}). Trying again soon.": [
+"AdSlot.java:73"
+],
+"loaded": [
+"AdSlot.java:63"
+],
+"Loading an ad…": [
+"AdSlot.java:84"
+],
+"Remove ads with Pro": [
+"AdSlot.java:87"
+],
+"asked for": [
+"AdSlot.java:91"
+],
+"form error {1}: {2}": [
+"Ads.java:71"
+],
+"update error {1}: {2}": [
+"Ads.java:79"
+],
+", Pro {1}": [
+"Ads.java:119"
+],
+", consent {1}": [
+"Ads.java:120"
+],
+", canRequestAds {1}": [
+"Ads.java:121"
+],
+", library ready {1}": [
+"Ads.java:122"
+],
+", banner: {1}": [
+"Ads.java:123"
+],
+", video: {1}": [
+"Ads.java:124"
+],
+"no banner asked for yet": [
+"Ads.java:36"
+],
+"no video asked for yet": [
+"Ads.java:37"
+],
+"not asked yet": [
+"Ads.java:38"
+],
+"answered": [
+"Ads.java:74"
+],
+"Ads: ": [
+"Ads.java:116"
+],
+"on in this build": [
+"Ads.java:118"
+],
+"off in this build": [
+"Ads.java:118"
+],
+"owned": [
+"Ads.java:119"
+],
+"not owned": [
+"Ads.java:119"
+],
+"unknown": [
+"Ads.java:126"
+],
+"ads-init": [
+"Ads.java:147"
+],
+"A real alarm looks like this and asks if you are continuing with the schedule. Nothing in your routine was changed.": [
+"AlarmActivity.java:195"
+],
+"📝  {1}": [
+"AlarmActivity.java:235",
+"HomePage.java:269",
+"RoutinePage.java:934"
+],
+"{1} to {2}": [
+"AlarmActivity.java:244"
+],
+"You asked to start later. {1}": [
+"AlarmActivity.java:245"
+],
+"Your day starts. {1}": [
+"AlarmActivity.java:246"
+],
+"Start “{1}” now": [
+"AlarmActivity.java:253",
+"EarlyDialog.java:38"
+],
+"Start “{1}” after": [
+"AlarmActivity.java:262"
+],
+"I will ask again at {1}": [
+"AlarmActivity.java:266",
+"AlarmActivity.java:277",
+"AlarmActivity.java:472",
+"AlarmActivity.java:923",
+"DayOffDialog.java:82",
+"HomePage.java:233"
+],
+"Continue “{1}” until": [
+"AlarmActivity.java:272"
+],
+"{1} min from now.": [
+"AlarmActivity.java:334"
+],
+"Starts at {1}.": [
+"AlarmActivity.java:334"
+],
+"“{1}”": [
+"AlarmActivity.java:395",
+"AlarmActivity.java:451",
+"AlarmActivity.java:563",
+"LockScreen.java:231",
+"PauseScreen.java:329",
+"RoutinePage.java:1488",
+"RoutinePage.java:1489",
+"Suggestions.java:49"
+],
+"— {1}": [
+"AlarmActivity.java:396",
+"AlarmActivity.java:456"
+],
+"{1}  ·  {2} to {3}": [
+"AlarmActivity.java:414"
+],
+"Still delay by {1} min": [
+"AlarmActivity.java:462"
+],
+"Sum 1 of {1}": [
+"AlarmActivity.java:521",
+"PauseScreen.java:276"
+],
+"{1} = ?": [
+"AlarmActivity.java:524",
+"AlarmActivity.java:540",
+"PauseScreen.java:279",
+"PauseScreen.java:301"
+],
+"Sum {1} of {2}": [
+"AlarmActivity.java:541",
+"PauseScreen.java:302"
+],
+"Breath 1 of {1}": [
+"AlarmActivity.java:598",
+"PauseScreen.java:400"
+],
+"Breath {1} of {2}": [
+"AlarmActivity.java:609",
+"PauseScreen.java:429"
+],
+"0 of {1} shakes": [
+"AlarmActivity.java:655"
+],
+"{1} of {2} shakes": [
+"AlarmActivity.java:668"
+],
+"Your break started at {1}": [
+"AlarmActivity.java:718"
+],
+"Ready to get back to {1}?": [
+"AlarmActivity.java:721"
+],
+"Back at {1}.": [
+"AlarmActivity.java:736"
+],
+"Break extended until {1}": [
+"AlarmActivity.java:744"
+],
+"Changed for today: {1}": [
+"AlarmActivity.java:776"
+],
+"Planned bedtime {1}": [
+"AlarmActivity.java:791",
+"ReportRenderer.java:635"
+],
+"{1} min": [
+"AlarmActivity.java:886",
+"ExtraSections.java:480",
+"ExtraSections.java:495",
+"MinuteStepper.java:79",
+"Routine.java:923"
+],
+"Going to sleep at {1}": [
+"AlarmActivity.java:931"
+],
+", {1} after your plan": [
+"AlarmActivity.java:932"
+],
+"Good night. I will wake you at {1}.": [
+"AlarmActivity.java:935"
+],
+"{1}  ·  {2}": [
+"AlarmActivity.java:951",
+"HomePage.java:197",
+"HomePage.java:431",
+"HomePage.java:589",
+"InsightsPage.java:265",
+"LauncherActivity.java:954",
+"LauncherSettingsActivity.java:259",
+"RoutinePage.java:1602",
+"TodoDialog.java:131"
+],
+"Good night. Alarm set for {1}": [
+"AlarmActivity.java:979"
+],
+"Test alarm": [
+"AlarmActivity.java:191",
+"AlarmScheduler.java:148",
+"AlarmService.java:108"
+],
+"If you can see and hear this, your alarms will work.": [
+"AlarmActivity.java:192"
+],
+"Alarms are working on this phone.": [
+"AlarmActivity.java:194"
+],
+"Stop the test": [
+"AlarmActivity.java:197"
+],
+"Next slot": [
+"AlarmActivity.java:220",
+"AlarmService.java:120",
+"AlarmService.java:123"
+],
+"What would you like to do?": [
+"AlarmActivity.java:251"
+],
+"Start now": [
+"AlarmActivity.java:253",
+"AlarmService.java:156"
+],
+"Start later": [
+"AlarmActivity.java:260",
+"AlarmActivity.java:263",
+"EarlyDialog.java:80"
+],
+"Start after": [
+"AlarmActivity.java:262"
+],
+"Continue the slot before until": [
+"AlarmActivity.java:272"
+],
+"Keep going": [
+"AlarmActivity.java:274"
+],
+"Other options": [
+"AlarmActivity.java:281"
+],
+"Other plan": [
+"AlarmActivity.java:283"
+],
+"Take it off for today": [
+"AlarmActivity.java:287",
+"AlarmActivity.java:778"
+],
+"S": [
+"AlarmActivity.java:316"
+],
+"Taken off for today": [
+"AlarmActivity.java:317"
+],
+"Your day has started.": [
+"AlarmActivity.java:350"
+],
+"To turn this alarm off, solve three quick sums.": [
+"AlarmActivity.java:366"
+],
+"To turn this alarm off, take a short pause and breathe.": [
+"AlarmActivity.java:368"
+],
+"To turn this alarm off, shake your phone.": [
+"AlarmActivity.java:370"
+],
+"To turn this alarm off, type a short sentence.": [
+"AlarmActivity.java:372"
+],
+"Another quote": [
+"AlarmActivity.java:390"
+],
+"Time to start your day": [
+"AlarmActivity.java:413",
+"AlarmService.java:117"
+],
+"Ready to start your day?": [
+"AlarmActivity.java:420"
+],
+"Start my day": [
+"AlarmActivity.java:427"
+],
+"Delay the start": [
+"AlarmActivity.java:430"
+],
+"Start with a delay of": [
+"AlarmActivity.java:432"
+],
+"Delay my start": [
+"AlarmActivity.java:433"
+],
+"Take the day off": [
+"AlarmActivity.java:436"
+],
+"Enjoy your day off.": [
+"AlarmActivity.java:436"
+],
+"Before you put it off, read this.": [
+"AlarmActivity.java:443"
+],
+"I am up. Start my day": [
+"AlarmActivity.java:461",
+"AlarmActivity.java:484"
+],
+"Back": [
+"AlarmActivity.java:466",
+"AlarmActivity.java:508",
+"AlarmActivity.java:779",
+"AlarmActivity.java:925",
+"AlarmActivity.java:937",
+"AlarmActivity.java:967",
+"EarlyDialog.java:83",
+"TourActivity.java:217"
+],
+"Type this to put your day off": [
+"AlarmActivity.java:482"
+],
+"Type this to start your day": [
+"AlarmActivity.java:502"
+],
+" ": [
+"AlarmActivity.java:517",
+"AlarmActivity.java:560",
+"LockScreen.java:238",
+"PauseChallenge.java:122",
+"PauseScreen.java:288",
+"PauseScreen.java:337"
+],
+"Your answer": [
+"AlarmActivity.java:528",
+"PauseScreen.java:282"
+],
+"Right! One more.": [
+"AlarmActivity.java:538",
+"PauseScreen.java:299"
+],
+"Not quite. Try again.": [
+"AlarmActivity.java:543",
+"PauseScreen.java:304"
+],
+"Check": [
+"AlarmActivity.java:551",
+"AlarmActivity.java:583",
+"PauseScreen.java:313",
+"PauseScreen.java:352"
+],
+"Type it here": [
+"AlarmActivity.java:568",
+"LockScreen.java:310",
+"PauseScreen.java:333"
+],
+"Not the same yet. Check each word.": [
+"AlarmActivity.java:576",
+"LockScreen.java:245",
+"PauseScreen.java:344"
+],
+"Take a short pause": [
+"AlarmActivity.java:589"
+],
+"Breathe in": [
+"AlarmActivity.java:590",
+"AlarmActivity.java:607",
+"PauseScreen.java:392",
+"PauseScreen.java:427"
+],
+"The alarm stops when the last breath is done. Leaving this screen starts the breaths again.": [
+"AlarmActivity.java:601"
+],
+"Breathe out": [
+"AlarmActivity.java:607",
+"PauseScreen.java:427"
+],
+"This phone cannot tell when it is shaken, so here are three sums instead.": [
+"AlarmActivity.java:648",
+"AlarmActivity.java:683"
+],
+"Shake your phone": [
+"AlarmActivity.java:654"
+],
+"Hold it firmly and shake it up and down. The alarm stops after the last shake.": [
+"AlarmActivity.java:661"
+],
+"Plan your day?": [
+"AlarmActivity.java:692",
+"AlarmService.java:111",
+"DayOffDialog.java:45"
+],
+"Your day is off": [
+"AlarmActivity.java:693"
+],
+"Plan your day now, later, or leave it?": [
+"AlarmActivity.java:696"
+],
+"No alarm rings until you plan your day again.": [
+"AlarmActivity.java:697"
+],
+"Plan now": [
+"AlarmActivity.java:698",
+"DayOffDialog.java:47"
+],
+"Later": [
+"AlarmActivity.java:703",
+"BackupPage.java:524",
+"DayOffDialog.java:51"
+],
+"Leave it": [
+"AlarmActivity.java:707",
+"DayOffDialog.java:52"
+],
+"Enjoy your day off. Your alarms are back tomorrow.": [
+"AlarmActivity.java:710",
+"DayOffDialog.java:53"
+],
+"Your break is over": [
+"AlarmActivity.java:717",
+"AlarmService.java:114"
+],
+"Ready to get back to work?": [
+"AlarmActivity.java:721"
+],
+"Back to work": [
+"AlarmActivity.java:722",
+"HomePage.java:363"
+],
+"More time": [
+"AlarmActivity.java:729"
+],
+"Rest for": [
+"AlarmActivity.java:731"
+],
+"Add this time": [
+"AlarmActivity.java:741"
+],
+"What will you do instead?": [
+"AlarmActivity.java:751"
+],
+"This changes today only. Your saved routine stays as it is.": [
+"AlarmActivity.java:760"
+],
+"Save new name for today": [
+"AlarmActivity.java:762"
+],
+"Type a name, or choose Take it off": [
+"AlarmActivity.java:765"
+],
+"C": [
+"AlarmActivity.java:770",
+"SlotActions.java:55",
+"SlotActions.java:69",
+"SlotActions.java:88",
+"SlotActions.java:171"
+],
+"R": [
+"AlarmActivity.java:775",
+"PassReset.java:150",
+"PassReset.java:362",
+"PassReset.java:368"
+],
+"Asking again": [
+"AlarmActivity.java:790"
+],
+"Time to sleep": [
+"AlarmActivity.java:790",
+"AlarmService.java:126"
+],
+"Are you going to sleep, or will it take more time?": [
+"AlarmActivity.java:793"
+],
+"I am going to sleep": [
+"AlarmActivity.java:794"
+],
+"It will take more time": [
+"AlarmActivity.java:802"
+],
+"Remind me again after how long?": [
+"AlarmActivity.java:811"
+],
+"or type minutes": [
+"AlarmActivity.java:819"
+],
+"Remind me": [
+"AlarmActivity.java:900"
+],
+"Pick between 1 and 360 minutes": [
+"AlarmActivity.java:911"
+],
+"Set the alarm": [
+"AlarmActivity.java:936",
+"AlarmActivity.java:966"
+],
+"When do you want to wake up?": [
+"AlarmActivity.java:940"
+],
+"Normal schedule": [
+"AlarmActivity.java:941"
+],
+"Shift my day later": [
+"AlarmActivity.java:941"
+],
+"Skip the slots I sleep through": [
+"AlarmActivity.java:941"
+],
+"These changes are for tomorrow only. To change your routine for good, edit it in the app.": [
+"AlarmActivity.java:964"
+],
+"{1} {2}": [
+"AlarmHealth.java:146",
+"BackupData.java:57",
+"ExtraSections.java:426",
+"InsightsPage.java:343",
+"LockRules.java:333",
+"ReportRenderer.java:183",
+"RoutinePage.java:1601",
+"Suggestions.java:44"
+],
+"Alarms switched on": [
+"AlarmHealth.java:50"
+],
+"Nothing rings while this is off.": [
+"AlarmHealth.java:50"
+],
+"Notifications": [
+"AlarmHealth.java:51",
+"Permissions.java:56",
+"SettingsPage.java:386",
+"TourArt.java:229"
+],
+"The alarm question appears here, also on the lock screen.": [
+"AlarmHealth.java:51"
+],
+"Exact alarms": [
+"AlarmHealth.java:53",
+"Permissions.java:59",
+"SettingsPage.java:391"
+],
+"Rings on the minute a slot starts, not a few minutes late.": [
+"AlarmHealth.java:53"
+],
+"Alarm screen over the lock screen": [
+"AlarmHealth.java:55",
+"Permissions.java:62"
+],
+"Opens the question by itself when the phone is locked.": [
+"AlarmHealth.java:55",
+"Permissions.java:62"
+],
+"Alarm pop-up allowed": [
+"AlarmHealth.java:57"
+],
+"Shows the question on top while you use the phone.": [
+"AlarmHealth.java:57"
+],
+"Alarm volume": [
+"AlarmHealth.java:59"
+],
+"The phone's alarm volume is turned right down, so an alarm would not make a sound.": [
+"AlarmHealth.java:59"
+],
+"No battery limits": [
+"AlarmHealth.java:61",
+"Permissions.java:68",
+"SettingsPage.java:398"
+],
+"Stops the phone from putting the app to sleep. Set Battery to Unrestricted on the app info page.": [
+"AlarmHealth.java:61"
+],
+"Allow background activity": [
+"AlarmHealth.java:64",
+"Permissions.java:71"
+],
+"Some phones stop apps unless you allow this in their own settings.": [
+"AlarmHealth.java:64"
+],
+", ": [
+"AlarmHealth.java:75",
+"DayPass.java:222",
+"ExtraSections.java:636",
+"ExtraSections.java:637",
+"FocusDialog.java:232",
+"GroupDialog.java:440",
+"InsightsPage.java:420",
+"InsightsPage.java:841",
+"LauncherSettingsActivity.java:419",
+"LockRules.java:309",
+"Plan.java:518",
+"Plan.java:521",
+"Routine.java:289",
+"Routine.java:299",
+"Todos.java:102"
+],
+"ring": [
+"AlarmHealth.java:96",
+"AlarmService.java:45"
+],
+"Open Settings, Sound, and turn the alarm volume up": [
+"AlarmHealth.java:128"
+],
+"oppo": [
+"AlarmHealth.java:156",
+"AlarmHealth.java:170"
+],
+"realme": [
+"AlarmHealth.java:156",
+"AlarmHealth.java:170"
+],
+"oneplus": [
+"AlarmHealth.java:156",
+"AlarmHealth.java:170"
+],
+"xiaomi": [
+"AlarmHealth.java:156",
+"AlarmHealth.java:175"
+],
+"redmi": [
+"AlarmHealth.java:156",
+"AlarmHealth.java:175"
+],
+"poco": [
+"AlarmHealth.java:156",
+"AlarmHealth.java:175"
+],
+"vivo": [
+"AlarmHealth.java:156",
+"AlarmHealth.java:178"
+],
+"iqoo": [
+"AlarmHealth.java:156",
+"AlarmHealth.java:178"
+],
+"huawei": [
+"AlarmHealth.java:156",
+"AlarmHealth.java:182"
+],
+"honor": [
+"AlarmHealth.java:156",
+"AlarmHealth.java:182"
+],
+"samsung": [
+"AlarmHealth.java:157",
+"AlarmHealth.java:186"
+],
+"asus": [
+"AlarmHealth.java:157",
+"AlarmHealth.java:189"
+],
+"tecno": [
+"AlarmHealth.java:157"
+],
+"infinix": [
+"AlarmHealth.java:157"
+],
+"itel": [
+"AlarmHealth.java:157"
+],
+"com.coloros.safecenter": [
+"AlarmHealth.java:171",
+"AlarmHealth.java:172"
+],
+"com.coloros.safecenter.permission.startup.StartupAppListActivity": [
+"AlarmHealth.java:171"
+],
+"com.coloros.safecenter.startupapp.StartupAppListActivity": [
+"AlarmHealth.java:172"
+],
+"com.oppo.safe": [
+"AlarmHealth.java:173"
+],
+"com.oppo.safe.permission.startup.StartupAppListActivity": [
+"AlarmHealth.java:173"
+],
+"com.miui.securitycenter": [
+"AlarmHealth.java:176"
+],
+"com.miui.permcenter.autostart.AutoStartManagementActivity": [
+"AlarmHealth.java:176"
+],
+"com.vivo.permissionmanager": [
+"AlarmHealth.java:179"
+],
+"com.vivo.permissionmanager.activity.BgStartUpManagerActivity": [
+"AlarmHealth.java:179"
+],
+"com.iqoo.secure": [
+"AlarmHealth.java:180"
+],
+"com.iqoo.secure.ui.phoneoptimize.AddWhiteListActivity": [
+"AlarmHealth.java:180"
+],
+"com.huawei.systemmanager": [
+"AlarmHealth.java:183",
+"AlarmHealth.java:184"
+],
+"com.huawei.systemmanager.startupmgr.ui.StartupNormalAppListActivity": [
+"AlarmHealth.java:183"
+],
+"com.huawei.systemmanager.optimize.process.ProtectActivity": [
+"AlarmHealth.java:184"
+],
+"com.samsung.android.lool": [
+"AlarmHealth.java:187"
+],
+"com.samsung.android.sm.battery.ui.BatteryActivity": [
+"AlarmHealth.java:187"
+],
+"com.asus.mobilemanager": [
+"AlarmHealth.java:190"
+],
+"com.asus.mobilemanager.autostart.AutoStartActivity": [
+"AlarmHealth.java:190"
+],
+"Find Dinacharya Launcher and allow auto-start or background activity.": [
+"AlarmHealth.java:200"
+],
+"Open Battery, and choose Unrestricted or Allow background activity.": [
+"AlarmHealth.java:210"
+],
+"Open Settings, Apps, Dinacharya Launcher, Battery": [
+"AlarmHealth.java:212"
+],
+"app.dinacharya.wallpaper.ALARM": [
+"AlarmScheduler.java:14"
+],
+"kind": [
+"AlarmScheduler.java:16"
+],
+"day": [
+"AlarmScheduler.java:17",
+"DayReport.java:240",
+"ReportActivity.java:14"
+],
+"src": [
+"AlarmScheduler.java:18"
+],
+"title": [
+"AlarmScheduler.java:19"
+],
+"blockKind": [
+"AlarmScheduler.java:20"
+],
+"slotStart": [
+"AlarmScheduler.java:21"
+],
+"slotEnd": [
+"AlarmScheduler.java:22"
+],
+"plannedBed": [
+"AlarmScheduler.java:23"
+],
+"time": [
+"AlarmScheduler.java:24"
+],
+"first": [
+"AlarmScheduler.java:25"
+],
+"mode": [
+"AlarmScheduler.java:26",
+"Routine.java:1156"
+],
+"wake": [
+"AlarmScheduler.java:27"
+],
+"alarm_diag": [
+"AlarmScheduler.java:63"
+],
+"Time to get back to {1}. Tap to answer.": [
+"AlarmService.java:115"
+],
+"{1} to {2}. Tap to answer.": [
+"AlarmService.java:124"
+],
+"Missed: {1}": [
+"AlarmService.java:557"
+],
+"app.dinacharya.wallpaper.RING": [
+"AlarmService.java:42"
+],
+"app.dinacharya.wallpaper.SILENCE": [
+"AlarmService.java:43"
+],
+"missed": [
+"AlarmService.java:46",
+"Ev.java:8"
+],
+"slot_silent": [
+"AlarmService.java:51"
+],
+"This is how an alarm looks. Tap to stop it.": [
+"AlarmService.java:109"
+],
+"Your day is off. Plan it now, later, or leave it. Tap to answer.": [
+"AlarmService.java:112"
+],
+"Time to get back to work. Tap to answer.": [
+"AlarmService.java:115"
+],
+"Good morning. Tap to start the day or put it off.": [
+"AlarmService.java:118"
+],
+"Time to start now. Tap to answer.": [
+"AlarmService.java:121"
+],
+"Going to sleep, or will it take more time?": [
+"AlarmService.java:127"
+],
+"Slot questions (silent)": [
+"AlarmService.java:140"
+],
+"In 10 min": [
+"AlarmService.java:157"
+],
+"Alarms": [
+"AlarmService.java:249",
+"ExtraSections.java:130",
+"HomePage.java:560",
+"HomePage.java:567",
+"SettingsPage.java:90",
+"SettingsPage.java:352",
+"SettingsPage.java:456"
+],
+"Rings when a slot of your day starts": [
+"AlarmService.java:250"
+],
+"Missed alarms": [
+"AlarmService.java:255"
+],
+"deprecation": [
+"AlarmService.java:436",
+"CompareActivity.java:57",
+"Insets.java:37",
+"Insets.java:62",
+"LauncherActivity.java:288",
+"LauncherActivity.java:310",
+"MainActivity.java:271",
+"PickerAuth.java:86",
+"ScreenTime.java:268",
+"SettingsPage.java:491",
+"SetupActivity.java:133",
+"TourActivity.java:75",
+"TourActivity.java:118",
+"WelcomeActivity.java:29"
+],
+"no ringtone on this phone could be played; a built-in beep was used": [
+"AlarmService.java:447"
+],
+"no ringtone on this phone could be played and the built-in beep failed too": [
+"AlarmService.java:448"
+],
+"ring_fallback": [
+"AlarmService.java:504"
+],
+"ring_fallback_vibrate": [
+"AlarmService.java:504"
+],
+"Alarms (backup)": [
+"AlarmService.java:505"
+],
+"Vibrating alarms (backup)": [
+"AlarmService.java:505"
+],
+"Tap to answer.": [
+"AlarmService.java:523"
+],
+"Bedtime question": [
+"AlarmService.java:554"
+],
+"The wake-up alarm rang for half an hour. Your schedule was not changed.": [
+"AlarmService.java:558"
+],
+"The alarm rang for five minutes. Your schedule was not changed.": [
+"AlarmService.java:559"
+],
+"{1}:{2}": [
+"AlarmState.java:56",
+"DriveJob.java:30",
+"Ev.java:69",
+"InsightsPage.java:854",
+"InsightsPage.java:870",
+"LauncherConfig.java:97",
+"Routine.java:216",
+"Routine.java:917",
+"Routine.java:919",
+"TypeStats.java:91"
+],
+"reaskAt={1}\nreaskBed={2}\nreaskDay={3}\nreaskSrc={4}\nreaskTitle={5}\nlastFired={6}\nbreakFrom={7}\nbreakTo={8}\nbreakDay={9}\nbreakSrc={10}\nbreakTitle={11}\nbreakSlotEnd={12}\nagainAt={13}\nagainDay={14}\nagainSrc={15}\nagainTitle={16}\nagainSlotStart={17}\nagainSlotEnd={18}\nagainWake={19}\nskip={20}\noffDay={21}\noffFrom={22}\noffEnd={23}\noffSig={24}\nplanAt={25}\n": [
+"AlarmState.java:76"
+],
+"Sleep": [
+"AlarmState.java:14",
+"InsightsPage.java:137",
+"Plan.java:369",
+"ReportRenderer.java:409",
+"ReportRenderer.java:633",
+"ReportRenderer.java:679",
+"Routine.java:15",
+"Routine.java:430",
+"Routine.java:430",
+"Routine.java:1328",
+"Routine.java:1334",
+"Routine.java:1334",
+"TourArt.java:183",
+"TourArt.java:251"
+],
+",": [
+"AlarmState.java:95",
+"DayReport.java:126",
+"Routine.java:976"
+],
+"reaskAt": [
+"AlarmState.java:113"
+],
+"reaskBed": [
+"AlarmState.java:114"
+],
+"reaskDay": [
+"AlarmState.java:115"
+],
+"reaskSrc": [
+"AlarmState.java:116"
+],
+"reaskTitle": [
+"AlarmState.java:117"
+],
+"lastFired": [
+"AlarmState.java:118"
+],
+"breakFrom": [
+"AlarmState.java:119"
+],
+"breakTo": [
+"AlarmState.java:120"
+],
+"breakDay": [
+"AlarmState.java:121"
+],
+"breakSrc": [
+"AlarmState.java:122"
+],
+"breakTitle": [
+"AlarmState.java:123"
+],
+"breakSlotEnd": [
+"AlarmState.java:124"
+],
+"againAt": [
+"AlarmState.java:125"
+],
+"againDay": [
+"AlarmState.java:126"
+],
+"againSrc": [
+"AlarmState.java:127"
+],
+"againTitle": [
+"AlarmState.java:128"
+],
+"againSlotStart": [
+"AlarmState.java:129"
+],
+"againSlotEnd": [
+"AlarmState.java:130"
+],
+"againWake": [
+"AlarmState.java:131"
+],
+"skip": [
+"AlarmState.java:132"
+],
+"offDay": [
+"AlarmState.java:138"
+],
+"offFrom": [
+"AlarmState.java:139"
+],
+"offEnd": [
+"AlarmState.java:140"
+],
+"offSig": [
+"AlarmState.java:141"
+],
+"planAt": [
+"AlarmState.java:142"
+],
+"Not enough data": [
+"Analyzer.java:71"
+],
+"Excellent": [
+"Analyzer.java:72"
+],
+"Good": [
+"Analyzer.java:73",
+"ExtraSections.java:595"
+],
+"Fair": [
+"Analyzer.java:74"
+],
+"Needs work": [
+"Analyzer.java:75"
+],
+"{1}  (work)": [
+"AppEntry.java:23"
+],
+"{1}/{2}@{3}": [
+"AppKey.java:26"
+],
+"act:dashboard": [
+"AppKey.java:11"
+],
+"act:camera": [
+"AppKey.java:13"
+],
+"act:phone": [
+"AppKey.java:15"
+],
+"Dinacharya routine": [
+"AppKey.java:60",
+"LauncherSettingsActivity.java:268"
+],
+"Camera": [
+"AppKey.java:61",
+"LauncherSettingsActivity.java:268",
+"TourArt.java:202",
+"TourArt.java:233"
+],
+"Phone": [
+"AppKey.java:62",
+"LauncherSettingsActivity.java:268",
+"SettingsPage.java:91",
+"TourArt.java:236"
+],
+"Search": [
+"AppPicker.java:45"
+],
+"Cancel": [
+"AppPicker.java:91",
+"BackupPage.java:281",
+"BackupPage.java:290",
+"BackupPage.java:406",
+"BackupPage.java:493",
+"BackupPage.java:574",
+"BackupPage.java:624",
+"BackupPage.java:639",
+"DayOffDialog.java:38",
+"DayOffDialog.java:85",
+"EarlyDialog.java:56",
+"FocusDialog.java:160",
+"GroupDialog.java:294",
+"GroupDialog.java:478",
+"GroupDialog.java:523",
+"HomePage.java:528",
+"InsightsPage.java:695",
+"InsightsPage.java:909",
+"LanguageDialog.java:41",
+"LauncherSettingsActivity.java:515",
+"LauncherSettingsActivity.java:641",
+"LauncherSettingsActivity.java:688",
+"LibraryDialog.java:22",
+"RoutinePage.java:472",
+"RoutinePage.java:556",
+"RoutinePage.java:603",
+"RoutinePage.java:624",
+"RoutinePage.java:641",
+"RoutinePage.java:793",
+"RoutinePage.java:820",
+"RoutinePage.java:1163",
+"RoutinePage.java:1187",
+"RoutinePage.java:1295",
+"RoutinePage.java:1445",
+"RoutinePage.java:1554",
+"VideoPass.java:382"
+],
+"not a backup path: {1}": [
+"BackupArchive.java:74"
+],
+"format={1}": [
+"BackupArchive.java:64"
+],
+"dinacharya-backup.zip": [
+"BackupArchive.java:19"
+],
+"application/zip": [
+"BackupArchive.java:20"
+],
+"manifest.txt": [
+"BackupArchive.java:22"
+],
+"prefs/": [
+"BackupArchive.java:24"
+],
+"history/": [
+"BackupArchive.java:24",
+"BackupData.java:39",
+"BackupData.java:81"
+],
+"format": [
+"BackupArchive.java:38"
+],
+"created": [
+"BackupArchive.java:46",
+"BackupData.java:56",
+"BackupPage.java:556",
+"CloudBackup.java:26"
+],
+"The backup file contains an unexpected entry.": [
+"BackupArchive.java:95"
+],
+"The backup file has too many entries.": [
+"BackupArchive.java:96"
+],
+"The backup file is too large.": [
+"BackupArchive.java:101"
+],
+"The backup file is damaged.": [
+"BackupArchive.java:115"
+],
+"This is not a Dinacharya Launcher backup.": [
+"BackupArchive.java:117",
+"BackupArchive.java:118"
+],
+"This backup was made by a newer version of the app. Update the app first.": [
+"BackupArchive.java:119"
+],
+"prefs/routine.txt": [
+"BackupArchive.java:120",
+"BackupData.java:34",
+"BackupData.java:35"
+],
+"The backup has no readable routine.": [
+"BackupArchive.java:122"
+],
+"prefs/{1}.txt": [
+"BackupData.java:32",
+"BackupData.java:110"
+],
+"{1}/": [
+"BackupData.java:47"
+],
+"1.0": [
+"BackupData.java:20"
+],
+"routine": [
+"BackupData.java:21",
+"Store.java:13"
+],
+"overrides": [
+"BackupData.java:21",
+"Store.java:14"
+],
+"alarmstate": [
+"BackupData.java:21",
+"Store.java:15"
+],
+"launcher": [
+"BackupData.java:21",
+"LauncherStore.java:7"
+],
+"prefs/since.txt": [
+"BackupData.java:37",
+"BackupData.java:114"
+],
+"history": [
+"BackupData.java:38",
+"BackupData.java:89",
+"Store.java:133"
+],
+"device": [
+"BackupData.java:57",
+"BackupPage.java:562",
+"BackupPage.java:562",
+"CloudBackup.java:26"
+],
+"days": [
+"BackupData.java:58",
+"BackupPage.java:563",
+"BackupPage.java:563",
+"CloudBackup.java:26",
+"LibraryMode.java:169"
+],
+"app": [
+"BackupData.java:59",
+"CloudBackup.java:26"
+],
+"before-restore.zip": [
+"BackupData.java:70"
+],
+"history.restore": [
+"BackupData.java:76"
+],
+"Could not make a folder for the backup.": [
+"BackupData.java:84"
+],
+"history.old": [
+"BackupData.java:90"
+],
+"Could not replace the history.": [
+"BackupData.java:92",
+"BackupData.java:95"
+],
+"Could not save the restored settings.": [
+"BackupData.java:122"
+],
+"{1}, {2}": [
+"BackupPage.java:151",
+"Drop.java:138",
+"Expander.java:133",
+"HomePage.java:129",
+"InsightsPage.java:442",
+"InsightsPage.java:447",
+"RoutinePage.java:958",
+"SlotCards.java:148"
+],
+"Last backup: {1}": [
+"BackupPage.java:159"
+],
+"Size: {1}": [
+"BackupPage.java:160"
+],
+"{1}\n{2}": [
+"BackupPage.java:173",
+"VideoPass.java:86"
+],
+"Signed in as {1}": [
+"BackupPage.java:269"
+],
+"✗ Different from the README. This APK was signed with another key, so register THIS SHA-1 in Google Cloud (or build from the project as it is, which uses the included key).\n\n": [
+"BackupPage.java:324"
+],
+"Package: {1}\nSHA-1: {2}": [
+"BackupPage.java:334"
+],
+"Open {1} in a browser": [
+"BackupPage.java:419"
+],
+"Backed up ({1})": [
+"BackupPage.java:509"
+],
+"{1}\n\nSign in again to keep backing up.": [
+"BackupPage.java:519"
+],
+"Made: {1}": [
+"BackupPage.java:561"
+],
+"\nSize: {1}": [
+"BackupPage.java:561"
+],
+"{1}\n\nRestoring replaces the routines, settings and history on this phone with the backup. What is on this phone now is kept aside inside the app, just in case.": [
+"BackupPage.java:571"
+],
+"{1}\n\nNothing on this phone was changed.": [
+"BackupPage.java:595"
+],
+"Package name\n{1}\n\n": [
+"BackupPage.java:317"
+],
+"SHA-1 of this installed app\n{1}\n": [
+"BackupPage.java:318"
+],
+"\nPhone: {1}": [
+"BackupPage.java:562"
+],
+"\nDay reports: {1}": [
+"BackupPage.java:563"
+],
+"Backup": [
+"BackupPage.java:57",
+"MainActivity.java:35",
+"SettingsPage.java:460"
+],
+"Your days, safe in Google Drive": [
+"BackupPage.java:57"
+],
+"Google Drive backup": [
+"BackupPage.java:59"
+],
+"About this backup": [
+"BackupPage.java:76"
+],
+"backup_about": [
+"BackupPage.java:76"
+],
+"Back up": [
+"BackupPage.java:87",
+"BackupPage.java:166"
+],
+"Google Account": [
+"BackupPage.java:91"
+],
+"Settings": [
+"BackupPage.java:99",
+"HomePage.java:645",
+"MainActivity.java:35",
+"SettingsPage.java:77"
+],
+"How often, and over which network": [
+"BackupPage.java:99"
+],
+"backup_settings": [
+"BackupPage.java:99"
+],
+"Back up to Google Drive": [
+"BackupPage.java:100",
+"BackupPage.java:617"
+],
+"Back up using": [
+"BackupPage.java:101",
+"BackupPage.java:632"
+],
+"Restore": [
+"BackupPage.java:106",
+"BackupPage.java:573"
+],
+"For a new phone, or after reinstalling": [
+"BackupPage.java:106"
+],
+"backup_restore": [
+"BackupPage.java:106"
+],
+"Restore from Google Drive": [
+"BackupPage.java:109"
+],
+"Other ways to sign in": [
+"BackupPage.java:113"
+],
+"A short code, if the account list does not open": [
+"BackupPage.java:113"
+],
+"backup_other": [
+"BackupPage.java:114"
+],
+"Check sign-in setup": [
+"BackupPage.java:117"
+],
+"Sign in with a code": [
+"BackupPage.java:118",
+"BackupPage.java:234",
+"BackupPage.java:403"
+],
+"Code sign-in setup (client ID)": [
+"BackupPage.java:119"
+],
+"Never": [
+"BackupPage.java:144",
+"BackupPolicy.java:6"
+],
+"Today": [
+"BackupPage.java:148",
+"ExtraSections.java:90",
+"LauncherSettingsActivity.java:659",
+"PerformanceActivity.java:44",
+"RoutinePage.java:119",
+"RoutinePage.java:497"
+],
+"Yesterday": [
+"BackupPage.java:149"
+],
+"d MMM yyyy": [
+"BackupPage.java:150"
+],
+"Tap Back up to make the first one.": [
+"BackupPage.java:160"
+],
+"Sign in to start backing up.": [
+"BackupPage.java:160"
+],
+"Working…": [
+"BackupPage.java:166"
+],
+"Signed in": [
+"BackupPage.java:174"
+],
+"Switch account": [
+"BackupPage.java:180"
+],
+"Sign out": [
+"BackupPage.java:183",
+"BackupPage.java:289"
+],
+"Not signed in": [
+"BackupPage.java:189"
+],
+"Sign in with Google": [
+"BackupPage.java:191"
+],
+"Wi-Fi only": [
+"BackupPage.java:194",
+"BackupPage.java:630"
+],
+"Wi-Fi or mobile data": [
+"BackupPage.java:194",
+"BackupPage.java:630"
+],
+"Could not sign in": [
+"BackupPage.java:231",
+"BackupPage.java:264"
+],
+"Check setup": [
+"BackupPage.java:233"
+],
+"Close": [
+"BackupPage.java:235",
+"BackupPage.java:354",
+"CompareActivity.java:113",
+"RestrictedSettings.java:73",
+"SetupActivity.java:81",
+"SetupActivity.java:163"
+],
+"Sign-in failed.": [
+"BackupPage.java:255"
+],
+"OK": [
+"BackupPage.java:264",
+"BackupPage.java:596",
+"ExtraSections.java:332",
+"GroupDialog.java:59",
+"InsightsPage.java:904",
+"LauncherSettingsActivity.java:677",
+"MainActivity.java:336",
+"VideoPass.java:107"
+],
+"sign-in": [
+"BackupPage.java:273"
+],
+"Switch Google account?": [
+"BackupPage.java:278"
+],
+"You are signed out here, then you pick another account. Backups already in Drive stay there.": [
+"BackupPage.java:279"
+],
+"Switch": [
+"BackupPage.java:280"
+],
+"Sign out?": [
+"BackupPage.java:287"
+],
+"Automatic backups stop. Your data stays on this phone, and the last backup stays in your Google Drive.": [
+"BackupPage.java:288"
+],
+"Signed out": [
+"BackupPage.java:304"
+],
+"sign-out": [
+"BackupPage.java:306"
+],
+"(could not read)": [
+"BackupPage.java:318"
+],
+"\n": [
+"BackupPage.java:320"
+],
+"✓ Same as in the README.\n\n": [
+"BackupPage.java:322"
+],
+"In console.cloud.google.com, in ONE project:\n": [
+"BackupPage.java:327"
+],
+"1. Google Drive API is enabled.\n": [
+"BackupPage.java:328"
+],
+"2. Google Auth Platform > Branding is filled in (app name, your email).\n": [
+"BackupPage.java:329"
+],
+"3. Audience: External, and either “In production” (press Publish app) or your Gmail listed under Test users.\n": [
+"BackupPage.java:330"
+],
+"4. Clients: an Android client with exactly the package name and SHA-1 above.\n": [
+"BackupPage.java:331"
+],
+"5. Wait 5 to 10 minutes after saving, then try again.\n\n": [
+"BackupPage.java:332"
+],
+"Still failing? Use “Sign in with a code”, or copy these details and send them with Settings > Help > Copy problem report.": [
+"BackupPage.java:333"
+],
+"Sign-in setup check": [
+"BackupPage.java:336"
+],
+"Copy values": [
+"BackupPage.java:338"
+],
+"Dinacharya sign-in values": [
+"BackupPage.java:341"
+],
+"Copied": [
+"BackupPage.java:342"
+],
+"Could not copy": [
+"BackupPage.java:344",
+"HomePage.java:715",
+"SettingsPage.java:482"
+],
+"Open Google Cloud": [
+"BackupPage.java:347"
+],
+"Open console.cloud.google.com in a browser": [
+"BackupPage.java:351"
+],
+"code-sign-in": [
+"BackupPage.java:378"
+],
+"Google code": [
+"BackupPage.java:396"
+],
+"The code is copied. Waiting for you…": [
+"BackupPage.java:397"
+],
+"Open the page": [
+"BackupPage.java:405"
+],
+"You said no at Google. Nothing was changed.": [
+"BackupPage.java:443"
+],
+"The code ran out. Try again.": [
+"BackupPage.java:453"
+],
+"code-poll": [
+"BackupPage.java:465"
+],
+"Client ID (…apps.googleusercontent.com)": [
+"BackupPage.java:472"
+],
+"Client secret": [
+"BackupPage.java:476"
+],
+"Code sign-in setup": [
+"BackupPage.java:486"
+],
+"Save": [
+"BackupPage.java:488",
+"FocusDialog.java:159",
+"GroupDialog.java:294",
+"InsightsPage.java:667",
+"RoutinePage.java:620",
+"RoutinePage.java:1183"
+],
+"Both the ID and the secret are needed": [
+"BackupPage.java:491"
+],
+"backup-now": [
+"BackupPage.java:513"
+],
+"Sign in again": [
+"BackupPage.java:518"
+],
+"Sign in": [
+"BackupPage.java:520"
+],
+"There is no backup in this Google account yet.": [
+"BackupPage.java:547"
+],
+"find-backup": [
+"BackupPage.java:550"
+],
+"Restore this backup?": [
+"BackupPage.java:570"
+],
+"Backup found": [
+"BackupPage.java:570"
+],
+"Not now": [
+"BackupPage.java:574",
+"BatterySetup.java:31",
+"HomeRole.java:84",
+"ProPrompt.java:47",
+"ProPrompt.java:103",
+"RoutinePage.java:324",
+"UsageAccess.java:35"
+],
+"Restore failed.": [
+"BackupPage.java:588"
+],
+"Could not restore": [
+"BackupPage.java:595"
+],
+"Restored. Welcome back!": [
+"BackupPage.java:600"
+],
+"restore": [
+"BackupPage.java:602"
+],
+"{1} B": [
+"BackupPolicy.java:41"
+],
+"{1} KB": [
+"BackupPolicy.java:42"
+],
+"Only when I tap “Back up”": [
+"BackupPolicy.java:6"
+],
+"Daily": [
+"BackupPolicy.java:6"
+],
+"Weekly": [
+"BackupPolicy.java:6"
+],
+"Monthly": [
+"BackupPolicy.java:6"
+],
+"So alarms are never late, set Dinacharya Launcher’s battery use to “Unrestricted” (some phones say “Don’t optimise” or “No restrictions”).\n\n1. Tap “Open app info” below.\n2. Tap Battery (or “App battery usage”).\n3. Choose Unrestricted.\n\nAndroid’s general battery list hides Dinacharya Launcher until you switch its filter to “All apps”.": [
+"BatterySetup.java:23"
+],
+"Let Dinacharya Launcher run in the background": [
+"BatterySetup.java:22"
+],
+"Open app info": [
+"BatterySetup.java:29",
+"RestrictedSettings.java:72"
+],
+"Battery list": [
+"BatterySetup.java:30"
+],
+"Switch the filter to All apps, then find Dinacharya Launcher.": [
+"BatterySetup.java:42"
+],
+"boot-work": [
+"BootReceiver.java:31"
+],
+"© 2026": [
+"BrandMark.java:14",
+"PosterRenderer.java:249"
+],
+"Developed by": [
+"BrandMark.java:15",
+"PosterRenderer.java:249"
+],
+"ASG": [
+"BrandMark.java:16",
+"PosterRenderer.java:249"
+],
+"sans-serif-medium": [
+"BrandMark.java:56",
+"GuardService.java:517",
+"LetterRail.java:26",
+"LockScreen.java:295",
+"PauseScreen.java:209",
+"PosterRenderer.java:109",
+"ReportRenderer.java:43",
+"TourActivity.java:149",
+"TourArt.java:111",
+"WelcomeActivity.java:66"
+],
+"sans-serif": [
+"BrandMark.java:57",
+"BrandMark.java:58",
+"GuardService.java:510",
+"LauncherActivity.java:360",
+"LockScreen.java:287",
+"PauseScreen.java:201",
+"PosterRenderer.java:108",
+"PosterRenderer.java:110",
+"ReportPdf.java:26",
+"ReportRenderer.java:42",
+"ReportRenderer.java:44",
+"TourActivity.java:149",
+"TourArt.java:112",
+"WelcomeActivity.java:66"
+],
+"Could not reach Google Drive{1}": [
+"Cloud.java:55"
+],
+" ({1}).": [
+"Cloud.java:55"
+],
+"Backup failed: {1}": [
+"Cloud.java:60",
+"Cloud.java:61"
+],
+"Not signed in to Google.": [
+"Cloud.java:45",
+"DeviceAuth.java:150"
+],
+".": [
+"Cloud.java:55",
+"PickerAuth.java:82"
+],
+"Bearer {1}": [
+"CloudDrive.java:79"
+],
+"{1} ({2})": [
+"CloudDrive.java:96"
+],
+"HTTP {1}": [
+"CloudDrive.java:96",
+"DeviceAuth.java:109",
+"DeviceAuth.java:137",
+"DeviceAuth.java:172"
+],
+"name = '{1}' and trashed = false": [
+"CloudDrive.java:125"
+],
+"{1}?spaces=appDataFolder&orderBy={2}&pageSize=20&q={3}&fields={4}": [
+"CloudDrive.java:126"
+],
+"files({1})": [
+"CloudDrive.java:127"
+],
+"dinacharya{1}": [
+"CloudDrive.java:165"
+],
+"--{1}r\nContent-Type: application/json; charset=UTF-8r\nr\n{2}r\n--{3}r\nContent-Type: {4}r\nr\n": [
+"CloudDrive.java:167"
+],
+"r\n--{1}--": [
+"CloudDrive.java:170"
+],
+"multipart/related; boundary={1}": [
+"CloudDrive.java:172"
+],
+"{1}/{2}?uploadType=multipart&fields={3}": [
+"CloudDrive.java:177"
+],
+"{1}?uploadType=multipart&fields={2}": [
+"CloudDrive.java:179"
+],
+"{1}/{2}?alt=media": [
+"CloudDrive.java:190"
+],
+"{1}/{2}": [
+"CloudDrive.java:196",
+"ScreenTime.java:193",
+"ScreenTime.java:228"
+],
+"token={1}": [
+"CloudDrive.java:214"
+],
+"https://www.googleapis.com/auth/drive.appdata": [
+"CloudDrive.java:18"
+],
+"https://www.googleapis.com/drive/v3/files": [
+"CloudDrive.java:19"
+],
+"https://www.googleapis.com/upload/drive/v3/files": [
+"CloudDrive.java:20"
+],
+"https://openidconnect.googleapis.com/v1/userinfo": [
+"CloudDrive.java:21"
+],
+"https://oauth2.googleapis.com/revoke": [
+"CloudDrive.java:22"
+],
+"id,name,size,modifiedTime,appProperties": [
+"CloudDrive.java:23"
+],
+"UTF-8": [
+"CloudDrive.java:69",
+"DeviceAuth.java:84",
+"DeviceAuth.java:84"
+],
+"Authorization": [
+"CloudDrive.java:79"
+],
+"Google did not accept the sign-in. Please sign in again.": [
+"CloudDrive.java:84"
+],
+"message": [
+"CloudDrive.java:92"
+],
+"unchecked": [
+"CloudDrive.java:99",
+"MiniJson.java:27"
+],
+"id": [
+"CloudDrive.java:103"
+],
+"size": [
+"CloudDrive.java:106",
+"LauncherConfig.java:436"
+],
+"appProperties": [
+"CloudDrive.java:114"
+],
+"modifiedTime": [
+"CloudDrive.java:120"
+],
+"modifiedTime desc": [
+"CloudDrive.java:126"
+],
+"GET": [
+"CloudDrive.java:128",
+"CloudDrive.java:190",
+"CloudDrive.java:202"
+],
+"Could not look for the backup": [
+"CloudDrive.java:129"
+],
+"files": [
+"CloudDrive.java:131"
+],
+"{\"name\":": [
+"CloudDrive.java:152"
+],
+",\"parents\":[\"appDataFolder\"]": [
+"CloudDrive.java:153"
+],
+",\"appProperties\":{": [
+"CloudDrive.java:155"
+],
+"Content-Type": [
+"CloudDrive.java:172",
+"CloudDrive.java:213",
+"DeviceAuth.java:94"
+],
+"X-HTTP-Method-Override": [
+"CloudDrive.java:176"
+],
+"PATCH": [
+"CloudDrive.java:176"
+],
+"POST": [
+"CloudDrive.java:181",
+"CloudDrive.java:214",
+"DeviceAuth.java:95"
+],
+"Upload failed": [
+"CloudDrive.java:183"
+],
+"Upload failed (no file id)": [
+"CloudDrive.java:185"
+],
+"Download failed": [
+"CloudDrive.java:191"
+],
+"DELETE": [
+"CloudDrive.java:196"
+],
+"Could not delete the old backup": [
+"CloudDrive.java:197"
+],
+"Could not read your Google account": [
+"CloudDrive.java:203"
+],
+"application/x-www-form-urlencoded": [
+"CloudDrive.java:213",
+"DeviceAuth.java:94"
+],
+"Watch {1} short videos and everything in Pro is open for 24 hours. Nothing is charged. When the day is up, what you set up with it goes back to the free version.": [
+"CompareActivity.java:108"
+],
+"✓  {1}": [
+"CompareActivity.java:166"
+],
+"Dinacharya": [
+"CompareActivity.java:79",
+"ProActivity.java:64"
+],
+"Free and Pro": [
+"CompareActivity.java:80"
+],
+"Everything the app does, side by side. Open a group to see what each one gives.": [
+"CompareActivity.java:81"
+],
+"Free": [
+"CompareActivity.java:88",
+"TourArt.java:375"
+],
+"Your whole day, and today's report": [
+"CompareActivity.java:88"
+],
+"Pro": [
+"CompareActivity.java:89",
+"CompareActivity.java:104",
+"TourArt.java:376"
+],
+"You have Pro. Thank you!": [
+"CompareActivity.java:89",
+"ProActivity.java:66"
+],
+"Everything, and no ads": [
+"CompareActivity.java:89"
+],
+"Try it, or keep it": [
+"CompareActivity.java:104"
+],
+"You have Pro": [
+"CompareActivity.java:104"
+],
+"Try Pro free for a day": [
+"CompareActivity.java:104",
+"ProActivity.java:90"
+],
+"Everything in this list is open for you, and there are no ads.": [
+"CompareActivity.java:106"
+],
+"See Pro plans": [
+"CompareActivity.java:111"
+],
+"Done": [
+"CompareActivity.java:113",
+"GroupDialog.java:473",
+"GroupDialog.java:522",
+"LauncherSettingsActivity.java:507",
+"LauncherSettingsActivity.java:636",
+"TodoDialog.java:84",
+"TodoDialog.java:105"
+],
+"{1} at {2} (thread {3})\nAndroid {4} (API {5}), {6} {7}\n\n{8}": [
+"CrashLog.java:75"
+],
+"Handled problem in {1}": [
+"CrashLog.java:93"
+],
+"{1}\n": [
+"CrashLog.java:93",
+"HistoryStore.java:36"
+],
+"last_crash.txt": [
+"CrashLog.java:27"
+],
+"problems.log": [
+"CrashLog.java:28"
+],
+"The app closed": [
+"CrashLog.java:55"
+],
+"yyyy-MM-dd HH:mm:ss": [
+"CrashLog.java:74"
+],
+"app.dinacharya.wallpaper.DAY_END": [
+"DayCloser.java:18"
+],
+"day-close": [
+"DayCloser.java:108"
+],
+"No alarm will ring for the rest of today. The slot going on ends now, and the slots still to come count as taken off. Tomorrow starts as usual.": [
+"DayOffDialog.java:28"
+],
+"In {1} hours": [
+"DayOffDialog.java:68"
+],
+"This evening, {1}": [
+"DayOffDialog.java:73"
+],
+"Take the rest of today off?": [
+"DayOffDialog.java:27"
+],
+"Take it off": [
+"DayOffDialog.java:30"
+],
+"The day could not be taken off": [
+"DayOffDialog.java:32"
+],
+"Your day is off, so no alarm will ring until you plan it again. Plan it now, later, or leave it?": [
+"DayOffDialog.java:46"
+],
+"In 1 hour": [
+"DayOffDialog.java:68"
+],
+"Ask me again": [
+"DayOffDialog.java:77"
+],
+"pauses for more than {1}": [
+"DayPass.java:57"
+],
+"more than {1} lock": [
+"DayPass.java:61"
+],
+"more than {1} in a lock": [
+"DayPass.java:62"
+],
+"Pauses: more than {1}": [
+"DayPass.java:75"
+],
+"Locks: more than {1} in a lock": [
+"DayPass.java:80"
+],
+"everything in {1}": [
+"DayPass.java:211"
+],
+"{1} Pro features": [
+"DayPass.java:212"
+],
+"Open until {1}": [
+"DayPass.java:252"
+],
+" app": [
+"DayPass.java:45",
+"LauncherSettingsActivity.java:547",
+"PlanTable.java:78"
+],
+" apps": [
+"DayPass.java:45",
+"LauncherSettingsActivity.java:547",
+"PlanTable.java:78"
+],
+"every saved day in Performance": [
+"DayPass.java:55"
+],
+"the week view in Performance": [
+"DayPass.java:56"
+],
+"strict pauses": [
+"DayPass.java:58"
+],
+"daily limits on pauses": [
+"DayPass.java:59"
+],
+"playful pauses": [
+"DayPass.java:60"
+],
+"strict locks": [
+"DayPass.java:63"
+],
+"weekday and weekend routines": [
+"DayPass.java:64"
+],
+"goals": [
+"DayPass.java:65"
+],
+"the Sunset colour look": [
+"DayPass.java:66"
+],
+"the Ocean colour look": [
+"DayPass.java:67"
+],
+"the Graphite colour look": [
+"DayPass.java:68"
+],
+"the deeper analysis in Performance": [
+"DayPass.java:69"
+],
+"Performance: every saved day": [
+"DayPass.java:73"
+],
+"Performance: the week view": [
+"DayPass.java:74"
+],
+"Pauses: strict": [
+"DayPass.java:76"
+],
+"Pauses: daily limits": [
+"DayPass.java:77"
+],
+"Pauses: playful (sum, sentence, breathing, why)": [
+"DayPass.java:78"
+],
+"Locks: more than one lock": [
+"DayPass.java:79"
+],
+"Locks: strict": [
+"DayPass.java:81"
+],
+"Routines: weekday, weekend, exam day": [
+"DayPass.java:82"
+],
+"Goals: a goal for a slot, with its own to-dos": [
+"DayPass.java:83"
+],
+"Looks: Sunset": [
+"DayPass.java:84"
+],
+"Looks: Ocean": [
+"DayPass.java:85"
+],
+"Looks: Graphite": [
+"DayPass.java:86"
+],
+"Performance: slot analysis, habits, phone use in slots": [
+"DayPass.java:87"
+],
+"Saved days": [
+"DayPass.java:90"
+],
+"Week view": [
+"DayPass.java:90"
+],
+"More paused apps": [
+"DayPass.java:90"
+],
+"Strict pauses": [
+"DayPass.java:90",
+"PlanTable.java:118",
+"TourArt.java:378"
+],
+"Daily limits": [
+"DayPass.java:90",
+"PlanTable.java:119"
+],
+"Playful pauses": [
+"DayPass.java:90"
+],
+"More locks": [
+"DayPass.java:91"
+],
+"More locked apps": [
+"DayPass.java:91"
+],
+"Strict locks": [
+"DayPass.java:91",
+"GroupDialog.java:257"
+],
+"Routines": [
+"DayPass.java:91",
+"DayPass.java:94",
+"PlanTable.java:130",
+"RoutinePage.java:222"
+],
+"Goals": [
+"DayPass.java:91",
+"DayPass.java:94",
+"PlanTable.java:114",
+"SettingsPage.java:458"
+],
+"Sunset look": [
+"DayPass.java:91"
+],
+"Ocean look": [
+"DayPass.java:91"
+],
+"Graphite look": [
+"DayPass.java:91"
+],
+"Deeper analysis": [
+"DayPass.java:92"
+],
+"Performance": [
+"DayPass.java:94",
+"PerformanceActivity.java:37",
+"PlanTable.java:108"
+],
+"Pauses": [
+"DayPass.java:94",
+"PlanTable.java:121"
+],
+"Locks": [
+"DayPass.java:94",
+"PlanTable.java:127"
+],
+"Looks": [
+"DayPass.java:94"
+],
+"everything in Pro": [
+"DayPass.java:208"
+],
+" and ": [
+"DayPass.java:222"
+],
+"day={1}": [
+"DayReport.java:118"
+],
+"start={1}": [
+"DayReport.java:119"
+],
+"end={1}": [
+"DayReport.java:120"
+],
+"partial={1}": [
+"DayReport.java:121"
+],
+"alarms={1}": [
+"DayReport.java:122"
+],
+"phoneKnown={1}": [
+"DayReport.java:123"
+],
+"phone={1}": [
+"DayReport.java:124"
+],
+"bedPlanned={1}": [
+"DayReport.java:128"
+],
+"bedActual={1}": [
+"DayReport.java:129"
+],
+"sleepPlanned={1}": [
+"DayReport.java:130"
+],
+"snoozes={1}": [
+"DayReport.java:131"
+],
+"snoozeMin={1}": [
+"DayReport.java:132"
+],
+"beforeBed={1}": [
+"DayReport.java:133"
+],
+"total={1}": [
+"DayReport.java:134"
+],
+"pauses={1}": [
+"DayReport.java:135"
+],
+"wentBack={1}": [
+"DayReport.java:136"
+],
+"openedAfter={1}": [
+"DayReport.java:137"
+],
+"pausedMost={1}": [
+"DayReport.java:138"
+],
+"planKept={1}": [
+"DayReport.java:139"
+],
+"focus={1}": [
+"DayReport.java:140"
+],
+"sleep={1}": [
+"DayReport.java:141"
+],
+"score={1}": [
+"DayReport.java:142"
+],
+"R\t{1}": [
+"DayReport.java:144",
+"LauncherConfig.java:327",
+"PassReset.java:133",
+"Todos.java:431"
+],
+"RX\t{1}": [
+"DayReport.java:152"
+],
+"RA\t{1}": [
+"DayReport.java:155"
+],
+"RF\t{1}": [
+"DayReport.java:157"
+],
+"RU\t{1}": [
+"DayReport.java:161"
+],
+"G\t{1}": [
+"DayReport.java:166",
+"LauncherConfig.java:331",
+"PassReset.java:139",
+"Routine.java:957"
+],
+"A\t{1}": [
+"DayReport.java:170"
+],
+"T\t{1}": [
+"DayReport.java:171",
+"PassReset.java:146",
+"Routine.java:986"
+],
+"Z\t{1}": [
+"DayReport.java:173"
+],
+"Kept": [
+"DayReport.java:9",
+"ReportRenderer.java:547"
+],
+"Changed": [
+"DayReport.java:9",
+"ReportRenderer.java:568"
+],
+"Taken off": [
+"DayReport.java:9"
+],
+"No answer": [
+"DayReport.java:9"
+],
+"Not tracked": [
+"DayReport.java:9"
+],
+"Ahead": [
+"DayReport.java:9"
+],
+"DINAREPORT1": [
+"DayReport.java:11"
+],
+"hours=": [
+"DayReport.java:125"
+],
+"start": [
+"DayReport.java:241",
+"LibraryMode.java:170"
+],
+"end": [
+"DayReport.java:242",
+"LibraryMode.java:171"
+],
+"partial": [
+"DayReport.java:243"
+],
+"alarms": [
+"DayReport.java:244",
+"Ev.java:14",
+"MainActivity.java:148"
+],
+"phoneKnown": [
+"DayReport.java:245"
+],
+"phone": [
+"DayReport.java:246"
+],
+"hours": [
+"DayReport.java:247"
+],
+"bedPlanned": [
+"DayReport.java:252"
+],
+"bedActual": [
+"DayReport.java:253"
+],
+"sleepPlanned": [
+"DayReport.java:254"
+],
+"snoozes": [
+"DayReport.java:255"
+],
+"snoozeMin": [
+"DayReport.java:256"
+],
+"beforeBed": [
+"DayReport.java:257"
+],
+"total": [
+"DayReport.java:258"
+],
+"pauses": [
+"DayReport.java:259"
+],
+"wentBack": [
+"DayReport.java:260"
+],
+"openedAfter": [
+"DayReport.java:261"
+],
+"pausedMost": [
+"DayReport.java:262"
+],
+"planKept": [
+"DayReport.java:263"
+],
+"focus": [
+"DayReport.java:264",
+"SlotCards.java:175",
+"SlotCards.java:184"
+],
+"sleep": [
+"DayReport.java:265",
+"Ev.java:10"
+],
+"score": [
+"DayReport.java:266"
+],
+"openid email profile {1}": [
+"DeviceAuth.java:16"
+],
+"Google refused the sign-in: {1}": [
+"DeviceAuth.java:109"
+],
+"Sign-in failed: {1}": [
+"DeviceAuth.java:137"
+],
+"Could not renew the Google sign-in ({1})": [
+"DeviceAuth.java:172"
+],
+"https://oauth2.googleapis.com/device/code": [
+"DeviceAuth.java:17"
+],
+"https://oauth2.googleapis.com/token": [
+"DeviceAuth.java:18"
+],
+"refresh": [
+"DeviceAuth.java:69",
+"DeviceAuth.java:74",
+"DeviceAuth.java:142",
+"DeviceAuth.java:149",
+"DeviceAuth.java:177"
+],
+"access": [
+"DeviceAuth.java:75",
+"DeviceAuth.java:143",
+"DeviceAuth.java:151",
+"DeviceAuth.java:168"
+],
+"expiry": [
+"DeviceAuth.java:76",
+"DeviceAuth.java:144",
+"DeviceAuth.java:154"
+],
+"Code sign-in is not set up (no client ID).": [
+"DeviceAuth.java:100"
+],
+"client_id": [
+"DeviceAuth.java:102",
+"DeviceAuth.java:121",
+"DeviceAuth.java:160"
+],
+"scope": [
+"DeviceAuth.java:103"
+],
+"device_code": [
+"DeviceAuth.java:106",
+"DeviceAuth.java:113",
+"DeviceAuth.java:123"
+],
+"error_description": [
+"DeviceAuth.java:107",
+"DeviceAuth.java:136"
+],
+"verification_url": [
+"DeviceAuth.java:111"
+],
+"verification_uri": [
+"DeviceAuth.java:112"
+],
+"user_code": [
+"DeviceAuth.java:113"
+],
+"https://www.google.com/device": [
+"DeviceAuth.java:114"
+],
+"interval": [
+"DeviceAuth.java:115"
+],
+"expires_in": [
+"DeviceAuth.java:115",
+"DeviceAuth.java:144"
+],
+"client_secret": [
+"DeviceAuth.java:122",
+"DeviceAuth.java:161"
+],
+"grant_type": [
+"DeviceAuth.java:124",
+"DeviceAuth.java:163"
+],
+"urn:ietf:params:oauth:grant-type:device_code": [
+"DeviceAuth.java:124"
+],
+"access_token": [
+"DeviceAuth.java:127",
+"DeviceAuth.java:143",
+"DeviceAuth.java:166"
+],
+"authorization_pending": [
+"DeviceAuth.java:132"
+],
+"slow_down": [
+"DeviceAuth.java:133"
+],
+"access_denied": [
+"DeviceAuth.java:134"
+],
+"expired_token": [
+"DeviceAuth.java:135"
+],
+"refresh_token": [
+"DeviceAuth.java:141",
+"DeviceAuth.java:162",
+"DeviceAuth.java:163"
+],
+"invalid_grant": [
+"DeviceAuth.java:171"
+],
+"invalid_client": [
+"DeviceAuth.java:171"
+],
+"unauthorized_client": [
+"DeviceAuth.java:171"
+],
+"jobKey": [
+"DriveJob.java:27",
+"DriveJob.java:32",
+"DriveJob.java:39"
+],
+"drive-backup": [
+"DriveJob.java:55"
+],
+", {1}": [
+"Drop.java:137"
+],
+"▾": [
+"Drop.java:95",
+"Expander.java:80",
+"GroupDialog.java:212",
+"GroupDialog.java:218",
+"InsightsPage.java:387",
+"InsightsPage.java:723",
+"RoutinePage.java:950"
+],
+"expanded": [
+"Drop.java:138",
+"Expander.java:133",
+"InsightsPage.java:447"
+],
+"collapsed": [
+"Drop.java:138",
+"Expander.java:133",
+"InsightsPage.java:442",
+"InsightsPage.java:447"
+],
+"“{1}” was to end at {2}. Finish it now, and “{3}” starts early. It still ends at {4}, so it gets the time that was left.": [
+"EarlyDialog.java:33"
+],
+"Start “{1}” after a while": [
+"EarlyDialog.java:47"
+],
+"Finish “{1}” early?": [
+"EarlyDialog.java:56"
+],
+"Back at {1}, and “{2}” goes on.": [
+"EarlyDialog.java:70"
+],
+"“{1}” starts at {2}.": [
+"EarlyDialog.java:70"
+],
+"Start “{1}” later": [
+"EarlyDialog.java:82"
+],
+"“{1}” has started": [
+"EarlyDialog.java:94"
+],
+"Enjoy your break. “{1}” goes on at {2}": [
+"EarlyDialog.java:95"
+],
+"“{1}” starts at {2}": [
+"EarlyDialog.java:96"
+],
+"this slot": [
+"EarlyDialog.java:26"
+],
+"the next slot": [
+"EarlyDialog.java:27",
+"EarlyDialog.java:64"
+],
+"Take a break first": [
+"EarlyDialog.java:43"
+],
+"Take the rest of today off": [
+"EarlyDialog.java:52"
+],
+"Take a break": [
+"EarlyDialog.java:80",
+"HomePage.java:363",
+"HomePage.java:516"
+],
+"Start the break": [
+"EarlyDialog.java:82",
+"HomePage.java:518"
+],
+"That cannot be done now": [
+"EarlyDialog.java:90"
+],
+"The next slot": [
+"EarlyDialog.java:93"
+],
+"{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}": [
+"Ev.java:117"
+],
+"ack": [
+"Ev.java:6"
+],
+"snooze": [
+"Ev.java:12"
+],
+"launch": [
+"Ev.java:16"
+],
+"break": [
+"Ev.java:22"
+],
+"delay": [
+"Ev.java:24"
+],
+"extend": [
+"Ev.java:29"
+],
+"early": [
+"Ev.java:35"
+],
+"dayoff": [
+"Ev.java:40"
+],
+"B": [
+"Ev.java:77",
+"LauncherSettingsActivity.java:653",
+"ReportAssembler.java:161",
+"Routine.java:980",
+"Routine.java:994"
+],
+"O": [
+"Ev.java:77"
+],
+"dinacharya_ui": [
+"Expander.java:20"
+],
+"{1} starts at {2} instead of {3}": [
+"ExtraSections.java:91"
+],
+"{1} is taken off": [
+"ExtraSections.java:99"
+],
+"{1} is called “{2}”": [
+"ExtraSections.java:99"
+],
+"• {1}": [
+"ExtraSections.java:109"
+],
+"An alarm rings when a slot starts. To stop it you say if you continue as planned or want a change (a new name for today, or take the slot off). At bedtime it asks if you are going to sleep and when you want to wake. You can switch single slots off with the bell on the Routine tab.": [
+"ExtraSections.java:137"
+],
+"A silent notification puts the question on screen with Start now and In 10 min buttons, with no sound and no vibration. Switch this off to see nothing at all for those slots. Each slot has its own choice: ring, vibration, silent or none, under its bell on the Routine tab.": [
+"ExtraSections.java:151"
+],
+"Choose one slot as your start-of-day alarm from its bell on the Routine tab. It has to be the first alarm of the day. It keeps ringing until you start the day, put it off or take the day off. Before you can turn it off you can be asked to solve a sum, take a pause, shake the phone or type a sentence, and you see a motivating quote.": [
+"ExtraSections.java:157"
+],
+"Taking the day off silences every alarm for the rest of today. You are asked if you want to plan the day now, later or leave it.": [
+"ExtraSections.java:207"
+],
+"It rings in 10 seconds. To try it as it will really be, press the power button now to lock the phone.{1}": [
+"ExtraSections.java:331"
+],
+"Today’s quote:  “{1}”{2}": [
+"ExtraSections.java:487"
+],
+"  — {1}": [
+"ExtraSections.java:487"
+],
+"Next alarm: {1}  ·  {2}": [
+"ExtraSections.java:508"
+],
+"Still to allow: {1}": [
+"ExtraSections.java:516"
+],
+"Notes worked out from your last days: where the day slips, what is going well, and one thing to try. Part of Pro.": [
+"ExtraSections.java:546"
+],
+"Set in Android for {1}": [
+"ExtraSections.java:442"
+],
+"\nAn alarm set for {1} never reached the app. The phone was off, or it stopped the app. See the checklist above.": [
+"ExtraSections.java:446"
+],
+"\nLast alarm Android gave the app: {1}": [
+"ExtraSections.java:450"
+],
+"\n{1}: {2}": [
+"ExtraSections.java:465"
+],
+"{1} need attention": [
+"ExtraSections.java:635"
+],
+"{1} going well": [
+"ExtraSections.java:636"
+],
+"{1} not set up yet": [
+"ExtraSections.java:637"
+],
+"Tomorrow": [
+"ExtraSections.java:90",
+"RoutinePage.java:120",
+"RoutinePage.java:501"
+],
+" (slots covered by the extra sleep are dropped)": [
+"ExtraSections.java:93"
+],
+" (the morning moves later, bedtime stays)": [
+"ExtraSections.java:94"
+],
+"Changed for today only": [
+"ExtraSections.java:107"
+],
+"Your saved routine is untouched. These end by themselves.": [
+"ExtraSections.java:112"
+],
+"Undo today’s changes": [
+"ExtraSections.java:113"
+],
+"A nudge at every slot": [
+"ExtraSections.java:130"
+],
+"Remind me with an alarm": [
+"ExtraSections.java:132"
+],
+"Slots without a sound": [
+"ExtraSections.java:142"
+],
+"alarm_silent": [
+"ExtraSections.java:142"
+],
+"Ask me about slots set to a silent notification": [
+"ExtraSections.java:143"
+],
+"Start-of-day alarm": [
+"ExtraSections.java:156",
+"RoutinePage.java:1106"
+],
+"alarm_wake": [
+"ExtraSections.java:156"
+],
+"Put the start off by": [
+"ExtraSections.java:164"
+],
+"−": [
+"ExtraSections.java:165",
+"LauncherSettingsActivity.java:170",
+"MinuteStepper.java:42",
+"RoutinePage.java:1003"
+],
+"+": [
+"ExtraSections.java:169",
+"LauncherSettingsActivity.java:175",
+"MinuteStepper.java:44",
+"RoutinePage.java:1013"
+],
+"To turn the alarm off and start the day": [
+"ExtraSections.java:172"
+],
+"Just tap Start my day": [
+"ExtraSections.java:175"
+],
+"Solve three quick sums": [
+"ExtraSections.java:175",
+"ExtraSections.java:213"
+],
+"Take a short pause (four slow breaths)": [
+"ExtraSections.java:175"
+],
+"Shake the phone": [
+"ExtraSections.java:175"
+],
+"Type a sentence": [
+"ExtraSections.java:176",
+"ExtraSections.java:213",
+"PauseChallenge.java:14"
+],
+"The alarm keeps ringing until it is done. A phone that cannot sense a shake asks for the sums instead.": [
+"ExtraSections.java:192"
+],
+"Show a motivating quote": [
+"ExtraSections.java:195"
+],
+"Offer “Take the day off”": [
+"ExtraSections.java:201"
+],
+"Challenge before putting it off": [
+"ExtraSections.java:210"
+],
+"No challenge": [
+"ExtraSections.java:213"
+],
+"Your own line to read (optional)": [
+"ExtraSections.java:230"
+],
+"Leave empty to use the lines that come with the app, in your language": [
+"ExtraSections.java:232"
+],
+"Ring a test alarm in 10 seconds": [
+"ExtraSections.java:266",
+"HomePage.java:598"
+],
+"The test goes the same way as a real alarm. Lock the phone first to see it as it will be.": [
+"ExtraSections.java:267"
+],
+"Is the phone ready?": [
+"ExtraSections.java:270"
+],
+"alarm_ready": [
+"ExtraSections.java:270"
+],
+"ev-alarms": [
+"ExtraSections.java:297",
+"Permissions.java:170"
+],
+"Alarms are on": [
+"ExtraSections.java:300"
+],
+"Switch on “Allow setting alarms and reminders” so alarms ring on the minute.": [
+"ExtraSections.java:316"
+],
+"\n\nNotifications are off for this app, so you will only hear it.": [
+"ExtraSections.java:327"
+],
+"\n\nAndroid is not allowing exact alarms, so it may come a little late.": [
+"ExtraSections.java:328"
+],
+"Test alarm set": [
+"ExtraSections.java:330"
+],
+"Could not open that screen": [
+"ExtraSections.java:356"
+],
+"Open Settings, Apps, Dinacharya Launcher, Alarms and reminders": [
+"ExtraSections.java:368",
+"Permissions.java:182"
+],
+"Open Settings, Apps, Dinacharya Launcher, Notifications": [
+"ExtraSections.java:384",
+"Permissions.java:152"
+],
+"Open Settings, Apps, Dinacharya Launcher, and allow full screen notifications": [
+"ExtraSections.java:396",
+"Permissions.java:193"
+],
+"Choose Alerting, and allow pop-up on screen.": [
+"ExtraSections.java:407"
+],
+"today": [
+"ExtraSections.java:423"
+],
+"tomorrow": [
+"ExtraSections.java:424"
+],
+"Alarms are off, so nothing is set in Android.": [
+"ExtraSections.java:441"
+],
+" (exact).": [
+"ExtraSections.java:443"
+],
+". Android may deliver it a few minutes late.": [
+"ExtraSections.java:443"
+],
+"Nothing is set in Android right now.": [
+"ExtraSections.java:444"
+],
+" (test)": [
+"ExtraSections.java:450"
+],
+". Ringing started.": [
+"ExtraSections.java:451"
+],
+". Android would not start the ringing service, so a notification was used.": [
+"ExtraSections.java:452"
+],
+". Ringing did not start. Copy the problem report from Settings > Help and send it.": [
+"ExtraSections.java:453"
+],
+"\nNo alarm has reached the app yet. Try the test alarm.": [
+"ExtraSections.java:455"
+],
+"ok": [
+"ExtraSections.java:466"
+],
+"MISSING": [
+"ExtraSections.java:466"
+],
+"not set": [
+"ExtraSections.java:466"
+],
+"Alarm details unavailable.": [
+"ExtraSections.java:470"
+],
+"No alarm is planned (all slots have their bell switched off).": [
+"ExtraSections.java:507"
+],
+"Untitled": [
+"ExtraSections.java:508",
+"HomePage.java:589",
+"PosterRenderer.java:695"
+],
+"All set": [
+"ExtraSections.java:516"
+],
+"Open": [
+"ExtraSections.java:519",
+"LauncherSettingsActivity.java:253",
+"Permissions.java:71"
+],
+"Allow": [
+"ExtraSections.java:519",
+"LauncherSettingsActivity.java:398",
+"LauncherSettingsActivity.java:455",
+"LauncherSettingsActivity.java:603",
+"LauncherSettingsActivity.java:605",
+"Permissions.java:56",
+"Permissions.java:59",
+"Permissions.java:62",
+"Permissions.java:66",
+"Permissions.java:69",
+"SettingsPage.java:422"
+],
+"Habits": [
+"ExtraSections.java:533",
+"ReportRenderer.java:790"
+],
+"What your days are telling you": [
+"ExtraSections.java:533",
+"ExtraSections.java:602"
+],
+"Part of Pro": [
+"ExtraSections.java:533",
+"ExtraSections.java:552",
+"LauncherSettingsActivity.java:433",
+"ProPrompt.java:40",
+"ProPrompt.java:44"
+],
+"ins_habits": [
+"ExtraSections.java:533"
+],
+"Worked out on this phone from your own days with simple rules. No AI service, nothing leaves the phone.": [
+"ExtraSections.java:538"
+],
+"See Pro": [
+"ExtraSections.java:550",
+"LauncherSettingsActivity.java:390",
+"LauncherSettingsActivity.java:437",
+"LauncherSettingsActivity.java:574",
+"MainActivity.java:337",
+"PerformanceActivity.java:209",
+"ProPrompt.java:46",
+"ProPrompt.java:102",
+"SlotCards.java:74"
+],
+"habits": [
+"ExtraSections.java:579"
+],
+"Watch": [
+"ExtraSections.java:595"
+],
+"Set up": [
+"ExtraSections.java:595"
+],
+"Notes appear after your first full day. Turn on alarms and usage access so the app can see how the day went.": [
+"ExtraSections.java:604"
+],
+"Nothing to flag. Keep going.": [
+"ExtraSections.java:607"
+],
+"What I noticed": [
+"ExtraSections.java:619"
+],
+"Try this": [
+"ExtraSections.java:625"
+],
+"Open Performance": [
+"ExtraSections.java:641"
+],
+"{1} min a day": [
+"FocusDialog.java:26"
+],
+"{1} h": [
+"FocusDialog.java:27"
+],
+"{1} h {2} min": [
+"FocusDialog.java:27"
+],
+"{1} a day": [
+"FocusDialog.java:27"
+],
+"Short pause ({1} seconds)": [
+"FocusDialog.java:53"
+],
+"Strict pause ({1} seconds)": [
+"FocusDialog.java:53"
+],
+"Daily limit{1}": [
+"FocusDialog.java:99",
+"FocusDialog.java:205"
+],
+"Pause rules for more than {1}": [
+"FocusDialog.java:179"
+],
+"No pause for {1}": [
+"FocusDialog.java:191"
+],
+"Pause set for {1}. It starts the next time you open it from the home screen.": [
+"FocusDialog.java:192"
+],
+"Strict pause ({1} seconds){2}": [
+"FocusDialog.java:201"
+],
+"{1}  –  {2}": [
+"FocusDialog.java:213"
+],
+"Free: a pause rule for {1} ({2} used). Pro has no limit. ": [
+"FocusDialog.java:221"
+],
+"Strict pauses apply in focus times: {1}. ": [
+"FocusDialog.java:222"
+],
+"No daily limit": [
+"FocusDialog.java:25"
+],
+"A pause gives you a moment to decide. It never locks you out: Go back is always there, and so is a way in after a longer wait.": [
+"FocusDialog.java:47"
+],
+"No pause": [
+"FocusDialog.java:53",
+"LauncherSettingsActivity.java:330"
+],
+"  • Pro": [
+"FocusDialog.java:58",
+"FocusDialog.java:99",
+"FocusDialog.java:201",
+"FocusDialog.java:205",
+"FocusDialog.java:213"
+],
+"How the pause goes": [
+"FocusDialog.java:72"
+],
+"Playful pauses (a quick sum, a sentence, breathing, saying why)": [
+"FocusDialog.java:88"
+],
+"A daily limit": [
+"FocusDialog.java:131"
+],
+"Pause at any time of day (a strict pause still only applies in focus times)": [
+"FocusDialog.java:141"
+],
+"Remove": [
+"FocusDialog.java:161",
+"InsightsPage.java:697",
+"InsightsPage.java:760",
+"RoutinePage.java:787",
+"RoutinePage.java:1189"
+],
+"A strict pause": [
+"FocusDialog.java:171"
+],
+"Pause rules for as many apps as you like. ": [
+"FocusDialog.java:220"
+],
+"With the strong lock on, pauses hold wherever the app is opened from.": [
+"FocusDialog.java:223"
+],
+"Pauses work when you open an app from this home screen. The strong lock in the home settings holds them everywhere.": [
+"FocusDialog.java:224"
+],
+"none": [
+"FocusDialog.java:235",
+"PosterRenderer.java:352",
+"RoutinePage.java:655"
+],
+"?": [
+"Glyph.java:176"
+],
+"i": [
+"Glyph.java:176"
+],
+"Every {1} slot": [
+"GoalSlots.java:43"
+],
+"{1}  ({2})": [
+"GoalSlots.java:43",
+"InsightsPage.java:898"
+],
+"{1}#{2}": [
+"GoalSlots.java:56",
+"PassReset.java:377",
+"Routine.java:216",
+"TypeStats.java:96"
+],
+"This is a strict lock and it is holding now, until {1}. A strict lock cannot be changed or removed while it holds.": [
+"GroupDialog.java:57"
+],
+"Without strict, you can still break a lock: wait 30 seconds and type a sentence. A strict lock cannot be broken, and cannot be changed while it holds. {1}": [
+"GroupDialog.java:266"
+],
+"From {1}": [
+"GroupDialog.java:282",
+"LibrarySettings.java:144"
+],
+"to {1}": [
+"GroupDialog.java:283",
+"PosterRenderer.java:658",
+"RoutinePage.java:1592"
+],
+"{1}.": [
+"GroupDialog.java:285"
+],
+"Locked by hand until {1} ({2} left).": [
+"GroupDialog.java:288"
+],
+"Locking more than {1} (a group of apps)": [
+"GroupDialog.java:312",
+"GroupDialog.java:498"
+],
+"Locked while a {1} slot is going on.": [
+"GroupDialog.java:371",
+"GroupDialog.java:376"
+],
+"Locked only while a {1} slot is going on, {2} from {3} to {4}.": [
+"GroupDialog.java:374"
+],
+"Locked in the times above, and also whenever a {1} slot is going on.": [
+"GroupDialog.java:377"
+],
+"Locked {1}, {2} to {3}.": [
+"GroupDialog.java:380"
+],
+"Apps to lock ({1} free)": [
+"GroupDialog.java:386"
+],
+"Any {1}": [
+"GroupDialog.java:462",
+"LockRules.java:204"
+],
+"Other {1}": [
+"GroupDialog.java:465",
+"InsightsPage.java:492",
+"LockRules.java:205",
+"TypeStats.java:71"
+],
+"Up to {1} apps in a group": [
+"GroupDialog.java:513"
+],
+"and {1} more": [
+"GroupDialog.java:442",
+"InsightsPage.java:228",
+"LockRules.java:222"
+],
+"30 min": [
+"GroupDialog.java:27"
+],
+"1 h": [
+"GroupDialog.java:27"
+],
+"2 h": [
+"GroupDialog.java:27"
+],
+"4 h": [
+"GroupDialog.java:27"
+],
+"8 h": [
+"GroupDialog.java:27"
+],
+"Name, for example Social": [
+"GroupDialog.java:94"
+],
+"Choose apps": [
+"GroupDialog.java:106"
+],
+"Lock by": [
+"GroupDialog.java:113"
+],
+"Locked between": [
+"GroupDialog.java:145"
+],
+"On these days": [
+"GroupDialog.java:165",
+"LibrarySettings.java:83"
+],
+"Every day": [
+"GroupDialog.java:171",
+"InsightsPage.java:536",
+"LibrarySettings.java:89",
+"LockRules.java:303",
+"Routine.java:295",
+"TodoDialog.java:277",
+"Todos.java:95"
+],
+"Weekdays": [
+"GroupDialog.java:175",
+"LibrarySettings.java:90",
+"LockRules.java:304",
+"RoutinePage.java:459",
+"TourArt.java:242"
+],
+"Weekends": [
+"GroupDialog.java:179",
+"LibrarySettings.java:91",
+"LockRules.java:305"
+],
+"Activity types": [
+"GroupDialog.java:189",
+"RoutinePage.java:273"
+],
+"Choose activity types": [
+"GroupDialog.java:192"
+],
+"A break, a slot you took off and the time between slots do not lock.": [
+"GroupDialog.java:193"
+],
+"▴": [
+"GroupDialog.java:212",
+"GroupDialog.java:218"
+],
+"More options": [
+"GroupDialog.java:213"
+],
+"Lock now for": [
+"GroupDialog.java:224"
+],
+"Unlock now": [
+"GroupDialog.java:243"
+],
+"Also lock in library mode": [
+"GroupDialog.java:252"
+],
+"Hide the apps while they are locked": [
+"GroupDialog.java:253"
+],
+"With the strong lock on, locks hold wherever the app is opened from.": [
+"GroupDialog.java:268"
+],
+"Locks apply when you open an app from this home screen. The strong lock in the home settings holds them everywhere.": [
+"GroupDialog.java:269"
+],
+"No activity types chosen yet.": [
+"GroupDialog.java:285"
+],
+"Not locked by hand.": [
+"GroupDialog.java:289"
+],
+"Delete": [
+"GroupDialog.java:295",
+"RoutinePage.java:379",
+"RoutinePage.java:409",
+"RoutinePage.java:592",
+"RoutinePage.java:634",
+"RoutinePage.java:1048",
+"RoutinePage.java:1287"
+],
+"Choose at least one app": [
+"GroupDialog.java:308"
+],
+"Choose at least one activity type": [
+"GroupDialog.java:321",
+"GroupDialog.java:365"
+],
+"Pick at least one day": [
+"GroupDialog.java:325",
+"GroupDialog.java:373",
+"InsightsPage.java:675"
+],
+"Locked apps": [
+"GroupDialog.java:331",
+"GroupDialog.java:336",
+"LauncherSettingsActivity.java:521"
+],
+"That is the most groups there can be": [
+"GroupDialog.java:333"
+],
+"No daily schedule. Use Lock now, pick days, or lock during an activity type.": [
+"GroupDialog.java:379"
+],
+" (the whole day)": [
+"GroupDialog.java:381"
+],
+" (into the next morning)": [
+"GroupDialog.java:381"
+],
+"Apps in the group": [
+"GroupDialog.java:386"
+],
+"Strict: no way past until it ends": [
+"GroupDialog.java:390"
+],
+"Strict: no way past (Pro)": [
+"GroupDialog.java:390"
+],
+"Locked group": [
+"GroupDialog.java:394"
+],
+"New locked group": [
+"GroupDialog.java:394"
+],
+"Lock apps": [
+"GroupDialog.java:394",
+"LauncherSettingsActivity.java:557"
+],
+"No apps yet.": [
+"GroupDialog.java:429"
+],
+" app: ": [
+"GroupDialog.java:438"
+],
+" apps: ": [
+"GroupDialog.java:438"
+],
+"Lock during": [
+"GroupDialog.java:471"
+],
+"Apps to lock": [
+"GroupDialog.java:521"
+],
+"pkg": [
+"GuardActivity.java:20"
+],
+"You have used it for {1} today.\nYour limit is {2}.": [
+"GuardRules.java:215",
+"LauncherActivity.java:1089"
+],
+"Right now: {1}.\nThis is a focus time.": [
+"GuardRules.java:219",
+"LauncherActivity.java:1092"
+],
+"Right now: {1}.\nIs this the best use of the next few minutes?": [
+"GuardRules.java:221",
+"LauncherActivity.java:1094"
+],
+"This is a focus time.": [
+"GuardRules.java:219",
+"LauncherActivity.java:1092"
+],
+"Take a breath.\nIs this what you meant to open?": [
+"GuardRules.java:222",
+"LauncherActivity.java:1096"
+],
+"android": [
+"GuardRules.java:229",
+"GuardService.java:314"
+],
+"com.android.systemui": [
+"GuardRules.java:229",
+"ScreenTime.java:284"
+],
+"com.android.settings": [
+"GuardRules.java:229"
+],
+"com.android.phone": [
+"GuardRules.java:229"
+],
+"com.android.server.telecom": [
+"GuardRules.java:229"
+],
+"com.android.emergency": [
+"GuardRules.java:230"
+],
+"com.android.dialer": [
+"GuardRules.java:230"
+],
+"com.google.android.dialer": [
+"GuardRules.java:230"
+],
+"com.samsung.android.dialer": [
+"GuardRules.java:230"
+],
+"com.google.android.permissioncontroller": [
+"GuardRules.java:231"
+],
+"com.android.permissioncontroller": [
+"GuardRules.java:231"
+],
+"com.android.packageinstaller": [
+"GuardRules.java:231"
+],
+"com.google.android.packageinstaller": [
+"GuardRules.java:232"
+],
+"com.google.android.gms": [
+"GuardRules.java:232"
+],
+"com.android.inputmethod.latin": [
+"GuardRules.java:233"
+],
+"com.google.android.inputmethod.latin": [
+"GuardRules.java:233"
+],
+"You can open it in {1} s": [
+"GuardService.java:485"
+],
+"strong_lock": [
+"GuardService.java:51"
+],
+"strong-lock": [
+"GuardService.java:129"
+],
+"Strong lock": [
+"GuardService.java:162",
+"LauncherSettingsActivity.java:588",
+"LauncherSettingsActivity.java:594"
+],
+"Shown while the strong lock is on": [
+"GuardService.java:163"
+],
+"Strong lock is on": [
+"GuardService.java:171"
+],
+"Holding locked and paused apps. Tap to change.": [
+"GuardService.java:172"
+],
+"a locked group": [
+"GuardService.java:429",
+"LockScreen.java:97"
+],
+"Strictly locked  ·  ": [
+"GuardService.java:430"
+],
+"Locked  ·  ": [
+"GuardService.java:430"
+],
+"Go back": [
+"GuardService.java:437",
+"LockScreen.java:122",
+"PauseScreen.java:105",
+"TourArt.java:292",
+"TourArt.java:354"
+],
+"Open anyway": [
+"GuardService.java:445",
+"PauseScreen.java:110",
+"PauseScreen.java:250"
+],
+"Opening the lock screen…": [
+"GuardService.java:454"
+],
+"This lock is strict. There is no way past it until it ends.": [
+"GuardService.java:468",
+"LockScreen.java:129"
+],
+"To break this lock, open the app from the Dinacharya Launcher home screen.": [
+"GuardService.java:470"
+],
+"You can open it now.": [
+"GuardService.java:485"
+],
+"sans-serif-light": [
+"GuardService.java:510",
+"LauncherActivity.java:360",
+"LockScreen.java:287",
+"PauseScreen.java:201",
+"TourArt.java:112"
+],
+"{1}.txt": [
+"HistoryStore.java:105"
+],
+"events.log": [
+"HistoryStore.java:24"
+],
+"reports": [
+"HistoryStore.java:25"
+],
+"[^0-9-]": [
+"HistoryStore.java:105"
+],
+"Signed in as {1}. Open Backup.": [
+"HomePage.java:133"
+],
+"{1} settings still to do": [
+"HomePage.java:169"
+],
+"  ·  {1}": [
+"HomePage.java:223",
+"LauncherSettingsActivity.java:331"
+],
+"Break until {1}   ·   {2} left": [
+"HomePage.java:237"
+],
+"Then back to {1}, which ends at {2}": [
+"HomePage.java:239"
+],
+"Starts at {1}   ·   in {2}": [
+"HomePage.java:242"
+],
+"It was to start at {1}, and ends at {2}": [
+"HomePage.java:244"
+],
+"{1} – {2}   ·   {3} left": [
+"HomePage.java:247"
+],
+"Next:  {1}  at {2}  (in {3})": [
+"HomePage.java:287"
+],
+"Started late, at {1} instead of {2}": [
+"HomePage.java:325"
+],
+"Started early, at {1} instead of {2}": [
+"HomePage.java:327"
+],
+"Carried on, so it ends at {1} instead of {2}": [
+"HomePage.java:329"
+],
+"Finished early, at {1} instead of {2}": [
+"HomePage.java:331"
+],
+"To-do  {1}/{2}": [
+"HomePage.java:378"
+],
+"{1} of {2} done": [
+"HomePage.java:417"
+],
+"{1} of {2}": [
+"HomePage.java:426",
+"InsightsPage.java:383",
+"TodoDialog.java:125",
+"TourActivity.java:240"
+],
+"Back at {1}": [
+"HomePage.java:497"
+],
+"Enjoy your break. Back at {1}": [
+"HomePage.java:525"
+],
+"Nothing will ring until you turn them on. When a slot starts you hear an alarm and answer: continue as planned, or change it.": [
+"HomePage.java:562"
+],
+"Allow: {1}.": [
+"HomePage.java:569"
+],
+"The alarm set for {1} never reached the app. The phone may be stopping it.": [
+"HomePage.java:570"
+],
+"{1}\n\n{2}": [
+"HomePage.java:696"
+],
+"Your home screen": [
+"HomePage.java:93"
+],
+"A preview, and the button to change its look": [
+"HomePage.java:93"
+],
+"home_preview": [
+"HomePage.java:94"
+],
+"Change the look": [
+"HomePage.java:104"
+],
+"Good night": [
+"HomePage.java:127"
+],
+"Good morning": [
+"HomePage.java:127"
+],
+"Good afternoon": [
+"HomePage.java:127"
+],
+"Good evening": [
+"HomePage.java:127"
+],
+"Not signed in. Open Backup.": [
+"HomePage.java:133"
+],
+"☁": [
+"HomePage.java:135"
+],
+"Setup": [
+"HomePage.java:169"
+],
+"1 setting still to do": [
+"HomePage.java:169"
+],
+"Open the setup guide": [
+"HomePage.java:177"
+],
+"Take the tour": [
+"HomePage.java:179",
+"LauncherSettingsActivity.java:251",
+"SettingsPage.java:84"
+],
+"EEEE, d MMMM": [
+"HomePage.java:196"
+],
+"DAY OFF": [
+"HomePage.java:224"
+],
+"ON A BREAK": [
+"HomePage.java:224"
+],
+"STARTING LATER": [
+"HomePage.java:224"
+],
+"NOW": [
+"HomePage.java:224",
+"HomePage.java:276"
+],
+"Enjoy your day off": [
+"HomePage.java:228"
+],
+"No alarm will ring until you plan the day again, or tomorrow.": [
+"HomePage.java:231"
+],
+"Free time": [
+"HomePage.java:279"
+],
+"Tap it to add a to-do list for it.": [
+"HomePage.java:294"
+],
+"Plan the day": [
+"HomePage.java:343"
+],
+"Back to my schedule": [
+"HomePage.java:347"
+],
+"Your schedule is back. The alarms ring again.": [
+"HomePage.java:349"
+],
+"To-do": [
+"HomePage.java:378",
+"TodoDialog.java:103"
+],
+"Finish early": [
+"HomePage.java:387"
+],
+"Your to-do list": [
+"HomePage.java:416"
+],
+"home_todo": [
+"HomePage.java:416"
+],
+"time reached": [
+"HomePage.java:431",
+"TodoDialog.java:131"
+],
+"This slot is taken off, so it has no to-do list": [
+"HomePage.java:470"
+],
+"This slot is almost over": [
+"HomePage.java:485"
+],
+", when this slot ends": [
+"HomePage.java:497"
+],
+"Until this slot ends": [
+"HomePage.java:507"
+],
+"A break cannot be taken now": [
+"HomePage.java:522"
+],
+"Alarms are off": [
+"HomePage.java:561",
+"RoutinePage.java:313",
+"RoutinePage.java:321"
+],
+"Turn on alarms": [
+"HomePage.java:564",
+"RoutinePage.java:315",
+"Suggestions.java:80"
+],
+"Alarms need your attention": [
+"HomePage.java:568"
+],
+"Fix now": [
+"HomePage.java:572"
+],
+"Next alarm": [
+"HomePage.java:587"
+],
+"None planned": [
+"HomePage.java:588"
+],
+"Every slot has its bell off.": [
+"HomePage.java:591"
+],
+"Test": [
+"HomePage.java:594"
+],
+"Tip: allow background use so alarms are never late. Tap to open.": [
+"HomePage.java:603"
+],
+"Library mode": [
+"HomePage.java:630",
+"LibraryDialog.java:15",
+"LibrarySettings.java:34"
+],
+"Off": [
+"HomePage.java:631",
+"LibraryMode.java:195",
+"LibrarySettings.java:139"
+],
+"Every alarm only vibrates, with no sound.": [
+"HomePage.java:633"
+],
+"Keeps every alarm silent, with vibration only, for the library, a class or an exam.": [
+"HomePage.java:634"
+],
+"Turn off": [
+"HomePage.java:637",
+"LibrarySettings.java:141"
+],
+"Change the hours": [
+"HomePage.java:637"
+],
+"Turn on": [
+"HomePage.java:637",
+"LibrarySettings.java:41",
+"LibrarySettings.java:141",
+"Permissions.java:57",
+"RoutinePage.java:323"
+],
+"Today's goals": [
+"HomePage.java:672"
+],
+"home-goals": [
+"HomePage.java:676"
+],
+"Dinacharya Launcher closed unexpectedly last time": [
+"HomePage.java:689"
+],
+"Sorry about that. Tap Copy details and send them to the developer so it can be fixed.": [
+"HomePage.java:690"
+],
+"Copy details": [
+"HomePage.java:696"
+],
+"Dismiss": [
+"HomePage.java:699"
+],
+"Dinacharya problem report": [
+"HomePage.java:711",
+"SettingsPage.java:479"
+],
+"Details copied": [
+"HomePage.java:712"
+],
+"The Home button now opens another launcher. This happens after an update or a reinstall, or when another home app is picked. Make Dinacharya Launcher your home app again?": [
+"HomeRole.java:81"
+],
+"Dinacharya Launcher is not your home app any more": [
+"HomeRole.java:80"
+],
+"Make it my home app": [
+"HomeRole.java:83",
+"MainActivity.java:182"
+],
+"Stop asking": [
+"HomeRole.java:85"
+],
+"Open Settings, then Apps, Default apps, Home app": [
+"HomeRole.java:117"
+],
+"{1}   {2}   {3}": [
+"InsightsPage.java:137"
+],
+"{1} types": [
+"InsightsPage.java:171"
+],
+"1 slot  ·  {1}": [
+"InsightsPage.java:245"
+],
+"{1} slots  ·  {2}": [
+"InsightsPage.java:245"
+],
+"{1} – {2}": [
+"InsightsPage.java:263",
+"SlotCards.java:174",
+"SlotCards.java:217"
+],
+"On apps  {1}   ·   Without apps  {2}": [
+"InsightsPage.java:267"
+],
+"  🔥 {1}": [
+"InsightsPage.java:381"
+],
+"{1} of {2} planned": [
+"InsightsPage.java:384"
+],
+"{1}  ✓": [
+"InsightsPage.java:385"
+],
+"Your plan has {1} of it today.": [
+"InsightsPage.java:408"
+],
+"Planned today: {1}.": [
+"InsightsPage.java:409"
+],
+"🔥 {1}-day streak.  {2}": [
+"InsightsPage.java:410"
+],
+"Apps: {1}": [
+"InsightsPage.java:423"
+],
+"{1}   ·   Without apps  {2}": [
+"InsightsPage.java:423"
+],
+"{1} goals, with how they repeat": [
+"InsightsPage.java:479"
+],
+"   ·   {1} to-dos": [
+"InsightsPage.java:499"
+],
+"Only on days with {1}": [
+"InsightsPage.java:588",
+"InsightsPage.java:907"
+],
+"Goal for {1}": [
+"InsightsPage.java:665"
+],
+"Goal set: {1}, {2}  ·  {3}": [
+"InsightsPage.java:693"
+],
+"To-do list  ·  {1} to-dos": [
+"InsightsPage.java:768"
+],
+" and {1} more": [
+"InsightsPage.java:422"
+],
+"Insights": [
+"InsightsPage.java:53",
+"MainActivity.java:35"
+],
+"How your days are going": [
+"InsightsPage.java:53"
+],
+"Reports": [
+"InsightsPage.java:72"
+],
+"Every day, saved": [
+"InsightsPage.java:72"
+],
+"Performance and reports": [
+"InsightsPage.java:75"
+],
+"Could not open Performance": [
+"InsightsPage.java:79"
+],
+"insights": [
+"InsightsPage.java:110"
+],
+"Today so far": [
+"InsightsPage.java:128"
+],
+"–": [
+"InsightsPage.java:132",
+"InsightsPage.java:343",
+"PerformanceActivity.java:243",
+"ReportRenderer.java:272",
+"ReportRenderer.java:363",
+"ReportRenderer.java:421",
+"ReportRenderer.java:678",
+"ReportRenderer.java:681",
+"ReportRenderer.java:717",
+"ReportRenderer.java:718",
+"ReportRenderer.java:719",
+"ReportRenderer.java:778",
+"SlotCards.java:108",
+"SlotCards.java:109",
+"SlotCards.java:110",
+"SlotCards.java:111",
+"SlotCards.java:175",
+"SlotCards.java:184",
+"SlotCards.java:218",
+"SlotCards.java:247",
+"SlotCards.java:248",
+"SlotCards.java:249"
+],
+"Plan kept": [
+"InsightsPage.java:137",
+"ReportRenderer.java:384"
+],
+"Focus": [
+"InsightsPage.java:137",
+"LauncherSettingsActivity.java:342",
+"ReportRenderer.java:398",
+"SlotCards.java:108",
+"SlotCards.java:248"
+],
+"Daily goals": [
+"InsightsPage.java:147"
+],
+"＋  Add a goal": [
+"InsightsPage.java:151"
+],
+"＋  Goal for today": [
+"InsightsPage.java:152"
+],
+"Time by type today": [
+"InsightsPage.java:170"
+],
+"1 type": [
+"InsightsPage.java:171"
+],
+"ins_types": [
+"InsightsPage.java:171"
+],
+"0 min": [
+"InsightsPage.java:180",
+"SlotReport.java:32",
+"SlotUse.java:28"
+],
+"Under a minute": [
+"InsightsPage.java:180",
+"SlotUse.java:28"
+],
+"Time by type so far": [
+"InsightsPage.java:199"
+],
+"counted so far": [
+"InsightsPage.java:207"
+],
+"Slots so far": [
+"InsightsPage.java:244"
+],
+"Time and apps in each slot": [
+"InsightsPage.java:244"
+],
+"ins_slots": [
+"InsightsPage.java:245"
+],
+"Break": [
+"InsightsPage.java:278",
+"LivePlan.java:18"
+],
+"Start put off": [
+"InsightsPage.java:279"
+],
+"Given to the slot before": [
+"InsightsPage.java:280"
+],
+"Carried on past its end": [
+"InsightsPage.java:281"
+],
+"Tap to show or hide the apps used in this slot.": [
+"InsightsPage.java:284"
+],
+"Phone today": [
+"InsightsPage.java:303"
+],
+"Phone use by hour, and the apps used most": [
+"InsightsPage.java:304"
+],
+"ins_phone": [
+"InsightsPage.java:304"
+],
+"Apps used most": [
+"InsightsPage.java:310"
+],
+"No app used": [
+"InsightsPage.java:423"
+],
+"Change the goal": [
+"InsightsPage.java:430"
+],
+"All your goals": [
+"InsightsPage.java:478"
+],
+"ins_goal_list": [
+"InsightsPage.java:478"
+],
+"1 goal, with how it repeats": [
+"InsightsPage.java:479"
+],
+"   ·   counts today": [
+"InsightsPage.java:498"
+],
+"   ·   not today": [
+"InsightsPage.java:498"
+],
+"   ·   1 to-do": [
+"InsightsPage.java:499"
+],
+"Setting a goal": [
+"InsightsPage.java:519"
+],
+"Today only": [
+"InsightsPage.java:536",
+"Routine.java:278"
+],
+"Every other day": [
+"InsightsPage.java:536",
+"Routine.java:283",
+"TodoDialog.java:277",
+"Todos.java:97"
+],
+"On chosen days": [
+"InsightsPage.java:536",
+"TodoDialog.java:277"
+],
+"Any day with this slot": [
+"InsightsPage.java:588"
+],
+"Nothing is left in today's schedule to set a goal for. Pick Every day instead.": [
+"InsightsPage.java:624"
+],
+"Add a slot to your routine first (Routine tab)": [
+"InsightsPage.java:625"
+],
+"2": [
+"InsightsPage.java:634"
+],
+"How often": [
+"InsightsPage.java:639"
+],
+"Slot": [
+"InsightsPage.java:642"
+],
+"At least": [
+"InsightsPage.java:645"
+],
+" hours   ": [
+"InsightsPage.java:650"
+],
+" minutes": [
+"InsightsPage.java:652"
+],
+"New goal for today": [
+"InsightsPage.java:665"
+],
+"New goal": [
+"InsightsPage.java:665"
+],
+"A goal needs at least 5 minutes": [
+"InsightsPage.java:670"
+],
+"Goal removed.": [
+"InsightsPage.java:702"
+],
+"Add a to-do": [
+"InsightsPage.java:734",
+"TodoDialog.java:209"
+],
+"Add": [
+"InsightsPage.java:738",
+"RoutinePage.java:809",
+"RoutinePage.java:1444"
+],
+"✕": [
+"InsightsPage.java:758",
+"TodoDialog.java:182"
+],
+"To-do list (optional)": [
+"InsightsPage.java:768"
+],
+"To-do list  ·  1 to-do": [
+"InsightsPage.java:768"
+],
+"The list is full": [
+"InsightsPage.java:772"
+],
+"That is on the list already": [
+"InsightsPage.java:779"
+],
+"There are no other activities to choose from": [
+"InsightsPage.java:891"
+],
+"Count it only on days with…": [
+"InsightsPage.java:902"
+],
+"Any day with this activity": [
+"InsightsPage.java:907"
+],
+"lang/{1}.tsv": [
+"Lang.java:174"
+],
+"{1}-u-nu-latn": [
+"Lang.java:222",
+"Lang.java:231"
+],
+"en": [
+"Lang.java:37",
+"Lang.java:51",
+"Lang.java:89",
+"Lang.java:91",
+"Lang.java:158",
+"Lang.java:160",
+"Lang.java:178",
+"Lang.java:222",
+"Lang.java:231",
+"Lang.java:231"
+],
+"English": [
+"Lang.java:37"
+],
+"hi": [
+"Lang.java:38"
+],
+"हिन्दी": [
+"Lang.java:38"
+],
+"mr": [
+"Lang.java:39"
+],
+"मराठी": [
+"Lang.java:39"
+],
+"gu": [
+"Lang.java:40"
+],
+"ગુજરાતી": [
+"Lang.java:40"
+],
+"bn": [
+"Lang.java:41"
+],
+"বাংলা": [
+"Lang.java:41"
+],
+"ta": [
+"Lang.java:42"
+],
+"தமிழ்": [
+"Lang.java:42"
+],
+"te": [
+"Lang.java:43"
+],
+"తెలుగు": [
+"Lang.java:43"
+],
+"language": [
+"Lang.java:48"
+],
+"lang": [
+"Lang.java:49"
+],
+"Automatic: {1}": [
+"LanguageDialog.java:17"
+],
+"Automatic (the phone's language)": [
+"LanguageDialog.java:26"
+],
+"Language": [
+"LanguageDialog.java:34",
+"LauncherSettingsActivity.java:220",
+"LauncherSettingsActivity.java:221",
+"SettingsPage.java:80",
+"WelcomeActivity.java:121"
+],
+"launcher_hint_done": [
+"LauncherActivity.java:66"
+],
+"launcher_pro_check": [
+"LauncherActivity.java:67"
+],
+"wallpaper_asked_at": [
+"LauncherActivity.java:68"
+],
+"tour_done": [
+"LauncherActivity.java:69"
+],
+"That set the lock screen only. Open the wallpaper step again and choose the home screen too.": [
+"LauncherActivity.java:280"
+],
+"Make this your home app": [
+"LauncherActivity.java:387"
+],
+"Swipe up: all apps  ·  Tap: dashboard  ·  Hold: settings": [
+"LauncherActivity.java:398"
+],
+"launcher-apps": [
+"LauncherActivity.java:485"
+],
+"No camera app found": [
+"LauncherActivity.java:574"
+],
+"No phone app found": [
+"LauncherActivity.java:578"
+],
+"That app could not be opened.": [
+"LauncherActivity.java:620"
+],
+"JavaReflectionMemberAccess": [
+"LauncherActivity.java:625"
+],
+"expandNotificationsPanel": [
+"LauncherActivity.java:630"
+],
+"Search apps": [
+"LauncherActivity.java:757",
+"TourArt.java:200"
+],
+"locked": [
+"LauncherActivity.java:954"
+],
+"Open the dashboard": [
+"LauncherActivity.java:1170"
+],
+"Add a pause": [
+"LauncherActivity.java:1174"
+],
+"Change the pause": [
+"LauncherActivity.java:1174"
+],
+"Hide from the list": [
+"LauncherActivity.java:1177"
+],
+"Hidden. You can show it again in the home screen settings.": [
+"LauncherActivity.java:1182"
+],
+"App info": [
+"LauncherActivity.java:1184"
+],
+"Could not open the app info.": [
+"LauncherActivity.java:1187"
+],
+"The home screen could not start.\nYour apps are fine. Try again, or pick another home app.": [
+"LauncherActivity.java:1212"
+],
+"Try again": [
+"LauncherActivity.java:1217"
+],
+"Change home app": [
+"LauncherActivity.java:1218",
+"LauncherSettingsActivity.java:240"
+],
+"Open Dinacharya Launcher": [
+"LauncherActivity.java:1219"
+],
+"{1}:*": [
+"LauncherConfig.java:102"
+],
+"theme={1}": [
+"LauncherConfig.java:313",
+"Routine.java:936"
+],
+"size={1}": [
+"LauncherConfig.java:314"
+],
+"autoOpen={1}": [
+"LauncherConfig.java:315"
+],
+"kbd={1}": [
+"LauncherConfig.java:316"
+],
+"focusKinds={1}": [
+"LauncherConfig.java:317"
+],
+"pauseSec={1}": [
+"LauncherConfig.java:318"
+],
+"strictSec={1}": [
+"LauncherConfig.java:319"
+],
+"swipeLeft={1}": [
+"LauncherConfig.java:323"
+],
+"swipeRight={1}": [
+"LauncherConfig.java:324"
+],
+"X\t{1}": [
+"LauncherConfig.java:325"
+],
+"GX\t{1}": [
+"LauncherConfig.java:340"
+],
+"GY\t{1}": [
+"LauncherConfig.java:348"
+],
+"AU\t{1}": [
+"LauncherConfig.java:352"
+],
+"Auto": [
+"LauncherConfig.java:20",
+"SettingsPage.java:165"
+],
+"Dark": [
+"LauncherConfig.java:20"
+],
+"Light": [
+"LauncherConfig.java:20",
+"SettingsPage.java:165"
+],
+"Small": [
+"LauncherConfig.java:21"
+],
+"Medium": [
+"LauncherConfig.java:21"
+],
+"Large": [
+"LauncherConfig.java:21"
+],
+"Huge": [
+"LauncherConfig.java:21"
+],
+"DINALAUNCH1": [
+"LauncherConfig.java:27"
+],
+"Group": [
+"LauncherConfig.java:121"
+],
+"strong=1\n": [
+"LauncherConfig.java:320"
+],
+"trackUse=1\n": [
+"LauncherConfig.java:321"
+],
+"swipes=2\n": [
+"LauncherConfig.java:322"
+],
+"theme": [
+"LauncherConfig.java:435",
+"Routine.java:1158"
+],
+"autoOpen": [
+"LauncherConfig.java:437"
+],
+"kbd": [
+"LauncherConfig.java:438"
+],
+"focusKinds": [
+"LauncherConfig.java:439"
+],
+"pauseSec": [
+"LauncherConfig.java:440"
+],
+"strictSec": [
+"LauncherConfig.java:441"
+],
+"strong": [
+"LauncherConfig.java:442"
+],
+"trackUse": [
+"LauncherConfig.java:443"
+],
+"swipes": [
+"LauncherConfig.java:444"
+],
+"swipeLeft": [
+"LauncherConfig.java:445"
+],
+"swipeRight": [
+"LauncherConfig.java:446"
+],
+"{1} times": [
+"LauncherSettingsActivity.java:323"
+],
+"{1} apps have a pause": [
+"LauncherSettingsActivity.java:344"
+],
+"On. Apps chosen for {1} activities": [
+"LauncherSettingsActivity.java:431"
+],
+"{1} activities have apps": [
+"LauncherSettingsActivity.java:474"
+],
+"Up to {1} apps for one activity": [
+"LauncherSettingsActivity.java:501"
+],
+"Apps for {1}": [
+"LauncherSettingsActivity.java:506"
+],
+"Up to {1} activities can have apps": [
+"LauncherSettingsActivity.java:509"
+],
+"{1} locks": [
+"LauncherSettingsActivity.java:523"
+],
+"{1} apps are hidden": [
+"LauncherSettingsActivity.java:614"
+],
+"{1} pauses today": [
+"LauncherSettingsActivity.java:660",
+"LauncherSettingsActivity.java:664"
+],
+"The settings cannot be reset while a strict lock holds. It ends at {1}.": [
+"LauncherSettingsActivity.java:675"
+],
+"This clears the swipes, the look, the hidden apps, the pause rules, the locked groups and the phone use choices. Your routine and reports are not touched.": [
+"LauncherSettingsActivity.java:682"
+],
+"Strict pause, {1} s": [
+"LauncherSettingsActivity.java:328"
+],
+"Short pause, {1} s": [
+"LauncherSettingsActivity.java:329"
+],
+"  ·  limit {1} a day": [
+"LauncherSettingsActivity.java:332"
+],
+" +{1}": [
+"LauncherSettingsActivity.java:423"
+],
+"{1}  ·  ": [
+"LauncherSettingsActivity.java:547"
+],
+"  ·  only {1} held, needs Pro": [
+"LauncherSettingsActivity.java:552"
+],
+"‹  Back": [
+"LauncherSettingsActivity.java:49"
+],
+"Home screen": [
+"LauncherSettingsActivity.java:53",
+"SettingsPage.java:79",
+"SettingsPage.java:82",
+"SettingsPage.java:450",
+"TourArt.java:377"
+],
+"launcher-settings-apps": [
+"LauncherSettingsActivity.java:77"
+],
+"Nothing": [
+"LauncherSettingsActivity.java:109",
+"LauncherSettingsActivity.java:268"
+],
+"Change": [
+"LauncherSettingsActivity.java:221",
+"LauncherSettingsActivity.java:260",
+"LauncherSettingsActivity.java:261",
+"TourArt.java:275"
+],
+"Home app": [
+"LauncherSettingsActivity.java:226"
+],
+"Dinacharya Launcher is your home app": [
+"LauncherSettingsActivity.java:227",
+"LauncherSettingsActivity.java:229"
+],
+"Not your home app yet": [
+"LauncherSettingsActivity.java:227",
+"LauncherSettingsActivity.java:229"
+],
+"set_home": [
+"LauncherSettingsActivity.java:227"
+],
+"Pressing Home shows this screen.": [
+"LauncherSettingsActivity.java:230"
+],
+"Press Try it to look first.": [
+"LauncherSettingsActivity.java:230"
+],
+"Set": [
+"LauncherSettingsActivity.java:230",
+"LauncherSettingsActivity.java:236",
+"Permissions.java:73",
+"Permissions.java:78",
+"RoutinePage.java:1148"
+],
+"The Dinacharya Launcher wallpaper is on": [
+"LauncherSettingsActivity.java:233"
+],
+"Only the lock screen has it": [
+"LauncherSettingsActivity.java:233"
+],
+"Wallpaper not in place yet": [
+"LauncherSettingsActivity.java:233"
+],
+"Your day shows on the home screen, lock screen and recent apps.": [
+"LauncherSettingsActivity.java:234"
+],
+"On Android’s preview, choose Home screen (or both).": [
+"LauncherSettingsActivity.java:235"
+],
+"Android asks you to confirm once.": [
+"LauncherSettingsActivity.java:236"
+],
+"Try it now": [
+"LauncherSettingsActivity.java:239"
+],
+"Help and checks": [
+"LauncherSettingsActivity.java:248"
+],
+"set_home_help": [
+"LauncherSettingsActivity.java:248"
+],
+"A short walk through what the app does": [
+"LauncherSettingsActivity.java:251",
+"SettingsPage.java:84"
+],
+"Start": [
+"LauncherSettingsActivity.java:251"
+],
+"Check phone settings": [
+"LauncherSettingsActivity.java:253",
+"SettingsPage.java:86"
+],
+"Permissions and settings the app needs": [
+"LauncherSettingsActivity.java:253"
+],
+"Swipes": [
+"LauncherSettingsActivity.java:258"
+],
+"set_swipes": [
+"LauncherSettingsActivity.java:259"
+],
+"Swipe left": [
+"LauncherSettingsActivity.java:260"
+],
+"Swipe right": [
+"LauncherSettingsActivity.java:261"
+],
+"Swipe left opens": [
+"LauncherSettingsActivity.java:267"
+],
+"Swipe right opens": [
+"LauncherSettingsActivity.java:267"
+],
+"Look": [
+"LauncherSettingsActivity.java:278"
+],
+"Colours, text size and the keyboard in the list of all apps": [
+"LauncherSettingsActivity.java:278"
+],
+"set_look": [
+"LauncherSettingsActivity.java:279"
+],
+"Change what the home screen shows": [
+"LauncherSettingsActivity.java:282"
+],
+"Colours of the list of all apps and the pause screen": [
+"LauncherSettingsActivity.java:284"
+],
+"Text size in the list of all apps": [
+"LauncherSettingsActivity.java:292"
+],
+"Open an app when only one matches": [
+"LauncherSettingsActivity.java:300"
+],
+"Open the keyboard in the list of all apps": [
+"LauncherSettingsActivity.java:304"
+],
+"Task time": [
+"LauncherSettingsActivity.java:313"
+],
+"Rest time": [
+"LauncherSettingsActivity.java:314"
+],
+"Meal time": [
+"LauncherSettingsActivity.java:315"
+],
+"Personal time": [
+"LauncherSettingsActivity.java:316"
+],
+"Sleep time": [
+"LauncherSettingsActivity.java:317"
+],
+"1 time": [
+"LauncherSettingsActivity.java:323"
+],
+"  ·  also outside focus times": [
+"LauncherSettingsActivity.java:333"
+],
+"  ·  needs Pro": [
+"LauncherSettingsActivity.java:334",
+"LauncherSettingsActivity.java:551"
+],
+"  ·  Pro part off": [
+"LauncherSettingsActivity.java:337"
+],
+"A pause before apps open: none yet": [
+"LauncherSettingsActivity.java:343"
+],
+"1 app has a pause": [
+"LauncherSettingsActivity.java:344"
+],
+"set_focus": [
+"LauncherSettingsActivity.java:344"
+],
+"How it works": [
+"LauncherSettingsActivity.java:345",
+"LauncherSettingsActivity.java:590"
+],
+"set_focus_how": [
+"LauncherSettingsActivity.java:345"
+],
+"When you open one, it waits a few seconds first, so you can go back or carry on. ": [
+"LauncherSettingsActivity.java:348"
+],
+"When you open one from this home screen, it waits a few seconds first, so you can go back or carry on. ": [
+"LauncherSettingsActivity.java:349"
+],
+" To hold them whichever way they open, turn on the strong lock below.": [
+"LauncherSettingsActivity.java:351"
+],
+"Pause during": [
+"LauncherSettingsActivity.java:352"
+],
+"Short pause": [
+"LauncherSettingsActivity.java:360"
+],
+" s": [
+"LauncherSettingsActivity.java:360",
+"LauncherSettingsActivity.java:364"
+],
+"Strict pause": [
+"LauncherSettingsActivity.java:364"
+],
+"Strict pause (Pro)": [
+"LauncherSettingsActivity.java:364"
+],
+"Apps with a pause": [
+"LauncherSettingsActivity.java:369"
+],
+"Edit": [
+"LauncherSettingsActivity.java:375",
+"LauncherSettingsActivity.java:554"
+],
+"Add a pause for an app": [
+"LauncherSettingsActivity.java:381"
+],
+"Add a pause for": [
+"LauncherSettingsActivity.java:381"
+],
+"Usage access": [
+"LauncherSettingsActivity.java:397",
+"LauncherSettingsActivity.java:454",
+"LauncherSettingsActivity.java:602",
+"SettingsPage.java:385"
+],
+"Needed to count the minutes for daily limits": [
+"LauncherSettingsActivity.java:397"
+],
+"No apps chosen": [
+"LauncherSettingsActivity.java:414"
+],
+"Off. Mark the phone use that is not part of a slot's activity": [
+"LauncherSettingsActivity.java:429"
+],
+"On. Every app counts as phone use": [
+"LauncherSettingsActivity.java:430"
+],
+"On. Apps chosen for 1 activity": [
+"LauncherSettingsActivity.java:431"
+],
+"Phone use in slots · Pro": [
+"LauncherSettingsActivity.java:433"
+],
+"set_use": [
+"LauncherSettingsActivity.java:433",
+"LauncherSettingsActivity.java:444"
+],
+" Your choices are kept and work again with Pro.": [
+"LauncherSettingsActivity.java:436"
+],
+"Phone use in slots": [
+"LauncherSettingsActivity.java:444",
+"PlanTable.java:107"
+],
+"Show phone use during slots": [
+"LauncherSettingsActivity.java:447"
+],
+"Needed to see which apps are used, and when": [
+"LauncherSettingsActivity.java:454"
+],
+"Apps that are part of an activity": [
+"LauncherSettingsActivity.java:457"
+],
+"No apps chosen yet": [
+"LauncherSettingsActivity.java:474"
+],
+"1 activity has apps": [
+"LauncherSettingsActivity.java:474"
+],
+"Choose": [
+"LauncherSettingsActivity.java:476"
+],
+"Locked groups": [
+"LauncherSettingsActivity.java:521",
+"TourArt.java:378"
+],
+"Lock a group of apps for a time": [
+"LauncherSettingsActivity.java:522"
+],
+"Lock apps for a time": [
+"LauncherSettingsActivity.java:522"
+],
+"1 lock": [
+"LauncherSettingsActivity.java:523"
+],
+"set_lock": [
+"LauncherSettingsActivity.java:523"
+],
+"How locks work": [
+"LauncherSettingsActivity.java:524"
+],
+"set_lock_how": [
+"LauncherSettingsActivity.java:524"
+],
+"Put the apps that eat your time in a group, then lock the group for hours you choose, on the days you choose, or just for the next hour. ": [
+"LauncherSettingsActivity.java:526"
+],
+"Pick the apps that eat your time, then lock them for hours you choose, on the days you choose, or just for the next hour. ": [
+"LauncherSettingsActivity.java:527"
+],
+"A locked app does not open until the lock ends. ": [
+"LauncherSettingsActivity.java:528"
+],
+"A locked app does not open from this home screen until the lock ends. ": [
+"LauncherSettingsActivity.java:529"
+],
+"  ·  hides its apps": [
+"LauncherSettingsActivity.java:549"
+],
+"  ·  strict": [
+"LauncherSettingsActivity.java:550"
+],
+"  ·  strict part off": [
+"LauncherSettingsActivity.java:553"
+],
+"Add a locked group": [
+"LauncherSettingsActivity.java:557"
+],
+"More than one lock": [
+"LauncherSettingsActivity.java:560"
+],
+"On: holds locks and pauses everywhere": [
+"LauncherSettingsActivity.java:589"
+],
+"Off: locks hold only from this home screen": [
+"LauncherSettingsActivity.java:589"
+],
+"set_strong": [
+"LauncherSettingsActivity.java:589"
+],
+"set_strong_how": [
+"LauncherSettingsActivity.java:590"
+],
+"Lets Dinacharya Launcher see which app is in front": [
+"LauncherSettingsActivity.java:602"
+],
+"Display over other apps": [
+"LauncherSettingsActivity.java:604"
+],
+"Lets the lock screen appear over an app": [
+"LauncherSettingsActivity.java:604"
+],
+"Hidden apps": [
+"LauncherSettingsActivity.java:613",
+"LauncherSettingsActivity.java:634"
+],
+"None": [
+"LauncherSettingsActivity.java:614"
+],
+"1 app is hidden": [
+"LauncherSettingsActivity.java:614"
+],
+"set_hidden": [
+"LauncherSettingsActivity.java:615"
+],
+"Show some again": [
+"LauncherSettingsActivity.java:622"
+],
+"No pauses so far today.": [
+"LauncherSettingsActivity.java:660"
+],
+"1 pause today": [
+"LauncherSettingsActivity.java:660",
+"LauncherSettingsActivity.java:664"
+],
+"set_today": [
+"LauncherSettingsActivity.java:660"
+],
+"Reset these settings": [
+"LauncherSettingsActivity.java:671"
+],
+"A strict lock is holding": [
+"LauncherSettingsActivity.java:674"
+],
+"Reset the home screen?": [
+"LauncherSettingsActivity.java:681"
+],
+"Reset": [
+"LauncherSettingsActivity.java:684",
+"RoutinePage.java:1545"
+],
+"#ABCDEFGHIJKLMNOPQRSTUVWXYZ": [
+"LetterRail.java:16"
+],
+"1 hour": [
+"LibraryDialog.java:10"
+],
+"2 hours": [
+"LibraryDialog.java:10"
+],
+"4 hours": [
+"LibraryDialog.java:10"
+],
+"Until I switch it off": [
+"LibraryDialog.java:10"
+],
+"Every alarm only vibrates while it is on, with no sound. Apps in locks that include library mode are locked too. How long?": [
+"LibraryDialog.java:16"
+],
+"{1}\nuntil={2}\nauto={3}\ndays={4}\nstart={5}\nend={6}\nringer={7}\n": [
+"LibraryMode.java:151"
+],
+"On until {1}": [
+"LibraryMode.java:191"
+],
+"Off. Next: {1}": [
+"LibraryMode.java:194"
+],
+"DINALIB1": [
+"LibraryMode.java:148"
+],
+"until": [
+"LibraryMode.java:167"
+],
+"auto": [
+"LibraryMode.java:168"
+],
+"ringer": [
+"LibraryMode.java:172"
+],
+"On until you switch it off": [
+"LibraryMode.java:189"
+],
+"app.dinacharya.wallpaper.LIBRARY_CHANGE": [
+"LibraryRinger.java:16"
+],
+"libraryRingerKept": [
+"LibraryRinger.java:18"
+],
+"For the library, a class or an exam. While library mode is on, every alarm of the app only vibrates, with no sound: the start-of-day alarm, the slot alarms, the bedtime question and the break timers. The questions still appear, and groups of apps set to lock in library mode are locked.": [
+"LibrarySettings.java:36"
+],
+"Calls and messages stop making sound as well. When library mode ends, the ringer goes back to how it was, unless you changed it yourself. If your phone asks for Do Not Disturb access to do this, the ringer is left as it is.": [
+"LibrarySettings.java:103"
+],
+"Until {1}": [
+"LibrarySettings.java:145",
+"LockScreen.java:113"
+],
+"It runs from {1} into the next morning, until {2}.": [
+"LibrarySettings.java:164"
+],
+"{1}, {2} to {3}.": [
+"LibrarySettings.java:166"
+],
+"alarm_library": [
+"LibrarySettings.java:34"
+],
+"Turn it on by itself at fixed hours": [
+"LibrarySettings.java:49"
+],
+"Also put the phone on vibrate": [
+"LibrarySettings.java:96"
+],
+"On": [
+"LibrarySettings.java:139"
+],
+"Off, by the clock": [
+"LibrarySettings.java:139"
+],
+"Pick at least one day, or it never comes on.": [
+"LibrarySettings.java:163"
+],
+"Delayed start": [
+"LivePlan.java:19"
+],
+"Day off": [
+"LivePlan.java:20"
+],
+"Activity": [
+"LockMode.java:59"
+],
+"Time + activity": [
+"LockMode.java:61"
+],
+"Time or activity": [
+"LockMode.java:63"
+],
+"Time": [
+"LockMode.java:65"
+],
+"Locked whenever a slot of the types you pick is going on, at any hour.": [
+"LockMode.java:73"
+],
+"Locked only when a slot of the types you pick is going on inside the hours you set.": [
+"LockMode.java:75"
+],
+"Locked in the hours you set, and also whenever a slot of the types you pick is going on.": [
+"LockMode.java:77"
+],
+"Locked at the hours you set, whatever you are doing.": [
+"LockMode.java:79"
+],
+"{1} {2} {3}": [
+"LockRules.java:221"
+],
+"{1}, {2} {3}": [
+"LockRules.java:222",
+"PerformanceActivity.java:282"
+],
+"tomorrow {1}": [
+"LockRules.java:332"
+],
+"Locked until {1}": [
+"LockRules.java:348"
+],
+"{1}, {2} to {3}": [
+"LockRules.java:353"
+],
+"Locks during {1}, {2}": [
+"LockRules.java:354"
+],
+"Next: {1}": [
+"LockRules.java:356"
+],
+"  ·  and during {1}": [
+"LockRules.java:356"
+],
+"Locks during {1}": [
+"LockRules.java:357"
+],
+"and": [
+"LockRules.java:221"
+],
+"Mon": [
+"LockRules.java:297",
+"Routine.java:36"
+],
+"Tue": [
+"LockRules.java:297",
+"Routine.java:36"
+],
+"Wed": [
+"LockRules.java:297",
+"Routine.java:36"
+],
+"Thu": [
+"LockRules.java:297",
+"Routine.java:36"
+],
+"Fri": [
+"LockRules.java:297",
+"Routine.java:36"
+],
+"Sat": [
+"LockRules.java:297",
+"Routine.java:36"
+],
+"Sun": [
+"LockRules.java:297",
+"Routine.java:36"
+],
+"No days": [
+"LockRules.java:302",
+"Routine.java:292",
+"Todos.java:105"
+],
+"Locked until library mode is switched off": [
+"LockRules.java:347"
+],
+"  ·  and in library mode": [
+"LockRules.java:351"
+],
+"Locks in library mode": [
+"LockRules.java:358"
+],
+"Not scheduled": [
+"LockRules.java:359"
+],
+"Strictly locked  ·  {1}": [
+"LockScreen.java:98"
+],
+"Locked  ·  {1}": [
+"LockScreen.java:98"
+],
+"While you are on: {1}": [
+"LockScreen.java:105"
+],
+"{1} left": [
+"LockScreen.java:177"
+],
+"Open {1}": [
+"LockScreen.java:195"
+],
+"Library mode is on": [
+"LockScreen.java:109"
+],
+"Until library mode is switched off": [
+"LockScreen.java:113"
+],
+"Break the lock": [
+"LockScreen.java:126",
+"LockScreen.java:253",
+"TourArt.java:355"
+],
+"The lock has ended.": [
+"LockScreen.java:192"
+],
+"A lock is a promise to yourself. Wait a moment before you break it.": [
+"LockScreen.java:211"
+],
+"Type this to break the lock": [
+"LockScreen.java:228"
+],
+"One more step: make Dinacharya Launcher your home app, so your day is what you see when you press Home. Everything else is here in the dashboard: your routine, insights, backup and settings.": [
+"MainActivity.java:175"
+],
+"closed with result {1}": [
+"MainActivity.java:412"
+],
+"{1}\n\n(Result {2}": [
+"MainActivity.java:414"
+],
+"Home": [
+"MainActivity.java:35"
+],
+"Routine": [
+"MainActivity.java:35",
+"Routine.java:1367",
+"Routine.java:1370",
+"RoutinePage.java:215",
+"SettingsPage.java:452"
+],
+"open": [
+"MainActivity.java:39"
+],
+"close-days": [
+"MainActivity.java:131"
+],
+"pro": [
+"MainActivity.java:147",
+"Pro.java:51",
+"Pro.java:53"
+],
+"look": [
+"MainActivity.java:151"
+],
+"ready": [
+"MainActivity.java:154"
+],
+"plan": [
+"MainActivity.java:156"
+],
+"Make the schedule for the rest of today, then save it": [
+"MainActivity.java:164"
+],
+"You’re all set": [
+"MainActivity.java:172"
+],
+"Press the Home button to see your day. Everything else is here in the dashboard: your routine, insights, backup and settings.": [
+"MainActivity.java:174"
+],
+"Stay here": [
+"MainActivity.java:177"
+],
+"Go to my home screen": [
+"MainActivity.java:179"
+],
+"Your video pass has ended": [
+"MainActivity.java:334"
+],
+", no data": [
+"MainActivity.java:413"
+],
+", no token": [
+"MainActivity.java:413"
+],
+", no details from Google)": [
+"MainActivity.java:414"
+],
+")": [
+"MainActivity.java:414"
+],
+"UNDO": [
+"MainActivity.java:485"
+],
+"Could not save. Please try again.": [
+"MainActivity.java:849"
+],
+"Undone": [
+"MainActivity.java:900"
+],
+"extra text at {1}": [
+"MiniJson.java:23"
+],
+"unexpected character at {1}": [
+"MiniJson.java:81"
+],
+"expected {1} at {2}": [
+"MiniJson.java:146"
+],
+"\"": [
+"MiniJson.java:49"
+],
+"\\\"": [
+"MiniJson.java:53"
+],
+"\\\\": [
+"MiniJson.java:54",
+"PassLedger.java:154"
+],
+"\\n": [
+"MiniJson.java:55",
+"PassLedger.java:155"
+],
+"\\r": [
+"MiniJson.java:56",
+"PassLedger.java:157"
+],
+"\\t": [
+"MiniJson.java:57",
+"PassLedger.java:156"
+],
+"unexpected end": [
+"MiniJson.java:71"
+],
+"+-0123456789.eE": [
+"MiniJson.java:80"
+],
+"bad escape": [
+"MiniJson.java:135"
+],
+"unterminated string": [
+"MiniJson.java:142"
+],
+"Less": [
+"MinuteStepper.java:43"
+],
+"More": [
+"MinuteStepper.java:45"
+],
+"sig={1}": [
+"Overrides.java:112"
+],
+"S\t{1}": [
+"Overrides.java:114"
+],
+"E\t{1}": [
+"Overrides.java:118"
+],
+"DINAOV1": [
+"Overrides.java:24"
+],
+"DINAPASSES1": [
+"PassLedger.java:147"
+],
+"O{1}": [
+"PassReset.java:150",
+"PassReset.java:368"
+],
+"{1}|{2}": [
+"PassReset.java:362",
+"PassReset.java:381"
+],
+"Your pass for {1} has ended. {2} you made with it went back to the free version. What you had before is untouched. Dinacharya Pro keeps such things for good.": [
+"PassReset.java:408"
+],
+"{1} changes": [
+"PassReset.java:409"
+],
+"M\t{1}": [
+"PassReset.java:130",
+"Todos.java:434"
+],
+"O\t{1}": [
+"PassReset.java:145"
+],
+"L\t{1}": [
+"PassReset.java:150"
+],
+"P\t{1}": [
+"PassReset.java:156",
+"Routine.java:979"
+],
+"DINAPASS3": [
+"PassReset.java:35"
+],
+"DINAPASS2": [
+"PassReset.java:37"
+],
+"1 change": [
+"PassReset.java:409"
+],
+"app.dinacharya.wallpaper.PASS_END": [
+"PassSettle.java:18"
+],
+"pass-end": [
+"PassSettle.java:146"
+],
+"{1} + {2}": [
+"PauseChallenge.java:83"
+],
+"{1} − {2}": [
+"PauseChallenge.java:88"
+],
+"{1} × {2}": [
+"PauseChallenge.java:92"
+],
+"Wait": [
+"PauseChallenge.java:14"
+],
+"Quick sum": [
+"PauseChallenge.java:14"
+],
+"Breathe": [
+"PauseChallenge.java:14"
+],
+"Say why": [
+"PauseChallenge.java:14"
+],
+"Count down a few seconds": [
+"PauseChallenge.java:16"
+],
+"Solve a simple sum to open the app": [
+"PauseChallenge.java:17"
+],
+"Type a short sentence on purpose": [
+"PauseChallenge.java:18"
+],
+"Take slow breaths with a moving circle": [
+"PauseChallenge.java:19"
+],
+"Pick why you are opening it": [
+"PauseChallenge.java:20"
+],
+"I choose to open this app": [
+"PauseChallenge.java:24"
+],
+"I am in control of my time": [
+"PauseChallenge.java:25"
+],
+"This can wait a few minutes": [
+"PauseChallenge.java:26"
+],
+"I am opening this on purpose": [
+"PauseChallenge.java:27"
+],
+"I will come back to my day": [
+"PauseChallenge.java:28"
+],
+"I need it for something specific": [
+"PauseChallenge.java:32"
+],
+"I am bored": [
+"PauseChallenge.java:33"
+],
+"It is just a habit": [
+"PauseChallenge.java:34"
+],
+"I am avoiding something": [
+"PauseChallenge.java:35"
+],
+"Boredom passes. Stand up and stretch for a minute, then decide.": [
+"PauseChallenge.java:38"
+],
+"Habits fade once you notice them. Take one slow breath first.": [
+"PauseChallenge.java:39"
+],
+"Do the smallest next step of your task for two minutes. Then decide.": [
+"PauseChallenge.java:40"
+],
+"\\s+": [
+"PauseChallenge.java:122"
+],
+"Open anyway in {1}": [
+"PauseScreen.java:250"
+],
+"Skip the challenge in {1}": [
+"PauseScreen.java:252"
+],
+"Open in {1}": [
+"PauseScreen.java:469",
+"PauseScreen.java:478"
+],
+"✓": [
+"PauseScreen.java:249",
+"SettingsPage.java:411",
+"Ui.java:170"
+],
+"Skip the challenge": [
+"PauseScreen.java:252"
+],
+"Solve it to open": [
+"PauseScreen.java:276"
+],
+"Type this to open it": [
+"PauseScreen.java:326"
+],
+"Why are you opening it?": [
+"PauseScreen.java:443"
+],
+"Open it": [
+"PauseScreen.java:481"
+],
+"Dinacharya {1}.pdf": [
+"PdfActions.java:22"
+],
+"Could not save the PDF: {1}": [
+"PdfActions.java:50"
+],
+"Could not make the PDF: {1}": [
+"PdfActions.java:81"
+],
+" so far": [
+"PdfActions.java:22"
+],
+"application/pdf": [
+"PdfActions.java:29",
+"PdfActions.java:73",
+"ReportProvider.java:53"
+],
+"This phone has no save dialog. Use Share instead.": [
+"PdfActions.java:34"
+],
+"could not open the file": [
+"PdfActions.java:46"
+],
+"PDF saved": [
+"PdfActions.java:48"
+],
+"pdf-save": [
+"PdfActions.java:54"
+],
+"shared": [
+"PdfActions.java:63",
+"ReportProvider.java:23"
+],
+"no folder": [
+"PdfActions.java:64"
+],
+"Share report": [
+"PdfActions.java:78"
+],
+"pdf-share": [
+"PdfActions.java:84"
+],
+"Could not read the day: {1}": [
+"PerformanceActivity.java:136"
+],
+"Phone {1}": [
+"PerformanceActivity.java:238"
+],
+"{1}h {2}m": [
+"PerformanceActivity.java:275",
+"Routine.java:926"
+],
+"{1}m": [
+"PerformanceActivity.java:275"
+],
+"Week": [
+"PerformanceActivity.java:44",
+"PerformanceActivity.java:86"
+],
+"Week · Pro": [
+"PerformanceActivity.java:44",
+"PerformanceActivity.java:86"
+],
+"Days": [
+"PerformanceActivity.java:44",
+"PerformanceActivity.java:87"
+],
+"Days · Pro": [
+"PerformanceActivity.java:44",
+"PerformanceActivity.java:87"
+],
+"Reading your day…": [
+"PerformanceActivity.java:94"
+],
+"The weekly view is part of Pro": [
+"PerformanceActivity.java:101"
+],
+"The week chart, your average score and the tips that come from it. Today's report stays free.": [
+"PerformanceActivity.java:102"
+],
+"Saved days are part of Pro": [
+"PerformanceActivity.java:106",
+"ReportActivity.java:23"
+],
+"Open the report of any past day, with its slot analysis and a PDF to save or share. Today's report stays free.": [
+"PerformanceActivity.java:107"
+],
+"perf-load": [
+"PerformanceActivity.java:145"
+],
+"Allow usage access to see phone time": [
+"PerformanceActivity.java:151"
+],
+"Save PDF": [
+"PerformanceActivity.java:169",
+"ReportActivity.java:44"
+],
+"Share PDF": [
+"PerformanceActivity.java:171",
+"ReportActivity.java:45"
+],
+"No finished days yet. After your first full day, a report is saved here and the week chart starts.": [
+"PerformanceActivity.java:190"
+],
+"No saved days yet. A report is saved on this phone each time a schedule day ends.": [
+"PerformanceActivity.java:220"
+],
+"Phone not measured": [
+"PerformanceActivity.java:238"
+],
+"  ·  backed up": [
+"PerformanceActivity.java:239"
+],
+"  ·  not backed up yet": [
+"PerformanceActivity.java:239"
+],
+"setup_maker_done": [
+"Permissions.java:22"
+],
+"Alarms and reminders show up here, also over the lock screen.": [
+"Permissions.java:56"
+],
+"Alarms on": [
+"Permissions.java:57"
+],
+"Rings when a slot of your day starts and asks one question.": [
+"Permissions.java:57"
+],
+"Rings on the minute a slot starts, not minutes late.": [
+"Permissions.java:59"
+],
+"Phone-use time (optional)": [
+"Permissions.java:65"
+],
+"Shows your phone time and counts daily app limits. Read on this phone only.": [
+"Permissions.java:65"
+],
+"Greyed out or “Restricted setting”?": [
+"Permissions.java:66"
+],
+"Stops the phone from putting the app to sleep. Set Battery to Unrestricted on the app’s info page.": [
+"Permissions.java:68"
+],
+"Open Android’s battery list": [
+"Permissions.java:69"
+],
+"Your phone's maker stops apps in the background unless you allow it.": [
+"Permissions.java:71"
+],
+"Make Dinacharya Launcher your home app": [
+"Permissions.java:73"
+],
+"Pressing Home shows your day.": [
+"Permissions.java:73"
+],
+"Put the Dinacharya Launcher wallpaper in place": [
+"Permissions.java:74"
+],
+"Only the lock screen has it. On Android’s preview, choose Home screen (or both).": [
+"Permissions.java:76"
+],
+"Shows your day on the lock screen and in recent apps. Android asks you to confirm once.": [
+"Permissions.java:77"
+],
+"Google's sign-in screen closed without an account. If you did not close it yourself, Google is not accepting this app yet. Tap “Check setup” to compare this app with your Google Cloud settings.": [
+"PickerAuth.java:58"
+],
+"\n\nGoogle said: {1}": [
+"PickerAuth.java:66"
+],
+"Google has no record of this app (code {1}, UNREGISTERED_ON_API_CONSOLE). In Google Cloud, the Android client for package app.dinacharya.wallpaper with this app's SHA-1 is missing, or it is in a different project than the Drive API. Tap “Check setup” for the exact values to enter.{2}": [
+"PickerAuth.java:68"
+],
+"Google does not recognise this app (developer error 10). The package name or SHA-1 registered in Google Cloud does not match this app, or the Android client is in another project. Tap “Check setup”.{1}": [
+"PickerAuth.java:73"
+],
+"No internet connection. Try again when you are online.{1}": [
+"PickerAuth.java:76"
+],
+"{1}\n\n(Code {2}){3}": [
+"PickerAuth.java:77"
+],
+"Google Play services cannot do this sign-in on this phone (code 17). Use “Sign in with a code”.{1}": [
+"PickerAuth.java:78"
+],
+"Google sign-in failed (code {1}).{2}": [
+"PickerAuth.java:79"
+],
+"Google sign-in failed{1}": [
+"PickerAuth.java:82"
+],
+": {1}": [
+"PickerAuth.java:82"
+],
+"https://www.googleapis.com/auth/userinfo.email": [
+"PickerAuth.java:33"
+],
+"https://www.googleapis.com/auth/userinfo.profile": [
+"PickerAuth.java:34"
+],
+"48:94:D3:1F:BE:2F:4A:60:ED:4A:B2:1F:E9:00:61:FE:3D:8C:E8:B8": [
+"PickerAuth.java:55"
+],
+"Google sign-in could not start.": [
+"PickerAuth.java:120",
+"PickerAuth.java:126"
+],
+"This phone's Google Play services could not start the sign-in. Use “Sign in with a code” instead.": [
+"PickerAuth.java:135"
+],
+"Google needs you to sign in again. Open Backup and tap Sign in.": [
+"PickerAuth.java:158"
+],
+"Google sign-in failed.": [
+"PickerAuth.java:165"
+],
+"Google sign-in took too long. Will try again later.": [
+"PickerAuth.java:167"
+],
+"Interrupted.": [
+"PickerAuth.java:170"
+],
+"Google Play services are not available on this phone.": [
+"PickerAuth.java:172"
+],
+"Alarm at {1}. You sleep {2} instead of {3}.": [
+"Plan.java:440"
+],
+"Alarm at {1}. You sleep {2}.": [
+"Plan.java:442"
+],
+"A delay over {1} is too long to make up.": [
+"Plan.java:456",
+"Plan.java:479"
+],
+"Alarm at {1}. You sleep the full {2}.": [
+"Plan.java:458",
+"Plan.java:481"
+],
+"Every slot moves {1} later. Bedtime stays at {2}.": [
+"Plan.java:460"
+],
+"Not enough rest or free time to give back {1}. Pick another option.": [
+"Plan.java:463"
+],
+"Your day starts with \"{1}\" at {2}.": [
+"Plan.java:499"
+],
+"Shortened: {1}.": [
+"Plan.java:525"
+],
+"Dropped: {1}.": [
+"Plan.java:526"
+],
+"{1}→{2} min": [
+"Plan.java:522"
+],
+"#days": [
+"Plan.java:71"
+],
+"Nothing changes tomorrow.": [
+"Plan.java:443"
+],
+"No slot needs changing.": [
+"Plan.java:466"
+],
+"The extra sleep would cover your whole morning. Pick another option.": [
+"Plan.java:484"
+],
+"Later slots keep their normal times.": [
+"Plan.java:486"
+],
+"Free: {1}. Pro: any number, strict and playful": [
+"PlanTable.java:121"
+],
+"Free: {1}, {2}. Pro: groups and strict locks": [
+"PlanTable.java:127"
+],
+"Not included": [
+"PlanTable.java:14"
+],
+"Included": [
+"PlanTable.java:16"
+],
+" lock": [
+"PlanTable.java:82"
+],
+" locks": [
+"PlanTable.java:82"
+],
+"Home screen and live wallpaper of your day": [
+"PlanTable.java:90"
+],
+"Slot alarms that ask one question": [
+"PlanTable.java:91"
+],
+"Start-of-day alarm, finish early, breaks, library mode": [
+"PlanTable.java:92"
+],
+"Backup to your own Google Drive": [
+"PlanTable.java:93"
+],
+"Home screen and alarms": [
+"PlanTable.java:94"
+],
+"All free": [
+"PlanTable.java:94",
+"PlanTable.java:99"
+],
+"A to-do list for every slot": [
+"PlanTable.java:97"
+],
+"To-dos that repeat every day or on chosen days": [
+"PlanTable.java:98"
+],
+"To-dos": [
+"PlanTable.java:99"
+],
+"Today's report, with a PDF to save or share": [
+"PlanTable.java:102"
+],
+"Every saved day": [
+"PlanTable.java:103"
+],
+"The week view and its tips": [
+"PlanTable.java:104"
+],
+"Slot analysis: focus and phone use, slot by slot": [
+"PlanTable.java:105"
+],
+"Habit cards": [
+"PlanTable.java:106"
+],
+"Free: today's report. Pro: every day and the deeper analysis": [
+"PlanTable.java:108"
+],
+"A goal for a slot of your routine": [
+"PlanTable.java:111"
+],
+"A to-do list inside a goal, in step with the slot's": [
+"PlanTable.java:112"
+],
+"Streaks for goals": [
+"PlanTable.java:113"
+],
+"Pro: a goal for a slot, with its own to-dos": [
+"PlanTable.java:114"
+],
+"Apps with a pause before they open": [
+"PlanTable.java:117"
+],
+"Any number": [
+"PlanTable.java:117"
+],
+"Playful pauses: a sum, a sentence, breathing, why": [
+"PlanTable.java:120"
+],
+"Locks for a time": [
+"PlanTable.java:124"
+],
+"As many as you like": [
+"PlanTable.java:124"
+],
+"Apps in a lock": [
+"PlanTable.java:125"
+],
+"Groups of apps": [
+"PlanTable.java:125"
+],
+"Strict locks that cannot be broken": [
+"PlanTable.java:126"
+],
+"One routine": [
+"PlanTable.java:130",
+"TourArt.java:377"
+],
+"Weekday, weekend and one-day routines": [
+"PlanTable.java:130"
+],
+"Colour looks": [
+"PlanTable.java:131"
+],
+"The first look": [
+"PlanTable.java:131"
+],
+"All the looks": [
+"PlanTable.java:131"
+],
+"Ads": [
+"PlanTable.java:132"
+],
+"Small ads": [
+"PlanTable.java:132"
+],
+"No ads": [
+"PlanTable.java:132",
+"TourArt.java:378"
+],
+"Routines and looks": [
+"PlanTable.java:133"
+],
+"Free: one routine and one look. Pro: all of them, and no ads": [
+"PlanTable.java:133"
+],
+"WAKE {1}   FIRST TASK {2}   {3}": [
+"PosterRenderer.java:353"
+],
+"NO PHONE USE  ·  focused {1}": [
+"PosterRenderer.java:494"
+],
+"PHONE IN USE NOW  ·  {1} so far": [
+"PosterRenderer.java:497"
+],
+"PHONE USE  ·  {1}": [
+"PosterRenderer.java:498"
+],
+" – {1}": [
+"PosterRenderer.java:503"
+],
+"{1}  {2}": [
+"PosterRenderer.java:504"
+],
+"Focused for {1} since": [
+"PosterRenderer.java:507"
+],
+"ON A BREAK  ·  back at {1}": [
+"PosterRenderer.java:716",
+"PosterRenderer.java:719"
+],
+"STARTS AT  {1}": [
+"PosterRenderer.java:717"
+],
+"NOW  ·  {1} left": [
+"PosterRenderer.java:720"
+],
+"phone {1}": [
+"PosterRenderer.java:746"
+],
+"{1}…": [
+"PosterRenderer.java:801",
+"PosterRenderer.java:987",
+"PosterRenderer.java:990",
+"ReportRenderer.java:175",
+"ReportRenderer.java:176"
+],
+"{1}–{2} of {3}": [
+"PosterRenderer.java:861"
+],
+"sans-serif-black": [
+"PosterRenderer.java:111"
+],
+"EEEE": [
+"PosterRenderer.java:294"
+],
+"MMMM": [
+"PosterRenderer.java:296"
+],
+"ADJUSTED FOR TODAY": [
+"PosterRenderer.java:338",
+"PosterRenderer.java:348"
+],
+"LIBRARY MODE": [
+"PosterRenderer.java:339",
+"PosterRenderer.java:349"
+],
+"BED ": [
+"PosterRenderer.java:355"
+],
+"END ": [
+"PosterRenderer.java:355"
+],
+"PHONE TODAY": [
+"PosterRenderer.java:394"
+],
+"00": [
+"PosterRenderer.java:418"
+],
+"06": [
+"PosterRenderer.java:418"
+],
+"12": [
+"PosterRenderer.java:418"
+],
+"18": [
+"PosterRenderer.java:418"
+],
+"12a": [
+"PosterRenderer.java:418"
+],
+"6a": [
+"PosterRenderer.java:418"
+],
+"12p": [
+"PosterRenderer.java:418"
+],
+"6p": [
+"PosterRenderer.java:418"
+],
+" →": [
+"PosterRenderer.java:503"
+],
+"TAKEN OFF": [
+"PosterRenderer.java:696"
+],
+"TODAY ONLY": [
+"PosterRenderer.java:696"
+],
+"DAY OFF  ·  no alarms": [
+"PosterRenderer.java:718"
+],
+"·": [
+"PosterRenderer.java:750"
+],
+"STARTED LATE": [
+"PosterRenderer.java:868"
+],
+"RAN LONGER": [
+"PosterRenderer.java:869"
+],
+"STARTED EARLY": [
+"PosterRenderer.java:870"
+],
+"FINISHED EARLY": [
+"PosterRenderer.java:871"
+],
+"Pro is not available right now. It is sold through Google Play, so install the app from there, check your connection and try again.": [
+"Pro.java:687"
+],
+"proLife": [
+"Pro.java:54"
+],
+"proMonthly": [
+"Pro.java:55"
+],
+"debugPro": [
+"Pro.java:56"
+],
+"passes": [
+"Pro.java:58"
+],
+"passMask": [
+"Pro.java:61"
+],
+"passItem": [
+"Pro.java:61"
+],
+"passItemFrom": [
+"Pro.java:61"
+],
+"passItemUntil": [
+"Pro.java:61"
+],
+"passNote": [
+"Pro.java:62"
+],
+"passMessage": [
+"Pro.java:64"
+],
+"The purchase did not go through. You were not charged.": [
+"Pro.java:550"
+],
+"Thank you! Dinacharya Pro is on.": [
+"Pro.java:622"
+],
+"Your payment is pending. Pro turns on as soon as it goes through.": [
+"Pro.java:624"
+],
+"Could not open Google Play. Try again in a moment.": [
+"Pro.java:654",
+"Pro.java:672",
+"Pro.java:681"
+],
+"Open Google Play, then your profile picture, Payments and subscriptions, Subscriptions.": [
+"Pro.java:697"
+],
+"Checking Google Play…": [
+"Pro.java:703"
+],
+"The price comes from Google Play. It shows here once Play answers, and Pro can only be bought in a copy of the app that was installed from Google Play.": [
+"ProActivity.java:80"
+],
+"Watch {1} short videos": [
+"ProActivity.java:90"
+],
+"Watch {1} short videos and everything in Pro is open for 24 hours: every saved day and the week in Performance, the deeper analysis, more pauses and locks, routines, goals and the colour looks. Nothing is charged. When the day is up, what you set up with it goes back to the free version (Pro keeps it for good).": [
+"ProActivity.java:91"
+],
+"Tied to your Google Play account, so it comes back on a new phone. Refunds follow Google Play's rules. If Pro ever ends (a refund, say), nothing you made is taken away: a routine, a lock or a pause that goes past the free limit stays saved and starts working again with Pro. A video pass is different: when its time is up, what you set up with it goes back to the free version.": [
+"ProActivity.java:104"
+],
+"{1} a month": [
+"ProActivity.java:121"
+],
+"{1} once": [
+"ProActivity.java:129"
+],
+"Dinacharya Pro": [
+"ProActivity.java:65",
+"SettingsPage.java:336"
+],
+"Choose a monthly plan or pay once for life. Paid through Google Play.": [
+"ProActivity.java:67"
+],
+"Your monthly plan is active. It renews every month until you cancel it in Google Play.": [
+"ProActivity.java:71"
+],
+"Manage subscription": [
+"ProActivity.java:73"
+],
+"Switched on for testing on this phone.": [
+"ProActivity.java:86"
+],
+"What is free, and what Pro adds": [
+"ProActivity.java:97"
+],
+"Everything the app does, Free and Pro side by side, in groups you open one at a time.": [
+"ProActivity.java:98"
+],
+"Compare Free and Pro": [
+"ProActivity.java:99"
+],
+"Restore my purchase": [
+"ProActivity.java:102"
+],
+"For testing": [
+"ProActivity.java:110"
+],
+"Test build only": [
+"ProActivity.java:110"
+],
+"Pretend I have Pro": [
+"ProActivity.java:111"
+],
+"Monthly plan": [
+"ProActivity.java:121"
+],
+"Pro for as long as you subscribe. Renews every month; cancel any time in Google Play.": [
+"ProActivity.java:122"
+],
+"Subscribe monthly": [
+"ProActivity.java:123"
+],
+"Lifetime plan": [
+"ProActivity.java:129"
+],
+"Pay once and keep Pro for good.": [
+"ProActivity.java:130"
+],
+"If you buy lifetime, cancel the monthly plan in Google Play so it does not renew.": [
+"ProActivity.java:132"
+],
+"Get lifetime Pro": [
+"ProActivity.java:134"
+],
+"{1} is part of Pro, which also removes the ads.": [
+"ProPrompt.java:38"
+],
+"{1}\n\nOr watch {2} short videos and use everything in Pro free for a day.": [
+"ProPrompt.java:65"
+],
+"Only the videos you watch to the end count, and the ones you watched today stay counted if you stop. When the day is up, everything closes again and what you set up with Pro goes back to the free version.": [
+"ProPrompt.java:91"
+],
+"Everything in Pro: open until {1}.": [
+"ProPrompt.java:140"
+],
+"That report is no longer on the phone": [
+"ReportActivity.java:29"
+],
+"In your Google Drive backup.": [
+"ReportActivity.java:51"
+],
+"Goes into your Google Drive backup next time it runs.": [
+"ReportActivity.java:51"
+],
+"Tip: sign in under Backup to keep every day in your Google Drive.": [
+"ReportActivity.java:52"
+],
+"Made on your phone by Dinacharya Launcher  ·  page {1} of {2}": [
+"ReportPdf.java:37"
+],
+"app.dinacharya.wallpaper.reports": [
+"ReportProvider.java:16"
+],
+"bad name": [
+"ReportProvider.java:21"
+],
+"{1}%": [
+"ReportRenderer.java:272",
+"SlotCards.java:108",
+"SlotCards.java:175",
+"SlotCards.java:184",
+"SlotCards.java:248"
+],
+"Devoted {1} of {2}": [
+"ReportRenderer.java:292",
+"SlotCards.java:182"
+],
+"  ·  Other phone use {1}": [
+"ReportRenderer.java:310"
+],
+"{1}–{2}": [
+"ReportRenderer.java:321"
+],
+" {1}": [
+"ReportRenderer.java:321"
+],
+"{1};  {2}": [
+"ReportRenderer.java:322"
+],
+"{1}  +{2} more": [
+"ReportRenderer.java:336"
+],
+"{1} to {2}   ·   {3}": [
+"ReportRenderer.java:351"
+],
+"Updated {1}": [
+"ReportRenderer.java:353"
+],
+"{1} kept, {2} changed, {3} taken off, {4} not answered, out of {5} slots.": [
+"ReportRenderer.java:382"
+],
+"Phone in use for {1}% of task time ({2} of {3}).": [
+"ReportRenderer.java:394"
+],
+"{1} late": [
+"ReportRenderer.java:403"
+],
+"{1}, slept {2} of a planned {3}.": [
+"ReportRenderer.java:403"
+],
+"{1} during task time ({2}% of it)": [
+"ReportRenderer.java:444"
+],
+"{1} in the hour before bed": [
+"ReportRenderer.java:447"
+],
+"Paused most: {1}": [
+"ReportRenderer.java:517"
+],
+"{1} so far": [
+"ReportRenderer.java:552"
+],
+"{1} ({2}%)": [
+"ReportRenderer.java:553"
+],
+" of {1}": [
+"ReportRenderer.java:601"
+],
+" of {1} planned": [
+"ReportRenderer.java:602"
+],
+"   ·   went to sleep {1}": [
+"ReportRenderer.java:636"
+],
+"   ·   wake-up {1}": [
+"ReportRenderer.java:637"
+],
+"Slept {1} of a planned {2}.": [
+"ReportRenderer.java:643"
+],
+"You asked for more time {1} ({2} in all).": [
+"ReportRenderer.java:650"
+],
+"{1}  →  {2}": [
+"ReportRenderer.java:672",
+"SlotReport.java:110"
+],
+"{1} closed days": [
+"ReportRenderer.java:712"
+],
+"Most reliable: {1}, kept {2}% of the time.": [
+"ReportRenderer.java:793"
+],
+"Needs attention: {1}, kept {2}% of the time.": [
+"ReportRenderer.java:798"
+],
+"Days with a score of 70 or more: {1} of {2}.": [
+"ReportRenderer.java:803"
+],
+"  ·  Longest focus {1}": [
+"ReportRenderer.java:309"
+],
+"Time by activity type, so far": [
+"ReportRenderer.java:239"
+],
+"Time by activity type": [
+"ReportRenderer.java:239",
+"ReportRenderer.java:788"
+],
+"Suggestions for tomorrow": [
+"ReportRenderer.java:245"
+],
+"Focus, slot by slot": [
+"ReportRenderer.java:260"
+],
+"Focus is the share of a slot's time with no other phone use. Apps chosen for an activity do not count against it.": [
+"ReportRenderer.java:261"
+],
+"BY ACTIVITY": [
+"ReportRenderer.java:281"
+],
+"Devoted ": [
+"ReportRenderer.java:308"
+],
+"  ·  No other phone use": [
+"ReportRenderer.java:310"
+],
+"TODAY SO FAR": [
+"ReportRenderer.java:343"
+],
+"DAILY REPORT": [
+"ReportRenderer.java:343"
+],
+"EEEE, d MMMM yyyy": [
+"ReportRenderer.java:346"
+],
+"How the score is made": [
+"ReportRenderer.java:372"
+],
+"No slot has been answered yet.": [
+"ReportRenderer.java:383"
+],
+"Turn on alarms to measure this.": [
+"ReportRenderer.java:383"
+],
+"40%": [
+"ReportRenderer.java:384"
+],
+"Not enough task time yet.": [
+"ReportRenderer.java:396"
+],
+"Allow usage access to measure this.": [
+"ReportRenderer.java:396"
+],
+"35%": [
+"ReportRenderer.java:398"
+],
+"On time": [
+"ReportRenderer.java:403",
+"ReportRenderer.java:719"
+],
+"Measured after bedtime.": [
+"ReportRenderer.java:407"
+],
+"Answer the bedtime alarm to measure this.": [
+"ReportRenderer.java:407"
+],
+"25%": [
+"ReportRenderer.java:409"
+],
+"Phone use": [
+"ReportRenderer.java:428"
+],
+"Phone use was not available. Allow usage access in the app to include it.": [
+"ReportRenderer.java:430"
+],
+"a": [
+"ReportRenderer.java:477"
+],
+"p": [
+"ReportRenderer.java:477"
+],
+"Bars: phone use each hour.  Strip: your plan by type.": [
+"ReportRenderer.java:481"
+],
+"Top apps": [
+"ReportRenderer.java:489"
+],
+"Focus at the home screen": [
+"ReportRenderer.java:509"
+],
+"times you went back after the pause": [
+"ReportRenderer.java:512"
+],
+"times you opened the app anyway": [
+"ReportRenderer.java:514"
+],
+"Time planned and kept": [
+"ReportRenderer.java:540"
+],
+"Planned": [
+"ReportRenderer.java:543"
+],
+"not tracked": [
+"ReportRenderer.java:557"
+],
+"Task": [
+"ReportRenderer.java:561",
+"Routine.java:15"
+],
+"Rest": [
+"ReportRenderer.java:561",
+"Routine.java:15",
+"SlotOps.java:187",
+"TourArt.java:183",
+"TourArt.java:183",
+"TourArt.java:251"
+],
+"Meal": [
+"ReportRenderer.java:561",
+"Routine.java:15",
+"Routine.java:428",
+"Routine.java:428",
+"Routine.java:1334",
+"Routine.java:1334",
+"Routine.java:1334",
+"TourArt.java:183",
+"TourArt.java:251"
+],
+"Personal": [
+"ReportRenderer.java:561",
+"Routine.java:15",
+"Routine.java:429",
+"Routine.java:429",
+"Routine.java:1334"
+],
+"Not kept": [
+"ReportRenderer.java:570"
+],
+" goal": [
+"ReportRenderer.java:601",
+"ReportRenderer.java:601"
+],
+" goal ✓": [
+"ReportRenderer.java:601"
+],
+"Average per day. Slots you kept, or that had no alarm to ask you, count as done.": [
+"ReportRenderer.java:606"
+],
+"Slots you kept, or that had no alarm to ask you, count as done.": [
+"ReportRenderer.java:607"
+],
+"Not recorded yet.": [
+"ReportRenderer.java:646"
+],
+"Not recorded. Answer the bedtime alarm and the app will track it.": [
+"ReportRenderer.java:646"
+],
+" time": [
+"ReportRenderer.java:650"
+],
+" times": [
+"ReportRenderer.java:650"
+],
+"Your day, slot by slot": [
+"ReportRenderer.java:659",
+"RoutinePage.java:215"
+],
+"TIME": [
+"ReportRenderer.java:661"
+],
+"SLOT": [
+"ReportRenderer.java:662"
+],
+"STATUS": [
+"ReportRenderer.java:663"
+],
+"PHONE": [
+"ReportRenderer.java:664"
+],
+"LAST DAYS": [
+"ReportRenderer.java:710"
+],
+"Your week": [
+"ReportRenderer.java:711"
+],
+"1 closed day": [
+"ReportRenderer.java:712"
+],
+"Average score": [
+"ReportRenderer.java:720"
+],
+"Phone per day": [
+"ReportRenderer.java:720"
+],
+"Late to bed, average": [
+"ReportRenderer.java:720"
+],
+"Daily score": [
+"ReportRenderer.java:729"
+],
+"Phone time per day": [
+"ReportRenderer.java:767"
+],
+"Habits appear after a few answered days.": [
+"ReportRenderer.java:808"
+],
+"Suggestions": [
+"ReportRenderer.java:813"
+],
+"EEE": [
+"ReportRenderer.java:820"
+],
+"Android locks some switches for an app that was installed from a file instead of Google Play. It is a one-time unlock:\n\n1. Tap “Open app info” below.\n2. Tap the ⋮ menu at the top right.\n3. Choose “Allow restricted settings” and confirm with your PIN or fingerprint.\n4. Go back and switch on Usage access.\n\nIf ⋮ does not show that choice yet, first try to switch Usage access on once: Android then shows it.": [
+"RestrictedSettings.java:64"
+],
+"com.android.vending": [
+"RestrictedSettings.java:27"
+],
+"com.sec.android.app.samsungapps": [
+"RestrictedSettings.java:27"
+],
+"com.amazon.venezia": [
+"RestrictedSettings.java:27"
+],
+"com.huawei.appmarket": [
+"RestrictedSettings.java:27"
+],
+"com.xiaomi.mipicks": [
+"RestrictedSettings.java:28"
+],
+"com.xiaomi.market": [
+"RestrictedSettings.java:28"
+],
+"com.heytap.market": [
+"RestrictedSettings.java:28"
+],
+"com.oppo.market": [
+"RestrictedSettings.java:28"
+],
+"com.vivo.appstore": [
+"RestrictedSettings.java:28"
+],
+"com.google.android.feedback": [
+"RestrictedSettings.java:29"
+],
+"Open Settings, Apps, Dinacharya Launcher": [
+"RestrictedSettings.java:55"
+],
+"Android is holding this setting back": [
+"RestrictedSettings.java:63"
+],
+"@{1}": [
+"Routine.java:270"
+],
+"{1}, only on days with {2}": [
+"Routine.java:300"
+],
+"{1}h": [
+"Routine.java:926"
+],
+"0{1}": [
+"Routine.java:1403"
+],
+"mode={1}": [
+"Routine.java:933"
+],
+"anchor={1}": [
+"Routine.java:934"
+],
+"palette={1}": [
+"Routine.java:935"
+],
+"fmt24={1}": [
+"Routine.java:937"
+],
+"top={1}": [
+"Routine.java:938"
+],
+"bottom={1}": [
+"Routine.java:939"
+],
+"clock={1}": [
+"Routine.java:940"
+],
+"screen={1}": [
+"Routine.java:941"
+],
+"alarm={1}": [
+"Routine.java:942"
+],
+"askSilent={1}": [
+"Routine.java:943"
+],
+"wakeDelay={1}": [
+"Routine.java:944"
+],
+"wakeChallenge={1}": [
+"Routine.java:945"
+],
+"wakeOff={1}": [
+"Routine.java:946"
+],
+"wakeQuoteOn={1}": [
+"Routine.java:947"
+],
+"wakeDayOff={1}": [
+"Routine.java:948"
+],
+"Q\t{1}": [
+"Routine.java:949"
+],
+"mark={1}": [
+"Routine.java:950"
+],
+"N\t{1}": [
+"Routine.java:951"
+],
+"U\t{1}": [
+"Routine.java:954"
+],
+"Teal": [
+"Routine.java:21"
+],
+"Sunset": [
+"Routine.java:21"
+],
+"Ocean": [
+"Routine.java:21"
+],
+"Graphite": [
+"Routine.java:21"
+],
+"Other": [
+"Routine.java:32",
+"RoutinePage.java:1601"
+],
+"DINACHARYA1": [
+"Routine.java:38"
+],
+"Tomorrow only": [
+"Routine.java:279"
+],
+"One day only": [
+"Routine.java:280"
+],
+"My routine": [
+"Routine.java:344"
+],
+"Study": [
+"Routine.java:412",
+"Routine.java:1331",
+"Routine.java:1331",
+"TourArt.java:183",
+"TourArt.java:183",
+"TourArt.java:251",
+"TourArt.java:251"
+],
+"Revision": [
+"Routine.java:413",
+"Routine.java:1326",
+"Routine.java:1332",
+"Routine.java:1332",
+"Routine.java:1333"
+],
+"Practice": [
+"Routine.java:414",
+"Routine.java:1332"
+],
+"Work": [
+"Routine.java:415",
+"Routine.java:1332"
+],
+"Nap": [
+"Routine.java:416",
+"Routine.java:1332"
+],
+"Exercise": [
+"Routine.java:417",
+"Routine.java:1331",
+"Routine.java:1333"
+],
+"Reading": [
+"Routine.java:418"
+],
+"Family time": [
+"Routine.java:419",
+"Routine.java:1333"
+],
+" AM": [
+"Routine.java:919"
+],
+" PM": [
+"Routine.java:919"
+],
+"subs=2\n": [
+"Routine.java:952"
+],
+"|": [
+"Routine.java:962",
+"Routine.java:968"
+],
+"days=": [
+"Routine.java:975"
+],
+"TB": [
+"Routine.java:988"
+],
+"anchor": [
+"Routine.java:1157"
+],
+"palette": [
+"Routine.java:1159"
+],
+"subs": [
+"Routine.java:1160"
+],
+"fmt24": [
+"Routine.java:1161"
+],
+"top": [
+"Routine.java:1162"
+],
+"bottom": [
+"Routine.java:1163"
+],
+"clock": [
+"Routine.java:1164"
+],
+"screen": [
+"Routine.java:1165"
+],
+"alarm": [
+"Routine.java:1166"
+],
+"askSilent": [
+"Routine.java:1167"
+],
+"wakeDelay": [
+"Routine.java:1168"
+],
+"wakeChallenge": [
+"Routine.java:1169"
+],
+"wakeOff": [
+"Routine.java:1170"
+],
+"wakeQuoteOn": [
+"Routine.java:1171"
+],
+"wakeDayOff": [
+"Routine.java:1172"
+],
+"mark": [
+"Routine.java:1173"
+],
+"Wake up & freshen up": [
+"Routine.java:1321",
+"Routine.java:1334"
+],
+"Yoga & stretching": [
+"Routine.java:1321",
+"Routine.java:1331"
+],
+"Breakfast": [
+"Routine.java:1321",
+"Routine.java:1334"
+],
+"Morning focus block": [
+"Routine.java:1322",
+"Routine.java:1331"
+],
+"Short break": [
+"Routine.java:1322"
+],
+"Reading & notes": [
+"Routine.java:1323",
+"Routine.java:1331"
+],
+"Tea break": [
+"Routine.java:1323"
+],
+"Practice problems": [
+"Routine.java:1324",
+"Routine.java:1332"
+],
+"Lunch": [
+"Routine.java:1324",
+"Routine.java:1334"
+],
+"Power nap": [
+"Routine.java:1324",
+"Routine.java:1332"
+],
+"Project work": [
+"Routine.java:1325",
+"Routine.java:1332"
+],
+"Walk & tea": [
+"Routine.java:1325"
+],
+"Evening walk": [
+"Routine.java:1326",
+"Routine.java:1333"
+],
+"Dinner": [
+"Routine.java:1326",
+"Routine.java:1334"
+],
+"Review & plan tomorrow": [
+"Routine.java:1327",
+"Routine.java:1333"
+],
+"Family & free time": [
+"Routine.java:1327",
+"Routine.java:1333"
+],
+"Wind down": [
+"Routine.java:1328"
+],
+"Hold ≡ and drag to move a slot. Swipe a slot left to delete it, right to add one below it. Tap the arrow on a slot for its type, length, alarm and more. The day keeps its length: minutes only move from one slot to another.": [
+"RoutinePage.java:260"
+],
+"A type is a kind of activity inside a main kind, for example Study inside Task. Pick it on any slot. The home screen shows it under the slot's name; reports and goals count it. Tap a type to remove it.": [
+"RoutinePage.java:275"
+],
+"Only for {1}. After that day the usual routine comes back.": [
+"RoutinePage.java:374"
+],
+": uses {1}": [
+"RoutinePage.java:395"
+],
+"Used on {1} days. Tap a day to change.": [
+"RoutinePage.java:404"
+],
+"{1} now follows “{2}”.": [
+"RoutinePage.java:429"
+],
+"Copy of “{1}”": [
+"RoutinePage.java:442",
+"RoutinePage.java:489"
+],
+"Made “{1}” for Saturday and Sunday.": [
+"RoutinePage.java:469"
+],
+"Made “{1}”. Tap the days that should use it.": [
+"RoutinePage.java:470"
+],
+"Replaced the routine for {1}. Change its slots below.": [
+"RoutinePage.java:553"
+],
+"Made a routine for {1}. Change its slots below.": [
+"RoutinePage.java:554"
+],
+"Routine moved to {1}.": [
+"RoutinePage.java:577"
+],
+"Delete the routine for {1}?": [
+"RoutinePage.java:590"
+],
+"Deleted the routine for {1}.": [
+"RoutinePage.java:601"
+],
+"Delete “{1}”?": [
+"RoutinePage.java:632",
+"RoutinePage.java:1285"
+],
+"Its days go back to “{1}”. Its slots are deleted.": [
+"RoutinePage.java:633"
+],
+"Deleted “{1}”.": [
+"RoutinePage.java:639"
+],
+"“{1}”: ": [
+"RoutinePage.java:652"
+],
+"Over by {1}. Your sleep runs past the next wake-up.": [
+"RoutinePage.java:657"
+],
+"Unplanned time: {1} of the 24 hours.": [
+"RoutinePage.java:658"
+],
+"Wake-up {1}   ·   First task {2}   ·   {3}\n{4}": [
+"RoutinePage.java:660"
+],
+"Bedtime {1}": [
+"RoutinePage.java:661"
+],
+"Day ends {1}": [
+"RoutinePage.java:661"
+],
+"{1}  ·  {2}%": [
+"RoutinePage.java:687"
+],
+"Type {1}. Every kind keeps it.": [
+"RoutinePage.java:747"
+],
+"Type {1}. Tap to remove.": [
+"RoutinePage.java:748"
+],
+"{1} slots use it. They keep their name and time and become “Other”.": [
+"RoutinePage.java:782"
+],
+"Remove “{1}”?": [
+"RoutinePage.java:785"
+],
+"Removed “{1}”.": [
+"RoutinePage.java:791"
+],
+"New {1} type": [
+"RoutinePage.java:807"
+],
+"“{1}” was already there": [
+"RoutinePage.java:818"
+],
+"Added “{1}” under {2}": [
+"RoutinePage.java:818"
+],
+"When this slot starts: {1}. Tap to change.": [
+"RoutinePage.java:1069"
+],
+"start-of-day alarm, {1}": [
+"RoutinePage.java:1075"
+],
+"“{1}”: {2}": [
+"RoutinePage.java:1121"
+],
+"Length of “{1}”": [
+"RoutinePage.java:1146"
+],
+"Note for “{1}”": [
+"RoutinePage.java:1181"
+],
+"Moved “{1}”.": [
+"RoutinePage.java:1239"
+],
+"Its {1} stay in your day. Where should they go?": [
+"RoutinePage.java:1253"
+],
+"Add to the slot above: “{1}”": [
+"RoutinePage.java:1267"
+],
+"Add to the slot below: “{1}”": [
+"RoutinePage.java:1268"
+],
+"Deleted “{1}”. Its {2} min went to “{3}”.": [
+"RoutinePage.java:1292"
+],
+"Deleted “{1}”. Its {2} min were shared out.": [
+"RoutinePage.java:1293"
+],
+"Split “{1}” into two slots.": [
+"RoutinePage.java:1339"
+],
+"It goes right after “{1}”. Your day stays the same length, so its time is taken from other slots.": [
+"RoutinePage.java:1368"
+],
+"This slot: “{1}”": [
+"RoutinePage.java:1404"
+],
+"The next slot: “{1}”": [
+"RoutinePage.java:1409"
+],
+"Up to {1} min can be taken from here.": [
+"RoutinePage.java:1435"
+],
+"Only {1} min can be taken from there. Use fewer minutes or another source.": [
+"RoutinePage.java:1476"
+],
+"Added “{1}”, {2} min, taken from {3}.": [
+"RoutinePage.java:1494"
+],
+"{1} rests added, taken from the tasks next to them.": [
+"RoutinePage.java:1536"
+],
+" {1} gaps had no room.": [
+"RoutinePage.java:1537"
+],
+"Reset “{1}”?": [
+"RoutinePage.java:1543"
+],
+"“{1}” reset to the sample day.": [
+"RoutinePage.java:1552"
+],
+"Routine imported into “{1}”.": [
+"RoutinePage.java:1581"
+],
+"   {1}": [
+"RoutinePage.java:1602"
+],
+"EEE d MMM": [
+"RoutinePage.java:121"
+],
+"Start of day": [
+"RoutinePage.java:234"
+],
+"Set one time, the day follows": [
+"RoutinePage.java:234"
+],
+"Wake-up time": [
+"RoutinePage.java:235"
+],
+"First task time": [
+"RoutinePage.java:235"
+],
+"I wake up at": [
+"RoutinePage.java:238",
+"RoutinePage.java:652"
+],
+"Time by type": [
+"RoutinePage.java:254"
+],
+"routine_allot": [
+"RoutinePage.java:254"
+],
+"Slots": [
+"RoutinePage.java:258",
+"SlotCards.java:239"
+],
+"Tap a name to rename it, ⋮ for more": [
+"RoutinePage.java:258"
+],
+"How to edit slots": [
+"RoutinePage.java:259"
+],
+"routine_help": [
+"RoutinePage.java:259"
+],
+"＋  Add slot": [
+"RoutinePage.java:263"
+],
+"Add rests": [
+"RoutinePage.java:264"
+],
+"More tools": [
+"RoutinePage.java:268"
+],
+"routine_tools": [
+"RoutinePage.java:268"
+],
+"Paste from web app": [
+"RoutinePage.java:269"
+],
+"Reset to sample": [
+"RoutinePage.java:270"
+],
+"Give a slot a type": [
+"RoutinePage.java:273"
+],
+"Study, Exercise, Meal and the rest, by kind": [
+"RoutinePage.java:273"
+],
+"routine_types": [
+"RoutinePage.java:274"
+],
+"The bells on the slots below will not ring until you turn alarms on.": [
+"RoutinePage.java:314"
+],
+"Turn them on so the bells on your slots ring when a slot starts?": [
+"RoutinePage.java:322"
+],
+"＋ New": [
+"RoutinePage.java:366"
+],
+"＋ Weekend routine": [
+"RoutinePage.java:366"
+],
+"＋ One day only": [
+"RoutinePage.java:367"
+],
+"Date": [
+"RoutinePage.java:376"
+],
+"Want a different day on weekends or exam days? Add another routine and pick its days.": [
+"RoutinePage.java:384"
+],
+": uses this routine": [
+"RoutinePage.java:395"
+],
+"Not used on any day yet: tap the days that should follow it.": [
+"RoutinePage.java:403"
+],
+"Used on 1 day. Tap a day to change.": [
+"RoutinePage.java:404"
+],
+"Rename": [
+"RoutinePage.java:406"
+],
+"Every day needs a routine. Pick another routine, then tap this day to give it to that one.": [
+"RoutinePage.java:421"
+],
+"Weekday and weekend routines": [
+"RoutinePage.java:433"
+],
+"Exam day": [
+"RoutinePage.java:437",
+"TourArt.java:242"
+],
+"Weekend": [
+"RoutinePage.java:437",
+"TourArt.java:242"
+],
+"Name": [
+"RoutinePage.java:449"
+],
+"Start from": [
+"RoutinePage.java:451",
+"RoutinePage.java:534"
+],
+"You can change its slots and start time after, and pick the days it is used on.": [
+"RoutinePage.java:453"
+],
+"New routine": [
+"RoutinePage.java:455"
+],
+"Create": [
+"RoutinePage.java:457",
+"RoutinePage.java:540"
+],
+"A routine for one day": [
+"RoutinePage.java:483",
+"RoutinePage.java:538"
+],
+"Another date…": [
+"RoutinePage.java:505"
+],
+"A routine that is followed on one date only, then the usual one comes back.": [
+"RoutinePage.java:530"
+],
+"Which day": [
+"RoutinePage.java:531"
+],
+"You can change its slots and start time after.": [
+"RoutinePage.java:536"
+],
+"That day follows its usual routine again.": [
+"RoutinePage.java:591"
+],
+"Rename routine": [
+"RoutinePage.java:618"
+],
+"my first task starts at": [
+"RoutinePage.java:652"
+],
+"Your slots add up to exactly 24 hours.": [
+"RoutinePage.java:659"
+],
+"Add a Task slot first": [
+"RoutinePage.java:709"
+],
+"＋ Add": [
+"RoutinePage.java:753"
+],
+"“Other” stays: slots with no type of their own use it": [
+"RoutinePage.java:770"
+],
+"No slot uses this type.": [
+"RoutinePage.java:780"
+],
+"1 slot uses it. It keeps its name and time and becomes “Other”.": [
+"RoutinePage.java:781"
+],
+" Its daily goal is removed too.": [
+"RoutinePage.java:783"
+],
+"e.g. Maths": [
+"RoutinePage.java:801"
+],
+"Type name": [
+"RoutinePage.java:801"
+],
+"Write a name for the type": [
+"RoutinePage.java:813"
+],
+"≡": [
+"RoutinePage.java:888"
+],
+"Drag to move this slot": [
+"RoutinePage.java:890"
+],
+"Slot name": [
+"RoutinePage.java:911"
+],
+"Details": [
+"RoutinePage.java:956"
+],
+"details shown. Tap to hide.": [
+"RoutinePage.java:959"
+],
+"details hidden. Tap to show.": [
+"RoutinePage.java:959"
+],
+"Length. Tap to type the minutes.": [
+"RoutinePage.java:1001"
+],
+"5 minutes shorter. Hold for 30.": [
+"RoutinePage.java:1008"
+],
+"5 minutes longer. Hold for 30.": [
+"RoutinePage.java:1018"
+],
+"⋮": [
+"RoutinePage.java:1031"
+],
+"More: add below, note, duplicate, delete": [
+"RoutinePage.java:1032"
+],
+"Add a slot below": [
+"RoutinePage.java:1045"
+],
+"Add a note": [
+"RoutinePage.java:1046"
+],
+"Edit the note": [
+"RoutinePage.java:1046"
+],
+"Duplicate (splits this slot in two)": [
+"RoutinePage.java:1047"
+],
+"Alarms are off. Tap to turn them on.": [
+"RoutinePage.java:1068"
+],
+"notification with ring": [
+"RoutinePage.java:1073"
+],
+"notification with vibration": [
+"RoutinePage.java:1073"
+],
+"silent notification": [
+"RoutinePage.java:1074"
+],
+"no notification": [
+"RoutinePage.java:1074"
+],
+"Notification with ring": [
+"RoutinePage.java:1081"
+],
+"Notification with vibration": [
+"RoutinePage.java:1081"
+],
+"Silent notification": [
+"RoutinePage.java:1081"
+],
+"No notification": [
+"RoutinePage.java:1081"
+],
+"✓  ": [
+"RoutinePage.java:1085",
+"TodoDialog.java:278"
+],
+"      ": [
+"RoutinePage.java:1085",
+"TodoDialog.java:278"
+],
+"This is the start-of-day alarm: tap to undo": [
+"RoutinePage.java:1090"
+],
+"Make this the start-of-day alarm": [
+"RoutinePage.java:1090"
+],
+"Not the start-of-day alarm any more": [
+"RoutinePage.java:1104"
+],
+"The start-of-day alarm has to be the first alarm of the day. Set the slots before it to No notification first.": [
+"RoutinePage.java:1108"
+],
+"Minutes (1 to 1440)": [
+"RoutinePage.java:1143"
+],
+"Write a number of minutes": [
+"RoutinePage.java:1153"
+],
+"Use 1 to 1440 minutes": [
+"RoutinePage.java:1157"
+],
+"e.g. Polity chapter 4, then 20 practice questions": [
+"RoutinePage.java:1174"
+],
+"Shown on this slot and on its alarm.": [
+"RoutinePage.java:1179"
+],
+"Note removed.": [
+"RoutinePage.java:1193"
+],
+"＋ New type…": [
+"RoutinePage.java:1209"
+],
+"Keep at least one slot": [
+"RoutinePage.java:1246"
+],
+"Share them out over the other slots": [
+"RoutinePage.java:1264"
+],
+"This slot is too short to split": [
+"RoutinePage.java:1326",
+"RoutinePage.java:1334"
+],
+"Name, e.g. Maths homework": [
+"RoutinePage.java:1371"
+],
+"Kind": [
+"RoutinePage.java:1375"
+],
+"Type (optional)": [
+"RoutinePage.java:1378"
+],
+"or write a new type": [
+"RoutinePage.java:1383"
+],
+"Minutes": [
+"RoutinePage.java:1394"
+],
+"Take the minutes from": [
+"RoutinePage.java:1400"
+],
+"All the other slots (not Sleep)": [
+"RoutinePage.java:1414"
+],
+"There is no room to take from here. Pick another source.": [
+"RoutinePage.java:1435"
+],
+"Add a slot": [
+"RoutinePage.java:1442"
+],
+"Give the slot a name, or pick a type.": [
+"RoutinePage.java:1460"
+],
+"Write how many minutes it takes.": [
+"RoutinePage.java:1467"
+],
+"It needs at least 1 minute.": [
+"RoutinePage.java:1472"
+],
+"There is no room to take from there. Pick another source.": [
+"RoutinePage.java:1477"
+],
+"That did not fit. Try fewer minutes.": [
+"RoutinePage.java:1485"
+],
+"the other slots": [
+"RoutinePage.java:1489"
+],
+"No back-to-back tasks found": [
+"RoutinePage.java:1528"
+],
+"No task has time to spare for a rest": [
+"RoutinePage.java:1532"
+],
+"1 rest added, taken from the tasks next to them.": [
+"RoutinePage.java:1536"
+],
+" 1 gap had no room.": [
+"RoutinePage.java:1537"
+],
+"Its slots are replaced with the sample day (wake-up 5:30 AM). You can undo this.": [
+"RoutinePage.java:1544"
+],
+"Copy your routine in the web app first": [
+"RoutinePage.java:1574"
+],
+"🌅": [
+"RoutinePage.java:1606"
+],
+"🔔": [
+"RoutinePage.java:1606"
+],
+"📳": [
+"RoutinePage.java:1606"
+],
+"🔕": [
+"RoutinePage.java:1607"
+],
+"🚫": [
+"RoutinePage.java:1607"
+],
+"screen-time": [
+"ScreenTime.java:122"
+],
+"{1} colours, selected": [
+"SettingsPage.java:262"
+],
+"{1} colours": [
+"SettingsPage.java:262"
+],
+"The {1} colours": [
+"SettingsPage.java:265"
+],
+"{1}: {2}%": [
+"SettingsPage.java:275",
+"SettingsPage.java:283"
+],
+"No ads, every saved day and deeper analysis, goals, more pauses and locks, routines, colours. Or watch {1} short videos for a free day of Pro": [
+"SettingsPage.java:341"
+],
+"{1} Not allowed yet.": [
+"SettingsPage.java:419"
+],
+"Dinacharya Launcher is your home screen: no apps on it, just your day, with the slot you are in highlighted. Tap your day to open the dashboard, swipe up for every app, down for notifications, press and hold for its settings. Settings > Home screen has the rest, and Take the tour shows it all.": [
+"SettingsPage.java:450"
+],
+"Pick a start time; every slot follows. Drag ≡ to move a slot, swipe left to delete, swipe right to add one below. Tap ⋮ on a slot for notes, duplicating and more.": [
+"SettingsPage.java:452"
+],
+"On the Routine tab, add another routine and tap the days it is used on. Alarms, the home screen and reports follow the right one each day.": [
+"SettingsPage.java:454"
+],
+"Turn alarms on from the Alarms card on Home. When one rings, say if you continue as planned or change the slot for today. If one does not ring, open Settings > Alarms: the checklist shows what is missing, and Ring a test alarm tries it in 10 seconds.": [
+"SettingsPage.java:456"
+],
+"help_tip_{1}": [
+"SettingsPage.java:463"
+],
+"Dinacharya Launcher {1} on Android {2} ({3} {4})\n\nAlarms:\n{5}\n\n{6}\n\n{7}\n\n{8}": [
+"SettingsPage.java:474"
+],
+"{1} (build {2})": [
+"SettingsPage.java:496"
+],
+"Version {1}": [
+"SettingsPage.java:505"
+],
+"Swipes, look, pause rules, hidden apps": [
+"SettingsPage.java:82"
+],
+"Permissions and settings the app needs, with a tick for each": [
+"SettingsPage.java:86"
+],
+"Home screen look and alarms": [
+"SettingsPage.java:88"
+],
+"Home screen look": [
+"SettingsPage.java:89",
+"SettingsPage.java:148"
+],
+"Colours, clock, phone time, spacing": [
+"SettingsPage.java:89"
+],
+"On or off, test alarm, phone checklist": [
+"SettingsPage.java:90"
+],
+"Permissions": [
+"SettingsPage.java:92",
+"SettingsPage.java:362"
+],
+"What the app may do, and why": [
+"SettingsPage.java:92"
+],
+"Support": [
+"SettingsPage.java:93"
+],
+"Help and problem report": [
+"SettingsPage.java:94"
+],
+"How things work, copy a report": [
+"SettingsPage.java:94"
+],
+"Ad privacy choices": [
+"SettingsPage.java:96"
+],
+"Change what you agreed to for ads": [
+"SettingsPage.java:96"
+],
+"About": [
+"SettingsPage.java:99",
+"SettingsPage.java:503"
+],
+"Version and developer": [
+"SettingsPage.java:99"
+],
+"‹  Settings": [
+"SettingsPage.java:130"
+],
+"Theme": [
+"SettingsPage.java:164"
+],
+"Night": [
+"SettingsPage.java:165"
+],
+"Colours": [
+"SettingsPage.java:174"
+],
+"On the home screen": [
+"SettingsPage.java:180"
+],
+"Clock, phone screen time, the “Developed by” mark": [
+"SettingsPage.java:180"
+],
+"look_show": [
+"SettingsPage.java:181"
+],
+"24-hour clock": [
+"SettingsPage.java:182"
+],
+"Show the time": [
+"SettingsPage.java:187"
+],
+"Show phone screen time today": [
+"SettingsPage.java:192"
+],
+"Allow usage access": [
+"SettingsPage.java:201",
+"Suggestions.java:81"
+],
+"Show “Developed by” mark": [
+"SettingsPage.java:203"
+],
+"Spacing": [
+"SettingsPage.java:210"
+],
+"Space at the top and at the bottom": [
+"SettingsPage.java:210"
+],
+"look_space": [
+"SettingsPage.java:210"
+],
+"Space at top": [
+"SettingsPage.java:211"
+],
+"Space at bottom": [
+"SettingsPage.java:212"
+],
+"Add top space if your lock screen shows a big clock, and bottom space for the app dock.": [
+"SettingsPage.java:213"
+],
+" ✓": [
+"SettingsPage.java:261"
+],
+" 🔒": [
+"SettingsPage.java:261"
+],
+"Screen time is read on this phone only. Nothing is sent anywhere.": [
+"SettingsPage.java:313"
+],
+"To show screen time, Android needs your OK. Tap the button, find Dinacharya Launcher in the list and switch it on.": [
+"SettingsPage.java:314"
+],
+"Dinacharya Pro ✓": [
+"SettingsPage.java:336"
+],
+"Thank you for supporting the app.": [
+"SettingsPage.java:338"
+],
+"No ads, every saved day and deeper analysis, goals, more pauses and locks, routines, colours": [
+"SettingsPage.java:342"
+],
+"This phone": [
+"SettingsPage.java:384"
+],
+"Phone time on the home screen and in reports.": [
+"SettingsPage.java:385"
+],
+"The alarm question, also on the lock screen.": [
+"SettingsPage.java:386"
+],
+"Rings at the exact minute a slot starts.": [
+"SettingsPage.java:391"
+],
+"Keeps alarms and backups on time on phones that stop apps.": [
+"SettingsPage.java:398"
+],
+"!": [
+"SettingsPage.java:411",
+"Ui.java:170"
+],
+"Open the phone's Settings, then Apps, Dinacharya Launcher": [
+"SettingsPage.java:438"
+],
+"Help": [
+"SettingsPage.java:446"
+],
+"Quick guide": [
+"SettingsPage.java:447"
+],
+"Weekdays and weekends": [
+"SettingsPage.java:454"
+],
+"On Insights, set a daily goal for a type such as Study. Kept slots of that type fill it up; days in a row make a streak.": [
+"SettingsPage.java:458"
+],
+"Undo": [
+"SettingsPage.java:459"
+],
+"After deleting, moving or adding, a bar with Undo appears for a few seconds.": [
+"SettingsPage.java:459"
+],
+"On Backup, sign in with Google and choose Daily, Weekly or Monthly. Restore on a new phone from the same tab.": [
+"SettingsPage.java:460"
+],
+"Problem report": [
+"SettingsPage.java:468"
+],
+"Nothing written down": [
+"SettingsPage.java:469"
+],
+"Some problems were written down": [
+"SettingsPage.java:469"
+],
+"help_report": [
+"SettingsPage.java:469"
+],
+"Copy problem report": [
+"SettingsPage.java:473"
+],
+"No crash recorded.": [
+"SettingsPage.java:476"
+],
+"No handled problems.": [
+"SettingsPage.java:476"
+],
+"Report copied": [
+"SettingsPage.java:480"
+],
+"Dinacharya Launcher": [
+"SettingsPage.java:504"
+],
+"A few settings so the alarms ring on time and the home screen works. Each one opens Android’s own screen and takes a moment. You can skip any of them.": [
+"SetupActivity.java:57"
+],
+"{1} steps left.": [
+"SetupActivity.java:165"
+],
+"setup_done": [
+"SetupActivity.java:24"
+],
+"review": [
+"SetupActivity.java:25"
+],
+"Phone settings": [
+"SetupActivity.java:54"
+],
+"Welcome": [
+"SetupActivity.java:54"
+],
+"Check your phone settings": [
+"SetupActivity.java:55"
+],
+"Let’s get your phone ready": [
+"SetupActivity.java:55"
+],
+"Continue": [
+"SetupActivity.java:79",
+"TourArt.java:274",
+"UsageAccess.java:34"
+],
+"Skip for now": [
+"SetupActivity.java:81"
+],
+"That set the lock screen only. Tap Set again and choose the home screen too.": [
+"SetupActivity.java:119"
+],
+"Everything is set.": [
+"SetupActivity.java:162"
+],
+"Finish": [
+"SetupActivity.java:163"
+],
+"1 step left.": [
+"SetupActivity.java:165"
+],
+"Next step": [
+"SetupActivity.java:166"
+],
+"Set up everything": [
+"SetupActivity.java:166"
+],
+"app.dinacharya.wallpaper.SLOT_START_NOW": [
+"SlotActions.java:13"
+],
+"app.dinacharya.wallpaper.SLOT_START_LATER": [
+"SlotActions.java:14"
+],
+"{1}% focus": [
+"SlotCards.java:175",
+"SlotCards.java:184"
+],
+"Timeline of the slot: {1} stretches of other phone use": [
+"SlotCards.java:367"
+],
+"Slot analysis · Pro": [
+"SlotCards.java:70"
+],
+"How each slot went": [
+"SlotCards.java:71",
+"SlotCards.java:92"
+],
+"Slot analysis": [
+"SlotCards.java:91"
+],
+"Time devoted": [
+"SlotCards.java:109",
+"SlotCards.java:247"
+],
+"Other phone use": [
+"SlotCards.java:110",
+"SlotCards.java:255"
+],
+"Longest focus": [
+"SlotCards.java:111",
+"SlotCards.java:249"
+],
+"By slot": [
+"SlotCards.java:124",
+"SlotCards.java:148"
+],
+"By activity": [
+"SlotCards.java:124",
+"SlotCards.java:148"
+],
+"selected": [
+"SlotCards.java:148"
+],
+"not selected": [
+"SlotCards.java:148"
+],
+"Phone use was not available": [
+"SlotCards.java:182",
+"SlotReport.java:102"
+],
+"In the slot": [
+"SlotCards.java:190"
+],
+"Timeline": [
+"SlotCards.java:193"
+],
+"Other phone use, with the exact times": [
+"SlotCards.java:211"
+],
+"Apps used in this slot": [
+"SlotCards.java:233"
+],
+"Time in slots": [
+"SlotCards.java:237"
+],
+"Interruptions": [
+"SlotCards.java:239"
+],
+"Apps used in these slots": [
+"SlotCards.java:240"
+],
+"Phone in total": [
+"SlotCards.java:254"
+],
+"Timeline of the slot: no other phone use": [
+"SlotCards.java:365"
+],
+"Timeline of the slot: 1 stretch of other phone use": [
+"SlotCards.java:366"
+],
+"Devoted {1}  ·  No other phone use": [
+"SlotReport.java:103"
+],
+"Devoted {1}  ·  Other phone use {2}": [
+"SlotReport.java:104"
+],
+"<1 min": [
+"SlotReport.java:33"
+],
+"Goal · {1}": [
+"SlotTodo.java:80"
+],
+"slot-use": [
+"SlotUseCache.java:25"
+],
+"This costs you {1} of sleep.": [
+"SnoozeCost.java:48"
+],
+"Sleep now: {1}. After {2}: {3}.": [
+"SnoozeCost.java:49"
+],
+"That is {1} short of the {2} you planned.": [
+"SnoozeCost.java:53"
+],
+"Already snoozed {1} today. With this: {2}.": [
+"SnoozeCost.java:58"
+],
+"That is past your alarm: there would be no sleep left.": [
+"SnoozeCost.java:46"
+],
+"Under 6 hours of sleep makes tomorrow harder.": [
+"SnoozeCost.java:56"
+],
+"dinacharya": [
+"Store.java:12"
+],
+"since": [
+"Store.java:16"
+],
+"todos": [
+"Store.java:17"
+],
+"library": [
+"Store.java:18"
+],
+"Open Settings, Apps, Special access, Display over other apps": [
+"StrongMode.java:78"
+],
+"On. Locks and pauses are held wherever an app opens from.": [
+"StrongMode.java:87"
+],
+"Almost on: allow Usage access below.": [
+"StrongMode.java:89"
+],
+"Almost on: allow Display over other apps below.": [
+"StrongMode.java:91"
+],
+"Almost on: allow the two things below.": [
+"StrongMode.java:93"
+],
+"Off. Locks and pauses work when you open an app from this home screen.": [
+"StrongMode.java:95"
+],
+"{1}{2}": [
+"Suggestions.java:102",
+"Suggestions.java:104"
+],
+"You took off {1} on {2} of the last {3} days.": [
+"Suggestions.java:115"
+],
+"You renamed {1} to {2} on {3} days.": [
+"Suggestions.java:125"
+],
+"You went to sleep about {1} late on average over the last {2} nights.": [
+"Suggestions.java:140"
+],
+"You spent {1} on your phone during {2} ({3}% of the block).": [
+"Suggestions.java:154"
+],
+"You used the phone for {1} in the hour before bed.": [
+"Suggestions.java:162"
+],
+"{1} took {2}, {3}% of your phone time.": [
+"Suggestions.java:170"
+],
+"The home screen paused you {1} times and you opened the app anyway {2} times; {3} pulled you most.": [
+"Suggestions.java:179"
+],
+"You stopped yourself {1} times at the home screen.": [
+"Suggestions.java:184"
+],
+"{1} of your 24 hours are not planned.": [
+"Suggestions.java:192"
+],
+"Your blocks add up to {1} more than 24 hours.": [
+"Suggestions.java:195"
+],
+"Only {1}% of your awake time is rest.": [
+"Suggestions.java:206"
+],
+"You have kept {1} for {2} days in a row.": [
+"Suggestions.java:232"
+],
+"Turn on alarms so the app can see which slots you keep.": [
+"Suggestions.java:80"
+],
+"Allow usage access to see your phone time and the apps behind it.": [
+"Suggestions.java:81"
+],
+"A slot you often take off": [
+"Suggestions.java:114"
+],
+"Make it shorter, or move it to a quieter time.": [
+"Suggestions.java:116"
+],
+"A slot you often rename": [
+"Suggestions.java:124"
+],
+"Change it in the routine so the plan matches your day.": [
+"Suggestions.java:126"
+],
+"Late to bed": [
+"Suggestions.java:139"
+],
+"Move bedtime and wake-up later in the app, or start winding down earlier.": [
+"Suggestions.java:141"
+],
+"Phone during a task": [
+"Suggestions.java:153"
+],
+"Keep the phone in another room for that block.": [
+"Suggestions.java:156"
+],
+"Phone before bed": [
+"Suggestions.java:161"
+],
+"A screen-free hour helps you fall asleep.": [
+"Suggestions.java:163"
+],
+"One app takes the most": [
+"Suggestions.java:169"
+],
+"Set a daily limit for it in Settings > Home screen, or in Android's Digital Wellbeing.": [
+"Suggestions.java:171"
+],
+"an app": [
+"Suggestions.java:176"
+],
+"Pauses that are skipped": [
+"Suggestions.java:178"
+],
+"Make it Strict, or give it a daily limit, in Settings > Home screen.": [
+"Suggestions.java:181"
+],
+"You stopped yourself": [
+"Suggestions.java:183"
+],
+"That is focus working.": [
+"Suggestions.java:184"
+],
+"Time that is not planned": [
+"Suggestions.java:191"
+],
+"Add a block for that time.": [
+"Suggestions.java:192"
+],
+"A plan that is too long": [
+"Suggestions.java:194"
+],
+"Shorten something.": [
+"Suggestions.java:195"
+],
+"Little time to rest": [
+"Suggestions.java:205"
+],
+"Short breaks between tasks help you stay focused.": [
+"Suggestions.java:207"
+],
+"A habit that works": [
+"Suggestions.java:231"
+],
+"It is a good place for your hardest work.": [
+"Suggestions.java:233"
+],
+"A solid day": [
+"Suggestions.java:236"
+],
+"A solid day.": [
+"Suggestions.java:236"
+],
+"Keep the same routine tomorrow.": [
+"Suggestions.java:236"
+],
+"Not enough days yet": [
+"Suggestions.java:238"
+],
+"Not enough days yet for suggestions.": [
+"Suggestions.java:238"
+],
+"Keep the alarms on and check back in a few days.": [
+"Suggestions.java:239"
+],
+"＋  Add below": [
+"SwipeRow.java:35"
+],
+"Delete  ✕": [
+"SwipeRow.java:36"
+],
+"A goal with no to-dos is ticked by you, or by the time when its target is reached. A goal with to-dos is done when all of them are. Goals and their to-dos are set in Insights.": [
+"TodoDialog.java:144"
+],
+"↻  {1}  ·  {2}": [
+"TodoDialog.java:192"
+],
+"“{1}” will not come back on other days. Where it already is stays as it is.": [
+"TodoDialog.java:196"
+],
+"↻  {1}": [
+"TodoDialog.java:225"
+],
+"Up to {1} things can repeat": [
+"TodoDialog.java:254"
+],
+"A list can hold {1} items": [
+"TodoDialog.java:255"
+],
+"Goals of this slot": [
+"TodoDialog.java:116"
+],
+"Nothing yet. Add what you want to get done in this slot.": [
+"TodoDialog.java:163"
+],
+"tap to stop repeating": [
+"TodoDialog.java:192"
+],
+"Stop repeating this?": [
+"TodoDialog.java:195"
+],
+"Stop repeating": [
+"TodoDialog.java:197"
+],
+"Keep it": [
+"TodoDialog.java:202"
+],
+"↻": [
+"TodoDialog.java:271"
+],
+"Repeat": [
+"TodoDialog.java:272"
+],
+"Does not repeat": [
+"TodoDialog.java:277",
+"Todos.java:107"
+],
+"＋": [
+"TodoDialog.java:289"
+],
+"A to-do is for this day only, unless you set it to repeat with the ↻ button.": [
+"TodoDialog.java:297"
+],
+"S{1}": [
+"Todos.java:124"
+],
+"G{1}:{2}": [
+"Todos.java:129"
+],
+"K{1}": [
+"Todos.java:134"
+],
+"{1}\t{2}\t{3}": [
+"Todos.java:138",
+"Todos.java:474"
+],
+"T{1}:{2}": [
+"Todos.java:162"
+],
+"{1}\t{2}": [
+"Todos.java:166",
+"Todos.java:171",
+"Todos.java:467"
+],
+"K\t{1}": [
+"Todos.java:435"
+],
+"Pro is {1} a month, or {2} once for life, through Google Play. ": [
+"TourActivity.java:264"
+],
+"Free: the home screen, alarms, to-dos, today's report, one paused app and one locked app. {1}It adds goals with their own to-dos, every saved day and the deeper analysis, more pauses and locks, more routines, every colour look, and no ads.{2}": [
+"TourActivity.java:265"
+],
+" Or watch {1} short videos and everything in Pro is open for a day. What you set up with it goes back to the free version when the day is up. The last screen shows it all side by side.": [
+"TourActivity.java:269"
+],
+"first_run": [
+"TourActivity.java:28"
+],
+"Your day, on your home screen": [
+"TourActivity.java:37"
+],
+"Swipe up for every app": [
+"TourActivity.java:38"
+],
+"Swipe and press": [
+"TourActivity.java:39"
+],
+"A routine that fits you": [
+"TourActivity.java:40"
+],
+"Alarms that ask": [
+"TourActivity.java:41"
+],
+"A pause before distractions": [
+"TourActivity.java:42"
+],
+"Lock apps for a while": [
+"TourActivity.java:43"
+],
+"See how your days go": [
+"TourActivity.java:44"
+],
+"Back up to your own Drive": [
+"TourActivity.java:45"
+],
+"Free, and Pro if you want more": [
+"TourActivity.java:46"
+],
+"Your day is the wallpaper": [
+"TourActivity.java:47"
+],
+"Last check": [
+"TourActivity.java:48"
+],
+"No icons and no clutter. Your whole home screen is your day: the time, the date and every slot, with the one you are in highlighted.": [
+"TourActivity.java:51"
+],
+"Every app, as a plain list over a soft blur of your day. Type to search. Slide along the A to Z strip to jump to a letter. Press and hold an app to add a pause, hide it, or open its info. Dinacharya Launcher is in the list too: tap it for the dashboard.": [
+"TourActivity.java:52"
+],
+"Tap your day to open the dashboard. Swipe down for notifications. Swipe left for the camera and right for the phone: you can change both to any app. Press and hold anywhere for settings.": [
+"TourActivity.java:53"
+],
+"Set your wake-up time and shape the day into slots: Study, Rest, Meals and more. Keep one routine for weekdays and others for weekends or exam days. Open the dashboard to edit them.": [
+"TourActivity.java:54"
+],
+"Each slot can ring when it starts and ask one question: carry on, or change the plan? At bedtime it asks when you went to sleep, and if you need more time it tells you what that costs in sleep. The question comes up by itself, and again when you wake the phone or come back to the home screen. The start-of-day alarm can ask for a sum, a short pause, a shake or a sentence before it stops, and shows a motivating quote. Finished early? Tap Finish early on Home. Library mode keeps every alarm silent, with only vibration.": [
+"TourActivity.java:55"
+],
+"Pick the apps that pull you away. During focus time they wait a few seconds before they open, and you can always open them anyway. Free: one app. Pro: any number, strict pauses, daily limits, and playful pauses: a quick sum, a sentence to type, slow breaths, or saying why you are opening it.": [
+"TourActivity.java:56"
+],
+"Shut the apps that eat your time for hours you choose: every day or on some days, or just for the next hour. A locked app is greyed in the list, and the lock screen shows when it opens again. You can break a lock by waiting half a minute and typing a sentence. Free: one lock with one app. Pro: groups of apps, as many locks as you like, and strict locks that cannot be broken. A group can also lock only while an activity type such as Study is going on, only when both the hours and the activity hold, or in library mode. Set it up in the home settings.": [
+"TourActivity.java:57"
+],
+"A score for today, phone time by hour and by app, and plain suggestions, with a PDF to save or share. Today's report is free. Pro adds every saved day, the weekly view, the slot-by-slot analysis and habit cards, and goals: set one for a slot, give it its own to-do list, and watch the streak.": [
+"TourActivity.java:58"
+],
+"Sign in with Google to back up to a private space in your own Drive, and restore on a new phone. The home settings, your routines and your reports are all in it.": [
+"TourActivity.java:59"
+],
+"The Dinacharya Launcher live wallpaper shows the time, the date and every slot of your day, with the one you are in highlighted, and keeps itself up to date. It comes with the home screen: Dinacharya Launcher asks Android to put it in place and you confirm once, so it also shows on your lock screen and in your recent apps.": [
+"TourActivity.java:61"
+],
+"Anything still missing from the setup is listed here. You can skip it now and come back from Settings.": [
+"TourActivity.java:62"
+],
+"Skip": [
+"TourActivity.java:164"
+],
+"Next": [
+"TourActivity.java:223",
+"TourActivity.java:249"
+],
+"Pro is a monthly plan or one payment for life, through Google Play. ": [
+"TourActivity.java:263"
+],
+"Everything is set": [
+"TourActivity.java:328"
+],
+"Your phone is ready.": [
+"TourActivity.java:328"
+],
+"10:42": [
+"TourArt.java:180",
+"TourArt.java:222"
+],
+"Tue 20 Oct": [
+"TourArt.java:181"
+],
+"Phone today  2h 05m": [
+"TourArt.java:182"
+],
+"Wake up": [
+"TourArt.java:183",
+"TourArt.java:251"
+],
+"Books": [
+"TourArt.java:202"
+],
+"Calculator": [
+"TourArt.java:202"
+],
+"Calendar": [
+"TourArt.java:202"
+],
+"Clock": [
+"TourArt.java:202"
+],
+"Contacts": [
+"TourArt.java:202"
+],
+"Drive": [
+"TourArt.java:202"
+],
+"ABCDEFGHIJK": [
+"TourArt.java:206"
+],
+"Swipe up": [
+"TourArt.java:213"
+],
+"for every app": [
+"TourArt.java:214"
+],
+"All apps": [
+"TourArt.java:226"
+],
+"5:30": [
+"TourArt.java:250"
+],
+"6:00": [
+"TourArt.java:250"
+],
+"9:00": [
+"TourArt.java:250"
+],
+"9:30": [
+"TourArt.java:250"
+],
+"12:30": [
+"TourArt.java:250"
+],
+"10:30": [
+"TourArt.java:250"
+],
+"now": [
+"TourArt.java:262"
+],
+"Study starts now": [
+"TourArt.java:271"
+],
+"Are you continuing, or changing the plan?": [
+"TourArt.java:272"
+],
+"Bedtime": [
+"TourArt.java:279"
+],
+"When did you go to sleep?": [
+"TourArt.java:280"
+],
+"Social app": [
+"TourArt.java:287",
+"TourArt.java:350"
+],
+"Right now: Study.": [
+"TourArt.java:288"
+],
+"Is this the best use of": [
+"TourArt.java:289"
+],
+"the next few minutes?": [
+"TourArt.java:290"
+],
+"7": [
+"TourArt.java:291"
+],
+"Open anyway in 7": [
+"TourArt.java:293"
+],
+"82": [
+"TourArt.java:307"
+],
+"Today's score": [
+"TourArt.java:308"
+],
+"Phone use by hour": [
+"TourArt.java:317"
+],
+"Study  5h 40m of 6h": [
+"TourArt.java:320"
+],
+"5-day streak": [
+"TourArt.java:321"
+],
+"Your own Google Drive": [
+"TourArt.java:336"
+],
+"private to you": [
+"TourArt.java:337"
+],
+"Daily, weekly": [
+"TourArt.java:340"
+],
+"or monthly": [
+"TourArt.java:341"
+],
+"Restore on a": [
+"TourArt.java:342"
+],
+"new phone": [
+"TourArt.java:343"
+],
+"Locked  ·  Social": [
+"TourArt.java:351"
+],
+"Until 6:00 AM": [
+"TourArt.java:352"
+],
+"4h 20m left": [
+"TourArt.java:353"
+],
+"Shows when it": [
+"TourArt.java:359"
+],
+"opens again": [
+"TourArt.java:360"
+],
+"Wait, then type": [
+"TourArt.java:363"
+],
+"a sentence": [
+"TourArt.java:364"
+],
+"Strict locks (Pro)": [
+"TourArt.java:365"
+],
+"can't be broken": [
+"TourArt.java:366"
+],
+"Alarms and to-dos": [
+"TourArt.java:377"
+],
+"Today's report": [
+"TourArt.java:377"
+],
+"1 paused app": [
+"TourArt.java:377"
+],
+"1 locked app": [
+"TourArt.java:377"
+],
+"Goals with to-dos": [
+"TourArt.java:378"
+],
+"All saved days": [
+"TourArt.java:378"
+],
+"More routines": [
+"TourArt.java:378"
+],
+"Monthly or once, or 3 short videos for a day": [
+"TourArt.java:384"
+],
+"Time, date": [
+"TourArt.java:396"
+],
+"and phone time": [
+"TourArt.java:397"
+],
+"The slot you": [
+"TourArt.java:401"
+],
+"are in": [
+"TourArt.java:402"
+],
+"Every slot": [
+"TourArt.java:406"
+],
+"of your day": [
+"TourArt.java:407"
+],
+"Part of the": [
+"TourArt.java:409"
+],
+"home screen": [
+"TourArt.java:410"
+],
+"Dinacharya Launcher reads which apps you used and for how long, so it can show your phone time on the home screen and in your reports, and count the minutes for any daily app limit you set on the home screen.\n\nIt is read on this phone only. It is not sent to the developer or to anyone else. If you turn on Google Drive backup, your saved reports (including the names of the apps you used most) go to your own private space in your own Drive, and nowhere else.\n\nNext, Android's settings open. Find Dinacharya Launcher in the list and switch it on. You can switch it off there at any time.{1}": [
+"UsageAccess.java:23"
+],
+"Allow usage access?": [
+"UsageAccess.java:22"
+],
+"\n\nIf the switch is greyed out (“Restricted setting”), tap “Greyed out?” for the one-time unlock.": [
+"UsageAccess.java:32"
+],
+"Greyed out?": [
+"UsageAccess.java:37"
+],
+"Open Settings, then Apps, Special app access, Usage access": [
+"UsageAccess.java:54"
+],
+"{1}: open until {2}.": [
+"VideoPass.java:96"
+],
+"layer {1} took too long": [
+"VideoPass.java:187"
+],
+"layer {1} failed, code {2}: {3}": [
+"VideoPass.java:199"
+],
+"layer {1} could not be asked": [
+"VideoPass.java:223"
+],
+"You have watched a lot of videos today. Try again tomorrow, or get Pro: it opens everything and removes the ads.": [
+"VideoPass.java:342"
+],
+"There is no video to show at the moment. Try again in a little while. Nothing was used up and nothing was opened.": [
+"VideoPass.java:412"
+],
+"could not be shown, code {1}: {2}": [
+"VideoPass.java:466"
+],
+"Video {1} of {2} watched": [
+"VideoPass.java:515"
+],
+"Watch {1} more videos to open everything in Pro for a day.": [
+"VideoPass.java:517"
+],
+"{1}\n\nOr stop here: the videos you watched today stay counted.": [
+"VideoPass.java:518"
+],
+"Thank you for watching.\n{1}": [
+"VideoPass.java:549"
+],
+"{1}. {2}": [
+"VideoPass.java:554"
+],
+"{1} more open everything in Pro for a day.": [
+"VideoPass.java:555"
+],
+"What you set up with it goes back to the free version then, unless you get Pro.": [
+"VideoPass.java:70"
+],
+"no ad units": [
+"VideoPass.java:177"
+],
+"A video is already on its way.": [
+"VideoPass.java:332"
+],
+"Everything is open already.": [
+"VideoPass.java:338"
+],
+"That is plenty for today": [
+"VideoPass.java:342"
+],
+"Videos are not ready yet. Check your connection and try again in a moment.": [
+"VideoPass.java:349"
+],
+"A video could not be started. Try again in a moment.": [
+"VideoPass.java:358",
+"VideoPass.java:420"
+],
+"Getting a short video…": [
+"VideoPass.java:381"
+],
+"Getting the next video…": [
+"VideoPass.java:381"
+],
+"The video could not be shown. Try again in a little while.": [
+"VideoPass.java:400"
+],
+"No video right now": [
+"VideoPass.java:412",
+"VideoPass.java:472"
+],
+"The next video could not be found. You keep what you already earned.": [
+"VideoPass.java:414"
+],
+"Watch the whole video to open it. Nothing was opened.": [
+"VideoPass.java:460"
+],
+"The video could not be shown. Try again in a little while. Nothing was opened.": [
+"VideoPass.java:472"
+],
+"Watch one more video to open everything in Pro for a day.": [
+"VideoPass.java:516"
+],
+"Next video": [
+"VideoPass.java:522"
+],
+"Stop here": [
+"VideoPass.java:523"
+],
+"It could not be opened. Please try again.": [
+"VideoPass.java:546"
+],
+"One more opens everything in Pro for a day.": [
+"VideoPass.java:555"
+],
+"Watch {1} videos: everything in Pro free for a day": [
+"VideoProgress.java:39"
+],
+"Watch {1}: everything in Pro free for a day": [
+"VideoProgress.java:40"
+],
+"{1} of {2} videos watched today": [
+"VideoProgress.java:46"
+],
+" more video": [
+"VideoProgress.java:40"
+],
+" more videos": [
+"VideoProgress.java:40"
+],
+"Well begun is half done.": [
+"WakeQuotes.java:27"
+],
+"Small steps every day add up to big change.": [
+"WakeQuotes.java:28"
+],
+"The hardest part is getting up. You have already done it.": [
+"WakeQuotes.java:29"
+],
+"Choose what you want most over what you want right now.": [
+"WakeQuotes.java:30"
+],
+"Your future self is watching. Make them proud.": [
+"WakeQuotes.java:31"
+],
+"Start now. You can polish it later.": [
+"WakeQuotes.java:32"
+],
+"One focused hour today beats ten good intentions.": [
+"WakeQuotes.java:33"
+],
+"Rest was for the night. The morning is for action.": [
+"WakeQuotes.java:34"
+],
+"You do not have to feel ready. You only have to begin.": [
+"WakeQuotes.java:35"
+],
+"Every morning is a fresh page. Write something worth reading.": [
+"WakeQuotes.java:36"
+],
+"Progress, not perfection.": [
+"WakeQuotes.java:37"
+],
+"The day belongs to those who start it.": [
+"WakeQuotes.java:38"
+],
+"Five more minutes of sleep will not help your goals. Five minutes of work will.": [
+"WakeQuotes.java:39"
+],
+"Be the person your plan needs today.": [
+"WakeQuotes.java:40"
+],
+"Wake up with a purpose and the day will make room for it.": [
+"WakeQuotes.java:41"
+],
+"The journey of a thousand miles begins with a single step.": [
+"WakeQuotes.java:42"
+],
+"Lao Tzu": [
+"WakeQuotes.java:42"
+],
+"It does not matter how slowly you go as long as you do not stop.": [
+"WakeQuotes.java:43"
+],
+"Confucius": [
+"WakeQuotes.java:43"
+],
+"Arise, awake, and stop not till the goal is reached.": [
+"WakeQuotes.java:44"
+],
+"Swami Vivekananda": [
+"WakeQuotes.java:44"
+],
+"Dream, dream, dream. Dreams transform into thoughts and thoughts result in action.": [
+"WakeQuotes.java:45"
+],
+"A. P. J. Abdul Kalam": [
+"WakeQuotes.java:45",
+"WakeQuotes.java:46"
+],
+"If you want to shine like a sun, first burn like a sun.": [
+"WakeQuotes.java:46"
+],
+"Look to this day, for it is life, the very life of life.": [
+"WakeQuotes.java:47"
+],
+"Kalidasa": [
+"WakeQuotes.java:47"
+],
+"At dawn, when you have trouble getting out of bed, tell yourself: I have to go to work as a human being.": [
+"WakeQuotes.java:48"
+],
+"Marcus Aurelius": [
+"WakeQuotes.java:48"
+],
+"Begin at once to live, and count each separate day as a separate life.": [
+"WakeQuotes.java:49"
+],
+"Seneca": [
+"WakeQuotes.java:49",
+"WakeQuotes.java:50"
+],
+"While we are postponing, life speeds by.": [
+"WakeQuotes.java:50"
+],
+"The early morning has gold in its mouth.": [
+"WakeQuotes.java:51"
+],
+"Benjamin Franklin": [
+"WakeQuotes.java:51",
+"WakeQuotes.java:52",
+"WakeQuotes.java:53",
+"WakeQuotes.java:54"
+],
+"You may delay, but time will not.": [
+"WakeQuotes.java:52"
+],
+"Lost time is never found again.": [
+"WakeQuotes.java:53"
+],
+"Energy and persistence conquer all things.": [
+"WakeQuotes.java:54"
+],
+"We are what we repeatedly do. Excellence, then, is not an act, but a habit.": [
+"WakeQuotes.java:55"
+],
+"Will Durant": [
+"WakeQuotes.java:55"
+],
+"Do what you can, with what you have, where you are.": [
+"WakeQuotes.java:56"
+],
+"Theodore Roosevelt": [
+"WakeQuotes.java:56"
+],
+"It always seems impossible until it is done.": [
+"WakeQuotes.java:57"
+],
+"Nelson Mandela": [
+"WakeQuotes.java:57",
+"WakeQuotes.java:58"
+],
+"Courage is not the absence of fear, but the triumph over it.": [
+"WakeQuotes.java:58"
+],
+"Start where you are. Use what you have. Do what you can.": [
+"WakeQuotes.java:59"
+],
+"Arthur Ashe": [
+"WakeQuotes.java:59"
+],
+"Make each day your masterpiece.": [
+"WakeQuotes.java:60"
+],
+"John Wooden": [
+"WakeQuotes.java:60"
+],
+"Success is the sum of small efforts, repeated day in and day out.": [
+"WakeQuotes.java:61"
+],
+"Robert Collier": [
+"WakeQuotes.java:61"
+],
+"How we spend our days is, of course, how we spend our lives.": [
+"WakeQuotes.java:62"
+],
+"Annie Dillard": [
+"WakeQuotes.java:62"
+],
+"Do not watch the clock; do what it does. Keep going.": [
+"WakeQuotes.java:63"
+],
+"Sam Levenson": [
+"WakeQuotes.java:63"
+],
+"Discipline is the bridge between goals and accomplishment.": [
+"WakeQuotes.java:64"
+],
+"Jim Rohn": [
+"WakeQuotes.java:64"
+],
+"The only way to do great work is to love what you do.": [
+"WakeQuotes.java:65"
+],
+"Steve Jobs": [
+"WakeQuotes.java:65"
+],
+"Small deeds done are better than great deeds planned.": [
+"WakeQuotes.java:66"
+],
+"Peter Marshall": [
+"WakeQuotes.java:66"
+],
+"What you do today can improve all your tomorrows.": [
+"WakeQuotes.java:67"
+],
+"Ralph Marston": [
+"WakeQuotes.java:67"
+],
+"A year from now you may wish you had started today.": [
+"WakeQuotes.java:68"
+],
+"Karen Lamb": [
+"WakeQuotes.java:68"
+],
+"We must use time as a tool, not as a couch.": [
+"WakeQuotes.java:69"
+],
+"John F. Kennedy": [
+"WakeQuotes.java:69"
+],
+"The key is not to prioritize what is on your schedule, but to schedule your priorities.": [
+"WakeQuotes.java:70"
+],
+"Stephen Covey": [
+"WakeQuotes.java:70"
+],
+"Each day is a little life.": [
+"WakeQuotes.java:71"
+],
+"Arthur Schopenhauer": [
+"WakeQuotes.java:71"
+],
+"With the new day comes new strength and new thoughts.": [
+"WakeQuotes.java:72"
+],
+"Eleanor Roosevelt": [
+"WakeQuotes.java:72"
+],
+"The sun itself is weak when it first rises, and gathers strength and courage as the day goes on.": [
+"WakeQuotes.java:73"
+],
+"Charles Dickens": [
+"WakeQuotes.java:73"
+],
+"Nothing will work unless you do.": [
+"WakeQuotes.java:74"
+],
+"Maya Angelou": [
+"WakeQuotes.java:74"
+],
+"Happiness depends upon ourselves.": [
+"WakeQuotes.java:75"
+],
+"Aristotle": [
+"WakeQuotes.java:75"
+],
+"I am choosing to put my day off": [
+"WakeQuotes.java:91"
+],
+"My plan is waiting for me": [
+"WakeQuotes.java:92"
+],
+"I could start right now": [
+"WakeQuotes.java:93"
+],
+"I am putting this off on purpose": [
+"WakeQuotes.java:94"
+],
+"Later is my choice, not the plan": [
+"WakeQuotes.java:95"
+],
+"I am awake and ready to begin": [
+"WakeQuotes.java:99"
+],
+"Today I do what I planned": [
+"WakeQuotes.java:100"
+],
+"I start my day on purpose": [
+"WakeQuotes.java:101"
+],
+"A good day begins right now": [
+"WakeQuotes.java:102"
+],
+"I rise and I start": [
+"WakeQuotes.java:103"
+],
+"wallpaper_state": [
+"WallpaperSetup.java:23"
+],
+"live": [
+"WallpaperSetup.java:24"
+],
+"confirmed_at": [
+"WallpaperSetup.java:24"
+],
+"This phone has no live wallpaper screen": [
+"WallpaperSetup.java:126"
+],
+"A calm home screen made from your daily routine: your whole day, live, with nothing else on it. Alarms that ask, a pause or a lock for the apps that pull you away, and a report on how each day went.": [
+"WelcomeActivity.java:101"
+],
+"DINACHARYA": [
+"WelcomeActivity.java:83"
+],
+"Welcome to Dinacharya Launcher": [
+"WelcomeActivity.java:96"
+],
+"Get started": [
+"WelcomeActivity.java:113"
+],
+"It takes about a minute. Every step can be skipped.": [
+"WelcomeActivity.java:115"
+]
+}

@@ -158,6 +158,7 @@ final class Permissions {
         if (r.alarmOn) return;
         r.alarmOn = true;
         Store.save(a, r);
+        if (a instanceof MainActivity) ((MainActivity) a).syncAlarmSwitch();   // the dashboard keeps its own copy of the routine
         final long now = System.currentTimeMillis();
         final Context app = a.getApplicationContext();
         new Thread(() -> {

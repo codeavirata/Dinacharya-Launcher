@@ -21,7 +21,6 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 /**
  * The Backup tab, laid out like WhatsApp's "Chat backup": the last backup, a Back up button, the

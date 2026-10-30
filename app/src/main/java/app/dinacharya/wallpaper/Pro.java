@@ -2,8 +2,10 @@ package app.dinacharya.wallpaper;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -23,8 +25,9 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * "Dinacharya Pro": one purchase through Google Play (set to Rs 99 in Play Console; the app shows whatever
- * price Play reports) that removes the ads and unlocks the extras: the report for every saved day and the week
+ * "Dinacharya Pro", in two plans through Google Play: a monthly subscription (product "pro_monthly", Rs 50 a month in
+ * Play Console) and a lifetime purchase (the one-time product "pro_unlock", Rs 499). The app shows whatever prices Play reports.
+ * Either plan removes the ads and unlocks the extras: the report for every saved day and the week
  * view, any number of paused apps with strict, limit and playful pauses, locked groups and strict locks,
  * weekday and weekend routines, goals and type totals, all colour themes. Everything else stays free.
  *
@@ -36,8 +39,8 @@ import java.util.List;
  * only for what a pass must not open (the ads, the purchase itself). When a pass starts, a note of what exists is kept
  * here too; when it ends, {@link PassSettle} puts back what was made with it (see {@link PassReset}).
  *
- * Whether the user is Pro is kept on the phone and checked against Google Play each time the app
- * starts, so a refund or a new phone is picked up. If Google Play cannot be reached the last known
+ * Whether the user is Pro (a lifetime purchase, or a monthly plan that is running) is kept on the phone and checked against
+ * Google Play each time the app starts, so a refund, a monthly plan that was not renewed, or a new phone is picked up. If Google Play cannot be reached the last known
  * answer is kept, so a bad connection never takes Pro away. The record is not part of any backup.
  */
 final class Pro {
@@ -46,7 +49,10 @@ final class Pro {
     }
 
     private static final String PREFS = "pro";
+    // "pro" is true when Pro is on by any plan; "proLife" and "proMonthly" say which plan it is (a person can hold both).
     private static final String K_PRO = "pro";
+    private static final String K_LIFE = "proLife";
+    private static final String K_SUB = "proMonthly";
     private static final String K_DEBUG = "debugPro";
     // the passes videos gave (see PassLedger): one entry per pass, each with its items, start, end and the note of what existed.
     private static final String K_PASSES = "passes";
@@ -69,12 +75,21 @@ final class Pro {
     private final Handler ui = new Handler(Looper.getMainLooper());
     private final List<Listener> listeners = new ArrayList<>();
     private BillingClient client;
-    private ProductDetails details;
+    private ProductDetails lifeDetails;    // the lifetime purchase, once Play has described it
+    private ProductDetails monthDetails;   // the monthly subscription, once Play has described it
     private boolean connecting;
 
     private Pro(Context app) {
         this.app = app;
         this.prefs = app.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        try {
+            // Before the monthly plan there was only the one purchase: Pro that was already on was the lifetime one.
+            if (prefs.getBoolean(K_PRO, false) && !prefs.contains(K_LIFE) && !prefs.contains(K_SUB)) {
+                prefs.edit().putBoolean(K_LIFE, true).apply();
+            }
+        } catch (RuntimeException e) {
+            // an unreadable record is treated as not owned
+        }
     }
 
     // ------------------------------------------------------------------ the answer
@@ -223,40 +238,18 @@ final class Pro {
         }
     }
 
-    /** True when a video may be watched for {@code item} now: Pro is not owned and the item is not open already. */
-    boolean canStartPass(int item) {
+    /** True when videos may be watched for a pass now: Pro is not owned and something in Pro is still closed. */
+    boolean canStartPass() {
         try {
-            return !owned() && DayPass.valid(item) && ledger().free(DayPass.bit(item), now()) != 0;
+            return !owned() && ledger().free(DayPass.ALL, now()) != 0;
         } catch (RuntimeException e) {
             return false;
         }
     }
 
-    /** True when the pass on {@code item} is a day long, for that item alone, and one more video can stretch it to three days. */
-    boolean canExtendPass(int item) {
-        try {
-            return !owned() && ledger().canExtend(item, now());
-        } catch (RuntimeException e) {
-            return false;
-        }
-    }
-
-    /** Stretches the pass on {@code item} to three days from when it began. Returns false when that is not possible. */
-    boolean extendPass(int item) {
-        try {
-            if (owned()) return false;
-            synchronized (this) {
-                PassLedger l = ledger().copy();
-                if (!l.extend(item, now())) return false;
-                keep(l);
-            }
-            PassSettle.schedule(app);
-            changed();
-            return true;
-        } catch (RuntimeException e) {
-            CrashLog.note(app, "day pass extend", e);
-            return false;
-        }
+    /** Opens everything in Pro for a day, starting now (the reward for three videos). Returns the items it opened: 0 when nothing happened. */
+    int grantDay() {
+        return grant(DayPass.ALL, DayPass.LENGTH_MS);
     }
 
     /** Opens one {@code item} for a day, starting now, and nothing else. Returns false if it is open already. */
@@ -307,7 +300,7 @@ final class Pro {
 
     /**
      * What a video opened in the last few minutes and is still open (a {@link DayPass} mask), or 0. Lets a screen that needs one more
-     * thing right after ("also more than 2 apps") say what is already open.
+     * thing right after ("also more than 1 app") say what is already open.
      */
     int recentlyOpened() {
         try {
@@ -403,10 +396,28 @@ final class Pro {
         return debuggable() && prefs.getBoolean(K_DEBUG, false);
     }
 
-    /** "₹99" once Google Play has told us, otherwise an empty string. */
+    /** True when the lifetime purchase is owned. */
+    boolean lifetimeOwned() {
+        try {
+            return prefs.getBoolean(K_LIFE, false);
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
+    /** True when the monthly plan is running (bought, and not ended or cancelled past its paid period). */
+    boolean monthlyOwned() {
+        try {
+            return prefs.getBoolean(K_SUB, false);
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
+    /** The price of the lifetime purchase ("₹499.00") once Google Play has told us, otherwise an empty string. */
     String price() {
         try {
-            ProductDetails d = details;
+            ProductDetails d = lifeDetails;
             if (d == null || d.getOneTimePurchaseOfferDetails() == null) return "";
             String p = d.getOneTimePurchaseOfferDetails().getFormattedPrice();
             return p == null ? "" : p;
@@ -415,8 +426,41 @@ final class Pro {
         }
     }
 
+    /** The price of one month of the monthly plan ("₹50.00") once Google Play has told us, otherwise an empty string. */
+    String monthlyPrice() {
+        try {
+            ProductDetails.SubscriptionOfferDetails o = pickOffer(monthDetails);
+            if (o == null || o.getPricingPhases() == null) return "";
+            List<ProductDetails.PricingPhase> phases = o.getPricingPhases().getPricingPhaseList();
+            if (phases == null || phases.isEmpty()) return "";
+            String p = phases.get(phases.size() - 1).getFormattedPrice();   // the last phase is the one that repeats
+            return p == null ? "" : p;
+        } catch (RuntimeException e) {
+            return "";
+        }
+    }
+
+    /** The plain offer of a subscription (the base plan, with no trial or discount), or the first one there is; null when none. */
+    private static ProductDetails.SubscriptionOfferDetails pickOffer(ProductDetails d) {
+        if (d == null) return null;
+        List<ProductDetails.SubscriptionOfferDetails> offers = d.getSubscriptionOfferDetails();
+        if (offers == null || offers.isEmpty()) return null;
+        for (ProductDetails.SubscriptionOfferDetails o : offers) {
+            if (o.getOfferId() == null) return o;
+        }
+        return offers.get(0);
+    }
+
     boolean canBuy() {
-        return details != null;
+        return lifeDetails != null || monthDetails != null;
+    }
+
+    boolean canBuyLifetime() {
+        return lifeDetails != null;
+    }
+
+    boolean canBuyMonthly() {
+        return pickOffer(monthDetails) != null;
     }
 
     void addListener(Listener l) {
@@ -439,16 +483,26 @@ final class Pro {
         });
     }
 
-    private void setOwned(boolean on) {
-        boolean was = prefs.getBoolean(K_PRO, false);
-        prefs.edit().putBoolean(K_PRO, on).apply();
-        if (was != on) changed();
+    /** Keeps whether one plan ({@link #K_LIFE} or {@link #K_SUB}) is owned, and with it whether Pro is on at all. */
+    private synchronized void setPlan(String key, boolean on) {
+        boolean wasAny = prefs.getBoolean(K_PRO, false);
+        boolean wasThis = prefs.getBoolean(key, false);
+        boolean life = K_LIFE.equals(key) ? on : prefs.getBoolean(K_LIFE, false);
+        boolean sub = K_SUB.equals(key) ? on : prefs.getBoolean(K_SUB, false);
+        prefs.edit().putBoolean(key, on).putBoolean(K_PRO, life || sub).apply();
+        if (wasAny != (life || sub) || wasThis != on) changed();
     }
 
     // ------------------------------------------------------------------ Google Play
 
+    /** The id of the lifetime purchase (a one-time product in Play Console). */
     private String productId() {
         return app.getString(R.string.pro_product_id);
+    }
+
+    /** The id of the monthly plan (a subscription in Play Console). */
+    private String monthlyId() {
+        return app.getString(R.string.pro_monthly_product_id);
     }
 
     /** Connects to Google Play, finds the price and checks what this account owns. Safe to call often. */
@@ -456,7 +510,7 @@ final class Pro {
         try {
             ensureClient();
             if (client.isReady()) {
-                queryProduct();
+                queryProducts();
                 queryOwned();
                 return;
             }
@@ -467,7 +521,7 @@ final class Pro {
                 public void onBillingSetupFinished(BillingResult r) {
                     connecting = false;
                     if (r.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-                        queryProduct();
+                        queryProducts();
                         queryOwned();
                     }
                 }
@@ -501,19 +555,26 @@ final class Pro {
                 .build();
     }
 
-    private void queryProduct() {
+    /** Asks Google Play for the price of each plan. They are asked one after the other because one question cannot mix the two kinds. */
+    private void queryProducts() {
+        queryProduct(productId(), BillingClient.ProductType.INAPP, false);
+        queryProduct(monthlyId(), BillingClient.ProductType.SUBS, true);
+    }
+
+    private void queryProduct(String id, String type, final boolean monthly) {
         try {
             QueryProductDetailsParams params = QueryProductDetailsParams.newBuilder()
                     .setProductList(Collections.singletonList(QueryProductDetailsParams.Product.newBuilder()
-                            .setProductId(productId())
-                            .setProductType(BillingClient.ProductType.INAPP)
+                            .setProductId(id)
+                            .setProductType(type)
                             .build()))
                     .build();
             client.queryProductDetailsAsync(params, (result, found) -> {
                 if (result.getResponseCode() != BillingClient.BillingResponseCode.OK || found == null) return;
                 List<ProductDetails> list = found.getProductDetailsList();
                 if (list != null && !list.isEmpty()) {
-                    details = list.get(0);
+                    if (monthly) monthDetails = list.get(0);
+                    else lifeDetails = list.get(0);
                     changed();
                 }
             });
@@ -522,36 +583,42 @@ final class Pro {
         }
     }
 
-    /** Asks Google Play what this account owns. Only a clear answer changes anything. */
+    /** Asks Google Play what this account owns, for each plan. Only a clear answer changes anything. */
     private void queryOwned() {
+        queryOwned(BillingClient.ProductType.INAPP, K_LIFE, productId());
+        queryOwned(BillingClient.ProductType.SUBS, K_SUB, monthlyId());
+    }
+
+    private void queryOwned(String type, final String key, final String id) {
         try {
-            client.queryPurchasesAsync(QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.INAPP).build(),
+            client.queryPurchasesAsync(QueryPurchasesParams.newBuilder().setProductType(type).build(),
                     (result, purchases) -> {
                         if (result.getResponseCode() != BillingClient.BillingResponseCode.OK || purchases == null) return;
                         boolean has = false;
                         for (Purchase p : purchases) {
-                            if (isOurs(p) && p.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
+                            if (hasProduct(p, id) && p.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
                                 has = true;
                                 acknowledge(p);
                             }
                         }
-                        setOwned(has);
+                        setPlan(key, has);
                     });
         } catch (RuntimeException e) {
             CrashLog.note(app, "billing owned", e);
         }
     }
 
-    private boolean isOurs(Purchase p) {
+    private static boolean hasProduct(Purchase p, String id) {
         List<String> ids = p.getProducts();
-        return ids != null && ids.contains(productId());
+        return ids != null && ids.contains(id);
     }
 
     private void handle(Purchase p) {
-        if (!isOurs(p)) return;
+        String key = hasProduct(p, productId()) ? K_LIFE : hasProduct(p, monthlyId()) ? K_SUB : null;
+        if (key == null) return;
         if (p.getPurchaseState() == Purchase.PurchaseState.PURCHASED) {
             acknowledge(p);
-            setOwned(true);
+            setPlan(key, true);
             say("Thank you! Dinacharya Pro is on.");
         } else if (p.getPurchaseState() == Purchase.PurchaseState.PENDING) {
             say("Your payment is pending. Pro turns on as soon as it goes through.");
@@ -568,30 +635,66 @@ final class Pro {
         }
     }
 
-    /** Opens Google Play's purchase sheet. */
-    void buy(Activity a) {
+    /** Opens Google Play's purchase sheet for the lifetime purchase. */
+    void buyLifetime(Activity a) {
         try {
-            if (details == null) {
-                start();
-                say("Pro is not available right now. It is sold through Google Play, so install the app from there, "
-                        + "check your connection and try again.");
+            if (lifeDetails == null) {
+                notAvailable();
                 return;
             }
             BillingFlowParams.ProductDetailsParams.Builder one = BillingFlowParams.ProductDetailsParams.newBuilder()
-                    .setProductDetails(details);
-            if (details.getOneTimePurchaseOfferDetails() != null) {
-                String token = details.getOneTimePurchaseOfferDetails().getOfferToken();
+                    .setProductDetails(lifeDetails);
+            if (lifeDetails.getOneTimePurchaseOfferDetails() != null) {
+                String token = lifeDetails.getOneTimePurchaseOfferDetails().getOfferToken();
                 if (token != null && !token.isEmpty()) one.setOfferToken(token);
             }
-            BillingResult r = client.launchBillingFlow(a, BillingFlowParams.newBuilder()
-                    .setProductDetailsParamsList(Collections.singletonList(one.build()))
-                    .build());
-            if (r.getResponseCode() != BillingClient.BillingResponseCode.OK) {
-                say("Could not open Google Play. Try again in a moment.");
-            }
+            launch(a, one.build());
         } catch (RuntimeException e) {
             CrashLog.note(app, "billing buy", e);
             say("Could not open Google Play. Try again in a moment.");
+        }
+    }
+
+    /** Opens Google Play's purchase sheet for the monthly plan. */
+    void buyMonthly(Activity a) {
+        try {
+            ProductDetails.SubscriptionOfferDetails offer = pickOffer(monthDetails);
+            if (offer == null || offer.getOfferToken() == null) {
+                notAvailable();
+                return;
+            }
+            launch(a, BillingFlowParams.ProductDetailsParams.newBuilder()
+                    .setProductDetails(monthDetails)
+                    .setOfferToken(offer.getOfferToken())
+                    .build());
+        } catch (RuntimeException e) {
+            CrashLog.note(app, "billing subscribe", e);
+            say("Could not open Google Play. Try again in a moment.");
+        }
+    }
+
+    private void launch(Activity a, BillingFlowParams.ProductDetailsParams one) {
+        BillingResult r = client.launchBillingFlow(a, BillingFlowParams.newBuilder()
+                .setProductDetailsParamsList(Collections.singletonList(one))
+                .build());
+        if (r.getResponseCode() != BillingClient.BillingResponseCode.OK) {
+            say("Could not open Google Play. Try again in a moment.");
+        }
+    }
+
+    private void notAvailable() {
+        start();
+        say("Pro is not available right now. It is sold through Google Play, so install the app from there, "
+                + "check your connection and try again.");
+    }
+
+    /** Opens the page in Google Play where the monthly plan can be looked at, paused or cancelled. */
+    void manageSubscription(Activity a) {
+        try {
+            a.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/account/subscriptions?sku="
+                    + monthlyId() + "&package=" + app.getPackageName())));
+        } catch (RuntimeException e) {
+            say("Open Google Play, then your profile picture, Payments and subscriptions, Subscriptions.");
         }
     }
 

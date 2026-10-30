@@ -102,7 +102,7 @@ final class InsightsPage extends Page {
             final DayReport t = today;
             final List<DayReport> p = past;
             final Map<String, Integer> streaks = new HashMap<>();
-            for (Routine.Goal g : m.goals) streaks.put(TypeStats.key(g.kind, g.sub), TypeStats.streak(g, t, p));
+            for (Routine.Goal g : m.goals) streaks.put(TypeStats.goalKey(g), TypeStats.streak(g, t, p));
             a.runOnUiThread(() -> {
                 if (a.isFinishing() || gen != generation) return;
                 show(t, streaks);
@@ -192,7 +192,7 @@ final class InsightsPage extends Page {
         List<Charts.Slice> slices = new ArrayList<>();
         long total = 0;
         for (TypeStats.Line l : lines) {
-            if (l.doneMin <= 0) continue;
+            if (l.doneMin <= 0 || !l.slot.isEmpty()) continue;   // a slot's goal is part of its type, not another type
             slices.add(new Charts.Slice(l.label(), l.doneMin * 60000L, SubColors.of(m, l.kind, l.sub)));
             total += l.doneMin;
         }
@@ -359,11 +359,11 @@ final class InsightsPage extends Page {
         for (TypeStats.Line l : lines) {
             if (!l.hasGoal()) continue;
             any = true;
-            Integer st = streaks == null ? null : streaks.get(TypeStats.key(l.kind, l.sub));
+            Integer st = streaks == null ? null : streaks.get(TypeStats.lineKey(l));
             addBar(a, card, l, st);
         }
         if (!any) {
-            card.addView(a.note("Set a daily target for a type, for example 6 hours of Study, and see it fill up through the day."),
+            card.addView(a.note("Set a daily target for a slot of your routine, for example 2 hours for Morning study, with its own to-do list, and see it fill up through the day."),
                     Ui.wide(a, 6));
         }
         return card;
@@ -371,7 +371,7 @@ final class InsightsPage extends Page {
 
     /** One line: name, bar, "3h of 6h", and a streak when given. Tapping it edits the goal. */
     static void addBar(final MainActivity a, LinearLayout parent, final TypeStats.Line l, Integer streak) {
-        int col = SubColors.of(a.routine(), l.kind, l.sub);
+        int col = SubColors.of(a.routine(), l.kind, l.slot.isEmpty() ? l.sub : a.routine().slotSub(l.kind, l.slot));
         LinearLayout box = new LinearLayout(a);
         box.setOrientation(LinearLayout.VERTICAL);
         box.setPadding(0, a.dp(6), 0, a.dp(6));
@@ -459,6 +459,10 @@ final class InsightsPage extends Page {
     /** The goal behind a line of today: the one-day goal of today if there is one, else the repeating one. */
     private static Routine.Goal goalOf(MainActivity a, TypeStats.Line l) {
         Routine m = a.routine();
+        if (!l.slot.isEmpty()) {
+            Routine.Goal s = m.findSlotOnce(l.kind, l.slot, todayOf(a));
+            return s != null ? s : m.findSlotGoal(l.kind, l.slot);
+        }
         Routine.Goal g = m.findOnce(l.kind, l.sub, todayOf(a));
         return g != null ? g : m.findGoal(l.kind, l.sub);
     }
@@ -482,16 +486,17 @@ final class InsightsPage extends Page {
             LinearLayout top = new LinearLayout(a);
             top.setOrientation(LinearLayout.HORIZONTAL);
             View dot = new View(a);
-            dot.setBackground(Ui.box(a, SubColors.of(m, g.kind, g.sub), 0, 5));
+            dot.setBackground(Ui.box(a, SubColors.of(m, g.kind, g.bound() ? m.slotSub(g.kind, g.slot) : g.sub), 0, 5));
             top.setGravity(Gravity.CENTER_VERTICAL);
             top.addView(dot, new LinearLayout.LayoutParams(a.dp(10), a.dp(10)));
-            TextView name = Ui.label(a, g.sub.isEmpty() || Routine.isOther(g.sub) ? "Other " + Routine.KIND_NAMES[g.kind].toLowerCase(Lang.locale()) : g.sub,
+            TextView name = Ui.label(a, g.bound() ? g.slot : g.sub.isEmpty() || Routine.isOther(g.sub) ? "Other " + Routine.KIND_NAMES[g.kind].toLowerCase(Lang.locale()) : g.sub,
                     15, Ui.INK, true);
             name.setPadding(a.dp(8), 0, 0, 0);
             top.addView(name, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
             top.addView(Ui.label(a, Routine.formatDuration(g.mins), 14, Ui.TEAL_DARK, true));
             row.addView(top);
-            row.addView(Ui.label(a, g.ruleText(today) + (now ? "   ·   counts today" : "   ·   not today"), 12, Ui.MUTED, false), Ui.wide(a, 2));
+            row.addView(Ui.label(a, g.ruleText(today) + (now ? "   ·   counts today" : "   ·   not today")
+                    + (g.todos.isEmpty() ? "" : g.todos.size() == 1 ? "   ·   1 to-do" : "   ·   " + g.todos.size() + " to-dos"), 12, Ui.MUTED, false), Ui.wide(a, 2));
             row.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 10, 0x200E7C7B));
             row.setOnClickListener(x -> editGoal(g, false));
             listBox.addView(row, Ui.wide(a, 2));
@@ -511,7 +516,7 @@ final class InsightsPage extends Page {
      * is for the activities of the schedules it will meet. Either way the goal only counts on days whose schedule has the activity.
      */
     void editGoal(final Routine.Goal g, final boolean todayOnly) {
-        if (g == null && !a.requirePro(DayPass.GOALS, "Daily goals", () -> editGoal(null, todayOnly))) return;
+        if (g == null && !a.requirePro(DayPass.GOALS, "Setting a goal", () -> editGoal(null, todayOnly))) return;
         final Routine m = a.routine();
         final long now = System.currentTimeMillis();
         final Plan.DayPlan plan = Plan.resolve(m, Store.overrides(a, m), now, Store.zone());
@@ -521,8 +526,10 @@ final class InsightsPage extends Page {
         final int[] mask = {g != null && g.repeat == Routine.Goal.WEEKDAYS ? g.daysMask : 31};
         final List<Routine.Sub> with = new ArrayList<>();
         if (g != null) with.addAll(g.with);
-        final Routine.Sub[] chosen = {g == null ? null : new Routine.Sub(g.kind, g.sub)};
-        final List<Routine.Sub> cands = new ArrayList<>();
+        final GoalSlots.Pick[] chosen = {g == null ? null : GoalSlots.Pick.of(g)};
+        final List<GoalSlots.Pick> cands = new ArrayList<>();
+        final List<String> todos = new ArrayList<>();
+        if (g != null) todos.addAll(g.todos);
 
         final Spinner when = new Spinner(a);
         ArrayAdapter<String> wad = Lang.adapter(a, android.R.layout.simple_spinner_item,
@@ -557,16 +564,16 @@ final class InsightsPage extends Page {
             public void run() {
                 cands.clear();
                 if (g != null) {
-                    cands.add(new Routine.Sub(g.kind, g.sub));   // changing a goal keeps its type
+                    cands.add(GoalSlots.Pick.of(g));   // changing a goal keeps its slot
                 } else {
-                    cands.addAll(candidates(m, plan, mode[0], mask[0]));
+                    cands.addAll(slotPicks(m, plan, mode[0], mask[0]));
                 }
                 List<String> labels = new ArrayList<>();
                 int sel = 0;
                 for (int i = 0; i < cands.size(); i++) {
-                    Routine.Sub c = cands.get(i);
-                    if (chosen[0] != null && chosen[0].kind == c.kind && chosen[0].name.equalsIgnoreCase(c.name)) sel = i;
-                    labels.add(c.name + "  (" + Routine.KIND_NAMES[c.kind] + ")");
+                    GoalSlots.Pick c = cands.get(i);
+                    if (c.is(chosen[0])) sel = i;
+                    labels.add(c.label());
                 }
                 ArrayAdapter<String> ad = Lang.adapter(a, android.R.layout.simple_spinner_item, labels);
                 ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -576,9 +583,9 @@ final class InsightsPage extends Page {
                     chosen[0] = cands.get(sel);
                 }
                 type.setEnabled(g == null);
-                // conditions that no longer fit the type or the days are dropped
-                with.removeIf(w -> chosen[0] != null && w.kind == chosen[0].kind && w.name.equalsIgnoreCase(chosen[0].name));
-                withBtn.setText(with.isEmpty() ? "Any day with this activity" : "Only on days with " + names(with));
+                // conditions that no longer fit the type are dropped
+                with.removeIf(w -> chosen[0] != null && chosen[0].legacy && w.kind == chosen[0].kind && w.name.equalsIgnoreCase(chosen[0].name));
+                withBtn.setText(with.isEmpty() ? "Any day with this slot" : "Only on days with " + names(with));
                 withBtn.setVisibility(mode[0] == 0 ? View.GONE : View.VISIBLE);
                 daysRow.setVisibility(mode[0] == 3 ? View.VISIBLE : View.GONE);
             }
@@ -603,8 +610,6 @@ final class InsightsPage extends Page {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position >= 0 && position < cands.size() && g == null) {
                     chosen[0] = cands.get(position);
-                    with.removeIf(w -> w.kind == chosen[0].kind && w.name.equalsIgnoreCase(chosen[0].name));
-                    withBtn.setText(with.isEmpty() ? "Any day with this activity" : "Only on days with " + names(with));
                 }
             }
 
@@ -612,11 +617,12 @@ final class InsightsPage extends Page {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        withBtn.setOnClickListener(v -> pickWith(m, plan, mode[0], mask[0], chosen[0], with, withBtn));
+        withBtn.setOnClickListener(v -> pickWith(m, plan, mode[0], mask[0],
+                chosen[0] != null && chosen[0].legacy ? new Routine.Sub(chosen[0].kind, chosen[0].name) : null, with, withBtn));
         fillTypes.run();
         if (g == null && cands.isEmpty()) {
             a.toastText(todayOnly ? "Nothing is left in today's schedule to set a goal for. Pick Every day instead."
-                    : "Add a slot with an activity type first (Routine tab)");
+                    : "Add a slot to your routine first (Routine tab)");
             if (todayOnly) {
                 mode[0] = 1;
                 when.setSelection(1);
@@ -633,7 +639,7 @@ final class InsightsPage extends Page {
         box.addView(Ui.label(a, "How often", 12, Ui.MUTED, true));
         box.addView(when, Ui.wide(a, 0));
         box.addView(daysRow, Ui.wide(a, 6));
-        box.addView(Ui.label(a, "Activity", 12, Ui.MUTED, true), Ui.wrap(a, 12));
+        box.addView(Ui.label(a, "Slot", 12, Ui.MUTED, true), Ui.wrap(a, 12));
         box.addView(type, Ui.wide(a, 0));
         box.addView(withBtn, Ui.wide(a, 4));
         box.addView(Ui.label(a, "At least", 12, Ui.MUTED, true), Ui.wrap(a, 12));
@@ -645,8 +651,14 @@ final class InsightsPage extends Page {
         hm.addView(mins, new LinearLayout.LayoutParams(a.dp(64), ViewGroup.LayoutParams.WRAP_CONTENT));
         hm.addView(Ui.label(a, " minutes", 15, Ui.INK, false));
         box.addView(hm, Ui.wide(a, 0));
-        box.addView(a.note("A goal counts on days whose schedule has the activity. Kept slots of the activity count towards it. "
-                + "Days in a row you reach it make a streak."), Ui.wide(a, 8));
+
+        // the goal's own to-do list, one dropdown
+        final EditText todoField = new EditText(a);
+        box.addView(todoDrop(todos, todoField), Ui.wide(a, 14));
+        box.addView(a.note("Without a to-do list, the goal is a to-do of its slot: tick it, or it ticks itself when the time is reached. "
+                + "With one, the goal ticks only when every to-do is done. The same list shows in the slot's to-dos."), Ui.wide(a, 8));
+        box.addView(a.note("A goal counts on days whose schedule has the slot. Kept slots count towards it. "
+                + "Days in a row you reach it make a streak."), Ui.wide(a, 6));
         android.widget.ScrollView sv = new android.widget.ScrollView(a);
         sv.addView(box);
         AlertDialog.Builder b = new DBuilder(a)
@@ -665,12 +677,15 @@ final class InsightsPage extends Page {
                     }
                     String snap = a.snapshot();
                     int mm = Math.min(1440, total);
-                    Routine.Goal ng = new Routine.Goal(chosen[0].kind, chosen[0].name, mm);
+                    GoalSlots.Pick pick = chosen[0];
+                    Routine.Goal ng = pick.legacy ? new Routine.Goal(pick.kind, pick.name, mm) : Routine.Goal.forSlot(pick.kind, pick.name, mm);
                     ng.repeat = MODE_REPEAT[mode[0]];
                     if (ng.repeat == Routine.Goal.ONCE) ng.date = today;
                     else if (ng.repeat == Routine.Goal.ALTERNATE) ng.date = g != null && g.repeat == Routine.Goal.ALTERNATE && g.date != null ? g.date : today;
                     if (ng.repeat == Routine.Goal.WEEKDAYS) ng.daysMask = mask[0] & 0x7F;
                     if (ng.repeat != Routine.Goal.ONCE) ng.with.addAll(with);
+                    for (String t : todos) ng.addTodo(t);
+                    ng.addTodo(todoField.getText().toString());   // what was typed and not yet added
                     if (g != null) m.goals.remove(g);
                     m.putGoal(ng);
                     a.persist();
@@ -688,6 +703,124 @@ final class InsightsPage extends Page {
             });
         }
         b.show();
+    }
+
+    /**
+     * The to-do list of a goal inside the editor, as one dropdown: closed it says how many to-dos there are; open it lists them, each
+     * with a remove mark, and a field to add another.
+     */
+    private LinearLayout todoDrop(final List<String> todos, final EditText field) {
+        final LinearLayout root = new LinearLayout(a);
+        root.setOrientation(LinearLayout.VERTICAL);
+        root.setBackground(Ui.box(a, Ui.SOFT, 0, 12));
+        root.setPadding(a.dp(12), a.dp(4), a.dp(12), a.dp(4));
+        LinearLayout head = new LinearLayout(a);
+        head.setOrientation(LinearLayout.HORIZONTAL);
+        head.setGravity(Gravity.CENTER_VERTICAL);
+        head.setMinimumHeight(a.dp(44));
+        final TextView title = Ui.label(a, "", 15, Ui.INK, true);
+        head.addView(title, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        final TextView arrow = Ui.label(a, "▾", 14, Ui.TEAL, true);
+        head.addView(arrow);
+        root.addView(head);
+        final LinearLayout open = new LinearLayout(a);
+        open.setOrientation(LinearLayout.VERTICAL);
+        open.setVisibility(View.GONE);
+        root.addView(open);
+        final LinearLayout rows = new LinearLayout(a);
+        rows.setOrientation(LinearLayout.VERTICAL);
+        open.addView(rows);
+
+        field.setHint(Lang.tr("Add a to-do"));
+        field.setSingleLine(true);
+        field.setFilters(new InputFilter[]{new InputFilter.LengthFilter(60)});
+        field.setImeOptions(android.view.inputmethod.EditorInfo.IME_ACTION_DONE);
+        final Button add = Ui.button(a, "Add", false, null);
+        LinearLayout addRow = new LinearLayout(a);
+        addRow.setOrientation(LinearLayout.HORIZONTAL);
+        addRow.setGravity(Gravity.CENTER_VERTICAL);
+        addRow.addView(field, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        LinearLayout.LayoutParams ap = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ap.leftMargin = a.dp(8);
+        addRow.addView(add, ap);
+        open.addView(addRow, Ui.wide(a, 4));
+
+        final Runnable[] paint = new Runnable[1];
+        paint[0] = () -> {
+            rows.removeAllViews();
+            for (int i = 0; i < todos.size(); i++) {
+                final int at = i;
+                LinearLayout line = new LinearLayout(a);
+                line.setOrientation(LinearLayout.HORIZONTAL);
+                line.setGravity(Gravity.CENTER_VERTICAL);
+                TextView t = Ui.label(a, todos.get(i), 14, Ui.INK, false);
+                line.addView(t, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+                TextView x = Ui.label(a, "✕", 15, Ui.MUTED, true);
+                x.setGravity(Gravity.CENTER);
+                x.setContentDescription(Lang.tr("Remove"));
+                x.setOnClickListener(v -> {
+                    if (at < todos.size()) todos.remove(at);
+                    paint[0].run();
+                });
+                line.addView(x, new LinearLayout.LayoutParams(a.dp(44), a.dp(40)));
+                rows.addView(line);
+            }
+            title.setText(todos.isEmpty() ? "To-do list (optional)" : todos.size() == 1 ? "To-do list  ·  1 to-do" : "To-do list  ·  " + todos.size() + " to-dos");
+            boolean full = todos.size() >= Routine.Goal.MAX_TODOS;
+            field.setEnabled(!full);
+            add.setEnabled(!full);
+            if (full) field.setHint(Lang.tr("The list is full"));
+        };
+        final Runnable addIt = () -> {
+            String text = Routine.cleanTodo(field.getText().toString());
+            if (text.isEmpty()) return;
+            for (String x : todos) {
+                if (x.equalsIgnoreCase(text)) {
+                    a.toastText("That is on the list already");
+                    return;
+                }
+            }
+            if (todos.size() >= Routine.Goal.MAX_TODOS) return;
+            todos.add(text);
+            field.setText("");
+            paint[0].run();
+        };
+        add.setOnClickListener(v -> addIt.run());
+        field.setOnEditorActionListener((v, actionId, ev) -> {
+            addIt.run();
+            return true;
+        });
+        head.setOnClickListener(v -> {
+            boolean show = open.getVisibility() != View.VISIBLE;
+            open.setVisibility(show ? View.VISIBLE : View.GONE);
+            arrow.animate().rotation(show ? 180f : 0f).setDuration(160).start();
+        });
+        paint[0].run();
+        return root;
+    }
+
+    /** The slots a goal can be set for: for today only, those still to come in today's schedule (the one going on counts). */
+    static List<GoalSlots.Pick> slotPicks(Routine m, Plan.DayPlan plan, int mode, int mask) {
+        List<Routine.Block> blocks = new ArrayList<>();
+        if (mode == 0) {
+            for (Routine.Slot s : plan.sc.slots) {
+                if (s.block.skipped || s.block.kind == Routine.SLEEP || s.end <= plan.tt) continue;
+                blocks.add(s.block);
+            }
+        } else {
+            List<Routine> rs = new ArrayList<>();
+            if (mode == 3) {
+                for (int d = 0; d < 7; d++) {
+                    if (((mask >> d) & 1) == 0) continue;
+                    Routine r = m.routineAt(m.dayUse[d]);
+                    if (!rs.contains(r)) rs.add(r);
+                }
+            } else {
+                rs.addAll(m.all());
+            }
+            for (Routine r : rs) blocks.addAll(r.blocks);
+        }
+        return GoalSlots.of(blocks);
     }
 
     private static int indexOfRepeat(int repeat) {

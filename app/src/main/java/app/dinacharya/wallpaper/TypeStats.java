@@ -20,6 +20,8 @@ public final class TypeStats {
     public static final class Line {
         public final int kind;
         public final String sub;
+        /** The slot this line is the goal of, or empty for a line about an activity type. */
+        public String slot = "";
         public int plannedMin;
         public int doneMin;
         /** The daily goal in minutes, or 0 when there is none. */
@@ -27,6 +29,12 @@ public final class TypeStats {
         /** The slot time so far (breaks and put-off time left out) and how much of it had an app in use. */
         public long workedMs;
         public long phoneMs;
+        /** Of {@link #phoneMs}, the time in apps chosen as part of the activity. */
+        public long partMs;
+        /** The longest stretch with no other phone use in one slot of this type; -1 when no slot of it has that known. */
+        public long longestFocusMs = -1;
+        /** How many slots of this type have run (taken-off ones left out). */
+        public int slots;
         /** Time in each app while these slots were going on, longest first. */
         public final Map<String, Long> apps = new LinkedHashMap<>();
 
@@ -35,13 +43,30 @@ public final class TypeStats {
             return Math.max(0, workedMs - phoneMs);
         }
 
+        /** Phone use that was not part of the activity. */
+        public long offMs() {
+            return Math.max(0, phoneMs - partMs);
+        }
+
+        /** The time that went to the activity itself: slot time without the other phone use. */
+        public long devotedMs() {
+            return Math.max(0, workedMs - offMs());
+        }
+
+        /** 0..100: the share of the slots' time with no other phone use; -1 when no slot has run. */
+        public int focusPct() {
+            if (workedMs <= 0) return -1;
+            return (int) Math.max(0, Math.min(100, Math.round(100.0 * (workedMs - Math.min(workedMs, offMs())) / workedMs)));
+        }
+
         Line(int kind, String sub) {
             this.kind = kind;
             this.sub = sub;
         }
 
-        /** The name of the type; "Other" says which kind it is the other of ("Other task"), since every kind has one. */
+        /** The name of the slot of a slot's goal, or of the type; "Other" says which kind it is the other of ("Other task"), since every kind has one. */
         public String label() {
+            if (!slot.isEmpty()) return slot;
             if (sub.isEmpty()) return Routine.KIND_NAMES[kind];
             return Routine.isOther(sub) ? "Other " + Routine.KIND_NAMES[kind].toLowerCase(java.util.Locale.ROOT) : sub;
         }
@@ -66,6 +91,23 @@ public final class TypeStats {
         return kind + ":" + Routine.cleanSub(sub).toLowerCase(Locale.ROOT);
     }
 
+    /** Tells the lines apart: a type, or a slot's goal. */
+    public static String lineKey(Line l) {
+        return l.slot.isEmpty() ? key(l.kind, l.sub) : l.kind + "#" + l.slot.toLowerCase(Locale.ROOT);
+    }
+
+    /** The key of the line a goal makes. */
+    public static String goalKey(Routine.Goal g) {
+        return g.ident();
+    }
+
+    /** True when the row is a slot the goal counts: of its slot's kind and name, or (an older goal) of its type. */
+    static boolean covers(Routine.Goal g, DayReport.Row row) {
+        if (row.kind == Routine.SLEEP) return false;
+        if (g.bound()) return row.kind == g.kind && Routine.clean(row.title).trim().equalsIgnoreCase(g.slot);
+        return key(row.kind, row.sub).equals(key(g.kind, g.sub));
+    }
+
     /** Minutes of this row that count as done (see the class note). */
     public static int doneMinutes(DayReport.Row row) {
         if (row.status != DayReport.KEPT && row.status != DayReport.UNTRACKED) return 0;
@@ -80,15 +122,24 @@ public final class TypeStats {
         Map<String, Line> map = new LinkedHashMap<>();
         for (Routine.Goal g : r.goals) {
             Line l = new Line(g.kind, g.sub);
+            l.slot = g.slot;
             l.goalMin = g.mins;
-            map.put(key(g.kind, g.sub), l);
+            map.put(g.ident(), l);
         }
         List<Line> extra = new ArrayList<>();
         for (DayReport.Row row : r.rows) {
-            if (row.kind == Routine.SLEEP || row.sub == null || row.sub.isEmpty()) continue;
+            if (row.kind == Routine.SLEEP) continue;
+            // the goals of slots: this row counts for the one whose slot it is
+            for (Line sl : map.values()) {
+                if (sl.slot.isEmpty() || sl.kind != row.kind || !Routine.clean(row.title).trim().equalsIgnoreCase(sl.slot)) continue;
+                if (row.status != DayReport.SKIPPED) sl.plannedMin += row.plannedMin;
+                sl.doneMin += doneMinutes(row);
+                addTime(sl, row);
+            }
+            if (row.sub == null || row.sub.isEmpty()) continue;
             String k = key(row.kind, row.sub);
             Line l = map.get(k);
-            if (l == null) {
+            if (l == null || !l.slot.isEmpty()) {
                 l = new Line(row.kind, row.sub);
                 map.put(k, l);
                 extra.add(l);
@@ -109,6 +160,9 @@ public final class TypeStats {
         if (row.status == DayReport.SKIPPED) return;
         l.workedMs += row.activeMs;
         l.phoneMs += row.phoneMs;
+        l.partMs += row.partMs;
+        if (row.activeMs > 0) l.slots++;
+        if (row.longestFocusMs > l.longestFocusMs) l.longestFocusMs = row.longestFocusMs;
         for (DayReport.App a : row.apps) {
             Long prev = l.apps.get(a.name);
             l.apps.put(a.name, (prev == null ? 0L : prev) + a.ms);
@@ -123,10 +177,17 @@ public final class TypeStats {
         return out;
     }
 
-    /** The line for one type, or null. */
+    /** The line for one type, or null (the goals of slots are not about a type). */
     public static Line find(List<Line> lines, int kind, String sub) {
         String k = key(kind, sub);
-        for (Line l : lines) if (key(l.kind, l.sub).equals(k)) return l;
+        for (Line l : lines) if (l.slot.isEmpty() && key(l.kind, l.sub).equals(k)) return l;
+        return null;
+    }
+
+    /** The line a goal makes, or null. */
+    public static Line findGoal(List<Line> lines, Routine.Goal g) {
+        String k = g.ident();
+        for (Line l : lines) if (l.hasGoal() && lineKey(l).equals(k)) return l;
         return null;
     }
 
@@ -163,8 +224,8 @@ public final class TypeStats {
      * where to look; a report that lists none for this type counts when the goal's rule says so.
      */
     private static int targetOn(Routine.Goal g, DayReport d) {
-        String k = key(g.kind, g.sub);
-        for (Routine.Goal x : d.goals) if (key(x.kind, x.sub).equals(k)) return x.mins;
+        String k = g.ident();
+        for (Routine.Goal x : d.goals) if (x.ident().equals(k)) return x.mins;
         try {
             return g.ruleMatches(java.time.LocalDate.parse(d.day)) ? g.mins : -1;
         } catch (RuntimeException e) {
@@ -175,13 +236,13 @@ public final class TypeStats {
     private static Line lineFor(DayReport d, Routine.Goal g) {
         int planned = 0;
         int done = 0;
-        String k = key(g.kind, g.sub);
         for (DayReport.Row row : d.rows) {
-            if (row.kind == Routine.SLEEP || !key(row.kind, row.sub).equals(k)) continue;
+            if (!covers(g, row)) continue;
             if (row.status != DayReport.SKIPPED) planned += row.plannedMin;
             done += doneMinutes(row);
         }
         Line l = new Line(g.kind, g.sub);
+        l.slot = g.slot;
         l.plannedMin = planned;
         l.doneMin = done;
         l.goalMin = g.mins;
@@ -194,10 +255,11 @@ public final class TypeStats {
         if (days.isEmpty()) return new ArrayList<>();
         for (DayReport d : days) {
             for (Line l : of(d)) {
-                String k = key(l.kind, l.sub);
+                String k = lineKey(l);
                 Line a = map.get(k);
                 if (a == null) {
                     a = new Line(l.kind, l.sub);
+                    a.slot = l.slot;
                     map.put(k, a);
                 }
                 a.plannedMin += l.plannedMin;
