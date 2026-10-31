@@ -1655,12 +1655,9 @@ Off	ఆఫ్
 Every alarm only vibrates, with no sound.	ప్రతి అలారం కేవలం వైబ్రేట్ అవుతుంది, శబ్దం ఉండదు.
 Keeps every alarm silent, with vibration only, for the library, a class or an exam.	లైబ్రరీ, క్లాస్ లేదా పరీక్ష కోసం ప్రతి అలారాన్ని నిశ్శబ్దంగా ఉంచి, వైబ్రేషన్ మాత్రమే ఇస్తుంది.
 Turn off	ఆఫ్ చేయండి
-Change the hours	సమయాలను మార్చండి
 1 hour	1 గంట
 2 hours	2 గంటలు
 4 hours	4 గంటలు
-Until I switch it off	నేను ఆపే వరకు
-Every alarm only vibrates while it is on, with no sound. Apps in locks that include library mode are locked too. How long?	ఇది ఆన్‌లో ఉన్నంతసేపు ప్రతి అలారం కేవలం వైబ్రేట్ అవుతుంది, శబ్దం ఉండదు. లైబ్రరీ మోడ్ ఉన్న లాక్‌లలోని యాప్‌లు కూడా లాక్ అవుతాయి. ఎంతసేపటికి?
 On until {1}	{1} వరకు ఆన్‌లో
 Off. Next: {1}	ఆఫ్. తదుపరిది: {1}
 On until you switch it off	మీరు ఆపే వరకు ఆన్‌లో
@@ -2158,3 +2155,5 @@ To go fully silent, or to use Do Not Disturb, Android needs your permission to c
 During	సమయంలో
 or	లేదా
 library mode	లైబ్రరీ మోడ్
+Still on by the clock until {1}. Turn off the fixed hours to stop it.	గడియారం ప్రకారం {1} వరకు ఇంకా ఆన్‌లో ఉంది. ఆపడానికి నిర్ణీత గంటలను ఆఫ్ చేయండి.
+Library mode, and quiet rules for the ringer	లైబ్రరీ మోడ్, మరియు రింగర్ కోసం నిశ్శబ్ద నియమాలు

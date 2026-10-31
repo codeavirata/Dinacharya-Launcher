@@ -1655,12 +1655,9 @@ Off	बंद
 Every alarm only vibrates, with no sound.	हर अलार्म केवल कंपन करता है, आवाज़ नहीं।
 Keeps every alarm silent, with vibration only, for the library, a class or an exam.	लाइब्रेरी, क्लास या परीक्षा के लिए हर अलार्म को मौन रखता है, केवल कंपन के साथ।
 Turn off	बंद करें
-Change the hours	समय बदलें
 1 hour	1 घंटा
 2 hours	2 घंटे
 4 hours	4 घंटे
-Until I switch it off	जब तक मैं बंद न करूँ
-Every alarm only vibrates while it is on, with no sound. Apps in locks that include library mode are locked too. How long?	यह चालू रहने तक हर अलार्म केवल कंपन करता है, आवाज़ नहीं। जिन लॉक में लाइब्रेरी मोड शामिल है, उनके ऐप भी लॉक रहते हैं। कितनी देर के लिए?
 On until {1}	{1} तक चालू
 Off. Next: {1}	बंद। अगला: {1}
 On until you switch it off	आपके बंद करने तक चालू
@@ -2158,3 +2155,5 @@ To go fully silent, or to use Do Not Disturb, Android needs your permission to c
 During	के दौरान
 or	या
 library mode	लाइब्रेरी मोड
+Still on by the clock until {1}. Turn off the fixed hours to stop it.	घड़ी के हिसाब से {1} तक अब भी चालू है। रोकने के लिए तय घंटे बंद करें।
+Library mode, and quiet rules for the ringer	लाइब्रेरी मोड, और रिंगर के शांत नियम

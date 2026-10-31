@@ -92,6 +92,7 @@ final class SettingsPage extends Page {
         LinearLayout focus = Ui.section(a, body, "Focus and locks", null);
         homeItem(focus, Glyph.TARGET, "Focus", "A short wait before apps open", LauncherSettingsActivity.SEC_FOCUS, "pauses");
         homeItem(focus, Glyph.SHIELD, "Locked apps", "Lock apps for a time", LauncherSettingsActivity.SEC_FOCUS, "locks");
+        homeItem(focus, Glyph.BELL, "Library and Quiet mode", "Library mode, and quiet rules for the ringer", LauncherSettingsActivity.SEC_FOCUS, "quiet");
         homeItem(focus, Glyph.ROUTINE, "Phone use in slots", "See when you pick up the phone during a slot", LauncherSettingsActivity.SEC_FOCUS, "use");
         LinearLayout card2 = Ui.section(a, body, "Alarms and phone", null);
         item(card2, Glyph.BELL, "Alarms", "On or off, test alarm, phone checklist", ALARMS);

@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
+import android.widget.Switch;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -813,7 +814,6 @@ final class HomePage extends Page {
             final LibraryMode lib = Store.library(a);
             long now = System.currentTimeMillis();
             boolean on = lib.on(now, Store.zone());
-            boolean byHand = lib.untilMs > now;
             LinearLayout card = new LinearLayout(a);
             card.setOrientation(LinearLayout.VERTICAL);
             card.setPadding(a.dp(16), a.dp(14), a.dp(16), a.dp(14));
@@ -826,15 +826,16 @@ final class HomePage extends Page {
                     : "Keeps every alarm silent, with vibration only, for the library, a class or an exam.", 12, Ui.MUTED, false), Ui.wide(a, 2));
             LinearLayout row = new LinearLayout(a);
             row.setOrientation(LinearLayout.HORIZONTAL);
-            String label = byHand ? "Turn off" : on ? "Change the hours" : "Turn on";
-            row.addView(Ui.button(a, label, !on, v -> {
-                if (lib.untilMs > System.currentTimeMillis()) LibraryDialog.turnOff(a, this::afterChange);
-                else if (lib.on(System.currentTimeMillis(), Store.zone())) openAlarmSettings();
-                else LibraryDialog.turnOn(a, this::afterChange);
-            }), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+            row.setGravity(Gravity.CENTER_VERTICAL);
+            Switch sw = Ui.toggle(a, "Library mode", on, (s, isOn) -> {
+                if (isOn != lib.on(System.currentTimeMillis(), Store.zone())) LibraryDialog.set(a, isOn, this::afterChange);
+            });
+            row.addView(sw, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             lp.leftMargin = a.dp(8);
-            row.addView(Ui.button(a, "Settings", false, v -> openAlarmSettings()), lp);
+            row.addView(Ui.button(a, "Settings", false, v -> a.startActivity(new Intent(a, LauncherSettingsActivity.class)
+                    .putExtra(LauncherSettingsActivity.EXTRA_SECTION, LauncherSettingsActivity.SEC_FOCUS)
+                    .putExtra(LauncherSettingsActivity.EXTRA_CARD, "quiet"))), lp);
             card.addView(row, Ui.wide(a, 10));
             libraryBox.addView(card, Ui.wide(a, 12));
         } catch (RuntimeException e) {

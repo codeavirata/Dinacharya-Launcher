@@ -17,7 +17,7 @@ final class LibrarySettings {
     private boolean binding;
     private Expander.Part part;
     private TextView status;
-    private Button handButton;
+    private Switch handSwitch;
     private Switch autoSwitch;
     private LinearLayout autoBox;
     private Button fromButton;
@@ -38,13 +38,11 @@ final class LibrarySettings {
                 + "and groups of apps set to lock in library mode are locked.", 13, Ui.MUTED, false), Ui.wide(a, 4));
         status = Ui.label(a, "", 15, Ui.INK, true);
         body.addView(status, Ui.wide(a, 10));
-        handButton = Ui.button(a, "Turn on", true, v -> {
-            LibraryMode lib = Store.library(a);
-            long now = System.currentTimeMillis();
-            if (lib.untilMs > now) LibraryDialog.turnOff(a, this::refresh);
-            else LibraryDialog.turnOn(a, this::refresh);
+        handSwitch = Ui.toggle(a, "Library mode", false, (sw, on) -> {
+            if (binding) return;
+            LibraryDialog.set(a, on, this::refresh);
         });
-        body.addView(handButton, Ui.wide(a, 8));
+        body.addView(handSwitch, Ui.wide(a, 8));
 
         autoSwitch = Ui.toggle(a, "Turn it on by itself at fixed hours", false, (b, on) -> {
             if (binding) return;
@@ -132,9 +130,9 @@ final class LibrarySettings {
         String line = lib.status(now, Store.zone(), h24);
         status.setText(line);
         part.setSummary(on ? "On" : lib.auto && lib.nextStartMs(now, Store.zone()) > 0 ? "Off, by the clock" : "Off");
-        boolean byHand = lib.untilMs > now;
-        handButton.setText(Lang.tr(byHand ? "Turn off" : "Turn on"));
-        handButton.setVisibility(on && !byHand ? ViewGroup.GONE : ViewGroup.VISIBLE);
+        binding = true;
+        handSwitch.setChecked(on);
+        binding = false;
         autoBox.setVisibility(lib.auto ? ViewGroup.VISIBLE : ViewGroup.GONE);
         fromButton.setText(Lang.tr("From " + Routine.formatTime(lib.startMin, h24)));
         toButton.setText(Lang.tr("Until " + Routine.formatTime(lib.endMin, h24)));

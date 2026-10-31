@@ -216,7 +216,6 @@ public class LangFilesTest {
             "It runs from 10:00 PM into the next morning, until 6:00 AM.",
             "Plan your day now, later, or leave it?",
             "Study, Revision and 2 more",
-            "Every alarm only vibrates while it is on, with no sound. Apps in locks that include library mode are locked too. How long?",
             // the lock editor: the choice of how to lock, and the line that says what the choice comes to
             "Lock by",
             "Time",

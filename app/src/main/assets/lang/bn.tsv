@@ -1655,12 +1655,9 @@ Off	বন্ধ
 Every alarm only vibrates, with no sound.	প্রতিটি অ্যালার্ম শুধু কাঁপে, কোনো শব্দ নেই।
 Keeps every alarm silent, with vibration only, for the library, a class or an exam.	লাইব্রেরি, ক্লাস বা পরীক্ষার জন্য প্রতিটি অ্যালার্ম নিঃশব্দ রাখে, শুধু ভাইব্রেশন থাকে।
 Turn off	বন্ধ করুন
-Change the hours	সময় বদলান
 1 hour	1 ঘণ্টা
 2 hours	2 ঘণ্টা
 4 hours	4 ঘণ্টা
-Until I switch it off	আমি বন্ধ না করা পর্যন্ত
-Every alarm only vibrates while it is on, with no sound. Apps in locks that include library mode are locked too. How long?	এটি চালু থাকলে প্রতিটি অ্যালার্ম শুধু কাঁপে, কোনো শব্দ হয় না। যে লকে লাইব্রেরি মোড আছে, তার অ্যাপগুলোও লক থাকে। কতক্ষণের জন্য?
 On until {1}	{1} পর্যন্ত চালু
 Off. Next: {1}	বন্ধ। পরেরটি: {1}
 On until you switch it off	আপনি বন্ধ না করা পর্যন্ত চালু
@@ -2158,3 +2155,5 @@ To go fully silent, or to use Do Not Disturb, Android needs your permission to c
 During	চলাকালীন
 or	বা
 library mode	লাইব্রেরি মোড
+Still on by the clock until {1}. Turn off the fixed hours to stop it.	ঘড়ি অনুযায়ী {1} পর্যন্ত এখনও চালু। থামাতে নির্দিষ্ট সময় বন্ধ করুন।
+Library mode, and quiet rules for the ringer	লাইব্রেরি মোড, এবং রিংগারের শান্ত নিয়ম

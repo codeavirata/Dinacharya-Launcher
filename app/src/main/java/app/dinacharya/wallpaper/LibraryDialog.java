@@ -1,33 +1,35 @@
 package app.dinacharya.wallpaper;
 
 import android.app.Activity;
+import android.widget.Toast;
 
-/** Turning library mode on (for how long) and off. */
+/** Switching library mode on and off by hand (the switch on Home and in settings). */
 final class LibraryDialog {
     private LibraryDialog() {
     }
 
-    private static final String[] WORDS = {"1 hour", "2 hours", "4 hours", "Until I switch it off"};
-
-    /** Asks how long, then switches it on. */
-    static void turnOn(final Activity a, final Runnable changed) {
-        new DBuilder(a)
-                .setTitle("Library mode")
-                .setMessage("Every alarm only vibrates while it is on, with no sound. Apps in locks that include library mode are locked too. How long?")
-                .setItems(WORDS, (d, which) -> {
-                    LibraryMode lib = Store.library(a);
-                    lib.turnOn(System.currentTimeMillis(), LibraryMode.LENGTHS[which]);
-                    save(a, lib, changed);
-                })
-                .setNegativeButton("Cancel", null)
-                .show();
+    /**
+     * On: library mode stays on until it is switched off. Off: the session started by hand ends; if library mode is also on by the clock
+     * (fixed hours), it stays on until those hours end, and a short note says so.
+     */
+    static void set(Activity a, boolean on, Runnable changed) {
+        LibraryMode lib = Store.library(a);
+        long now = System.currentTimeMillis();
+        if (on) lib.turnOn(now, 0);
+        else lib.turnOff();
+        save(a, lib, changed);
+        if (!on && lib.on(now, Store.zone())) {
+            Lang.toast(a, "Still on by the clock until " + LockRules.untilText(lib.endMs(now, Store.zone()), now, Store.zone(), clock24(a))
+                    + ". Turn off the fixed hours to stop it.", Toast.LENGTH_LONG).show();
+        }
     }
 
-    /** Switches off what was started by hand. */
-    static void turnOff(Activity a, Runnable changed) {
-        LibraryMode lib = Store.library(a);
-        lib.turnOff();
-        save(a, lib, changed);
+    private static boolean clock24(Activity a) {
+        try {
+            return Store.load(a).fmt24;
+        } catch (RuntimeException e) {
+            return false;
+        }
     }
 
     static void save(Activity a, LibraryMode lib, Runnable changed) {
