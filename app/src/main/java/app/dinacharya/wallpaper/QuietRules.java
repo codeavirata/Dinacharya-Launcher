@@ -1,75 +1,126 @@
 package app.dinacharya.wallpaper;
 
-import java.util.LinkedHashMap;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 /**
- * How quiet the phone should be: while library mode is on, and during chosen activity types. Each rule has a sound level for the ringer
- * (leave it, vibrate, silent) and whether notifications of other apps are held back (Do Not Disturb, priority only). When several rules
- * apply at once the quietest wins. Also the steps that set the ringer and the Do Not Disturb filter and put them back afterwards. Uses no
- * Android classes.
+ * Quiet mode: rules that set the phone's ringer on their own. A rule says what the phone does (ring, vibrate, silent, or Do Not Disturb)
+ * and when, the same ways a lock does: at hours on chosen days, during chosen activity types, or only when both hold (see {@link LockMode}),
+ * and optionally also while library mode is on. When several rules hold at once the quietest wins. Also the steps that set the ringer and
+ * Do Not Disturb and put them back afterwards. Uses no Android classes.
  */
 public final class QuietRules {
-    public static final int LEAVE = 0, VIBRATE = 1, SILENT = 2;
-    /** How many activity types can have a rule. */
-    public static final int MAX_TYPES = 12;
+    /** What the phone does. Higher is quieter. */
+    public static final int RING = 0, VIBRATE = 1, SILENT = 2, DND = 3;
+    /** How many rules there can be. */
+    public static final int MAX_RULES = 10;
+    public static final String[] SOUND_NAMES = {"Ring", "Vibrate", "Silent", "Do Not Disturb"};
 
-    /** One rule: the ringer and the notifications. */
+    /** One rule. */
     public static final class Rule {
-        public static final Rule NONE = new Rule(LEAVE, false);
-        public final int sound;
-        public final boolean hold;
+        public String name;
+        public int sound = VIBRATE;
+        /** The daily window, as for a lock: days mask (0: no daily window), start and end in minutes after midnight. */
+        public int days;
+        public int startMin = 9 * 60;
+        public int endMin = 17 * 60;
+        /** The activity types (see {@link LauncherConfig#typeKey} and {@link LauncherConfig#anyKey}). */
+        public final List<String> during = new ArrayList<>();
+        /** With both a window and types: only while both hold. */
+        public boolean both;
+        /** Also while library mode is on. */
+        public boolean library;
 
-        public Rule(int sound, boolean hold) {
-            this.sound = Math.max(LEAVE, Math.min(SILENT, sound));
-            this.hold = hold;
+        public Rule(String name) {
+            this.name = clean(name);
         }
 
-        public boolean isNone() {
-            return sound == LEAVE && !hold;
+        public Rule copy() {
+            Rule r = new Rule(name);
+            r.sound = sound;
+            r.days = days;
+            r.startMin = startMin;
+            r.endMin = endMin;
+            r.during.addAll(during);
+            r.both = both;
+            r.library = library;
+            return r;
         }
 
-        /** Both rules at once: the quieter sound, and notifications held if either holds them. */
-        public Rule with(Rule o) {
-            return new Rule(Math.max(sound, o.sound), hold || o.hold);
+        /** How the rule holds: by time, by activity, by both (or either, for a rule set both ways). */
+        public int by() {
+            return LockMode.of(days, during.size(), both);
         }
 
-        /** True when this rule needs Do Not Disturb access (silent, or holding notifications). */
-        public boolean needsAccess() {
-            return sound == SILENT || hold;
+        /** True when the rule can ever hold: it has hours, activity types or library mode. */
+        public boolean valid() {
+            return days != 0 || !during.isEmpty() || library;
         }
 
-        /** In words: "Vibrate", "Silent, notifications held", "Notifications held" or "Off". */
-        public String text() {
-            String s = sound == SILENT ? "Silent" : sound == VIBRATE ? "Vibrate" : "";
-            if (hold) return s.isEmpty() ? "Notifications held" : s + ", notifications held";
-            return s.isEmpty() ? "Off" : s;
+        /** True when this rule holds now, with {@code slot} going on. */
+        public boolean holds(long nowMs, ZoneId zone, LockRules.Slot slot) {
+            if (library && slot != null && slot.libraryEndMs > nowMs) return true;
+            boolean window = days != 0 && LockRules.windowEnd(days, startMin, endMin, nowMs, zone) != 0;
+            boolean type = LockRules.during(during, slot, nowMs);
+            boolean together = both && days != 0 && !during.isEmpty();
+            return together ? window && type : window || type;
+        }
+
+        /** The next time the daily window opens or closes after {@code nowMs}, or 0 (no window). */
+        public long nextEdge(long nowMs, ZoneId zone) {
+            if (days == 0) return 0L;
+            long end = LockRules.windowEnd(days, startMin, endMin, nowMs, zone);
+            return end != 0 ? end : LockRules.nextStart(days, startMin, nowMs, zone);
+        }
+
+        /** "Vibrate  ·  Weekdays 9:00 AM to 5:00 PM" and the like. */
+        public String text(boolean h24) {
+            List<String> parts = new ArrayList<>();
+            boolean hours = days != 0, types = !during.isEmpty();
+            String time = LockRules.daysText(days) + ", " + Routine.formatTime(startMin, h24) + " to " + Routine.formatTime(endMin, h24);
+            if (hours && types) parts.add(Tr.t("During") + " " + LockRules.duringText(during) + (both ? ", " : " " + Tr.t("or") + " ") + time);
+            else if (types) parts.add(Tr.t("During") + " " + LockRules.duringText(during));
+            else if (hours) parts.add(time);
+            if (library) parts.add(Tr.t("library mode"));
+            StringBuilder sb = new StringBuilder(Tr.t(soundName(sound)));
+            for (int i = 0; i < parts.size(); i++) sb.append(i == 0 ? "  ·  " : " + ").append(parts.get(i));
+            return sb.toString();
         }
     }
 
-    /** While library mode is on. */
-    public Rule library = Rule.NONE;
-    /** By type key (see {@link LauncherConfig#typeKey} and {@link LauncherConfig#anyKey}); only rules that do something are kept. */
-    public final Map<String, Rule> types = new LinkedHashMap<>();
+    public final List<Rule> rules = new ArrayList<>();
 
-    /** True when no rule does anything. */
     public boolean isEmpty() {
-        return library.isNone() && types.isEmpty();
+        return rules.isEmpty();
     }
 
-    /** What applies now: library mode if it is on, and the rule of the running activity (its own type, else "any" of its kind). */
-    public Rule now(boolean libraryOn, int kind, String sub) {
-        Rule r = libraryOn ? library : Rule.NONE;
-        if (kind < 0) return r;
-        Rule t = types.get(LauncherConfig.typeKey(kind, sub));
-        if (t == null) t = types.get(LauncherConfig.anyKey(kind));
-        return t == null ? r : r.with(t);
+    public static String soundName(int sound) {
+        return SOUND_NAMES[Math.max(RING, Math.min(DND, sound))];
     }
 
-    public void setType(String key, Rule r) {
-        if (r == null || r.isNone()) types.remove(key);
-        else types.put(key, r);
+    static String clean(String n) {
+        String t = n == null ? "" : n.replace('|', ' ').replace('\t', ' ').replace('\n', ' ').replace('\r', ' ').trim();
+        if (t.length() > 24) t = t.substring(0, 24).trim();
+        return t.isEmpty() ? "Quiet" : t;
+    }
+
+    /** What the phone should do now: the quietest of the rules that hold, or -1 when none does. */
+    public int now(long nowMs, ZoneId zone, LockRules.Slot slot) {
+        int best = -1;
+        for (Rule r : rules) if (r.valid() && r.holds(nowMs, zone, slot)) best = Math.max(best, r.sound);
+        return best;
+    }
+
+    /** The next moment a daily window of any rule opens or closes, or 0. */
+    public long nextEdge(long nowMs, ZoneId zone) {
+        long best = 0L;
+        for (Rule r : rules) {
+            long e = r.nextEdge(nowMs, zone);
+            if (e > 0L && (best == 0L || e < best)) best = e;
+        }
+        return best;
     }
 
     // ------------------------------------------------------------------ the phone
@@ -91,24 +142,25 @@ public final class QuietRules {
     }
 
     /**
-     * The ringer rule. A ringer that is louder than the wanted level goes down to it and its old mode is remembered; one that is already as
-     * quiet (or quieter) is left alone and nothing is remembered. Once that is done it is not forced again, so a person who turns the sound
-     * back on keeps it; only a change from one rule to another (vibrate to silent) moves the ringer we set. When nothing wants quiet any more
-     * the old mode comes back, but only if the ringer is still the way we left it (if the person changed it meanwhile, their choice stands).
+     * The ringer rule. Vibrate and silent only ever lower the ringer (one that is already as quiet is left alone); ring only raises it. The
+     * old mode is remembered the first time we change it. Once that is done it is not forced again, so a person who changes the ringer
+     * keeps their choice; only a change from one rule to another moves the ringer we set. When nothing wants the ringer any more (no rule,
+     * or Do Not Disturb), the old mode comes back, but only if the ringer is still the way we left it.
      *
-     * @param sound   the wanted level: LEAVE, VIBRATE or SILENT
+     * @param sound   what the rules want: RING, VIBRATE, SILENT, DND or -1 for none
      * @param current the ringer mode now
      * @param kept    the mode remembered earlier, or -1
      * @param ours    the mode we set earlier, or -1
      */
     public static RingerStep ringerStep(int sound, int current, int kept, int ours) {
-        int target = sound == SILENT ? RINGER_SILENT : sound == VIBRATE ? RINGER_VIBRATE : -1;
+        int target = sound == SILENT ? RINGER_SILENT : sound == VIBRATE ? RINGER_VIBRATE : sound == RING ? RINGER_NORMAL : -1;
         if (target >= 0) {
             if (kept >= 0) {
                 if (current == ours && ours != target) return new RingerStep(target, kept, target);
                 return new RingerStep(-1, kept, ours);
             }
-            if (current > target) return new RingerStep(target, current, target);
+            boolean change = target == RINGER_NORMAL ? current < RINGER_NORMAL : current > target;
+            if (change) return new RingerStep(target, current, target);
             return new RingerStep(-1, -1, -1);
         }
         if (kept >= 0 && current == ours) return new RingerStep(kept, -1, -1);
@@ -126,8 +178,8 @@ public final class QuietRules {
     }
 
     /**
-     * Holding notifications back sets "priority only" when Do Not Disturb is off and puts it back when the rule ends, if it is still
-     * "priority only". Do Not Disturb that the person had on already is never touched.
+     * Do Not Disturb (priority only) goes on when Do Not Disturb is off and a rule wants it, and back off when the rule ends, if it is
+     * still "priority only". Do Not Disturb that the person had on already is never touched.
      */
     public static HoldStep holdStep(boolean want, int current, int kept) {
         if (want) {
@@ -141,25 +193,16 @@ public final class QuietRules {
 
     // ------------------------------------------------------------------ saving
 
-    private static final String MAGIC = "DINAQUIET1";
-
-    private static String one(Rule r) {
-        return r.sound + "," + (r.hold ? 1 : 0);
-    }
-
-    private static Rule read(String v) {
-        String[] p = v.split(",");
-        if (p.length != 2) return null;
-        try {
-            return new Rule(Integer.parseInt(p[0].trim()), p[1].trim().equals("1"));
-        } catch (NumberFormatException e) {
-            return null;
-        }
-    }
+    private static final String MAGIC = "DINAQUIET2";
 
     public String serialize() {
-        StringBuilder sb = new StringBuilder(MAGIC).append("\nlibrary=").append(one(library)).append('\n');
-        for (Map.Entry<String, Rule> e : types.entrySet()) sb.append("type=").append(e.getKey()).append('|').append(one(e.getValue())).append('\n');
+        StringBuilder sb = new StringBuilder(MAGIC).append('\n');
+        for (Rule r : rules) {
+            sb.append("rule=").append(r.name).append('|').append(r.sound).append('|').append(r.days).append('|').append(r.startMin).append('|')
+                    .append(r.endMin).append('|').append(r.both ? 1 : 0).append('|').append(r.library ? 1 : 0).append('|');
+            for (int i = 0; i < r.during.size(); i++) sb.append(i > 0 ? "," : "").append(r.during.get(i));
+            sb.append('\n');
+        }
         return sb.toString();
     }
 
@@ -168,20 +211,25 @@ public final class QuietRules {
         if (text == null) return q;
         String[] lines = text.replace("\r", "").split("\n");
         if (lines.length == 0 || !lines[0].trim().equals(MAGIC)) return q;
-        for (int i = 1; i < lines.length; i++) {
-            int eq = lines[i].indexOf('=');
-            if (eq <= 0) continue;
-            String k = lines[i].substring(0, eq);
-            String v = lines[i].substring(eq + 1).trim();
-            if (k.equals("library")) {
-                Rule r = read(v);
-                if (r != null) q.library = r;
-            } else if (k.equals("type") && q.types.size() < MAX_TYPES) {
-                int bar = v.lastIndexOf('|');
-                if (bar <= 0) continue;
-                String key = v.substring(0, bar).toLowerCase(Locale.ROOT);
-                Rule r = read(v.substring(bar + 1));
-                if (r != null && !r.isNone() && LauncherConfig.validDuring(key)) q.types.put(key, r);
+        for (int i = 1; i < lines.length && q.rules.size() < MAX_RULES; i++) {
+            if (!lines[i].startsWith("rule=")) continue;
+            String[] f = lines[i].substring(5).split("\\|", -1);
+            if (f.length < 8) continue;
+            try {
+                Rule r = new Rule(f[0]);
+                r.sound = Math.max(RING, Math.min(DND, Integer.parseInt(f[1].trim())));
+                r.days = Math.max(0, Math.min(127, Integer.parseInt(f[2].trim())));
+                r.startMin = Math.max(0, Math.min(1439, Integer.parseInt(f[3].trim())));
+                r.endMin = Math.max(0, Math.min(1439, Integer.parseInt(f[4].trim())));
+                r.both = f[5].trim().equals("1");
+                r.library = f[6].trim().equals("1");
+                for (String k : f[7].split(",")) {
+                    String key = k.trim().toLowerCase(Locale.ROOT);
+                    if (LauncherConfig.validDuring(key) && !r.during.contains(key)) r.during.add(key);
+                }
+                if (r.valid()) q.rules.add(r);
+            } catch (NumberFormatException ignored) {
+                // a damaged line is skipped
             }
         }
         return q;

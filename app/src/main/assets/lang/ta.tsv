@@ -1665,10 +1665,8 @@ On until {1}	{1} வரை இயக்கத்தில்
 Off. Next: {1}	அணைந்துள்ளது. அடுத்தது: {1}
 On until you switch it off	நீங்கள் நிறுத்தும் வரை இயக்கத்தில்
 For the library, a class or an exam. While library mode is on, every alarm of the app only vibrates, with no sound: the start-of-day alarm, the slot alarms, the bedtime question and the break timers. The questions still appear, and groups of apps set to lock in library mode are locked.	நூலகம், வகுப்பு அல்லது தேர்வுக்காக. நூலக பயன்முறை இயக்கத்தில் இருக்கும்போது, ஆப்பின் ஒவ்வொரு அலாரமும் அதிர்வு மட்டுமே தரும், ஒலி இருக்காது: நாள்-தொடக்க அலாரம், ஸ்லாட் அலாரங்கள், தூங்கும் கேள்வி மற்றும் இடைவேளை டைமர்கள். கேள்விகள் இன்னும் தோன்றும், நூலக பயன்முறையில் லாக் செய்ய அமைக்கப்பட்ட ஆப் குழுக்கள் லாக் ஆகும்.
-Calls and messages stop making sound as well. When library mode ends, the ringer goes back to how it was, unless you changed it yourself. If your phone asks for Do Not Disturb access to do this, the ringer is left as it is.	அழைப்புகளும் செய்திகளும் கூட ஒலி எழுப்புவதை நிறுத்தும். நூலக பயன்முறை முடிந்ததும், நீங்களே மாற்றியிருந்தால் தவிர, ரிங்கர் முன்பு இருந்தபடியே திரும்பும். இதற்காக உங்கள் ஃபோன் “தொந்தரவு செய்யாதே” அனுமதியைக் கேட்டால், ரிங்கர் உள்ளபடியே விடப்படும்.
 It runs from {1} into the next morning, until {2}.	இது {1} முதல் அடுத்த நாள் காலை {2} வரை நீடிக்கும்.
 Turn it on by itself at fixed hours	குறிப்பிட்ட நேரங்களில் தானாக இயக்கு
-Also put the phone on vibrate	ஃபோனையும் அதிர்வு நிலையில் வை
 Off, by the clock	அணைந்துள்ளது, நேரப்படி
 Pick at least one day, or it never comes on.	குறைந்தது ஒரு நாளைத் தேர்ந்தெடுங்கள், இல்லையெனில் இது ஒருபோதும் இயங்காது.
 Delayed start	தாமதமான தொடக்கம்
@@ -2119,26 +2117,44 @@ This takes the place of the slot for today. The slots before and after it stay a
 This changes this slot for today only. The slots before and after it stay as they are.	இது இன்றைக்கு இந்த ஸ்லாட்டை மட்டும் மாற்றும். முன்பும் பின்பும் உள்ள ஸ்லாட்கள் அப்படியே இருக்கும்.
 Save for today	இன்றைக்குச் சேமி
 Type a name first	முதலில் பெயரை எழுதுங்கள்
-Quiet and library mode	அமைதி மற்றும் நூலக முறை
-Quiet phone	அமைதியான தொலைபேசி
-Choose how quiet the phone gets: the ringer, and the notifications of other apps (calls from people you allow still come through). When it ends, everything goes back to how it was, unless you changed it yourself.	தொலைபேசி எவ்வளவு அமைதியாக இருக்க வேண்டும் என்பதைத் தேர்வு செய்யுங்கள்: ரிங்கர் மற்றும் பிற செயலிகளின் அறிவிப்புகள் (நீங்கள் அனுமதித்தவர்களின் அழைப்புகள் வரும்). முடிந்ததும் எல்லாம் முன்பு போலவே திரும்பும், நீங்களே மாற்றாவிட்டால்.
-While library mode is on	நூலக முறை இயங்கும்போது
-During activities	செயல்பாடுகளின் போது
-Add an activity type	செயல்பாட்டு வகையைச் சேர்
-Silent and holding back notifications need Do Not Disturb access. Tap to allow it. Until then the phone only vibrates.	முழுமையாக அமைதியாக்கவும் அறிவிப்புகளை நிறுத்தவும் ‘தொந்தரவு செய்யாதே’ அனுமதி தேவை. அனுமதிக்க தட்டுங்கள். அதுவரை தொலைபேசி அதிர்வு மட்டும் செய்யும்.
-No activity types yet. For example, vibrate while you study.	இன்னும் செயல்பாட்டு வகை இல்லை. எ.கா., படிக்கும்போது அதிர்வு.
-Phone ringer	தொலைபேசி ரிங்கர்
-Hold back notifications	அறிவிப்புகளை நிறுத்து
-As it is	இருப்பது போலவே
 Vibrate	அதிர்வு
 Silent	அமைதி
 Do Not Disturb access	‘தொந்தரவு செய்யாதே’ அனுமதி
-To go fully silent, or to hold back notifications, Android needs your permission to change Do Not Disturb. Dinacharya Launcher only uses it for this and never reads your notifications. Until you allow it, the phone only vibrates.	முழுமையாக அமைதியாக்க அல்லது அறிவிப்புகளை நிறுத்த, ‘தொந்தரவு செய்யாதே’ மாற்ற Android-க்கு உங்கள் அனுமதி தேவை. Dinacharya Launcher இதை இதற்காக மட்டுமே பயன்படுத்துகிறது; உங்கள் அறிவிப்புகளை ஒருபோதும் படிக்காது. அனுமதிக்கும் வரை தொலைபேசி அதிர்வு மட்டும் செய்யும்.
 Open settings	அமைப்புகளைத் திற
 Open Do Not Disturb access in your phone's settings	தொலைபேசி அமைப்புகளில் ‘தொந்தரவு செய்யாதே’ அனுமதியைத் திறக்கவும்
-That is the most types you can add	இதற்கு மேல் வகைகளைச் சேர்க்க முடியாது
-Every type has a rule already	ஒவ்வொரு வகைக்கும் விதி ஏற்கனவே உள்ளது
 Quiet during	இதன்போது அமைதி
-Notifications held	அறிவிப்புகள் நிறுத்தப்பட்டன
-Vibrate, notifications held	அதிர்வு, அறிவிப்புகள் நிறுத்தப்பட்டன
-Silent, notifications held	அமைதி, அறிவிப்புகள் நிறுத்தப்பட்டன
+Library and Quiet mode	நூலகம் மற்றும் அமைதி முறை
+Quiet mode	அமைதி முறை
+Library mode is off	நூலக முறை நிறுத்தத்தில் உள்ளது
+no quiet rules	அமைதி விதிகள் இல்லை
+1 quiet rule	1 அமைதி விதி
+{1} quiet rules	{1} அமைதி விதிகள்
+1 rule	1 விதி
+{1} rules	{1} விதிகள்
+Make the phone ring, vibrate, go silent or switch on Do Not Disturb by itself: at hours on days you choose, during an activity type (like Study), or only when both hold. When a rule ends, the phone goes back to how it was, unless you changed it yourself meanwhile. If rules overlap, the quietest wins.	தொலைபேசியைத் தானாகவே ஒலி, அதிர்வு, அமைதி அல்லது ‘தொந்தரவு செய்யாதே’ நிலையில் வைக்கவும்: நீங்கள் தேர்ந்த நாட்களில் குறிப்பிட்ட நேரங்களில், ஒரு செயல்பாட்டு வகையின் (படிப்பு போல) போது, அல்லது இரண்டும் இருக்கும்போது மட்டும். விதி முடிந்ததும் தொலைபேசி முன்பு இருந்தபடியே திரும்பும், இடையில் நீங்களே மாற்றாவிட்டால். விதிகள் ஒன்றுசேர்ந்தால் மிக அமைதியானது செயல்படும்.
+No quiet rules yet.	இன்னும் அமைதி விதிகள் இல்லை.
+Add a quiet rule	அமைதி விதியைச் சேர்
+That is the most rules you can have	இதற்கு மேல் விதிகள் வைக்க முடியாது
+Needed for Silent and Do Not Disturb. Until then the phone only vibrates	அமைதி மற்றும் ‘தொந்தரவு செய்யாதே’க்குத் தேவை. அதுவரை தொலைபேசி அதிர்வு மட்டும் செய்யும்
+Ring	ஒலி
+DND	தொந்தரவு செய்யாதே
+Do Not Disturb	தொந்தரவு செய்யாதே
+Name, for example Study time	பெயர், எ.கா. படிக்கும் நேரம்
+The phone	தொலைபேசி
+When	எப்போது
+Between	இடையில்
+Also in library mode	நூலக முறையிலும்
+New quiet rule	புதிய அமைதி விதி
+Quiet rule	அமைதி விதி
+The ringer is turned up to ring while the rule holds.	விதி நடைமுறையில் இருக்கும்வரை ரிங்கர் ஒலிக்கும்.
+The ringer is turned off: no sound and no vibration.	ரிங்கர் அணைந்திருக்கும்: ஒலியும் இல்லை, அதிர்வும் இல்லை.
+Do Not Disturb (priority only): notifications of other apps are held back, and calls from people your phone allows still ring.	‘தொந்தரவு செய்யாதே’ (முன்னுரிமை மட்டும்): பிற செயலிகளின் அறிவிப்புகள் நிறுத்தப்படும்; உங்கள் தொலைபேசி அனுமதித்தவர்களின் அழைப்புகள் தொடர்ந்து வரும்.
+The ringer only vibrates while the rule holds.	விதி நடைமுறையில் இருக்கும்வரை ரிங்கர் அதிர்வு மட்டும் செய்யும்.
+Holds whenever a slot of the types you pick is going on, at any hour.	தேர்ந்த வகையின் ஸ்லாட் நடக்கும் போதெல்லாம், எந்த நேரத்திலும் செயல்படும்.
+Holds only when a slot of the types you pick is going on inside the hours you set.	தேர்ந்த வகையின் ஸ்லாட் நீங்கள் அமைத்த நேரத்துக்குள் நடக்கும்போது மட்டுமே செயல்படும்.
+Holds at the hours you set, whatever you are doing.	நீங்கள் என்ன செய்தாலும், நீங்கள் அமைத்த நேரங்களில் செயல்படும்.
+A break, a slot you took off and the time between slots do not count.	இடைவேளை, நீக்கிய ஸ்லாட், ஸ்லாட்களுக்கு இடையிலான நேரம் கணக்கில் வராது.
+To go fully silent, or to use Do Not Disturb, Android needs your permission to change it. Dinacharya Launcher only uses it for this and never reads your notifications. Until you allow it, the phone only vibrates.	முழுமையாக அமைதியாக்க அல்லது ‘தொந்தரவு செய்யாதே’ பயன்படுத்த, அதை மாற்ற Android-க்கு உங்கள் அனுமதி தேவை. Dinacharya Launcher இதை இதற்காக மட்டுமே பயன்படுத்துகிறது; உங்கள் அறிவிப்புகளை ஒருபோதும் படிக்காது. அனுமதிக்கும் வரை தொலைபேசி அதிர்வு மட்டும் செய்யும்.
+During	போது
+or	அல்லது
+library mode	நூலக முறை

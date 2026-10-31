@@ -222,6 +222,7 @@ public class LauncherSettingsActivity extends LangActivity {
             final int open = Pro.open(this);   // what is open now: everything with Pro, or the one item a video opened
             focusCard(open);
             lockCard(open);
+            quietCard();
             useCard();
             todayCard();
         } else {
@@ -596,6 +597,50 @@ public class LauncherSettingsActivity extends LangActivity {
             offer.setOrientation(LinearLayout.VERTICAL);
             ProPrompt.addOffer(this, offer, 0, this::render);
             if (offer.getChildCount() > 0) addRow(c, offer, 8);
+        }
+    }
+
+    /** Library mode (what it does, when it is on) and Quiet mode (rules that set the ringer by time or activity), in one card. */
+    private void quietCard() {
+        final long t = System.currentTimeMillis();
+        final QuietRules q = Store.quiet(this);
+        final LibraryMode lib = Store.library(this);
+        boolean h24 = false;
+        try {
+            h24 = Store.load(this).fmt24;
+        } catch (RuntimeException ignored) {
+            // the 12-hour clock is the fallback
+        }
+        final boolean clock24 = h24;
+        LinearLayout c = card("quiet", "Library and Quiet mode",
+                (lib.on(t, Store.zone()) ? "Library mode is on" : "Library mode is off")
+                        + "  ·  " + (q.rules.isEmpty() ? "no quiet rules" : q.rules.size() == 1 ? "1 quiet rule" : q.rules.size() + " quiet rules")).body;
+
+        Expander.Part libPart = Expander.more(this, c, "Library mode", "set_library", false);
+        new LibrarySettings(this).build(libPart);
+
+        Expander.Part quietPart = Expander.more(this, c, "Quiet mode", "set_quiet", false);
+        LinearLayout qb = quietPart.body;
+        quietPart.setSummary(q.rules.isEmpty() ? "Off" : q.rules.size() == 1 ? "1 rule" : q.rules.size() + " rules");
+        addRow(qb, note("Make the phone ring, vibrate, go silent or switch on Do Not Disturb by itself: at hours on days you choose, during an "
+                + "activity type (like Study), or only when both hold. When a rule ends, the phone goes back to how it was, unless you changed "
+                + "it yourself meanwhile. If rules overlap, the quietest wins."), 4);
+        if (q.rules.isEmpty()) addRow(qb, note("No quiet rules yet."), 8);
+        for (final QuietRules.Rule r : q.rules) {
+            addRow(qb, row(r.name, r.text(clock24), "Edit", () -> QuietDialog.show(this, DIALOG, q, r, clock24, this::render)), 2);
+        }
+        addRow(qb, Ui.button(this, "Add a quiet rule", false, v -> {
+            if (q.rules.size() >= QuietRules.MAX_RULES) {
+                Lang.toast(this, "That is the most rules you can have", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            QuietDialog.show(this, DIALOG, q, null, clock24, this::render);
+        }), 10);
+        boolean needs = false;
+        for (QuietRules.Rule r : q.rules) needs |= r.sound == QuietRules.SILENT || r.sound == QuietRules.DND;
+        if (needs && !Quiet.hasAccess(this)) {
+            addRow(qb, Ui.statusRow(this, "Do Not Disturb access", "Needed for Silent and Do Not Disturb. Until then the phone only vibrates",
+                    false, "Allow", () -> QuietDialog.openAccess(this)), 8);
         }
     }
 

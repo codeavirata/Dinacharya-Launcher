@@ -52,7 +52,6 @@ final class ExtraSections {
     private Spinner lineSpin;
     private Switch quoteOnBox;
     private Switch dayOffBox;
-    private LibrarySettings librarySettings;
 
     ExtraSections(MainActivity host) {
         this.a = host;
@@ -293,9 +292,6 @@ final class ExtraSections {
         quotePreview.setPadding(a.dp(14), a.dp(10), a.dp(14), a.dp(10));
         quotePreview.setBackground(Ui.box(a, Ui.AMBER_SOFT, Ui.LINE, 14));
         wake.body.addView(quotePreview, Ui.wide(a, 8));
-
-        librarySettings = new LibrarySettings(a);
-        librarySettings.build(root);
 
         nextAlarm = Ui.label(a, "", 14, Ui.INK, true);
         root.addView(nextAlarm, Ui.wide(a, 18));
@@ -562,7 +558,6 @@ final class ExtraSections {
         limitQuoteBox();
         binding = false;
         showQuotePreview();
-        if (librarySettings != null) librarySettings.refresh();
         String next = "";
         if (r.alarmOn) {
             AlarmPlanner.Event e = nextEvent();

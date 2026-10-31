@@ -281,7 +281,10 @@ final class GroupDialog {
             typePanel.setVisibility(d.by == LockMode.TIME ? View.GONE : View.VISIBLE);
             from.setText("From " + Routine.formatTime(d.start, h24));
             to.setText("to " + Routine.formatTime(d.end, h24));
-            drawDays(c, dayRow, d, redraw[0]);
+            drawDays(c, dayRow, d.days, bit -> {
+                d.days ^= bit;
+                redraw[0].run();
+            });
             duringText.setText(d.during.isEmpty() ? "No activity types chosen yet." : LockRules.duringText(d.during) + ".");
             summary.setText(summaryText(d, h24));
             long now = System.currentTimeMillis();
@@ -422,26 +425,24 @@ final class GroupDialog {
         return LockRules.untilText(ms, System.currentTimeMillis(), Store.zone(), h24);
     }
 
-    private static TextView preset(Context c, String text, final Runnable r) {
+    static TextView preset(Context c, String text, final Runnable r) {
         TextView t = Ui.label(c, text, 13, Ui.TEAL, true);
         t.setPadding(0, Ui.dp(c, 6), Ui.dp(c, 16), Ui.dp(c, 6));
         t.setOnClickListener(v -> r.run());
         return t;
     }
 
-    private static void drawDays(final Context c, LinearLayout row, final Draft d, final Runnable redraw) {
+    /** The seven day buttons; {@code toggle} gets the bit of the day that was tapped and draws the row again. */
+    static void drawDays(final Context c, LinearLayout row, int days, final java.util.function.IntConsumer toggle) {
         row.removeAllViews();
         for (int i = 0; i < 7; i++) {
             final int bit = 1 << i;
-            boolean on = (d.days & bit) != 0;
+            boolean on = (days & bit) != 0;
             TextView t = Ui.label(c, LockRules.dayName(i).substring(0, 1), 14, on ? 0xFFFFFFFF : Ui.INK, true);
             t.setGravity(Gravity.CENTER);
             t.setBackground(Ui.box(c, on ? Ui.TEAL : Ui.SOFT, on ? 0 : Ui.LINE, 20));
             t.setContentDescription(LockRules.dayName(i));
-            t.setOnClickListener(v -> {
-                d.days ^= bit;
-                redraw.run();
-            });
+            t.setOnClickListener(v -> toggle.accept(bit));
             LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(0, Ui.dp(c, 40), 1f);
             p.rightMargin = Ui.dp(c, 4);
             row.addView(t, p);
@@ -473,6 +474,11 @@ final class GroupDialog {
 
     /** Which activity types lock the group: every type of a kind ("Any task"), or single types such as Study. */
     private static void chooseTypes(final Activity a, final int theme, final Draft d, final Runnable done) {
+        chooseTypes(a, theme, "Lock during", d.during, done);
+    }
+
+    /** The same list for any set of type keys (a lock, a quiet rule); {@code during} is changed when the person taps Done. */
+    static void chooseTypes(final Activity a, final int theme, String title, final List<String> during, final Runnable done) {
         Routine r;
         try {
             r = Store.load(a);
@@ -490,13 +496,13 @@ final class GroupDialog {
             }
         }
         final boolean[] on = new boolean[keys.size()];
-        for (int i = 0; i < on.length; i++) on[i] = d.during.contains(keys.get(i));
+        for (int i = 0; i < on.length; i++) on[i] = during.contains(keys.get(i));
         new DBuilder(a, theme)
-                .setTitle("Lock during")
+                .setTitle(title)
                 .setMultiChoiceItems(labels.toArray(new String[0]), on, (dlg, which, checked) -> on[which] = checked)
                 .setPositiveButton("Done", (dlg, w) -> {
-                    d.during.clear();
-                    for (int i = 0; i < on.length && d.during.size() < LauncherConfig.MAX_DURING; i++) if (on[i]) d.during.add(keys.get(i));
+                    during.clear();
+                    for (int i = 0; i < on.length && during.size() < LauncherConfig.MAX_DURING; i++) if (on[i]) during.add(keys.get(i));
                     done.run();
                 })
                 .setNegativeButton("Cancel", null)

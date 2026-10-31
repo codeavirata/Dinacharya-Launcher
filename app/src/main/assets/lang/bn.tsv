@@ -1665,10 +1665,8 @@ On until {1}	{1} পর্যন্ত চালু
 Off. Next: {1}	বন্ধ। পরেরটি: {1}
 On until you switch it off	আপনি বন্ধ না করা পর্যন্ত চালু
 For the library, a class or an exam. While library mode is on, every alarm of the app only vibrates, with no sound: the start-of-day alarm, the slot alarms, the bedtime question and the break timers. The questions still appear, and groups of apps set to lock in library mode are locked.	লাইব্রেরি, ক্লাস বা পরীক্ষার জন্য। লাইব্রেরি মোড চালু থাকলে অ্যাপের প্রতিটি অ্যালার্ম শুধু কাঁপে, কোনো শব্দ হয় না: দিন-শুরুর অ্যালার্ম, স্লটের অ্যালার্ম, ঘুমানোর প্রশ্ন আর ব্রেকের টাইমার। প্রশ্নগুলো তবুও দেখা যায়, আর লাইব্রেরি মোডে লক করার জন্য সেট করা অ্যাপের গ্রুপ লক থাকে।
-Calls and messages stop making sound as well. When library mode ends, the ringer goes back to how it was, unless you changed it yourself. If your phone asks for Do Not Disturb access to do this, the ringer is left as it is.	কল আর মেসেজও শব্দ করা বন্ধ করে। লাইব্রেরি মোড শেষ হলে রিংগার আগের অবস্থায় ফিরে যায়, যদি না আপনি নিজে বদলে থাকেন। এর জন্য আপনার ফোন “বিরক্ত করবেন না” অনুমতি চাইলে রিংগার যেমন আছে তেমনই থাকে।
 It runs from {1} into the next morning, until {2}.	এটি {1} থেকে পরের সকাল {2} পর্যন্ত চলে।
 Turn it on by itself at fixed hours	নির্দিষ্ট সময়ে নিজে থেকে চালু করুন
-Also put the phone on vibrate	ফোনকে ভাইব্রেটেও রাখুন
 Off, by the clock	বন্ধ, সময় অনুযায়ী
 Pick at least one day, or it never comes on.	অন্তত একটি দিন বেছে নিন, নাহলে এটি কখনো চালু হবে না।
 Delayed start	দেরিতে শুরু
@@ -2119,26 +2117,44 @@ This takes the place of the slot for today. The slots before and after it stay a
 This changes this slot for today only. The slots before and after it stay as they are.	এটি আজকের জন্য শুধু এই স্লটটি বদলায়। আগের ও পরের স্লট যেমন আছে তেমনই থাকবে।
 Save for today	আজকের জন্য সংরক্ষণ করুন
 Type a name first	আগে নাম লিখুন
-Quiet and library mode	শান্ত ও লাইব্রেরি মোড
-Quiet phone	শান্ত ফোন
-Choose how quiet the phone gets: the ringer, and the notifications of other apps (calls from people you allow still come through). When it ends, everything goes back to how it was, unless you changed it yourself.	ফোন কতটা শান্ত থাকবে ঠিক করুন: রিংগার এবং অন্য অ্যাপের বিজ্ঞপ্তি (আপনার অনুমোদিত মানুষের কল আসতে থাকবে)। শেষ হলে সবকিছু আগের মতো হয়ে যায়, যদি না আপনি নিজে বদলান।
-While library mode is on	লাইব্রেরি মোড চালু থাকলে
-During activities	কাজের সময়
-Add an activity type	কাজের ধরন যোগ করুন
-Silent and holding back notifications need Do Not Disturb access. Tap to allow it. Until then the phone only vibrates.	পুরোপুরি নীরব করতে এবং বিজ্ঞপ্তি আটকাতে ‘বিরক্ত করবেন না’-র অনুমতি লাগে। অনুমতি দিতে ছুঁয়ে দিন। ততক্ষণ ফোন শুধু ভাইব্রেট করবে।
-No activity types yet. For example, vibrate while you study.	এখনও কোনো কাজের ধরন নেই। যেমন, পড়ার সময় ভাইব্রেট।
-Phone ringer	ফোনের রিংগার
-Hold back notifications	বিজ্ঞপ্তি আটকান
-As it is	যেমন আছে
 Vibrate	ভাইব্রেট
 Silent	নীরব
 Do Not Disturb access	‘বিরক্ত করবেন না’-র অনুমতি
-To go fully silent, or to hold back notifications, Android needs your permission to change Do Not Disturb. Dinacharya Launcher only uses it for this and never reads your notifications. Until you allow it, the phone only vibrates.	পুরোপুরি নীরব করতে বা বিজ্ঞপ্তি আটকাতে Android-কে ‘বিরক্ত করবেন না’ বদলানোর অনুমতি দিতে হবে। Dinacharya Launcher এটি শুধু এই কাজেই ব্যবহার করে এবং আপনার বিজ্ঞপ্তি কখনও পড়ে না। অনুমতি না দেওয়া পর্যন্ত ফোন শুধু ভাইব্রেট করবে।
 Open settings	সেটিংস খুলুন
 Open Do Not Disturb access in your phone's settings	ফোনের সেটিংসে ‘বিরক্ত করবেন না’-র অনুমতি খুলুন
-That is the most types you can add	এর বেশি ধরন যোগ করা যায় না
-Every type has a rule already	প্রতিটি ধরনের নিয়ম আগেই আছে
 Quiet during	এই সময়ে শান্ত
-Notifications held	বিজ্ঞপ্তি আটকানো
-Vibrate, notifications held	ভাইব্রেট, বিজ্ঞপ্তি আটকানো
-Silent, notifications held	নীরব, বিজ্ঞপ্তি আটকানো
+Library and Quiet mode	লাইব্রেরি ও শান্ত মোড
+Quiet mode	শান্ত মোড
+Library mode is off	লাইব্রেরি মোড বন্ধ
+no quiet rules	কোনো শান্ত নিয়ম নেই
+1 quiet rule	1টি শান্ত নিয়ম
+{1} quiet rules	{1}টি শান্ত নিয়ম
+1 rule	1টি নিয়ম
+{1} rules	{1}টি নিয়ম
+Make the phone ring, vibrate, go silent or switch on Do Not Disturb by itself: at hours on days you choose, during an activity type (like Study), or only when both hold. When a rule ends, the phone goes back to how it was, unless you changed it yourself meanwhile. If rules overlap, the quietest wins.	ফোনকে নিজে থেকে রিং, ভাইব্রেট, নীরব বা ‘বিরক্ত করবেন না’-তে রাখুন: বেছে নেওয়া দিনের নির্দিষ্ট সময়ে, কোনো কাজের ধরনের (যেমন পড়া) সময়ে, অথবা দুটোই মিললে। নিয়ম শেষ হলে ফোন আগের মতো হয়ে যায়, যদি না মাঝখানে আপনি নিজে বদলান। নিয়ম মিলে গেলে সবচেয়ে শান্তটি চলে।
+No quiet rules yet.	এখনও কোনো শান্ত নিয়ম নেই।
+Add a quiet rule	শান্ত নিয়ম যোগ করুন
+That is the most rules you can have	এর বেশি নিয়ম রাখা যায় না
+Needed for Silent and Do Not Disturb. Until then the phone only vibrates	নীরব ও ‘বিরক্ত করবেন না’-র জন্য দরকার। ততক্ষণ ফোন শুধু ভাইব্রেট করবে
+Ring	রিং
+DND	বিরক্ত করবেন না
+Do Not Disturb	বিরক্ত করবেন না
+Name, for example Study time	নাম, যেমন পড়ার সময়
+The phone	ফোন
+When	কখন
+Between	এর মধ্যে
+Also in library mode	লাইব্রেরি মোডেও
+New quiet rule	নতুন শান্ত নিয়ম
+Quiet rule	শান্ত নিয়ম
+The ringer is turned up to ring while the rule holds.	নিয়ম চালু থাকা পর্যন্ত রিংগার রিং অবস্থায় থাকবে।
+The ringer is turned off: no sound and no vibration.	রিংগার বন্ধ থাকবে: শব্দ নেই, কম্পনও নেই।
+Do Not Disturb (priority only): notifications of other apps are held back, and calls from people your phone allows still ring.	‘বিরক্ত করবেন না’ (শুধু অগ্রাধিকার): অন্য অ্যাপের বিজ্ঞপ্তি আটকে থাকে, আর আপনার ফোনে অনুমোদিত মানুষের কল আসতে থাকে।
+The ringer only vibrates while the rule holds.	নিয়ম চালু থাকা পর্যন্ত রিংগার শুধু ভাইব্রেট করবে।
+Holds whenever a slot of the types you pick is going on, at any hour.	বেছে নেওয়া ধরনের স্লট চলাকালীন যেকোনো সময়ে চালু থাকে।
+Holds only when a slot of the types you pick is going on inside the hours you set.	বেছে নেওয়া ধরনের স্লট আপনার ঠিক করা সময়ের মধ্যে চললে তবেই চালু থাকে।
+Holds at the hours you set, whatever you are doing.	আপনি যা-ই করুন, আপনার ঠিক করা সময়ে চালু থাকে।
+A break, a slot you took off and the time between slots do not count.	বিরতি, বাদ দেওয়া স্লট এবং স্লটের মাঝের সময় গোনা হয় না।
+To go fully silent, or to use Do Not Disturb, Android needs your permission to change it. Dinacharya Launcher only uses it for this and never reads your notifications. Until you allow it, the phone only vibrates.	পুরোপুরি নীরব করতে বা ‘বিরক্ত করবেন না’ ব্যবহার করতে Android-কে তা বদলানোর অনুমতি দিতে হবে। Dinacharya Launcher এটি শুধু এই কাজেই ব্যবহার করে এবং আপনার বিজ্ঞপ্তি কখনও পড়ে না। অনুমতি না দেওয়া পর্যন্ত ফোন শুধু ভাইব্রেট করবে।
+During	চলাকালীন
+or	বা
+library mode	লাইব্রেরি মোড

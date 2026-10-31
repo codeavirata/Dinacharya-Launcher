@@ -1665,10 +1665,8 @@ On until {1}	{1} వరకు ఆన్‌లో
 Off. Next: {1}	ఆఫ్. తదుపరిది: {1}
 On until you switch it off	మీరు ఆపే వరకు ఆన్‌లో
 For the library, a class or an exam. While library mode is on, every alarm of the app only vibrates, with no sound: the start-of-day alarm, the slot alarms, the bedtime question and the break timers. The questions still appear, and groups of apps set to lock in library mode are locked.	లైబ్రరీ, క్లాస్ లేదా పరీక్ష కోసం. లైబ్రరీ మోడ్ ఆన్‌లో ఉన్నప్పుడు యాప్‌లోని ప్రతి అలారం కేవలం వైబ్రేట్ అవుతుంది, శబ్దం ఉండదు: రోజు-ప్రారంభ అలారం, స్లాట్ అలారాలు, నిద్ర ప్రశ్న మరియు బ్రేక్ టైమర్‌లు. ప్రశ్నలు ఇంకా కనిపిస్తాయి, మరియు లైబ్రరీ మోడ్‌లో లాక్ అయ్యేలా సెట్ చేసిన యాప్‌ల సమూహాలు లాక్ అవుతాయి.
-Calls and messages stop making sound as well. When library mode ends, the ringer goes back to how it was, unless you changed it yourself. If your phone asks for Do Not Disturb access to do this, the ringer is left as it is.	కాల్స్ మరియు సందేశాలు కూడా శబ్దం చేయడం ఆపేస్తాయి. లైబ్రరీ మోడ్ ముగిసినప్పుడు, మీరే మార్చకపోతే, రింగర్ మునుపటిలా మారుతుంది. దీని కోసం మీ ఫోన్ “అంతరాయం కలిగించవద్దు” అనుమతిని అడిగితే, రింగర్ ఉన్నట్లే ఉంటుంది.
 It runs from {1} into the next morning, until {2}.	ఇది {1} నుండి మరుసటి ఉదయం {2} వరకు కొనసాగుతుంది.
 Turn it on by itself at fixed hours	నిర్ణీత సమయాల్లో దానంతట అదే ఆన్ చేయండి
-Also put the phone on vibrate	ఫోన్‌ను వైబ్రేట్‌లో కూడా ఉంచండి
 Off, by the clock	ఆఫ్, సమయం ప్రకారం
 Pick at least one day, or it never comes on.	కనీసం ఒక రోజును ఎంచుకోండి, లేకపోతే ఇది ఎప్పటికీ ఆన్ కాదు.
 Delayed start	ఆలస్యమైన ప్రారంభం
@@ -2119,26 +2117,44 @@ This takes the place of the slot for today. The slots before and after it stay a
 This changes this slot for today only. The slots before and after it stay as they are.	ఇది ఈరోజుకు ఈ స్లాట్‌ను మాత్రమే మారుస్తుంది. ముందు, తర్వాత ఉన్న స్లాట్లు అలాగే ఉంటాయి.
 Save for today	ఈరోజుకు సేవ్ చేయండి
 Type a name first	ముందు పేరు రాయండి
-Quiet and library mode	నిశ్శబ్ద మరియు లైబ్రరీ మోడ్
-Quiet phone	నిశ్శబ్ద ఫోన్
-Choose how quiet the phone gets: the ringer, and the notifications of other apps (calls from people you allow still come through). When it ends, everything goes back to how it was, unless you changed it yourself.	ఫోన్ ఎంత నిశ్శబ్దంగా ఉండాలో ఎంచుకోండి: రింగర్ మరియు ఇతర యాప్‌ల నోటిఫికేషన్లు (మీరు అనుమతించిన వారి కాల్స్ వస్తూనే ఉంటాయి). ముగిసాక అన్నీ ముందులాగే అవుతాయి, మీరే మార్చకపోతే.
-While library mode is on	లైబ్రరీ మోడ్ ఆన్‌లో ఉన్నప్పుడు
-During activities	కార్యకలాపాల సమయంలో
-Add an activity type	కార్యకలాప రకాన్ని జోడించండి
-Silent and holding back notifications need Do Not Disturb access. Tap to allow it. Until then the phone only vibrates.	పూర్తిగా నిశ్శబ్దం చేయడానికి, నోటిఫికేషన్లు ఆపడానికి ‘అంతరాయం కలిగించవద్దు’ అనుమతి కావాలి. అనుమతించడానికి నొక్కండి. అప్పటివరకు ఫోన్ వైబ్రేట్ మాత్రమే అవుతుంది.
-No activity types yet. For example, vibrate while you study.	ఇంకా కార్యకలాప రకాలు లేవు. ఉదా., చదివేటప్పుడు వైబ్రేట్.
-Phone ringer	ఫోన్ రింగర్
-Hold back notifications	నోటిఫికేషన్లు ఆపండి
-As it is	ఉన్నట్లే
 Vibrate	వైబ్రేట్
 Silent	నిశ్శబ్దం
 Do Not Disturb access	‘అంతరాయం కలిగించవద్దు’ అనుమతి
-To go fully silent, or to hold back notifications, Android needs your permission to change Do Not Disturb. Dinacharya Launcher only uses it for this and never reads your notifications. Until you allow it, the phone only vibrates.	పూర్తిగా నిశ్శబ్దం చేయడానికి లేదా నోటిఫికేషన్లు ఆపడానికి Androidకి ‘అంతరాయం కలిగించవద్దు’ మార్చే మీ అనుమతి కావాలి. Dinacharya Launcher దీనిని ఇందుకోసమే వాడుతుంది, మీ నోటిఫికేషన్లను ఎప్పుడూ చదవదు. అనుమతించే వరకు ఫోన్ వైబ్రేట్ మాత్రమే అవుతుంది.
 Open settings	సెట్టింగ్‌లు తెరవండి
 Open Do Not Disturb access in your phone's settings	ఫోన్ సెట్టింగ్‌లలో ‘అంతరాయం కలిగించవద్దు’ అనుమతిని తెరవండి
-That is the most types you can add	ఇంతకంటే ఎక్కువ రకాలను జోడించలేరు
-Every type has a rule already	ప్రతి రకానికి నియమం ఇప్పటికే ఉంది
 Quiet during	ఈ సమయంలో నిశ్శబ్దం
-Notifications held	నోటిఫికేషన్లు ఆపబడ్డాయి
-Vibrate, notifications held	వైబ్రేట్, నోటిఫికేషన్లు ఆపబడ్డాయి
-Silent, notifications held	నిశ్శబ్దం, నోటిఫికేషన్లు ఆపబడ్డాయి
+Library and Quiet mode	లైబ్రరీ మరియు నిశ్శబ్ద మోడ్
+Quiet mode	నిశ్శబ్ద మోడ్
+Library mode is off	లైబ్రరీ మోడ్ ఆఫ్‌లో ఉంది
+no quiet rules	నిశ్శబ్ద నియమాలు లేవు
+1 quiet rule	1 నిశ్శబ్ద నియమం
+{1} quiet rules	{1} నిశ్శబ్ద నియమాలు
+1 rule	1 నియమం
+{1} rules	{1} నియమాలు
+Make the phone ring, vibrate, go silent or switch on Do Not Disturb by itself: at hours on days you choose, during an activity type (like Study), or only when both hold. When a rule ends, the phone goes back to how it was, unless you changed it yourself meanwhile. If rules overlap, the quietest wins.	ఫోన్‌ను ఆటోమేటిక్‌గా రింగ్, వైబ్రేట్, సైలెంట్ లేదా ‘అంతరాయం కలిగించవద్దు’లో ఉంచండి: మీరు ఎంచుకున్న రోజుల్లో నిర్దిష్ట గంటల్లో, ఒక కార్యకలాప రకం (చదువు వంటిది) సమయంలో, లేదా రెండూ ఉన్నప్పుడు మాత్రమే. నియమం ముగిసాక ఫోన్ ముందున్నట్లే అవుతుంది, మధ్యలో మీరే మార్చకపోతే. నియమాలు కలిస్తే అత్యంత నిశ్శబ్దమైనది అమలవుతుంది.
+No quiet rules yet.	ఇంకా నిశ్శబ్ద నియమాలు లేవు.
+Add a quiet rule	నిశ్శబ్ద నియమం జోడించండి
+That is the most rules you can have	ఇంతకంటే ఎక్కువ నియమాలు ఉండకూడదు
+Needed for Silent and Do Not Disturb. Until then the phone only vibrates	సైలెంట్ మరియు ‘అంతరాయం కలిగించవద్దు’ కోసం అవసరం. అప్పటివరకు ఫోన్ వైబ్రేట్ మాత్రమే అవుతుంది
+Ring	రింగ్
+DND	అంతరాయం కలిగించవద్దు
+Do Not Disturb	అంతరాయం కలిగించవద్దు
+Name, for example Study time	పేరు, ఉదా. చదువు సమయం
+The phone	ఫోన్
+When	ఎప్పుడు
+Between	మధ్య
+Also in library mode	లైబ్రరీ మోడ్‌లో కూడా
+New quiet rule	కొత్త నిశ్శబ్ద నియమం
+Quiet rule	నిశ్శబ్ద నియమం
+The ringer is turned up to ring while the rule holds.	నియమం ఉన్నంతసేపు రింగర్ రింగ్‌లో ఉంటుంది.
+The ringer is turned off: no sound and no vibration.	రింగర్ ఆఫ్‌లో ఉంటుంది: శబ్దం లేదు, కంపనం లేదు.
+Do Not Disturb (priority only): notifications of other apps are held back, and calls from people your phone allows still ring.	‘అంతరాయం కలిగించవద్దు’ (ప్రాధాన్యత మాత్రమే): ఇతర యాప్‌ల నోటిఫికేషన్లు ఆపబడతాయి, మీ ఫోన్ అనుమతించిన వారి కాల్స్ వస్తూనే ఉంటాయి.
+The ringer only vibrates while the rule holds.	నియమం ఉన్నంతసేపు రింగర్ వైబ్రేట్ మాత్రమే అవుతుంది.
+Holds whenever a slot of the types you pick is going on, at any hour.	ఎంచుకున్న రకం స్లాట్ నడుస్తున్నప్పుడల్లా, ఏ సమయంలోనైనా అమలవుతుంది.
+Holds only when a slot of the types you pick is going on inside the hours you set.	ఎంచుకున్న రకం స్లాట్ మీరు పెట్టిన గంటల్లో నడుస్తున్నప్పుడు మాత్రమే అమలవుతుంది.
+Holds at the hours you set, whatever you are doing.	మీరు ఏమి చేస్తున్నా, మీరు పెట్టిన గంటల్లో అమలవుతుంది.
+A break, a slot you took off and the time between slots do not count.	విరామం, తీసేసిన స్లాట్, స్లాట్ల మధ్య సమయం లెక్కలోకి రావు.
+To go fully silent, or to use Do Not Disturb, Android needs your permission to change it. Dinacharya Launcher only uses it for this and never reads your notifications. Until you allow it, the phone only vibrates.	పూర్తిగా నిశ్శబ్దం చేయడానికి లేదా ‘అంతరాయం కలిగించవద్దు’ వాడడానికి Androidకి దాన్ని మార్చే మీ అనుమతి కావాలి. Dinacharya Launcher దీనిని ఇందుకోసమే వాడుతుంది, మీ నోటిఫికేషన్లను ఎప్పుడూ చదవదు. అనుమతించే వరకు ఫోన్ వైబ్రేట్ మాత్రమే అవుతుంది.
+During	సమయంలో
+or	లేదా
+library mode	లైబ్రరీ మోడ్

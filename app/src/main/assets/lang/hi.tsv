@@ -1665,10 +1665,8 @@ On until {1}	{1} तक चालू
 Off. Next: {1}	बंद। अगला: {1}
 On until you switch it off	आपके बंद करने तक चालू
 For the library, a class or an exam. While library mode is on, every alarm of the app only vibrates, with no sound: the start-of-day alarm, the slot alarms, the bedtime question and the break timers. The questions still appear, and groups of apps set to lock in library mode are locked.	लाइब्रेरी, क्लास या परीक्षा के लिए। लाइब्रेरी मोड चालू रहने पर ऐप का हर अलार्म केवल कंपन करता है, आवाज़ नहीं: दिन-शुरू अलार्म, स्लॉट के अलार्म, सोने का सवाल और ब्रेक के टाइमर। सवाल फिर भी दिखते हैं, और जिन ऐप समूहों को लाइब्रेरी मोड में लॉक करने के लिए सेट किया है, वे लॉक रहते हैं।
-Calls and messages stop making sound as well. When library mode ends, the ringer goes back to how it was, unless you changed it yourself. If your phone asks for Do Not Disturb access to do this, the ringer is left as it is.	कॉल और संदेश भी आवाज़ करना बंद कर देते हैं। लाइब्रेरी मोड खत्म होने पर रिंगर पहले जैसा हो जाता है, जब तक आपने उसे खुद न बदला हो। अगर इसके लिए आपका फ़ोन “परेशान न करें” की अनुमति माँगता है, तो रिंगर जैसा है वैसा ही रहता है।
 It runs from {1} into the next morning, until {2}.	यह {1} से अगली सुबह {2} तक चलता है।
 Turn it on by itself at fixed hours	तय समय पर अपने आप चालू करें
-Also put the phone on vibrate	फ़ोन को वाइब्रेट पर भी रखें
 Off, by the clock	बंद, समय के अनुसार
 Pick at least one day, or it never comes on.	कम से कम एक दिन चुनें, वरना यह कभी चालू नहीं होगा।
 Delayed start	देर से शुरुआत
@@ -2119,26 +2117,44 @@ This takes the place of the slot for today. The slots before and after it stay a
 This changes this slot for today only. The slots before and after it stay as they are.	यह आज के लिए सिर्फ़ इस स्लॉट को बदलता है। इससे पहले और बाद के स्लॉट जैसे हैं वैसे ही रहेंगे।
 Save for today	आज के लिए सहेजें
 Type a name first	पहले नाम लिखें
-Quiet and library mode	शांत और लाइब्रेरी मोड
-Quiet phone	शांत फ़ोन
-Choose how quiet the phone gets: the ringer, and the notifications of other apps (calls from people you allow still come through). When it ends, everything goes back to how it was, unless you changed it yourself.	तय करें कि फ़ोन कितना शांत रहे: रिंगर और दूसरे ऐप की सूचनाएँ (आपके चुने लोगों के कॉल आते रहेंगे)। समाप्त होने पर सब कुछ पहले जैसा हो जाता है, अगर आपने खुद नहीं बदला।
-While library mode is on	लाइब्रेरी मोड चालू रहने पर
-During activities	गतिविधियों के दौरान
-Add an activity type	गतिविधि का प्रकार जोड़ें
-Silent and holding back notifications need Do Not Disturb access. Tap to allow it. Until then the phone only vibrates.	पूरी तरह साइलेंट करने और सूचनाएँ रोकने के लिए ‘परेशान न करें’ की अनुमति चाहिए। अनुमति देने के लिए छुएँ। तब तक फ़ोन सिर्फ़ वाइब्रेट करेगा।
-No activity types yet. For example, vibrate while you study.	अभी कोई गतिविधि प्रकार नहीं। जैसे, पढ़ाई के समय वाइब्रेट।
-Phone ringer	फ़ोन की रिंगर
-Hold back notifications	सूचनाएँ रोकें
-As it is	जैसा है वैसा
 Vibrate	वाइब्रेट
 Silent	साइलेंट
 Do Not Disturb access	‘परेशान न करें’ की अनुमति
-To go fully silent, or to hold back notifications, Android needs your permission to change Do Not Disturb. Dinacharya Launcher only uses it for this and never reads your notifications. Until you allow it, the phone only vibrates.	पूरी तरह साइलेंट करने या सूचनाएँ रोकने के लिए Android को ‘परेशान न करें’ बदलने की आपकी अनुमति चाहिए। Dinacharya Launcher इसे सिर्फ़ इसी काम के लिए इस्तेमाल करती है और आपकी सूचनाएँ कभी नहीं पढ़ती। अनुमति मिलने तक फ़ोन सिर्फ़ वाइब्रेट करेगा।
 Open settings	सेटिंग खोलें
 Open Do Not Disturb access in your phone's settings	अपने फ़ोन की सेटिंग में ‘परेशान न करें’ की अनुमति खोलें
-That is the most types you can add	इससे ज़्यादा प्रकार नहीं जोड़े जा सकते
-Every type has a rule already	हर प्रकार का नियम पहले से है
 Quiet during	इस दौरान शांत
-Notifications held	सूचनाएँ रुकी हुई
-Vibrate, notifications held	वाइब्रेट, सूचनाएँ रुकी हुई
-Silent, notifications held	साइलेंट, सूचनाएँ रुकी हुई
+Library and Quiet mode	लाइब्रेरी और शांत मोड
+Quiet mode	शांत मोड
+Library mode is off	लाइब्रेरी मोड बंद है
+no quiet rules	कोई शांत नियम नहीं
+1 quiet rule	1 शांत नियम
+{1} quiet rules	{1} शांत नियम
+1 rule	1 नियम
+{1} rules	{1} नियम
+Make the phone ring, vibrate, go silent or switch on Do Not Disturb by itself: at hours on days you choose, during an activity type (like Study), or only when both hold. When a rule ends, the phone goes back to how it was, unless you changed it yourself meanwhile. If rules overlap, the quietest wins.	फ़ोन को अपने-आप रिंग, वाइब्रेट, साइलेंट या ‘परेशान न करें’ पर रखें: चुने हुए दिनों के घंटों में, किसी गतिविधि प्रकार (जैसे पढ़ाई) के दौरान, या जब दोनों हों। नियम खत्म होने पर फ़ोन पहले जैसा हो जाता है, अगर आपने बीच में खुद नहीं बदला। नियम टकराएँ तो सबसे शांत वाला चलता है।
+No quiet rules yet.	अभी कोई शांत नियम नहीं।
+Add a quiet rule	शांत नियम जोड़ें
+That is the most rules you can have	इससे ज़्यादा नियम नहीं हो सकते
+Needed for Silent and Do Not Disturb. Until then the phone only vibrates	साइलेंट और ‘परेशान न करें’ के लिए ज़रूरी। तब तक फ़ोन सिर्फ़ वाइब्रेट करेगा
+Ring	रिंग
+DND	परेशान न करें
+Do Not Disturb	परेशान न करें
+Name, for example Study time	नाम, जैसे पढ़ाई का समय
+The phone	फ़ोन
+When	कब
+Between	के बीच
+Also in library mode	लाइब्रेरी मोड में भी
+New quiet rule	नया शांत नियम
+Quiet rule	शांत नियम
+The ringer is turned up to ring while the rule holds.	नियम लागू रहने तक रिंगर रिंग पर रहेगा।
+The ringer is turned off: no sound and no vibration.	रिंगर बंद रहेगा: न आवाज़, न कंपन।
+Do Not Disturb (priority only): notifications of other apps are held back, and calls from people your phone allows still ring.	‘परेशान न करें’ (सिर्फ़ ज़रूरी): दूसरे ऐप की सूचनाएँ रुक जाती हैं, और आपके फ़ोन में अनुमत लोगों के कॉल आते रहते हैं।
+The ringer only vibrates while the rule holds.	नियम लागू रहने तक रिंगर सिर्फ़ वाइब्रेट करेगा।
+Holds whenever a slot of the types you pick is going on, at any hour.	जब भी चुने गए प्रकार का स्लॉट चल रहा हो, किसी भी समय लागू रहता है।
+Holds only when a slot of the types you pick is going on inside the hours you set.	तब ही लागू होता है जब चुने गए प्रकार का स्लॉट आपके तय घंटों के भीतर चल रहा हो।
+Holds at the hours you set, whatever you are doing.	आपके तय घंटों में लागू रहता है, आप कुछ भी कर रहे हों।
+A break, a slot you took off and the time between slots do not count.	ब्रेक, हटाया गया स्लॉट और स्लॉटों के बीच का समय गिना नहीं जाता।
+To go fully silent, or to use Do Not Disturb, Android needs your permission to change it. Dinacharya Launcher only uses it for this and never reads your notifications. Until you allow it, the phone only vibrates.	पूरी तरह साइलेंट करने या ‘परेशान न करें’ इस्तेमाल करने के लिए Android को इसे बदलने की आपकी अनुमति चाहिए। Dinacharya Launcher इसे सिर्फ़ इसी काम के लिए इस्तेमाल करता है और आपकी सूचनाएँ कभी नहीं पढ़ता। अनुमति मिलने तक फ़ोन सिर्फ़ वाइब्रेट करेगा।
+During	के दौरान
+or	या
+library mode	लाइब्रेरी मोड

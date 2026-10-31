@@ -9,11 +9,11 @@ import android.content.Intent;
 import android.media.AudioManager;
 
 /**
- * Makes the phone quiet by the rules in {@link QuietRules}: the ringer (vibrate or silent) and the notifications of other apps (Do Not
- * Disturb, priority only), while library mode is on or a chosen activity type is going on, and puts both back afterwards. A call is set
- * for the next moment anything can change (library mode on or off, a slot starting or ending, a break ending). Everything is looked at
- * again whenever the app opens, after a restart, at each switch and when you answer a slot, so it does not depend on the app being open.
- * Silent and held notifications need Do Not Disturb access; without it the ringer only goes to vibrate and notifications are left alone.
+ * Sets the phone's ringer (ring, vibrate, silent) or Do Not Disturb (priority only) by the quiet rules in {@link QuietRules}, and puts both
+ * back afterwards. A call is set for the next moment anything can change (a rule's hours starting or ending, a slot starting or ending,
+ * a break ending, library mode on or off). Everything is looked at again whenever the app opens, after a restart, at each switch and when
+ * you answer a slot, so it does not depend on the app being open. Silent and Do Not Disturb need Do Not Disturb access; without it the
+ * ringer only goes to vibrate and Do Not Disturb is left alone.
  */
 final class Quiet {
     static final String ACTION = "app.dinacharya.wallpaper.LIBRARY_CHANGE";
@@ -53,20 +53,21 @@ final class Quiet {
     /** Sets the ringer and the filter; returns when to look again (0: nothing will change by itself). */
     private static long apply(Context c) {
         QuietRules rules = Store.quiet(c);
-        LibraryMode lib = Store.library(c);
         long now = System.currentTimeMillis();
-        boolean libOn = lib.on(now, Store.zone());
-        QuietRules.Rule want = QuietRules.Rule.NONE;
-        long next = lib.nextChangeMs(now, Store.zone());
+        int want = -1;
+        long next = 0L;
         if (!rules.isEmpty() || Store.prefs(c).getInt(KEY_KEPT, -1) >= 0 || Store.prefs(c).getInt(KEY_HOLD_KEPT, 0) > 0) {
             SlotNow n = SlotNow.read(c);
-            want = rules.now(libOn, n.kind, n.sub);
-            next = soonest(next, n.runEndMs, n.nextStartMs, n.onBreak ? n.breakEndMs : 0L);
+            want = rules.now(now, Store.zone(), n.toLock());
+            if (!rules.isEmpty()) {
+                next = soonest(rules.nextEdge(now, Store.zone()), n.runEndMs, n.nextStartMs, n.onBreak ? n.breakEndMs : 0L,
+                        Store.library(c).nextChangeMs(now, Store.zone()));
+            }
         }
         boolean access = hasAccess(c);
-        applyRinger(c, want.sound, access);
-        applyHold(c, want.hold && access);
-        return rules.isEmpty() ? lib.nextChangeMs(now, Store.zone()) : next;
+        applyRinger(c, want == QuietRules.DND && !access ? QuietRules.VIBRATE : want);
+        applyHold(c, want == QuietRules.DND && access);
+        return next;
     }
 
     private static long soonest(long... times) {
@@ -75,25 +76,33 @@ final class Quiet {
         return best;
     }
 
-    private static void applyRinger(Context c, int sound, boolean access) {
+    private static void applyRinger(Context c, int sound) {
         android.content.SharedPreferences p = Store.prefs(c);
         int kept = p.getInt(KEY_KEPT, -1);
         // what an older version left behind was always "vibrate"
         int ours = p.getInt(KEY_OURS, kept >= 0 ? QuietRules.RINGER_VIBRATE : -1);
         AudioManager am = (AudioManager) c.getSystemService(Context.AUDIO_SERVICE);
         if (am == null) return;
-        // without Do Not Disturb access silent is out of reach: vibrate is the nearest
-        int level = sound == QuietRules.SILENT && !access ? QuietRules.VIBRATE : sound;
-        QuietRules.RingerStep step = QuietRules.ringerStep(level, am.getRingerMode(), kept, ours);
+        QuietRules.RingerStep step = QuietRules.ringerStep(sound, am.getRingerMode(), kept, ours);
         int keep = step.keep;
         int our = step.ours;
         if (step.set >= 0) {
             try {
                 am.setRingerMode(step.set);
             } catch (SecurityException e) {
-                // Android refused: leave the ringer alone and remember nothing new
-                keep = kept;
-                our = ours;
+                // silent needs Do Not Disturb access; vibrate is the nearest without it
+                try {
+                    if (step.set == QuietRules.RINGER_SILENT) {
+                        am.setRingerMode(QuietRules.RINGER_VIBRATE);
+                        our = QuietRules.RINGER_VIBRATE;
+                    } else {
+                        keep = kept;
+                        our = ours;
+                    }
+                } catch (SecurityException again) {
+                    keep = kept;
+                    our = ours;
+                }
             }
         }
         if (keep != kept || our != ours) p.edit().putInt(KEY_KEPT, keep).putInt(KEY_OURS, our).apply();

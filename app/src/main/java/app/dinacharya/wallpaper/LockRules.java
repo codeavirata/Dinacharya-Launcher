@@ -1,5 +1,6 @@
 package app.dinacharya.wallpaper;
 
+import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -121,26 +122,35 @@ public final class LockRules {
 
     /** The end of the daily window that is open at {@code nowMs}, or 0 when none is. Back-to-back windows count as one. */
     public static long windowEnd(LauncherConfig.Group g, long nowMs, ZoneId zone) {
-        long end = once(g, nowMs, zone);
+        return windowEnd(g.days, g.startMin, g.endMin, nowMs, zone);
+    }
+
+    /** Same for any daily window: the days mask (bit 0 is Monday), and the start and end in minutes after midnight. */
+    public static long windowEnd(int days, int startMin, int endMin, long nowMs, ZoneId zone) {
+        long end = once(days, startMin, endMin, nowMs, zone);
         if (end == 0) return 0;
         for (int i = 0; i < 14; i++) {
-            long more = once(g, end, zone);
+            long more = once(days, startMin, endMin, end, zone);
             if (more <= end) break;
             end = more;
         }
         return end;
     }
 
-    private static long once(LauncherConfig.Group g, long nowMs, ZoneId zone) {
-        if (g.days == 0) return 0;
+    private static boolean hasDay(int days, DayOfWeek d) {
+        return (days & (1 << (d.getValue() - 1))) != 0;
+    }
+
+    private static long once(int days, int startMin, int endMin, long nowMs, ZoneId zone) {
+        if (days == 0) return 0;
         ZonedDateTime now = Instant.ofEpochMilli(nowMs).atZone(zone);
         for (int back = 1; back >= 0; back--) {
             LocalDate d = now.toLocalDate().minusDays(back);
-            if (!g.hasDay(d.getDayOfWeek())) continue;
-            ZonedDateTime start = d.atStartOfDay(zone).plusMinutes(g.startMin);
-            ZonedDateTime end = g.endMin > g.startMin
-                    ? d.atStartOfDay(zone).plusMinutes(g.endMin)
-                    : d.plusDays(1).atStartOfDay(zone).plusMinutes(g.endMin);
+            if (!hasDay(days, d.getDayOfWeek())) continue;
+            ZonedDateTime start = d.atStartOfDay(zone).plusMinutes(startMin);
+            ZonedDateTime end = endMin > startMin
+                    ? d.atStartOfDay(zone).plusMinutes(endMin)
+                    : d.plusDays(1).atStartOfDay(zone).plusMinutes(endMin);
             if (!now.isBefore(start) && now.isBefore(end)) return end.toInstant().toEpochMilli();
         }
         return 0;
@@ -148,12 +158,16 @@ public final class LockRules {
 
     /** The next time the daily window opens after {@code nowMs}, or 0 when there is no daily window. */
     public static long nextStart(LauncherConfig.Group g, long nowMs, ZoneId zone) {
-        if (g.days == 0) return 0;
+        return nextStart(g.days, g.startMin, nowMs, zone);
+    }
+
+    public static long nextStart(int days, int startMin, long nowMs, ZoneId zone) {
+        if (days == 0) return 0;
         ZonedDateTime now = Instant.ofEpochMilli(nowMs).atZone(zone);
         for (int k = 0; k <= 7; k++) {
             LocalDate d = now.toLocalDate().plusDays(k);
-            if (!g.hasDay(d.getDayOfWeek())) continue;
-            ZonedDateTime start = d.atStartOfDay(zone).plusMinutes(g.startMin);
+            if (!hasDay(days, d.getDayOfWeek())) continue;
+            ZonedDateTime start = d.atStartOfDay(zone).plusMinutes(startMin);
             if (start.toInstant().toEpochMilli() > nowMs) return start.toInstant().toEpochMilli();
         }
         return 0;
@@ -189,8 +203,13 @@ public final class LockRules {
 
     /** True when the slot going on is of a type that locks this group. */
     public static boolean during(LauncherConfig.Group g, Slot slot, long nowMs) {
-        if (g == null || slot == null || slot.kind < 0 || slot.endMs <= nowMs || g.during.isEmpty()) return false;
-        return g.during.contains(LauncherConfig.typeKey(slot.kind, slot.sub)) || g.during.contains(LauncherConfig.anyKey(slot.kind));
+        return g != null && during(g.during, slot, nowMs);
+    }
+
+    /** Same for any list of activity type keys. */
+    public static boolean during(java.util.List<String> keys, Slot slot, long nowMs) {
+        if (keys == null || slot == null || slot.kind < 0 || slot.endMs <= nowMs || keys.isEmpty()) return false;
+        return keys.contains(LauncherConfig.typeKey(slot.kind, slot.sub)) || keys.contains(LauncherConfig.anyKey(slot.kind));
     }
 
     /** The name of one activity type key as the person reads it: "Study", "Any task", "Other rest". */

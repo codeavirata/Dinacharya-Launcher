@@ -106,8 +106,8 @@ final class Store {
     }
 
     /**
-     * How quiet the phone is while library mode is on and during chosen activity types. An older version only had "put the phone on
-     * vibrate in library mode"; that choice becomes the library rule the first time this is read.
+     * The quiet rules. An older version only had "put the phone on vibrate in library mode"; that choice becomes a rule for library mode
+     * the first time this is read.
      */
     static QuietRules quiet(Context c) {
         String text = prefs(c).getString(KEY_QUIET, null);
@@ -115,7 +115,9 @@ final class Store {
         QuietRules q = new QuietRules();
         LibraryMode lib = library(c);
         if (lib.ringer) {
-            q.library = new QuietRules.Rule(QuietRules.VIBRATE, false);
+            QuietRules.Rule r = new QuietRules.Rule("Library mode");
+            r.library = true;
+            q.rules.add(r);
             lib.ringer = false;
             saveLibrary(c, lib);
             saveQuiet(c, q);

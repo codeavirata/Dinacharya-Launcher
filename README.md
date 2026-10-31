@@ -650,15 +650,9 @@ the moment an alarm rings, so switching library mode on or off between an alarm 
 
 - **On Home** there is a **Library mode** card. **Turn on** asks how long: **1 hour**,
   **2 hours**, **4 hours** or **Until I switch it off**. While it is on the card says "On until 16:30" (or "On until you switch it off") with **Turn off**.
-- **Settings > Alarms > Library mode** has the same, plus:
+- **Focus and locks > Library and Quiet mode > Library mode** has the same, plus:
   - **Turn it on by itself at fixed hours**: choose the days, and **From** and **Until** (an end at or before the start runs into the next
     morning, and the settings say so).
-  - **Quiet phone** (the same section, now called *Quiet and library mode*): one rule for while library mode is on, and rules for chosen activity
-    types ("Study", "Any rest"...). Each rule sets the **ringer** (as it is, vibrate or silent) and can **hold back notifications** of other apps (Do Not
-    Disturb, priority only: calls from people the phone allows still ring). When rules overlap the quietest wins. Everything goes back to how it was when
-    the rule ends, unless you changed it yourself meanwhile; Do Not Disturb that you had on already is never touched. Silent and holding notifications need
-    **Do Not Disturb access**, asked once when you choose them; without it the phone only vibrates. Nothing else is read. The older "put the phone on
-    vibrate" choice becomes the library rule by itself.
   library mode lasts, and a library lock never ends before library mode does.
 - A restart of the phone or an update of the app puts the ringer and the timers back in order.
 
@@ -977,6 +971,25 @@ in a row** before Google lets you publish publicly. Start that as early as you c
 
 Nothing here changes how the app works; it is the account setup that only you can do.
 
+
+### Quiet mode
+
+In **Focus and locks > Library and Quiet mode > Quiet mode**: rules that set the phone by themselves, made the way locks are made.
+
+- A **rule** has a name, what the phone does (**Ring**, **Vibrate**, **Silent** or **DND**) and when:
+  - **Time**: hours on chosen days (the same days and hours as a lock; an end at or before the start runs into the next morning),
+  - **Activity**: while a slot of the chosen activity types is going on (a type such as Study, or "Any rest"), at any hour,
+  - **Time + activity**: only when a slot of the chosen types is going on inside the hours,
+  - and **Also in library mode**, so the rule holds whenever library mode is on.
+- **Ring** turns the ringer up. **Vibrate** and **Silent** only turn it down (a ringer that is quieter already is left alone). **DND** switches
+  Do Not Disturb on (priority only): notifications of other apps are held back and calls from people the phone allows still ring.
+- When rules overlap the quietest wins (Ring, Vibrate, Silent, DND). A break, a slot taken off and the gaps between slots do not count.
+- When no rule holds any more, the phone goes back to how it was, unless you changed the ringer yourself meanwhile. Do Not Disturb that you had
+  on already is never touched. Up to 10 rules.
+- **Silent** and **DND** need **Do Not Disturb access**; it is asked when you save such a rule, and without it the phone only vibrates. Nothing else
+  is read.
+- The older "put the phone on vibrate in library mode" choice became a rule for library mode by itself.
+
 ### Pro purchase: monthly and lifetime
 
 1. Upload your first build (step 7 above), at least to **Internal testing**. Google only lets you
@@ -1062,8 +1075,7 @@ screen) compile against the real Android library, but their layout, sizes and an
 Build 21 added tests for the day as it really goes (`LiveDayTest`, 116 checks): the schedule that Home and the wallpaper show when a start is put
 off, a break is taken, the slot before is carried on, a slot starts or ends early, or the day is taken off (and that the saved plan is never changed); the
 alarms that must not ring on a day off, in a break or before a later start; when "Finish early" is offered and what each answer does; the reports for early
-starts and early finishes; and library mode (when it is on, when it ends, fixed hours that run past midnight, and the steps that put the phone's ringer on
-vibrate and back). `WakeLockTest` (113 checks) covers the locks by time, by activity type and by both together, and in library mode, the quotes (a different one
+starts and early finishes; and library mode (when it is on, when it ends, fixed hours that run past midnight). `WakeLockTest` (113 checks) covers the locks by time, by activity type and by both together, and in library mode, the quotes (a different one
 each day, "another quote", your own line), the shake counter (the count, a sensor that never reports), the start-of-day settings and how a day off is shown in
 reports. `LangFilesTest` also checks that the new sentences (breaks, late and early starts, lock lines, library mode, day off), all 49 quotes and the sentences to type come out with no English left in all six languages, and that the sentences to start the day have no comma or full stop to mistype.
 These are logic tests of the pure-Java part; the screens, the alarm ringing in vibrate-only, the phone's sensor and ringer, and the lock-screen display have **not**
@@ -1187,12 +1199,12 @@ close the app: they are written down and that one job is skipped.
 - **Locks** can now be by time, by activity type, or by both together (a switch on the group), and a group can also be locked in library mode.
 - **Start-of-day alarm:** turn it off by a tap, three sums, a short pause (four breaths), a shake of the phone, or a typed sentence;
   a motivating quote (49 lines, a different one each day); and a **Take the day off** button.
-- **Library mode** (Home card and Settings > Alarms): every alarm only vibrates; optional fixed hours and days; optional ringer on vibrate; locks in library mode.
+- **Library mode** (Home card and Focus and locks > Library and Quiet mode): every alarm only vibrates; optional fixed hours and days; locks in library mode.
 - New texts were translated into the six languages by the developer, not by a native speaker: please read them once on a phone.
 
 **1.0 (first release on Google Play)**
 - **Pro has two plans:** **Rs 50 a month** (a Google Play subscription, product `pro_monthly`) or **Rs 499 once for life** (the one-time product `pro_unlock`). The Pro screen shows both side by side with the prices Google Play reports; Pro is on while either is active. A monthly subscriber who buys lifetime is told to cancel the monthly plan in Google Play, and "Manage subscription" opens Google Play's page for it. Anyone who bought `pro_unlock` before keeps Pro. In Play Console create the subscription and set `pro_unlock` to Rs 499 (see "Pro purchase: monthly and lifetime").
-- The app is named **Dinacharya Launcher** and is credited "© 2026 | Developed by ASG" on one line (home screen mark, Settings > About, store text, privacy page). The version shown in Settings > About is **1.0**. Google Play's internal build number (`versionCode`) is **40** and goes up by one with every build you install or upload, because Google only accepts a number higher than every one it has seen. Settings > About shows it after the version ("1.0 (build 40)"), so you can tell which build is on the phone. The notes below, from 2.2 to 3.0.1, are the private test builds that came before.
+- The app is named **Dinacharya Launcher** and is credited "© 2026 | Developed by ASG" on one line (home screen mark, Settings > About, store text, privacy page). The version shown in Settings > About is **1.0**. Google Play's internal build number (`versionCode`) is **41** and goes up by one with every build you install or upload, because Google only accepts a number higher than every one it has seen. Settings > About shows it after the version ("1.0 (build 41)"), so you can tell which build is on the phone. The notes below, from 2.2 to 3.0.1, are the private test builds that came before.
 
 **2.2**
 - **Dinacharya is now a home screen (launcher), not a wallpaper app.** No apps on it: the whole screen is your
@@ -1398,7 +1410,7 @@ Android 8.0 or newer.
 
 **1.0, build 37:** the start-of-day alarm's own line (Settings > Alarms > Start-of-day alarm). Typing in the box no longer sends the cursor back to the first letter (the saved line has its spaces trimmed, so the box was being rewritten while you typed; it is now left alone while it has focus). A new choice, **How your own line is used**, says what the line is for: shown as the quote (the default, as before), typed to put the day off, typed to start the day, or typed for both. A line meant for typing is not also shown as the quote, is limited to **80 letters** in the box (cut at a word if an older, longer line is used), and is used only where that challenge is set to "Type a sentence"; otherwise the built-in sentences come up as before. The rules are in `Routine.quoteLine`/`typeLine` and have their own test (`WakeLineTest`).
 
-**1.0, build 40:** **quiet phone**. `QuietRules` (rules for library mode and for activity types; the quietest wins; pure steps that set the ringer and Do Not Disturb and put them back, `ringerStep`, `holdStep`) and `Quiet` (applies them; replaces `LibraryRinger`; looks again when the app opens, after a restart, when you answer a slot, and at the next library switch, slot start or end, or end of a break). The Library mode section in Alarms became *Quiet and library mode*. The goal rings on the wallpaper from build 38 are removed (`GoalGlance` and its test are gone; the goals stay in Insights). Test: `QuietRulesTest`.
+**1.0, build 41:** **Quiet mode**, as its own part. Focus and locks has a new card, **Library and Quiet mode**, with two parts: Library mode (moved there from Alarms, unchanged) and Quiet mode. `QuietRules` holds the rules (what the phone does, and when: hours, activity types, both, or library mode; the quietest wins) and the pure steps that set the ringer and Do Not Disturb and put them back (`ringerStep`, `holdStep`); `QuietDialog` edits a rule; `Quiet` applies them and looks again when the app opens, after a restart, when you answer a slot, and at the next window edge, slot start or end, end of a break or library switch (it replaces `LibraryRinger`). The hours code of locks (`LockRules.windowEnd`, `nextStart`, `during`) now works on plain values so rules and locks share it. The goal rings on the wallpaper from build 38 are removed (`GoalGlance` and its test are gone; the goals stay in Insights). Test: `QuietRulesTest`.
 
 **1.0, build 39:** changing the plan while a slot runs or waits. **Change plan** is a small pill on the Home tab's Now card. It renames the running slot for today only (its type stays, so strict locks and alarms keep working); the slots before and after do not move. While a slot's start is put off, the Now card offers three answers, the same as the alarm screen: **Start now** (the wait ends), **Continue the slot before** with a − and + for the time (the wait ends there and the slot before goes on until then, at most an hour and never past the slot's end), and **Other plan** (a new name replaces the slot for today). The last answer about a late start is the one that counts (`LivePlan`, `SlotGaps`), so a wait can be shortened; reports show a replaced slot under its new name. Actions are `SlotActions.startWaitingNow`, `continuePreviousWhileWaiting`, `changePlan`. Test: `WaitChoicesTest`.
 
