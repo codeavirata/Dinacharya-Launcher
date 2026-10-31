@@ -2119,3 +2119,26 @@ This takes the place of the slot for today. The slots before and after it stay a
 This changes this slot for today only. The slots before and after it stay as they are.	यह आज के लिए सिर्फ़ इस स्लॉट को बदलता है। इससे पहले और बाद के स्लॉट जैसे हैं वैसे ही रहेंगे।
 Save for today	आज के लिए सहेजें
 Type a name first	पहले नाम लिखें
+Quiet and library mode	शांत और लाइब्रेरी मोड
+Quiet phone	शांत फ़ोन
+Choose how quiet the phone gets: the ringer, and the notifications of other apps (calls from people you allow still come through). When it ends, everything goes back to how it was, unless you changed it yourself.	तय करें कि फ़ोन कितना शांत रहे: रिंगर और दूसरे ऐप की सूचनाएँ (आपके चुने लोगों के कॉल आते रहेंगे)। समाप्त होने पर सब कुछ पहले जैसा हो जाता है, अगर आपने खुद नहीं बदला।
+While library mode is on	लाइब्रेरी मोड चालू रहने पर
+During activities	गतिविधियों के दौरान
+Add an activity type	गतिविधि का प्रकार जोड़ें
+Silent and holding back notifications need Do Not Disturb access. Tap to allow it. Until then the phone only vibrates.	पूरी तरह साइलेंट करने और सूचनाएँ रोकने के लिए ‘परेशान न करें’ की अनुमति चाहिए। अनुमति देने के लिए छुएँ। तब तक फ़ोन सिर्फ़ वाइब्रेट करेगा।
+No activity types yet. For example, vibrate while you study.	अभी कोई गतिविधि प्रकार नहीं। जैसे, पढ़ाई के समय वाइब्रेट।
+Phone ringer	फ़ोन की रिंगर
+Hold back notifications	सूचनाएँ रोकें
+As it is	जैसा है वैसा
+Vibrate	वाइब्रेट
+Silent	साइलेंट
+Do Not Disturb access	‘परेशान न करें’ की अनुमति
+To go fully silent, or to hold back notifications, Android needs your permission to change Do Not Disturb. Dinacharya Launcher only uses it for this and never reads your notifications. Until you allow it, the phone only vibrates.	पूरी तरह साइलेंट करने या सूचनाएँ रोकने के लिए Android को ‘परेशान न करें’ बदलने की आपकी अनुमति चाहिए। Dinacharya Launcher इसे सिर्फ़ इसी काम के लिए इस्तेमाल करती है और आपकी सूचनाएँ कभी नहीं पढ़ती। अनुमति मिलने तक फ़ोन सिर्फ़ वाइब्रेट करेगा।
+Open settings	सेटिंग खोलें
+Open Do Not Disturb access in your phone's settings	अपने फ़ोन की सेटिंग में ‘परेशान न करें’ की अनुमति खोलें
+That is the most types you can add	इससे ज़्यादा प्रकार नहीं जोड़े जा सकते
+Every type has a rule already	हर प्रकार का नियम पहले से है
+Quiet during	इस दौरान शांत
+Notifications held	सूचनाएँ रुकी हुई
+Vibrate, notifications held	वाइब्रेट, सूचनाएँ रुकी हुई
+Silent, notifications held	साइलेंट, सूचनाएँ रुकी हुई

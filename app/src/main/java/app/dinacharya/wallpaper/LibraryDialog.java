@@ -33,7 +33,7 @@ final class LibraryDialog {
     static void save(Activity a, LibraryMode lib, Runnable changed) {
         Store.saveLibrary(a, lib);
         SlotNow.changed();
-        LibraryRinger.refresh(a);
+        Quiet.refresh(a);
         if (changed != null) changed.run();
     }
 }

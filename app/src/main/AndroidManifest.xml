@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Optional: lets the home screen and the reports show phone use. The user switches it on in Settings. -->
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
@@ -224,7 +225,7 @@
 
         <!-- Library mode switching on or off by its hours: the ringer follows. -->
         <receiver
-            android:name=".LibraryRinger$Receiver"
+            android:name=".Quiet$Receiver"
             android:exported="false" />
 
         <receiver

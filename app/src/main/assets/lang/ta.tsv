@@ -2119,3 +2119,26 @@ This takes the place of the slot for today. The slots before and after it stay a
 This changes this slot for today only. The slots before and after it stay as they are.	இது இன்றைக்கு இந்த ஸ்லாட்டை மட்டும் மாற்றும். முன்பும் பின்பும் உள்ள ஸ்லாட்கள் அப்படியே இருக்கும்.
 Save for today	இன்றைக்குச் சேமி
 Type a name first	முதலில் பெயரை எழுதுங்கள்
+Quiet and library mode	அமைதி மற்றும் நூலக முறை
+Quiet phone	அமைதியான தொலைபேசி
+Choose how quiet the phone gets: the ringer, and the notifications of other apps (calls from people you allow still come through). When it ends, everything goes back to how it was, unless you changed it yourself.	தொலைபேசி எவ்வளவு அமைதியாக இருக்க வேண்டும் என்பதைத் தேர்வு செய்யுங்கள்: ரிங்கர் மற்றும் பிற செயலிகளின் அறிவிப்புகள் (நீங்கள் அனுமதித்தவர்களின் அழைப்புகள் வரும்). முடிந்ததும் எல்லாம் முன்பு போலவே திரும்பும், நீங்களே மாற்றாவிட்டால்.
+While library mode is on	நூலக முறை இயங்கும்போது
+During activities	செயல்பாடுகளின் போது
+Add an activity type	செயல்பாட்டு வகையைச் சேர்
+Silent and holding back notifications need Do Not Disturb access. Tap to allow it. Until then the phone only vibrates.	முழுமையாக அமைதியாக்கவும் அறிவிப்புகளை நிறுத்தவும் ‘தொந்தரவு செய்யாதே’ அனுமதி தேவை. அனுமதிக்க தட்டுங்கள். அதுவரை தொலைபேசி அதிர்வு மட்டும் செய்யும்.
+No activity types yet. For example, vibrate while you study.	இன்னும் செயல்பாட்டு வகை இல்லை. எ.கா., படிக்கும்போது அதிர்வு.
+Phone ringer	தொலைபேசி ரிங்கர்
+Hold back notifications	அறிவிப்புகளை நிறுத்து
+As it is	இருப்பது போலவே
+Vibrate	அதிர்வு
+Silent	அமைதி
+Do Not Disturb access	‘தொந்தரவு செய்யாதே’ அனுமதி
+To go fully silent, or to hold back notifications, Android needs your permission to change Do Not Disturb. Dinacharya Launcher only uses it for this and never reads your notifications. Until you allow it, the phone only vibrates.	முழுமையாக அமைதியாக்க அல்லது அறிவிப்புகளை நிறுத்த, ‘தொந்தரவு செய்யாதே’ மாற்ற Android-க்கு உங்கள் அனுமதி தேவை. Dinacharya Launcher இதை இதற்காக மட்டுமே பயன்படுத்துகிறது; உங்கள் அறிவிப்புகளை ஒருபோதும் படிக்காது. அனுமதிக்கும் வரை தொலைபேசி அதிர்வு மட்டும் செய்யும்.
+Open settings	அமைப்புகளைத் திற
+Open Do Not Disturb access in your phone's settings	தொலைபேசி அமைப்புகளில் ‘தொந்தரவு செய்யாதே’ அனுமதியைத் திறக்கவும்
+That is the most types you can add	இதற்கு மேல் வகைகளைச் சேர்க்க முடியாது
+Every type has a rule already	ஒவ்வொரு வகைக்கும் விதி ஏற்கனவே உள்ளது
+Quiet during	இதன்போது அமைதி
+Notifications held	அறிவிப்புகள் நிறுத்தப்பட்டன
+Vibrate, notifications held	அதிர்வு, அறிவிப்புகள் நிறுத்தப்பட்டன
+Silent, notifications held	அமைதி, அறிவிப்புகள் நிறுத்தப்பட்டன

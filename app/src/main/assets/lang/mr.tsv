@@ -2119,3 +2119,26 @@ This takes the place of the slot for today. The slots before and after it stay a
 This changes this slot for today only. The slots before and after it stay as they are.	हे आजसाठी फक्त हा स्लॉट बदलते. याआधीचे आणि नंतरचे स्लॉट जसे आहेत तसेच राहतील.
 Save for today	आजसाठी जतन करा
 Type a name first	आधी नाव लिहा
+Quiet and library mode	शांत आणि लायब्ररी मोड
+Quiet phone	शांत फोन
+Choose how quiet the phone gets: the ringer, and the notifications of other apps (calls from people you allow still come through). When it ends, everything goes back to how it was, unless you changed it yourself.	फोन किती शांत राहावा ते ठरवा: रिंगर आणि इतर अ‍ॅप्सच्या सूचना (तुम्ही निवडलेल्या लोकांचे कॉल येत राहतील). संपल्यावर सर्व काही पूर्वीसारखे होते, तुम्ही स्वतः बदलले नसेल तर.
+While library mode is on	लायब्ररी मोड चालू असताना
+During activities	क्रियाकलापांदरम्यान
+Add an activity type	क्रियाकलापाचा प्रकार जोडा
+Silent and holding back notifications need Do Not Disturb access. Tap to allow it. Until then the phone only vibrates.	पूर्ण सायलेंट करण्यासाठी आणि सूचना रोखण्यासाठी ‘व्यत्यय आणू नका’ची परवानगी लागते. परवानगी देण्यासाठी दाबा. तोपर्यंत फोन फक्त व्हायब्रेट होईल.
+No activity types yet. For example, vibrate while you study.	अजून कोणताही क्रियाकलाप प्रकार नाही. उदा., अभ्यासाच्या वेळी व्हायब्रेट.
+Phone ringer	फोनचा रिंगर
+Hold back notifications	सूचना रोखा
+As it is	आहे तसे
+Vibrate	व्हायब्रेट
+Silent	सायलेंट
+Do Not Disturb access	‘व्यत्यय आणू नका’ची परवानगी
+To go fully silent, or to hold back notifications, Android needs your permission to change Do Not Disturb. Dinacharya Launcher only uses it for this and never reads your notifications. Until you allow it, the phone only vibrates.	पूर्ण सायलेंट करण्यासाठी किंवा सूचना रोखण्यासाठी Android ला ‘व्यत्यय आणू नका’ बदलण्याची तुमची परवानगी लागते. Dinacharya Launcher ते फक्त यासाठीच वापरते आणि तुमच्या सूचना कधीही वाचत नाही. परवानगी मिळेपर्यंत फोन फक्त व्हायब्रेट होईल.
+Open settings	सेटिंग्ज उघडा
+Open Do Not Disturb access in your phone's settings	फोनच्या सेटिंग्जमध्ये ‘व्यत्यय आणू नका’ची परवानगी उघडा
+That is the most types you can add	याहून जास्त प्रकार जोडता येत नाहीत
+Every type has a rule already	प्रत्येक प्रकारासाठी नियम आधीच आहे
+Quiet during	यादरम्यान शांत
+Notifications held	सूचना रोखल्या
+Vibrate, notifications held	व्हायब्रेट, सूचना रोखल्या
+Silent, notifications held	सायलेंट, सूचना रोखल्या

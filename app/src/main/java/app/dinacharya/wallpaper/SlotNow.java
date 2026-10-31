@@ -17,6 +17,9 @@ final class SlotNow {
     /** When the run of back-to-back slots of this very type ends (the slot's own end when the next one is another type). */
     long runEndMs;
     boolean onBreak;
+    /** When the break ends (0 when none runs), and when the next slot begins (0 when none is left today). */
+    long breakEndMs;
+    long nextStartMs;
     /** When library mode ends (0 when it is off), and whether it has no end. */
     long libraryEndMs;
     boolean libraryOpen;
@@ -70,6 +73,11 @@ final class SlotNow {
                     int owner = SlotPlay.indexOfSrc(saved, cur.owner);
                     b = owner < 0 ? null : saved.sc.slots.get(owner).block;
                 }
+                for (int j = 0; j < p.sc.slots.size(); j++) {
+                    Routine.Block nb = p.sc.slots.get(j).block;
+                    long st = p.slotStartMs(j);
+                    if (!nb.skipped && !nb.isGap() && st > t && (n.nextStartMs == 0L || st < n.nextStartMs)) n.nextStartMs = st;
+                }
                 if (b != null && !b.skipped) {
                     n.kind = b.kind;
                     n.src = b.src;
@@ -88,7 +96,9 @@ final class SlotNow {
             LibraryMode lib = Store.library(c);
             n.libraryEndMs = lib.endMs(t, Store.zone());
             n.libraryOpen = n.libraryEndMs > 0 && lib.openEnded(t);
-            if (Store.alarmState(c).onBreak(t)) {
+            AlarmState state = Store.alarmState(c);
+            if (state.onBreak(t)) {
+                n.breakEndMs = state.breakTo;
                 n.onBreak = true;
                 n.kind = -1;
                 n.sub = "";

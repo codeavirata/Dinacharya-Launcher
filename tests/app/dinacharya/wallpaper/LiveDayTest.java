@@ -317,38 +317,15 @@ public class LiveDayTest {
         both.turnOn(at(9, 30), 120);
         ok("by hand and by the clock together last as long as the longer", both.endMs(at(9, 40), Z) == at(11, 30));
         LibraryMode copy = LibraryMode.parse(both.serialize());
-        ok("library settings survive saving", copy.auto && copy.untilMs == both.untilMs && copy.days == both.days && copy.startMin == 540 && copy.endMin == 600 && !copy.ringer);
+        ok("library settings survive saving", copy.auto && copy.untilMs == both.untilMs && copy.days == both.days && copy.startMin == 540 && copy.endMin == 600);
         LibraryMode openCopy = new LibraryMode();
         openCopy.turnOn(at(9, 0), 0);
-        openCopy.ringer = true;
         LibraryMode oc = LibraryMode.parse(openCopy.serialize());
-        ok("an open-ended session and the ringer choice survive saving", oc.untilMs == LibraryMode.OPEN_ENDED && oc.ringer && oc.on(at(23, 0), Z));
+        ok("an open-ended session survives saving", oc.untilMs == LibraryMode.OPEN_ENDED && oc.on(at(23, 0), Z));
         ok("damaged library text gives the defaults", !LibraryMode.parse("nonsense").on(at(10, 0), Z) && LibraryMode.parse(null).days == LockRules.WEEKDAYS
             && LibraryMode.parse("DINALIB1\nstart=zz\nend=99999\ndays=-4\n").endMin == 1439);
         ok("status lines", new LibraryMode().status(at(10, 0), Z, false).equals("Off") && openCopy.status(at(10, 0), Z, false).equals("On until you switch it off")
             && both.status(at(9, 40), Z, true).startsWith("On until "));
-
-        // ---- the phone's ringer while library mode is on
-        LibraryMode.RingerStep r1 = LibraryMode.ringerStep(true, LibraryMode.RINGER_NORMAL, -1);
-        ok("library on, ringer loud: go to vibrate and remember loud", r1.set == LibraryMode.RINGER_VIBRATE && r1.keep == LibraryMode.RINGER_NORMAL);
-        LibraryMode.RingerStep r2 = LibraryMode.ringerStep(true, LibraryMode.RINGER_VIBRATE, -1);
-        ok("library on, ringer already vibrate: leave it, remember nothing", r2.set == -1 && r2.keep == -1);
-        LibraryMode.RingerStep r3 = LibraryMode.ringerStep(true, LibraryMode.RINGER_SILENT, -1);
-        ok("library on, ringer silent: leave it, remember nothing", r3.set == -1 && r3.keep == -1);
-        LibraryMode.RingerStep r4 = LibraryMode.ringerStep(true, LibraryMode.RINGER_VIBRATE, LibraryMode.RINGER_NORMAL);
-        ok("library still on, already done: nothing more", r4.set == -1 && r4.keep == LibraryMode.RINGER_NORMAL);
-        LibraryMode.RingerStep r5 = LibraryMode.ringerStep(true, LibraryMode.RINGER_NORMAL, LibraryMode.RINGER_NORMAL);
-        ok("the person turned the sound back on during library mode: it is not forced again", r5.set == -1 && r5.keep == LibraryMode.RINGER_NORMAL);
-        LibraryMode.RingerStep r6 = LibraryMode.ringerStep(false, LibraryMode.RINGER_VIBRATE, LibraryMode.RINGER_NORMAL);
-        ok("library over, still vibrate: the old mode comes back", r6.set == LibraryMode.RINGER_NORMAL && r6.keep == -1);
-        LibraryMode.RingerStep r7 = LibraryMode.ringerStep(false, LibraryMode.RINGER_SILENT, LibraryMode.RINGER_NORMAL);
-        ok("library over, the person set silent meanwhile: their choice stands", r7.set == -1 && r7.keep == -1);
-        LibraryMode.RingerStep r8 = LibraryMode.ringerStep(false, LibraryMode.RINGER_NORMAL, LibraryMode.RINGER_NORMAL);
-        ok("library over, the person already restored it: nothing to do, memory dropped", r8.set == -1 && r8.keep == -1);
-        LibraryMode.RingerStep r9 = LibraryMode.ringerStep(false, LibraryMode.RINGER_NORMAL, -1);
-        ok("library off and nothing remembered: nothing to do", r9.set == -1 && r9.keep == -1);
-        LibraryMode.RingerStep r10 = LibraryMode.ringerStep(false, LibraryMode.RINGER_VIBRATE, -1);
-        ok("a phone on vibrate by the person's choice is never changed", r10.set == -1 && r10.keep == -1);
 
         LibraryMode on = new LibraryMode();
         on.turnOn(at(4, 0), 0);

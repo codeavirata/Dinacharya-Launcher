@@ -2119,3 +2119,26 @@ This takes the place of the slot for today. The slots before and after it stay a
 This changes this slot for today only. The slots before and after it stay as they are.	આ આજ માટે ફક્ત આ સ્લોટ બદલે છે. તેની પહેલાંના અને પછીના સ્લોટ જેમ છે તેમ જ રહેશે.
 Save for today	આજ માટે સાચવો
 Type a name first	પહેલાં નામ લખો
+Quiet and library mode	શાંત અને લાઇબ્રેરી મોડ
+Quiet phone	શાંત ફોન
+Choose how quiet the phone gets: the ringer, and the notifications of other apps (calls from people you allow still come through). When it ends, everything goes back to how it was, unless you changed it yourself.	ફોન કેટલો શાંત રહે તે નક્કી કરો: રિંગર અને બીજી ઍપની સૂચનાઓ (તમે મંજૂર કરેલા લોકોના કૉલ આવતા રહેશે). પૂરું થતાં બધું પહેલાં જેવું થઈ જાય છે, જો તમે જાતે બદલ્યું ન હોય.
+While library mode is on	લાઇબ્રેરી મોડ ચાલુ હોય ત્યારે
+During activities	પ્રવૃત્તિઓ દરમિયાન
+Add an activity type	પ્રવૃત્તિનો પ્રકાર ઉમેરો
+Silent and holding back notifications need Do Not Disturb access. Tap to allow it. Until then the phone only vibrates.	પૂરેપૂરું સાઇલન્ટ કરવા અને સૂચનાઓ રોકવા માટે ‘ખલેલ પાડશો નહીં’ની મંજૂરી જોઈએ. મંજૂરી આપવા ટૅપ કરો. ત્યાં સુધી ફોન ફક્ત વાઇબ્રેટ થશે.
+No activity types yet. For example, vibrate while you study.	હજી કોઈ પ્રવૃત્તિ પ્રકાર નથી. દા.ત., અભ્યાસ વખતે વાઇબ્રેટ.
+Phone ringer	ફોનનું રિંગર
+Hold back notifications	સૂચનાઓ રોકો
+As it is	જેમ છે તેમ
+Vibrate	વાઇબ્રેટ
+Silent	સાઇલન્ટ
+Do Not Disturb access	‘ખલેલ પાડશો નહીં’ની મંજૂરી
+To go fully silent, or to hold back notifications, Android needs your permission to change Do Not Disturb. Dinacharya Launcher only uses it for this and never reads your notifications. Until you allow it, the phone only vibrates.	પૂરેપૂરું સાઇલન્ટ કરવા કે સૂચનાઓ રોકવા માટે Androidને ‘ખલેલ પાડશો નહીં’ બદલવાની તમારી મંજૂરી જોઈએ. Dinacharya Launcher તેનો ઉપયોગ ફક્ત આ માટે જ કરે છે અને તમારી સૂચનાઓ ક્યારેય વાંચતી નથી. મંજૂરી મળે ત્યાં સુધી ફોન ફક્ત વાઇબ્રેટ થશે.
+Open settings	સેટિંગ્સ ખોલો
+Open Do Not Disturb access in your phone's settings	ફોનના સેટિંગ્સમાં ‘ખલેલ પાડશો નહીં’ની મંજૂરી ખોલો
+That is the most types you can add	આનાથી વધુ પ્રકાર ઉમેરી શકાતા નથી
+Every type has a rule already	દરેક પ્રકારનો નિયમ પહેલેથી છે
+Quiet during	આ દરમિયાન શાંત
+Notifications held	સૂચનાઓ રોકેલી
+Vibrate, notifications held	વાઇબ્રેટ, સૂચનાઓ રોકેલી
+Silent, notifications held	સાઇલન્ટ, સૂચનાઓ રોકેલી

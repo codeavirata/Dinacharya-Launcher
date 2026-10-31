@@ -47,6 +47,7 @@ final class SlotActions {
         SlotNow.changed();
         AlarmScheduler.reschedule(c);
         DayCloser.schedule(c);
+        Quiet.refresh(c);   // a break, a late start or a changed slot can change how quiet the phone should be
     }
 
     /** "Start now": the slot goes ahead as planned. */

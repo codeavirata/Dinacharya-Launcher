@@ -2119,3 +2119,26 @@ This takes the place of the slot for today. The slots before and after it stay a
 This changes this slot for today only. The slots before and after it stay as they are.	এটি আজকের জন্য শুধু এই স্লটটি বদলায়। আগের ও পরের স্লট যেমন আছে তেমনই থাকবে।
 Save for today	আজকের জন্য সংরক্ষণ করুন
 Type a name first	আগে নাম লিখুন
+Quiet and library mode	শান্ত ও লাইব্রেরি মোড
+Quiet phone	শান্ত ফোন
+Choose how quiet the phone gets: the ringer, and the notifications of other apps (calls from people you allow still come through). When it ends, everything goes back to how it was, unless you changed it yourself.	ফোন কতটা শান্ত থাকবে ঠিক করুন: রিংগার এবং অন্য অ্যাপের বিজ্ঞপ্তি (আপনার অনুমোদিত মানুষের কল আসতে থাকবে)। শেষ হলে সবকিছু আগের মতো হয়ে যায়, যদি না আপনি নিজে বদলান।
+While library mode is on	লাইব্রেরি মোড চালু থাকলে
+During activities	কাজের সময়
+Add an activity type	কাজের ধরন যোগ করুন
+Silent and holding back notifications need Do Not Disturb access. Tap to allow it. Until then the phone only vibrates.	পুরোপুরি নীরব করতে এবং বিজ্ঞপ্তি আটকাতে ‘বিরক্ত করবেন না’-র অনুমতি লাগে। অনুমতি দিতে ছুঁয়ে দিন। ততক্ষণ ফোন শুধু ভাইব্রেট করবে।
+No activity types yet. For example, vibrate while you study.	এখনও কোনো কাজের ধরন নেই। যেমন, পড়ার সময় ভাইব্রেট।
+Phone ringer	ফোনের রিংগার
+Hold back notifications	বিজ্ঞপ্তি আটকান
+As it is	যেমন আছে
+Vibrate	ভাইব্রেট
+Silent	নীরব
+Do Not Disturb access	‘বিরক্ত করবেন না’-র অনুমতি
+To go fully silent, or to hold back notifications, Android needs your permission to change Do Not Disturb. Dinacharya Launcher only uses it for this and never reads your notifications. Until you allow it, the phone only vibrates.	পুরোপুরি নীরব করতে বা বিজ্ঞপ্তি আটকাতে Android-কে ‘বিরক্ত করবেন না’ বদলানোর অনুমতি দিতে হবে। Dinacharya Launcher এটি শুধু এই কাজেই ব্যবহার করে এবং আপনার বিজ্ঞপ্তি কখনও পড়ে না। অনুমতি না দেওয়া পর্যন্ত ফোন শুধু ভাইব্রেট করবে।
+Open settings	সেটিংস খুলুন
+Open Do Not Disturb access in your phone's settings	ফোনের সেটিংসে ‘বিরক্ত করবেন না’-র অনুমতি খুলুন
+That is the most types you can add	এর বেশি ধরন যোগ করা যায় না
+Every type has a rule already	প্রতিটি ধরনের নিয়ম আগেই আছে
+Quiet during	এই সময়ে শান্ত
+Notifications held	বিজ্ঞপ্তি আটকানো
+Vibrate, notifications held	ভাইব্রেট, বিজ্ঞপ্তি আটকানো
+Silent, notifications held	নীরব, বিজ্ঞপ্তি আটকানো

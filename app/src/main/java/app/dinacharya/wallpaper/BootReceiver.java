@@ -10,7 +10,7 @@ public class BootReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         final Context c = context.getApplicationContext();
         AlarmScheduler.reschedule(c);
-        LibraryRinger.refresh(c);
+        Quiet.refresh(c);
         String action = intent == null ? null : intent.getAction();
         if (Intent.ACTION_BOOT_COMPLETED.equals(action) || Intent.ACTION_MY_PACKAGE_REPLACED.equals(action)) {
             StrongMode.ensure(c);   // only these two may start the strong lock's service from the background

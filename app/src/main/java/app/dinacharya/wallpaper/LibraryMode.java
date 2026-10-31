@@ -9,7 +9,7 @@ import java.time.ZonedDateTime;
  * Library mode, for places where the phone must stay quiet. While it is on, every alarm of the app only vibrates (the start-of-day alarm,
  * the slot alarms, the bedtime question and the timers), no sound is played, and the groups of apps that are set to lock "in library mode"
  * are locked. It is switched on by hand for a while (or until it is switched off) and can also come on by itself at fixed hours on chosen
- * days. Optionally it also puts the phone's ringer on vibrate. Uses no Android classes.
+ * days. How quiet the phone gets is in {@link QuietRules}. Uses no Android classes.
  */
 public final class LibraryMode {
     /** A manual session without an end: it lasts until it is switched off. */
@@ -28,7 +28,7 @@ public final class LibraryMode {
     /** The daily hours, minutes after midnight. An end at or before the start runs into the next day. */
     public int startMin = 9 * 60;
     public int endMin = 17 * 60;
-    /** Put the phone's ringer on vibrate while library mode is on, and back afterwards. */
+    /** Only read, to carry an older version's "vibrate in library mode" choice over to {@link QuietRules}; no longer written. */
     public boolean ringer;
 
     /** True when library mode is on at {@code nowMs}. */
@@ -105,51 +105,13 @@ public final class LibraryMode {
         return mode;
     }
 
-    // ------------------------------------------------------------------ the phone's ringer
-
-    /** Android's ringer modes (AudioManager): silent 0, vibrate 1, normal 2. -1 stands for "none". */
-    public static final int RINGER_SILENT = 0, RINGER_VIBRATE = 1, RINGER_NORMAL = 2;
-
-    /** What to do with the ringer now, and what to remember for putting it back. */
-    public static final class RingerStep {
-        /** The mode to put the ringer in, or -1 to leave it. */
-        public final int set;
-        /** The mode to remember for later, or -1 to remember nothing (what was remembered is dropped). */
-        public final int keep;
-
-        RingerStep(int set, int keep) {
-            this.set = set;
-            this.keep = keep;
-        }
-    }
-
-    /**
-     * The ringer rule. While library mode is on and the ringer option is chosen, a ringer that is on goes to vibrate and its old mode is
-     * remembered; one that was already on vibrate or silent is left alone and nothing is remembered. Once that is done it is not forced
-     * again, so a person who turns the sound back on during library mode keeps it. When library mode ends, the old mode comes back, but
-     * only if the ringer is still on vibrate (if the person changed it meanwhile, their choice stands).
-     *
-     * @param wantQuiet library mode is on and the ringer option is chosen
-     * @param current   the ringer mode now
-     * @param kept      the mode remembered earlier, or -1
-     */
-    public static RingerStep ringerStep(boolean wantQuiet, int current, int kept) {
-        if (wantQuiet) {
-            if (kept >= 0) return new RingerStep(-1, kept);
-            if (current == RINGER_NORMAL) return new RingerStep(RINGER_VIBRATE, RINGER_NORMAL);
-            return new RingerStep(-1, -1);
-        }
-        if (kept >= 0 && current == RINGER_VIBRATE) return new RingerStep(kept, -1);
-        return new RingerStep(-1, -1);
-    }
-
     // ------------------------------------------------------------------ saving
 
     private static final String MAGIC = "DINALIB1";
 
     public String serialize() {
         return MAGIC + "\nuntil=" + untilMs + "\nauto=" + (auto ? 1 : 0) + "\ndays=" + days + "\nstart=" + startMin + "\nend=" + endMin
-                + "\nringer=" + (ringer ? 1 : 0) + "\n";
+                + "\n";
     }
 
     public static LibraryMode parse(String text) {

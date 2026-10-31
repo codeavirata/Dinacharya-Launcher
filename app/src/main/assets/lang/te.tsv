@@ -2119,3 +2119,26 @@ This takes the place of the slot for today. The slots before and after it stay a
 This changes this slot for today only. The slots before and after it stay as they are.	ఇది ఈరోజుకు ఈ స్లాట్‌ను మాత్రమే మారుస్తుంది. ముందు, తర్వాత ఉన్న స్లాట్లు అలాగే ఉంటాయి.
 Save for today	ఈరోజుకు సేవ్ చేయండి
 Type a name first	ముందు పేరు రాయండి
+Quiet and library mode	నిశ్శబ్ద మరియు లైబ్రరీ మోడ్
+Quiet phone	నిశ్శబ్ద ఫోన్
+Choose how quiet the phone gets: the ringer, and the notifications of other apps (calls from people you allow still come through). When it ends, everything goes back to how it was, unless you changed it yourself.	ఫోన్ ఎంత నిశ్శబ్దంగా ఉండాలో ఎంచుకోండి: రింగర్ మరియు ఇతర యాప్‌ల నోటిఫికేషన్లు (మీరు అనుమతించిన వారి కాల్స్ వస్తూనే ఉంటాయి). ముగిసాక అన్నీ ముందులాగే అవుతాయి, మీరే మార్చకపోతే.
+While library mode is on	లైబ్రరీ మోడ్ ఆన్‌లో ఉన్నప్పుడు
+During activities	కార్యకలాపాల సమయంలో
+Add an activity type	కార్యకలాప రకాన్ని జోడించండి
+Silent and holding back notifications need Do Not Disturb access. Tap to allow it. Until then the phone only vibrates.	పూర్తిగా నిశ్శబ్దం చేయడానికి, నోటిఫికేషన్లు ఆపడానికి ‘అంతరాయం కలిగించవద్దు’ అనుమతి కావాలి. అనుమతించడానికి నొక్కండి. అప్పటివరకు ఫోన్ వైబ్రేట్ మాత్రమే అవుతుంది.
+No activity types yet. For example, vibrate while you study.	ఇంకా కార్యకలాప రకాలు లేవు. ఉదా., చదివేటప్పుడు వైబ్రేట్.
+Phone ringer	ఫోన్ రింగర్
+Hold back notifications	నోటిఫికేషన్లు ఆపండి
+As it is	ఉన్నట్లే
+Vibrate	వైబ్రేట్
+Silent	నిశ్శబ్దం
+Do Not Disturb access	‘అంతరాయం కలిగించవద్దు’ అనుమతి
+To go fully silent, or to hold back notifications, Android needs your permission to change Do Not Disturb. Dinacharya Launcher only uses it for this and never reads your notifications. Until you allow it, the phone only vibrates.	పూర్తిగా నిశ్శబ్దం చేయడానికి లేదా నోటిఫికేషన్లు ఆపడానికి Androidకి ‘అంతరాయం కలిగించవద్దు’ మార్చే మీ అనుమతి కావాలి. Dinacharya Launcher దీనిని ఇందుకోసమే వాడుతుంది, మీ నోటిఫికేషన్లను ఎప్పుడూ చదవదు. అనుమతించే వరకు ఫోన్ వైబ్రేట్ మాత్రమే అవుతుంది.
+Open settings	సెట్టింగ్‌లు తెరవండి
+Open Do Not Disturb access in your phone's settings	ఫోన్ సెట్టింగ్‌లలో ‘అంతరాయం కలిగించవద్దు’ అనుమతిని తెరవండి
+That is the most types you can add	ఇంతకంటే ఎక్కువ రకాలను జోడించలేరు
+Every type has a rule already	ప్రతి రకానికి నియమం ఇప్పటికే ఉంది
+Quiet during	ఈ సమయంలో నిశ్శబ్దం
+Notifications held	నోటిఫికేషన్లు ఆపబడ్డాయి
+Vibrate, notifications held	వైబ్రేట్, నోటిఫికేషన్లు ఆపబడ్డాయి
+Silent, notifications held	నిశ్శబ్దం, నోటిఫికేషన్లు ఆపబడ్డాయి

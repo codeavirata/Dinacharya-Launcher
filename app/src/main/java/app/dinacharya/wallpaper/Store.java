@@ -16,6 +16,7 @@ final class Store {
     private static final String KEY_SINCE = "since";
     private static final String KEY_TODOS = "todos";
     private static final String KEY_LIBRARY = "library";
+    private static final String KEY_QUIET = "quiet";
 
     private Store() {
     }
@@ -102,6 +103,28 @@ final class Store {
     /** Library mode: when it is on, every alarm only vibrates. */
     static LibraryMode library(Context c) {
         return LibraryMode.parse(prefs(c).getString(KEY_LIBRARY, null));
+    }
+
+    /**
+     * How quiet the phone is while library mode is on and during chosen activity types. An older version only had "put the phone on
+     * vibrate in library mode"; that choice becomes the library rule the first time this is read.
+     */
+    static QuietRules quiet(Context c) {
+        String text = prefs(c).getString(KEY_QUIET, null);
+        if (text != null) return QuietRules.parse(text);
+        QuietRules q = new QuietRules();
+        LibraryMode lib = library(c);
+        if (lib.ringer) {
+            q.library = new QuietRules.Rule(QuietRules.VIBRATE, false);
+            lib.ringer = false;
+            saveLibrary(c, lib);
+            saveQuiet(c, q);
+        }
+        return q;
+    }
+
+    static void saveQuiet(Context c, QuietRules q) {
+        prefs(c).edit().putString(KEY_QUIET, q.serialize()).apply();
     }
 
     static void saveLibrary(Context c, LibraryMode m) {

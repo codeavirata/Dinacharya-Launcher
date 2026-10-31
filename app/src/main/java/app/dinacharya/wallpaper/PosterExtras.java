@@ -49,8 +49,6 @@ final class PosterExtras {
         final SlotUse.Info use;
         /** How today's slots went, by their number in the routine; null when phone use is not shown. */
         final SlotUse.Snapshot slots;
-        /** Today's goals and how far they are, for a small strip on the poster; empty when there are none. */
-        List<GoalGlance> goals = new ArrayList<>();
 
         Now(List<Todos.Item> items, long breakUntilMs) {
             this(items, breakUntilMs, 0L);
@@ -89,16 +87,6 @@ final class PosterExtras {
     }
 
     Now at(Plan.DayPlan day, long nowMs, ZoneId zone) {
-        Now n = base(day, nowMs, zone);
-        List<GoalGlance> g = GoalGlance.of(main, day);
-        if (g.isEmpty()) return n;
-        // the shared "nothing" is never changed: a copy carries the goals
-        Now c = new Now(n.items, n.breakUntilMs, n.libraryEndMs, n.use, n.slots);
-        c.goals = g;
-        return c;
-    }
-
-    private Now base(Plan.DayPlan day, long nowMs, ZoneId zone) {
         long lib = library != null && zone != null ? library.endMs(nowMs, zone) : 0L;
         // how today's slots went, when it is for this very day
         SlotUse.Snapshot slots = use != null && day != null && use.day.equals(day.day.toString()) && !use.bySrc.isEmpty() ? use : null;

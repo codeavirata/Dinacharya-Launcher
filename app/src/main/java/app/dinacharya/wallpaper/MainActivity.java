@@ -216,7 +216,7 @@ public class MainActivity extends LangActivity {
         settlePass();
         HomeRole.look(this);
         StrongMode.afterReturn(this);   // the strong lock runs whenever something is locked or paused and it is allowed; asks for the next permission
-        LibraryRinger.refresh(this);   // library mode may have begun or ended while the app was closed
+        Quiet.refresh(this);   // library mode may have begun or ended while the app was closed
         // The alarms and the wallpaper are looked at again every time the dashboard comes up (settlePass above saved first).
         Keeper.ensure(this, "dashboard");
         if (HomeRole.lost(this) && !homeOffered) {
