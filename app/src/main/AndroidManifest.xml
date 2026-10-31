@@ -2,8 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Optional: lets the home screen and the reports show phone use. The user switches it on in Settings. -->
+    <!-- Optional: lets quiet mode go silent and hold back notifications. The user allows it in Settings. -->
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+
+    <!-- Optional: lets the home screen and the reports show phone use. The user switches it on in Settings. -->
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
