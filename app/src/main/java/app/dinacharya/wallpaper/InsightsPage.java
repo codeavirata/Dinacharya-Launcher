@@ -144,18 +144,8 @@ final class InsightsPage extends Page {
         addTimeRing(card, m, lines);
 
         // Goals.
-        goalsBox.addView(goalsCard(a, lines, streaks, "Daily goals"), Ui.wide(a, 16));
+        goalsBox.addView(goalsCard(a, lines, streaks, "Daily goals", addGoalButton()), Ui.wide(a, 16));
         LinearLayout gc = (LinearLayout) goalsBox.getChildAt(0);
-        LinearLayout adds = new LinearLayout(a);
-        adds.setOrientation(LinearLayout.HORIZONTAL);
-        Button addGoal = Ui.button(a, "＋  Add a goal", false, v -> editGoal(null, false));
-        Button addToday = Ui.button(a, "＋  Goal for today", false, v -> editGoal(null, true));
-        adds.addView(addGoal, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        LinearLayout.LayoutParams tp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
-        tp.leftMargin = a.dp(8);
-        adds.addView(addToday, tp);
-        gc.addView(adds, Ui.wide(a, 12));
-        gc.addView(Ui.button(a, "＋  Goal for tomorrow", false, v -> editGoal(null, false, true)), Ui.wide(a, 8));
         addGoalList(gc, m);
 
         // Every slot so far, with the apps used in it.
@@ -348,14 +338,39 @@ final class InsightsPage extends Page {
         return s < 0 ? Ui.MUTED : s >= 70 ? Ui.TEAL : (s >= 50 ? Ui.AMBER : Ui.RED);
     }
 
-    /** A card listing goals with progress bars; used on Home and here. */
+    /** A card listing goals with a clock-style ring each; used on Home and here. */
     static LinearLayout goalsCard(MainActivity a, List<TypeStats.Line> lines, Map<String, Integer> streaks, String title) {
+        return goalsCard(a, lines, streaks, title, null);
+    }
+
+    /** The same, with a small view (the plus that adds a goal) at the right end of the title line. */
+    static LinearLayout goalsCard(MainActivity a, List<TypeStats.Line> lines, Map<String, Integer> streaks, String title, View trailing) {
         LinearLayout card = new LinearLayout(a);
         card.setOrientation(LinearLayout.VERTICAL);
-        card.setPadding(a.dp(18), a.dp(16), a.dp(18), a.dp(18));
+        card.setPadding(a.dp(18), a.dp(14), a.dp(18), a.dp(14));
         card.setBackground(Ui.box(a, Ui.SURFACE, 0, 22));
         card.setElevation(a.dp(1.5f));
-        card.addView(Ui.eyebrow(a, title));
+        LinearLayout head = new LinearLayout(a);
+        head.setOrientation(LinearLayout.HORIZONTAL);
+        head.setGravity(Gravity.CENTER_VERTICAL);
+        head.addView(Ui.eyebrow(a, title), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        if (trailing != null) head.addView(trailing, new LinearLayout.LayoutParams(a.dp(34), a.dp(34)));
+        card.addView(head);
+        TypeStats.Summary sm = TypeStats.summary(lines);
+        if (sm.goals > 0) {
+            LinearLayout top = new LinearLayout(a);
+            top.setOrientation(LinearLayout.HORIZONTAL);
+            top.setGravity(Gravity.CENTER_VERTICAL);
+            top.addView(new GoalRing(a, 52, sm.pct / 100f, Ui.TEAL, sm.pct + "%", sm.met == sm.goals), new LinearLayout.LayoutParams(a.dp(52), a.dp(52)));
+            LinearLayout words = new LinearLayout(a);
+            words.setOrientation(LinearLayout.VERTICAL);
+            words.setPadding(a.dp(14), 0, 0, 0);
+            words.addView(Ui.label(a, sm.met + " of " + sm.goals + " goals", 16, Ui.INK, true));
+            words.addView(Ui.label(a, sm.minLeft > 0 ? Routine.formatDuration(sm.minLeft) + " to go" : "All goals done", 13, Ui.MUTED, false),
+                    Ui.wide(a, 1));
+            top.addView(words, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+            card.addView(top, Ui.wide(a, 8));
+        }
         boolean any = false;
         for (TypeStats.Line l : lines) {
             if (!l.hasGoal()) continue;
@@ -379,31 +394,41 @@ final class InsightsPage extends Page {
         LinearLayout top = new LinearLayout(a);
         top.setOrientation(LinearLayout.HORIZONTAL);
         top.setGravity(Gravity.CENTER_VERTICAL);
-        top.addView(Ui.label(a, l.label() + (streak != null && streak > 0 ? "  🔥 " + streak : ""), 15, Ui.INK, true),
-                new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        String v = l.hasGoal() ? Routine.formatDuration(l.doneMin) + " of " + Routine.formatDuration(l.goalMin)
-                : Routine.formatDuration(l.doneMin) + " of " + Routine.formatDuration(l.plannedMin) + " planned";
-        TextView val = Ui.label(a, l.met() ? v + "  ✓" : v, 13, l.met() ? Ui.TEAL : Ui.MUTED, l.met());
-        top.addView(val);
         final TextView arrow = Ui.label(a, "▾", 14, Ui.TEAL, true);
         arrow.setPadding(a.dp(8), 0, 0, 0);
-        top.addView(arrow);
-        box.addView(top);
         // The detail lines are one tap away, so a list of goals stays short.
         final LinearLayout details = new LinearLayout(a);
         details.setOrientation(LinearLayout.VERTICAL);
-        FrameLayout bar = new FrameLayout(a);
-        bar.setBackground(Ui.box(a, Ui.SOFT, 0, 5));
-        final View fill = new View(a);
-        fill.setBackground(Ui.box(a, l.met() ? Ui.TEAL : col, 0, 5));
-        bar.addView(fill, new FrameLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT));
-        final float frac = l.pct() / 100f;
-        bar.post(() -> {
-            ViewGroup.LayoutParams lp = fill.getLayoutParams();
-            lp.width = Math.round(bar.getWidth() * frac);
-            fill.setLayoutParams(lp);
-        });
-        box.addView(bar, Ui.lp(a, ViewGroup.LayoutParams.MATCH_PARENT, a.dp(10), 6));
+        if (l.hasGoal()) {
+            // a goal is one slim line: a ring, the name, and "1h 20 of 2h"
+            top.addView(new GoalRing(a, 40, l.pct() / 100f, col, l.pct() + "", l.met()), new LinearLayout.LayoutParams(a.dp(40), a.dp(40)));
+            LinearLayout words = new LinearLayout(a);
+            words.setOrientation(LinearLayout.VERTICAL);
+            words.setPadding(a.dp(12), 0, 0, 0);
+            words.addView(Ui.label(a, l.label() + (streak != null && streak > 0 ? "  🔥 " + streak : ""), 15, Ui.INK, true));
+            words.addView(Ui.label(a, Routine.formatDuration(l.doneMin) + " of " + Routine.formatDuration(l.goalMin), 12,
+                    l.met() ? Ui.TEAL : Ui.MUTED, l.met()), Ui.wide(a, 1));
+            top.addView(words, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+            top.addView(arrow);
+            box.addView(top);
+        } else {
+            top.addView(Ui.label(a, l.label(), 15, Ui.INK, true), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+            top.addView(Ui.label(a, Routine.formatDuration(l.doneMin) + " of " + Routine.formatDuration(l.plannedMin) + " planned", 13, Ui.MUTED, false));
+            top.addView(arrow);
+            box.addView(top);
+            FrameLayout bar = new FrameLayout(a);
+            bar.setBackground(Ui.box(a, Ui.SOFT, 0, 5));
+            final View fill = new View(a);
+            fill.setBackground(Ui.box(a, col, 0, 5));
+            bar.addView(fill, new FrameLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT));
+            final float frac = l.pct() / 100f;
+            bar.post(() -> {
+                ViewGroup.LayoutParams lp = fill.getLayoutParams();
+                lp.width = Math.round(bar.getWidth() * frac);
+                fill.setLayoutParams(lp);
+            });
+            box.addView(bar, Ui.lp(a, ViewGroup.LayoutParams.MATCH_PARENT, a.dp(10), 6));
+        }
         if (l.hasGoal()) {
             String sub = l.plannedMin < l.goalMin
                     ? "Your plan has " + Routine.formatDuration(l.plannedMin) + " of it today."
@@ -449,6 +474,48 @@ final class InsightsPage extends Page {
             });
         }
         parent.addView(box, Ui.wide(a, 6));
+    }
+
+    /** The one small plus of the goals card. It asks when the goal is for, then opens the editor. */
+    private View addGoalButton() {
+        Button plus = Ui.iconButton(a, "＋", Ui.TEAL_DARK, v -> chooseGoalDay());
+        plus.setContentDescription(Lang.tr("New goal"));
+        return plus;
+    }
+
+    /** A short sheet at the bottom of the screen: every day, today only, or tomorrow only. */
+    private void chooseGoalDay() {
+        final android.app.Dialog d = new android.app.Dialog(a);
+        d.requestWindowFeature(android.view.Window.FEATURE_NO_TITLE);
+        LinearLayout sheet = new LinearLayout(a);
+        sheet.setOrientation(LinearLayout.VERTICAL);
+        sheet.setPadding(a.dp(20), a.dp(14), a.dp(20), a.dp(18));
+        sheet.setBackground(Ui.box(a, Ui.SURFACE, 0, 22));
+        View grip = new View(a);
+        grip.setBackground(Ui.box(a, Ui.LINE, 0, 3));
+        sheet.addView(grip, Ui.lp(a, a.dp(36), a.dp(4), 0));
+        ((LinearLayout.LayoutParams) grip.getLayoutParams()).gravity = Gravity.CENTER_HORIZONTAL;
+        sheet.addView(Ui.label(a, "New goal", 17, Ui.INK, true), Ui.wide(a, 12));
+        sheet.addView(Ui.label(a, "When is it for?", 13, Ui.MUTED, false), Ui.wide(a, 2));
+        String[] names = {"Every day", "Today only", "Tomorrow only"};
+        for (int i = 0; i < names.length; i++) {
+            final int which = i;
+            Button b = Ui.button(a, names[i], false, x -> {
+                d.dismiss();
+                if (which == 0) editGoal(null, false);
+                else if (which == 1) editGoal(null, true);
+                else editGoal(null, false, true);
+            });
+            sheet.addView(b, Ui.wide(a, 8));
+        }
+        d.setContentView(sheet);
+        android.view.Window w = d.getWindow();
+        if (w != null) {
+            w.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(0));
+            w.setGravity(Gravity.BOTTOM);
+            w.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+        d.show();
     }
 
     /** The day the app calls today (a day that began yesterday and is still running counts as today). */

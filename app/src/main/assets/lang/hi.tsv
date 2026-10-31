@@ -2106,3 +2106,8 @@ Typed for both	दोनों के लिए टाइप करें
 A line you type is used only where that challenge is set to typing, and is cut at 80 letters.	आपकी लिखी पंक्ति केवल वहीं काम आती है जहाँ वह चुनौती टाइप करने पर रखी हो, और 80 अक्षरों पर कट जाती है।
 Your own line (optional)	आपकी अपनी पंक्ति (वैकल्पिक)
 You will type:  “{1}”	आप यह टाइप करेंगे:  “{1}”
+When is it for?	यह किस दिन के लिए है?
+Progress	प्रगति
+All goals done	सभी लक्ष्य पूरे
+{1} of {2} goals	{1} / {2} लक्ष्य
+{1} to go	{1} बाकी

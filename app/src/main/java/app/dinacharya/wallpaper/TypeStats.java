@@ -110,7 +110,9 @@ public final class TypeStats {
 
     /** Minutes of this row that count as done (see the class note). */
     public static int doneMinutes(DayReport.Row row) {
-        if (row.status != DayReport.KEPT && row.status != DayReport.UNTRACKED) return 0;
+        // a slot that is running now has not ended, so the report calls it "upcoming"; the part that has passed still counts
+        boolean running = row.status == DayReport.UPCOMING && row.activeMs > 0;
+        if (row.status != DayReport.KEPT && row.status != DayReport.UNTRACKED && !running) return 0;
         if (row.kind == Routine.SLEEP) return 0;
         int passed = (int) Math.max(0, row.activeMs / 60000L);
         // a slot that was carried into the next one has that time as well; the next slot's own time was already cut by it
@@ -175,6 +177,32 @@ public final class TypeStats {
         for (Map.Entry<String, Long> e : l.apps.entrySet()) if (e.getValue() > 0) out.add(new Object[]{e.getKey(), e.getValue()});
         out.sort((x, y) -> Long.compare((Long) y[1], (Long) x[1]));
         return out;
+    }
+
+    /** How a day's goals add up: how many are met, the share done overall (0..100), and the minutes still to go. */
+    public static final class Summary {
+        public final int goals, met, pct, minLeft;
+
+        Summary(int goals, int met, int pct, int minLeft) {
+            this.goals = goals;
+            this.met = met;
+            this.pct = pct;
+            this.minLeft = minLeft;
+        }
+    }
+
+    /** The sum of the lines that are goals. A goal's progress is capped at its target, so one that is over does not hide another that is behind. */
+    public static Summary summary(List<Line> lines) {
+        int goals = 0, met = 0, target = 0, done = 0;
+        for (Line l : lines) {
+            if (!l.hasGoal()) continue;
+            goals++;
+            if (l.met()) met++;
+            target += l.goalMin;
+            done += Math.min(l.goalMin, l.doneMin);
+        }
+        int pct = target <= 0 ? 0 : Math.min(100, Math.round(100f * done / target));
+        return new Summary(goals, met, pct, Math.max(0, target - done));
     }
 
     /** The line for one type, or null (the goals of slots are not about a type). */

@@ -214,6 +214,7 @@ final class PosterRenderer {
         // Past the halfway point of the scroll the wake, first task and bed times in the header are the new day's.
         Plan.DayPlan head = (change != null && change.progress >= 0.5f) ? change.to : day;
         float listTop = header(c, w, u, h * r.topPct / 100f, pal, head.sc, r, cal, screen, head.adjusted);
+        if (!live.goals.isEmpty()) listTop = goalStrip(c, w, u, listTop, pal);
         float bottom = h - h * r.bottomPct / 100f;
         if (r.showMark) {
             mark(c, w, u, bottom - 22 * u, pal);
@@ -239,6 +240,43 @@ final class PosterRenderer {
         list(c, w, u, listTop, bottom, pal, nx.sc, nx.routine, nx.cur, nx.tt, false);
         c.restore();
         c.restoreToCount(keep);
+    }
+
+    /**
+     * Today's goals as one quiet line under the header: a small ring for each (the nearest to done first, up to four) and its name.
+     * Returns where the list starts, a little lower than before.
+     */
+    private float goalStrip(Canvas c, int w, float u, float top, Palette pal) {
+        float m = 56 * u;
+        int n = live.goals.size();
+        float cell = (w - 2 * m) / n;
+        float d = 40 * u;
+        float stroke = 5 * u;
+        float cy = top + d / 2f;
+        RectF box = new RectF();
+        for (int i = 0; i < n; i++) {
+            GoalGlance g = live.goals.get(i);
+            float x0 = m + i * cell;
+            box.set(x0 + stroke / 2f, cy - d / 2f + stroke / 2f, x0 + d - stroke / 2f, cy + d / 2f - stroke / 2f);
+            p.setStyle(Paint.Style.STROKE);
+            p.setStrokeWidth(stroke);
+            p.setStrokeCap(Paint.Cap.ROUND);
+            p.setColor(pal.line);
+            c.drawOval(box, p);
+            if (g.frac > 0.005f) {
+                p.setColor(g.met ? pal.accent : pal.ink);
+                c.drawArc(box, -90f, 360f * g.frac, false, p);
+            }
+            if (g.met) check(c, x0 + d / 2f, cy, d * 0.5f, pal.accent, 4 * u);
+            // the name, cut with "..." when it does not fit in its share of the line
+            float size = 28 * u;
+            float room = cell - d - 22 * u;
+            String name = g.name;
+            while (name.length() > 1 && plain(null, name, 0, 0, size, 0, MED, 0f) > room) name = name.substring(0, name.length() - 1);
+            if (!name.equals(g.name)) name = name.trim() + "\u2026";
+            plain(c, name, x0 + d + 12 * u, cy + size * 0.35f, size, g.met ? pal.muted : pal.ink, MED, 0f);
+        }
+        return top + d + 30 * u;
     }
 
     /**

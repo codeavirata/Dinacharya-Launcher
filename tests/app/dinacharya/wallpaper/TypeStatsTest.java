@@ -34,6 +34,24 @@ public class TypeStatsTest {
         r.rows.add(row(Routine.TASK, "Revision", 45, DayReport.UNANSWERED, 45)); // no answer: not done
         r.rows.add(row(Routine.TASK, "", 30, DayReport.KEPT, 30));               // no type: not listed
         r.rows.add(row(Routine.SLEEP, "", 480, DayReport.UNTRACKED, 480));
+        // a slot with no alarm that is running now is "upcoming" in the report, but the part that has passed counts
+        DayReport run = new DayReport();
+        run.day = "2026-10-19";
+        run.goals.add(new Routine.Goal(Routine.TASK, "Study", 120));
+        run.rows.add(row(Routine.TASK, "Study", 60, DayReport.UPCOMING, 25));
+        run.rows.add(row(Routine.TASK, "Study", 60, DayReport.UPCOMING, 0));
+        ok("a running slot without an alarm counts what has passed", TypeStats.of(run).get(0).doneMin == 25);
+        // the goals' summary: met count, share done (each capped at its target) and minutes to go
+        DayReport sr = new DayReport();
+        sr.day = "2026-10-19";
+        sr.goals.add(new Routine.Goal(Routine.TASK, "Study", 120));
+        sr.goals.add(new Routine.Goal(Routine.PERSONAL, "Exercise", 60));
+        sr.rows.add(row(Routine.TASK, "Study", 180, DayReport.KEPT, 180));
+        sr.rows.add(row(Routine.PERSONAL, "Exercise", 60, DayReport.KEPT, 30));
+        TypeStats.Summary sm = TypeStats.summary(TypeStats.of(sr));
+        ok("summary counts goals and the ones met", sm.goals == 2 && sm.met == 1);
+        ok("summary caps a goal that is over its target", sm.pct == 83 && sm.minLeft == 30);
+        ok("summary of no goals is empty", TypeStats.summary(new java.util.ArrayList<TypeStats.Line>()).goals == 0);
         List<TypeStats.Line> lines = TypeStats.of(r);
         ok("goals first, in order, then other types", lines.size() == 3 && lines.get(0).label().equals("Study")
                 && lines.get(1).label().equals("Exercise") && lines.get(2).label().equals("Revision"));
