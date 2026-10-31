@@ -2111,3 +2111,11 @@ Progress	অগ্রগতি
 All goals done	সব লক্ষ্য সম্পূর্ণ
 {1} of {2} goals	{1} / {2} লক্ষ্য
 {1} to go	{1} বাকি
+Change plan	পরিকল্পনা বদলান
+Continue “{1}”	“{1}” চালিয়ে যান
+Keep going until	এতক্ষণ পর্যন্ত চালিয়ে যান
+Then “{1}” starts, at {2}.	তারপর {2}-এ “{1}” শুরু হবে।
+This takes the place of the slot for today. The slots before and after it stay as they are.	এটি আজকের জন্য এই স্লটের জায়গা নেবে। আগের ও পরের স্লট যেমন আছে তেমনই থাকবে।
+This changes this slot for today only. The slots before and after it stay as they are.	এটি আজকের জন্য শুধু এই স্লটটি বদলায়। আগের ও পরের স্লট যেমন আছে তেমনই থাকবে।
+Save for today	আজকের জন্য সংরক্ষণ করুন
+Type a name first	আগে নাম লিখুন

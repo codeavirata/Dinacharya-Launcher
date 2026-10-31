@@ -2111,3 +2111,11 @@ Progress	प्रगती
 All goals done	सर्व ध्येये पूर्ण
 {1} of {2} goals	{1} / {2} ध्येये
 {1} to go	{1} बाकी
+Change plan	योजना बदला
+Continue “{1}”	“{1}” चालू ठेवा
+Keep going until	इतक्या वेळेपर्यंत चालू ठेवा
+Then “{1}” starts, at {2}.	मग {2} वाजता “{1}” सुरू होईल.
+This takes the place of the slot for today. The slots before and after it stay as they are.	हे आजसाठी या स्लॉटची जागा घेईल. याआधीचे आणि नंतरचे स्लॉट जसे आहेत तसेच राहतील.
+This changes this slot for today only. The slots before and after it stay as they are.	हे आजसाठी फक्त हा स्लॉट बदलते. याआधीचे आणि नंतरचे स्लॉट जसे आहेत तसेच राहतील.
+Save for today	आजसाठी जतन करा
+Type a name first	आधी नाव लिहा

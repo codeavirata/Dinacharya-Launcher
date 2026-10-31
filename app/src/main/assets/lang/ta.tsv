@@ -2111,3 +2111,11 @@ Progress	முன்னேற்றம்
 All goals done	எல்லா இலக்குகளும் முடிந்தன
 {1} of {2} goals	{1} / {2} இலக்குகள்
 {1} to go	{1} மீதம்
+Change plan	திட்டத்தை மாற்று
+Continue “{1}”	“{1}” தொடரவும்
+Keep going until	இதுவரை தொடரவும்
+Then “{1}” starts, at {2}.	பிறகு {2} மணிக்கு “{1}” தொடங்கும்.
+This takes the place of the slot for today. The slots before and after it stay as they are.	இது இன்றைக்கு இந்த ஸ்லாட்டின் இடத்தை எடுக்கும். முன்பும் பின்பும் உள்ள ஸ்லாட்கள் அப்படியே இருக்கும்.
+This changes this slot for today only. The slots before and after it stay as they are.	இது இன்றைக்கு இந்த ஸ்லாட்டை மட்டும் மாற்றும். முன்பும் பின்பும் உள்ள ஸ்லாட்கள் அப்படியே இருக்கும்.
+Save for today	இன்றைக்குச் சேமி
+Type a name first	முதலில் பெயரை எழுதுங்கள்

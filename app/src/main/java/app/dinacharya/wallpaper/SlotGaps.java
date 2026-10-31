@@ -133,10 +133,16 @@ public final class SlotGaps {
         List<long[]> delays = new ArrayList<>();
         List<long[]> lent = new ArrayList<>();
         List<long[]> carried = new ArrayList<>();
+        // the last answer about this slot's late start is the one that counts (it can end the wait early)
+        Ev lastDelay = null;
+        for (Ev e : dayEvents) if (Ev.DELAY.equals(e.type) && e.src == src && (lastDelay == null || e.ts >= lastDelay.ts)) lastDelay = e;
+        if (lastDelay != null) {
+            long b = Math.min(lastDelay.aLong(0), stop);
+            if (b > r.effStart) delays.add(new long[]{r.effStart, b});
+        }
         for (Ev e : dayEvents) {
-            if (Ev.DELAY.equals(e.type) && e.src == src) {
-                long b = Math.min(e.aLong(0), stop);
-                if (b > r.effStart) delays.add(new long[]{r.effStart, b});
+            if (Ev.DELAY.equals(e.type)) {
+                continue;
             } else if (Ev.EXTEND.equals(e.type)) {
                 if (e.src == src) {
                     long b = Math.min(e.aLong(0), stop);

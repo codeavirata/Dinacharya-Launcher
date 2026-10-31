@@ -2111,3 +2111,11 @@ Progress	పురోగతి
 All goals done	అన్ని లక్ష్యాలు పూర్తి
 {1} of {2} goals	{1} / {2} లక్ష్యాలు
 {1} to go	{1} మిగిలి ఉంది
+Change plan	ప్లాన్ మార్చండి
+Continue “{1}”	“{1}” కొనసాగించండి
+Keep going until	ఇప్పటివరకు కొనసాగించండి
+Then “{1}” starts, at {2}.	తర్వాత {2} కి “{1}” మొదలవుతుంది.
+This takes the place of the slot for today. The slots before and after it stay as they are.	ఇది ఈరోజుకు ఈ స్లాట్ స్థానాన్ని తీసుకుంటుంది. ముందు, తర్వాత ఉన్న స్లాట్లు అలాగే ఉంటాయి.
+This changes this slot for today only. The slots before and after it stay as they are.	ఇది ఈరోజుకు ఈ స్లాట్‌ను మాత్రమే మారుస్తుంది. ముందు, తర్వాత ఉన్న స్లాట్లు అలాగే ఉంటాయి.
+Save for today	ఈరోజుకు సేవ్ చేయండి
+Type a name first	ముందు పేరు రాయండి

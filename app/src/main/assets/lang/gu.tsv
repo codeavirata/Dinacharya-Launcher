@@ -2111,3 +2111,11 @@ Progress	પ્રગતિ
 All goals done	બધા લક્ષ્ય પૂરા
 {1} of {2} goals	{1} / {2} લક્ષ્ય
 {1} to go	{1} બાકી
+Change plan	યોજના બદલો
+Continue “{1}”	“{1}” ચાલુ રાખો
+Keep going until	આટલા સમય સુધી ચાલુ રાખો
+Then “{1}” starts, at {2}.	પછી {2} વાગ્યે “{1}” શરૂ થશે.
+This takes the place of the slot for today. The slots before and after it stay as they are.	આ આજ માટે આ સ્લોટની જગ્યા લેશે. તેની પહેલાંના અને પછીના સ્લોટ જેમ છે તેમ જ રહેશે.
+This changes this slot for today only. The slots before and after it stay as they are.	આ આજ માટે ફક્ત આ સ્લોટ બદલે છે. તેની પહેલાંના અને પછીના સ્લોટ જેમ છે તેમ જ રહેશે.
+Save for today	આજ માટે સાચવો
+Type a name first	પહેલાં નામ લખો

@@ -145,8 +145,10 @@ public final class LivePlan {
         for (int i = 0; i < n; i++) gaps.add(new ArrayList<Gap>());
         Map<Long, Ev> breaks = new LinkedHashMap<>();
         for (Ev e : ev) if (Ev.BREAK.equals(e.type)) breaks.put(e.ts, e);
-        for (Ev e : ev) {
-            if (!Ev.DELAY.equals(e.type)) continue;
+        // the last answer about a slot's late start is the one that counts: it can end the wait early ("start now")
+        Map<Integer, Ev> lastDelay = new LinkedHashMap<>();
+        for (Ev e : ev) if (Ev.DELAY.equals(e.type)) lastDelay.put(e.src, e);
+        for (Ev e : lastDelay.values()) {
             int x = SlotPlay.indexOfSrc(base, e.src);
             if (x < 0 || base.sc.slots.get(x).block.skipped) continue;
             long w = Math.min(e.aLong(0), end[x] - MIN);

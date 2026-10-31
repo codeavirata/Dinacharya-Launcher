@@ -229,7 +229,22 @@ final class HomePage extends Page {
             String head = dayOff ? "DAY OFF" : onBreak ? "ON A BREAK" : waiting ? "STARTING LATER" : "NOW";
             TextView eb = Ui.label(a, head + (dayOff ? "" : sub), 11, 0xCCFFFFFF, true);
             eb.setLetterSpacing(0.14f);
-            card.addView(eb);
+            LinearLayout headRow = new LinearLayout(a);
+            headRow.setOrientation(LinearLayout.HORIZONTAL);
+            headRow.setGravity(Gravity.CENTER_VERTICAL);
+            headRow.addView(eb, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+            if (!dayOff && !onBreak && !waiting && owner.src >= 0 && !owner.skipped && owner.kind != Routine.SLEEP) {
+                // a small pill: this slot only, for today (the slots before and after it stay as they are)
+                final Routine.Block ownerBlock = owner;
+                final Plan.DayPlan savedPlan = saved;
+                TextView pill = Ui.label(a, "Change plan", 12, 0xFFFFFFFF, true);
+                pill.setPadding(a.dp(11), a.dp(6), a.dp(11), a.dp(6));
+                pill.setBackground(Ui.box(a, 0x33FFFFFF, 0, 16));
+                pill.setContentDescription(Lang.tr("Change plan"));
+                pill.setOnClickListener(v -> askNewName(savedPlan.day.toString(), ownerBlock.src, ownerBlock.title, 0L, false));
+                headRow.addView(pill);
+            }
+            card.addView(headRow);
             card.addView(Ui.label(a, dayOff ? "Enjoy your day off" : titleOf(owner), 22, 0xFFFFFFFF, true), Ui.wide(a, 4));
             int left = Math.max(0, s.end - p.tt);
             if (dayOff) {
@@ -361,6 +376,7 @@ final class HomePage extends Page {
     private void addNowActions(LinearLayout card, final Plan.DayPlan saved, final Plan.DayPlan p, long now, AlarmState state) {
         Routine.Block b = p.sc.slots.get(p.cur).block;
         final boolean onBreak = b.live == Routine.LIVE_BREAK;
+        if (b.live == Routine.LIVE_WAIT) addWaitChoices(card, saved, p);
         LinearLayout row = new LinearLayout(a);
         row.setOrientation(LinearLayout.HORIZONTAL);
         boolean canBreak = SlotPlay.canBreak(p);
@@ -392,6 +408,112 @@ final class HomePage extends Page {
             card.addView(Ui.button(a, offer.label(), false, v -> EarlyDialog.show(a, offer, this::afterChange)), Ui.wide(a, 8));
         }
         addInlineTodos(card, saved, sIdx);
+    }
+
+    /**
+     * While a slot's start is put off: start it now, carry on the slot before for a while (the wait then ends where that stops), or
+     * take another plan in its place for today. The same three answers the alarm screen has.
+     */
+    private void addWaitChoices(LinearLayout card, final Plan.DayPlan saved, final Plan.DayPlan p) {
+        Routine.Block w = p.sc.slots.get(p.cur).block;
+        final int oi = SlotPlay.indexOfSrc(saved, w.slotSrc());
+        if (oi < 0) return;
+        final Routine.Block ob = saved.sc.slots.get(oi).block;
+        final String day = saved.day.toString();
+        final long sStart = saved.slotStartMs(oi);
+        final long sEnd = saved.slotEndMs(oi);
+        final long waitEnd = p.slotEndMs(p.cur);
+        final String title = ob.title.isEmpty() ? Routine.KIND_NAMES[ob.kind] : ob.title;
+        card.addView(Ui.button(a, "Start “" + title + "” now", true, v -> {
+            SlotActions.startWaitingNow(a, day, ob.src, ob.title);
+            afterChange();
+        }), Ui.wide(a, 14));
+        int pi = SlotPlay.previousIndex(saved, oi);
+        if (pi >= 0) {
+            Routine.Block pb = saved.sc.slots.get(pi).block;
+            final SlotActions.Prev prev = new SlotActions.Prev(pb.src, pb.title);
+            final String prevTitle = pb.title.isEmpty() ? Routine.KIND_NAMES[pb.kind] : pb.title;
+            card.addView(Ui.button(a, "Continue “" + prevTitle + "”", false,
+                    v -> askContinue(day, ob, title, sStart, sEnd, waitEnd, prev, prevTitle)), Ui.wide(a, 8));
+        }
+        card.addView(Ui.button(a, "Other plan", false, v -> askNewName(day, ob.src, ob.title, sStart, true)), Ui.wide(a, 8));
+    }
+
+    /** "Continue the slot before until ...": a − and + for the time, and what happens then. The wait ends when it does. */
+    private void askContinue(final String day, final Routine.Block ob, final String title, final long sStart, final long sEnd, long waitEnd,
+                             final SlotActions.Prev prev, String prevTitle) {
+        final long now = System.currentTimeMillis();
+        int room = Math.min(60, SlotPlay.roomMinutes(now, sEnd));
+        if (room < 1) {
+            a.toastText("This slot is almost over");
+            return;
+        }
+        final boolean h24 = a.routine().fmt24;
+        int initial = Math.max(SlotPlay.STEP, Math.round(Math.max(0L, waitEnd - now) / 60000f));
+        final MinuteStepper[] st = new MinuteStepper[1];
+        final TextView caption = Ui.label(a, "", 13, Ui.MUTED, false);
+        caption.setGravity(Gravity.CENTER_HORIZONTAL);
+        final Runnable draw = () -> caption.setText("Then “" + title + "” starts, at " + Routine.formatTime(minuteOf(System.currentTimeMillis()
+                + st[0].minutes() * 60000L), h24) + ".");
+        st[0] = new MinuteStepper(a, initial, Math.max(room, SlotPlay.STEP), m -> draw.run());
+        st[0].words(m -> Routine.formatTime(minuteOf(System.currentTimeMillis() + m * 60000L), h24));
+        LinearLayout box = new LinearLayout(a);
+        box.setOrientation(LinearLayout.VERTICAL);
+        box.setPadding(a.dp(22), a.dp(8), a.dp(22), 0);
+        box.addView(Ui.label(a, "Keep going until", 13, Ui.MUTED, true));
+        box.addView(st[0].view, Ui.wide(a, 4));
+        box.addView(caption, Ui.wide(a, 6));
+        draw.run();
+        new DBuilder(a)
+                .setTitle("Continue “" + prevTitle + "”")
+                .setView(box)
+                .setPositiveButton("Keep going", (d, w) -> {
+                    long until = SlotActions.continuePreviousWhileWaiting(a, day, ob.src, ob.title, sStart, sEnd, prev, st[0].minutes());
+                    a.toastText("“" + title + "” starts at " + Routine.formatTime(minuteOf(until), a.routine().fmt24));
+                    afterChange();
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    /**
+     * "What will you do instead?": the slot is called something else for today only. During a late start ({@code endWait}) the new plan takes
+     * the place of the slot from now to its end; on the slot that is running it changes only that slot. The slot keeps its type.
+     */
+    private void askNewName(final String day, final int src, final String title, final long sStart, final boolean endWait) {
+        final android.widget.EditText name = new android.widget.EditText(a);
+        name.setSingleLine(true);
+        name.setText(title);
+        name.setSelectAllOnFocus(true);
+        name.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 20);
+        name.setTextColor(Ui.INK);
+        name.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        LinearLayout box = new LinearLayout(a);
+        box.setOrientation(LinearLayout.VERTICAL);
+        box.setPadding(a.dp(22), a.dp(8), a.dp(22), 0);
+        box.addView(name, Ui.wide(a, 4));
+        box.addView(Ui.label(a, endWait ? "This takes the place of the slot for today. The slots before and after it stay as they are."
+                : "This changes this slot for today only. The slots before and after it stay as they are.", 13, Ui.MUTED, false), Ui.wide(a, 8));
+        new DBuilder(a)
+                .setTitle("What will you do instead?")
+                .setView(box)
+                .setPositiveButton("Save for today", (d, w) -> {
+                    String n = name.getText().toString().trim();
+                    if (n.isEmpty()) {
+                        a.toastText("Type a name first");
+                        return;
+                    }
+                    if (n.equals(title)) {
+                        if (endWait) SlotActions.startWaitingNow(a, day, src, title);
+                        afterChange();
+                        return;
+                    }
+                    SlotActions.changePlan(a, day, src, title, n, sStart, endWait);
+                    a.toastText("Changed for today: " + n);
+                    afterChange();
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 
     /** The plan of the day after {@code p}: the night's sleep is the last slot of its day, and "Early wake" starts the next one. */

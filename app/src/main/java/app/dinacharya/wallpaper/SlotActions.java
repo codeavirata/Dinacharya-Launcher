@@ -83,21 +83,73 @@ final class SlotActions {
 
     /** "Continue the slot before": it goes on for some minutes of this slot, then this one is asked about again. Returns when. */
     static long continuePrevious(Context c, AlarmPlanner.Event e, Prev prev, int minutes) {
+        return carryOn(c, e.day, e.src, e.title, e.slotStartMs, e.slotEndMs, prev, minutes, false);
+    }
+
+    /**
+     * The same from the Home screen while this slot's start is put off: the slot before goes on until then, and the wait is cut or
+     * stretched to that moment, so the late start ends exactly when the slot before stops.
+     */
+    static long continuePreviousWhileWaiting(Context c, String day, int src, String title, long slotStartMs, long slotEndMs, Prev prev,
+                                             int minutes) {
+        return carryOn(c, day, src, title, slotStartMs, slotEndMs, prev, minutes, true);
+    }
+
+    private static long carryOn(Context c, String day, int src, String title, long slotStartMs, long slotEndMs, Prev prev, int minutes,
+                                boolean endWait) {
         long now = System.currentTimeMillis();
-        long until = SlotPlay.continueUntil(now, minutes, e.slotEndMs);
-        Store.history(c).append(Ev.ack(now, e.day, e.src, e.title, "C", ""));
-        Store.history(c).append(Ev.extend(now, e.day, e.src, prev.src, prev.title, until));
+        long until = SlotPlay.continueUntil(now, minutes, slotEndMs);
+        Store.history(c).append(Ev.ack(now, day, src, title, "C", ""));
+        Store.history(c).append(Ev.extend(now, day, src, prev.src, prev.title, until));
+        // the last word about the late start: it ends when the slot before stops
+        if (endWait) Store.history(c).append(Ev.delay(now, day, src, title, until));
         AlarmState st = Store.alarmState(c);
         st.againAt = until;
-        st.againDay = e.day;
-        st.againSrc = e.src;
-        st.againTitle = e.title;
-        st.againSlotStart = e.slotStartMs;
-        st.againSlotEnd = e.slotEndMs;
+        st.againDay = day;
+        st.againSrc = src;
+        st.againTitle = title;
+        st.againSlotStart = slotStartMs;
+        st.againSlotEnd = slotEndMs;
         st.againWake = false;
         Store.saveAlarmState(c, st);
         finish(c);
         return until;
+    }
+
+    /** "Start now" from the Home screen while the start is put off: the wait ends this moment and the slot begins. */
+    static void startWaitingNow(Context c, String day, int src, String title) {
+        long now = System.currentTimeMillis();
+        Store.history(c).append(Ev.ack(now, day, src, title, "C", ""));
+        Store.history(c).append(Ev.delay(now, day, src, title, now));
+        AlarmState st = Store.alarmState(c);
+        if (st.againAt > 0 && st.againSrc == src) {
+            st.againAt = 0;
+            st.againWake = false;
+            Store.saveAlarmState(c, st);
+        }
+        finish(c);
+    }
+
+    /**
+     * "Other plan" / "Change plan": the slot is called something else for today only (the saved routine and every other slot stay as they
+     * are, and the slot keeps its type, so the locks of that type still hold). When {@code endWait} is set the late start is cancelled
+     * and the new plan takes the whole slot.
+     */
+    static void changePlan(Context c, String day, int src, String title, String newName, long slotStartMs, boolean endWait) {
+        Routine base = Store.load(c);
+        Overrides ov = Store.overrides(c, base);
+        Plan.edit(base, ov, LocalDate.parse(day), src, false, newName);
+        Store.saveOverrides(c, base, ov);
+        long now = System.currentTimeMillis();
+        Store.history(c).append(Ev.ack(now, day, src, title, "R", newName));
+        if (endWait) Store.history(c).append(Ev.delay(now, day, src, title, slotStartMs));
+        AlarmState st = Store.alarmState(c);
+        if (st.againAt > 0 && st.againSrc == src) {
+            st.againAt = 0;
+            st.againWake = false;
+            Store.saveAlarmState(c, st);
+        }
+        finish(c);
     }
 
     /** "Take a break" in the slot that is running. Returns when it ends, or -1 when no slot can take one now. */
