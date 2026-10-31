@@ -14,7 +14,7 @@ for f in $CORE; do FILES="$FILES $SRC/$f.java"; done
 javac -encoding UTF-8 -nowarn -d "$OUT" $FILES
 javac -encoding UTF-8 -nowarn -cp "$OUT" -d "$OUT" app/dinacharya/wallpaper/*.java
 FAILED=0
-for t in TranslatorTest LangFilesTest LauncherTest PassLedgerTest PassResetTest GuardTest AdLayersTest AlarmPlanTest CloudTest GestureTest PlanTest ReportTest SlotOpsTest TypeStatsTest WeekTest TempRoutineTest AlertModeTest TodoGoalTest LockTypeTest TodoRepeatTest LiveDayTest WakeLockTest LockModeTest SlotUseTest SlotReportTest HabitsTest SlotGoalTest PlanScreenTest AlarmWatchTest AlarmChainTest EarlySkipTest AnySlotTest StrictCapTest; do
+for t in TranslatorTest LangFilesTest LauncherTest PassLedgerTest PassResetTest GuardTest AdLayersTest AlarmPlanTest CloudTest GestureTest PlanTest ReportTest SlotOpsTest TypeStatsTest WeekTest TempRoutineTest AlertModeTest TodoGoalTest LockTypeTest TodoRepeatTest LiveDayTest WakeLockTest LockModeTest SlotUseTest SlotReportTest HabitsTest SlotGoalTest PlanScreenTest AlarmWatchTest AlarmChainTest EarlySkipTest AnySlotTest StrictCapTest WakeLineTest; do
   echo "== $t"
   if ! java -Dfile.encoding=UTF-8 -cp "$OUT" app.dinacharya.wallpaper.$t | grep -E "FAIL|ALL PASS|FAILS|Exception"; then FAILED=1; fi
 done

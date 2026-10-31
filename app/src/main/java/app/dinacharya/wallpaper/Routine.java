@@ -398,6 +398,11 @@ public final class Routine {
     public int wakeChallenge = CHALLENGE_NONE;
     /** The person's own quote for the wake-up, or empty to use the built-in ones. */
     public String wakeQuote = "";
+    /** What that own line is for: read as the quote (the default), or typed to put the day off, to start the day, or both. */
+    public static final int LINE_QUOTE = 0, LINE_SNOOZE = 1, LINE_START = 2, LINE_BOTH = 3;
+    public int wakeLineUse = LINE_QUOTE;
+    /** A sentence typed on the alarm is cut to this many letters (at a word), so it stays easy to type. */
+    public static final int MAX_TYPE_LEN = 80;
     /**
      * What has to be done to turn the start-of-day alarm off by starting the day: nothing (a tap), a few sums, a short pause (slow
      * breathing), shaking the phone, or a sentence typed.
@@ -690,6 +695,7 @@ public final class Routine {
         wakeDelayMin = o.wakeDelayMin;
         wakeChallenge = o.wakeChallenge;
         wakeQuote = o.wakeQuote;
+        wakeLineUse = o.wakeLineUse;
         wakeOff = o.wakeOff;
         wakeQuoteOn = o.wakeQuoteOn;
         wakeDayOff = o.wakeDayOff;
@@ -958,6 +964,7 @@ public final class Routine {
         sb.append("wakeChallenge=").append(wakeChallenge).append('\n');
         sb.append("wakeOff=").append(wakeOff).append('\n');
         sb.append("wakeQuoteOn=").append(wakeQuoteOn ? 1 : 0).append('\n');
+        if (wakeLineUse != LINE_QUOTE) sb.append("wakeLineUse=").append(wakeLineUse).append('\n');
         sb.append("wakeDayOff=").append(wakeDayOff ? 1 : 0).append('\n');
         if (!cleanQuote(wakeQuote).isEmpty()) sb.append("Q\t").append(cleanQuote(wakeQuote)).append('\n');
         sb.append("mark=").append(showMark ? 1 : 0).append('\n');
@@ -1184,6 +1191,7 @@ public final class Routine {
                 case "wakeChallenge": r.wakeChallenge = (v >= CHALLENGE_NONE && v <= CHALLENGE_TYPE) ? v : CHALLENGE_NONE; break;
                 case "wakeOff": r.wakeOff = (v >= OFF_NONE && v <= OFF_TYPE) ? v : OFF_NONE; break;
                 case "wakeQuoteOn": r.wakeQuoteOn = v != 0; break;
+                case "wakeLineUse": r.wakeLineUse = (v >= LINE_QUOTE && v <= LINE_BOTH) ? v : LINE_QUOTE; break;
                 case "wakeDayOff": r.wakeDayOff = v != 0; break;
                 case "mark": r.showMark = v == 1; break;
                 default: break;
@@ -1233,6 +1241,24 @@ public final class Routine {
         if (wake) v -= WAKE_FLAG;
         b.setAlert(v);
         b.wake = wake && b.sounds();
+    }
+
+    /** The person's own line when it is meant to be read as the quote, else empty (the built-in quotes are used). */
+    public String quoteLine() {
+        return wakeLineUse == LINE_QUOTE ? cleanQuote(wakeQuote) : "";
+    }
+
+    /** The person's own line when it is meant to be typed here ({@code putOff}: to put the day off, else to start it), else empty. */
+    public String typeLine(boolean putOff) {
+        boolean mine = wakeLineUse == LINE_BOTH || wakeLineUse == (putOff ? LINE_SNOOZE : LINE_START);
+        return mine ? cutForTyping(cleanQuote(wakeQuote)) : "";
+    }
+
+    static String cutForTyping(String c) {
+        if (c.length() <= MAX_TYPE_LEN) return c;
+        String cut = c.substring(0, MAX_TYPE_LEN);
+        int sp = cut.lastIndexOf(' ');
+        return (sp > MAX_TYPE_LEN / 2 ? cut.substring(0, sp) : cut).trim();
     }
 
     static String cleanQuote(String t) {
@@ -1313,6 +1339,7 @@ public final class Routine {
         r.wakeDelayMin = wakeDelayMin;
         r.wakeChallenge = wakeChallenge;
         r.wakeQuote = wakeQuote;
+        r.wakeLineUse = wakeLineUse;
         r.wakeOff = wakeOff;
         r.wakeQuoteOn = wakeQuoteOn;
         r.wakeDayOff = wakeDayOff;

@@ -2098,3 +2098,11 @@ and during {1}	மேலும் {1} நேரத்தில்
 when this slot ends	இந்த ஸ்லாட் முடியும்போது
 and in library mode	மற்றும் நூலக பயன்முறையில்
 {1} before your plan	உங்கள் திட்டத்துக்கு {1} முன்
+How your own line is used	உங்கள் சொந்த வரி எப்படிப் பயன்படும்
+Shown as the quote	மேற்கோளாகக் காட்டு
+Typed to put the day off	நாளைத் தள்ளிவைக்க தட்டச்சு செய்யவும்
+Typed to start the day	நாளைத் தொடங்க தட்டச்சு செய்யவும்
+Typed for both	இரண்டுக்கும் தட்டச்சு செய்யவும்
+A line you type is used only where that challenge is set to typing, and is cut at 80 letters.	நீங்கள் எழுதிய வரி, அந்தச் சவால் தட்டச்சு என அமைக்கப்பட்ட இடத்தில் மட்டுமே பயன்படும்; அது 80 எழுத்துகளில் வெட்டப்படும்.
+Your own line (optional)	உங்கள் சொந்த வரி (விருப்பம்)
+You will type:  “{1}”	நீங்கள் இதைத் தட்டச்சு செய்வீர்கள்:  “{1}”

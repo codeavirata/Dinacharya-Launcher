@@ -2098,3 +2098,11 @@ and during {1}	এবং {1}-এর সময়
 when this slot ends	এই স্লট শেষ হলে
 and in library mode	এবং লাইব্রেরি মোডে
 {1} before your plan	আপনার পরিকল্পনার {1} আগে
+How your own line is used	আপনার নিজের লাইন কীভাবে ব্যবহার হবে
+Shown as the quote	সুবচন হিসেবে দেখান
+Typed to put the day off	দিন পিছিয়ে দিতে টাইপ করুন
+Typed to start the day	দিন শুরু করতে টাইপ করুন
+Typed for both	দুটির জন্যই টাইপ করুন
+A line you type is used only where that challenge is set to typing, and is cut at 80 letters.	আপনার লেখা লাইন শুধু সেখানেই ব্যবহার হয় যেখানে সেই চ্যালেঞ্জ টাইপ করার উপর রাখা আছে, আর তা 80 অক্ষরে কাটা হয়।
+Your own line (optional)	আপনার নিজের লাইন (ঐচ্ছিক)
+You will type:  “{1}”	আপনি এটি টাইপ করবেন:  “{1}”

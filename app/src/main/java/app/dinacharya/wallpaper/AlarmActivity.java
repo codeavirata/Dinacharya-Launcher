@@ -449,7 +449,7 @@ public class AlarmActivity extends LangActivity {
         more.setGravity(Gravity.CENTER);
         more.setPadding(dp(12), dp(10), dp(12), dp(6));
         final Runnable draw = () -> {
-            WakeQuotes.Quote qt = WakeQuotes.quote(base.wakeQuote, day, quoteN);
+            WakeQuotes.Quote qt = WakeQuotes.quote(base.quoteLine(), day, quoteN);
             q.setText("“" + Tr.t(qt.text) + "”");
             who.setText(qt.author.isEmpty() ? "" : "— " + qt.author);
             who.setVisibility(qt.author.isEmpty() ? View.GONE : View.VISIBLE);
@@ -462,7 +462,7 @@ public class AlarmActivity extends LangActivity {
         card.addView(q);
         card.addView(who, Ui.wide(this, 6));
         // the person's own line is the only one there is: nothing else to show
-        if (Routine.cleanQuote(base.wakeQuote).isEmpty()) card.addView(more, Ui.wide(this, 2));
+        if (base.quoteLine().isEmpty()) card.addView(more, Ui.wide(this, 2));
         body.addView(card, Ui.wide(this, 0));
     }
 
@@ -502,7 +502,7 @@ public class AlarmActivity extends LangActivity {
         body.addView(question("Before you put it off, read this."), Ui.wide(this, 0));
         LocalDate day = LocalDate.parse(ev.day);
         // another line than the one on the first screen
-        WakeQuotes.Quote qt = WakeQuotes.quote(base.wakeQuote, day, base.wakeQuoteOn ? quoteN + 1 : 0);
+        WakeQuotes.Quote qt = WakeQuotes.quote(base.quoteLine(), day, base.wakeQuoteOn ? quoteN + 1 : 0);
         LinearLayout card = new LinearLayout(this);
         card.setOrientation(LinearLayout.VERTICAL);
         card.setPadding(dp(16), dp(18), dp(16), dp(18));
@@ -538,7 +538,8 @@ public class AlarmActivity extends LangActivity {
         if (base.wakeChallenge == Routine.CHALLENGE_SUM) {
             addSums(3, passed);
         } else {
-            addTyping("Type this to put your day off", WakeQuotes.phrase(rnd), passed);
+            String mine = base.typeLine(true);
+            addTyping("Type this to put your day off", mine.isEmpty() ? WakeQuotes.phrase(rnd) : mine, passed);
         }
         addButton("I am up. Start my day", false, v -> tryStartDay());
     }
@@ -557,7 +558,8 @@ public class AlarmActivity extends LangActivity {
                 addShake(passed);
                 break;
             case Routine.OFF_TYPE:
-                addTyping("Type this to start your day", WakeQuotes.startPhrase(rnd), passed);
+                String mine = base.typeLine(false);
+                addTyping("Type this to start your day", mine.isEmpty() ? WakeQuotes.startPhrase(rnd) : mine, passed);
                 break;
             default:
                 addSums(3, passed);

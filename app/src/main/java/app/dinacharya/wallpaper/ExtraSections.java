@@ -49,6 +49,7 @@ final class ExtraSections {
     private EditText quoteEdit;
     private TextView quotePreview;
     private Spinner offSpin;
+    private Spinner lineSpin;
     private Switch quoteOnBox;
     private Switch dayOffBox;
     private LibrarySettings librarySettings;
@@ -240,7 +241,30 @@ final class ExtraSections {
         });
         wake.body.addView(challengeSpin, Ui.wide(a, 0));
 
-        wake.body.addView(Ui.label(a, "Your own line to read (optional)", 12, Ui.MUTED, true), Ui.wrap(a, 12));
+        wake.body.addView(Ui.label(a, "How your own line is used", 12, Ui.MUTED, true), Ui.wrap(a, 12));
+        lineSpin = new Spinner(a);
+        ArrayAdapter<String> lineAd = Lang.adapter(a, android.R.layout.simple_spinner_item,
+                new String[]{"Shown as the quote", "Typed to put the day off", "Typed to start the day", "Typed for both"});
+        lineAd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        lineSpin.setAdapter(lineAd);
+        lineSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (binding || position == routine().wakeLineUse) return;
+                routine().wakeLineUse = position;
+                a.persistRoutine();
+                limitQuoteBox();
+                showQuotePreview();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        wake.body.addView(lineSpin, Ui.wide(a, 0));
+        wake.body.addView(Ui.label(a, "A line you type is used only where that challenge is set to typing, and is cut at 80 letters.",
+                12, Ui.MUTED, false), Ui.wide(a, 2));
+        wake.body.addView(Ui.label(a, "Your own line (optional)", 12, Ui.MUTED, true), Ui.wrap(a, 12));
         quoteEdit = new EditText(a);
         quoteEdit.setHint("Leave empty to use the lines that come with the app, in your language");
         quoteEdit.setTextColor(Ui.INK);
@@ -507,8 +531,19 @@ final class ExtraSections {
     /** Shows the line the wake-up screen would show today, so the choice can be judged. */
     private void showQuotePreview() {
         if (quotePreview == null) return;
-        WakeQuotes.Quote q = WakeQuotes.quote(routine().wakeQuote, LocalDate.now(Store.zone()), 0);
+        Routine r = routine();
+        if (r.wakeLineUse != Routine.LINE_QUOTE && !Routine.cleanQuote(r.wakeQuote).isEmpty()) {
+            quotePreview.setText("You will type:  “" + Routine.cutForTyping(Routine.cleanQuote(r.wakeQuote)) + "”");
+            return;
+        }
+        WakeQuotes.Quote q = WakeQuotes.quote("", LocalDate.now(Store.zone()), 0);
         quotePreview.setText("Today\u2019s quote:  “" + Tr.t(q.text) + "”" + (q.author.isEmpty() ? "" : "  \u2014 " + q.author));
+    }
+
+    /** The box takes up to 200 letters for a quote, but only 80 when the line is to be typed. */
+    private void limitQuoteBox() {
+        int max = routine().wakeLineUse == Routine.LINE_QUOTE ? Routine.MAX_QUOTE_LEN : Routine.MAX_TYPE_LEN;
+        quoteEdit.setFilters(new InputFilter[]{new InputFilter.LengthFilter(max)});
     }
 
     private void refreshAlarms() {
@@ -521,7 +556,10 @@ final class ExtraSections {
         offSpin.setSelection(Math.max(0, Math.min(Routine.OFF_TYPE, r.wakeOff)));
         quoteOnBox.setChecked(r.wakeQuoteOn);
         dayOffBox.setChecked(r.wakeDayOff);
-        if (!quoteEdit.getText().toString().equals(r.wakeQuote)) quoteEdit.setText(r.wakeQuote);
+        lineSpin.setSelection(Math.max(0, Math.min(Routine.LINE_BOTH, r.wakeLineUse)));
+        // never rewrite the box while it is being typed in: the saved line has its spaces trimmed, so it would differ and jump the cursor to the start
+        if (!quoteEdit.hasFocus() && !quoteEdit.getText().toString().equals(r.wakeQuote)) quoteEdit.setText(r.wakeQuote);
+        limitQuoteBox();
         binding = false;
         showQuotePreview();
         if (librarySettings != null) librarySettings.refresh();
