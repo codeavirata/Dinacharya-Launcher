@@ -32,6 +32,15 @@ public class AlarmReceiver extends BroadcastReceiver {
             // Line up the next alarm first, so a problem while ringing can never break the chain.
             AlarmScheduler.reschedule(c);
         }
+        // A slot that was started early (or whose slot before it was skipped) has begun already: its own alarm must not ring. This is the
+        // last check at ring time, in case the alarm was set before the person began the slot.
+        if (!test && (e.kind == AlarmPlanner.SLOT || e.kind == AlarmPlanner.BEDTIME)) {
+            try {
+                if (AlarmPlanner.begunEarly(Store.history(c).events(), e.day, e.src, e.timeMs)) return;
+            } catch (RuntimeException ex) {
+                CrashLog.note(c, "begun early check", ex);
+            }
+        }
         if (!test && e.mode == Routine.ALERT_SILENT) {
             // a silent slot: a quiet notification with the question, no sound, no vibration and no screen taking over
             AlarmService.postSilent(c, e);

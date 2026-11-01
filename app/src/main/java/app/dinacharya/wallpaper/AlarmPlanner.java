@@ -18,6 +18,28 @@ public final class AlarmPlanner {
     /** Slot number of the "ring a test alarm" event. Real slots are never below 0, so it cannot clash. */
     public static final int TEST_SRC = -2;
 
+    /**
+     * True when the slot {@code src} of {@code day} already began (started early, or the slot before it was skipped) before its planned time
+     * {@code plannedMs}. Its own alarm and notification are not wanted then, even if one was set before the person began it.
+     */
+    public static boolean begunEarly(java.util.List<Ev> events, String day, int src, long plannedMs) {
+        if (events == null || src < 0) return false;
+        for (Ev e : events) {
+            if (!day.equals(e.day)) continue;
+            boolean early = Ev.EARLY.equals(e.type) && e.src == src;
+            boolean skip = false;
+            if (Ev.SKIP.equals(e.type)) {
+                try {
+                    skip = Integer.parseInt(e.b.trim()) == src;
+                } catch (NumberFormatException ignored) {
+                    skip = false;
+                }
+            }
+            if ((early || skip) && e.aLong(plannedMs) < plannedMs - 60000L) return true;
+        }
+        return false;
+    }
+
     public static boolean isTest(Event e) {
         return e != null && e.src == TEST_SRC;
     }

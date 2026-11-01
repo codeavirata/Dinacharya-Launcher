@@ -414,6 +414,7 @@ final class SlotActions {
             st.breakTo = 0;
             st.againAt = 0;
             st.againWake = false;
+            st.reaskAt = 0;   // a bedtime question asked again later is not wanted either
             Store.saveAlarmState(c, st);
             finish(c);
         } catch (RuntimeException ex) {

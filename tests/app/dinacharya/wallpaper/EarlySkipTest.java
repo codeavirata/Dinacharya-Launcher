@@ -160,6 +160,10 @@ public class EarlySkipTest {
         ok("sleep begins when the person went to sleep", hm(liveSleep, sIdx, false).equals("21:10") && hm(liveSleep, sIdx, true).equals("05:30") && liveSleep.cur == sIdx);
         ok("the slot before sleep ends then", hm(liveSleep, sIdx - 1, true).equals("21:10") && liveSleep.sc.slots.get(sIdx - 1).block.live == Routine.LIVE_CUT);
         ok("the day keeps its length", total(liveSleep) == total(p2110));
+        ok("an alarm for a slot that began early is not wanted", AlarmPlanner.begunEarly(evSleep, DAY, 18, at(22, 30)));
+        ok("but one for another slot, another day, or a slot that began on time is", !AlarmPlanner.begunEarly(evSleep, DAY, 17, at(22, 30))
+            && !AlarmPlanner.begunEarly(evSleep, "2000-01-01", 18, at(22, 30)) && !AlarmPlanner.begunEarly(evSleep, DAY, 18, at(21, 10)));
+        ok("a slot that follows a skipped one also began early", AlarmPlanner.begunEarly(Arrays.asList(Ev.skip(at(21, 0), DAY, 17, "Wind down", 18, at(21, 0))), DAY, 18, at(22, 30)));
         ok("sleep can be finished early (early wake) in the same day", EarlyFinish.of(liveSleep, nextDay, at(21, 12)) != null
             && EarlyFinish.of(liveSleep, nextDay, at(21, 12)).kind == EarlyFinish.WAKE);
 
