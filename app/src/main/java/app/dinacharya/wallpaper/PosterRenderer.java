@@ -714,6 +714,7 @@ final class PosterRenderer {
             int left = Math.max(0, sl.end - tt);
             String nowText;
             if (sl.block.live == Routine.LIVE_BREAK) nowText = "ON A BREAK  ·  back at " + Routine.formatTime(sl.end, r.fmt24);
+            else if (sl.block.live == Routine.LIVE_WAIT && LivePlan.NORESP_TITLE.equals(sl.block.title)) nowText = "NO RESPONSE  \u00B7  waiting for you";
             else if (sl.block.live == Routine.LIVE_WAIT) nowText = "STARTS AT  " + Routine.formatTime(sl.end, r.fmt24);
             else if (sl.block.live == Routine.LIVE_OFF) nowText = "DAY OFF  ·  no alarms";
             else if (live.breakUntilMs > 0) nowText = "ON A BREAK  ·  back at " + clockText(live.breakUntilMs, r.fmt24);

@@ -226,7 +226,7 @@ final class InsightsPage extends Page {
         List<DayReport.Row> started = new ArrayList<>();
         for (DayReport.Row r : today.rows) {
             if (r.kind == Routine.SLEEP || r.status == DayReport.SKIPPED || r.status == DayReport.UPCOMING) continue;
-            if (r.activeMs <= 0 && r.breakMs <= 0 && r.delayMs <= 0) continue;
+            if (r.activeMs <= 0 && r.breakMs <= 0 && r.delayMs <= 0 && r.noRespMs <= 0) continue;
             started.add(r);
         }
         if (started.isEmpty()) return;
@@ -267,6 +267,7 @@ final class InsightsPage extends Page {
             }
             if (r.apps.isEmpty() && r.workedMs() > 0) more.addView(a.note("No app was used in this slot."));
             if (r.breakMs > 0) more.addView(detailLine("Break", dur(r.breakMs)));
+            if (r.noRespMs > 0) more.addView(detailLine("No response", dur(r.noRespMs)));
             if (r.delayMs > 0) more.addView(detailLine("Start put off", dur(r.delayMs)));
             if (r.lentMs > 0) more.addView(detailLine("Given to the slot before", dur(r.lentMs)));
             if (r.extMs > 0) more.addView(detailLine("Carried on past its end", dur(r.extMs)));

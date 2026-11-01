@@ -17,6 +17,8 @@ public final class LivePlan {
     private static final long MIN = 60000L;
     public static final String BREAK_TITLE = "Break";
     public static final String WAIT_TITLE = "Delayed start";
+    /** The part of a slot that passes while nobody answers its alarm. */
+    public static final String NORESP_TITLE = "No response";
     public static final String OFF_TITLE = "Day off";
 
     private LivePlan() {
@@ -27,6 +29,8 @@ public final class LivePlan {
         long from;
         long to;
         int live;
+        /** The wait is for an answer that has not come ("No response"), not for a start that was put off. */
+        boolean noResp;
 
         Gap(long from, long to, int live) {
             this.from = from;
@@ -148,12 +152,27 @@ public final class LivePlan {
         // the last answer about a slot's late start is the one that counts: it can end the wait early ("start now")
         Map<Integer, Ev> lastDelay = new LinkedHashMap<>();
         for (Ev e : ev) if (Ev.DELAY.equals(e.type)) lastDelay.put(e.src, e);
-        for (Ev e : lastDelay.values()) {
-            int x = SlotPlay.indexOfSrc(base, e.src);
+        // a slot whose alarm went off and was not answered (yet) starts from the answer: until then it is "No response"
+        Map<Integer, Long> workStart = new LinkedHashMap<>();
+        Map<Integer, Boolean> unanswered = new LinkedHashMap<>();
+        for (Ev e : lastDelay.values()) workStart.put(e.src, e.aLong(0));
+        for (int x = 0; x < n; x++) {
+            Routine.Block sb = base.sc.slots.get(x).block;
+            if (sb.src < 0 || sb.skipped || sb.kind == Routine.SLEEP) continue;
+            long nr = NoResponse.until(ev, sb.src, nowMs);
+            if (nr == 0L) continue;
+            Long had = workStart.get(sb.src);
+            workStart.put(sb.src, Math.max(had == null ? 0L : had, nr));
+            if (nr == NoResponse.PENDING) unanswered.put(sb.src, true);
+        }
+        for (Map.Entry<Integer, Long> we : workStart.entrySet()) {
+            int x = SlotPlay.indexOfSrc(base, we.getKey());
             if (x < 0 || base.sc.slots.get(x).block.skipped) continue;
-            long w = Math.min(e.aLong(0), end[x] - MIN);
+            long w = Math.min(we.getValue(), end[x] - MIN);
             if (w > start[x]) {
-                gaps.get(x).add(new Gap(start[x], w, Routine.LIVE_WAIT));
+                Gap gap = new Gap(start[x], w, Routine.LIVE_WAIT);
+                gap.noResp = unanswered.containsKey(we.getKey());
+                gaps.get(x).add(gap);
                 changed = true;
             }
         }
@@ -195,7 +214,7 @@ public final class LivePlan {
                     addPiece(pieces, base, at, gap.from, w);
                     anyWork = true;
                 }
-                addPiece(pieces, base, Math.max(gap.from, at), gap.to, gapBlock(gap.live, orig.src));
+                addPiece(pieces, base, Math.max(gap.from, at), gap.to, gapBlock(gap.live, orig.src, gap.noResp));
                 if (!anyWork && gap.from <= start[x]) afterFront = gap.live == Routine.LIVE_WAIT ? Routine.LIVE_LATE : Routine.LIVE_NONE;
                 at = Math.max(at, gap.to);
             }
@@ -290,8 +309,8 @@ public final class LivePlan {
         out.add(new Piece(a, z, b));
     }
 
-    private static Routine.Block gapBlock(int live, int owner) {
-        Routine.Block b = new Routine.Block(Routine.REST, live == Routine.LIVE_BREAK ? BREAK_TITLE : WAIT_TITLE, 1);
+    private static Routine.Block gapBlock(int live, int owner, boolean noResp) {
+        Routine.Block b = new Routine.Block(Routine.REST, live == Routine.LIVE_BREAK ? BREAK_TITLE : noResp ? NORESP_TITLE : WAIT_TITLE, 1);
         b.setAlert(Routine.ALERT_NONE);
         b.live = live;
         b.owner = owner;
@@ -308,7 +327,11 @@ public final class LivePlan {
     /** Sorts the gaps and joins those that overlap; a break wins over a wait where they meet. */
     private static List<Gap> merged(List<Gap> in) {
         List<Gap> list = new ArrayList<>();
-        for (Gap g : in) if (g.to > g.from) list.add(new Gap(g.from, g.to, g.live));
+        for (Gap g : in) if (g.to > g.from) {
+            Gap c = new Gap(g.from, g.to, g.live);
+            c.noResp = g.noResp;
+            list.add(c);
+        }
         Collections.sort(list, new Comparator<Gap>() {
             @Override
             public int compare(Gap a, Gap b) {
@@ -321,6 +344,7 @@ public final class LivePlan {
                 Gap last = out.get(out.size() - 1);
                 last.to = Math.max(last.to, g.to);
                 if (g.live == Routine.LIVE_BREAK) last.live = Routine.LIVE_BREAK;
+                last.noResp |= g.noResp;
             } else {
                 out.add(g);
             }

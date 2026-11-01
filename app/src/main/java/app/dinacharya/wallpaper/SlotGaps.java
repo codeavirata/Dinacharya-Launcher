@@ -21,6 +21,8 @@ public final class SlotGaps {
         public final List<long[]> gaps = new ArrayList<>();
         public long breakMs;
         public long delayMs;
+        /** The time before the slot was answered: its alarm went off and nobody responded (see {@link NoResponse}). */
+        public long noRespMs;
         /** The start of this slot that went to the slot before. */
         public long lentMs;
         /** Time after this slot's end that this slot went on, because it was carried into the next slot. */
@@ -133,12 +135,23 @@ public final class SlotGaps {
         List<long[]> delays = new ArrayList<>();
         List<long[]> lent = new ArrayList<>();
         List<long[]> carried = new ArrayList<>();
+        // the time before an unanswered alarm was answered ("No response"); a start put off then begins from the answer
+        List<long[]> noResp = new ArrayList<>();
+        long delayFrom = r.effStart;
+        long nr = NoResponse.until(dayEvents, src, clip);
+        if (nr != 0L) {
+            long b = Math.min(nr, stop);
+            if (b > r.effStart) {
+                noResp.add(new long[]{r.effStart, b});
+                delayFrom = b;
+            }
+        }
         // the last answer about this slot's late start is the one that counts (it can end the wait early)
         Ev lastDelay = null;
         for (Ev e : dayEvents) if (Ev.DELAY.equals(e.type) && e.src == src && (lastDelay == null || e.ts >= lastDelay.ts)) lastDelay = e;
         if (lastDelay != null) {
             long b = Math.min(lastDelay.aLong(0), stop);
-            if (b > r.effStart) delays.add(new long[]{r.effStart, b});
+            if (b > delayFrom) delays.add(new long[]{delayFrom, b});
         }
         for (Ev e : dayEvents) {
             if (Ev.DELAY.equals(e.type)) {
@@ -156,10 +169,12 @@ public final class SlotGaps {
         }
         r.breakMs = length(merge(breaks));
         r.delayMs = length(merge(delays));
+        r.noRespMs = length(merge(noResp));
         r.lentMs = length(merge(lent));
         r.extMs = length(merge(carried));
         List<long[]> all = new ArrayList<>(breaks);
         all.addAll(delays);
+        all.addAll(noResp);
         all.addAll(lent);
         r.gaps.addAll(merge(all));
         return r;

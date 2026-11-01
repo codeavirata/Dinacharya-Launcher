@@ -4,6 +4,8 @@ package app.dinacharya.wallpaper;
 public final class Ev {
     /** Answer to a slot alarm. a = C (continue), R (renamed) or S (taken off); b = the new name. */
     public static final String ACK = "ack";
+    /** A slot's alarm or notification went off. ts = when; src = the slot. With {@link #ACK} it tells how long the person took to respond. */
+    public static final String RANG = "rang";
     /** An alarm that rang and was never answered. */
     public static final String MISSED = "missed";
     /** Going to sleep. ts = when; a = planned bedtime (ms); b = "option:shiftMinutes". */
@@ -70,6 +72,10 @@ public final class Ev {
 
     public static Ev ack(long ts, String day, int src, String title, String action, String newName) {
         return new Ev(ts, ACK, day, src, action, newName, title);
+    }
+
+    public static Ev rang(long ts, String day, int src, String title) {
+        return new Ev(ts, RANG, day, src, "", "", title);
     }
 
     public static Ev missed(long ts, String day, int src, String title) {

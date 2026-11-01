@@ -27,6 +27,8 @@ public final class DayReport {
         /** Time inside the slot spent on a break, with the start put off, and given to the slot before it. */
         public long breakMs;
         public long delayMs;
+        /** Time before the slot was answered, when its alarm went off and nobody responded ("No response"). */
+        public long noRespMs;
         public long lentMs;
         /** Time after the slot's end that it went on, carried into the next slot. */
         public long extMs;
@@ -148,9 +150,9 @@ public final class DayReport {
         }
         for (int i = 0; i < rows.size(); i++) {
             Row r = rows.get(i);
-            if (r.breakMs != 0 || r.delayMs != 0 || r.lentMs != 0 || r.extMs != 0) {
+            if (r.breakMs != 0 || r.delayMs != 0 || r.lentMs != 0 || r.extMs != 0 || r.noRespMs != 0) {
                 sb.append("RX\t").append(i).append('\t').append(r.breakMs).append('\t').append(r.delayMs).append('\t')
-                        .append(r.lentMs).append('\t').append(r.extMs).append('\n');
+                        .append(r.lentMs).append('\t').append(r.extMs).append('\t').append(r.noRespMs).append('\n');
             }
             for (App a : r.apps) sb.append("RA\t").append(i).append('\t').append(a.ms).append('\t').append(a.name).append('\n');
             if (r.partMs != 0 || r.longestFocusMs >= 0 || r.useCount != 0) {
@@ -200,12 +202,13 @@ public final class DayReport {
                     row.sub = p.length > 10 ? Routine.cleanSub(p[10]) : "";
                     r.rows.add(row);
                 } else if (ln.startsWith("RX\t")) {
-                    String[] p = ln.split("\t", 6);
+                    String[] p = ln.split("\t", 7);
                     Row row = r.rows.get(Integer.parseInt(p[1].trim()));
                     row.breakMs = Long.parseLong(p[2].trim());
                     row.delayMs = Long.parseLong(p[3].trim());
                     row.lentMs = Long.parseLong(p[4].trim());
                     row.extMs = Long.parseLong(p[5].trim());
+                    row.noRespMs = p.length > 6 ? Long.parseLong(p[6].trim()) : 0L;
                 } else if (ln.startsWith("RA\t")) {
                     String[] p = ln.split("\t", 4);
                     r.rows.get(Integer.parseInt(p[1].trim())).apps.add(new App(p[3], Long.parseLong(p[2].trim())));

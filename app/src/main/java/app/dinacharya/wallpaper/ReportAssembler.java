@@ -74,6 +74,7 @@ public final class ReportAssembler {
             long stop = Math.min(gaps.effEnd, clip);
             row.breakMs = gaps.breakMs;
             row.delayMs = gaps.delayMs;
+            row.noRespMs = b.skipped ? 0L : gaps.noRespMs;
             row.lentMs = gaps.lentMs;
             row.extMs = gaps.extMs;
             row.activeMs = Math.max(0, Math.max(0, stop - gaps.effStart) - gaps.gapMs());

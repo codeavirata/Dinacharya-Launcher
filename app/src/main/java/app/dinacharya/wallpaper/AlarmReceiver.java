@@ -44,6 +44,14 @@ public class AlarmReceiver extends BroadcastReceiver {
                 CrashLog.note(c, "begun early check", ex);
             }
         }
+        // The alarm went off: if nobody answers, the slot counts from the answer and the time before is "No response" (see NoResponse).
+        if (!test && e.kind == AlarmPlanner.SLOT && e.src >= 0) {
+            try {
+                Store.history(c).append(Ev.rang(System.currentTimeMillis(), e.day, e.src, e.title));
+            } catch (RuntimeException ex) {
+                CrashLog.note(c, "rang note", ex);
+            }
+        }
         if (!test && e.mode == Routine.ALERT_SILENT) {
             // a silent slot: a quiet notification with the question, no sound, no vibration and no screen taking over
             AlarmService.postSilent(c, e);

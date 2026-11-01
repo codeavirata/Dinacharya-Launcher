@@ -222,12 +222,14 @@ final class HomePage extends Page {
         final boolean dayOff = now0 != null && now0.live == Routine.LIVE_OFF;
         final boolean onBreak = now0 != null && now0.live == Routine.LIVE_BREAK;
         final boolean waiting = now0 != null && now0.live == Routine.LIVE_WAIT;
+        // the alarm went off and has not been answered: the slot starts when you answer
+        final boolean noResponse = waiting && LivePlan.NORESP_TITLE.equals(now0.title);
         if (p.cur >= 0) {
             Routine.Slot s = p.sc.slots.get(p.cur);
             Routine.Block b = s.block;
             Routine.Block owner = ownerBlock(saved, b);
             String sub = owner.sub.isEmpty() || Routine.isOther(owner.sub) ? "" : "  ·  " + owner.sub.toUpperCase(Lang.locale());
-            String head = dayOff ? "DAY OFF" : onBreak ? "ON A BREAK" : waiting ? "STARTING LATER" : "NOW";
+            String head = dayOff ? "DAY OFF" : onBreak ? "ON A BREAK" : noResponse ? "NO RESPONSE" : waiting ? "STARTING LATER" : "NOW";
             TextView eb = Ui.label(a, head + (dayOff ? "" : sub), 11, 0xCCFFFFFF, true);
             eb.setLetterSpacing(0.14f);
             LinearLayout headRow = new LinearLayout(a);
@@ -259,6 +261,10 @@ final class HomePage extends Page {
                         14, 0xE6FFFFFF, false), Ui.wide(a, 2));
                 card.addView(Ui.label(a, "Then back to " + titleOf(owner) + ", which ends at " + Routine.formatTime(slotEnd(saved, owner), m.fmt24),
                         13, 0xCCFFFFFF, false), Ui.wide(a, 2));
+            } else if (noResponse) {
+                card.addView(Ui.label(a, "No answer yet. The slot starts when you answer.", 14, 0xE6FFFFFF, false), Ui.wide(a, 2));
+                card.addView(Ui.label(a, "It was to start at " + Routine.formatTime(slotStart(saved, owner), m.fmt24) + ", and ends at "
+                        + Routine.formatTime(slotEnd(saved, owner), m.fmt24), 13, 0xCCFFFFFF, false), Ui.wide(a, 2));
             } else if (waiting) {
                 card.addView(Ui.label(a, "Starts at " + Routine.formatTime(s.end, m.fmt24) + "   ·   in " + Routine.formatDuration(left),
                         14, 0xE6FFFFFF, false), Ui.wide(a, 2));
