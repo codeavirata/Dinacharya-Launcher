@@ -40,6 +40,19 @@ public final class AlarmPlanner {
         return false;
     }
 
+    /**
+     * True when the person already went to sleep for this night before {@code bedMs} (they answered the bedtime question, or chose early
+     * sleep), so a bedtime alarm set for {@code bedMs} is not wanted. Unlike {@link #begunEarly} this does not depend on a slot's number, so
+     * it still holds after the routine was edited.
+     */
+    public static boolean sleptAlready(java.util.List<Ev> events, String day, long bedMs) {
+        if (events == null) return false;
+        for (Ev e : events) {
+            if (Ev.SLEEP.equals(e.type) && day.equals(e.day) && e.ts <= bedMs && e.ts > bedMs - 12 * 3600000L) return true;
+        }
+        return false;
+    }
+
     public static boolean isTest(Event e) {
         return e != null && e.src == TEST_SRC;
     }

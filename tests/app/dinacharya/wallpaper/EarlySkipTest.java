@@ -164,6 +164,11 @@ public class EarlySkipTest {
         ok("but one for another slot, another day, or a slot that began on time is", !AlarmPlanner.begunEarly(evSleep, DAY, 17, at(22, 30))
             && !AlarmPlanner.begunEarly(evSleep, "2000-01-01", 18, at(22, 30)) && !AlarmPlanner.begunEarly(evSleep, DAY, 18, at(21, 10)));
         ok("a slot that follows a skipped one also began early", AlarmPlanner.begunEarly(Arrays.asList(Ev.skip(at(21, 0), DAY, 17, "Wind down", 18, at(21, 0))), DAY, 18, at(22, 30)));
+        List<Ev> slept = Arrays.asList(Ev.sleep(at(21, 10), DAY, at(22, 30), 0, 0));
+        ok("went to sleep early: the bedtime alarm is not wanted, even if the routine was edited and the slot has another number",
+            AlarmPlanner.sleptAlready(slept, DAY, at(22, 30)) && AlarmPlanner.sleptAlready(slept, DAY, at(23, 0)));
+        ok("but another night, or a bedtime before going to sleep, is still wanted", !AlarmPlanner.sleptAlready(slept, "2000-01-01", at(22, 30))
+            && !AlarmPlanner.sleptAlready(slept, DAY, at(20, 0)) && !AlarmPlanner.sleptAlready(slept, DAY, at(21, 10) + 13 * 3600000L));
         ok("sleep can be finished early (early wake) in the same day", EarlyFinish.of(liveSleep, nextDay, at(21, 12)) != null
             && EarlyFinish.of(liveSleep, nextDay, at(21, 12)).kind == EarlyFinish.WAKE);
 

@@ -36,7 +36,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         // last check at ring time, in case the alarm was set before the person began the slot.
         if (!test && (e.kind == AlarmPlanner.SLOT || e.kind == AlarmPlanner.BEDTIME)) {
             try {
-                if (AlarmPlanner.begunEarly(Store.history(c).events(), e.day, e.src, e.timeMs)) return;
+                java.util.List<Ev> events = Store.history(c).events();
+                if (AlarmPlanner.begunEarly(events, e.day, e.src, e.timeMs)) return;
+                // the routine can be edited after going to sleep early; slot numbers then mean other slots, but the sleep itself is on record
+                if (e.kind == AlarmPlanner.BEDTIME && AlarmPlanner.sleptAlready(events, e.day, e.timeMs)) return;
             } catch (RuntimeException ex) {
                 CrashLog.note(c, "begun early check", ex);
             }
