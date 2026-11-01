@@ -2,6 +2,8 @@
 <resources>
     <color name="bg">#EDF2F1</color>
     <color name="teal">#0E7C7B</color>
+    <!-- App icon background (logo C ground). -->
+    <color name="icon_bg">#0B1F1D</color>
     <color name="ink">#10201E</color>
     <color name="muted">#587270</color>
 </resources>
