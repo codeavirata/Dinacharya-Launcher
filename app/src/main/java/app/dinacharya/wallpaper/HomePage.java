@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 /** The Home tab: a greeting, what is happening now and next, today's changes, a preview of the home screen and today's goals. */
@@ -488,35 +489,143 @@ final class HomePage extends Page {
      * the place of the slot from now to its end; on the slot that is running it changes only that slot. The slot keeps its type.
      */
     private void askNewName(final String day, final int src, final String title, final long sStart, final boolean endWait) {
+        final Routine base = a.routine();
+        final Overrides ov = Store.overrides(a, base);
+        final java.time.LocalDate d = java.time.LocalDate.parse(day);
+        Plan.DayPlan dp = Plan.plan(base, ov, d, Store.zone());
+        int mi = SlotPlay.indexOfSrc(dp, src);
+        final int slotMins = mi < 0 ? 60 : Math.max(SlotPlay.STEP, dp.sc.slots.get(mi).end - dp.sc.slots.get(mi).start);
+        final long sEnd = mi < 0 ? sStart + slotMins * 60000L : dp.slotEndMs(mi);
+        final long slotStart = mi < 0 ? sStart : dp.slotStartMs(mi);
+        final int part = Math.max(SlotPlay.STEP, slotMins - SlotPlay.STEP);
+        int pi = mi < 0 ? -1 : SlotPlay.previousIndex(dp, mi);
+        final SlotActions.Prev prev = pi < 0 ? null : new SlotActions.Prev(dp.sc.slots.get(pi).block.src, dp.sc.slots.get(pi).block.title);
+        final List<Routine.Block> others = new ArrayList<>();
+        final List<String> otherNames = new ArrayList<>();
+        for (Routine.Slot sl : dp.sc.slots) {
+            Routine.Block ob = sl.block;
+            if (ob.src < 0 || ob.src == src || ob.skipped || ob.kind == Routine.SLEEP) continue;
+            boolean seen = false;
+            for (Routine.Block x : others) if (x.src == ob.src) seen = true;
+            if (seen) continue;
+            others.add(ob);
+            otherNames.add(ob.title + " (" + (sl.end - sl.start) + " min)");
+        }
+
         final android.widget.EditText name = new android.widget.EditText(a);
         name.setSingleLine(true);
+        name.setHint("What will you do instead?");
         name.setText(title);
         name.setSelectAllOnFocus(true);
-        name.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 20);
+        name.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 18);
         name.setTextColor(Ui.INK);
         name.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        final android.widget.Spinner target = new android.widget.Spinner(a);
+        target.setAdapter(Lang.adapter(a, android.R.layout.simple_spinner_item, otherNames));
+        final android.widget.RadioButton swapNames = new android.widget.RadioButton(a);
+        swapNames.setText("Swap names (times stay)");
+        swapNames.setTextColor(Ui.INK);
+        final android.widget.RadioButton swapPlaces = new android.widget.RadioButton(a);
+        swapPlaces.setText("Swap places and times");
+        swapPlaces.setTextColor(Ui.INK);
+        android.widget.RadioGroup mg = new android.widget.RadioGroup(a);
+        swapNames.setId(View.generateViewId());
+        swapPlaces.setId(View.generateViewId());
+        mg.addView(swapNames);
+        mg.addView(swapPlaces);
+        swapNames.setChecked(true);
+
+        final String[] labels = {"Replace slot", "Continue previous slot", "Swap slot with"};
+        final android.widget.RadioButton[] rb = new android.widget.RadioButton[3];
+        final LinearLayout[] pan = new LinearLayout[3];
+        final MinuteStepper[] steps = new MinuteStepper[3];
+        final Switch[] whole = new Switch[3];
         LinearLayout box = new LinearLayout(a);
         box.setOrientation(LinearLayout.VERTICAL);
         box.setPadding(a.dp(22), a.dp(8), a.dp(22), 0);
-        box.addView(name, Ui.wide(a, 4));
-        box.addView(Ui.label(a, endWait ? "This takes the place of the slot for today. The slots before and after it stay as they are."
-                : "This changes this slot for today only. The slots before and after it stay as they are.", 13, Ui.MUTED, false), Ui.wide(a, 8));
+        box.addView(Ui.label(a, "Pick one. This changes today only. The rest of the slot goes back to your saved plan.", 13, Ui.MUTED, false), Ui.wide(a, 4));
+        for (int i = 0; i < 3; i++) {
+            final int k = i;
+            if (i == 1 && prev == null) continue;
+            if (i == 2 && others.isEmpty()) continue;
+            rb[i] = new android.widget.RadioButton(a);
+            rb[i].setText(labels[i]);
+            rb[i].setTextColor(Ui.INK);
+            rb[i].setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 17);
+            LinearLayout pn = new LinearLayout(a);
+            pn.setOrientation(LinearLayout.VERTICAL);
+            pn.setPadding(a.dp(12), a.dp(8), a.dp(12), a.dp(10));
+            pn.setVisibility(View.GONE);
+            pan[i] = pn;
+            if (i == 0) pn.addView(name, Ui.wide(a, 0));
+            else if (i == 1) pn.addView(Ui.label(a, "“" + prev.title + "” goes on into this slot.", 13, Ui.MUTED, false), Ui.wide(a, 0));
+            else {
+                pn.addView(target, Ui.wide(a, 0));
+                pn.addView(mg, Ui.wide(a, 6));
+            }
+            whole[i] = new Switch(a);
+            whole[i].setText("Whole slot (" + slotMins + " min)");
+            whole[i].setTextColor(Ui.INK);
+            whole[i].setChecked(true);
+            pn.addView(whole[i], Ui.wide(a, 8));
+            steps[i] = new MinuteStepper(a, Math.min(30, part), part, m -> { });
+            steps[i].view.setVisibility(View.GONE);
+            pn.addView(steps[i].view, Ui.wide(a, 6));
+            whole[i].setOnCheckedChangeListener((c, on) -> steps[k].view.setVisibility(on ? View.GONE : View.VISIBLE));
+            box.addView(rb[i], Ui.wide(a, 8));
+            box.addView(pn, Ui.wide(a, 2));
+        }
+        swapPlaces.setOnCheckedChangeListener((c, on) -> {
+            if (on && whole[2] != null) whole[2].setChecked(true);
+            if (whole[2] != null) whole[2].setEnabled(!on);
+        });
+        for (int i = 0; i < 3; i++) {
+            final int k = i;
+            if (rb[i] == null) continue;
+            rb[i].setOnCheckedChangeListener((c, on) -> {
+                if (!on) return;
+                for (int j = 0; j < 3; j++) {
+                    if (rb[j] == null) continue;
+                    if (j != k) rb[j].setChecked(false);
+                    pan[j].setVisibility(j == k ? View.VISIBLE : View.GONE);
+                }
+            });
+        }
+        rb[0].setChecked(true);
+        android.widget.ScrollView sv = new android.widget.ScrollView(a);
+        sv.addView(box);
         new DBuilder(a)
-                .setTitle("What will you do instead?")
-                .setView(box)
-                .setPositiveButton("Save for today", (d, w) -> {
-                    String n = name.getText().toString().trim();
-                    if (n.isEmpty()) {
-                        a.toastText("Type a name first");
-                        return;
+                .setTitle("Change the plan")
+                .setView(sv)
+                .setPositiveButton("Save for today", (dlg, w) -> {
+                    int pick = rb[1] != null && rb[1].isChecked() ? 1 : rb[2] != null && rb[2].isChecked() ? 2 : 0;
+                    boolean full = whole[pick].isChecked();
+                    int mins = steps[pick].minutes();
+                    if (pick == 0) {
+                        String n = name.getText().toString().trim();
+                        if (n.isEmpty()) {
+                            a.toastText("Type a name first");
+                            return;
+                        }
+                        if (n.equals(title)) {
+                            if (endWait) SlotActions.startWaitingNow(a, day, src, title);
+                            afterChange();
+                            return;
+                        }
+                        if (full) SlotActions.changePlan(a, day, src, title, n, sStart, endWait);
+                        else SlotActions.changePart(a, day, src, title, n, mins, sStart, endWait);
+                        a.toastText(full ? "Changed for today: " + n : n + " for " + mins + " min, then back to the plan");
+                    } else if (pick == 1) {
+                        long until = SlotActions.continueFrom(a, day, src, title, slotStart, sEnd, prev, full ? slotMins : mins, endWait);
+                        a.toastText("“" + prev.title + "” goes on until " + Routine.formatTime(minuteOf(until), a.routine().fmt24));
+                    } else {
+                        int t = target.getSelectedItemPosition();
+                        if (t < 0 || t >= others.size()) return;
+                        Routine.Block o = others.get(t);
+                        boolean places = swapPlaces.isChecked();
+                        SlotActions.swapWith(a, day, src, title, o.src, o.title, o.mins, places, full || places ? 0 : mins);
+                        a.toastText("Swapped with " + o.title);
                     }
-                    if (n.equals(title)) {
-                        if (endWait) SlotActions.startWaitingNow(a, day, src, title);
-                        afterChange();
-                        return;
-                    }
-                    SlotActions.changePlan(a, day, src, title, n, sStart, endWait);
-                    a.toastText("Changed for today: " + n);
                     afterChange();
                 })
                 .setNegativeButton("Cancel", null)

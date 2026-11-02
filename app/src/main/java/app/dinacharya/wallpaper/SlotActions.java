@@ -153,6 +153,45 @@ final class SlotActions {
         finish(c);
     }
 
+    /** Only the first {@code mins} minutes of the slot are called {@code newName} today; the rest goes back to the saved plan. */
+    static void changePart(Context c, String day, int src, String title, String newName, int mins, long slotStartMs, boolean endWait) {
+        Routine base = Store.load(c);
+        Overrides ov = Store.overrides(c, base);
+        Plan.editPart(base, ov, LocalDate.parse(day), src, newName, mins);
+        Store.saveOverrides(c, base, ov);
+        long now = System.currentTimeMillis();
+        Store.history(c).append(Ev.ack(now, day, src, title, "R", newName));
+        if (endWait) Store.history(c).append(Ev.delay(now, day, src, title, slotStartMs));
+        finish(c);
+    }
+
+    /**
+     * This slot and slot {@code other} change for today only: {@code places} trade places and times; otherwise they trade names, all of
+     * their time ({@code mins} 0) or only the first {@code mins} minutes of each.
+     */
+    static void swapWith(Context c, String day, int src, String title, int other, String otherTitle, int otherMins, boolean places, int mins) {
+        Routine base = Store.load(c);
+        Overrides ov = Store.overrides(c, base);
+        LocalDate d = LocalDate.parse(day);
+        if (places) {
+            Plan.swapPlaces(base, ov, d, src, other);
+        } else if (mins <= 0) {
+            Plan.edit(base, ov, d, src, false, otherTitle);
+            Plan.edit(base, ov, d, other, false, title);
+        } else {
+            Plan.editPart(base, ov, d, src, otherTitle, mins);
+            Plan.editPart(base, ov, d, other, title, Math.min(mins, Math.max(SlotPlay.STEP, otherMins - SlotPlay.STEP)));
+        }
+        Store.saveOverrides(c, base, ov);
+        Store.history(c).append(Ev.ack(System.currentTimeMillis(), day, src, title, "R", otherTitle));
+        finish(c);
+    }
+
+    /** "Continue the slot before" from the Home screen, for the running slot or a late start. */
+    static long continueFrom(Context c, String day, int src, String title, long slotStartMs, long slotEndMs, Prev prev, int minutes, boolean endWait) {
+        return carryOn(c, day, src, title, slotStartMs, slotEndMs, prev, minutes, endWait);
+    }
+
     /** "Take a break" in the slot that is running. Returns when it ends, or -1 when no slot can take one now. */
     static long takeBreak(Context c, int minutes) {
         try {
