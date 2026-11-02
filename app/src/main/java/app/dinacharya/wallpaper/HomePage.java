@@ -895,7 +895,6 @@ final class HomePage extends Page {
             if (!Store.prefs(a).getBoolean(SetupActivity.PREF_SETUP_DONE, false)) return;
             int st = WallpaperSetup.status(a);
             if (!WallpaperWatch.needsAttention(st)) return;
-            if (System.currentTimeMillis() < Store.prefs(a).getLong("wallpaper_card_hidden_until", 0)) return;
             LinearLayout card = new LinearLayout(a);
             card.setOrientation(LinearLayout.VERTICAL);
             card.setPadding(a.dp(16), a.dp(14), a.dp(16), a.dp(14));
@@ -911,10 +910,6 @@ final class HomePage extends Page {
                 Store.prefs(a).edit().putLong("wallpaper_asked_at", System.currentTimeMillis()).apply();
                 WallpaperSetup.request(a, Permissions.REQ_WALL);
             }), Ui.wide(a, 12));
-            card.addView(Ui.button(a, "Not now", false, v -> {
-                Store.prefs(a).edit().putLong("wallpaper_card_hidden_until", System.currentTimeMillis() + 24L * 3600000L).apply();
-                card.setVisibility(View.GONE);
-            }), Ui.wide(a, 8));
             alarmBox.addView(card, Ui.wide(a, 16));
         } catch (RuntimeException e) {
             CrashLog.note(a, "wallpaper card", e);
