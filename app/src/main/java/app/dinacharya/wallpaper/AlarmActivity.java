@@ -853,7 +853,6 @@ public class AlarmActivity extends LangActivity {
             rb[i].setText(labels[i]);
             rb[i].setTextColor(Ui.INK);
             rb[i].setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 17);
-            group.addView(rb[i]);
             LinearLayout box = new LinearLayout(this);
             box.setOrientation(LinearLayout.VERTICAL);
             box.setPadding(dp(14), dp(10), dp(14), dp(12));
