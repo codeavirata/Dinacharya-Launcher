@@ -82,6 +82,7 @@ final class Store {
 
     static void saveTodos(Context c, Todos t) {
         prefs(c).edit().putString(KEY_TODOS, t.serialize()).apply();
+        DriveJob.changedSoon(c);
     }
 
     /** What the poster shows besides the routine: the day as it is going, the to-do list of the slot going on and the library pill. */
@@ -127,10 +128,12 @@ final class Store {
 
     static void saveQuiet(Context c, QuietRules q) {
         prefs(c).edit().putString(KEY_QUIET, q.serialize()).apply();
+        DriveJob.changedSoon(c);
     }
 
     static void saveLibrary(Context c, LibraryMode m) {
         prefs(c).edit().putString(KEY_LIBRARY, m.serialize()).apply();
+        DriveJob.changedSoon(c);
     }
 
     /**

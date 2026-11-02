@@ -13,12 +13,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Everything the app knows, as files for the backup: the routines and settings, today's changes,
+ * Everything the app knows, as files for the backup: the routines and settings, to-dos, quiet rules, library mode, language, today's changes,
  * the alarm answers and every day report. The Google sign-in itself is never included.
  */
 final class BackupData {
     static final String APP_VERSION = "1.0";
-    private static final String[] PREF_KEYS = {"routine", "overrides", "alarmstate", "launcher"};
+    private static final String[] PREF_KEYS = {"routine", "overrides", "alarmstate", "launcher", "todos", "library", "quiet"};
 
     private BackupData() {
     }
@@ -34,6 +34,8 @@ final class BackupData {
         if (!out.containsKey("prefs/routine.txt")) {
             out.put("prefs/routine.txt", Store.load(c).serialize().getBytes(StandardCharsets.UTF_8));
         }
+        String lang = c.getSharedPreferences("language", Context.MODE_PRIVATE).getString("lang", null);
+        if (lang != null) out.put("prefs/lang.txt", lang.getBytes(StandardCharsets.UTF_8));
         out.put("prefs/since.txt", String.valueOf(Store.since(c)).getBytes(StandardCharsets.UTF_8));
         File hist = new File(c.getFilesDir(), "history");
         addDir(out, hist, "history/");
@@ -110,6 +112,11 @@ final class BackupData {
             byte[] v = b.files.get("prefs/" + k + ".txt");
             if (v != null) ed.putString(k, new String(v, StandardCharsets.UTF_8));
             else ed.remove(k);
+        }
+        byte[] lang = b.files.get("prefs/lang.txt");
+        if (lang != null) {
+            c.getSharedPreferences("language", Context.MODE_PRIVATE).edit()
+                    .putString("lang", new String(lang, StandardCharsets.UTF_8)).apply();
         }
         byte[] since = b.files.get("prefs/since.txt");
         if (since != null) {

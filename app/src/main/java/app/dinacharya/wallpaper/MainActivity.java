@@ -861,6 +861,7 @@ public class MainActivity extends LangActivity {
         }
         AlarmScheduler.reschedule(this);
         extras.routineChanged();
+        DriveJob.changedSoon(this);
     }
 
     void registerPreview(PosterView p) {

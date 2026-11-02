@@ -19,6 +19,7 @@ final class LauncherStore {
 
     static void save(Context c, LauncherConfig cfg) {
         Store.prefs(c).edit().putString(KEY, cfg.serialize()).apply();
+        DriveJob.changedSoon(c);
         StrongMode.configChanged(c, cfg);   // a lock made on any screen starts holding at once; the last one removed stops it
     }
 

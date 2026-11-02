@@ -42,12 +42,38 @@ public class DriveJob extends JobService {
         }
     }
 
+    private static final int SOON_ID = 4101;
+
+    /**
+     * Something worth keeping changed (a routine, a to-do, a setting): back up in a couple of minutes, once, when the phone is online.
+     * Changes made in the meantime go into the same backup. Does nothing when automatic backup is off.
+     */
+    static void changedSoon(Context context) {
+        try {
+            Context c = context.getApplicationContext();
+            JobScheduler js = (JobScheduler) c.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+            if (js == null) return;
+            AccountStore a = new AccountStore(c);
+            if (!a.signedIn() || !BackupPolicy.automatic(a.frequency())) return;
+            if (js.getPendingJob(SOON_ID) != null) return;
+            js.schedule(new JobInfo.Builder(SOON_ID, new ComponentName(c, DriveJob.class))
+                    .setRequiredNetworkType(a.wifiOnly() ? JobInfo.NETWORK_TYPE_UNMETERED : JobInfo.NETWORK_TYPE_ANY)
+                    .setMinimumLatency(2 * 60 * 1000L)
+                    .setOverrideDeadline(60 * 60 * 1000L)
+                    .build());
+        } catch (RuntimeException e) {
+            CrashLog.note(context, "backup soon", e);
+        }
+    }
+
     @Override
     public boolean onStartJob(final JobParameters params) {
         final Context c = getApplicationContext();
+        final boolean soon = params.getJobId() == SOON_ID;
         new Thread(() -> {
             try {
-                Cloud.runIfDue(c);
+                if (soon) Cloud.backUp(c);
+                else Cloud.runIfDue(c);
             } catch (RuntimeException e) {
                 CrashLog.note(c, "automatic backup", e);
             }

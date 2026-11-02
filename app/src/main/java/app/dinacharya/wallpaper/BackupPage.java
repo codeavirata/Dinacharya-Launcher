@@ -267,7 +267,11 @@ final class BackupPage extends Page {
                 a.routineChanged();
                 a.toastText("Signed in as " + (who.email.isEmpty() ? who.name : who.email));
                 if (backup != null) offerRestore(backup, false);
-                else new AccountStore(a).setRestoreAsked();
+                else {
+                    // nothing in Drive yet: save this phone's routines and settings right away, so a later sign-in has something to restore
+                    new AccountStore(a).setRestoreAsked();
+                    backUpNow();
+                }
             });
         }, "sign-in").start();
     }
