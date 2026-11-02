@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 /** The Settings tab: a menu, and one page per group of settings. */
 final class SettingsPage extends Page {
-    static final int MENU = -1, LOOK = 0, ALARMS = 1, PERMISSIONS = 2, HELP = 3, ABOUT = 4;
+    static final int MENU = -1, LOOK = 0, ALARMS = 1, PERMISSIONS = 2, HELP = 3, ABOUT = 4, GUIDE = 5;
     private int open = MENU;
     private PosterView preview;
     private LinearLayout swatchBox;
@@ -66,6 +66,7 @@ final class SettingsPage extends Page {
             case ALARMS: alarms(); break;
             case PERMISSIONS: permissions(); break;
             case HELP: help(); break;
+            case GUIDE: guide(); break;
             case ABOUT: about(); break;
             default: menu(); break;
         }
@@ -98,6 +99,7 @@ final class SettingsPage extends Page {
         item(card2, Glyph.BELL, "Alarms", "On or off, test alarm, phone checklist", ALARMS);
         item(card2, Glyph.SHIELD, "Permissions", "What the app may do, and why", PERMISSIONS);
         LinearLayout card3 = Ui.section(a, body, "Support", null);
+        item(card3, Glyph.INFO, "Feature guide", "Every feature, and how to set it up", GUIDE);
         item(card3, Glyph.HELP, "Help and problem report", "How things work, copy a report", HELP);
         if (Ads.wanted(a) && Ads.get().privacyOptionsRequired()) {
             itemAction(card3, Glyph.SHIELD, "Ad privacy choices", "Change what you agreed to for ads",
@@ -499,6 +501,108 @@ final class SettingsPage extends Page {
             }
         }), Ui.wide(a, 10));
         a.addFooter(body);
+    }
+
+    // ------------------------------------------------------------------ feature guide
+
+    /** Opens a home or focus settings page, with one card open. */
+    private Runnable homeSettings(final int section, final String card) {
+        return () -> a.startActivity(new Intent(a, LauncherSettingsActivity.class)
+                .putExtra(LauncherSettingsActivity.EXTRA_SECTION, section)
+                .putExtra(LauncherSettingsActivity.EXTRA_CARD, card));
+    }
+
+    /** Every feature in a few words, and where to set it up, each with a button that goes straight there. */
+    private void guide() {
+        header("Feature guide");
+        LinearLayout card = Ui.section(a, body, "Every feature", null);
+        card.addView(a.note("Tap a feature to read what it does and how to set it up. The button under it opens the right place."), Ui.wide(a, 4));
+        card.addView(Ui.button(a, "Take the tour", false, v -> a.startActivity(new Intent(a, TourActivity.class))), Ui.wide(a, 8));
+        final Accordion parts = new Accordion();   // only one feature is open at a time
+        int no = 0;
+        no = topic(card, parts, no, "Home screen and wallpaper",
+                "Your day is your home screen: the time, the date and every slot, with the slot you are in highlighted. Swipe up for all apps, down for notifications, left for the camera and right for the phone. "
+                        + "Set it up: in Settings > Home screen, make it your home app and confirm the wallpaper once. Shortcut changes the left and right swipes, App list changes the list, and Hidden apps keeps apps out of it.",
+                "Open", homeSettings(LauncherSettingsActivity.SEC_HOME, "home"));
+        no = topic(card, parts, no, "Routine and slots",
+                "Your routine is a list of slots that always adds up to 24 hours. Tap a slot to change its name, type, sub type and length. Lengthen, add or delete a slot and the minutes come from, or go back to, Sleep, which stays between 4 and 12 hours. "
+                        + "Wake-up and Sleep are always there, and a slot is at least 5 minutes. "
+                        + "Set it up: open the Routine tab and pick your start time. Drag ≡ to move a slot, swipe left to delete, swipe right to add one below.",
+                "Open", () -> a.go(MainActivity.TAB_ROUTINE));
+        no = topic(card, parts, no, "Weekend, exam and one-day routines",
+                "Keep a different routine for weekends, exam days, or just tomorrow. Alarms, the home screen and reports follow the right one each day. "
+                        + "Set it up: on the Routine tab, add another routine and tap the days it is used on, or add a routine for one day. Extra routines are part of Pro.",
+                "Open", () -> a.go(MainActivity.TAB_ROUTINE));
+        no = topic(card, parts, no, "Alarms",
+                "Each slot can ring, vibrate, show a silent notification or do nothing when it starts, and it asks if you are continuing or changing the plan. The start-of-day alarm keeps ringing until you start your day, with an optional challenge. At bedtime it asks when you really went to sleep. "
+                        + "Set it up: turn alarms on from the Alarms card on Home, then open Settings > Alarms. The checklist shows anything that is missing, and the test alarm rings in 10 seconds.",
+                "Open", () -> show(ALARMS));
+        no = topic(card, parts, no, "Change plan",
+                "When a slot starts, or from the card on Home, tap Change plan and choose one: replace the slot with something else (pick its type and sub type), continue the previous slot, or swap it with another slot, by name or by place and time. "
+                        + "Change a few minutes only, or the whole slot. The rest of the slot goes back to your saved plan. Set it up: nothing to turn on, and your saved routine is not changed.",
+                null, null);
+        no = topic(card, parts, no, "Breaks and finishing early",
+                "Take a break with − and +, or until the slot ends, and tap Back to work to end it. If you finish a slot early, tap Finish early. "
+                        + "Set it up: both are under the slot that is going on, on the Home tab.",
+                "Open", () -> a.go(MainActivity.TAB_HOME));
+        no = topic(card, parts, no, "To-dos and goals",
+                "Give a slot its own to-do list. Tasks can repeat, and they show on your home screen while the slot runs. A daily goal for a slot fills up as you keep slots of that type, and days in a row make a streak. "
+                        + "Set it up: add tasks under the slot on the Home tab, and set goals on the Insights tab with the + button. Goals are part of Pro.",
+                "Open", () -> a.go(MainActivity.TAB_INSIGHTS));
+        no = topic(card, parts, no, "Pauses",
+                "Pick the apps that pull you away. During focus time they wait a few seconds before they open, and Open anyway is always there. Pro adds strict pauses, daily limits, any number of apps and playful pauses: a quick sum, a sentence, slow breaths, or saying why. "
+                        + "Set it up: Settings > Focus and locks > Focus.",
+                "Open", homeSettings(LauncherSettingsActivity.SEC_FOCUS, "pauses"));
+        no = topic(card, parts, no, "Locked apps and the strong lock",
+                "Lock the apps that eat your time, such as a Social group, for hours you choose, for the next hour, or while an activity type such as Study is on. Break a lock by waiting 30 seconds and typing a sentence; strict locks cannot be broken. "
+                        + "The strong lock makes locks hold wherever an app is opened from, and needs Usage access and Display over other apps. Set it up: Settings > Focus and locks > Locked apps.",
+                "Open", homeSettings(LauncherSettingsActivity.SEC_FOCUS, "locks"));
+        no = topic(card, parts, no, "Library and Quiet mode",
+                "Library mode keeps every alarm silent, with only vibration. Quiet rules set the ringer to ring, vibrate, silent or Do Not Disturb by time or by activity type. "
+                        + "Set it up: Settings > Focus and locks > Library and Quiet mode.",
+                "Open", homeSettings(LauncherSettingsActivity.SEC_FOCUS, "quiet"));
+        no = topic(card, parts, no, "Insights and reports",
+                "Every day gets a score, with your time by activity type and by app. Today's report is free. Pro adds every saved day, the weekly view, deeper analysis, suggestions, and any day as a PDF to save or share. "
+                        + "Set it up: open the Insights tab. To see when you pick up the phone during a slot, turn on Settings > Focus and locks > Phone use in slots.",
+                "Open", () -> a.go(MainActivity.TAB_INSIGHTS));
+        no = topic(card, parts, no, "Backup and restore",
+                "Sign in with Google to back up your routines, settings, to-dos and reports to a private space in your own Google Drive. Choose Daily, Weekly or Monthly; a change is also backed up a few minutes later. On a new phone, sign in and tap Restore. "
+                        + "Set it up: open the Backup tab.",
+                "Open", () -> a.go(MainActivity.TAB_BACKUP));
+        no = topic(card, parts, no, "Look, theme and language",
+                "Choose Light, Night or Auto for your day poster, and a colour look: Teal is free and Pro adds the rest. You can also change the clock, the phone time and the spacing. The app speaks English, Hindi, Marathi, Gujarati, Bengali, Tamil and Telugu. "
+                        + "Set it up: Settings > Home screen > Home screen look, and Settings > Language.",
+                "Home screen look", () -> show(LOOK),
+                "Language", () -> LanguageDialog.show(a, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert));
+        no = topic(card, parts, no, "Free and Pro",
+                "Free keeps the home screen, alarms, to-dos, today's report, one paused app and one locked app, with a small ad on some dashboard screens. Pro removes the ads and opens goals, every saved day, more pauses and locks, extra routines and all colour looks. "
+                        + "When it is offered, you can try Pro first: watch a few short videos and everything in Pro opens for a day. Set it up: the Pro card at the top of Settings.",
+                "Pro", a::openPro);
+        no = topic(card, parts, no, "Permissions and problem report",
+                "Alarms, the wallpaper and locks need a few permissions: notifications, exact alarms, the alarm screen over the lock screen, Usage access and Display over other apps. The checklist shows what is missing. "
+                        + "Set it up: Settings > Permissions, or Check phone settings. If something goes wrong, copy the problem report from Help and send it to the developer.",
+                "Permissions", () -> show(PERMISSIONS),
+                "Help and problem report", () -> show(HELP));
+        a.addFooter(body);
+    }
+
+    /** One feature of the guide: a dropdown with the words and a button that goes to the place. Returns the next number. */
+    private int topic(LinearLayout card, Accordion parts, int no, String title, String words, String label, Runnable go) {
+        return topic(card, parts, no, title, words, label, go, null, null);
+    }
+
+    /** The same with a second button. */
+    private int topic(LinearLayout card, Accordion parts, int no, String title, String words,
+                      String label1, Runnable go1, String label2, Runnable go2) {
+        Expander.Part part = parts.add(Expander.more(a, card, title, "guide_" + no, false));
+        part.body.addView(a.note(words), Ui.wide(a, 2));
+        if (label1 != null && go1 != null) {
+            part.body.addView(Ui.button(a, label1, false, v -> go1.run()), Ui.wide(a, 8));
+        }
+        if (label2 != null && go2 != null) {
+            part.body.addView(Ui.button(a, label2, false, v -> go2.run()), Ui.wide(a, 6));
+        }
+        return no + 1;
     }
 
     // ------------------------------------------------------------------ about

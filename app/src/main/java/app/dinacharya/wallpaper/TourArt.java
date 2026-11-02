@@ -13,9 +13,9 @@ import android.view.View;
  * with simple shapes and a few words, so the tour needs no image files.
  */
 final class TourArt extends View {
-    static final int HOME = 0, DRAWER = 1, SWIPES = 2, ROUTINE = 3, ALARM = 4, PAUSE = 5, LOCK = 6, REPORT = 7, BACKUP = 8,
-            PRO = 9, WALLPAPER = 10;
-    static final int PAGES = 11;
+    static final int HOME = 0, DRAWER = 1, SWIPES = 2, ROUTINE = 3, ALARM = 4, CHANGE = 5, TODO = 6, PAUSE = 7, LOCK = 8, REPORT = 9,
+            BACKUP = 10, LOOK = 11, PRO = 12, WALLPAPER = 13;
+    static final int PAGES = 14;
 
     private static final int WHITE = 0xFFF1F3F2;
     private static final int MUTED = 0xFF8FA3A1;
@@ -74,10 +74,13 @@ final class TourArt extends View {
                 case SWIPES: swipes(); break;
                 case ROUTINE: routine(); break;
                 case ALARM: alarm(); break;
+                case CHANGE: change(); break;
+                case TODO: todo(); break;
                 case PAUSE: pause(); break;
                 case LOCK: lock(); break;
                 case REPORT: report(); break;
                 case BACKUP: backup(); break;
+                case LOOK: look(); break;
                 case PRO: pro(); break;
                 case WALLPAPER: wallpaper(); break;
                 default: break;
@@ -278,6 +281,106 @@ final class TourArt extends View {
             fill(left + 14 * d, t2 + 14 * d, left + 40 * d, t2 + 40 * d, 13 * d, 0xFF3A3F66);
             text("Bedtime", left + 52 * d, t2 + 24 * d, 15 * d, WHITE, 0, true, false);
             text("When did you go to sleep?", left + 52 * d, t2 + 42 * d, 12.5f * d, MUTED, 0, false, false);
+        }
+
+        /** Change plan: the three ways to change a slot, and the switch for the whole slot. */
+        void change() {
+            float left = w * 0.08f, right = w * 0.92f, top = h * 0.03f, bottom = h * 0.97f;
+            fill(left, top, right, bottom, 18 * d, PANEL);
+            text("Change plan", left + 16 * d, top + 28 * d, 17 * d, WHITE, 0, true, false);
+            String[] names = {"Replace slot", "Continue previous slot", "Swap slot with"};
+            float rowH = (bottom - top - 118 * d) / 3f;
+            for (int i = 0; i < 3; i++) {
+                float t = top + 44 * d + i * rowH;
+                fill(left + 12 * d, t, right - 12 * d, t + rowH - 8 * d, 12 * d, i == 0 ? PANEL2 : 0xFF16302D);
+                if (i == 0) outline(left + 12 * d, t, right - 12 * d, t + rowH - 8 * d, 12 * d, TEAL, 1.5f * d);
+                float cy = t + (rowH - 8 * d) / 2;
+                p.setStyle(Paint.Style.STROKE);
+                p.setStrokeWidth(2 * d);
+                p.setColor(i == 0 ? TEAL : MUTED);
+                c.drawCircle(left + 32 * d, cy, 8 * d, p);
+                p.setStyle(Paint.Style.FILL);
+                if (i == 0) c.drawCircle(left + 32 * d, cy, 4 * d, p);
+                text(names[i], left + 50 * d, cy + 5 * d, 15 * d, i == 0 ? WHITE : 0xFFD3DEDC, 0, i == 0, false);
+            }
+            float sy = bottom - 40 * d;
+            text("Whole slot", left + 18 * d, sy + 5 * d, 14 * d, WHITE, 0, false, false);
+            fill(right - 70 * d, sy - 11 * d, right - 18 * d, sy + 13 * d, 12 * d, TEAL);
+            p.setColor(0xFF001B1A);
+            c.drawCircle(right - 30 * d, sy + d, 9 * d, p);
+        }
+
+        /** Breaks, to-dos and goals: the break control, a short to-do list with ticks, and a streak. */
+        void todo() {
+            float left = w * 0.08f, right = w * 0.92f, top = h * 0.03f;
+            float bh = h * 0.2f;
+            fill(left, top, right, top + bh, 16 * d, PANEL);
+            text("Take a break", left + 16 * d, top + bh / 2 + 5 * d, 15 * d, WHITE, 0, true, false);
+            fill(right - 142 * d, top + bh / 2 - 15 * d, right - 112 * d, top + bh / 2 + 15 * d, 15 * d, PANEL2);
+            text("−", right - 127 * d, top + bh / 2 + 7 * d, 20 * d, WHITE, 1, true, false);
+            text("10 min", right - 78 * d, top + bh / 2 + 5 * d, 14 * d, TEAL, 1, true, false);
+            fill(right - 44 * d, top + bh / 2 - 15 * d, right - 14 * d, top + bh / 2 + 15 * d, 15 * d, PANEL2);
+            text("+", right - 29 * d, top + bh / 2 + 7 * d, 20 * d, WHITE, 1, true, false);
+            String[] tasks = {"Read chapter 3", "Practice questions", "Revise notes"};
+            float t0 = top + bh + 10 * d, rowH = h * 0.17f;
+            for (int i = 0; i < 3; i++) {
+                float t = t0 + i * rowH;
+                fill(left, t, right, t + rowH - 6 * d, 12 * d, PANEL);
+                float cy = t + (rowH - 6 * d) / 2;
+                if (i == 0) {
+                    fill(left + 14 * d, cy - 9 * d, left + 32 * d, cy + 9 * d, 5 * d, TEAL);
+                    line(left + 18 * d, cy, left + 22 * d, cy + 4 * d, 0xFF001B1A, 2.2f * d);
+                    line(left + 22 * d, cy + 4 * d, left + 29 * d, cy - 5 * d, 0xFF001B1A, 2.2f * d);
+                } else {
+                    outline(left + 14 * d, cy - 9 * d, left + 32 * d, cy + 9 * d, 5 * d, MUTED, 1.6f * d);
+                }
+                text(tasks[i], left + 44 * d, cy + 5 * d, 14.5f * d, i == 0 ? MUTED : WHITE, 0, false, false);
+            }
+            float gy = t0 + 3 * rowH + 4 * d;
+            fill(left, gy, right, h * 0.97f, 12 * d, PANEL2);
+            text("Goal: 2 h of Study", left + 14 * d, (gy + h * 0.97f) / 2 + 5 * d, 14 * d, WHITE, 0, false, false);
+            text("5 days in a row", right - 14 * d, (gy + h * 0.97f) / 2 + 5 * d, 13 * d, AMBER, 2, true, false);
+        }
+
+        /** Make it yours: Light, Night and Auto, the colour looks, and the languages. */
+        void look() {
+            float left = w * 0.08f, right = w * 0.92f;
+            String[] themes = {"Light", "Night", "Auto"};
+            float cw = (right - left - 2 * 10 * d) / 3, ty = h * 0.03f, th = h * 0.22f;
+            for (int i = 0; i < 3; i++) {
+                float l = left + i * (cw + 10 * d);
+                fill(l, ty, l + cw, ty + th, 14 * d, i == 0 ? 0xFFEFF3F2 : (i == 1 ? 0xFF0C1716 : PANEL2));
+                if (i == 1) outline(l, ty, l + cw, ty + th, 14 * d, TEAL, 2 * d);
+                text(themes[i], l + cw / 2, ty + th / 2 + 5 * d, 14 * d, i == 0 ? 0xFF10201E : WHITE, 1, i == 1, false);
+            }
+            int[] looks = {TEAL, CORAL, BLUE, 0xFF7B8794};
+            float dy = h * 0.37f;
+            for (int i = 0; i < looks.length; i++) {
+                float cx = left + 22 * d + i * 58 * d;
+                p.setStyle(Paint.Style.FILL);
+                p.setColor(looks[i]);
+                c.drawCircle(cx, dy, 19 * d, p);
+                if (i == 0) {
+                    p.setStyle(Paint.Style.STROKE);
+                    p.setStrokeWidth(2.5f * d);
+                    p.setColor(WHITE);
+                    c.drawCircle(cx, dy, 25 * d, p);
+                    p.setStyle(Paint.Style.FILL);
+                }
+            }
+            String[] langs = {"English", "हिन्दी", "मराठी", "ગુજરાતી", "বাংলা", "தமிழ்", "తెలుగు"};
+            float lx = left, ly = h * 0.52f, lh = 28 * d;
+            for (int i = 0; i < langs.length; i++) {
+                p.setTextSize(12.5f * d);
+                float lw = p.measureText(langs[i]) + 22 * d;
+                if (lx + lw > right) {
+                    lx = left;
+                    ly += lh + 8 * d;
+                }
+                outline(lx, ly, lx + lw, ly + lh, lh / 2, i == 0 ? TEAL : MUTED, 1.3f * d);
+                text(langs[i], lx + lw / 2, ly + lh / 2 + 4.5f * d, 13 * d, i == 0 ? TEAL : WHITE, 1, i == 0, false);
+                lx += lw + 8 * d;
+            }
         }
 
         void pause() {
