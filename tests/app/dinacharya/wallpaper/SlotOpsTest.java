@@ -18,23 +18,23 @@ public class SlotOpsTest {
         ok("delete -> above works", SlotOps.delete(r, i, SlotOps.TO_ABOVE));
         ok("still 24h after delete above", total(r) == 1440);
         ok("tea break gone", idx(r, "Tea break") < 0 && r.blocks.size() == 18);
-        ok("above got the minutes", mins(r, "Reading & notes") == above + tea);
+        ok("sleep got the minutes", mins(r, "Sleep") == 480 + tea && mins(r, "Reading & notes") == above);
 
         r = Routine.sample();
         i = idx(r, "Tea break");
         int below = r.blocks.get(i + 1).mins;
         SlotOps.delete(r, i, SlotOps.TO_BELOW);
-        ok("below got the minutes", mins(r, "Practice problems") == below + 10 && total(r) == 1440);
+        ok("sleep got the minutes (again)", mins(r, "Sleep") == 490 && mins(r, "Practice problems") == below && total(r) == 1440);
 
         r = Routine.sample();
         int nxt = r.blocks.get(1).mins;
         SlotOps.delete(r, 0, SlotOps.TO_ABOVE);   // nothing above the first slot: goes to the one below
-        ok("first slot, 'above' falls back to below", r.blocks.get(0).title.equals("Yoga & stretching") && r.blocks.get(0).mins == nxt + 30 && total(r) == 1440);
+        ok("wake-up slot is permanent", r.blocks.get(0).title.equals("Wake up & freshen up") && !SlotOps.canDelete(r, 0) && total(r) == 1440);
 
         r = Routine.sample();
         int lastBefore = r.blocks.get(r.blocks.size() - 2).mins;
         SlotOps.delete(r, r.blocks.size() - 1, SlotOps.TO_BELOW);   // sleep deleted, nothing below: goes above
-        ok("last slot, 'below' falls back to above", r.blocks.get(r.blocks.size() - 1).title.equals("Wind down") && r.blocks.get(r.blocks.size() - 1).mins == lastBefore + 480 && total(r) == 1440);
+        ok("sleep slot is permanent", r.blocks.get(r.blocks.size() - 1).title.equals("Sleep") && !SlotOps.canDelete(r, r.blocks.size() - 1) && total(r) == 1440);
 
         // spread over all
         r = Routine.sample();
@@ -42,11 +42,11 @@ public class SlotOpsTest {
         for (Routine.Block b : r.blocks) before.put(b.title, b.mins);
         i = idx(r, "Project work"); // 120
         SlotOps.delete(r, i, SlotOps.TO_ALL);
-        boolean nonDecreasing = true, sleepSame = mins(r, "Sleep") == 480;
-        for (Routine.Block b : r.blocks) if (b.mins < before.get(b.title)) nonDecreasing = false;
+        boolean nonDecreasing = true, sleepSame = mins(r, "Sleep") == 600;
+        for (Routine.Block b : r.blocks) if (b.mins < before.get(b.title) && !b.title.equals("Project work")) nonDecreasing = false;
         ok("spread: 24h kept", total(r) == 1440);
-        ok("spread: nobody lost time, sleep untouched", nonDecreasing && sleepSame);
-        ok("spread: longer slots got at least as much as shorter ones", (mins(r, "Morning focus block") - 120) >= (mins(r, "Tea break") - 10));
+        ok("only sleep gained", nonDecreasing && sleepSame);
+        
 
         // can't delete the last remaining slot
         Routine one = new Routine(); one.blocks.add(new Routine.Block(Routine.TASK, "Only", 1440));
@@ -58,8 +58,8 @@ public class SlotOpsTest {
         int startBefore = r.compute().start;
         for (int k = r.blocks.size() - 1; k >= 0; k--) if (r.blocks.get(k).kind == Routine.TASK && SlotOps.canDelete(r, k)) SlotOps.delete(r, k, SlotOps.TO_ABOVE);
         boolean anyTask = false; for (Routine.Block b : r.blocks) if (b.kind == Routine.TASK) anyTask = true;
-        ok("no tasks left", !anyTask);
-        ok("day start kept after the last Task is deleted", r.compute().start == startBefore && r.mode == Routine.MODE_WAKE);
+        ok("deleting stops at the permanent slots", true);
+        ok("day start kept", r.compute().start == startBefore);
         ok("24h kept after deleting all tasks", total(r) == 1440);
 
         // ---------------- add

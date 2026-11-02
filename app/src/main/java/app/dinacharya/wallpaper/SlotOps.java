@@ -17,13 +17,45 @@ public final class SlotOps {
     /** Where a new slot's minutes come from. */
     public static final int FROM_THIS = 0, FROM_NEXT = 1, FROM_ALL = 2;
 
+    /** Sleep is never shorter than 4 hours or longer than 12 hours. */
+    public static final int SLEEP_MIN = 240, SLEEP_MAX = 720;
+
     private SlotOps() {
+    }
+
+    /** True when the routine ends with its Sleep slot. */
+    public static boolean hasSleep(Routine r) {
+        int n = r.blocks.size();
+        return n >= 2 && r.blocks.get(n - 1).kind == Routine.SLEEP;
+    }
+
+    /** The wake-up slot (the first) and the Sleep slot (the last) are permanent: they cannot be deleted or moved. */
+    public static boolean isPermanent(Routine r, int i) {
+        int n = r.blocks.size();
+        if (i < 0 || i >= n) return false;
+        return i == 0 || (i == n - 1 && r.blocks.get(i).kind == Routine.SLEEP);
+    }
+
+    /** Minutes Sleep can give away and still be 4 hours. */
+    public static int sleepCanGive(Routine r) {
+        return hasSleep(r) ? Math.max(0, r.blocks.get(r.blocks.size() - 1).mins - SLEEP_MIN) : 0;
+    }
+
+    /** Minutes Sleep can receive and still be 12 hours. */
+    public static int sleepCanTake(Routine r) {
+        return hasSleep(r) ? Math.max(0, SLEEP_MAX - r.blocks.get(r.blocks.size() - 1).mins) : 0;
     }
 
     // ------------------------------------------------------------------ delete
 
     public static boolean canDelete(Routine r, int i) {
-        return i >= 0 && i < r.blocks.size() && r.blocks.size() > 1;
+        return i >= 0 && i < r.blocks.size() && r.blocks.size() > 1 && !isPermanent(r, i);
+    }
+
+    /** Whether Sleep has room for the minutes of slot i (it stays 12 hours or less). Always true when there is no Sleep slot. */
+    public static boolean canDeleteNow(Routine r, int i) {
+        if (!canDelete(r, i)) return false;
+        return !hasSleep(r) || r.blocks.get(i).mins <= sleepCanTake(r);
     }
 
     /** The slot that gets the minutes for the given choice, or -1 for "spread over the others". */
@@ -42,6 +74,13 @@ public final class SlotOps {
         if (!canDelete(r, i)) return false;
         int oldStart = r.compute().start;
         int freed = r.blocks.get(i).mins;
+        if (hasSleep(r)) {
+            if (freed > sleepCanTake(r)) return false;
+            r.blocks.get(r.blocks.size() - 1).mins += freed;
+            r.blocks.remove(i);
+            normalizeAnchor(r, oldStart);
+            return true;
+        }
         int target = receiver(r, i, mode);
         List<Routine.Block> rest = new ArrayList<>(r.blocks);
         rest.remove(i);
@@ -223,6 +262,12 @@ public final class SlotOps {
 
     /** Longest slot i can become while the day keeps its length (slots below give first, then slots above). */
     public static int maxMinutes(Routine r, int i) {
+        if (hasSleep(r)) {
+            int n = r.blocks.size();
+            Routine.Block b = r.blocks.get(i);
+            if (i == n - 1) return Math.min(SLEEP_MAX, b.mins + Math.max(0, r.blocks.get(n - 2).mins - MIN_MINS));
+            return b.mins + sleepCanGive(r);
+        }
         int cap = r.blocks.get(i).mins;
         for (int k = 0; k < r.blocks.size(); k++) {
             if (k != i) cap += Math.max(0, r.blocks.get(k).mins - MIN_MINS);
@@ -246,6 +291,7 @@ public final class SlotOps {
             return out;
         }
         want = Math.max(MIN_MINS, want);
+        if (hasSleep(r)) return resizeWithSleep(r, i, want, out);
         int cap = maxMinutes(r, i);
         if (want > cap) {
             want = cap;
@@ -266,6 +312,33 @@ public final class SlotOps {
         return out;
     }
 
+    /** With a Sleep slot at the end, every other slot gives to or takes from Sleep; Sleep itself trades with the slot above it. */
+    private static Resized resizeWithSleep(Routine r, int i, int want, Resized out) {
+        int n = r.blocks.size();
+        Routine.Block b = r.blocks.get(i);
+        if (i == n - 1) {
+            Routine.Block above = r.blocks.get(n - 2);
+            int hi = Math.min(SLEEP_MAX, b.mins + Math.max(0, above.mins - MIN_MINS));
+            int lo = Math.max(SLEEP_MIN, b.mins - (1440 - above.mins));
+            int w = Math.max(Math.min(lo, b.mins), Math.min(Math.max(hi, b.mins), want));
+            if (w != want) out.capped = true;
+            above.mins -= w - b.mins;
+            b.mins = w;
+        } else {
+            Routine.Block sleep = r.blocks.get(n - 1);
+            int delta = want - b.mins;
+            int room = delta > 0 ? sleepCanGive(r) : sleepCanTake(r);
+            int move = Math.min(Math.abs(delta), room);
+            if (move < Math.abs(delta)) out.capped = true;
+            int d = delta > 0 ? move : -move;
+            b.mins += d;
+            sleep.mins -= d;
+        }
+        out.applied = b.mins;
+        out.sleepWarn = sleepOutOfRange(r);
+        return out;
+    }
+
     private static int takeFrom(Routine.Block x, int need) {
         int t = Math.min(need, Math.max(0, x.mins - MIN_MINS));
         x.mins -= t;
@@ -282,6 +355,7 @@ public final class SlotOps {
     /** The longest slot that can be added after slot {@code after}: every other slot can spare down to 5 minutes. */
     public static int maxAddMinutes(Routine r, int after) {
         if (after < 0 || after >= r.blocks.size()) return 0;
+        if (hasSleep(r)) return after >= r.blocks.size() - 1 ? 0 : Math.min(1435, sleepCanGive(r));
         int cap = 0;
         for (Routine.Block b : r.blocks) cap += Math.max(0, b.mins - MIN_MINS);
         return Math.min(1435, cap);
@@ -296,6 +370,12 @@ public final class SlotOps {
         if (need < 1 || need > maxAddMinutes(r, after)) return null;
         int oldStart = r.compute().start;
         int n = r.blocks.size();
+        if (hasSleep(r)) {
+            r.blocks.get(n - 1).mins -= need;
+            r.blocks.add(after + 1, nb);
+            normalizeAnchor(r, oldStart);
+            return nb;
+        }
         int left = need;
         for (int k = after + 1; k < n && left > 0; k++) left -= takeFrom(r.blocks.get(k), left);
         for (int k = after; k >= 0 && left > 0; k--) left -= takeFrom(r.blocks.get(k), left);
@@ -310,6 +390,7 @@ public final class SlotOps {
     public static boolean move(Routine r, int from, int to) {
         int n = r.blocks.size();
         if (from < 0 || from >= n || to < 0 || to >= n || from == to) return false;
+        if (isPermanent(r, from) || isPermanent(r, to)) return false;
         Routine.Block b = r.blocks.remove(from);
         r.blocks.add(to, b);
         return true;

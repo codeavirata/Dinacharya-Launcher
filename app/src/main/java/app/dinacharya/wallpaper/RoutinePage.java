@@ -1107,8 +1107,10 @@ final class RoutinePage extends Page {
         Menu m = pm.getMenu();
         m.add(0, MENU_ADD, 0, Lang.tr("Add a slot below"));
         m.add(0, MENU_NOTE, 1, Lang.tr(b.note.trim().isEmpty() ? "Add a note" : "Edit the note"));
-        m.add(0, MENU_DUPLICATE, 2, Lang.tr("Duplicate (splits this slot in two)"));
-        m.add(0, MENU_DELETE, 3, Lang.tr("Delete"));
+        if (!SlotOps.isPermanent(sched(), index)) {
+            m.add(0, MENU_DUPLICATE, 2, Lang.tr("Duplicate (splits this slot in two)"));
+            m.add(0, MENU_DELETE, 3, Lang.tr("Delete"));
+        }
         pm.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case MENU_ADD: showAddDialog(index); return true;
@@ -1236,7 +1238,7 @@ final class RoutinePage extends Page {
             return;
         }
         SlotOps.Resized x = SlotOps.resize(r, i, want);
-        if (x.capped) a.toastText("The day only has room for " + x.applied + " minutes here.");
+        if (x.capped) a.toastText("Sleep must stay between 4 and 12 hours, so this can be at most " + x.applied + " minutes.");
         else if (x.sleepWarn) a.toastText("Sleep is now outside 4 to 12 hours.");
     }
 
@@ -1319,55 +1321,22 @@ final class RoutinePage extends Page {
         final Routine r = sched();
         if (busy) return;
         if (!SlotOps.canDelete(r, i)) {
-            a.toastText("Keep at least one slot");
+            a.toastText(SlotOps.isPermanent(r, i) ? "Wake-up and Sleep are permanent slots. You can change their length and name." : "Keep at least one slot");
             return;
         }
         final Routine.Block b = r.blocks.get(i);
-        final int n = r.blocks.size();
-        LinearLayout box = column();
-        box.setPadding(dp(22), dp(8), dp(22), 0);
-        box.addView(label("Its " + Routine.formatDuration(b.mins) + " stay in your day. Where should they go?", 14, Ui.INK, false));
-        final RadioGroup group = new RadioGroup(a);
-        final int[] modeOf = new int[3];
-        final int[] idOf = new int[3];
-        int count = 0;
-        int preselect = -1;
-        for (int mode = SlotOps.TO_ABOVE; mode <= SlotOps.TO_ALL; mode++) {
-            if (mode == SlotOps.TO_ABOVE && i == 0) continue;
-            if (mode == SlotOps.TO_BELOW && i == n - 1) continue;
-            String text;
-            if (mode == SlotOps.TO_ALL) {
-                text = "Share them out over the other slots";
-            } else {
-                Routine.Block to = r.blocks.get(SlotOps.receiver(r, i, mode));
-                text = mode == SlotOps.TO_ABOVE ? "Add to the slot above: “" + nameOf(to) + "”"
-                        : "Add to the slot below: “" + nameOf(to) + "”";
-            }
-            RadioButton rb = new RadioButton(a);
-            rb.setId(View.generateViewId());
-            rb.setText(text);
-            rb.setMinHeight(dp(44));
-            rb.setMinimumHeight(dp(44));
-            group.addView(rb);
-            modeOf[count] = mode;
-            idOf[count] = rb.getId();
-            if (mode == SlotOps.TO_BELOW || (preselect < 0 && mode == SlotOps.TO_ABOVE)) preselect = count;
-            count++;
+        if (SlotOps.hasSleep(r) && !SlotOps.canDeleteNow(r, i)) {
+            a.toastText("Sleep can be at most 12 hours. Shorten this slot first, or delete a shorter one.");
+            return;
         }
-        final int options = count;
-        if (preselect >= 0) group.check(idOf[preselect]);
-        box.addView(group, wide(8));
+        String where = SlotOps.hasSleep(r) ? "Its " + Routine.formatDuration(b.mins) + " will be added to Sleep, so the day stays 24 hours."
+                : "Its " + Routine.formatDuration(b.mins) + " stay in your day.";
+        final int mode = SlotOps.hasSleep(r) ? SlotOps.TO_BELOW : (i == 0 ? SlotOps.TO_BELOW : SlotOps.TO_ABOVE);
         new DBuilder(a)
                 .setTitle("Delete “" + nameOf(b) + "”?")
-                .setView(box)
-                .setPositiveButton("Delete", (d, w) -> {
-                    int mode = SlotOps.TO_ALL;
-                    for (int k = 0; k < options; k++) if (idOf[k] == group.getCheckedRadioButtonId()) mode = modeOf[k];
-                    int rcv = SlotOps.receiver(r, i, mode);
-                    deleteAnimated(i, mode, rcv >= 0
-                            ? "Deleted “" + nameOf(b) + "”. Its " + b.mins + " min went to “" + nameOf(r.blocks.get(rcv)) + "”."
-                            : "Deleted “" + nameOf(b) + "”. Its " + b.mins + " min were shared out.");
-                })
+                .setMessage(where)
+                .setPositiveButton("Delete", (d, w) -> deleteAnimated(i, mode, "Deleted “" + nameOf(b) + "”. Its " + b.mins
+                        + (SlotOps.hasSleep(r) ? " min went to Sleep." : " min stayed in your day.")))
                 .setNegativeButton("Cancel", null)
                 .show();
     }
@@ -1396,7 +1365,7 @@ final class RoutinePage extends Page {
     /** Splits a slot into two equal halves with the same name, type and note. */
     private void duplicate(int i) {
         Routine r = sched();
-        if (i < 0 || i >= r.blocks.size()) return;
+        if (i < 0 || i >= r.blocks.size() || SlotOps.isPermanent(r, i)) return;
         Routine.Block b = r.blocks.get(i);
         if (b.mins < 2 * SlotOps.MIN_MINS) {
             a.toastText("This slot is too short to split");
@@ -1434,6 +1403,10 @@ final class RoutinePage extends Page {
         final Routine r = sched();
         final int n = r.blocks.size();
         if (busy || after < 0 || after >= n) return;
+        if (SlotOps.hasSleep(r) && after >= n - 1) {
+            showAddDialog(n - 2);
+            return;
+        }
         final Routine.Block here = r.blocks.get(after);
         final Routine.Block next = after + 1 < n ? r.blocks.get(after + 1) : null;
 
@@ -1480,7 +1453,7 @@ final class RoutinePage extends Page {
         box.addView(err, wide(4));
         final Runnable updateInfo = () -> {
             int max = SlotOps.maxAddMinutes(r, after);
-            info.setText(Lang.tr("The minutes are taken from the slots right below this one, so the day stays 24 hours.") + " " + max + " min");
+            info.setText(Lang.tr("The minutes are taken from Sleep, so the day stays 24 hours. Sleep stays between 4 and 12 hours.") + " " + max + " min");
             err.setText("");
         };
         updateInfo.run();
