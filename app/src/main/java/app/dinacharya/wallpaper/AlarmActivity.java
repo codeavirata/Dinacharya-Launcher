@@ -841,7 +841,7 @@ public class AlarmActivity extends LangActivity {
         final MinuteStepper[] steps = new MinuteStepper[3];
         final Switch[] whole = new Switch[3];
         final EditText name = new EditText(this);
-        final Spinner target = new Spinner(this);
+        final RadioGroup target = new RadioGroup(this);
         final RadioButton[] swapMode = new RadioButton[2];
 
         for (int i = 0; i < 3; i++) {
@@ -870,8 +870,17 @@ public class AlarmActivity extends LangActivity {
             } else if (i == 1) {
                 box.addView(Ui.label(this, "“" + prev.title + "” goes on into this slot.", 13, Ui.MUTED, false), Ui.wide(this, 0));
             } else {
-                target.setAdapter(Lang.adapter(this, android.R.layout.simple_spinner_item, otherNames));
-                box.addView(target, Ui.wide(this, 0));
+                box.addView(Ui.label(this, "Swap with which slot?", 13, Ui.MUTED, true), Ui.wide(this, 0));
+                for (int q = 0; q < otherNames.size(); q++) {
+                    RadioButton o = new RadioButton(this);
+                    o.setId(View.generateViewId());
+                    o.setText(otherNames.get(q));
+                    o.setTextColor(Ui.INK);
+                    o.setMinHeight(dp(44));
+                    target.addView(o);
+                    if (q == 0) o.setChecked(true);
+                }
+                box.addView(target, Ui.wide(this, 4));
                 swapMode[0] = new RadioButton(this);
                 swapMode[0].setText("Swap names (times stay)");
                 swapMode[0].setTextColor(Ui.INK);
@@ -950,7 +959,7 @@ public class AlarmActivity extends LangActivity {
                 long until = SlotActions.continuePrevious(this, ev, prev, full ? slotMins : mins);
                 done("“" + prev.title + "” goes on. I will ask again at " + clock(until));
             } else {
-                int t = target.getSelectedItemPosition();
+                int t = target.indexOfChild(target.findViewById(target.getCheckedRadioButtonId()));
                 if (t < 0 || t >= others.size()) return;
                 Routine.Block o = others.get(t);
                 if (swapMode[1].isChecked()) {

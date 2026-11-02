@@ -520,8 +520,16 @@ final class HomePage extends Page {
         name.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 18);
         name.setTextColor(Ui.INK);
         name.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
-        final android.widget.Spinner target = new android.widget.Spinner(a);
-        target.setAdapter(Lang.adapter(a, android.R.layout.simple_spinner_item, otherNames));
+        final android.widget.RadioGroup target = new android.widget.RadioGroup(a);
+        for (int q = 0; q < otherNames.size(); q++) {
+            android.widget.RadioButton o = new android.widget.RadioButton(a);
+            o.setId(View.generateViewId());
+            o.setText(otherNames.get(q));
+            o.setTextColor(Ui.INK);
+            o.setMinHeight(a.dp(44));
+            target.addView(o);
+            if (q == 0) o.setChecked(true);
+        }
         final android.widget.RadioButton swapNames = new android.widget.RadioButton(a);
         swapNames.setText("Swap names (times stay)");
         swapNames.setTextColor(Ui.INK);
@@ -619,7 +627,7 @@ final class HomePage extends Page {
                         long until = SlotActions.continueFrom(a, day, src, title, slotStart, sEnd, prev, full ? slotMins : mins, endWait);
                         a.toastText("“" + prev.title + "” goes on until " + Routine.formatTime(minuteOf(until), a.routine().fmt24));
                     } else {
-                        int t = target.getSelectedItemPosition();
+                        int t = target.indexOfChild(target.findViewById(target.getCheckedRadioButtonId()));
                         if (t < 0 || t >= others.size()) return;
                         Routine.Block o = others.get(t);
                         boolean places = swapPlaces.isChecked();
