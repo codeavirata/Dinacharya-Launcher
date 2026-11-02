@@ -206,68 +206,6 @@ final class RoutinePage extends Page {
     private void changed() {
         a.persist();
         a.routineChanged();
-        askFirstEdit();
-    }
-
-    // ------------------------------------------------------------------ first edit: change this routine, or make a new one
-
-    private String baseline;
-    private boolean askingFirst;
-
-    private boolean firstEditDone() {
-        try {
-            return Store.prefs(a).getBoolean("first_edit_asked", false);
-        } catch (RuntimeException e) {
-            return true;
-        }
-    }
-
-    private void markFirstEditDone() {
-        try {
-            Store.prefs(a).edit().putBoolean("first_edit_asked", true).apply();
-        } catch (RuntimeException ignored) {
-        }
-    }
-
-    /** The first time a new user edits the only routine, asks whether to change it or to keep it and make a new one. */
-    private void askFirstEdit() {
-        if (askingFirst || firstEditDone()) return;
-        final Routine m = main();
-        if (!m.others.isEmpty() || !m.temps.isEmpty() || sel != 0 || baseline == null) {
-            markFirstEditDone();
-            return;
-        }
-        askingFirst = true;
-        final String before = baseline;
-        final String edited = a.snapshot();
-        new DBuilder(a)
-                .setTitle("Change this routine, or make a new one?")
-                .setMessage("You just changed your routine. Do you want to keep the change in this routine, or leave this routine as it was and put the change in a new routine?")
-                .setCancelable(false)
-                .setPositiveButton("Change this routine", (d, w) -> {
-                    askingFirst = false;
-                    markFirstEditDone();
-                    baseline = a.snapshot();
-                })
-                .setNegativeButton("Make a new routine", (d, w) -> {
-                    askingFirst = false;
-                    if (!a.requirePro(DayPass.ROUTINES, "Weekday and weekend routines", () -> { })) {
-                        baseline = a.snapshot();
-                        return;
-                    }
-                    markFirstEditDone();
-                    Routine changedCopy = Routine.parse(edited);
-                    Routine old = Routine.parse(before);
-                    if (changedCopy == null || old == null) return;
-                    m.replaceWith(old);
-                    m.addOther("My new routine", changedCopy);
-                    sel = m.others.size();
-                    baseline = a.snapshot();
-                    a.persist();
-                    a.routineChanged();
-                    a.toastText("Your first routine is unchanged. The change is in “My new routine”.");
-                })
-                .show();
     }
 
     // ------------------------------------------------------------------ building
@@ -275,7 +213,6 @@ final class RoutinePage extends Page {
     @Override
     void build(LinearLayout body) {
         title("Routine", "Your day, slot by slot");
-        baseline = a.snapshot();
 
         alarmBanner = new LinearLayout(a);
         alarmBanner.setOrientation(LinearLayout.VERTICAL);
@@ -1191,7 +1128,6 @@ final class RoutinePage extends Page {
         if (next == b.mins) return;
         applyLength(b, next);
         a.persistSoon();
-        askFirstEdit();
         refreshStart();
         a.previewChanged();
     }
