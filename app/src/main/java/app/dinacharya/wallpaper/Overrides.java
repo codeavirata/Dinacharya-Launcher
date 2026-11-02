@@ -45,12 +45,22 @@ public final class Overrides {
         public final int mins;
         /** When 0 or more (and no name, not skipped): this slot and slot number {@code with} trade places for the day. */
         public final int with;
+        /** The type (Task, Rest...) the changed part takes, or -1 to keep the slot's own. */
+        public final int kind;
+        /** The sub type the changed part takes, or empty to keep the slot's own. */
+        public final String sub;
 
         Edit(String day, int src, String orig, boolean skip, String name) {
-            this(day, src, orig, skip, name, 0, -1);
+            this(day, src, orig, skip, name, 0, -1, -1, "");
         }
 
         Edit(String day, int src, String orig, boolean skip, String name, int mins, int with) {
+            this(day, src, orig, skip, name, mins, with, -1, "");
+        }
+
+        Edit(String day, int src, String orig, boolean skip, String name, int mins, int with, int kind, String sub) {
+            this.kind = kind;
+            this.sub = sub == null ? "" : sub;
             this.day = day;
             this.src = src;
             this.orig = orig;
@@ -101,12 +111,17 @@ public final class Overrides {
 
     /** Renames only the first {@code mins} minutes of a slot for one day; the rest of the slot stays as saved. */
     public void setPartial(LocalDate d, int src, String orig, String name, int mins) {
+        setPartial(d, src, orig, name, mins, -1, "");
+    }
+
+    /** Renames the first {@code mins} minutes (0 for the whole slot) and gives them a type and sub type (-1 and "" keep the slot's own). */
+    public void setPartial(LocalDate d, int src, String orig, String name, int mins, int kind, String sub) {
         String key = d.toString();
         for (int i = edits.size() - 1; i >= 0; i--) {
             Edit e = edits.get(i);
             if (e.day.equals(key) && e.src == src) edits.remove(i);
         }
-        edits.add(new Edit(key, src, Routine.clean(orig), false, Routine.clean(name == null ? "" : name), mins, -1));
+        edits.add(new Edit(key, src, Routine.clean(orig), false, Routine.clean(name == null ? "" : name), mins, -1, kind, Routine.clean(sub == null ? "" : sub)));
     }
 
     /** Makes this slot and slot {@code other} trade places for one day. */
@@ -165,7 +180,7 @@ public final class Overrides {
         }
         for (Edit e : edits) {
             sb.append("E\t").append(e.day).append('\t').append(e.src).append('\t').append(e.skip ? 1 : 0).append('\t')
-                    .append(e.orig).append('\t').append(e.name).append('\t').append(e.mins).append('\t').append(e.with).append('\n');
+                    .append(e.orig).append('\t').append(e.name).append('\t').append(e.mins).append('\t').append(e.with).append('\t').append(e.kind).append('\t').append(e.sub).append('\n');
         }
         return sb.toString();
     }
@@ -191,17 +206,19 @@ public final class Overrides {
                     int m = Integer.parseInt(p[2].trim());
                     if (m > 0) o.wakes.put(p[1], Math.min(m, 720));
                 } else if (ln.startsWith("E\t")) {
-                    String[] p = ln.split("\t", 8);
+                    String[] p = ln.split("\t", 10);
                     LocalDate.parse(p[1]);
                     int pm = 0;
                     int pw = -1;
+                    int pk = -1;
                     try {
                         if (p.length > 6) pm = Integer.parseInt(p[6].trim());
                         if (p.length > 7) pw = Integer.parseInt(p[7].trim());
+                        if (p.length > 8) pk = Integer.parseInt(p[8].trim());
                     } catch (NumberFormatException ignored) {
                     }
                     o.edits.add(new Edit(p[1], Integer.parseInt(p[2].trim()), p[4], p[3].trim().equals("1"),
-                            p.length > 5 ? p[5] : "", pm, pw));
+                            p.length > 5 ? p[5] : "", pm, pw, pk, p.length > 9 ? p[9] : ""));
                 }
             } catch (RuntimeException ignored) {
                 // skip a damaged line

@@ -834,14 +834,26 @@ public class AlarmActivity extends LangActivity {
         } catch (RuntimeException ignored) {
         }
 
-        final RadioGroup group = new RadioGroup(this);
+        int curKind = Routine.TASK;
+        String curSub = Routine.OTHER;
+        try {
+            Routine.Block cb = base.forDay(day).blocks.get(ev.src);
+            curKind = cb.kind;
+            curSub = cb.sub;
+        } catch (RuntimeException ignored) {
+        }
+        final int baseKind = curKind;
+        final String baseSub = curSub;
+        final ChangePlanUi.TypePicker typePick = new ChangePlanUi.TypePicker(this, base, curKind, curSub);
         final LinearLayout[] panelBox = new LinearLayout[3];
         final RadioButton[] rb = new RadioButton[3];
         final String[] labels = {"Replace slot", "Continue previous slot", "Swap slot with"};
         final MinuteStepper[] steps = new MinuteStepper[3];
         final Switch[] whole = new Switch[3];
         final EditText name = new EditText(this);
-        final RadioGroup target = new RadioGroup(this);
+        final java.util.List<String> otherNotes = new java.util.ArrayList<>();
+        for (Routine.Block ob : others) otherNotes.add(ob.mins + " min");
+        final ChangePlanUi.Cards target = new ChangePlanUi.Cards(this, titlesOf(others), otherNotes);
         final RadioButton[] swapMode = new RadioButton[2];
 
         for (int i = 0; i < 3; i++) {
@@ -867,20 +879,12 @@ public class AlarmActivity extends LangActivity {
                 name.setTextColor(Ui.INK);
                 name.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
                 box.addView(name, Ui.wide(this, 0));
+                box.addView(typePick.view, Ui.wide(this, 0));
             } else if (i == 1) {
                 box.addView(Ui.label(this, "“" + prev.title + "” goes on into this slot.", 13, Ui.MUTED, false), Ui.wide(this, 0));
             } else {
                 box.addView(Ui.label(this, "Swap with which slot?", 13, Ui.MUTED, true), Ui.wide(this, 0));
-                for (int q = 0; q < otherNames.size(); q++) {
-                    RadioButton o = new RadioButton(this);
-                    o.setId(View.generateViewId());
-                    o.setText(otherNames.get(q));
-                    o.setTextColor(Ui.INK);
-                    o.setMinHeight(dp(44));
-                    target.addView(o);
-                    if (q == 0) o.setChecked(true);
-                }
-                box.addView(target, Ui.wide(this, 4));
+                box.addView(target.view, Ui.wide(this, 6));
                 swapMode[0] = new RadioButton(this);
                 swapMode[0].setText("Swap names (times stay)");
                 swapMode[0].setTextColor(Ui.INK);
@@ -942,16 +946,13 @@ public class AlarmActivity extends LangActivity {
                     Lang.toast(this, "Type a name, or choose Take it off", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (n.equals(ev.title)) {
+                if (n.equals(ev.title) && typePick.kind() == baseKind && typePick.sub().equalsIgnoreCase(baseSub)) {
                     log(Ev.ack(now, ev.day, ev.src, ev.title, "C", ""));
                     done(null);
                     return;
                 }
-                if (full) applyEdit(false, n);
-                else {
-                    Plan.editPart(base, ov, day, ev.src, n, mins);
-                    Store.saveOverrides(this, base, ov);
-                }
+                Plan.editPart(base, ov, day, ev.src, n, full ? 0 : mins, typePick.kind(), typePick.sub());
+                Store.saveOverrides(this, base, ov);
                 log(Ev.ack(now, ev.day, ev.src, ev.title, "R", n));
                 done(full ? "Changed for today: " + n : n + " for " + mins + " min, then back to the plan");
             } else if (pick == 1) {
@@ -959,7 +960,7 @@ public class AlarmActivity extends LangActivity {
                 long until = SlotActions.continuePrevious(this, ev, prev, full ? slotMins : mins);
                 done("“" + prev.title + "” goes on. I will ask again at " + clock(until));
             } else {
-                int t = target.indexOfChild(target.findViewById(target.getCheckedRadioButtonId()));
+                int t = target.selected();
                 if (t < 0 || t >= others.size()) return;
                 Routine.Block o = others.get(t);
                 if (swapMode[1].isChecked()) {
@@ -978,6 +979,12 @@ public class AlarmActivity extends LangActivity {
         });
         addButton("Take it off for today", false, v -> takeOff());
         addButton("Back", false, v -> showSlot());
+    }
+
+    private static java.util.List<String> titlesOf(java.util.List<Routine.Block> bl) {
+        java.util.List<String> out = new java.util.ArrayList<>();
+        for (Routine.Block b : bl) out.add(b.title.isEmpty() ? Routine.KIND_NAMES[b.kind] : b.title);
+        return out;
     }
 
     private void applyEdit(boolean skip, String newName) {

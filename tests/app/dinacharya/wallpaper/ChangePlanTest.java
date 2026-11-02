@@ -39,6 +39,12 @@ public class ChangePlanTest {
         Overrides o2 = new Overrides();
         Plan.editPart(r, o2, day, src, "Revision", 20);
         ok("part survives save", Overrides.parse(o2.serialize()).edits.get(0).mins == 20);
+        Overrides o3 = new Overrides();
+        Plan.editPart(r, o3, day, src, "Mock test", 0, Routine.TASK, "Practice");
+        Plan.DayPlan p3 = Plan.plan(r, o3, day, Z);
+        ok("whole slot takes type and sub type", p3.sc.slots.get(src).block.title.equals("Mock test") && p3.sc.slots.get(src).block.sub.equals("Practice") && p3.sc.slots.size() == n);
+        Overrides o4 = Overrides.parse(o3.serialize());
+        ok("type survives save", o4.edits.get(0).kind == Routine.TASK && o4.edits.get(0).sub.equals("Practice"));
         if (fails > 0) System.exit(1);
         System.out.println("ALL PASS");
     }

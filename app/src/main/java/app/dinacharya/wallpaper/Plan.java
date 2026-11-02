@@ -196,6 +196,8 @@ public final class Plan {
                         first.changed = true;
                         first.origTitle = b.title;
                         first.title = e.name;
+                        if (e.kind >= 0 && e.kind < Routine.SLEEP) first.kind = e.kind;
+                        if (!e.sub.isEmpty()) first.sub = e.sub;
                         b.mins -= e.mins;
                         b.wake = false;
                         blocks.add(i, first);
@@ -209,6 +211,8 @@ public final class Plan {
                     b.origTitle = b.title;
                     if (e.skip) b.skipped = true;
                     else if (!e.name.isEmpty()) b.title = e.name;
+                    if (!e.skip && e.kind >= 0 && e.kind < Routine.SLEEP && b.kind != Routine.SLEEP) b.kind = e.kind;
+                    if (!e.skip && !e.sub.isEmpty()) b.sub = e.sub;
                     adjusted = true;
                 }
             }
@@ -610,10 +614,15 @@ public final class Plan {
 
     /** Renames only the first {@code mins} minutes of a slot for this day; the rest of the slot goes back to the saved plan. */
     public static void editPart(Routine main, Overrides ov, LocalDate day, int src, String newName, int mins) {
+        editPart(main, ov, day, src, newName, mins, -1, "");
+    }
+
+    /** The same with a type and sub type for the changed part ({@code mins} 0 changes the whole slot). */
+    public static void editPart(Routine main, Overrides ov, LocalDate day, int src, String newName, int mins, int kind, String sub) {
         Routine base = main.forDay(day);
         if (src < 0 || src >= base.blocks.size()) return;
         ov.sig = signature(main);
-        ov.setPartial(day, src, base.blocks.get(src).title, newName, mins);
+        ov.setPartial(day, src, base.blocks.get(src).title, newName, mins, kind, sub);
     }
 
     /** This slot and slot {@code other} trade places for this day. */

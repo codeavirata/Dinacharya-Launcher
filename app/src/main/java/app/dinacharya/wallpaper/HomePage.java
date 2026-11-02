@@ -520,16 +520,25 @@ final class HomePage extends Page {
         name.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 18);
         name.setTextColor(Ui.INK);
         name.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
-        final android.widget.RadioGroup target = new android.widget.RadioGroup(a);
-        for (int q = 0; q < otherNames.size(); q++) {
-            android.widget.RadioButton o = new android.widget.RadioButton(a);
-            o.setId(View.generateViewId());
-            o.setText(otherNames.get(q));
-            o.setTextColor(Ui.INK);
-            o.setMinHeight(a.dp(44));
-            target.addView(o);
-            if (q == 0) o.setChecked(true);
+        final List<String> otherTitles = new ArrayList<>();
+        final List<String> otherNotes = new ArrayList<>();
+        for (int q = 0; q < others.size(); q++) {
+            Routine.Block ob = others.get(q);
+            otherTitles.add(ob.title.isEmpty() ? Routine.KIND_NAMES[ob.kind] : ob.title);
+            otherNotes.add(otherNames.get(q).replaceAll("^.*\\((.*)\\)$", "$1"));
         }
+        final ChangePlanUi.Cards target = new ChangePlanUi.Cards(a, otherTitles, otherNotes);
+        int ck = Routine.TASK;
+        String cs = Routine.OTHER;
+        try {
+            Routine.Block cb = base.forDay(d).blocks.get(src);
+            ck = cb.kind;
+            cs = cb.sub;
+        } catch (RuntimeException ignored) {
+        }
+        final int baseKind = ck;
+        final String baseSub = cs;
+        final ChangePlanUi.TypePicker typePick = new ChangePlanUi.TypePicker(a, base, ck, cs);
         final android.widget.RadioButton swapNames = new android.widget.RadioButton(a);
         swapNames.setText("Swap names (times stay)");
         swapNames.setTextColor(Ui.INK);
@@ -565,10 +574,13 @@ final class HomePage extends Page {
             pn.setPadding(a.dp(12), a.dp(8), a.dp(12), a.dp(10));
             pn.setVisibility(View.GONE);
             pan[i] = pn;
-            if (i == 0) pn.addView(name, Ui.wide(a, 0));
+            if (i == 0) {
+                pn.addView(name, Ui.wide(a, 0));
+                pn.addView(typePick.view, Ui.wide(a, 0));
+            }
             else if (i == 1) pn.addView(Ui.label(a, "“" + prev.title + "” goes on into this slot.", 13, Ui.MUTED, false), Ui.wide(a, 0));
             else {
-                pn.addView(target, Ui.wide(a, 0));
+                pn.addView(target.view, Ui.wide(a, 4));
                 pn.addView(mg, Ui.wide(a, 6));
             }
             whole[i] = new Switch(a);
@@ -615,19 +627,18 @@ final class HomePage extends Page {
                             a.toastText("Type a name first");
                             return;
                         }
-                        if (n.equals(title)) {
+                        if (n.equals(title) && typePick.kind() == baseKind && typePick.sub().equalsIgnoreCase(baseSub)) {
                             if (endWait) SlotActions.startWaitingNow(a, day, src, title);
                             afterChange();
                             return;
                         }
-                        if (full) SlotActions.changePlan(a, day, src, title, n, sStart, endWait);
-                        else SlotActions.changePart(a, day, src, title, n, mins, sStart, endWait);
+                        SlotActions.changePart(a, day, src, title, n, full ? 0 : mins, sStart, endWait, typePick.kind(), typePick.sub());
                         a.toastText(full ? "Changed for today: " + n : n + " for " + mins + " min, then back to the plan");
                     } else if (pick == 1) {
                         long until = SlotActions.continueFrom(a, day, src, title, slotStart, sEnd, prev, full ? slotMins : mins, endWait);
                         a.toastText("“" + prev.title + "” goes on until " + Routine.formatTime(minuteOf(until), a.routine().fmt24));
                     } else {
-                        int t = target.indexOfChild(target.findViewById(target.getCheckedRadioButtonId()));
+                        int t = target.selected();
                         if (t < 0 || t >= others.size()) return;
                         Routine.Block o = others.get(t);
                         boolean places = swapPlaces.isChecked();

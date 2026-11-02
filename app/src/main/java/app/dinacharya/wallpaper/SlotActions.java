@@ -155,13 +155,25 @@ final class SlotActions {
 
     /** Only the first {@code mins} minutes of the slot are called {@code newName} today; the rest goes back to the saved plan. */
     static void changePart(Context c, String day, int src, String title, String newName, int mins, long slotStartMs, boolean endWait) {
+        changePart(c, day, src, title, newName, mins, slotStartMs, endWait, -1, "");
+    }
+
+    /** The same with the type and sub type the new plan takes ({@code mins} 0 for the whole slot). */
+    static void changePart(Context c, String day, int src, String title, String newName, int mins, long slotStartMs, boolean endWait,
+                           int kind, String sub) {
         Routine base = Store.load(c);
         Overrides ov = Store.overrides(c, base);
-        Plan.editPart(base, ov, LocalDate.parse(day), src, newName, mins);
+        Plan.editPart(base, ov, LocalDate.parse(day), src, newName, mins, kind, sub);
         Store.saveOverrides(c, base, ov);
         long now = System.currentTimeMillis();
         Store.history(c).append(Ev.ack(now, day, src, title, "R", newName));
         if (endWait) Store.history(c).append(Ev.delay(now, day, src, title, slotStartMs));
+        AlarmState st = Store.alarmState(c);
+        if (mins <= 0 && st.againAt > 0 && st.againSrc == src) {
+            st.againAt = 0;
+            st.againWake = false;
+            Store.saveAlarmState(c, st);
+        }
         finish(c);
     }
 
