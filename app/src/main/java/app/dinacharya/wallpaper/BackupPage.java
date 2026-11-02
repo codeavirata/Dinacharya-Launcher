@@ -580,12 +580,21 @@ final class BackupPage extends Page {
 
     private void restore(final CloudDrive.FileInfo f) {
         setWorking(true);
+        a.beginRestore();
         final Context app = a.getApplicationContext();
         new Thread(() -> {
             String err = null;
             try {
                 BackupArchive.Contents c = CloudBackup.fetch(Cloud.drive(app), f);
                 BackupData.apply(app, c);
+                byte[] want = c.files.get("prefs/routine.txt");
+                if (want != null) {
+                    Routine saved = Store.load(app);
+                    Routine wanted = Routine.parse(new String(want, java.nio.charset.StandardCharsets.UTF_8));
+                    if (wanted != null && !saved.serialize().equals(wanted.serialize())) {
+                        throw new java.io.IOException("The backup was read but your routine did not change. Please try again.");
+                    }
+                }
             } catch (java.io.IOException | RuntimeException e) {
                 CrashLog.note(app, "restore", e);
                 err = e.getMessage() == null ? "Restore failed." : e.getMessage();
@@ -595,12 +604,15 @@ final class BackupPage extends Page {
                 if (a.isFinishing()) return;
                 setWorking(false);
                 if (error != null) {
+                    a.endRestore();
                     new DBuilder(a).setTitle("Could not restore").setMessage(error + "\n\nNothing on this phone was changed.")
                             .setPositiveButton("OK", null).show();
                     return;
                 }
                 a.reloadAll();
-                a.toastText("Restored. Welcome back!");
+                Routine r = a.routine();
+                a.toastText("Restored: " + r.blocks.size() + " slots in “" + r.name + "”, " + r.others.size() + " more routines, "
+                        + r.temps.size() + " one-day routines.");
             });
         }, "restore").start();
     }

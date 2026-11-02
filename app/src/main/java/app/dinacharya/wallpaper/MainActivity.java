@@ -843,8 +843,21 @@ public class MainActivity extends LangActivity {
         if (savePending) persistNow();
     }
 
+    /** True while a restore is going on: nothing from this screen may be saved over the backup being put in. */
+    private volatile boolean restoring;
+
+    void beginRestore() {
+        flushSave();
+        restoring = true;
+    }
+
+    void endRestore() {
+        restoring = false;
+    }
+
     private void persistNow() {
         savePending = false;
+        if (restoring) return;
         if (PassSettle.epoch() != passEpoch) {
             // A finished video pass changed the saved routine behind this screen's back: keep that, read it again.
             passEpoch = PassSettle.epoch();
@@ -929,6 +942,7 @@ public class MainActivity extends LangActivity {
 
     /** After a restore: read everything again and start from Home. */
     void reloadAll() {
+        restoring = false;
         routine.replaceWith(Store.load(this));
         if (content instanceof SwipeFrame) ((SwipeFrame) content).reset();
         content.removeAllViews();
