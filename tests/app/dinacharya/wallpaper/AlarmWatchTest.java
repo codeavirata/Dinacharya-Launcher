@@ -71,7 +71,7 @@ public class AlarmWatchTest {
 
         ok("lost: asked at once when never asked", WallpaperWatch.shouldAsk(WallpaperWatch.LOST, true, -1));
         ok("lost: not asked again straight after the preview was turned down", !WallpaperWatch.shouldAsk(WallpaperWatch.LOST, true, 20000L));
-        ok("lost: asked again after ten minutes", WallpaperWatch.shouldAsk(WallpaperWatch.LOST, true, 11 * MIN));
+        ok("lost: not asked again after ten minutes, but after six hours", !WallpaperWatch.shouldAsk(WallpaperWatch.LOST, true, 11 * MIN) && WallpaperWatch.shouldAsk(WallpaperWatch.LOST, true, 7 * HOUR));
         ok("never set: asked once a day", !WallpaperWatch.shouldAsk(WallpaperWatch.NEVER, true, 5 * HOUR) && WallpaperWatch.shouldAsk(WallpaperWatch.NEVER, true, 25 * HOUR));
         ok("in place: never asked", !WallpaperWatch.shouldAsk(WallpaperWatch.OK, true, -1) && !WallpaperWatch.shouldAsk(WallpaperWatch.CHECKING, true, -1));
         ok("before the first-start setup is done: not asked here", !WallpaperWatch.shouldAsk(WallpaperWatch.LOST, false, -1));

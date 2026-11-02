@@ -26,7 +26,7 @@ public final class WallpaperWatch {
     /** How long after the person confirmed Android's preview the wallpaper is given to start. */
     public static final long CONFIRM_MS = 120000L;
     /** The wait before a wallpaper that went missing is asked for again after the person turned the preview down. */
-    public static final long ASK_AGAIN_LOST_MS = 10L * 60000L;
+    public static final long ASK_AGAIN_LOST_MS = 6L * 3600000L;
     /** The wait before a wallpaper that was never set is asked for again. */
     public static final long ASK_AGAIN_NEVER_MS = 24L * 3600000L;
 
