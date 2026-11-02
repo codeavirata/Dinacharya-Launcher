@@ -92,7 +92,19 @@ final class WallpaperSetup {
                 }
             } else if (st == WallpaperWatch.LOST && p.getLong(K_LOST_AT, 0) == 0) {
                 p.edit().putLong(K_LOST_AT, System.currentTimeMillis()).apply();
-                CrashLog.note(c, "wallpaper", new RuntimeException("The Dinacharya Launcher wallpaper was no longer in place when the home screen came up; it is asked for again."));
+                String seen = "?";
+                try {
+                    android.app.WallpaperManager wm = android.app.WallpaperManager.getInstance(c);
+                    android.app.WallpaperInfo wi = wm.getWallpaperInfo();
+                    seen = wi == null ? "none (a still picture, or the phone does not say)" : wi.getPackageName() + "/" + wi.getServiceName();
+                } catch (RuntimeException e) {
+                    seen = "error " + e.getMessage();
+                }
+                CrashLog.note(c, "wallpaper", new RuntimeException("The Dinacharya Launcher wallpaper was no longer in place when the home screen came up; it is asked for again."
+                        + " Android says the wallpaper is: " + seen
+                        + "; Android reports ours on screens=" + reported(c) + "; our engine runs for screens=" + engineBits
+                        + "; kept from before=" + p.getInt(K_LIVE, 0) + "; this process has run " + (processAge() / 1000) + " s"
+                        + "; confirmed " + (sinceConfirmed(c) < 0 ? "never" : (sinceConfirmed(c) / 1000) + " s ago")));
             }
             return st;
         } catch (RuntimeException e) {
