@@ -649,29 +649,13 @@ final class BackupPage extends Page {
                 Routine r = a.routine();
                 Routine fromDisk = Store.load(app);
                 String msg = "Your routine is now “" + r.name + "”: " + r.blocks.size() + " slots, " + r.others.size()
-                        + " more routines, " + r.temps.size() + " one-day routines.\n\nThe app will now restart so every screen, alarm and "
-                        + "setting starts from the restored data.";
-                if (!fromDisk.serialize().equals(r.serialize())) msg += "\n\n(The screen and the saved copy differed; the restart fixes that.)";
-                new DBuilder(a).setTitle("Restored").setMessage(msg).setCancelable(false)
-                        .setPositiveButton("Restart now", (d, w) -> restartApp())
+                        + " more routines, " + r.temps.size() + " one-day routines. Your settings, to-dos and reports came back too.";
+                if (!fromDisk.serialize().equals(r.serialize())) msg += "\n\n(The screen and the saved copy differed. Close the app and open it again.)";
+                new DBuilder(a).setTitle("Restored").setMessage(msg)
+                        .setPositiveButton("OK", null)
                         .show();
             });
         }, "restore").start();
-    }
-
-    /** Starts the app again from scratch, so nothing old stays in memory after a restore. */
-    private void restartApp() {
-        try {
-            android.content.Intent i = a.getPackageManager().getLaunchIntentForPackage(a.getPackageName());
-            if (i != null) {
-                i.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK | android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                a.startActivity(i);
-            }
-        } catch (RuntimeException e) {
-            CrashLog.note(a, "restart", e);
-        }
-        a.finishAffinity();
-        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
     // ------------------------------------------------------------------ settings
