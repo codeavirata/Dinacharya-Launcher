@@ -81,6 +81,33 @@ final class Keeper {
         if (newest > d.exitSeen) AlarmScheduler.noteExit(c, tellAt, tellReason, newest);
     }
 
+    /**
+     * The last few ways this app's process ended, newest first, in one line for the problem report. {@link #readExit} keeps only the
+     * ends that matter to the alarms, so a phone that closes the app in another way would otherwise never show up in a report.
+     */
+    static String recentExits(Context c) {
+        if (Build.VERSION.SDK_INT < 30) return "not told by this Android";
+        try {
+            ActivityManager am = (ActivityManager) c.getSystemService(Context.ACTIVITY_SERVICE);
+            if (am == null) return "unknown";
+            List<ApplicationExitInfo> list = am.getHistoricalProcessExitReasons(c.getPackageName(), 0, 4);   // newest first
+            if (list == null || list.isEmpty()) return "none";
+            StringBuilder sb = new StringBuilder();
+            long now = System.currentTimeMillis();
+            for (ApplicationExitInfo info : list) {
+                if (sb.length() > 0) sb.append(" | ");
+                sb.append(Math.max(0, now - info.getTimestamp()) / 1000).append(" s ago: ")
+                        .append(AlarmWatch.what(info.getReason())).append(" [code ").append(info.getReason())
+                        .append(", status ").append(info.getStatus()).append(", importance ").append(info.getImportance()).append(']');
+                String why = info.getDescription();
+                if (why != null && !why.isEmpty()) sb.append(" \"").append(why.length() > 100 ? why.substring(0, 100) : why).append('"');
+            }
+            return sb.toString();
+        } catch (RuntimeException e) {
+            return "error " + e.getMessage();
+        }
+    }
+
     /** An alarm that never reached the app is told once, as a notification, with a way to open the app. */
     private static void tellMissed(Context c) {
         AlarmScheduler.Diag d = AlarmScheduler.diag(c);

@@ -104,7 +104,8 @@ final class WallpaperSetup {
                         + " Android says the wallpaper is: " + seen
                         + "; Android reports ours on screens=" + reported(c) + "; our engine runs for screens=" + engineBits
                         + "; kept from before=" + p.getInt(K_LIVE, 0) + "; this process has run " + (processAge() / 1000) + " s"
-                        + "; confirmed " + (sinceConfirmed(c) < 0 ? "never" : (sinceConfirmed(c) / 1000) + " s ago")));
+                        + "; confirmed " + (sinceConfirmed(c) < 0 ? "never" : (sinceConfirmed(c) / 1000) + " s ago")
+                        + "; how the app was last ended by Android: " + Keeper.recentExits(c)));
             }
             return st;
         } catch (RuntimeException e) {
