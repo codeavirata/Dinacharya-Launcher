@@ -481,6 +481,9 @@ final class SlotActions {
             // Slots started early have their own alarm switched off by their place in the list; that place means another slot once the
             // schedule is different (a routine for one day, a slot added), so the marks go with the old schedule.
             if (st.bindSkips(Plan.scheduleSignature(saved))) changed = true;
+            // A later start, a break or a bedtime question asked again was made for a slot of the old routine; when that slot is gone, renamed
+            // or ends elsewhere, the timer would ring for the old routine next to the alarms of the new one.
+            if (StaleTimers.drop(saved, Store.overrides(c, saved), st, Store.zone())) changed = true;
             if (changed) Store.saveAlarmState(c, st);
         } catch (RuntimeException ex) {
             CrashLog.note(c, "day planned again", ex);
