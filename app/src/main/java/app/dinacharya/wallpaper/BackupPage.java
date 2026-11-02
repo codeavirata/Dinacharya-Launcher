@@ -244,15 +244,21 @@ final class BackupPage extends Page {
             String err = null;
             CloudDrive.Profile me = null;
             CloudDrive.FileInfo found = null;
+            String findErr = null;
             try {
                 CloudDrive d = new CloudDrive(new Http.Url(), tokens);
                 me = d.me();
                 AccountStore s = new AccountStore(app);
                 s.signedInAs(method, me.email, me.name);
-                found = CloudBackup.find(d);
+                try {
+                    found = CloudBackup.find(d);
+                } catch (java.io.IOException | RuntimeException e) {
+                    findErr = e.getMessage() == null ? "Could not look for your backup." : e.getMessage();
+                }
             } catch (java.io.IOException | RuntimeException e) {
                 err = e.getMessage() == null ? "Sign-in failed." : e.getMessage();
             }
+            final String lookError = findErr;
             final String error = err;
             final CloudDrive.Profile who = me;
             final CloudDrive.FileInfo backup = found;
@@ -266,11 +272,26 @@ final class BackupPage extends Page {
                 DriveJob.schedule(a);
                 a.routineChanged();
                 a.toastText("Signed in as " + (who.email.isEmpty() ? who.name : who.email));
-                if (backup != null) offerRestore(backup, false);
-                else {
-                    // nothing in Drive yet: save this phone's routines and settings right away, so a later sign-in has something to restore
+                if (lookError != null) {
+                    // do not save this phone over a backup that could not be looked at
+                    new DBuilder(a).setTitle("Could not look for your backup")
+                            .setMessage(lookError + "\n\nYou are signed in. Nothing was changed or saved. Tap Restore from Google Drive to try again.")
+                            .setPositiveButton("Try again", (d, w) -> lookForRestore(true))
+                            .setNegativeButton("Later", null)
+                            .show();
+                } else if (backup != null) {
+                    offerRestore(backup, false);
+                } else {
                     new AccountStore(a).setRestoreAsked();
-                    backUpNow();
+                    final String who2 = who.email.isEmpty() ? who.name : who.email;
+                    new DBuilder(a).setTitle("No backup found")
+                            .setMessage("There is no Dinacharya backup in the Google Drive of " + who2 + ". "
+                                    + "If your old phone used another Google account, sign out and sign in with that one. "
+                                    + "Otherwise open Dinacharya on the old phone, go to Backup and tap “Back up now”, then restore here.\n\n"
+                                    + "Back up this phone now instead?")
+                            .setPositiveButton("Back up this phone", (d, w) -> backUpNow())
+                            .setNegativeButton("Not now", null)
+                            .show();
                 }
             });
         }, "sign-in").start();
