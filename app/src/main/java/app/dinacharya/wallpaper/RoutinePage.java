@@ -206,6 +206,68 @@ final class RoutinePage extends Page {
     private void changed() {
         a.persist();
         a.routineChanged();
+        askFirstEdit();
+    }
+
+    // ------------------------------------------------------------------ first edit: change this routine, or make a new one
+
+    private String baseline;
+    private boolean askingFirst;
+
+    private boolean firstEditDone() {
+        try {
+            return Store.prefs(a).getBoolean("first_edit_asked", false);
+        } catch (RuntimeException e) {
+            return true;
+        }
+    }
+
+    private void markFirstEditDone() {
+        try {
+            Store.prefs(a).edit().putBoolean("first_edit_asked", true).apply();
+        } catch (RuntimeException ignored) {
+        }
+    }
+
+    /** The first time a new user edits the only routine, asks whether to change it or to keep it and make a new one. */
+    private void askFirstEdit() {
+        if (askingFirst || firstEditDone()) return;
+        final Routine m = main();
+        if (!m.others.isEmpty() || !m.temps.isEmpty() || sel != 0 || baseline == null) {
+            markFirstEditDone();
+            return;
+        }
+        askingFirst = true;
+        final String before = baseline;
+        final String edited = a.snapshot();
+        new DBuilder(a)
+                .setTitle("Change this routine, or make a new one?")
+                .setMessage("You just changed your routine. Do you want to keep the change in this routine, or leave this routine as it was and put the change in a new routine?")
+                .setCancelable(false)
+                .setPositiveButton("Change this routine", (d, w) -> {
+                    askingFirst = false;
+                    markFirstEditDone();
+                    baseline = a.snapshot();
+                })
+                .setNegativeButton("Make a new routine", (d, w) -> {
+                    askingFirst = false;
+                    if (!a.requirePro(DayPass.ROUTINES, "Weekday and weekend routines", () -> { })) {
+                        baseline = a.snapshot();
+                        return;
+                    }
+                    markFirstEditDone();
+                    Routine changedCopy = Routine.parse(edited);
+                    Routine old = Routine.parse(before);
+                    if (changedCopy == null || old == null) return;
+                    m.replaceWith(old);
+                    m.addOther("My new routine", changedCopy);
+                    sel = m.others.size();
+                    baseline = a.snapshot();
+                    a.persist();
+                    a.routineChanged();
+                    a.toastText("Your first routine is unchanged. The change is in “My new routine”.");
+                })
+                .show();
     }
 
     // ------------------------------------------------------------------ building
@@ -213,6 +275,7 @@ final class RoutinePage extends Page {
     @Override
     void build(LinearLayout body) {
         title("Routine", "Your day, slot by slot");
+        baseline = a.snapshot();
 
         alarmBanner = new LinearLayout(a);
         alarmBanner.setOrientation(LinearLayout.VERTICAL);
@@ -1124,8 +1187,9 @@ final class RoutinePage extends Page {
     private void stepMinutes(Routine.Block b, int delta) {
         int next = SlotOps.stepped(b.mins, delta);
         if (next == b.mins) return;
-        b.mins = next;
+        applyLength(b, next);
         a.persistSoon();
+        askFirstEdit();
         refreshStart();
         a.previewChanged();
     }
@@ -1156,11 +1220,24 @@ final class RoutinePage extends Page {
                         a.toastText("Use 1 to 1440 minutes");
                         return;
                     }
-                    b.mins = v;
+                    applyLength(b, v);
                     changed();
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
+    }
+
+    /** Sets a slot's length; the minutes it gains or loses come from or go to the slots right below, so the day stays 24 hours. */
+    private void applyLength(Routine.Block b, int want) {
+        Routine r = sched();
+        int i = r.blocks.indexOf(b);
+        if (i < 0) {
+            b.mins = want;
+            return;
+        }
+        SlotOps.Resized x = SlotOps.resize(r, i, want);
+        if (x.capped) a.toastText("The day only has room for " + x.applied + " minutes here.");
+        else if (x.sleepWarn) a.toastText("Sleep is now outside 4 to 12 hours.");
     }
 
     private void askNote(final Routine.Block b) {
@@ -1396,45 +1473,16 @@ final class RoutinePage extends Page {
         mins.setSingleLine(true);
         mins.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
         box.addView(mins, Ui.lp(a, dp(110), WRAP, 0));
-        box.addView(label("Take the minutes from", 12, Ui.MUTED, true), wrap(8));
-        final RadioGroup source = new RadioGroup(a);
-        final RadioButton fromThis = new RadioButton(a);
-        fromThis.setId(View.generateViewId());
-        fromThis.setText("This slot: “" + nameOf(here) + "”");
-        source.addView(fromThis);
-        final RadioButton fromNext = new RadioButton(a);
-        fromNext.setId(View.generateViewId());
-        if (next != null) {
-            fromNext.setText("The next slot: “" + nameOf(next) + "”");
-            source.addView(fromNext);
-        }
-        final RadioButton fromAll = new RadioButton(a);
-        fromAll.setId(View.generateViewId());
-        fromAll.setText("All the other slots (not Sleep)");
-        source.addView(fromAll);
-        int bestMode = SlotOps.FROM_THIS;
-        int bestMax = SlotOps.maxNewMinutes(r, after, SlotOps.FROM_THIS);
-        if (bestMax < 30 && next != null && SlotOps.maxNewMinutes(r, after, SlotOps.FROM_NEXT) >= 30) {
-            bestMode = SlotOps.FROM_NEXT;
-            bestMax = SlotOps.maxNewMinutes(r, after, SlotOps.FROM_NEXT);
-        }
-        if (bestMax < 30) {
-            bestMode = SlotOps.FROM_ALL;
-            bestMax = SlotOps.maxNewMinutes(r, after, SlotOps.FROM_ALL);
-        }
-        source.check(bestMode == SlotOps.FROM_THIS ? fromThis.getId() : bestMode == SlotOps.FROM_NEXT ? fromNext.getId() : fromAll.getId());
-        mins.setText(String.valueOf(Math.max(1, Math.min(30, bestMax))));
-        box.addView(source, wide(0));
+        mins.setText(String.valueOf(Math.max(1, Math.min(30, SlotOps.maxAddMinutes(r, after)))));
         final TextView info = label("", 12, Ui.MUTED, false);
         box.addView(info, wide(4));
         final TextView err = label("", 13, Ui.RED, true);
         box.addView(err, wide(4));
         final Runnable updateInfo = () -> {
-            int max = SlotOps.maxNewMinutes(r, after, sourceMode(source, fromThis, fromNext));
-            info.setText(max >= 1 ? "Up to " + max + " min can be taken from here." : "There is no room to take from here. Pick another source.");
+            int max = SlotOps.maxAddMinutes(r, after);
+            info.setText(Lang.tr("The minutes are taken from the slots right below this one, so the day stays 24 hours.") + " " + max + " min");
             err.setText("");
         };
-        source.setOnCheckedChangeListener((g, id) -> updateInfo.run());
         updateInfo.run();
 
         final AlertDialog dlg = new DBuilder(a)
@@ -1449,7 +1497,6 @@ final class RoutinePage extends Page {
         ok.setOnClickListener(v -> {
             int k = kind.getSelectedItemPosition();
             if (k < 0 || k >= Routine.SLEEP) k = Routine.TASK;
-            int mode = sourceMode(source, fromThis, fromNext);
             String typed = Routine.cleanSub(newType.getText().toString());
             int sp = sub.getSelectedItemPosition();
             String type = !typed.isEmpty() ? typed : (sp >= 0 && sp < subOpts.size() ? subOpts.get(sp).name : Routine.OTHER);
@@ -1466,39 +1513,29 @@ final class RoutinePage extends Page {
                 err.setText("Write how many minutes it takes.");
                 return;
             }
-            int max = SlotOps.maxNewMinutes(r, after, mode);
+            int max = SlotOps.maxAddMinutes(r, after);
             if (m < 1) {
                 err.setText("It needs at least 1 minute.");
                 return;
             }
             if (m > max) {
-                err.setText(max >= 1 ? "Only " + max + " min can be taken from there. Use fewer minutes or another source."
-                        : "There is no room to take from there. Pick another source.");
+                err.setText("Only " + max + " min fit in the day. Use fewer minutes.");
                 return;
             }
             String snap = a.snapshot();
             if (!typed.isEmpty()) main().addSub(k, typed);
             Routine.Block nb = new Routine.Block(k, t, m);
             nb.sub = type;
-            if (SlotOps.insertAfter(r, after, nb, mode) == null) {
+            if (SlotOps.insertBelow(r, after, nb) == null) {
                 err.setText("That did not fit. Try fewer minutes.");
                 return;
             }
-            String from = mode == SlotOps.FROM_THIS ? "“" + nameOf(here) + "”"
-                    : (mode == SlotOps.FROM_NEXT && next != null ? "“" + nameOf(next) + "”" : "the other slots");
             dlg.dismiss();
             changed();
             animateIn(after + 1);
             scrollToRow(after + 1);
-            a.undoable("Added “" + t + "”, " + m + " min, taken from " + from + ".", snap);
+            a.undoable("Added “" + t + "”, " + m + " min, taken from the slots below.", snap);
         });
-    }
-
-    private static int sourceMode(RadioGroup g, RadioButton fromThis, RadioButton fromNext) {
-        int id = g.getCheckedRadioButtonId();
-        if (id == fromThis.getId()) return SlotOps.FROM_THIS;
-        if (id == fromNext.getId()) return SlotOps.FROM_NEXT;
-        return SlotOps.FROM_ALL;
     }
 
     private void fillSubSpinner(Spinner sp, List<Routine.Sub> opts, int kind) {

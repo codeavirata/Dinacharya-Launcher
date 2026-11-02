@@ -169,8 +169,42 @@ public final class Plan {
             String key = day.toString();
             for (Overrides.Edit e : ov.edits) {
                 if (!e.day.equals(key)) continue;
+                if (e.src < 0 || e.src >= base.blocks.size() || !base.blocks.get(e.src).title.equals(e.orig)) continue;
+                if (e.with >= 0 && e.name.isEmpty() && !e.skip) {
+                    int i1 = indexOfSrc(blocks, e.src);
+                    int i2 = indexOfSrc(blocks, e.with);
+                    if (i1 < 0 || i2 < 0 || i1 == i2) continue;
+                    Routine.Block x = blocks.get(i1);
+                    Routine.Block y = blocks.get(i2);
+                    blocks.set(i1, y);
+                    blocks.set(i2, x);
+                    x.changed = true;
+                    y.changed = true;
+                    x.origTitle = x.title;
+                    y.origTitle = y.title;
+                    adjusted = true;
+                    continue;
+                }
+                if (e.mins > 0 && !e.skip) {
+                    int i = indexOfSrc(blocks, e.src);
+                    if (i < 0) continue;
+                    Routine.Block b = blocks.get(i);
+                    if (e.mins < b.mins && !e.name.isEmpty()) {
+                        Routine.Block first = b.copy();
+                        first.src = b.src;
+                        first.mins = e.mins;
+                        first.changed = true;
+                        first.origTitle = b.title;
+                        first.title = e.name;
+                        b.mins -= e.mins;
+                        b.wake = false;
+                        blocks.add(i, first);
+                        adjusted = true;
+                        continue;
+                    }
+                }
                 for (Routine.Block b : blocks) {
-                    if (b.src != e.src || !base.blocks.get(e.src).title.equals(e.orig)) continue;
+                    if (b.src != e.src) continue;
                     b.changed = true;
                     b.origTitle = b.title;
                     if (e.skip) b.skipped = true;
@@ -567,6 +601,27 @@ public final class Plan {
         }
         if (shortened.length() > 0) notes.add("Shortened: " + shortened + ".");
         if (dropped.length() > 0) notes.add("Dropped: " + dropped + ".");
+    }
+
+    private static int indexOfSrc(List<Routine.Block> blocks, int src) {
+        for (int i = 0; i < blocks.size(); i++) if (blocks.get(i).src == src) return i;
+        return -1;
+    }
+
+    /** Renames only the first {@code mins} minutes of a slot for this day; the rest of the slot goes back to the saved plan. */
+    public static void editPart(Routine main, Overrides ov, LocalDate day, int src, String newName, int mins) {
+        Routine base = main.forDay(day);
+        if (src < 0 || src >= base.blocks.size()) return;
+        ov.sig = signature(main);
+        ov.setPartial(day, src, base.blocks.get(src).title, newName, mins);
+    }
+
+    /** This slot and slot {@code other} trade places for this day. */
+    public static void swapPlaces(Routine main, Overrides ov, LocalDate day, int src, int other) {
+        Routine base = main.forDay(day);
+        if (src < 0 || other < 0 || src >= base.blocks.size() || other >= base.blocks.size() || src == other) return;
+        ov.sig = signature(main);
+        ov.setSwap(day, src, base.blocks.get(src).title, other);
     }
 
     /** Renames a slot for this day only, or takes it off. {@code src} is the block's index in the saved routine. */

@@ -209,6 +209,101 @@ public final class SlotOps {
         return Math.max(Math.min(MIN_MINS, mins), Math.min(1440, next));
     }
 
+    // ------------------------------------------------------------------ resize with cascade
+
+    /** What {@link #resize} did. */
+    public static final class Resized {
+        /** The length slot i really got (may be less than asked when there is no room). */
+        public int applied;
+        /** True when the asked length did not fit and was capped. */
+        public boolean capped;
+        /** True when the sleep slot ended up shorter than 4 hours or longer than 12 hours. */
+        public boolean sleepWarn;
+    }
+
+    /** Longest slot i can become while the day keeps its length (slots below give first, then slots above). */
+    public static int maxMinutes(Routine r, int i) {
+        int cap = r.blocks.get(i).mins;
+        for (int k = 0; k < r.blocks.size(); k++) {
+            if (k != i) cap += Math.max(0, r.blocks.get(k).mins - MIN_MINS);
+        }
+        return Math.min(1440, cap);
+    }
+
+    /**
+     * Gives slot i the length {@code want}; the difference is taken from (or handed to) the slots right
+     * below it, nearest first, so the day keeps its length. If the slots below cannot cover it the slots
+     * above help, nearest first. The last slot (normally Sleep) simply uses the slots above. Sleep is
+     * never refused a length, but {@code sleepWarn} says when it ends up outside 4 to 12 hours.
+     */
+    public static Resized resize(Routine r, int i, int want) {
+        Resized out = new Resized();
+        int n = r.blocks.size();
+        Routine.Block b = r.blocks.get(i);
+        if (n < 2) {
+            out.applied = b.mins;
+            out.capped = want != b.mins;
+            return out;
+        }
+        want = Math.max(MIN_MINS, want);
+        int cap = maxMinutes(r, i);
+        if (want > cap) {
+            want = cap;
+            out.capped = true;
+        }
+        int delta = want - b.mins;
+        if (delta > 0) {
+            int need = delta;
+            for (int k = i + 1; k < n && need > 0; k++) need -= takeFrom(r.blocks.get(k), need);
+            for (int k = i - 1; k >= 0 && need > 0; k--) need -= takeFrom(r.blocks.get(k), need);
+        } else if (delta < 0) {
+            int t = i < n - 1 ? i + 1 : i - 1;
+            r.blocks.get(t).mins += -delta;
+        }
+        b.mins = want;
+        out.applied = want;
+        out.sleepWarn = sleepOutOfRange(r);
+        return out;
+    }
+
+    private static int takeFrom(Routine.Block x, int need) {
+        int t = Math.min(need, Math.max(0, x.mins - MIN_MINS));
+        x.mins -= t;
+        return t;
+    }
+
+    /** True when the last slot is Sleep and is shorter than 4 hours or longer than 12 hours. */
+    public static boolean sleepOutOfRange(Routine r) {
+        if (r.blocks.isEmpty()) return false;
+        Routine.Block l = r.blocks.get(r.blocks.size() - 1);
+        return l.kind == Routine.SLEEP && (l.mins < 240 || l.mins > 720);
+    }
+
+    /** The longest slot that can be added after slot {@code after}: every other slot can spare down to 5 minutes. */
+    public static int maxAddMinutes(Routine r, int after) {
+        if (after < 0 || after >= r.blocks.size()) return 0;
+        int cap = 0;
+        for (Routine.Block b : r.blocks) cap += Math.max(0, b.mins - MIN_MINS);
+        return Math.min(1435, cap);
+    }
+
+    /**
+     * Adds a slot right after slot {@code after}. Its minutes come from the slots below it, nearest first,
+     * then from the slots above (nearest first), so the day keeps its length. Returns null if it does not fit.
+     */
+    public static Routine.Block insertBelow(Routine r, int after, Routine.Block nb) {
+        int need = nb.mins;
+        if (need < 1 || need > maxAddMinutes(r, after)) return null;
+        int oldStart = r.compute().start;
+        int n = r.blocks.size();
+        int left = need;
+        for (int k = after + 1; k < n && left > 0; k++) left -= takeFrom(r.blocks.get(k), left);
+        for (int k = after; k >= 0 && left > 0; k--) left -= takeFrom(r.blocks.get(k), left);
+        r.blocks.add(after + 1, nb);
+        normalizeAnchor(r, oldStart);
+        return nb;
+    }
+
     // ------------------------------------------------------------------ move
 
     /** Moves slot {@code from} so that it ends up at index {@code to}. */
