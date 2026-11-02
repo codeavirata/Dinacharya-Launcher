@@ -378,7 +378,7 @@ public final class Routine {
 
     // How the wallpaper looks.
     public int palette = PAL_TEAL;
-    public int theme = THEME_AUTO;
+    public int theme = THEME_NIGHT;
     public boolean fmt24 = false;
     public int topPct = 8;
     public int bottomPct = 9;
@@ -1177,7 +1177,7 @@ public final class Routine {
             switch (k) {
                 case "mode": r.mode = (v == MODE_TASK) ? MODE_TASK : MODE_WAKE; break;
                 case "anchor": r.anchor = mod(v, 1440); break;
-                case "theme": r.theme = (v >= 0 && v <= 2) ? v : THEME_AUTO; break;
+                case "theme": r.theme = (v >= 0 && v <= 2) ? v : THEME_NIGHT; break;
                 case "palette": r.palette = (v >= 0 && v < PALETTE_NAMES.length) ? v : PAL_TEAL; break;
                 case "subs": r.subs.clear(); legacySubs = v < 2; break;   // the list that follows is the whole list
                 case "fmt24": r.fmt24 = v == 1; break;
