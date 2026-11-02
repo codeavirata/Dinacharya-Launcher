@@ -522,6 +522,18 @@ final class BackupPage extends Page {
 
     private void backUpNow() {
         if (working) return;
+        if (acc().holdAuto()) {
+            new DBuilder(a).setTitle("Replace the backup in Drive?")
+                    .setMessage("Your Google Drive holds a backup from another phone that has not been restored here. "
+                            + "Backing up now replaces it with what is on this phone. To keep it, tap Cancel and use “Restore from Google Drive”.")
+                    .setPositiveButton("Replace it", (d, w) -> {
+                        acc().setHold(false);
+                        backUpNow();
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+            return;
+        }
         a.flushSave();
         setWorking(true);
         final Context app = a.getApplicationContext();
@@ -590,6 +602,8 @@ final class BackupPage extends Page {
 
     private void offerRestore(final CloudDrive.FileInfo f, boolean asked) {
         new AccountStore(a).setRestoreAsked();
+        // until this backup is restored (or this phone is backed up on purpose), nothing may replace it in Drive
+        if (new AccountStore(a).lastOk() <= 0) new AccountStore(a).setHold(true);
         new DBuilder(a)
                 .setTitle(asked ? "Restore this backup?" : "Backup found")
                 .setMessage(describe(f) + "\n\nRestoring replaces the routines, settings and history on this phone with the backup. "
@@ -608,6 +622,7 @@ final class BackupPage extends Page {
             try {
                 BackupArchive.Contents c = CloudBackup.fetch(Cloud.drive(app), f);
                 BackupData.apply(app, c);
+                new AccountStore(app).setHold(false);
                 byte[] want = c.files.get("prefs/routine.txt");
                 if (want != null) {
                     Routine saved = Store.load(app);

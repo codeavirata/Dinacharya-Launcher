@@ -72,7 +72,7 @@ public class DriveJob extends JobService {
         final boolean soon = params.getJobId() == SOON_ID;
         new Thread(() -> {
             try {
-                if (soon) Cloud.backUp(c);
+                if (soon) Cloud.autoBackUp(c);
                 else Cloud.runIfDue(c);
             } catch (RuntimeException e) {
                 CrashLog.note(c, "automatic backup", e);

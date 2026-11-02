@@ -64,9 +64,23 @@ final class Cloud {
     }
 
     /** Backs up if the chosen schedule says it is time. Network work. */
+    /**
+     * Whether a background backup may run. Never on a phone that has not yet asked about restoring or backed up before, and never while
+     * a backup from another phone is waiting in Drive and was not restored: a fresh phone must not replace it with its own empty data.
+     */
+    static boolean autoAllowed(Context context) {
+        AccountStore a = new AccountStore(context);
+        return a.signedIn() && !a.holdAuto() && (a.lastOk() > 0 || a.restoreAsked());
+    }
+
+    /** A background backup made because something changed. */
+    static void autoBackUp(Context context) {
+        if (autoAllowed(context)) backUp(context);
+    }
+
     static void runIfDue(Context context) {
         AccountStore a = new AccountStore(context);
-        if (!a.signedIn()) return;
+        if (!autoAllowed(context)) return;
         if (!BackupPolicy.due(a.frequency(), a.lastOk(), System.currentTimeMillis())) return;
         backUp(context);
     }

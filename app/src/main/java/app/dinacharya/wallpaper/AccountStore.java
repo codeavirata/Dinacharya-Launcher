@@ -152,6 +152,15 @@ final class AccountStore implements DeviceAuth.Kv {
         return s("restoreAsked").equals(email());
     }
 
+    /** A backup from another phone is waiting in Drive and was not restored: automatic backups must not replace it. */
+    boolean holdAuto() {
+        return s("hold").equals(email()) && !email().isEmpty();
+    }
+
+    void setHold(boolean on) {
+        put("hold", on ? email() : "");
+    }
+
     void setRestoreAsked() {
         put("restoreAsked", email());
     }
