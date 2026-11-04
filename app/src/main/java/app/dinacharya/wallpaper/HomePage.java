@@ -205,9 +205,9 @@ final class HomePage extends Page {
 
         LinearLayout card = new LinearLayout(a);
         card.setOrientation(LinearLayout.VERTICAL);
-        card.setPadding(a.dp(18), a.dp(16), a.dp(18), a.dp(16));
-        card.setBackground(Ui.box(a, Ui.TEAL, 0, 24));
-        card.setElevation(a.dp(2));
+        card.setPadding(a.dp(22), a.dp(20), a.dp(22), a.dp(22));
+        card.setBackground(Glass.ground(a, Glass.night(m), 30));
+        card.setElevation(a.dp(3));
         card.setOnClickListener(v -> a.go(MainActivity.TAB_ROUTINE));
 
         int next = -1;
@@ -229,97 +229,74 @@ final class HomePage extends Page {
             Routine.Slot s = p.sc.slots.get(p.cur);
             Routine.Block b = s.block;
             Routine.Block owner = ownerBlock(saved, b);
-            String sub = owner.sub.isEmpty() || Routine.isOther(owner.sub) ? "" : "  ·  " + owner.sub.toUpperCase(Lang.locale());
-            String head = dayOff ? "DAY OFF" : onBreak ? "ON A BREAK" : noResponse ? "NO RESPONSE" : waiting ? "STARTING LATER" : "NOW";
-            TextView eb = Ui.label(a, head + (dayOff ? "" : sub), 11, 0xCCFFFFFF, true);
-            eb.setLetterSpacing(0.14f);
+            String sub = owner.sub.isEmpty() || Routine.isOther(owner.sub) ? "" : "  ·  " + owner.sub;
+            String head = dayOff ? "Day off" : onBreak ? "On a break" : noResponse ? "No response" : waiting ? "Starting later" : "Now";
+            int left = Math.max(0, s.end - p.tt);
             LinearLayout headRow = new LinearLayout(a);
             headRow.setOrientation(LinearLayout.HORIZONTAL);
             headRow.setGravity(Gravity.CENTER_VERTICAL);
-            headRow.addView(eb, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-            if (!dayOff && !onBreak && !waiting && owner.src >= 0 && !owner.skipped && owner.kind != Routine.SLEEP) {
-                // a small pill: this slot only, for today (the slots before and after it stay as they are)
-                final Routine.Block ownerBlock = owner;
-                final Plan.DayPlan savedPlan = saved;
-                TextView pill = Ui.label(a, "Change plan", 12, 0xFFFFFFFF, true);
-                pill.setPadding(a.dp(11), a.dp(6), a.dp(11), a.dp(6));
-                pill.setBackground(Ui.box(a, 0x33FFFFFF, 0, 16));
-                pill.setContentDescription(Lang.tr("Change plan"));
-                pill.setOnClickListener(v -> askNewName(savedPlan.day.toString(), ownerBlock.src, ownerBlock.title, 0L, false));
-                headRow.addView(pill);
+            headRow.addView(Glass.eyebrow(a, head + (dayOff ? "" : sub), Glass.MUTE), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+            if (!dayOff && !waiting) {
+                TextView leftChip = Glass.text(a, Routine.formatDuration(left) + " left", 12.5f, Glass.WHITE, true);
+                leftChip.setPadding(a.dp(12), a.dp(6), a.dp(12), a.dp(6));
+                leftChip.setBackground(Glass.shape(a, Glass.FILL_HI, 0, 16));
+                headRow.addView(leftChip);
             }
             card.addView(headRow);
-            card.addView(Ui.label(a, dayOff ? "Enjoy your day off" : titleOf(owner), 22, 0xFFFFFFFF, true), Ui.wide(a, 4));
-            int left = Math.max(0, s.end - p.tt);
+            TextView title = Glass.display(a, dayOff ? "Enjoy your day off" : titleOf(owner), 32, Glass.WHITE);
+            title.setMaxLines(3);
+            title.setEllipsize(android.text.TextUtils.TruncateAt.END);
+            title.setLineSpacing(a.dp(2), 1f);
+            card.addView(title, Ui.wide(a, 14));
             if (dayOff) {
-                card.addView(Ui.label(a, "No alarm will ring until you plan the day again, or tomorrow.", 14, 0xE6FFFFFF, false), Ui.wide(a, 4));
+                card.addView(Glass.note(a, "No alarm will ring until you plan the day again, or tomorrow."), Ui.wide(a, 8));
                 if (state.planAt > now) {
-                    card.addView(Ui.label(a, "I will ask again at " + Routine.formatTime(minuteOf(state.planAt), m.fmt24), 14, 0xFFFFFFFF, true),
-                            Ui.wide(a, 8));
+                    card.addView(Glass.text(a, "I will ask again at " + Routine.formatTime(minuteOf(state.planAt), m.fmt24), 14, Glass.WHITE, true), Ui.wide(a, 8));
                 }
             } else if (onBreak) {
-                card.addView(Ui.label(a, "Break until " + Routine.formatTime(s.end, m.fmt24) + "   ·   " + Routine.formatDuration(left) + " left",
-                        14, 0xE6FFFFFF, false), Ui.wide(a, 2));
-                card.addView(Ui.label(a, "Then back to " + titleOf(owner) + ", which ends at " + Routine.formatTime(slotEnd(saved, owner), m.fmt24),
-                        13, 0xCCFFFFFF, false), Ui.wide(a, 2));
+                card.addView(Glass.text(a, "Break until " + Routine.formatTime(s.end, m.fmt24) + "  ·  " + Routine.formatDuration(left) + " left", 15, Glass.SOFT, false), Ui.wide(a, 8));
+                card.addView(Glass.note(a, "Then back to " + titleOf(owner) + ", which ends at " + Routine.formatTime(slotEnd(saved, owner), m.fmt24)), Ui.wide(a, 4));
             } else if (noResponse) {
-                card.addView(Ui.label(a, "No answer yet. The slot starts when you answer.", 14, 0xE6FFFFFF, false), Ui.wide(a, 2));
-                card.addView(Ui.label(a, "It was to start at " + Routine.formatTime(slotStart(saved, owner), m.fmt24) + ", and ends at "
-                        + Routine.formatTime(slotEnd(saved, owner), m.fmt24), 13, 0xCCFFFFFF, false), Ui.wide(a, 2));
+                card.addView(Glass.text(a, "No answer yet. The slot starts when you answer.", 15, Glass.SOFT, false), Ui.wide(a, 8));
+                card.addView(Glass.note(a, "It was to start at " + Routine.formatTime(slotStart(saved, owner), m.fmt24) + ", and ends at "
+                        + Routine.formatTime(slotEnd(saved, owner), m.fmt24)), Ui.wide(a, 4));
             } else if (waiting) {
-                card.addView(Ui.label(a, "Starts at " + Routine.formatTime(s.end, m.fmt24) + "   ·   in " + Routine.formatDuration(left),
-                        14, 0xE6FFFFFF, false), Ui.wide(a, 2));
-                card.addView(Ui.label(a, "It was to start at " + Routine.formatTime(slotStart(saved, owner), m.fmt24) + ", and ends at "
-                        + Routine.formatTime(slotEnd(saved, owner), m.fmt24), 13, 0xCCFFFFFF, false), Ui.wide(a, 2));
+                card.addView(Glass.text(a, "Starts at " + Routine.formatTime(s.end, m.fmt24) + "  ·  in " + Routine.formatDuration(left), 15, Glass.SOFT, false), Ui.wide(a, 8));
+                card.addView(Glass.note(a, "It was to start at " + Routine.formatTime(slotStart(saved, owner), m.fmt24) + ", and ends at "
+                        + Routine.formatTime(slotEnd(saved, owner), m.fmt24)), Ui.wide(a, 4));
             } else {
-                card.addView(Ui.label(a, Routine.formatTime(s.start, m.fmt24) + " – " + Routine.formatTime(s.end, m.fmt24)
-                        + "   ·   " + Routine.formatDuration(left) + " left", 14, 0xE6FFFFFF, false), Ui.wide(a, 2));
+                card.addView(Glass.text(a, Routine.formatTime(s.start, m.fmt24) + " – " + Routine.formatTime(s.end, m.fmt24), 15, Glass.SOFT, false), Ui.wide(a, 8));
                 String changed = changeNote(b, s, saved, owner, m.fmt24);
-                if (!changed.isEmpty()) card.addView(Ui.label(a, changed, 13, 0xFFFFFFFF, true), Ui.wide(a, 4));
+                if (!changed.isEmpty()) card.addView(Glass.text(a, changed, 13, Glass.GREEN, true), Ui.wide(a, 6));
             }
             if (!dayOff) {
-                // progress
-                FrameLayout bar = new FrameLayout(a);
-                bar.setBackground(Ui.box(a, 0x40FFFFFF, 0, 4));
-                View fill = new View(a);
-                fill.setBackground(Ui.box(a, 0xFFFFFFFF, 0, 4));
                 float frac = Math.max(0.02f, Math.min(1f, (p.tt - s.start) / (float) Math.max(1, s.end - s.start)));
-                bar.addView(fill, new FrameLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT));
-                final float f = frac;
-                bar.post(() -> {
-                    ViewGroup.LayoutParams lp = fill.getLayoutParams();
-                    lp.width = Math.round(bar.getWidth() * f);
-                    fill.setLayoutParams(lp);
-                });
-                card.addView(bar, Ui.lp(a, ViewGroup.LayoutParams.MATCH_PARENT, a.dp(6), 12));
+                card.addView(Glass.bar(a, frac, 0x33FFFFFF, 0xFFFFFFFF), Ui.lp(a, ViewGroup.LayoutParams.MATCH_PARENT, a.dp(5), 18));
             }
             if (!dayOff && owner.note != null && !owner.note.trim().isEmpty()) {
-                TextView note = Ui.label(a, "📝  " + owner.note.trim(), 13, 0xF0FFFFFF, false);
+                TextView note = Glass.text(a, "📝  " + owner.note.trim(), 13.5f, Glass.SOFT, false);
                 note.setMaxLines(3);
-                card.addView(note, Ui.wide(a, 10));
+                card.addView(note, Ui.wide(a, 14));
             }
             if (dayOff) addDayOffActions(card);
             else addNowActions(card, saved, p, now, state);
         } else {
-            TextView eb = Ui.label(a, "NOW", 11, 0xCCFFFFFF, true);
-            eb.setLetterSpacing(0.14f);
-            card.addView(eb);
-            card.addView(Ui.label(a, "Free time", 22, 0xFFFFFFFF, true), Ui.wide(a, 4));
+            card.addView(Glass.eyebrow(a, "Now", Glass.MUTE));
+            card.addView(Glass.display(a, "Free time", 32, Glass.WHITE), Ui.wide(a, 14));
         }
         if (next >= 0 && !dayOff) {
             Routine.Slot s = p.sc.slots.get(next);
             View rule = new View(a);
-            rule.setBackgroundColor(0x33FFFFFF);
-            card.addView(rule, Ui.lp(a, ViewGroup.LayoutParams.MATCH_PARENT, a.dp(1), 14));
+            rule.setBackgroundColor(0x26FFFFFF);
+            card.addView(rule, Ui.lp(a, ViewGroup.LayoutParams.MATCH_PARENT, a.dp(1), 20));
             int in = Math.max(0, s.start - p.tt);
-            TextView nx = Ui.label(a, "Next:  " + titleOf(s.block)
-                    + "  at " + Routine.formatTime(s.start, m.fmt24) + "  (in " + Routine.formatDuration(in) + ")", 14, 0xFFFFFFFF, false);
-            nx.setTypeface(Typeface.DEFAULT_BOLD);
-            card.addView(nx, Ui.wide(a, 10));
+            card.addView(Glass.eyebrow(a, "Next up", Glass.FAINT), Ui.wide(a, 14));
+            TextView nx = Glass.text(a, titleOf(s.block) + "  ·  " + Routine.formatTime(s.start, m.fmt24) + "  ·  in " + Routine.formatDuration(in), 15, Glass.SOFT, true);
+            card.addView(nx, Ui.wide(a, 6));
             final int nextIndex = SlotPlay.indexOfSrc(saved, s.block.slotSrc());
             final Plan.DayPlan plan = saved;
             nx.setOnClickListener(v -> openTodos(plan, nextIndex));
-            card.addView(Ui.label(a, "Tap it to add a to-do list for it.", 12, 0xCCFFFFFF, false), Ui.wide(a, 2));
+            card.addView(Glass.text(a, "Tap it to add a to-do list for it.", 12, Glass.FAINT, false), Ui.wide(a, 3));
         }
         nowBox.addView(card);
     }
@@ -366,61 +343,70 @@ final class HomePage extends Page {
 
     /** Under a day off: plan the day, or go back to the schedule as it was. */
     private void addDayOffActions(LinearLayout card) {
-        LinearLayout row = new LinearLayout(a);
-        row.setOrientation(LinearLayout.HORIZONTAL);
-        row.addView(Ui.button(a, "Plan the day", true, v -> DayOffDialog.openPlanner(a)),
-                new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
-        lp.leftMargin = a.dp(8);
-        row.addView(Ui.button(a, "Back to my schedule", false, v -> {
-            SlotActions.endDayOff(a);
-            a.toastText("Your schedule is back. The alarms ring again.");
-            afterChange();
-        }), lp);
-        card.addView(row, Ui.wide(a, 14));
+        card.addView(Glass.row(a, 10,
+                Glass.main(a, "Plan the day", v -> DayOffDialog.openPlanner(a)),
+                Glass.glass(a, "Back to my schedule", v -> {
+                    SlotActions.endDayOff(a);
+                    a.toastText("Your schedule is back. The alarms ring again.");
+                    afterChange();
+                })), Ui.wide(a, 22));
     }
 
-    /** Under the slot that is going on: a button to take a break (or to end the one that is on), the to-do list and "Finish early". */
+    /**
+     * Under the slot that is going on. Two main answers: Finish and Break (Back to work while on a break). Under them, smaller ones that
+     * matter as much: Adjust time, Change plan and the to-do list.
+     */
     private void addNowActions(LinearLayout card, final Plan.DayPlan saved, final Plan.DayPlan p, long now, AlarmState state) {
-        Routine.Block b = p.sc.slots.get(p.cur).block;
+        final Routine.Block b = p.sc.slots.get(p.cur).block;
         final boolean onBreak = b.live == Routine.LIVE_BREAK;
-        if (b.live == Routine.LIVE_WAIT) addWaitChoices(card, saved, p);
-        LinearLayout row = new LinearLayout(a);
-        row.setOrientation(LinearLayout.HORIZONTAL);
-        boolean canBreak = SlotPlay.canBreak(p);
-        if (onBreak || canBreak) {
-            android.widget.Button br = Ui.button(a, onBreak ? "Back to work" : "Take a break", false, v -> {
-                if (onBreak) {
-                    SlotActions.endBreak(a);
-                    afterChange();
-                } else {
-                    askBreak(p);
-                }
-            });
-            row.addView(br, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        final boolean waiting = b.live == Routine.LIVE_WAIT;
+        if (waiting) addWaitChoices(card, saved, p);
+        final EarlyFinish.Offer offer = waiting ? null : EarlyFinish.of(p, nextDayOf(p), now);
+        List<View> mains = new ArrayList<>();
+        if (onBreak) {
+            mains.add(Glass.main(a, "Back to work", v -> {
+                SlotActions.endBreak(a);
+                afterChange();
+            }));
+            if (offer != null) mains.add(Glass.glass(a, finishLabel(offer), v -> SlotSheets.finish(a, offer, this::afterChange)));
+        } else if (!waiting) {
+            if (offer != null) mains.add(Glass.main(a, finishLabel(offer), v -> SlotSheets.finish(a, offer, this::afterChange)));
+            if (SlotPlay.canBreak(p)) mains.add(Glass.glass(a, "Break", v -> SlotSheets.takeBreak(a, p, this::afterChange)));
+        }
+        if (!mains.isEmpty()) card.addView(Glass.row(a, 10, mains.toArray(new View[0])), Ui.wide(a, 22));
+
+        Glass.Flow chips = new Glass.Flow(a, 8);
+        final Routine.Block owner = ownerBlock(saved, b);
+        if (!onBreak && !waiting) {
+            boolean sameSlot = saved.cur >= 0 && saved.sc.slots.get(saved.cur).block.src == b.src && b.live != Routine.LIVE_CARRIED;
+            if (sameSlot && SlotAdjust.of(saved, now) != null) {
+                chips.addView(Glass.chip(a, "Adjust time", v -> SlotSheets.adjustTime(a, this::afterChange)));
+            }
+            if (owner.src >= 0 && !owner.skipped && owner.kind != Routine.SLEEP) {
+                chips.addView(Glass.chip(a, "Change plan", v -> askNewName(saved.day.toString(), owner.src, owner.title, 0L, false)));
+            }
         }
         final int sIdx = SlotPlay.indexOfSrc(saved, b.slotSrc());
         if (sIdx >= 0 && !saved.sc.slots.get(sIdx).block.skipped) {
             Routine.Block ob = saved.sc.slots.get(sIdx).block;
             Todos t = Store.todosFor(a, saved.day, blocksOf(saved));
             int[] cnt = SlotTodo.counts(todoRows(saved, ob, t));   // the slot's things, its goals and what is on their lists
-            android.widget.Button td = Ui.button(a, cnt[1] == 0 ? "To-do" : "To-do  " + cnt[0] + "/" + cnt[1], false,
-                    v -> openTodos(saved, sIdx));
-            LinearLayout.LayoutParams tp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
-            if (row.getChildCount() > 0) tp.leftMargin = a.dp(8);
-            row.addView(td, tp);
+            chips.addView(Glass.chip(a, cnt[1] == 0 ? "To-do" : "To-do  " + cnt[0] + "/" + cnt[1], v -> openTodos(saved, sIdx)));
         }
-        if (row.getChildCount() > 0) card.addView(row, Ui.wide(a, 14));
-        final EarlyFinish.Offer offer = b.live == Routine.LIVE_WAIT ? null : EarlyFinish.of(p, nextDayOf(p), now);
-        if (offer != null) {
-            card.addView(Ui.button(a, offer.label(), false, v -> EarlyDialog.show(a, offer, this::afterChange)), Ui.wide(a, 8));
-        }
+        if (chips.getChildCount() > 0) card.addView(chips, Ui.wide(a, 14));
         addInlineTodos(card, saved, sIdx);
+    }
+
+    /** The words on the main button: sleeping and waking early keep their own names. */
+    private static String finishLabel(EarlyFinish.Offer o) {
+        if (o.kind == EarlyFinish.SLEEP) return "Early sleep";
+        if (o.curIsSleep) return "Early wake";
+        return "Finish";
     }
 
     /**
      * While a slot's start is put off: start it now, carry on the slot before for a while (the wait then ends where that stops), or
-     * take another plan in its place for today. The same three answers the alarm screen has.
+     * take another plan in its place for today. The same answers the alarm screen has.
      */
     private void addWaitChoices(LinearLayout card, final Plan.DayPlan saved, final Plan.DayPlan p) {
         Routine.Block w = p.sc.slots.get(p.cur).block;
@@ -432,223 +418,81 @@ final class HomePage extends Page {
         final long sEnd = saved.slotEndMs(oi);
         final long waitEnd = p.slotEndMs(p.cur);
         final String title = ob.title.isEmpty() ? Routine.KIND_NAMES[ob.kind] : ob.title;
-        card.addView(Ui.button(a, "Start “" + title + "” now", true, v -> {
+        List<View> mains = new ArrayList<>();
+        mains.add(Glass.main(a, "Start", v -> {
             SlotActions.startWaitingNow(a, day, ob.src, ob.title);
             afterChange();
-        }), Ui.wide(a, 14));
+        }));
         int pi = SlotPlay.previousIndex(saved, oi);
         if (pi >= 0) {
             Routine.Block pb = saved.sc.slots.get(pi).block;
             final SlotActions.Prev prev = new SlotActions.Prev(pb.src, pb.title);
             final String prevTitle = pb.title.isEmpty() ? Routine.KIND_NAMES[pb.kind] : pb.title;
-            card.addView(Ui.button(a, "Continue “" + prevTitle + "”", false,
-                    v -> askContinue(day, ob, title, sStart, sEnd, waitEnd, prev, prevTitle)), Ui.wide(a, 8));
+            mains.add(Glass.glass(a, "Continue", v -> askContinue(day, ob, title, sStart, sEnd, waitEnd, prev, prevTitle)));
         }
-        card.addView(Ui.button(a, "Other plan", false, v -> askNewName(day, ob.src, ob.title, sStart, true)), Ui.wide(a, 8));
+        card.addView(Glass.row(a, 10, mains.toArray(new View[0])), Ui.wide(a, 22));
+        Glass.Flow chips = new Glass.Flow(a, 8);
+        chips.addView(Glass.chip(a, "Change plan", v -> askNewName(day, ob.src, ob.title, sStart, true)));
+        card.addView(chips, Ui.wide(a, 14));
     }
 
-    /** "Continue the slot before until ...": a − and + for the time, and what happens then. The wait ends when it does. */
+    /** "Continue the slot before until ...": round buttons for the time, or the whole slot. The wait ends when it does. */
     private void askContinue(final String day, final Routine.Block ob, final String title, final long sStart, final long sEnd, long waitEnd,
                              final SlotActions.Prev prev, String prevTitle) {
         final long now = System.currentTimeMillis();
-        int room = Math.min(60, SlotPlay.roomMinutes(now, sEnd));
-        if (room < 1) {
-            a.toastText("This slot is almost over");
-            return;
-        }
-        final boolean h24 = a.routine().fmt24;
+        int room = SlotPlay.roomMinutes(now, sEnd);
         int initial = Math.max(SlotPlay.STEP, Math.round(Math.max(0L, waitEnd - now) / 60000f));
-        final MinuteStepper[] st = new MinuteStepper[1];
-        final TextView caption = Ui.label(a, "", 13, Ui.MUTED, false);
-        caption.setGravity(Gravity.CENTER_HORIZONTAL);
-        final Runnable draw = () -> caption.setText("Then “" + title + "” starts, at " + Routine.formatTime(minuteOf(System.currentTimeMillis()
-                + st[0].minutes() * 60000L), h24) + ".");
-        st[0] = new MinuteStepper(a, initial, Math.max(room, SlotPlay.STEP), m -> draw.run());
-        st[0].words(m -> Routine.formatTime(minuteOf(System.currentTimeMillis() + m * 60000L), h24));
-        LinearLayout box = new LinearLayout(a);
-        box.setOrientation(LinearLayout.VERTICAL);
-        box.setPadding(a.dp(22), a.dp(8), a.dp(22), 0);
-        box.addView(Ui.label(a, "Keep going until", 13, Ui.MUTED, true));
-        box.addView(st[0].view, Ui.wide(a, 4));
-        box.addView(caption, Ui.wide(a, 6));
-        draw.run();
-        new DBuilder(a)
-                .setTitle("Continue “" + prevTitle + "”")
-                .setView(box)
-                .setPositiveButton("Keep going", (d, w) -> {
-                    long until = SlotActions.continuePreviousWhileWaiting(a, day, ob.src, ob.title, sStart, sEnd, prev, st[0].minutes());
-                    a.toastText("“" + title + "” starts at " + Routine.formatTime(minuteOf(until), a.routine().fmt24));
-                    afterChange();
-                })
-                .setNegativeButton("Cancel", null)
-                .show();
+        SlotSheets.continueSheet(a, prevTitle, title, initial, room, m -> {
+            long until = SlotActions.continuePreviousWhileWaiting(a, day, ob.src, ob.title, sStart, sEnd, prev, m);
+            a.toastText("“" + title + "” starts at " + Routine.formatTime(minuteOf(until), a.routine().fmt24));
+            afterChange();
+        });
     }
 
     /**
-     * "What will you do instead?": the slot is called something else for today only. During a late start ({@code endWait}) the new plan takes
-     * the place of the slot from now to its end; on the slot that is running it changes only that slot. The slot keeps its type.
+     * "Change plan": the slot is called something else for today only (or the slot before goes on, or two slots swap). During a late start
+     * ({@code endWait}) the new plan takes the place of the slot from now to its end; on the slot that is running it changes only that
+     * slot. The slot keeps its type unless another is chosen.
      */
     private void askNewName(final String day, final int src, final String title, final long sStart, final boolean endWait) {
-        final Routine base = a.routine();
-        final Overrides ov = Store.overrides(a, base);
-        final java.time.LocalDate d = java.time.LocalDate.parse(day);
-        Plan.DayPlan dp = Plan.plan(base, ov, d, Store.zone());
-        int mi = SlotPlay.indexOfSrc(dp, src);
-        final int slotMins = mi < 0 ? 60 : Math.max(SlotPlay.STEP, dp.sc.slots.get(mi).end - dp.sc.slots.get(mi).start);
-        final long sEnd = mi < 0 ? sStart + slotMins * 60000L : dp.slotEndMs(mi);
-        final long slotStart = mi < 0 ? sStart : dp.slotStartMs(mi);
-        final int part = Math.max(SlotPlay.STEP, slotMins - SlotPlay.STEP);
-        int pi = mi < 0 ? -1 : SlotPlay.previousIndex(dp, mi);
-        final SlotActions.Prev prev = pi < 0 ? null : new SlotActions.Prev(dp.sc.slots.get(pi).block.src, dp.sc.slots.get(pi).block.title);
-        final List<Routine.Block> others = new ArrayList<>();
-        final List<String> otherNames = new ArrayList<>();
-        for (Routine.Slot sl : dp.sc.slots) {
-            Routine.Block ob = sl.block;
-            if (ob.src < 0 || ob.src == src || ob.skipped || ob.kind == Routine.SLEEP) continue;
-            boolean seen = false;
-            for (Routine.Block x : others) if (x.src == ob.src) seen = true;
-            if (seen) continue;
-            others.add(ob);
-            otherNames.add(ob.title + " (" + (sl.end - sl.start) + " min)");
-        }
-
-        final android.widget.EditText name = new android.widget.EditText(a);
-        name.setSingleLine(true);
-        name.setHint("What will you do instead?");
-        name.setText(title);
-        name.setSelectAllOnFocus(true);
-        name.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 18);
-        name.setTextColor(Ui.INK);
-        name.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
-        final List<String> otherTitles = new ArrayList<>();
-        final List<String> otherNotes = new ArrayList<>();
-        for (int q = 0; q < others.size(); q++) {
-            Routine.Block ob = others.get(q);
-            otherTitles.add(ob.title.isEmpty() ? Routine.KIND_NAMES[ob.kind] : ob.title);
-            otherNotes.add(otherNames.get(q).replaceAll("^.*\\((.*)\\)$", "$1"));
-        }
-        final ChangePlanUi.Cards target = new ChangePlanUi.Cards(a, otherTitles, otherNotes);
-        int ck = Routine.TASK;
-        String cs = Routine.OTHER;
-        try {
-            Routine.Block cb = base.forDay(d).blocks.get(src);
-            ck = cb.kind;
-            cs = cb.sub;
-        } catch (RuntimeException ignored) {
-        }
-        final int baseKind = ck;
-        final String baseSub = cs;
-        final ChangePlanUi.TypePicker typePick = new ChangePlanUi.TypePicker(a, base, ck, cs);
-        final android.widget.RadioButton swapNames = new android.widget.RadioButton(a);
-        swapNames.setText("Swap names (times stay)");
-        swapNames.setTextColor(Ui.INK);
-        final android.widget.RadioButton swapPlaces = new android.widget.RadioButton(a);
-        swapPlaces.setText("Swap places and times");
-        swapPlaces.setTextColor(Ui.INK);
-        android.widget.RadioGroup mg = new android.widget.RadioGroup(a);
-        swapNames.setId(View.generateViewId());
-        swapPlaces.setId(View.generateViewId());
-        mg.addView(swapNames);
-        mg.addView(swapPlaces);
-        swapNames.setChecked(true);
-
-        final String[] labels = {"Replace slot", "Continue previous slot", "Swap slot with"};
-        final android.widget.RadioButton[] rb = new android.widget.RadioButton[3];
-        final LinearLayout[] pan = new LinearLayout[3];
-        final MinuteStepper[] steps = new MinuteStepper[3];
-        final Switch[] whole = new Switch[3];
-        LinearLayout box = new LinearLayout(a);
-        box.setOrientation(LinearLayout.VERTICAL);
-        box.setPadding(a.dp(22), a.dp(8), a.dp(22), 0);
-        box.addView(Ui.label(a, "Pick one. This changes today only. The rest of the slot goes back to your saved plan.", 13, Ui.MUTED, false), Ui.wide(a, 4));
-        for (int i = 0; i < 3; i++) {
-            final int k = i;
-            if (i == 1 && prev == null) continue;
-            if (i == 2 && others.isEmpty()) continue;
-            rb[i] = new android.widget.RadioButton(a);
-            rb[i].setText(labels[i]);
-            rb[i].setTextColor(Ui.INK);
-            rb[i].setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 17);
-            LinearLayout pn = new LinearLayout(a);
-            pn.setOrientation(LinearLayout.VERTICAL);
-            pn.setPadding(a.dp(12), a.dp(8), a.dp(12), a.dp(10));
-            pn.setVisibility(View.GONE);
-            pan[i] = pn;
-            if (i == 0) {
-                pn.addView(name, Ui.wide(a, 0));
-                pn.addView(typePick.view, Ui.wide(a, 0));
+        SlotSheets.changePlan(a, day, src, title, true, new SlotSheets.ChangeHost() {
+            @Override
+            public void unchanged() {
+                if (endWait) SlotActions.startWaitingNow(a, day, src, title);
+                afterChange();
             }
-            else if (i == 1) pn.addView(Ui.label(a, "“" + prev.title + "” goes on into this slot.", 13, Ui.MUTED, false), Ui.wide(a, 0));
-            else {
-                pn.addView(target.view, Ui.wide(a, 4));
-                pn.addView(mg, Ui.wide(a, 6));
+
+            @Override
+            public void replace(String n, int mins, int kind, String sub) {
+                SlotActions.changePart(a, day, src, title, n, mins, sStart, endWait, kind, sub);
+                a.toastText(mins == 0 ? "Changed for today: " + n : n + " for " + mins + " min, then back to the plan");
+                afterChange();
             }
-            whole[i] = new Switch(a);
-            whole[i].setText("Whole slot (" + slotMins + " min)");
-            whole[i].setTextColor(Ui.INK);
-            whole[i].setChecked(true);
-            pn.addView(whole[i], Ui.wide(a, 8));
-            steps[i] = new MinuteStepper(a, Math.min(30, part), part, m -> { });
-            steps[i].view.setVisibility(View.GONE);
-            pn.addView(steps[i].view, Ui.wide(a, 6));
-            whole[i].setOnCheckedChangeListener((c, on) -> steps[k].view.setVisibility(on ? View.GONE : View.VISIBLE));
-            box.addView(rb[i], Ui.wide(a, 8));
-            box.addView(pn, Ui.wide(a, 2));
-        }
-        swapPlaces.setOnCheckedChangeListener((c, on) -> {
-            if (on && whole[2] != null) whole[2].setChecked(true);
-            if (whole[2] != null) whole[2].setEnabled(!on);
+
+            @Override
+            public void continuePrevious(SlotActions.Prev prev, int minutes) {
+                Routine base = a.routine();
+                Plan.DayPlan dp = Plan.plan(base, Store.overrides(a, base), java.time.LocalDate.parse(day), Store.zone());
+                int mi = SlotPlay.indexOfSrc(dp, src);
+                long slotStart = mi < 0 ? sStart : dp.slotStartMs(mi);
+                long sEnd = mi < 0 ? sStart + 60 * 60000L : dp.slotEndMs(mi);
+                long until = SlotActions.continueFrom(a, day, src, title, slotStart, sEnd, prev, minutes, endWait);
+                a.toastText("“" + prev.title + "” goes on until " + Routine.formatTime(minuteOf(until), a.routine().fmt24));
+                afterChange();
+            }
+
+            @Override
+            public void swap(Routine.Block o, boolean places, boolean whole, int mins) {
+                SlotActions.swapWith(a, day, src, title, o.src, o.title, o.mins, places, whole ? 0 : mins);
+                a.toastText("Swapped with " + o.title);
+                afterChange();
+            }
+
+            @Override
+            public Runnable takeOff() {
+                return null;
+            }
         });
-        for (int i = 0; i < 3; i++) {
-            final int k = i;
-            if (rb[i] == null) continue;
-            rb[i].setOnCheckedChangeListener((c, on) -> {
-                if (!on) return;
-                for (int j = 0; j < 3; j++) {
-                    if (rb[j] == null) continue;
-                    if (j != k) rb[j].setChecked(false);
-                    pan[j].setVisibility(j == k ? View.VISIBLE : View.GONE);
-                }
-            });
-        }
-        rb[0].setChecked(true);
-        android.widget.ScrollView sv = new android.widget.ScrollView(a);
-        sv.addView(box);
-        new DBuilder(a)
-                .setTitle("Change the plan")
-                .setView(sv)
-                .setPositiveButton("Save for today", (dlg, w) -> {
-                    int pick = rb[1] != null && rb[1].isChecked() ? 1 : rb[2] != null && rb[2].isChecked() ? 2 : 0;
-                    boolean full = whole[pick].isChecked();
-                    int mins = steps[pick].minutes();
-                    if (pick == 0) {
-                        String n = name.getText().toString().trim();
-                        if (n.isEmpty()) {
-                            a.toastText("Type a name first");
-                            return;
-                        }
-                        if (n.equals(title) && typePick.kind() == baseKind && typePick.sub().equalsIgnoreCase(baseSub)) {
-                            if (endWait) SlotActions.startWaitingNow(a, day, src, title);
-                            afterChange();
-                            return;
-                        }
-                        SlotActions.changePart(a, day, src, title, n, full ? 0 : mins, sStart, endWait, typePick.kind(), typePick.sub());
-                        a.toastText(full ? "Changed for today: " + n : n + " for " + mins + " min, then back to the plan");
-                    } else if (pick == 1) {
-                        long until = SlotActions.continueFrom(a, day, src, title, slotStart, sEnd, prev, full ? slotMins : mins, endWait);
-                        a.toastText("“" + prev.title + "” goes on until " + Routine.formatTime(minuteOf(until), a.routine().fmt24));
-                    } else {
-                        int t = target.selected();
-                        if (t < 0 || t >= others.size()) return;
-                        Routine.Block o = others.get(t);
-                        boolean places = swapPlaces.isChecked();
-                        SlotActions.swapWith(a, day, src, title, o.src, o.title, o.mins, places, full || places ? 0 : mins);
-                        a.toastText("Swapped with " + o.title);
-                    }
-                    afterChange();
-                })
-                .setNegativeButton("Cancel", null)
-                .show();
     }
 
     /** The plan of the day after {@code p}: the night's sleep is the last slot of its day, and "Early wake" starts the next one. */
@@ -749,56 +593,9 @@ final class HomePage extends Page {
         });
     }
 
-    /** How long a break? − and + in steps of five minutes, or until the slot ends; never past the end of the slot. */
+    /** How long a break? Round buttons in steps of five minutes, or until the slot ends; never past the end of the slot. */
     private void askBreak(Plan.DayPlan p) {
-        final long now = System.currentTimeMillis();
-        int room = SlotPlay.roomMinutes(now, p.slotEndMs(p.cur));
-        if (room < 1) {
-            a.toastText("This slot is almost over");
-            return;
-        }
-        final long slotEnd = p.slotEndMs(p.cur);
-        final boolean h24 = a.routine().fmt24;
-        final boolean canStep = room >= SlotPlay.STEP;
-        final MinuteStepper[] stepper = new MinuteStepper[1];
-        final boolean[] untilEnd = {!canStep};   // a slot with under 5 minutes left can only be rested to its end
-        final TextView caption = Ui.label(a, "", 13, Ui.MUTED, false);
-        caption.setGravity(Gravity.CENTER_HORIZONTAL);
-        final Runnable draw = () -> {
-            long end = untilEnd[0] ? slotEnd : SlotPlay.breakEnd(System.currentTimeMillis(), stepper[0].minutes(), slotEnd);
-            caption.setText("Back at " + Routine.formatTime(minuteOf(end), h24) + (untilEnd[0] ? ", when this slot ends" : ""));
-        };
-        LinearLayout box = new LinearLayout(a);
-        box.setOrientation(LinearLayout.VERTICAL);
-        box.setPadding(a.dp(22), a.dp(8), a.dp(22), 0);
-        stepper[0] = new MinuteStepper(a, 10, Math.max(room, SlotPlay.STEP), m -> draw.run());
-        if (canStep) {
-            box.addView(stepper[0].view, Ui.wide(a, 4));
-        }
-        box.addView(caption, Ui.wide(a, 6));
-        box.addView(Ui.toggle(a, "Until this slot ends", untilEnd[0], (sw, on) -> {
-            untilEnd[0] = on || !canStep;
-            stepper[0].setActive(!untilEnd[0]);
-            draw.run();
-        }), Ui.wide(a, 10));
-        if (!canStep) box.getChildAt(box.getChildCount() - 1).setEnabled(false);
-        stepper[0].setActive(!untilEnd[0]);
-        draw.run();
-        new DBuilder(a)
-                .setTitle("Take a break")
-                .setView(box)
-                .setPositiveButton("Start the break", (d, w) -> {
-                    // "until the slot ends" asks for a minute more than is left; the break is cut at the end of the slot
-                    long end = SlotActions.takeBreak(a, untilEnd[0] ? room + 1 : stepper[0].minutes());
-                    if (end < 0) {
-                        a.toastText("A break cannot be taken now");
-                        return;
-                    }
-                    a.toastText("Enjoy your break. Back at " + Routine.formatTime(minuteOf(end), a.routine().fmt24));
-                    afterChange();
-                })
-                .setNegativeButton("Cancel", null)
-                .show();
+        SlotSheets.takeBreak(a, p, this::afterChange);
     }
 
     // ------------------------------------------------------------------ alarms

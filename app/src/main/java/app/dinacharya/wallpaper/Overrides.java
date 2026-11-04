@@ -71,7 +71,53 @@ public final class Overrides {
         }
     }
 
+    /** Time moved between slots for one day: this slot grows by {@code mins} and the other one gives them (or the other way round when negative). */
+    public static final int MOVE = 0;
+    /** A new activity that begins now: the slot that was going on ends here, and the activity takes the time up to the next slot's end. */
+    public static final int FRESH = 1;
+
+    /**
+     * A change to the lengths of the day's slots, applied after the renames and splits, in the order it was made. Slots are named by their
+     * place in the saved routine and, when a slot was split in two for the day, by which part (0 is the first).
+     */
+    public static final class Step {
+        public final int type;
+        public final String day;
+        /** The slot that grows ({@link #MOVE}) or ends here ({@link #FRESH}). */
+        public final int src;
+        public final int ord;
+        public final String orig;
+        /** The slot that gives the time ({@link #MOVE}) or the one the new activity comes before ({@link #FRESH}). */
+        public final int to;
+        public final int toOrd;
+        public final String toOrig;
+        /** {@link #MOVE}: minutes the first slot grows by (negative: it shrinks). {@link #FRESH}: how long the first slot now lasts. */
+        public final int mins;
+        /** {@link #FRESH}: the activity (name, type, sub type) and how long it lasts. */
+        public final String name;
+        public final int kind;
+        public final String sub;
+        public final int len;
+
+        Step(int type, String day, int src, int ord, String orig, int to, int toOrd, String toOrig, int mins, String name, int kind, String sub, int len) {
+            this.type = type;
+            this.day = day;
+            this.src = src;
+            this.ord = Math.max(0, ord);
+            this.orig = orig == null ? "" : orig;
+            this.to = to;
+            this.toOrd = Math.max(0, toOrd);
+            this.toOrig = toOrig == null ? "" : toOrig;
+            this.mins = mins;
+            this.name = name == null ? "" : name;
+            this.kind = kind;
+            this.sub = sub == null ? "" : sub;
+            this.len = len;
+        }
+    }
+
     public String sig = "";
+    public final List<Step> steps = new ArrayList<>();
     public final Map<String, Shift> shifts = new TreeMap<>();
     public final List<Edit> edits = new ArrayList<>();
     /** Days that began before their time because the person woke early and started the day: the minutes earlier, by date. */
@@ -134,13 +180,42 @@ public final class Overrides {
         edits.add(new Edit(key, src, Routine.clean(orig), false, "", 0, other));
     }
 
+    /**
+     * Slot {@code src} (part {@code ord}) grows by {@code mins} minutes for one day and slot {@code to} (part {@code toOrd}) gives them; a
+     * negative number does the opposite. A second move between the same two adds to the first.
+     */
+    public void addMove(LocalDate d, int src, int ord, String orig, int to, int toOrd, String toOrig, int mins) {
+        if (mins == 0) return;
+        String key = d.toString();
+        for (int i = steps.size() - 1; i >= 0; i--) {
+            Step t = steps.get(i);
+            if (t.type == MOVE && t.day.equals(key) && t.src == src && t.ord == ord && t.to == to && t.toOrd == toOrd) {
+                steps.remove(i);
+                mins += t.mins;
+                break;
+            }
+        }
+        if (mins != 0) steps.add(new Step(MOVE, key, src, ord, Routine.clean(orig), to, toOrd, Routine.clean(toOrig), mins, "", -1, "", 0));
+    }
+
+    /**
+     * The slot {@code src} (part {@code ord}) ends after {@code keep} minutes, and a new activity of {@code len} minutes begins there, in
+     * front of slot {@code before}. The slot after the activity keeps its own end.
+     */
+    public void addFresh(LocalDate d, int src, int ord, String orig, int keep, int before, int beforeOrd, String beforeOrig, String name,
+                         int kind, String sub, int len) {
+        steps.add(new Step(FRESH, d.toString(), src, ord, Routine.clean(orig), before, beforeOrd, Routine.clean(beforeOrig), keep,
+                Routine.clean(name == null ? "" : name), kind, Routine.clean(sub == null ? "" : sub), len));
+    }
+
     public boolean isEmpty() {
-        return shifts.isEmpty() && edits.isEmpty() && wakes.isEmpty();
+        return shifts.isEmpty() && edits.isEmpty() && wakes.isEmpty() && steps.isEmpty();
     }
 
     public int editCount(LocalDate d) {
         int n = 0;
         for (Edit e : edits) if (e.day.equals(d.toString())) n++;
+        for (Step t : steps) if (t.day.equals(d.toString())) n++;
         return n;
     }
 
@@ -148,6 +223,9 @@ public final class Overrides {
     public void clearEdits(LocalDate d) {
         for (int i = edits.size() - 1; i >= 0; i--) {
             if (edits.get(i).day.equals(d.toString())) edits.remove(i);
+        }
+        for (int i = steps.size() - 1; i >= 0; i--) {
+            if (steps.get(i).day.equals(d.toString())) steps.remove(i);
         }
     }
 
@@ -157,6 +235,7 @@ public final class Overrides {
         shifts.keySet().removeIf(k -> k.compareTo(oldest) < 0);
         wakes.keySet().removeIf(k -> k.compareTo(oldest) < 0);
         edits.removeIf(e -> e.day.compareTo(oldest) < 0);
+        steps.removeIf(t -> t.day.compareTo(oldest) < 0);
     }
 
     public Overrides copy() {
@@ -164,6 +243,7 @@ public final class Overrides {
         o.sig = sig;
         for (Map.Entry<String, Shift> e : shifts.entrySet()) o.shifts.put(e.getKey(), e.getValue());
         o.edits.addAll(edits);
+        o.steps.addAll(steps);
         o.wakes.putAll(wakes);
         return o;
     }
@@ -181,6 +261,12 @@ public final class Overrides {
         for (Edit e : edits) {
             sb.append("E\t").append(e.day).append('\t').append(e.src).append('\t').append(e.skip ? 1 : 0).append('\t')
                     .append(e.orig).append('\t').append(e.name).append('\t').append(e.mins).append('\t').append(e.with).append('\t').append(e.kind).append('\t').append(e.sub).append('\n');
+        }
+        for (Step t : steps) {
+            sb.append(t.type == FRESH ? "N\t" : "M\t").append(t.day).append('\t').append(t.src).append('\t').append(t.ord).append('\t')
+                    .append(t.orig).append('\t').append(t.to).append('\t').append(t.toOrd).append('\t').append(t.toOrig).append('\t')
+                    .append(t.mins).append('\t').append(t.name).append('\t').append(t.kind).append('\t').append(t.sub).append('\t')
+                    .append(t.len).append('\n');
         }
         return sb.toString();
     }
@@ -205,6 +291,12 @@ public final class Overrides {
                     LocalDate.parse(p[1]);
                     int m = Integer.parseInt(p[2].trim());
                     if (m > 0) o.wakes.put(p[1], Math.min(m, 720));
+                } else if (ln.startsWith("M\t") || ln.startsWith("N\t")) {
+                    String[] p = ln.split("\t", 13);
+                    LocalDate.parse(p[1]);
+                    o.steps.add(new Step(ln.charAt(0) == 'N' ? FRESH : MOVE, p[1], Integer.parseInt(p[2].trim()), Integer.parseInt(p[3].trim()),
+                            p[4], Integer.parseInt(p[5].trim()), Integer.parseInt(p[6].trim()), p[7], Integer.parseInt(p[8].trim()),
+                            p[9], Integer.parseInt(p[10].trim()), p[11], p.length > 12 ? Integer.parseInt(p[12].trim()) : 0));
                 } else if (ln.startsWith("E\t")) {
                     String[] p = ln.split("\t", 10);
                     LocalDate.parse(p[1]);

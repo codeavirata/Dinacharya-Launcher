@@ -542,8 +542,9 @@ final class SettingsPage extends Page {
                         + "Change a few minutes only, or the whole slot. The rest of the slot goes back to your saved plan. Set it up: nothing to turn on, and your saved routine is not changed.",
                 null, null);
         no = topic(card, parts, no, "Breaks and finishing early",
-                "Take a break with − and +, or until the slot ends, and tap Back to work to end it. If you finish a slot early, tap Finish early. "
-                        + "Set it up: both are under the slot that is going on, on the Home tab.",
+                "Take a break with − and +, or until the slot ends, and tap Back to work to end it. To finish a slot early, tap Finish: take a rest, start the next slot now, or begin a new activity. "
+                        + "To change how long today's slot runs, tap Adjust time and take the minutes from a later slot, or give them to one. "
+                        + "Set it up: all of these are under the slot that is going on, on the Home tab.",
                 "Open", () -> a.go(MainActivity.TAB_HOME));
         no = topic(card, parts, no, "To-dos and goals",
                 "Give a slot its own to-do list. Tasks can repeat, and they show on your home screen while the slot runs. A daily goal for a slot fills up as you keep slots of that type, and days in a row make a streak. "

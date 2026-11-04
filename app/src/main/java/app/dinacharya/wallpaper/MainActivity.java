@@ -258,6 +258,7 @@ public class MainActivity extends LangActivity {
 
     /** Back: close a sub-page, else go to Home, else leave the app. */
     private void handleBack() {
+        if (Glass.back(this)) return;   // a sheet over the screen closes first
         if (tab >= 0 && pages[tab].onBack()) return;
         if (tab != TAB_HOME) {
             go(TAB_HOME);

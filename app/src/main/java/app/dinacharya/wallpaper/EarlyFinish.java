@@ -47,6 +47,10 @@ public final class EarlyFinish {
         public final long nextEndMs;
         /** Whole minutes from now until the planned end. */
         public final int roomMin;
+        /** The type of the slot that begins, its minutes in the plan, and whether it follows the running slot with nothing taken off between. */
+        public final int kindNext;
+        public final int nextMins;
+        public final boolean adjacent;
 
         Offer(int kind, boolean curIsSleep, boolean carried, String day, int cur, int next, Routine.Block a, Routine.Block b, long plannedEndMs, long nextEndMs, int roomMin) {
             this.kind = kind;
@@ -62,6 +66,9 @@ public final class EarlyFinish {
             this.plannedEndMs = plannedEndMs;
             this.nextEndMs = nextEndMs;
             this.roomMin = roomMin;
+            this.kindNext = b.kind;
+            this.nextMins = b.mins;
+            this.adjacent = next == cur + 1;
         }
 
         /**

@@ -217,6 +217,7 @@ public final class Plan {
                 }
             }
         }
+        if (ov != null && !ov.steps.isEmpty() && applySteps(base, blocks, ov, day.toString())) adjusted = true;
         Routine r = base.copyLook();
         r.mode = Routine.MODE_WAKE;
         r.anchor = Routine.mod(startAbs, 1440);
@@ -610,6 +611,111 @@ public final class Plan {
     private static int indexOfSrc(List<Routine.Block> blocks, int src) {
         for (int i = 0; i < blocks.size(); i++) if (blocks.get(i).src == src) return i;
         return -1;
+    }
+
+    /** The place of the {@code ord}-th part (0 is the first) of the slot {@code src}, or -1. A slot split in two for the day has two parts. */
+    private static int indexOfPart(List<Routine.Block> blocks, int src, int ord) {
+        int seen = 0;
+        for (int i = 0; i < blocks.size(); i++) {
+            if (blocks.get(i).src != src) continue;
+            if (seen == ord) return i;
+            seen++;
+        }
+        return -1;
+    }
+
+    private static boolean sameSlot(Routine base, int src, String orig) {
+        return src >= 0 && src < base.blocks.size() && base.blocks.get(src).title.equals(orig);
+    }
+
+    /**
+     * Applies the day's time moves and new activities ({@link Overrides.Step}) to the slots, in the order they were made. A step that no
+     * longer fits (a slot it names is gone, or it would leave a slot with no time) is left out. The day keeps its length.
+     */
+    private static boolean applySteps(Routine base, List<Routine.Block> blocks, Overrides ov, String key) {
+        boolean any = false;
+        for (Overrides.Step t : ov.steps) {
+            if (!t.day.equals(key)) continue;
+            if (!sameSlot(base, t.src, t.orig) || !sameSlot(base, t.to, t.toOrig)) continue;
+            int i = indexOfPart(blocks, t.src, t.ord);
+            int j = indexOfPart(blocks, t.to, t.toOrd);
+            if (i < 0 || j < 0 || i == j) continue;
+            Routine.Block x = blocks.get(i);
+            Routine.Block y = blocks.get(j);
+            if (t.type == Overrides.MOVE) {
+                int d = t.mins;
+                if (d > 0) d = Math.min(d, y.mins - 1);
+                else d = -Math.min(-d, x.mins - 1);
+                if (d == 0) continue;
+                x.mins += d;
+                y.mins -= d;
+                any = true;
+            } else {
+                // the slot ends after t.mins; a new activity takes its place up to len; the slot after it keeps its own end
+                if (j != i + 1) continue;
+                int keep = Math.max(1, Math.min(t.mins, x.mins));
+                int freed = x.mins - keep;
+                int len = Math.min(Math.max(1, t.len), y.mins + freed - 1);
+                if (len < 1) continue;
+                Routine.Block n = y.copy();
+                n.src = y.src;
+                n.mins = len;
+                n.wake = false;
+                n.changed = true;
+                n.origTitle = y.title;
+                if (!t.name.isEmpty()) n.title = t.name;
+                if (t.kind >= 0 && t.kind < Routine.SLEEP && y.kind != Routine.SLEEP) n.kind = t.kind;
+                if (!t.sub.isEmpty()) n.sub = t.sub;
+                x.mins = keep;
+                y.mins = y.mins + freed - len;
+                blocks.add(j, n);
+                any = true;
+            }
+        }
+        return any;
+    }
+
+    /** Which part of its slot the slot at {@code index} of {@code p} is: 0 for the first (or only) part. */
+    public static int partOf(DayPlan p, int index) {
+        int ord = 0;
+        int src = p.sc.slots.get(index).block.src;
+        for (int k = 0; k < index; k++) if (p.sc.slots.get(k).block.src == src) ord++;
+        return ord;
+    }
+
+    private static String origTitle(Routine main, DayPlan p, int index) {
+        Routine base = main.forDay(p.day);
+        int src = p.sc.slots.get(index).block.src;
+        return src >= 0 && src < base.blocks.size() ? base.blocks.get(src).title : "";
+    }
+
+    /**
+     * Moves {@code mins} minutes between two slots of {@code p} for this day: the slot at {@code index} grows by that much and the one at
+     * {@code from} gives it (a negative number: the first shrinks and the other grows). Returns false when it cannot be recorded.
+     */
+    public static boolean moveMinutes(Routine main, Overrides ov, DayPlan p, int index, int from, int mins) {
+        if (index < 0 || from < 0 || index >= p.sc.slots.size() || from >= p.sc.slots.size() || index == from || mins == 0) return false;
+        Routine.Block x = p.sc.slots.get(index).block;
+        Routine.Block y = p.sc.slots.get(from).block;
+        if (x.src < 0 || y.src < 0) return false;
+        ov.sig = signature(main);
+        ov.addMove(p.day, x.src, partOf(p, index), origTitle(main, p, index), y.src, partOf(p, from), origTitle(main, p, from), mins);
+        return true;
+    }
+
+    /**
+     * The slot at {@code index} of {@code p} ends after {@code keep} minutes and a new activity of {@code len} minutes begins, in front of
+     * the slot right after it ({@code next}). Returns false when it cannot be recorded.
+     */
+    public static boolean startActivity(Routine main, Overrides ov, DayPlan p, int index, int next, int keep, String name, int kind,
+                                        String sub, int len) {
+        if (index < 0 || next != index + 1 || next >= p.sc.slots.size()) return false;
+        Routine.Block x = p.sc.slots.get(index).block;
+        Routine.Block y = p.sc.slots.get(next).block;
+        if (x.src < 0 || y.src < 0) return false;
+        ov.sig = signature(main);
+        ov.addFresh(p.day, x.src, partOf(p, index), origTitle(main, p, index), keep, y.src, partOf(p, next), origTitle(main, p, next), name, kind, sub, len);
+        return true;
     }
 
     /** Renames only the first {@code mins} minutes of a slot for this day; the rest of the slot goes back to the saved plan. */

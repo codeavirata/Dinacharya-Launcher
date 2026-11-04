@@ -233,6 +233,101 @@ final class SlotActions {
         }
     }
 
+    // ------------------------------------------------------------------ more or less time, and a new activity
+
+    /** What "Adjust time" can do to the slot that is running now, or null when it cannot be adjusted. */
+    static SlotAdjust.Choices adjustChoices(Context c) {
+        try {
+            Routine base = Store.load(c);
+            long now = System.currentTimeMillis();
+            Plan.DayPlan saved = Plan.resolve(base, Store.overrides(c, base), now, Store.zone());
+            Plan.DayPlan live = Store.livePlan(c, base, saved, now);
+            if (live == null || live.cur < 0 || saved.cur < 0) return null;
+            // only when what is running is the slot of the plan (not a break, a late start or a slot carried on)
+            Routine.Block lb = live.sc.slots.get(live.cur).block;
+            Routine.Block sb = saved.sc.slots.get(saved.cur).block;
+            if (lb.src < 0 || lb.src != sb.src || lb.live == Routine.LIVE_CARRIED) return null;
+            return SlotAdjust.of(saved, now);
+        } catch (RuntimeException ex) {
+            CrashLog.note(c, "adjust choices", ex);
+            return null;
+        }
+    }
+
+    /**
+     * "Adjust time": the slot that is running ends {@code minutes} later (taking them from the slot at {@code otherIndex} of today's plan)
+     * or, when {@code minutes} is negative, earlier (giving them to it). For today only. Returns false when the limits do not allow it.
+     */
+    static boolean adjustTime(Context c, int otherIndex, int minutes) {
+        try {
+            if (minutes == 0) return false;
+            Routine base = Store.load(c);
+            long now = System.currentTimeMillis();
+            Overrides ov = Store.overrides(c, base);
+            Plan.DayPlan saved = Plan.resolve(base, ov, now, Store.zone());
+            SlotAdjust.Choices ch = SlotAdjust.of(saved, now);
+            if (ch == null) return false;
+            SlotAdjust.Option o = null;
+            for (SlotAdjust.Option x : ch.others) if (x.index == otherIndex) o = x;
+            if (o == null) return false;
+            int most = minutes > 0 ? ch.maxGrow(o) : ch.maxShrink(o);
+            if (Math.abs(minutes) > most) return false;
+            if (!Plan.moveMinutes(base, ov, saved, ch.index, o.index, minutes)) return false;
+            Store.saveOverrides(c, base, ov);
+            finish(c);
+            return true;
+        } catch (RuntimeException ex) {
+            CrashLog.note(c, "adjust time", ex);
+            return false;
+        }
+    }
+
+    /**
+     * "Finish" and then "New activity": the slot that is running ends now and {@code name} begins, lasting {@code fromLeft} minutes of the
+     * time that was left plus {@code fromNext} taken from the next slot. The next slot begins after it and keeps its own end. For today only.
+     * Returns false when it cannot be done any more (the time changed, or the limits do not allow it).
+     */
+    static boolean finishWithActivity(Context c, String name, int kind, String sub, int fromLeft, int fromNext) {
+        try {
+            Routine base = Store.load(c);
+            long now = System.currentTimeMillis();
+            Overrides ov = Store.overrides(c, base);
+            Plan.DayPlan saved = Plan.resolve(base, ov, now, Store.zone());
+            EarlyFinish.Offer o = EarlyFinish.of(Store.livePlan(c, base, saved, now), now);
+            if (o == null || !FinishChoices.of(o).newActivity || name == null || name.trim().isEmpty()) return false;
+            int ci = saved.cur;
+            if (ci < 0 || ci + 1 >= saved.sc.slots.size()) return false;
+            Routine.Slot cs = saved.sc.slots.get(ci);
+            Routine.Slot ns = saved.sc.slots.get(ci + 1);
+            if (cs.block.src != o.srcCur || ns.block.src != o.srcNext) return false;
+            int slotMins = cs.end - cs.start;
+            int elapsed = (int) ((now - saved.slotStartMs(ci)) / 60000L);
+            int keep = Math.max(1, Math.min(elapsed, slotMins - 1));
+            int left = slotMins - keep;
+            int nextMins = ns.end - ns.start;
+            int a = Math.max(0, Math.min(fromLeft, left));
+            int floor = SlotAdjust.floorOf(ns.block.kind, nextMins);
+            int b = Math.max(0, Math.min(fromNext, nextMins + (left - a) - floor));
+            int len = a + b;
+            if (len < FinishChoices.minLength(kind)) return false;
+            if (!Plan.startActivity(base, ov, saved, ci, ci + 1, keep, name.trim(), kind, sub, len)) return false;
+            Store.saveOverrides(c, base, ov);
+            HistoryStore h = Store.history(c);
+            h.append(Ev.ack(now, saved.day.toString(), o.srcNext, o.titleNext, "R", name.trim()));
+            AlarmState st = Store.alarmState(c);
+            st.breakFrom = 0;
+            st.breakTo = 0;
+            st.againAt = 0;
+            st.againWake = false;
+            Store.saveAlarmState(c, st);
+            finish(c);
+            return true;
+        } catch (RuntimeException ex) {
+            CrashLog.note(c, "finish with activity", ex);
+            return false;
+        }
+    }
+
     // ------------------------------------------------------------------ finishing early and the day off
 
     /** What to do with the next slot when the one going on is finished early. */

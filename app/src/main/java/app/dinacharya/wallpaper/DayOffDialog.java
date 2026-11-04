@@ -47,38 +47,47 @@ final class DayOffDialog {
      * @param answered runs after the plan question was answered
      */
     static void confirm(final Activity a, final Runnable taken, final Runnable answered) {
-        new DBuilder(a)
-                .setTitle("Take the rest of today off?")
-                .setMessage("No alarm will ring for the rest of today. The slot going on ends now, and the slots still to come count as "
-                        + "taken off. Tomorrow starts as usual.")
-                .setPositiveButton("Take it off", (d, w) -> {
-                    if (!SlotActions.takeDayOff(a, 0L)) {
-                        Lang.toast(a, "The day could not be taken off", android.widget.Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    if (taken != null) taken.run();
-                    askPlan(a, answered);
-                })
-                .setNegativeButton("Cancel", null)
-                .show();
+        final Glass.Sheet sheet = new Glass.Sheet(a, "Take the rest of today off?",
+                "No alarm will ring for the rest of today. The slot going on ends now, and the slots still to come count as taken off. "
+                        + "Tomorrow starts as usual.");
+        android.widget.LinearLayout box = new android.widget.LinearLayout(a);
+        box.setOrientation(android.widget.LinearLayout.VERTICAL);
+        box.addView(Glass.main(a, "Take it off", v -> {
+            sheet.dismiss();
+            if (!SlotActions.takeDayOff(a, 0L)) {
+                Lang.toast(a, "The day could not be taken off", android.widget.Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (taken != null) taken.run();
+            askPlan(a, answered);
+        }));
+        box.addView(Glass.quiet(a, "Cancel", v -> sheet.dismiss()), Glass.wide(a, 6));
+        sheet.body.addView(box);
+        sheet.show();
     }
 
     /** "Plan your day?" with the three answers. {@code done} runs after the person has answered (and the planner, if wanted, was opened). */
     static void askPlan(final Activity a, final Runnable done) {
-        new DBuilder(a)
-                .setTitle("Plan your day?")
-                .setMessage("Your day is off, so no alarm will ring until you plan it again. Plan it now, later, or leave it?")
-                .setPositiveButton("Plan now", (d, w) -> {
-                    openPlanner(a);
-                    if (done != null) done.run();
-                })
-                .setNeutralButton("Later", (d, w) -> askLater(a, done))
-                .setNegativeButton("Leave it", (d, w) -> {
-                    Lang.toast(a, "Enjoy your day off. Your alarms are back tomorrow.", android.widget.Toast.LENGTH_LONG).show();
-                    if (done != null) done.run();
-                })
-                .setCancelable(false)
-                .show();
+        final Glass.Sheet sheet = new Glass.Sheet(a, "Plan your day?",
+                "Your day is off, so no alarm will ring until you plan it again. Plan it now, later, or leave it?").cancelable(false);
+        android.widget.LinearLayout box = new android.widget.LinearLayout(a);
+        box.setOrientation(android.widget.LinearLayout.VERTICAL);
+        box.addView(Glass.main(a, "Plan now", v -> {
+            sheet.dismiss();
+            openPlanner(a);
+            if (done != null) done.run();
+        }));
+        box.addView(Glass.glass(a, "Later", v -> {
+            sheet.dismiss();
+            askLater(a, done);
+        }), Glass.wide(a, 10));
+        box.addView(Glass.quiet(a, "Leave it", v -> {
+            sheet.dismiss();
+            Lang.toast(a, "Enjoy your day off. Your alarms are back tomorrow.", android.widget.Toast.LENGTH_LONG).show();
+            if (done != null) done.run();
+        }), Glass.wide(a, 6));
+        sheet.body.addView(box);
+        sheet.show();
     }
 
     /** When to ask again. */
@@ -97,18 +106,26 @@ final class DayOffDialog {
             labels.add("This evening, " + Routine.formatTime(18 * 60, h24));
             times.add(evening.toInstant().toEpochMilli());
         }
-        new DBuilder(a)
-                .setTitle("Ask me again")
-                .setItems(labels.toArray(new String[0]), (d, which) -> {
-                    long at = times.get(which);
-                    SlotActions.planLater(a, at);
-                    ZonedDateTime z = Instant.ofEpochMilli(at).atZone(Store.zone());
-                    Lang.toast(a, "I will ask again at " + Routine.formatTime(z.getHour() * 60 + z.getMinute(), h24), android.widget.Toast.LENGTH_LONG).show();
-                    if (done != null) done.run();
-                })
-                .setNegativeButton("Cancel", (d, w) -> askPlan(a, done))
-                .setCancelable(false)
-                .show();
+        final Glass.Sheet sheet = new Glass.Sheet(a, "Ask me again", null).cancelable(false);
+        android.widget.LinearLayout box = new android.widget.LinearLayout(a);
+        box.setOrientation(android.widget.LinearLayout.VERTICAL);
+        for (int i = 0; i < labels.size(); i++) {
+            final int which = i;
+            box.addView(Glass.glass(a, labels.get(i), v -> {
+                sheet.dismiss();
+                long at = times.get(which);
+                SlotActions.planLater(a, at);
+                ZonedDateTime z = Instant.ofEpochMilli(at).atZone(Store.zone());
+                Lang.toast(a, "I will ask again at " + Routine.formatTime(z.getHour() * 60 + z.getMinute(), h24), android.widget.Toast.LENGTH_LONG).show();
+                if (done != null) done.run();
+            }), Glass.wide(a, i == 0 ? 0 : 10));
+        }
+        box.addView(Glass.quiet(a, "Back", v -> {
+            sheet.dismiss();
+            askPlan(a, done);
+        }), Glass.wide(a, 6));
+        sheet.body.addView(box);
+        sheet.show();
     }
 
     /** Opens the Routine page so the day can be planned. */

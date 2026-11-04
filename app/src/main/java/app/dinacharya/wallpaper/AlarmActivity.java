@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -88,6 +89,14 @@ public class AlarmActivity extends LangActivity {
         }
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         buildFrame();
+        if (Build.VERSION.SDK_INT >= 33) {
+            // Android 13 and later send Back to a callback: a sheet closes first, and the ringing start-of-day alarm keeps its screen
+            getOnBackInvokedDispatcher().registerOnBackInvokedCallback(android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT, () -> {
+                if (Glass.back(this)) return;
+                if (ev != null && ev.wake && AlarmService.isRinging() && !AlarmPlanner.isTest(ev)) return;
+                finish();
+            });
+        }
         handle(getIntent());
     }
 
@@ -135,6 +144,7 @@ public class AlarmActivity extends LangActivity {
             finish();
             return;
         }
+        removePage();
         base = Store.load(this);
         ov = Store.overrides(this, base);
         h24 = base.fmt24;
@@ -164,6 +174,7 @@ public class AlarmActivity extends LangActivity {
     /** The start-of-day alarm keeps ringing until the day is started or put off, so Back does not hide its screen while it rings. */
     @Override
     public void onBackPressed() {
+        if (Glass.back(this)) return;
         if (ev != null && ev.wake && AlarmService.isRinging() && !AlarmPlanner.isTest(ev)) return;
         super.onBackPressed();
     }
@@ -261,53 +272,190 @@ public class AlarmActivity extends LangActivity {
         }
     }
 
+    /** The glass page of a slot that starts; it covers the plain frame until the question is answered. */
+    private FrameLayout slotPage;
+
+    private void removePage() {
+        if (slotPage == null) return;
+        try {
+            ViewGroup parent = (ViewGroup) slotPage.getParent();
+            if (parent != null) parent.removeView(slotPage);
+        } catch (RuntimeException ignored) {
+            // the screen is closing
+        }
+        slotPage = null;
+        Insets.lightBars(this);
+    }
+
+    /**
+     * A slot starts. One page, little on it: the name and time, and five answers. Two are main: Start, and Continue (the slot before goes
+     * on a while). The others matter as much but are smaller: Rest first, Change plan and Skip. Each opens a sheet over the page.
+     */
     private void showSlot() {
         titleView.setText(slotName());
         String range = clock(ev.slotStartMs) + " to " + clock(ev.slotEndMs);
-        subView.setText(ev.kind == AlarmPlanner.START_AGAIN ? "You asked to start later. " + range
-                : ev.firstOfDay ? "Your day starts. " + range : range);
+        subView.setText(range);
         body.removeAllViews();
         panels.clear();
-        boolean hasNote = !slotNote().isEmpty();
-        addNote();
-        body.addView(question("What would you like to do?"), Ui.wide(this, hasNote ? 14 : 0));
-        // One question first: start now is a single tap. The details of the other answers open under their button, one at a time.
-        addButton(ev.title.isEmpty() ? "Start now" : "Start “" + ev.title + "” now", true, v -> {
+        removePage();
+        final boolean night = Glass.night(base);
+        slotPage = new FrameLayout(this);
+        slotPage.setBackground(Glass.ground(this, night, 0));
+        slotPage.setClickable(true);
+        ScrollView sv = new ScrollView(this);
+        sv.setFillViewport(true);
+        sv.setVerticalScrollBarEnabled(false);
+        LinearLayout col = new LinearLayout(this);
+        col.setOrientation(LinearLayout.VERTICAL);
+        col.setPadding(dp(26), dp(34), dp(26), dp(26));
+        sv.addView(col, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        slotPage.addView(sv, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        Insets.pad(sv);
+
+        int mins = Math.max(1, (int) ((ev.slotEndMs - ev.slotStartMs) / 60000L));
+        String sub = "";
+        try {
+            Routine day = base.forDay(LocalDate.parse(ev.day));
+            if (ev.src >= 0 && ev.src < day.blocks.size()) {
+                Routine.Block sb = day.blocks.get(ev.src);
+                if (!sb.sub.isEmpty() && !Routine.isOther(sb.sub)) sub = sb.sub;
+            }
+        } catch (RuntimeException ignored) {
+            // no sub type shown
+        }
+        col.addView(Glass.display(this, clock(System.currentTimeMillis()), 58, Glass.WHITE));
+        col.addView(Glass.eyebrow(this, ev.kind == AlarmPlanner.START_AGAIN ? "You asked to start later"
+                : ev.firstOfDay ? "Your day starts" : "Starting now", Glass.MUTE), Ui.wide(this, 6));
+        TextView title = Glass.display(this, slotName(), 38, Glass.WHITE);
+        title.setLineSpacing(dp(2), 1f);
+        col.addView(title, Ui.wide(this, 30));
+        col.addView(Glass.text(this, clock(ev.slotStartMs) + " – " + clock(ev.slotEndMs) + "  ·  " + Routine.formatDuration(mins)
+                + (sub.isEmpty() ? "" : "  ·  " + sub), 15, Glass.SOFT, false), Ui.wide(this, 10));
+        String note = slotNote();
+        if (!note.isEmpty()) {
+            LinearLayout nb = Glass.box(this);
+            TextView nt = Glass.text(this, "📝  " + note, 14.5f, Glass.SOFT, false);
+            nt.setLineSpacing(dp(2), 1f);
+            nb.addView(nt);
+            col.addView(nb, Ui.wide(this, 18));
+        }
+        View spacer = new View(this);
+        col.addView(spacer, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
+
+        final int fit = fitMinutes();
+        final SlotActions.Prev prev = ev.kind == AlarmPlanner.SLOT && fit >= SlotPlay.STEP ? SlotActions.previous(this, ev) : null;
+        java.util.List<View> mains = new java.util.ArrayList<>();
+        mains.add(Glass.main(this, "Start", v -> {
             silence();
             SlotActions.startNow(this, ev);
             done(null);
-        });
-        final int fit = fitMinutes();
-        if (fit >= SlotPlay.STEP) {
-            Expander.Part later = choice("Start later");
-            LinearLayout box = panel(later);
-            box.addView(Ui.label(this, ev.title.isEmpty() ? "Start after" : "Start “" + ev.title + "” after", 14, Ui.MUTED, true));
-            addStepper(box, SlotPlay.DEFAULT_START_DELAY, fit, false, "Start later", m -> {
+        }));
+        if (prev != null) {
+            mains.add(Glass.glass(this, "Continue", v -> {
                 silence();
-                long until = SlotActions.startAfter(this, ev, m);
-                done("I will ask again at " + clock(until));
-            });
-            final SlotActions.Prev prev = ev.kind == AlarmPlanner.SLOT ? SlotActions.previous(this, ev) : null;
-            if (prev != null) {
-                View rule = Ui.rule(this);
-                box.addView(rule, Ui.lp(this, ViewGroup.LayoutParams.MATCH_PARENT, dp(1), 14));
-                box.addView(Ui.label(this, prev.title.isEmpty() ? "Continue the slot before until" : "Continue “" + prev.title + "” until",
-                        14, Ui.MUTED, true), Ui.wide(this, 12));
-                addStepper(box, SlotPlay.DEFAULT_CONTINUE, fit, true, "Keep going", m -> {
-                    silence();
+                SlotSheets.continueSheet(this, prev.title, ev.title, SlotPlay.DEFAULT_CONTINUE, fit, m -> {
                     long until = SlotActions.continuePrevious(this, ev, prev, m);
                     done("I will ask again at " + clock(until));
                 });
-            }
+            }));
         }
-        addSkipButton();
-        Expander.Part other = choice("Other options");
-        LinearLayout ob = panel(other);
-        ob.addView(Ui.button(this, "Other plan", false, v -> {
+        col.addView(Glass.row(this, 12, mains.toArray(new View[0])), Ui.wide(this, 22));
+
+        Glass.Flow more = new Glass.Flow(this, 10);
+        if (fit >= SlotPlay.STEP) {
+            more.addView(Glass.chip(this, "Rest first", v -> {
+                silence();
+                SlotSheets.restFirstSheet(this, ev.title, SlotPlay.DEFAULT_START_DELAY, fit, m -> {
+                    long until = SlotActions.startAfter(this, ev, m);
+                    done("I will ask again at " + clock(until));
+                });
+            }));
+        }
+        more.addView(Glass.chip(this, "Change plan", v -> {
             silence();
-            showChange();
-        }), Ui.wide(this, 0));
-        ob.addView(Ui.button(this, "Take it off for today", false, v -> takeOff()), Ui.wide(this, 8));
+            askChange();
+        }));
+        final SlotActions.Skipped skip = ev.kind == AlarmPlanner.SLOT || ev.kind == AlarmPlanner.START_AGAIN ? SlotActions.whatSkipping(this, ev) : null;
+        if (skip != null) more.addView(Glass.chip(this, "Skip", v -> {
+            silence();
+            askSkip(skip);
+        }));
+        col.addView(more, Ui.wide(this, 16));
+
+        ViewGroup root = findViewById(android.R.id.content);
+        root.addView(slotPage, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        Insets.bars(this, false);
+        Lang.watch(slotPage);
+    }
+
+    /** "Skip": the slot that is starting is left out for today and the next one begins now. Asks once, so a tap by mistake can be taken back. */
+    private void askSkip(final SlotActions.Skipped skip) {
+        String what = skip.nextIsSleep ? "It is left out for today and you go to sleep. Your saved routine does not change."
+                : skip.nextTitle.isEmpty() ? "It is left out for today and the next slot starts now. Your saved routine does not change."
+                : "It is left out for today and “" + skip.nextTitle + "” starts now. Your saved routine does not change.";
+        final Glass.Sheet sheet = new Glass.Sheet(this, "Skip “" + slotName() + "”?", what);
+        LinearLayout box = new LinearLayout(this);
+        box.setOrientation(LinearLayout.VERTICAL);
+        box.addView(Glass.main(this, "Skip", v -> {
+            sheet.dismiss();
+            if (ev.wake && base.wakeOff != Routine.OFF_NONE) {
+                stopShake();
+                removePage();
+                showOffChallenge(() -> skipHere(skip));
+            } else {
+                skipHere(skip);
+            }
+        }));
+        box.addView(Glass.quiet(this, "Not now", v -> sheet.dismiss()), Glass.wide(this, 6));
+        sheet.body.addView(box);
+        sheet.show();
+    }
+
+    /** "Change plan": replace the slot, carry the slot before on into it, or swap it with another one; or take it off for today. */
+    private void askChange() {
+        final LocalDate day = LocalDate.parse(ev.day);
+        SlotSheets.changePlan(this, ev.day, ev.src, ev.title, ev.kind == AlarmPlanner.SLOT, new SlotSheets.ChangeHost() {
+            @Override
+            public void unchanged() {
+                log(Ev.ack(System.currentTimeMillis(), ev.day, ev.src, ev.title, "C", ""));
+                done(null);
+            }
+
+            @Override
+            public void replace(String n, int mins, int kind, String sub) {
+                Plan.editPart(base, ov, day, ev.src, n, mins, kind, sub);
+                Store.saveOverrides(AlarmActivity.this, base, ov);
+                log(Ev.ack(System.currentTimeMillis(), ev.day, ev.src, ev.title, "R", n));
+                done(mins == 0 ? "Changed for today: " + n : n + " for " + mins + " min, then back to the plan");
+            }
+
+            @Override
+            public void continuePrevious(SlotActions.Prev prev, int minutes) {
+                long until = SlotActions.continuePrevious(AlarmActivity.this, ev, prev, minutes);
+                done("“" + prev.title + "” goes on. I will ask again at " + clock(until));
+            }
+
+            @Override
+            public void swap(Routine.Block o, boolean places, boolean whole, int mins) {
+                if (places) {
+                    Plan.swapPlaces(base, ov, day, ev.src, o.src);
+                } else if (whole) {
+                    Plan.edit(base, ov, day, ev.src, false, o.title);
+                    Plan.edit(base, ov, day, o.src, false, ev.title);
+                } else {
+                    Plan.editPart(base, ov, day, ev.src, o.title, mins);
+                    Plan.editPart(base, ov, day, o.src, ev.title, Math.min(mins, Math.max(SlotPlay.STEP, o.mins - SlotPlay.STEP)));
+                }
+                Store.saveOverrides(AlarmActivity.this, base, ov);
+                log(Ev.ack(System.currentTimeMillis(), ev.day, ev.src, ev.title, "R", o.title));
+                done("Swapped with " + o.title);
+            }
+
+            @Override
+            public Runnable takeOff() {
+                return AlarmActivity.this::takeOff;
+            }
+        });
     }
 
     /** The panels that open under the choices of this screen; opening one closes the others. */
@@ -362,6 +510,7 @@ public class AlarmActivity extends LangActivity {
     private void skipHere(SlotActions.Skipped skip) {
         stopShake();
         silence();
+        removePage();
         SlotActions.Skipped result = SlotActions.skipSlot(this, ev);
         if (result == null) {
             done(null);
@@ -808,183 +957,6 @@ public class AlarmActivity extends LangActivity {
                 done(until > 0 ? "Break extended until " + clock(until) : null);
             }), Ui.wide(this, 8));
         }
-    }
-
-    private void showChange() {
-        body.removeAllViews();
-        body.addView(question("Change the plan for this slot"), Ui.wide(this, 0));
-        body.addView(Ui.label(this, "Pick one. This changes today only. Your saved routine stays as it is.", 13, Ui.MUTED, false),
-                Ui.wide(this, 4));
-        final int slotMins = Math.max(SlotPlay.STEP, (int) ((ev.slotEndMs - ev.slotStartMs) / 60000L));
-        final int part = Math.max(SlotPlay.STEP, slotMins - SlotPlay.STEP);
-        final LocalDate day = LocalDate.parse(ev.day);
-        final SlotActions.Prev prev = ev.kind == AlarmPlanner.SLOT ? SlotActions.previous(this, ev) : null;
-
-        // the other slots of this day, to swap with
-        final java.util.List<Routine.Block> others = new java.util.ArrayList<>();
-        final java.util.List<String> otherNames = new java.util.ArrayList<>();
-        try {
-            Plan.DayPlan dp = Plan.plan(base, ov, day, Store.zone());
-            for (Routine.Slot sl : dp.sc.slots) {
-                if (sl.block.src < 0 || sl.block.src == ev.src || sl.block.skipped || sl.block.kind == Routine.SLEEP) continue;
-                if (others.stream().anyMatch(x -> x.src == sl.block.src)) continue;
-                others.add(sl.block);
-                otherNames.add(sl.block.title + " (" + sl.block.mins + " min)");
-            }
-        } catch (RuntimeException ignored) {
-        }
-
-        int curKind = Routine.TASK;
-        String curSub = Routine.OTHER;
-        try {
-            Routine.Block cb = base.forDay(day).blocks.get(ev.src);
-            curKind = cb.kind;
-            curSub = cb.sub;
-        } catch (RuntimeException ignored) {
-        }
-        final int baseKind = curKind;
-        final String baseSub = curSub;
-        final ChangePlanUi.TypePicker typePick = new ChangePlanUi.TypePicker(this, base, curKind, curSub);
-        final LinearLayout[] panelBox = new LinearLayout[3];
-        final RadioButton[] rb = new RadioButton[3];
-        final String[] labels = {"Replace slot", "Continue previous slot", "Swap slot with"};
-        final MinuteStepper[] steps = new MinuteStepper[3];
-        final Switch[] whole = new Switch[3];
-        final EditText name = new EditText(this);
-        final java.util.List<String> otherNotes = new java.util.ArrayList<>();
-        for (Routine.Block ob : others) otherNotes.add(ob.mins + " min");
-        final ChangePlanUi.Cards target = new ChangePlanUi.Cards(this, titlesOf(others), otherNotes);
-        final RadioButton[] swapMode = new RadioButton[2];
-
-        for (int i = 0; i < 3; i++) {
-            final int k = i;
-            if (i == 1 && prev == null) continue;
-            if (i == 2 && others.isEmpty()) continue;
-            rb[i] = new RadioButton(this);
-            rb[i].setId(View.generateViewId());
-            rb[i].setText(labels[i]);
-            rb[i].setTextColor(Ui.INK);
-            rb[i].setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 17);
-            LinearLayout box = new LinearLayout(this);
-            box.setOrientation(LinearLayout.VERTICAL);
-            box.setPadding(dp(14), dp(10), dp(14), dp(12));
-            box.setBackground(Ui.box(this, Ui.SOFT, Ui.LINE, 14));
-            panelBox[i] = box;
-            if (i == 0) {
-                name.setSingleLine(true);
-                name.setHint("What will you do instead?");
-                name.setText(ev.title);
-                name.setSelectAllOnFocus(true);
-                name.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 18);
-                name.setTextColor(Ui.INK);
-                name.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
-                box.addView(name, Ui.wide(this, 0));
-                box.addView(typePick.view, Ui.wide(this, 0));
-            } else if (i == 1) {
-                box.addView(Ui.label(this, "“" + prev.title + "” goes on into this slot.", 13, Ui.MUTED, false), Ui.wide(this, 0));
-            } else {
-                box.addView(Ui.label(this, "Swap with which slot?", 13, Ui.MUTED, true), Ui.wide(this, 0));
-                box.addView(target.view, Ui.wide(this, 6));
-                swapMode[0] = new RadioButton(this);
-                swapMode[0].setText("Swap names (times stay)");
-                swapMode[0].setTextColor(Ui.INK);
-                swapMode[1] = new RadioButton(this);
-                swapMode[1].setText("Swap places and times");
-                swapMode[1].setTextColor(Ui.INK);
-                RadioGroup mg = new RadioGroup(this);
-                swapMode[0].setId(View.generateViewId());
-                swapMode[1].setId(View.generateViewId());
-                mg.addView(swapMode[0]);
-                mg.addView(swapMode[1]);
-                swapMode[0].setChecked(true);
-                box.addView(mg, Ui.wide(this, 6));
-            }
-            whole[i] = new Switch(this);
-            whole[i].setText("Whole slot (" + slotMins + " min)");
-            whole[i].setTextColor(Ui.INK);
-            whole[i].setChecked(true);
-            box.addView(whole[i], Ui.wide(this, 10));
-            steps[i] = new MinuteStepper(this, Math.min(30, part), part, m -> { });
-            steps[i].view.setVisibility(View.GONE);
-            box.addView(steps[i].view, Ui.wide(this, 6));
-            whole[i].setOnCheckedChangeListener((c, on) -> steps[k].view.setVisibility(on ? View.GONE : View.VISIBLE));
-            box.setVisibility(View.GONE);
-            body.addView(rb[i], Ui.wide(this, 10));
-            body.addView(box, Ui.wide(this, 4));
-        }
-        if (swapMode[1] != null) {
-            // swapping places moves the whole slot
-            swapMode[1].setOnCheckedChangeListener((c, on) -> {
-                if (on) whole[2].setChecked(true);
-                whole[2].setEnabled(!on);
-            });
-        }
-        // one choice at a time: showing its details, hiding the others
-        for (int i = 0; i < 3; i++) {
-            final int k = i;
-            if (rb[i] == null) continue;
-            rb[i].setOnCheckedChangeListener((c, on) -> {
-                if (!on) return;
-                for (int j = 0; j < 3; j++) {
-                    if (rb[j] == null) continue;
-                    if (j != k) rb[j].setChecked(false);
-                    panelBox[j].setVisibility(j == k ? View.VISIBLE : View.GONE);
-                }
-            });
-        }
-        rb[0].setChecked(true);
-
-        body.addView(Ui.label(this, "The rest of the slot goes back to your saved plan.", 12, Ui.MUTED, false), Ui.wide(this, 8));
-        addButton("Save for today", true, v -> {
-            int pick = rb[1] != null && rb[1].isChecked() ? 1 : rb[2] != null && rb[2].isChecked() ? 2 : 0;
-            boolean full = whole[pick].isChecked();
-            int mins = steps[pick].minutes();
-            long now = System.currentTimeMillis();
-            if (pick == 0) {
-                String n = name.getText().toString().trim();
-                if (n.isEmpty()) {
-                    Lang.toast(this, "Type a name, or choose Take it off", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (n.equals(ev.title) && typePick.kind() == baseKind && typePick.sub().equalsIgnoreCase(baseSub)) {
-                    log(Ev.ack(now, ev.day, ev.src, ev.title, "C", ""));
-                    done(null);
-                    return;
-                }
-                Plan.editPart(base, ov, day, ev.src, n, full ? 0 : mins, typePick.kind(), typePick.sub());
-                Store.saveOverrides(this, base, ov);
-                log(Ev.ack(now, ev.day, ev.src, ev.title, "R", n));
-                done(full ? "Changed for today: " + n : n + " for " + mins + " min, then back to the plan");
-            } else if (pick == 1) {
-                silence();
-                long until = SlotActions.continuePrevious(this, ev, prev, full ? slotMins : mins);
-                done("“" + prev.title + "” goes on. I will ask again at " + clock(until));
-            } else {
-                int t = target.selected();
-                if (t < 0 || t >= others.size()) return;
-                Routine.Block o = others.get(t);
-                if (swapMode[1].isChecked()) {
-                    Plan.swapPlaces(base, ov, day, ev.src, o.src);
-                } else if (full) {
-                    Plan.edit(base, ov, day, ev.src, false, o.title);
-                    Plan.edit(base, ov, day, o.src, false, ev.title);
-                } else {
-                    Plan.editPart(base, ov, day, ev.src, o.title, mins);
-                    Plan.editPart(base, ov, day, o.src, ev.title, Math.min(mins, Math.max(SlotPlay.STEP, o.mins - SlotPlay.STEP)));
-                }
-                Store.saveOverrides(this, base, ov);
-                log(Ev.ack(now, ev.day, ev.src, ev.title, "R", o.title));
-                done("Swapped with " + o.title);
-            }
-        });
-        addButton("Take it off for today", false, v -> takeOff());
-        addButton("Back", false, v -> showSlot());
-    }
-
-    private static java.util.List<String> titlesOf(java.util.List<Routine.Block> bl) {
-        java.util.List<String> out = new java.util.ArrayList<>();
-        for (Routine.Block b : bl) out.add(b.title.isEmpty() ? Routine.KIND_NAMES[b.kind] : b.title);
-        return out;
     }
 
     private void applyEdit(boolean skip, String newName) {
