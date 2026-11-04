@@ -292,6 +292,17 @@ final class RoutinePage extends Page {
         a.flushSave();
     }
 
+    /** The slots are drawn again only when something changed (or the day turned: the dates read Today and Tomorrow). */
+    @Override
+    long key() {
+        return LocalDate.now(Store.zone()).toEpochDay();
+    }
+
+    @Override
+    long maxAgeMs() {
+        return 6L * 3600000L;
+    }
+
     @Override
     void alarmsChanged() {
         refreshAlarmBanner();

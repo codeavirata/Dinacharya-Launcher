@@ -701,11 +701,23 @@ final class ExtraSections {
 
     // ------------------------------------------------------------------ refresh
 
+    /** When the alarm was last set from here, and whether the phone then allowed exact alarms. */
+    private long alarmSetAt;
+    private boolean alarmSetExact;
+
     /** Everything that can change while the screen is open. */
     void refresh() {
         // Each part on its own, so one problem cannot take the others (or the screen) down.
         try {
-            if (routine().alarmOn) AlarmScheduler.reschedule(a);   // picks up a newly granted permission
+            // picks up a newly granted permission: set again when the permission changed, and otherwise at most once in half a minute
+            // (everything that changes the alarms sets them itself; setting them is the longest thing this screen does)
+            boolean exact = AlarmScheduler.exactAllowed(a);
+            long now = android.os.SystemClock.elapsedRealtime();
+            if (routine().alarmOn && (exact != alarmSetExact || alarmSetAt == 0 || now - alarmSetAt > 30000L || now < alarmSetAt)) {
+                alarmSetExact = exact;
+                alarmSetAt = now;
+                AlarmScheduler.reschedule(a);
+            }
             if (nextAlarm != null) refreshAlarms();
         } catch (RuntimeException e) {
             CrashLog.note(a, "alarms section", e);

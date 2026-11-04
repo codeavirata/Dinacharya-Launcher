@@ -1,6 +1,5 @@
 package app.dinacharya.wallpaper;
 
-import android.animation.LayoutTransition;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.Gravity;
@@ -50,7 +49,7 @@ final class Expander {
 
             root = new LinearLayout(c);
             root.setOrientation(LinearLayout.VERTICAL);
-            root.setLayoutTransition(new LayoutTransition());
+            Ui.animateChangesLater(root);   // the opening and closing glides; the first filling of the card does not
 
             LinearLayout row = new LinearLayout(c);
             headerRow = row;

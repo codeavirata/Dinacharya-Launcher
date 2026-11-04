@@ -251,6 +251,8 @@ final class Lang {
         String src;
         String out;
         int version;
+        /** The very text object last looked at: when the view still holds it, nothing was set since and there is nothing to do. */
+        CharSequence ref;
     }
 
     private static final WeakHashMap<View, Seen> TEXTS = new WeakHashMap<>();
@@ -272,7 +274,7 @@ final class Lang {
             root.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
-                    refresh(root);
+                    refresh(root, false);   // pages that are away (GONE) are looked at when they come back: that is a layout too
                 }
             });
         } catch (RuntimeException e) {
@@ -281,8 +283,13 @@ final class Lang {
         refresh(root);
     }
 
-    /** Puts the text of {@code v} and everything inside it into the language in use. */
+    /** Puts the text of {@code v} and everything inside it into the language in use, hidden parts too. */
     static void refresh(View v) {
+        refresh(v, true);
+    }
+
+    /** As {@link #refresh(View)}; with {@code hidden} false the parts that are GONE are left (nothing is drawn there, and nothing shows). */
+    private static void refresh(View v, boolean hidden) {
         if (v == null || KEPT.containsKey(v)) return;
         try {
             String d = next(DESCRIPTIONS, v, v.getContentDescription());
@@ -298,7 +305,11 @@ final class Lang {
             }
             if (v instanceof ViewGroup) {
                 ViewGroup g = (ViewGroup) v;
-                for (int i = 0; i < g.getChildCount(); i++) refresh(g.getChildAt(i));
+                for (int i = 0; i < g.getChildCount(); i++) {
+                    View c = g.getChildAt(i);
+                    if (!hidden && c.getVisibility() == View.GONE) continue;
+                    refresh(c, hidden);
+                }
             }
         } catch (RuntimeException e) {
             CrashLog.note(v.getContext(), "language refresh", e);
@@ -310,13 +321,18 @@ final class Lang {
      * language changes the original English is translated again, and text the program sets later is told apart from our own.
      */
     private static String next(WeakHashMap<View, Seen> map, View v, CharSequence cur) {
+        if (cur == null || cur.length() == 0) return null;
+        Seen s = map.get(v);
+        if (s != null && s.ref == cur && s.version == version) return null;   // the same text as at the last look, in the same language
         if (!plain(cur)) return null;
         String now = cur.toString();
-        Seen s = map.get(v);
         String src;
         if (s == null || !now.equals(s.out)) src = now;      // new text from the program
         else if (s.version != version) src = s.src;          // the language changed
-        else return null;
+        else {
+            s.ref = cur;
+            return null;
+        }
         String out = tr(src);
         if (s == null) {
             s = new Seen();
@@ -325,7 +341,9 @@ final class Lang {
         s.src = src;
         s.out = out;
         s.version = version;
-        return out.equals(now) ? null : out;
+        boolean same = out.equals(now);
+        s.ref = same ? cur : out;   // a text set from `out` is handed back as that same object
+        return same ? null : out;
     }
 
     /** True for text without styling (the app styles no text, so anything with spans is left as it is). */

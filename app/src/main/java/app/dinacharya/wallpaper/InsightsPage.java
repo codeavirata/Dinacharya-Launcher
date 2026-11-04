@@ -83,6 +83,11 @@ final class InsightsPage extends Page {
     }
 
     @Override
+    long maxAgeMs() {
+        return 20000L;   // the day so far moves on with the phone use; within a few seconds of the last look it is the same
+    }
+
+    @Override
     void refresh() {
         if (!built()) return;
         final int gen = ++generation;

@@ -161,6 +161,25 @@ final class HomePage extends Page {
         if (scroll != null) scroll.removeCallbacks(tick);
     }
 
+    /** Home shows the time of the day, so it is made again when the minute turns; within a minute it is kept as it is. */
+    @Override
+    long key() {
+        return System.currentTimeMillis() / 60000L;
+    }
+
+    @Override
+    long maxAgeMs() {
+        return 20000L;
+    }
+
+    /** Shown again without being made again: the minute tick starts again. */
+    @Override
+    void revive() {
+        if (scroll == null) return;
+        scroll.removeCallbacks(tick);
+        scroll.postDelayed(tick, 60000L - (System.currentTimeMillis() % 60000L) + 200L);
+    }
+
     @Override
     void destroy() {
         if (adSlot != null) adSlot.release();

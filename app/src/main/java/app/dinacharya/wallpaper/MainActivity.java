@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -51,11 +52,50 @@ public class MainActivity extends LangActivity {
     private final List<PosterView> previews = new ArrayList<>();
 
     private final Handler ui = new Handler(Looper.getMainLooper());
+    /**
+     * Counts every change that a page could show (anything saved, the alarms, Pro, a return to the app). A page that was brought up to date
+     * at the present count need not be built again when it is switched to.
+     */
+    private long revision = 1;
+    /** When the screen was last touched, so the pages not yet seen are built while the person is not doing anything. */
+    private long lastTouch;
+    private int warmNext;
+    private boolean watching = true;
+    private final android.content.SharedPreferences.OnSharedPreferenceChangeListener prefsWatch = (p, k) -> revision++;
     private boolean savePending;
     private final Runnable saveTask = new Runnable() {
         @Override
         public void run() {
             persistNow();
+        }
+    };
+
+    /** Builds the tabs not yet seen, one at a time and only while the screen is quiet, so the first visit to each is not a pause. */
+    private final Runnable warm = new Runnable() {
+        @Override
+        public void run() {
+            if (isFinishing() || isDestroyed() || tab < 0) return;
+            if (SystemClock.uptimeMillis() - lastTouch < 900) {
+                ui.postDelayed(this, 700);
+                return;
+            }
+            int[] order = {TAB_ROUTINE, TAB_INSIGHTS, TAB_SETTINGS, TAB_BACKUP};
+            while (warmNext < order.length) {
+                int t = order[warmNext++];
+                Page p = pages[t];
+                if (p == null || p.built()) continue;
+                try {
+                    p.view();
+                    if (t == TAB_ROUTINE) {   // its slots are the longest to draw
+                        p.refresh();
+                        p.stamp(revision);
+                    }
+                } catch (RuntimeException e) {
+                    CrashLog.note(MainActivity.this, "prepare " + TAB_NAMES[t], e);
+                }
+                break;
+            }
+            if (warmNext < order.length) ui.postDelayed(this, 450);
         }
     };
 
@@ -102,8 +142,10 @@ public class MainActivity extends LangActivity {
             getOnBackInvokedDispatcher().registerOnBackInvokedCallback(
                     android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT, this::handleBack);
         }
+        watchSaved();
         int start = savedInstanceState != null ? savedInstanceState.getInt("tab", TAB_HOME) : TAB_HOME;
         go(start);
+        ui.postDelayed(warm, 1200);
         if (savedInstanceState == null) handleOpenExtra(getIntent());
 
         AlarmScheduler.reschedule(this);
@@ -128,6 +170,29 @@ public class MainActivity extends LangActivity {
                 if (!isFinishing()) refreshVisible();
             });
         }, "close-days").start();
+    }
+
+    /** Any change to what the app has saved counts as a change a page may have to show. */
+    private void watchSaved() {
+        try {
+            Store.prefs(this).registerOnSharedPreferenceChangeListener(prefsWatch);
+            getSharedPreferences("pro", MODE_PRIVATE).registerOnSharedPreferenceChangeListener(prefsWatch);
+            getSharedPreferences("account", MODE_PRIVATE).registerOnSharedPreferenceChangeListener(prefsWatch);
+        } catch (RuntimeException e) {
+            CrashLog.note(this, "watch saved", e);
+            watching = false;   // without the watch no page may be skipped
+        }
+    }
+
+    /** The count of changes pages could show; see {@link Page#upToDate(long)}. */
+    long revision() {
+        return revision;
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent e) {
+        lastTouch = SystemClock.uptimeMillis();
+        return super.dispatchTouchEvent(e);
     }
 
     @Override
@@ -210,6 +275,7 @@ public class MainActivity extends LangActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        revision++;   // the phone's settings, the clock and the other apps may have changed while this screen was away
         syncAlarmSwitch();   // a setup screen may have switched alarms on while this one was behind it
         if (AlarmService.showIfRinging(this)) return;
         Pro.get(this).start();
@@ -248,6 +314,14 @@ public class MainActivity extends LangActivity {
         ui.removeCallbacks(saveTask);
         ui.removeCallbacks(hideUndo);
         ui.removeCallbacks(passTimer);
+        ui.removeCallbacks(warm);
+        try {
+            Store.prefs(this).unregisterOnSharedPreferenceChangeListener(prefsWatch);
+            getSharedPreferences("pro", MODE_PRIVATE).unregisterOnSharedPreferenceChangeListener(prefsWatch);
+            getSharedPreferences("account", MODE_PRIVATE).unregisterOnSharedPreferenceChangeListener(prefsWatch);
+        } catch (RuntimeException ignored) {
+            // the screen is closing anyway
+        }
         Pro.get(this).removeListener(proListener);
         Ads.get().setOnReady(null);
         for (Page p : pages) {
@@ -289,13 +363,15 @@ public class MainActivity extends LangActivity {
     /** Pro was bought or lost, or ads became possible: every built page updates what it shows. */
     void monetizationChanged() {
         armPassTimer();
-        for (Page p : pages) {
-            if (p == null || !p.built()) continue;
-            try {
-                p.monetizationChanged();
-            } catch (RuntimeException e) {
-                CrashLog.note(this, "monetization views", e);
-            }
+        revision++;
+        // the page in view is updated now; the others when they are switched to (they are then no longer up to date)
+        Page p = tab >= 0 ? pages[tab] : null;
+        if (p == null || !p.built()) return;
+        try {
+            p.monetizationChanged();
+            p.stamp(revision);
+        } catch (RuntimeException e) {
+            CrashLog.note(this, "monetization views", e);
         }
     }
 
@@ -380,13 +456,15 @@ public class MainActivity extends LangActivity {
 
     /** Tells every built page that alarms were switched or their permissions changed. */
     void refreshAlarmViews() {
-        for (Page p : pages) {
-            if (p == null || !p.built()) continue;
-            try {
-                p.alarmsChanged();
-            } catch (RuntimeException e) {
-                CrashLog.note(this, "alarm views", e);
-            }
+        revision++;
+        // the page in view is updated now; the others when they are switched to (they are then no longer up to date)
+        Page p = tab >= 0 ? pages[tab] : null;
+        if (p == null || !p.built()) return;
+        try {
+            p.alarmsChanged();
+            p.stamp(revision);
+        } catch (RuntimeException e) {
+            CrashLog.note(this, "alarm views", e);
         }
     }
 
@@ -678,7 +756,7 @@ public class MainActivity extends LangActivity {
             final View old = cur;
             tab = next;
             markTab(next);
-            if (!fresh) pages[next].refresh();
+            if (!fresh) showed(next);
             old.animate().translationX(-dir * w).alpha(0f).setDuration(ms).setInterpolator(new DecelerateInterpolator())
                     .withEndAction(() -> {
                         if (!inUse(old)) hidePage(old);
@@ -709,8 +787,12 @@ public class MainActivity extends LangActivity {
             v.animate().cancel();
             v.setVisibility(View.VISIBLE);
             v.setAlpha(0.6f);
-            neighbourFresh = first;
-            if (first) pages[t].refresh();   // a page seen for the first time would be empty until it is refreshed
+            boolean empty = first || !pages[t].stamped();
+            neighbourFresh = empty;
+            if (empty) {   // a page seen for the first time would be empty until it is refreshed
+                pages[t].refresh();
+                pages[t].stamp(revision);
+            }
         }
 
         /** Takes a page that was brought beside the current one away again. */
@@ -756,7 +838,7 @@ public class MainActivity extends LangActivity {
     void go(int t) {
         if (t < 0 || t >= pages.length) t = TAB_HOME;
         if (t == tab) {
-            pages[t].refresh();
+            showed(t);
             return;
         }
         if (tab >= 0) {
@@ -772,10 +854,26 @@ public class MainActivity extends LangActivity {
         v.setVisibility(View.VISIBLE);
         v.setAlpha(0f);
         v.setTranslationX(0f);
-        v.animate().alpha(1f).setDuration(160).start();
         hideStrays(t);
         markTab(t);
-        pages[t].refresh();
+        showed(t);   // the page is made right before it fades in, so the fade itself is never held up
+        v.animate().alpha(1f).setDuration(160).withLayer().start();
+    }
+
+    /** True when the page of tab {@code t} shows everything as it is now. */
+    private boolean pageGood(int t) {
+        return watching && pages[t].upToDate(revision);
+    }
+
+    /** The page of tab {@code t} is now the one in view: it is brought up to date, unless nothing it shows has changed. */
+    private void showed(int t) {
+        Page p = pages[t];
+        if (pageGood(t)) {
+            p.revive();
+            return;
+        }
+        p.refresh();
+        p.stamp(revision);
     }
 
     /** Lights the tab on the bottom bar. */
@@ -801,6 +899,7 @@ public class MainActivity extends LangActivity {
         if (tab >= 0) {
             try {
                 pages[tab].refresh();
+                pages[tab].stamp(revision);
             } catch (RuntimeException e) {
                 CrashLog.note(this, "refresh " + TAB_NAMES[tab], e);
             }
@@ -827,12 +926,14 @@ public class MainActivity extends LangActivity {
 
     /** Saves now and sets the next alarm. */
     void persist() {
+        revision++;
         ui.removeCallbacks(saveTask);
         persistNow();
     }
 
     /** Saves a moment after the last change; used while typing or tapping quickly. */
     void persistSoon() {
+        revision++;
         savePending = true;
         ui.removeCallbacks(saveTask);
         ui.postDelayed(saveTask, SAVE_DELAY_MS);
@@ -926,22 +1027,23 @@ public class MainActivity extends LangActivity {
 
     /** The routine changed in a way other tabs show (slots, times, types, goals). */
     void routineChanged() {
+        revision++;
         previewChanged();
+        // the page in view is updated now; the others when they are switched to (they are then no longer up to date)
         Page current = tab >= 0 ? pages[tab] : null;
-        for (Page p : pages) {
-            if (p == null || !p.built() || p == current) continue;
-            try {
-                p.refresh();
-            } catch (RuntimeException e) {
-                CrashLog.note(this, "refresh", e);
-            }
+        if (current != null) {
+            current.refresh();
+            current.stamp(revision);
         }
-        if (current != null) current.refresh();
     }
 
     /** After a restore: read everything again and start from Home. */
     void reloadAll() {
         restoring = false;
+        revision++;
+        warmNext = 0;
+        ui.removeCallbacks(warm);
+        ui.postDelayed(warm, 1500);
         routine.replaceWith(Store.load(this));
         if (content instanceof SwipeFrame) ((SwipeFrame) content).reset();
         content.removeAllViews();

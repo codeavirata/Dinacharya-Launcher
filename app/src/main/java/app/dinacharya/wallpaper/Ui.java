@@ -300,11 +300,20 @@ final class Ui {
         card.setOrientation(LinearLayout.VERTICAL);
         card.setPadding(dp(c, 18), dp(c, 16), dp(c, 18), dp(c, 18));
         card.setBackground(box(c, SURFACE, 0, 24));
-        card.setLayoutTransition(new LayoutTransition());
+        animateChangesLater(card);
         card.addView(eyebrow(c, eyebrow));
         if (title != null && !title.isEmpty()) card.addView(label(c, title, 20, INK, true), wide(c, 4));
         page.addView(card, wide(c, 16));
         return card;
+    }
+
+    /**
+     * Lets the changes made to {@code box} later (a part shown or hidden) glide, but not the first filling of it: a card that is being
+     * built, or built again, has all its parts added at once, and gliding each of them in (with every other one moving over) is what
+     * makes a page stutter when it is switched to.
+     */
+    static void animateChangesLater(final ViewGroup box) {
+        box.post(() -> box.setLayoutTransition(new LayoutTransition()));
     }
 
     /** A heading for a part of the page that is not a card (the routine list). */

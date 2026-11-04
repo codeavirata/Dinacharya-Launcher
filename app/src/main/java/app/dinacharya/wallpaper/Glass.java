@@ -2,7 +2,6 @@ package app.dinacharya.wallpaper;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -964,14 +963,13 @@ final class Glass {
         fill.setBackground(shape(c, fillColor, 0, 4));
         bar.addView(fill, new FrameLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT));
         bar.post(() -> {
-            ValueAnimator va = ValueAnimator.ofInt(0, Math.round(bar.getWidth() * Math.max(0.02f, Math.min(1f, frac))));
-            va.setDuration(500);
-            va.addUpdateListener(a -> {
-                ViewGroup.LayoutParams lp = fill.getLayoutParams();
-                lp.width = (int) a.getAnimatedValue();
-                fill.setLayoutParams(lp);
-            });
-            va.start();
+            // the fill gets its width once and grows by scaling, so the screen is not laid out again on every frame of the growth
+            ViewGroup.LayoutParams lp = fill.getLayoutParams();
+            lp.width = Math.round(bar.getWidth() * Math.max(0.02f, Math.min(1f, frac)));
+            fill.setLayoutParams(lp);
+            fill.setPivotX(0f);
+            fill.setScaleX(0f);
+            fill.animate().scaleX(1f).setDuration(500).start();
         });
         return bar;
     }

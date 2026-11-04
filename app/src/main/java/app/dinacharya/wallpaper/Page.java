@@ -1,5 +1,6 @@
 package app.dinacharya.wallpaper;
 
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -31,6 +32,47 @@ abstract class Page {
 
     final boolean built() {
         return view != null;
+    }
+
+    // ---- knowing when nothing has changed (so a tab that is switched to need not be built again)
+
+    private long stampRevision = -1;
+    private long stampAt;
+    private int stampLang;
+    private long stampKey;
+
+    /** Notes that the page was brought up to date at {@code revision} (see {@link MainActivity#revision()}). */
+    final void stamp(long revision) {
+        stampRevision = revision;
+        stampAt = SystemClock.elapsedRealtime();
+        stampLang = Lang.version();
+        stampKey = key();
+    }
+
+    /** True once the page has been given its content at least once (a page that was only built is empty). */
+    final boolean stamped() {
+        return stampRevision >= 0;
+    }
+
+    /** True when nothing the page shows can have changed since it was last brought up to date. */
+    final boolean upToDate(long revision) {
+        if (view == null || stampRevision != revision || stampLang != Lang.version() || stampKey != key()) return false;
+        long age = SystemClock.elapsedRealtime() - stampAt;
+        return age >= 0 && age < maxAgeMs();
+    }
+
+    /** How long the page stays right if nothing is changed by the person; 0 (the default) means it is always brought up to date. */
+    long maxAgeMs() {
+        return 0;
+    }
+
+    /** What moves on by itself and makes the page wrong (the minute, the day); a different number than at the last stamp means refresh. */
+    long key() {
+        return 0;
+    }
+
+    /** The page is shown again and needed no refresh: start again what {@link #hidden()} stopped. */
+    void revive() {
     }
 
     /** Adds the page's content. */
