@@ -21,19 +21,26 @@ import android.widget.TextView;
 /** Small helpers for building screens in code, shared by the activities. */
 final class Ui {
     // ------------------------------------------------------------------ the glass look
-    // Every screen is frosted glass over a gradient ground, in a night version (the default) or a day version. The colours below
-    // are not constants: they are set by mode() before a screen is built, so the whole app reads them the same way.
+    // Every screen is frosted glass over a ground, in one of two app colours: Graphite & Amber (dark, the default) or White & Black
+    // (light, a Pro choice). The colours below are not constants: they are set by mode() before a screen is built, so the whole app
+    // reads them the same way. "Night" in this file means the dark one.
 
-    /** True when the screens are in their night colours. */
+    /** The app colours: what is stored is one of these. */
+    static final int COLOURS_GRAPHITE = 0;
+    static final int COLOURS_PAPER = 1;
+
+    /** True when the screens are in their dark colours (Graphite & Amber). */
     static boolean night = true;
 
     /** Text, and the quiet text under it. */
     static int INK = 0xF2FFFFFF;
     static int MUTED = 0xA8FFFFFF;
-    /** The brand teal as a fill (selected chips, switches, marks), always with white on it. */
-    static int TEAL = 0xFF17938F;
-    /** The same teal as text or an icon on the glass: mint at night, deep teal by day. */
-    static int TEAL_DARK = 0xFF7FE0C3;
+    /** The accent as a fill (selected chips, switches, marks): amber on graphite, black on white. {@link #ON_FILL} goes on it. */
+    static int TEAL = 0xFFFFB84D;
+    /** The accent as text or an icon on the glass. */
+    static int TEAL_DARK = 0xFFFFC66B;
+    /** The words and marks that sit on an accent fill (a selected chip, the Pro card, a tick). */
+    static int ON_FILL = 0xFF1F1608;
     /** A hairline between rows. */
     static int LINE = 0x24FFFFFF;
     /** The glass of a card, a quieter glass for tiles and chips, and a tinted glass for what is selected or pressed. */
@@ -43,30 +50,31 @@ final class Ui {
     /** The bright edge of a piece of glass. */
     static int EDGE = 0x2BFFFFFF;
     /** The bars at the top and bottom, which are the most solid glass. */
-    static int BAR = 0xB3081424;
-    /** The main button: a white pill at night with dark words, a teal pill by day with white words. */
+    static int BAR = 0xB3101014;
+    /** The main button: a white pill with dark words on graphite, a black pill with white words on white. */
     static int BTN = 0xFFFFFFFF;
-    static int BTN_INK = 0xFF0B1A2A;
+    static int BTN_INK = 0xFF17171B;
     static int AMBER = 0xFFFFC66B;
     static int AMBER_SOFT = 0x33FFC66B;
     static int RED = 0xFFFF8F78;
     /** What a pressed piece of glass ripples with. */
     static int RIPPLE = 0x30FFFFFF;
 
-    /** Sets the colours for night or day. Call it before building any view. */
+    /** Sets the colours for dark (Graphite & Amber) or light (White & Black). Call it before building any view. */
     static void mode(boolean isNight) {
         night = isNight;
         if (isNight) {
-            INK = 0xF2FFFFFF; MUTED = 0xA8FFFFFF; TEAL = 0xFF17938F; TEAL_DARK = 0xFF7FE0C3;
-            LINE = 0x24FFFFFF; SURFACE = 0x1AFFFFFF; SOFT = 0x1FFFFFFF; TONAL = 0x29FFFFFF; EDGE = 0x2BFFFFFF; BAR = 0xB3081424;
-            BTN = 0xFFFFFFFF; BTN_INK = 0xFF0B1A2A;
+            INK = 0xF2FFFFFF; MUTED = 0xA8FFFFFF; TEAL = 0xFFFFB84D; TEAL_DARK = 0xFFFFC66B; ON_FILL = 0xFF1F1608;
+            LINE = 0x24FFFFFF; SURFACE = 0x1AFFFFFF; SOFT = 0x1FFFFFFF; TONAL = 0x29FFFFFF; EDGE = 0x2BFFFFFF; BAR = 0xB3101014;
+            BTN = 0xFFFFFFFF; BTN_INK = 0xFF17171B;
             AMBER = 0xFFFFC66B; AMBER_SOFT = 0x33FFC66B; RED = 0xFFFF8F78; RIPPLE = 0x30FFFFFF;
         } else {
-            INK = 0xFF10201E; MUTED = 0xFF4A6462; TEAL = 0xFF0E7C7B; TEAL_DARK = 0xFF0A5F5E;
-            LINE = 0x2610201E; SURFACE = 0x8CFFFFFF; SOFT = 0x66FFFFFF; TONAL = 0x290E7C7B; EDGE = 0xB3FFFFFF; BAR = 0xA6FFFFFF;
-            BTN = 0xFF0E7C7B; BTN_INK = 0xFFFFFFFF;
-            AMBER = 0xFFA86F00; AMBER_SOFT = 0x38E0A020; RED = 0xFFC4553B; RIPPLE = 0x300E7C7B;
+            INK = 0xFF111111; MUTED = 0xFF666666; TEAL = 0xFF111111; TEAL_DARK = 0xFF111111; ON_FILL = 0xFFFFFFFF;
+            LINE = 0x1F000000; SURFACE = 0xD9FFFFFF; SOFT = 0x99FFFFFF; TONAL = 0x14000000; EDGE = 0x1A000000; BAR = 0xE6FFFFFF;
+            BTN = 0xFF111111; BTN_INK = 0xFFFFFFFF;
+            AMBER = 0xFFA86F00; AMBER_SOFT = 0x38E0A020; RED = 0xFFC4402B; RIPPLE = 0x22000000;
         }
+        Glass.paint(isNight);
     }
 
     /** Sets the colours the routine's look asks for (its theme: day, night, or by the hour). */
@@ -75,13 +83,43 @@ final class Ui {
     }
 
     /**
-     * Whether the screens are in night colours: always. The app is dark glass; the routine's Light / Night / Auto look dresses the
-     * wallpaper only. (The day colours stay in {@link #mode} for the home screen's own light theme.)
+     * Whether the screens are in their dark colours: yes unless the person chose White & Black and may use it. The routine's Light /
+     * Night / Auto look dresses the wallpaper only.
      */
     static boolean nightNow(Context c) {
         systemNight = (c.getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK)
                 == android.content.res.Configuration.UI_MODE_NIGHT_YES;
-        return true;
+        return colours(c) != COLOURS_PAPER;
+    }
+
+    private static final String KEY_COLOURS = "app_colours";
+
+    /** What the person picked in Settings (it may not be allowed any more: see {@link #colours}). */
+    static int chosenColours(Context c) {
+        try {
+            return Store.prefs(c).getInt(KEY_COLOURS, COLOURS_GRAPHITE) == COLOURS_PAPER ? COLOURS_PAPER : COLOURS_GRAPHITE;
+        } catch (RuntimeException e) {
+            return COLOURS_GRAPHITE;
+        }
+    }
+
+    /** Saves the pick (the screens must then be restyled). */
+    static void chooseColours(Context c, int which) {
+        Store.prefs(c).edit().putInt(KEY_COLOURS, which == COLOURS_PAPER ? COLOURS_PAPER : COLOURS_GRAPHITE).apply();
+    }
+
+    /** True when all of Pro is open: bought, or a video pass that opens everything. White & Black is part of it. */
+    static boolean paperAllowed(Context c) {
+        try {
+            return (Pro.open(c) & DayPass.ALL) == DayPass.ALL;
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
+    /** The colours in use: the pick, unless it needs Pro that is not open now (a pass that ended), when it is Graphite & Amber. */
+    static int colours(Context c) {
+        return chosenColours(c) == COLOURS_PAPER && paperAllowed(c) ? COLOURS_PAPER : COLOURS_GRAPHITE;
     }
 
     private static boolean systemNight = true;
@@ -123,13 +161,13 @@ final class Ui {
         screen(a, Glass.night(r));
     }
 
-    /** The ground of a whole screen: a slow diagonal from teal into navy (or into soft blue-grey by day) with two soft glows. */
+    /** The ground of a whole screen: graphite (or soft paper) with a warm glow in one corner and a quiet one in the other. */
     static Drawable ground(Context c, boolean isNight) {
-        int[] base = isNight ? new int[]{0xFF1B5E66, 0xFF16384F, 0xFF0D1B30} : new int[]{0xFFBFD9DD, 0xFFA8C4D9, 0xFF8FB0CE};
+        int[] base = isNight ? new int[]{0xFF2E2D33, 0xFF1B1B20, 0xFF0C0C0F} : new int[]{0xFFF8F8F6, 0xFFEDEDEA, 0xFFDEDEDA};
         GradientDrawable g = new GradientDrawable(GradientDrawable.Orientation.TL_BR, base);
         float w = c.getResources().getDisplayMetrics().widthPixels;
-        GradientDrawable one = glow(isNight ? 0x38A8F0D6 : 0xB3FFFFFF, w * 0.95f, 1f, 0f);
-        GradientDrawable two = glow(isNight ? 0x334678DC : 0x4D5A8CC8, w * 0.9f, 0f, 1f);
+        GradientDrawable one = glow(isNight ? 0x24FFB84D : 0xCCFFFFFF, w * 0.95f, 1f, 0f);
+        GradientDrawable two = glow(isNight ? 0x14FFFFFF : 0x14000000, w * 0.9f, 0f, 1f);
         return new android.graphics.drawable.LayerDrawable(new Drawable[]{g, one, two});
     }
 
@@ -162,12 +200,12 @@ final class Ui {
         return g;
     }
 
-    /** A vivid pane of glass, teal into blue, for what should stand out (the Pro card). White words go on it. */
+    /** A vivid pane for what should stand out (the Pro card): amber on graphite, black on white. {@link #ON_FILL} words go on it. */
     static GradientDrawable accent(Context c, float radiusDp) {
         GradientDrawable g = new GradientDrawable(GradientDrawable.Orientation.TL_BR,
-                night ? new int[]{0xE01E9E96, 0xE02B6DB5} : new int[]{0xF20E7C7B, 0xF22C6EA6});
+                night ? new int[]{0xFFFFC66B, 0xFFF29A3A} : new int[]{0xFF2B2B2E, 0xFF050505});
         g.setCornerRadius(dp(c, radiusDp));
-        g.setStroke(Math.max(1, dp(c, 1)), 0x59FFFFFF);
+        g.setStroke(Math.max(1, dp(c, 1)), night ? 0x59FFFFFF : 0x33000000);
         return g;
     }
 
@@ -193,7 +231,7 @@ final class Ui {
         return t;
     }
 
-    /** Primary buttons are the main pill (white at night, teal by day); the others are glass. Both ripple when pressed. */
+    /** Primary buttons are the main pill (white on graphite, black on white); the others are glass. Both ripple when pressed. */
     static Button button(Context c, String text, boolean primary, View.OnClickListener click) {
         Button b = new Button(c);
         b.setAllCaps(false);
@@ -248,7 +286,7 @@ final class Ui {
     }
 
     static TextView eyebrow(Context c, String text) {
-        TextView t = label(c, text.toUpperCase(java.util.Locale.ROOT), 11, TEAL, true);
+        TextView t = label(c, text.toUpperCase(java.util.Locale.ROOT), 11, TEAL_DARK, true);
         t.setLetterSpacing(0.14f);
         return t;
     }
@@ -289,23 +327,23 @@ final class Ui {
         return s;
     }
 
-    /** Draws a switch as glass: a teal track with a white thumb when it is on, a quiet track with a soft thumb when it is off. */
+    /** Draws a switch as glass: an accent track with a white thumb when it is on, a quiet track with a soft thumb when it is off. */
     static void glassSwitch(Switch s) {
         int[][] states = {{android.R.attr.state_checked}, {}};
-        s.setThumbTintList(new ColorStateList(states, new int[]{0xFFFFFFFF, night ? 0xFFC9D6D8 : 0xFF6F8584}));
-        s.setTrackTintList(new ColorStateList(states, new int[]{TEAL, night ? 0x55FFFFFF : 0x40000000}));
+        s.setThumbTintList(new ColorStateList(states, new int[]{0xFFFFFFFF, night ? 0xFFD2D2D6 : 0xFFFFFFFF}));
+        s.setTrackTintList(new ColorStateList(states, new int[]{TEAL, night ? 0x55FFFFFF : 0x33000000}));
     }
 
     /**
      * One line of a checklist: a tick or "!", the name, why it matters, and a button that fixes it.
-     * {@code ok} shows a teal tick; otherwise an amber "!" and the button (when {@code fix} is given).
+     * {@code ok} shows an accent tick; otherwise an amber "!" and the button (when {@code fix} is given).
      */
     static LinearLayout statusRow(Context c, String name, String why, boolean ok, String action, final Runnable fix) {
         LinearLayout row = new LinearLayout(c);
         row.setOrientation(LinearLayout.HORIZONTAL);
         row.setGravity(Gravity.CENTER_VERTICAL);
         row.setPadding(0, dp(c, 8), 0, dp(c, 8));
-        TextView mark = label(c, ok ? "✓" : "!", 16, ok ? Color.WHITE : INK, true);
+        TextView mark = label(c, ok ? "✓" : "!", 16, ok ? ON_FILL : INK, true);
         mark.setGravity(Gravity.CENTER);
         mark.setBackground(box(c, ok ? TEAL : AMBER_SOFT, ok ? 0 : AMBER, 16));
         row.addView(mark, new LinearLayout.LayoutParams(dp(c, 32), dp(c, 32)));
@@ -318,7 +356,7 @@ final class Ui {
         if (!ok && fix != null) {
             TextView btn = label(c, action, 14, TEAL, true);
             btn.setPadding(dp(c, 12), dp(c, 8), dp(c, 12), dp(c, 8));
-            btn.setBackground(pressable(c, TONAL, 0, 14, 0x300E7C7B));
+            btn.setBackground(pressable(c, TONAL, 0, 14, RIPPLE));
             btn.setOnClickListener(v -> fix.run());
             row.addView(btn);
         }

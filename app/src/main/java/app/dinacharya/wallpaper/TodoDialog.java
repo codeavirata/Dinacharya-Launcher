@@ -224,7 +224,7 @@ final class TodoDialog {
                 rule.setText("↻  " + Lang.tr(Todos.ruleText(mode[0], mask[0])));
                 for (int d = 0; d < 7; d++) {
                     boolean on = ((mask[0] >> d) & 1) != 0;
-                    chips[d].setTextColor(on ? 0xFFFFFFFF : Ui.MUTED);
+                    chips[d].setTextColor(on ? Ui.ON_FILL : Ui.MUTED);
                     chips[d].setBackground(Ui.box(c, on ? Ui.TEAL : Ui.SOFT, 0, 10));
                 }
             };

@@ -637,15 +637,15 @@ final class ExtraSections {
     }
 
     private static int habitStripe(int tone) {
-        return tone == Suggestions.Habit.GOOD ? Ui.TEAL : tone == Suggestions.Habit.WATCH ? Ui.AMBER : 0xFF4A6C94;
+        return tone == Suggestions.Habit.GOOD ? Ui.TEAL : tone == Suggestions.Habit.WATCH ? Ui.AMBER : 0xFF7A8090;
     }
 
     private static int habitInk(int tone) {
-        return tone == Suggestions.Habit.GOOD ? Ui.TEAL_DARK : tone == Suggestions.Habit.WATCH ? Ui.AMBER : (Ui.night ? 0xFF9CC4F2 : 0xFF2F4F78);
+        return tone == Suggestions.Habit.GOOD ? Ui.TEAL_DARK : tone == Suggestions.Habit.WATCH ? Ui.AMBER : (Ui.night ? 0xFFC4C8D2 : 0xFF3F4552);
     }
 
     private static int habitFill(int tone) {
-        return tone == Suggestions.Habit.GOOD ? Ui.TONAL : tone == Suggestions.Habit.WATCH ? Ui.AMBER_SOFT : (Ui.night ? 0x334A6C94 : 0xFFE6EEF7);
+        return tone == Suggestions.Habit.GOOD ? Ui.TONAL : tone == Suggestions.Habit.WATCH ? Ui.AMBER_SOFT : (Ui.night ? 0x33808899 : 0xFFE9EAEE);
     }
 
     private static String habitWord(int tone) {

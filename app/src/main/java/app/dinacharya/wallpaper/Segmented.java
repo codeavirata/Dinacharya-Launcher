@@ -55,7 +55,7 @@ final class Segmented extends LinearLayout {
         Context c = getContext();
         for (int i = 0; i < items.length; i++) {
             boolean on = i == index;
-            items[i].setTextColor(on ? 0xFFFFFFFF : Ui.MUTED);
+            items[i].setTextColor(on ? Ui.ON_FILL : Ui.MUTED);
             items[i].setTypeface(on ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
             items[i].setBackground(on ? Ui.box(c, Ui.TEAL, 0, 12) : Ui.pressable(c, 0x00FFFFFF, 0, 12, Ui.RIPPLE));
         }

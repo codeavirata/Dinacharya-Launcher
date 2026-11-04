@@ -27,7 +27,7 @@ public class WelcomeActivity extends LangActivity {
 
     private static final int WHITE = 0xFFF1F3F2;
     private static final int SOFT = 0xFFB8C7C5;
-    private static final int TEAL = 0xFF63D2CC;
+    private static final int TEAL = 0xFFFFC66B;
 
     @Override
     @SuppressWarnings("deprecation")

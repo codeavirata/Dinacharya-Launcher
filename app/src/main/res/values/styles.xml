@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Every screen is frosted glass over a gradient ground. The night version is the default (and what shows while a screen opens);
-         the day version is chosen in code when the routine's look is Day. The ground itself and the colours are set in Ui. -->
+    <!-- Every screen is frosted glass over a ground. "Night" is Graphite & Amber, the default (and what shows while a screen opens);
+         "Day" is White & Black, a Pro choice made in Settings. The ground itself and the colours are set in Ui. -->
     <style name="AppNight" parent="@android:style/Theme.Material.NoActionBar">
-        <item name="android:colorPrimary">#FF17938F</item>
-        <item name="android:colorAccent">#FF7FE0C3</item>
+        <item name="android:colorPrimary">#FFFFB84D</item>
+        <item name="android:colorAccent">#FFFFC66B</item>
         <item name="android:windowBackground">@drawable/ground_night</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
@@ -16,8 +16,8 @@
     </style>
 
     <style name="AppDay" parent="@android:style/Theme.Material.Light.NoActionBar">
-        <item name="android:colorPrimary">#FF0E7C7B</item>
-        <item name="android:colorAccent">#FF0E7C7B</item>
+        <item name="android:colorPrimary">#FF111111</item>
+        <item name="android:colorAccent">#FF111111</item>
         <item name="android:windowBackground">@drawable/ground_day</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
@@ -30,15 +30,15 @@
 
     <style name="AppTheme" parent="AppNight" />
 
-    <!-- Dialogs: frosted glass, dark at night and light by day. -->
+    <!-- Dialogs: frosted glass, graphite on Graphite & Amber and white on White & Black. -->
     <style name="GlassDialogNight" parent="@android:style/Theme.Material.Dialog.Alert">
         <item name="android:windowBackground">@drawable/glass_dialog_night</item>
-        <item name="android:colorAccent">#FF7FE0C3</item>
+        <item name="android:colorAccent">#FFFFC66B</item>
     </style>
 
     <style name="GlassDialogDay" parent="@android:style/Theme.Material.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/glass_dialog_day</item>
-        <item name="android:colorAccent">#FF0E7C7B</item>
+        <item name="android:colorAccent">#FF111111</item>
     </style>
 
     <!-- The drop-down list of a choice box. -->

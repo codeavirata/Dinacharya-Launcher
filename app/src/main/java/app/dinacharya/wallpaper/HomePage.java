@@ -61,7 +61,7 @@ final class HomePage extends Page {
         words.addView(hello);
         words.addView(dateLine, Ui.wide(a, 2));
         head.addView(words, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        avatar = Ui.label(a, "", 18, 0xFFFFFFFF, true);
+        avatar = Ui.label(a, "", 18, Ui.ON_FILL, true);
         avatar.setGravity(Gravity.CENTER);
         avatar.setOnClickListener(v -> a.go(MainActivity.TAB_BACKUP));
         head.addView(avatar, new LinearLayout.LayoutParams(a.dp(44), a.dp(44)));
@@ -142,7 +142,7 @@ final class HomePage extends Page {
             avatar.setText("☁");
             avatar.setTextColor(Ui.TEAL_DARK);
         } else {
-            avatar.setTextColor(0xFFFFFFFF);
+            avatar.setTextColor(Ui.ON_FILL);
         }
         showCrashIfAny();
         refreshHomeCard();
@@ -186,7 +186,21 @@ final class HomePage extends Page {
         card.addView(Ui.button(a, "Take the tour", false, v -> a.startActivity(new Intent(a, TourActivity.class))), Ui.wide(a, 6));
     }
 
+    /**
+     * The card at the top of Home. On White & Black it is a black card, so it is built with the dark colours (white words, a white
+     * main pill) and the app's own colours are put back after.
+     */
     private void refreshNow() {
+        boolean island = !Ui.night;
+        if (island) Glass.paint(true);
+        try {
+            buildNow();
+        } finally {
+            if (island) Glass.paint(false);
+        }
+    }
+
+    private void buildNow() {
         nowBox.removeAllViews();
         Routine m = a.routine();
         long now = System.currentTimeMillis();
@@ -206,7 +220,7 @@ final class HomePage extends Page {
         LinearLayout card = new LinearLayout(a);
         card.setOrientation(LinearLayout.VERTICAL);
         card.setPadding(a.dp(22), a.dp(20), a.dp(22), a.dp(22));
-        card.setBackground(Glass.hero(a, true, 30));
+        card.setBackground(Glass.hero(a, Ui.night, 30));
         card.setOnClickListener(v -> a.go(MainActivity.TAB_ROUTINE));
 
         int next = -1;

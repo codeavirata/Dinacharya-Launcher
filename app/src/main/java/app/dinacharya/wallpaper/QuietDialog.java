@@ -169,7 +169,7 @@ final class QuietDialog {
         redraw[0] = () -> {
             for (int i = 0; i < ways.length; i++) {
                 boolean on = ways[i] == d.by;
-                chips[i].setTextColor(on ? 0xFFFFFFFF : Ui.INK);
+                chips[i].setTextColor(on ? Ui.ON_FILL : Ui.INK);
                 chips[i].setBackground(Ui.box(c, on ? Ui.TEAL : Ui.SOFT, on ? 0 : Ui.LINE, 20));
             }
             soundNote.setText(soundAbout(d.sound));

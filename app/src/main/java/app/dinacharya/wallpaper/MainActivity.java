@@ -487,13 +487,13 @@ public class MainActivity extends LangActivity {
         undoBar = new LinearLayout(this);
         undoBar.setOrientation(LinearLayout.HORIZONTAL);
         undoBar.setGravity(Gravity.CENTER_VERTICAL);
-        undoBar.setBackground(Ui.box(this, 0xF0182826, 0, 14));
+        undoBar.setBackground(Ui.box(this, 0xF0232328, 0, 14));
         undoBar.setElevation(dp(10));
         undoBar.setPadding(dp(16), dp(6), dp(6), dp(6));
         undoText = Ui.label(this, "", 14, 0xFFFFFFFF, false);
         undoText.setMaxLines(3);
         undoBar.addView(undoText, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        TextView undoBtn = Ui.label(this, "UNDO", 14, 0xFF7FE0DC, true);
+        TextView undoBtn = Ui.label(this, "UNDO", 14, 0xFFFFC66B, true);
         undoBtn.setLetterSpacing(0.08f);
         undoBtn.setGravity(Gravity.CENTER);
         undoBtn.setPadding(dp(14), dp(12), dp(14), dp(12));

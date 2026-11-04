@@ -931,7 +931,7 @@ final class InsightsPage extends Page {
     private void paintDays(TextView[] chips, int mask) {
         for (int d = 0; d < 7; d++) {
             boolean on = ((mask >> d) & 1) != 0;
-            chips[d].setTextColor(on ? 0xFFFFFFFF : Ui.MUTED);
+            chips[d].setTextColor(on ? Ui.ON_FILL : Ui.MUTED);
             chips[d].setBackground(on ? Ui.box(a, Ui.TEAL, 0, 20) : Ui.pressable(a, Ui.SOFT, Ui.LINE, 20, Ui.RIPPLE));
         }
     }

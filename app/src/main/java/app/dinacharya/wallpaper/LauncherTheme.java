@@ -28,9 +28,9 @@ final class LauncherTheme {
             t = night ? LauncherConfig.THEME_DARK : LauncherConfig.THEME_LIGHT;
         }
         if (t == LauncherConfig.THEME_DARK) {
-            return new LauncherTheme(true, 0xFF0B1A2A, 0xFFF1F5F5, 0xFF9FB1B5, 0xFF7FE0C3);
+            return new LauncherTheme(true, 0xFF0C0C0F, 0xFFF3F3F1, 0xFFA3A3A8, 0xFFFFC66B);
         }
-        return new LauncherTheme(false, 0xFFEAF2F4, 0xFF10201E, 0xFF4E6866, 0xFF0E7C7B);
+        return new LauncherTheme(false, 0xFFF6F6F4, 0xFF111111, 0xFF666666, 0xFF111111);
     }
 
     /** The background colour with the given opacity (0 to 255), for the see-through screens over the poster. */

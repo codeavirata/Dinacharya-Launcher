@@ -273,7 +273,7 @@ final class GroupDialog {
         redraw[0] = () -> {
             for (int i = 0; i < ways.length; i++) {
                 boolean on = ways[i] == d.by;
-                chips[i].setTextColor(on ? 0xFFFFFFFF : Ui.INK);
+                chips[i].setTextColor(on ? Ui.ON_FILL : Ui.INK);
                 chips[i].setBackground(Ui.box(c, on ? Ui.TEAL : Ui.SOFT, on ? 0 : Ui.LINE, 20));
             }
             howNote.setText(LockMode.about(d.by));
@@ -438,7 +438,7 @@ final class GroupDialog {
         for (int i = 0; i < 7; i++) {
             final int bit = 1 << i;
             boolean on = (days & bit) != 0;
-            TextView t = Ui.label(c, LockRules.dayName(i).substring(0, 1), 14, on ? 0xFFFFFFFF : Ui.INK, true);
+            TextView t = Ui.label(c, LockRules.dayName(i).substring(0, 1), 14, on ? Ui.ON_FILL : Ui.INK, true);
             t.setGravity(Gravity.CENTER);
             t.setBackground(Ui.box(c, on ? Ui.TEAL : Ui.SOFT, on ? 0 : Ui.LINE, 20));
             t.setContentDescription(LockRules.dayName(i));

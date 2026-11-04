@@ -133,8 +133,8 @@ public class CompareActivity extends LangActivity {
         c.setOrientation(LinearLayout.VERTICAL);
         c.setPadding(Ui.dp(this, 16), Ui.dp(this, 14), Ui.dp(this, 16), Ui.dp(this, 14));
         c.setBackground(pro ? Ui.accent(this, 22) : Ui.box(this, Ui.SURFACE, Ui.LINE, 22));
-        c.addView(Ui.label(this, name, 24, pro ? 0xFFFFFFFF : Ui.INK, true));
-        TextView t = Ui.label(this, line, 13, pro ? 0xE6FFFFFF : Ui.MUTED, false);
+        c.addView(Ui.label(this, name, 24, pro ? Ui.ON_FILL : Ui.INK, true));
+        TextView t = Ui.label(this, line, 13, pro ? (Ui.ON_FILL & 0x00FFFFFF) | 0xE6000000 : Ui.MUTED, false);
         t.setLineSpacing(Ui.dp(this, 2), 1f);
         c.addView(t, Ui.wide(this, 4));
         return c;

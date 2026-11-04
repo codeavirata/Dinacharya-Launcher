@@ -6,12 +6,12 @@ import android.os.Bundle;
 
 /**
  * An activity whose system words (OK, Cancel, the time picker) follow the app's language, and whose look is the app's frosted glass:
- * the colours, the gradient ground and the see-through system bars, in the night or the day version the routine's look asks for.
+ * the colours, the ground and the see-through system bars, in the app colours the person chose (Graphite & Amber, or White & Black).
  */
 public class LangActivity extends Activity {
-    /** The screen follows the routine's look: night glass or day glass. */
+    /** The screen follows the app colours: graphite glass or white glass. */
     protected static final int LOOK_ROUTINE = 0;
-    /** The screen is always night glass (the alarm). */
+    /** The screen is always graphite glass (the alarm). */
     protected static final int LOOK_NIGHT = 1;
     /** The screen dresses itself (the tour, the home screen, the lock screens). */
     protected static final int LOOK_OWN = 2;
@@ -53,9 +53,11 @@ public class LangActivity extends Activity {
         if (now != night) recreate();
     }
 
-    /** The routine's look was changed: dress the screen again. */
-    public void restyle() {
-        if (look() == LOOK_OWN) return;
-        if (wantsNight() != night) recreate();
+    /** The app colours were changed: dress the screen again. True when the screen is being rebuilt (it comes back in a moment). */
+    public boolean restyle() {
+        if (look() == LOOK_OWN) return false;
+        if (wantsNight() == night) return false;
+        recreate();
+        return true;
     }
 }

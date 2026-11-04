@@ -20,8 +20,10 @@ import android.widget.TextView;
 
 /** The Settings tab: a menu, and one page per group of settings. */
 final class SettingsPage extends Page {
-    static final int MENU = -1, LOOK = 0, ALARMS = 1, PERMISSIONS = 2, HELP = 3, ABOUT = 4, GUIDE = 5;
-    private int open = MENU;
+    static final int MENU = -1, LOOK = 0, ALARMS = 1, PERMISSIONS = 2, HELP = 3, ABOUT = 4, GUIDE = 5, COLOURS = 6;
+    /** The page to come back to when the screen is rebuilt in the other colours (the person is still on it). */
+    private static int reopen = MENU;
+    private int open = takeReopen();
     private PosterView preview;
     private LinearLayout swatchBox;
     private Button accessBtn;
@@ -29,6 +31,12 @@ final class SettingsPage extends Page {
 
     SettingsPage(MainActivity host) {
         super(host);
+    }
+
+    private static int takeReopen() {
+        int page = reopen;
+        reopen = MENU;
+        return page;
     }
 
     @Override
@@ -68,6 +76,7 @@ final class SettingsPage extends Page {
             case HELP: help(); break;
             case GUIDE: guide(); break;
             case ABOUT: about(); break;
+            case COLOURS: colours(); break;
             default: menu(); break;
         }
     }
@@ -80,6 +89,7 @@ final class SettingsPage extends Page {
         LinearLayout general = Ui.section(a, body, "General", null);
         itemAction(general, Glyph.GLOBE, "Language", LanguageDialog.summary(a),
                 () -> LanguageDialog.show(a, Ui.dialogTheme()));
+        item(general, Glyph.PALETTE, "App colours", coloursName(Ui.colours(a)), COLOURS);
         itemAction(general, Glyph.HELP, "Take the tour", "A short walk through what the app does",
                 () -> a.startActivity(new Intent(a, TourActivity.class)));
         itemAction(general, Glyph.SHIELD, "Check phone settings", "Permissions and settings the app needs, with a tick for each",
@@ -149,6 +159,94 @@ final class SettingsPage extends Page {
         back.setOnClickListener(v -> show(MENU));
         body.addView(back, Ui.wrap(a, 0));
         body.addView(Ui.display(a, title, 30, Ui.INK), Ui.wide(a, 6));
+    }
+
+    // ------------------------------------------------------------------ app colours
+
+    private static String coloursName(int which) {
+        return which == Ui.COLOURS_PAPER ? "White & Black" : "Graphite & Amber";
+    }
+
+    /** Two tiles, each a small picture of the app in its colours: Graphite & Amber (free) and White & Black (Pro). */
+    private void colours() {
+        header("App colours");
+        body.addView(a.note("Choose how the whole app looks. The wallpaper has its own Light, Night and Auto look, under Home screen look."), Ui.wide(a, 4));
+        LinearLayout row = new LinearLayout(a);
+        row.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout.LayoutParams left = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+        left.rightMargin = a.dp(6);
+        LinearLayout.LayoutParams right = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+        right.leftMargin = a.dp(6);
+        row.addView(coloursTile(Ui.COLOURS_GRAPHITE), left);
+        row.addView(coloursTile(Ui.COLOURS_PAPER), right);
+        body.addView(row, Ui.wide(a, 16));
+        if (!Ui.paperAllowed(a)) {
+            body.addView(Ui.label(a, "White & Black is part of Pro.", 13, Ui.MUTED, false), Ui.wide(a, 12));
+        }
+    }
+
+    private View coloursTile(final int which) {
+        final boolean paper = which == Ui.COLOURS_PAPER;
+        boolean locked = paper && !Ui.paperAllowed(a);
+        boolean sel = Ui.colours(a) == which;
+        LinearLayout tile = new LinearLayout(a);
+        tile.setOrientation(LinearLayout.VERTICAL);
+        tile.setPadding(a.dp(10), a.dp(10), a.dp(10), a.dp(12));
+        tile.setBackground(ring(Ui.SURFACE, sel ? Ui.TEAL : Ui.LINE, 20, sel ? 2.5f : 1));
+        tile.setClickable(true);
+        // a small picture of the app: the ground, a card that stands out, a glass card, and two chips
+        LinearLayout mini = new LinearLayout(a);
+        mini.setOrientation(LinearLayout.VERTICAL);
+        mini.setPadding(a.dp(8), a.dp(8), a.dp(8), a.dp(8));
+        GradientDrawable ground = new GradientDrawable(GradientDrawable.Orientation.TL_BR, paper
+                ? new int[]{0xFFF8F8F6, 0xFFEDEDEA, 0xFFDEDEDA} : new int[]{0xFF2E2D33, 0xFF1B1B20, 0xFF0C0C0F});
+        ground.setCornerRadius(a.dp(14));
+        mini.setBackground(ground);
+        View hero = new View(a);
+        hero.setBackground(paper ? Ui.box(a, 0xFF111111, 0, 9) : Ui.box(a, 0x38FFFFFF, 0x40FFFFFF, 9));
+        mini.addView(hero, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, a.dp(34)));
+        View card = new View(a);
+        card.setBackground(paper ? Ui.box(a, 0xFFFFFFFF, 0x1A000000, 9) : Ui.box(a, 0x1FFFFFFF, 0x2BFFFFFF, 9));
+        mini.addView(card, Ui.lp(a, ViewGroup.LayoutParams.MATCH_PARENT, a.dp(22), 6));
+        LinearLayout chips = new LinearLayout(a);
+        chips.setOrientation(LinearLayout.HORIZONTAL);
+        View on = new View(a);
+        on.setBackground(Ui.box(a, paper ? 0xFF111111 : 0xFFFFB84D, 0, 7));
+        chips.addView(on, new LinearLayout.LayoutParams(a.dp(34), a.dp(14)));
+        View off = new View(a);
+        off.setBackground(Ui.box(a, paper ? 0x1F000000 : 0x33FFFFFF, 0, 7));
+        LinearLayout.LayoutParams offLp = new LinearLayout.LayoutParams(a.dp(34), a.dp(14));
+        offLp.leftMargin = a.dp(6);
+        chips.addView(off, offLp);
+        mini.addView(chips, Ui.wrap(a, 8));
+        tile.addView(mini, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, a.dp(112)));
+        String name = coloursName(which);
+        LinearLayout title = new LinearLayout(a);
+        title.setOrientation(LinearLayout.HORIZONTAL);
+        title.setGravity(Gravity.CENTER_VERTICAL);
+        title.addView(Ui.label(a, name, 15, Ui.INK, true), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        if (sel || locked) title.addView(Ui.label(a, sel ? "✓" : "🔒", 15, Ui.TEAL_DARK, true));
+        tile.addView(title, Ui.wide(a, 10));
+        tile.addView(Ui.label(a, paper ? "Light and clean, with black" : "Dark glass with warm amber", 12, Ui.MUTED, false), Ui.wide(a, 2));
+        tile.setContentDescription(sel ? name + ", selected" : locked ? name + ", part of Pro" : name);
+        tile.setOnClickListener(v -> {
+            if (Ui.colours(a) == which) return;
+            if (paper && !Ui.paperAllowed(a)) {
+                ProPrompt.show(a, DayPass.LOOK_GRAPHITE, "The White & Black look of the app", 0, () -> applyColours(which));
+                return;
+            }
+            applyColours(which);
+        });
+        return tile;
+    }
+
+    /** Saves the pick and dresses the app in it: the screen is rebuilt when the colours flip, and comes back to this page. */
+    private void applyColours(int which) {
+        Ui.chooseColours(a, which);
+        reopen = COLOURS;
+        if (a.restyle()) return;
+        reopen = MENU;
+        show(COLOURS);
     }
 
     // ------------------------------------------------------------------ look
@@ -347,8 +445,8 @@ final class SettingsPage extends Page {
         card.setBackground(owned ? Ui.box(a, Ui.SURFACE, 0, 24) : Ui.accent(a, 24));
         LinearLayout words = new LinearLayout(a);
         words.setOrientation(LinearLayout.VERTICAL);
-        int ink = owned ? Ui.INK : 0xFFFFFFFF;
-        int soft = owned ? Ui.MUTED : 0xE6FFFFFF;
+        int ink = owned ? Ui.INK : Ui.ON_FILL;
+        int soft = owned ? Ui.MUTED : (Ui.ON_FILL & 0x00FFFFFF) | 0xE6000000;
         words.addView(Ui.label(a, owned ? "Dinacharya Pro \u2713" : "Dinacharya Pro", 18, ink, true));
         String pass = owned ? "" : VideoPass.line(a);
         words.addView(Ui.label(a, owned ? "Thank you for supporting the app."
@@ -357,7 +455,7 @@ final class SettingsPage extends Page {
                 ? "No ads, every saved day and deeper analysis, goals, more pauses and locks, routines, colours. Or watch " + VideoProgress.NEED + " short videos for a free day of Pro"
                 : "No ads, every saved day and deeper analysis, goals, more pauses and locks, routines, colours", 13, soft, false), Ui.wide(a, 3));
         card.addView(words, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        card.addView(new Glyph(a, Glyph.CHEVRON, owned ? Ui.MUTED : 0xFFFFFFFF), new LinearLayout.LayoutParams(a.dp(22), a.dp(22)));
+        card.addView(new Glyph(a, Glyph.CHEVRON, owned ? Ui.MUTED : Ui.ON_FILL), new LinearLayout.LayoutParams(a.dp(22), a.dp(22)));
         card.setOnClickListener(v -> a.openPro());
         body.addView(card, Ui.wide(a, 16));
     }
@@ -424,7 +522,7 @@ final class SettingsPage extends Page {
         row.setOrientation(LinearLayout.HORIZONTAL);
         row.setGravity(Gravity.CENTER_VERTICAL);
         row.setPadding(0, a.dp(8), 0, a.dp(8));
-        TextView mark = Ui.label(a, ok ? "✓" : "!", 16, ok ? 0xFFFFFFFF : Ui.INK, true);
+        TextView mark = Ui.label(a, ok ? "✓" : "!", 16, ok ? Ui.ON_FILL : Ui.INK, true);
         mark.setGravity(Gravity.CENTER);
         mark.setBackground(Ui.box(a, ok ? Ui.TEAL : Ui.AMBER_SOFT, ok ? 0 : Ui.AMBER, 16));
         row.addView(mark, new LinearLayout.LayoutParams(a.dp(32), a.dp(32)));
@@ -574,6 +672,11 @@ final class SettingsPage extends Page {
                         + "Set it up: Settings > Home screen > Home screen look, and Settings > Language.",
                 "Home screen look", () -> show(LOOK),
                 "Language", () -> LanguageDialog.show(a, Ui.dialogTheme()));
+        no = topic(card, parts, no, "App colours",
+                "Choose how the whole app looks: Graphite & Amber, dark glass with warm amber, or White & Black, a light look with black. Graphite & Amber is free. "
+                        + "White & Black is part of Pro, or free for a day when you watch the short videos. The wallpaper keeps its own Light, Night and Auto look. "
+                        + "Set it up: Settings > App colours.",
+                "App colours", () -> show(COLOURS));
         no = topic(card, parts, no, "Free and Pro",
                 "Free keeps the home screen, alarms, to-dos, today's report, one paused app and one locked app, with a small ad on some dashboard screens. Pro removes the ads and opens goals, every saved day, more pauses and locks, extra routines and all colour looks. "
                         + "When it is offered, you can try Pro first: watch a few short videos and everything in Pro opens for a day. Set it up: the Pro card at the top of Settings.",

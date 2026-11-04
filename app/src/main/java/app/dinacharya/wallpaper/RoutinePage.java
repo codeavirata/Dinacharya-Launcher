@@ -183,7 +183,7 @@ final class RoutinePage extends Page {
     }
 
     private TextView chip(String text, boolean on, int fill, View.OnClickListener click) {
-        TextView t = label(text, 14, on ? 0xFFFFFFFF : Ui.INK, on);
+        TextView t = label(text, 14, on ? Ui.ON_FILL : Ui.INK, on);
         t.setGravity(Gravity.CENTER);
         t.setSingleLine(true);
         t.setPadding(dp(14), dp(9), dp(14), dp(9));
@@ -389,7 +389,7 @@ final class RoutinePage extends Page {
         for (int d = 0; d < 7; d++) {
             final int day = d;
             boolean mine = m.dayUse[d] == sel;
-            TextView t = label(Routine.DAY_SHORT[d].substring(0, 2), 13, mine ? 0xFFFFFFFF : Ui.MUTED, mine);
+            TextView t = label(Routine.DAY_SHORT[d].substring(0, 2), 13, mine ? Ui.ON_FILL : Ui.MUTED, mine);
             t.setGravity(Gravity.CENTER);
             t.setBackground(mine ? Ui.box(a, Ui.TEAL, 0, 20) : Ui.pressable(a, Ui.SOFT, Ui.LINE, 20, Ui.RIPPLE));
             t.setContentDescription(Routine.DAY_SHORT[d] + (mine ? ": uses this routine" : ": uses " + m.routineAt(m.dayUse[d]).name));

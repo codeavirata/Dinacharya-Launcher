@@ -140,7 +140,7 @@ final class LibrarySettings {
         for (int i = 0; i < 7; i++) {
             final int bit = 1 << i;
             boolean set = (lib.days & bit) != 0;
-            TextView t = Ui.label(a, LockRules.dayName(i).substring(0, 1), 14, set ? 0xFFFFFFFF : Ui.INK, true);
+            TextView t = Ui.label(a, LockRules.dayName(i).substring(0, 1), 14, set ? Ui.ON_FILL : Ui.INK, true);
             t.setGravity(Gravity.CENTER);
             t.setBackground(Ui.box(a, set ? Ui.TEAL : Ui.SOFT, set ? 0 : Ui.LINE, 20));
             t.setContentDescription(LockRules.dayName(i));

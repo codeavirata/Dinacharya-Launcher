@@ -83,7 +83,7 @@ public class PerformanceActivity extends LangActivity {
         tabs[TAB_DAYS].setText(Pro.has(this, DayPass.REPORT_DAYS) ? "Days" : "Days · Pro");
         for (int i = 0; i < 3; i++) {
             boolean on = i == which;
-            tabs[i].setTextColor(on ? Color.WHITE : Ui.INK);
+            tabs[i].setTextColor(on ? Ui.ON_FILL : Ui.INK);
             tabs[i].setBackground(on ? Ui.box(this, Ui.TEAL, 0, 14) : Ui.box(this, Ui.SURFACE, Ui.LINE, 12));
         }
         body.removeAllViews();

@@ -27,22 +27,51 @@ import java.util.List;
 import java.util.WeakHashMap;
 
 /**
- * The look of the slot screens: frosted glass over a deep teal and navy ground, big quiet type, pill buttons, round steppers and bottom
+ * The look of the slot screens: frosted glass over graphite (or white), big quiet type, pill buttons, round steppers and bottom
  * sheets, all drawn here (no system dialogs, buttons, switches or lists). Two answers are the main ones and are filled; the others are
- * glass; the rest are plain words. Colours and shapes live in this one file so every slot screen looks the same.
+ * glass; the rest are plain words. Colours and shapes live in this one file so every slot screen looks the same. The colours follow
+ * the app colours (Graphite & Amber or White & Black): {@link Ui#mode} calls {@link #paint}.
  */
 final class Glass {
-    static final int NAVY = 0xFF0B1A2A;
-    static final int DEEP = 0xFF12303A;
-    static final int WHITE = 0xFFFFFFFF;
-    static final int SOFT = 0xE6FFFFFF;
-    static final int MUTE = 0xB3FFFFFF;
-    static final int FAINT = 0x73FFFFFF;
-    static final int FILL = 0x1FFFFFFF;
-    static final int FILL_HI = 0x33FFFFFF;
-    static final int EDGE = 0x33FFFFFF;
-    static final int GREEN = 0xFF7FE0C3;
-    static final int AMBER = 0xFFFFC66B;
+    /** The dark ink that goes on a filled (white) pill; on White & Black the pill is black and this is white. */
+    static int NAVY = 0xFF17171B;
+    static int DEEP = 0xFF222227;
+    /** Text and the filled pill: white on graphite, black on white. */
+    static int WHITE = 0xFFFFFFFF;
+    static int SOFT = 0xE6FFFFFF;
+    static int MUTE = 0xB3FFFFFF;
+    static int FAINT = 0x73FFFFFF;
+    static int FILL = 0x1FFFFFFF;
+    static int FILL_HI = 0x33FFFFFF;
+    static int EDGE = 0x33FFFFFF;
+    /** The accent: a switch that is on, a change worth noticing. */
+    static int GREEN = 0xFFFFC66B;
+    static int AMBER = 0xFFFFC66B;
+    /** What a pressed pill ripples with, and what a pressed main pill ripples with. */
+    static int RIPPLE = 0x33FFFFFF;
+    static int RIPPLE_MAIN = 0x33000000;
+    /** The edge of the answer that is picked, the dimmed screen behind a sheet, the sheet itself, its grip, and a text selection. */
+    static int PICKED_EDGE = 0xCCFFFFFF;
+    static int SCRIM = 0xB3050508;
+    static int PANEL_TOP = 0xFA2A2A31;
+    static int PANEL_BOT = 0xFA131317;
+    static int GRIP = 0x4DFFFFFF;
+    static int HIGHLIGHT = 0x55FFC66B;
+
+    /** Sets the colours for the dark (Graphite & Amber) or the light (White & Black) look. {@link Ui#mode} calls it. */
+    static void paint(boolean dark) {
+        if (dark) {
+            NAVY = 0xFF17171B; DEEP = 0xFF222227; WHITE = 0xFFFFFFFF; SOFT = 0xE6FFFFFF; MUTE = 0xB3FFFFFF; FAINT = 0x73FFFFFF;
+            FILL = 0x1FFFFFFF; FILL_HI = 0x33FFFFFF; EDGE = 0x33FFFFFF; GREEN = 0xFFFFC66B; AMBER = 0xFFFFC66B;
+            RIPPLE = 0x33FFFFFF; RIPPLE_MAIN = 0x33000000; PICKED_EDGE = 0xCCFFFFFF; SCRIM = 0xB3050508;
+            PANEL_TOP = 0xFA2A2A31; PANEL_BOT = 0xFA131317; GRIP = 0x4DFFFFFF; HIGHLIGHT = 0x55FFC66B;
+        } else {
+            NAVY = 0xFFFFFFFF; DEEP = 0xFFF1F1EF; WHITE = 0xFF111111; SOFT = 0xE6111111; MUTE = 0xA6111111; FAINT = 0x66111111;
+            FILL = 0x0F000000; FILL_HI = 0x1F000000; EDGE = 0x1F000000; GREEN = 0xFF111111; AMBER = 0xFFA86F00;
+            RIPPLE = 0x22000000; RIPPLE_MAIN = 0x33FFFFFF; PICKED_EDGE = 0xCC111111; SCRIM = 0x66000000;
+            PANEL_TOP = 0xFAFFFFFF; PANEL_BOT = 0xFAF1F1EF; GRIP = 0x33000000; HIGHLIGHT = 0x33000000;
+        }
+    }
 
     private static final Typeface MEDIUM = Typeface.create("sans-serif-medium", Typeface.NORMAL);
     private static final Typeface LIGHT = Typeface.create("sans-serif-light", Typeface.NORMAL);
@@ -94,17 +123,17 @@ final class Glass {
         return new RippleDrawable(ColorStateList.valueOf(ripple), shape(c, fill, stroke, radiusDp), shape(c, 0xFFFFFFFF, 0, radiusDp));
     }
 
-    /** The ground of the Home card and the sheets: deep teal into navy. */
+    /** A deep ground for a card: graphite (by night), or near black (the card that stands out on White & Black). */
     static GradientDrawable ground(Context c, boolean night, float radiusDp) {
-        int[] colors = night ? new int[]{0xFF1B5E66, 0xFF16384F, 0xFF0D1B30} : new int[]{0xFF2C8C8A, 0xFF2A6B8F, 0xFF1D3F63};
+        int[] colors = night ? new int[]{0xFF34343B, 0xFF1D1D22, 0xFF0D0D10} : new int[]{0xFF232326, 0xFF141416, 0xFF0A0A0B};
         GradientDrawable g = new GradientDrawable(GradientDrawable.Orientation.TL_BR, colors);
         g.setCornerRadius(dp(c, radiusDp));
         return g;
     }
 
     /**
-     * The big card at the top of Home: at night a brighter pane of glass over the ground, by day a deep teal pane that stands out on the
-     * light ground. White words sit on both.
+     * The big card at the top of Home: on graphite a brighter pane of glass over the ground, on white a black card that stands out.
+     * White words sit on both (the card is built with the dark colours, see {@link #paint}).
      */
     static GradientDrawable hero(Context c, boolean night, float radiusDp) {
         if (!night) return ground(c, false, radiusDp);
@@ -139,17 +168,17 @@ final class Glass {
 
     /** A main answer: filled white with dark words. */
     static TextView main(Context c, String s, View.OnClickListener click) {
-        return pill(c, s, NAVY, WHITE, 0, 0x33000000, 54, 16, click);
+        return pill(c, s, NAVY, WHITE, 0, RIPPLE_MAIN, 54, 16, click);
     }
 
     /** The other main answer, and the secondary ones that matter: glass with white words. */
     static TextView glass(Context c, String s, View.OnClickListener click) {
-        return pill(c, s, WHITE, FILL, EDGE, 0x33FFFFFF, 54, 16, click);
+        return pill(c, s, WHITE, FILL, EDGE, RIPPLE, 54, 16, click);
     }
 
     /** A secondary answer: a smaller glass pill. */
     static TextView chip(Context c, String s, View.OnClickListener click) {
-        return pill(c, s, SOFT, FILL, EDGE, 0x33FFFFFF, 38, 13.5f, click);
+        return pill(c, s, SOFT, FILL, EDGE, RIPPLE, 38, 13.5f, click);
     }
 
     /** The quietest answer: plain words (Cancel, Back). */
@@ -158,7 +187,7 @@ final class Glass {
         t.setGravity(Gravity.CENTER);
         t.setMinHeight(dp(c, 44));
         t.setPadding(dp(c, 14), 0, dp(c, 14), 0);
-        t.setBackground(press(c, 0, 0, 22, 0x22FFFFFF));
+        t.setBackground(press(c, 0, 0, 22, RIPPLE));
         t.setClickable(true);
         t.setFocusable(true);
         t.setContentDescription(s);
@@ -316,7 +345,7 @@ final class Glass {
         private TextView round(Context c, String sign, final boolean up) {
             final TextView t = text(c, sign, 26, WHITE, false);
             t.setGravity(Gravity.CENTER);
-            t.setBackground(press(c, FILL_HI, 0, 28, 0x44FFFFFF));
+            t.setBackground(press(c, FILL_HI, 0, 28, RIPPLE));
             t.setClickable(true);
             t.setContentDescription(Lang.tr(up ? "More" : "Less"));
             final Runnable[] run = new Runnable[1];
@@ -417,7 +446,7 @@ final class Glass {
         track.addView(knob, new FrameLayout.LayoutParams(h - 2 * pad, h - 2 * pad, Gravity.CENTER_VERTICAL));
         final Runnable paint = () -> {
             track.setBackground(shape(c, state[0] ? GREEN : FILL_HI, 0, 15));
-            knob.setBackground(shape(c, state[0] ? NAVY : WHITE, 0, 15));
+            knob.setBackground(shape(c, state[0] ? NAVY : 0xFFFFFFFF, 0, 15));
             knob.animate().translationX(state[0] ? w - h + pad : pad).setDuration(140).start();
         };
         track.setClickable(true);
@@ -500,7 +529,7 @@ final class Glass {
 
         private void paint(int i) {
             boolean on = i == selected;
-            rows.get(i).setBackground(press(c, on ? FILL_HI : FILL, on ? 0xCCFFFFFF : EDGE, 18, 0x33FFFFFF));
+            rows.get(i).setBackground(press(c, on ? FILL_HI : FILL, on ? PICKED_EDGE : EDGE, 18, RIPPLE));
         }
     }
 
@@ -547,7 +576,7 @@ final class Glass {
             for (int i = 0; i < items.size(); i++) {
                 TextView t = items.get(i);
                 boolean on = i == index;
-                t.setBackground(press(c, on ? WHITE : 0, 0, 22, 0x22FFFFFF));
+                t.setBackground(press(c, on ? WHITE : 0, 0, 22, RIPPLE));
                 t.setTextColor(on ? NAVY : SOFT);
             }
             if (notify && pick != null) pick.picked(index);
@@ -611,7 +640,7 @@ final class Glass {
                 boolean on = k == i;
                 TextView t = chips.get(k);
                 t.setTextColor(on ? NAVY : SOFT);
-                t.setBackground(press(c, on ? WHITE : FILL, on ? 0 : EDGE, 19, 0x33FFFFFF));
+                t.setBackground(press(c, on ? WHITE : FILL, on ? 0 : EDGE, 19, RIPPLE));
             }
         }
 
@@ -699,7 +728,7 @@ final class Glass {
         e.setPadding(dp(c, 18), dp(c, 14), dp(c, 18), dp(c, 14));
         e.setBackground(shape(c, FILL, EDGE, 18));
         e.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
-        e.setHighlightColor(0x55FFFFFF);
+        e.setHighlightColor(HIGHLIGHT);
         return e;
     }
 
@@ -763,7 +792,7 @@ final class Glass {
             overlay = new FrameLayout(act);
             overlay.setClickable(true);
             scrim = new View(act);
-            scrim.setBackgroundColor(0xB3050D18);
+            scrim.setBackgroundColor(SCRIM);
             scrim.setAlpha(0f);
             scrim.setOnClickListener(v -> {
                 if (cancelable) dismiss();
@@ -773,14 +802,14 @@ final class Glass {
             panel = new LinearLayout(act);
             panel.setOrientation(LinearLayout.VERTICAL);
             float r = dp(act, 30);
-            GradientDrawable bg = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0xFA17414B, 0xFA0C1C2E});
+            GradientDrawable bg = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{PANEL_TOP, PANEL_BOT});
             bg.setCornerRadii(new float[]{r, r, r, r, 0, 0, 0, 0});
             bg.setStroke(Math.max(1, dp(act, 1)), EDGE);
             panel.setBackground(bg);
             panel.setClickable(true);
 
             View grab = new View(act);
-            grab.setBackground(shape(act, 0x4DFFFFFF, 0, 2));
+            grab.setBackground(shape(act, GRIP, 0, 2));
             LinearLayout.LayoutParams gp = new LinearLayout.LayoutParams(dp(act, 38), dp(act, 4));
             gp.gravity = Gravity.CENTER_HORIZONTAL;
             gp.topMargin = dp(act, 10);

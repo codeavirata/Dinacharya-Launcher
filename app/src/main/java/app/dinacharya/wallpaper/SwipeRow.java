@@ -58,7 +58,7 @@ final class SwipeRow extends FrameLayout {
         }
         strip.setVisibility(View.VISIBLE);
         boolean add = armed > 0;
-        strip.setBackground(Ui.box(getContext(), add ? 0xFF17938F : 0xFFC4553B, 0, 18));
+        strip.setBackground(Ui.box(getContext(), add ? 0xFF3E8E63 : 0xFFC4553B, 0, 18));
         addHint.setVisibility(add ? View.VISIBLE : View.INVISIBLE);
         deleteHint.setVisibility(add ? View.INVISIBLE : View.VISIBLE);
         float a = Math.min(1f, Math.abs(armed));

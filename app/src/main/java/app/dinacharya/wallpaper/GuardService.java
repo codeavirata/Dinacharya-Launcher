@@ -536,7 +536,7 @@ public class GuardService extends Service {
         }
 
         private TextView pill(String label, boolean filled, LauncherTheme th) {
-            TextView b = text(label, 17, filled ? (th.dark ? 0xFF001B1A : 0xFFFFFFFF) : th.text, false);
+            TextView b = text(label, 17, filled ? (th.dark ? 0xFF17171B : 0xFFFFFFFF) : th.text, false);
             b.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
             b.setMinHeight(dp(54));
             b.setPadding(dp(24), dp(14), dp(24), dp(14));

@@ -107,7 +107,7 @@ final class ChangePlanUi {
             for (int k = 0; k < chips.size(); k++) {
                 boolean on = k == i;
                 TextView t = chips.get(k);
-                t.setTextColor(on ? 0xFFFFFFFF : Ui.TEAL_DARK);
+                t.setTextColor(on ? Ui.ON_FILL : Ui.TEAL_DARK);
                 t.setBackground(Ui.pressable(c, on ? Ui.TEAL : Ui.SURFACE, Ui.TEAL, 18, Ui.RIPPLE));
             }
         }

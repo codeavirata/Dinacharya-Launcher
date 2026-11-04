@@ -138,7 +138,7 @@ final class SlotCards {
         show[0] = () -> {
             for (int i = 0; i < 2; i++) {
                 boolean on = i == which[0];
-                seg[i].setTextColor(on ? 0xFFFFFFFF : Ui.INK);
+                seg[i].setTextColor(on ? Ui.ON_FILL : Ui.INK);
                 seg[i].setBackground(on ? Ui.box(c, Ui.TEAL, 0, 11) : null);
                 seg[i].setContentDescription(Lang.tr(i == 0 ? "By slot" : "By activity") + ", " + Lang.tr(on ? "selected" : "not selected"));
             }

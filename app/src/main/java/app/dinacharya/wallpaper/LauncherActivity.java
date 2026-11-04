@@ -442,7 +442,7 @@ public class LauncherActivity extends LangActivity {
         t.setGravity(Gravity.CENTER);
         GradientDrawable bg = new GradientDrawable();
         bg.setCornerRadius(dp(24));
-        bg.setColor(0xB3101A19);
+        bg.setColor(0xB3141418);
         if (stroke != 0) bg.setStroke(dp(1), stroke);
         t.setBackground(bg);
         return t;
@@ -458,7 +458,7 @@ public class LauncherActivity extends LangActivity {
         home.setPadding(side, dp(24), side, dp(6));
         home.addView(new View(this), new LinearLayout.LayoutParams(1, 0, 1f));
 
-        wallPill = chip("Bring back your day wallpaper", 13, 0xFFA6EEE9);
+        wallPill = chip("Bring back your day wallpaper", 13, 0xFFFFC66B);
         wallPill.setPadding(dp(16), dp(9), dp(16), dp(9));
         wallPill.setVisibility(View.GONE);
         wallPill.setOnClickListener(v -> {
@@ -470,7 +470,7 @@ public class LauncherActivity extends LangActivity {
         wp.bottomMargin = dp(6);
         home.addView(wallPill, wp);
 
-        lockPill = chip("Make your locks hold everywhere", 13, 0xFFA6EEE9);
+        lockPill = chip("Make your locks hold everywhere", 13, 0xFFFFC66B);
         lockPill.setPadding(dp(16), dp(9), dp(16), dp(9));
         lockPill.setVisibility(View.GONE);
         lockPill.setOnClickListener(v -> StrongMode.ask(this));
@@ -479,7 +479,7 @@ public class LauncherActivity extends LangActivity {
         lp2.bottomMargin = dp(6);
         home.addView(lockPill, lp2);
 
-        defaultPill = chip("Make this your home app", 13, 0xFFA6EEE9);
+        defaultPill = chip("Make this your home app", 13, 0xFFFFC66B);
         defaultPill.setPadding(dp(16), dp(9), dp(16), dp(9));
         defaultPill.setOnClickListener(v -> {
             if (!HomeRole.isDefault(this)) HomeRole.request(this);
@@ -1348,7 +1348,7 @@ public class LauncherActivity extends LangActivity {
         LinearLayout col = new LinearLayout(this);
         col.setOrientation(LinearLayout.VERTICAL);
         col.setGravity(Gravity.CENTER);
-        col.setBackgroundColor(0xFF10201E);
+        col.setBackgroundColor(0xFF141418);
         col.setPadding(dp(32), dp(32), dp(32), dp(32));
         TextView t = new TextView(this);
         t.setText("The home screen could not start.\nYour apps are fine. Try again, or pick another home app.");

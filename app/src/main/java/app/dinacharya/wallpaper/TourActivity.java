@@ -32,7 +32,7 @@ public class TourActivity extends LangActivity {
     static final String EXTRA_FIRST_RUN = "first_run";
     private static final int WHITE = 0xFFF1F3F2;
     private static final int SOFT = 0xFFB8C7C5;
-    private static final int TEAL = 0xFF63D2CC;
+    private static final int TEAL = 0xFFFFC66B;
     private static final int SETUP = TourArt.PAGES;
     private static final int TOTAL = TourArt.PAGES + 1;
 

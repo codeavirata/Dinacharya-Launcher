@@ -204,7 +204,7 @@ final class PauseScreen {
     }
 
     private TextView pill(String label, boolean filled) {
-        TextView b = text(label, 17, filled ? (th.dark ? 0xFF001B1A : 0xFFFFFFFF) : th.text, false);
+        TextView b = text(label, 17, filled ? (th.dark ? 0xFF17171B : 0xFFFFFFFF) : th.text, false);
         b.setGravity(Gravity.CENTER);
         b.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
         b.setMinHeight(dp(54));
