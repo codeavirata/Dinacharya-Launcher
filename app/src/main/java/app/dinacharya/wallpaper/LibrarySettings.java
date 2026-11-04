@@ -101,7 +101,7 @@ final class LibrarySettings {
     }
 
     private TextView preset(String text, final int mask) {
-        TextView t = Ui.label(a, text, 13, Ui.TEAL, true);
+        TextView t = Ui.label(a, text, 13, Ui.TEAL_DARK, true);
         t.setPadding(0, Ui.dp(a, 6), Ui.dp(a, 16), Ui.dp(a, 6));
         t.setOnClickListener(v -> {
             LibraryMode lib = Store.library(a);

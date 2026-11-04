@@ -447,7 +447,6 @@ public class MainActivity extends LangActivity {
 
     private void buildShell() {
         FrameLayout root = new FrameLayout(this);
-        root.setBackgroundColor(0xFFEDF2F1);
         LinearLayout column = new LinearLayout(this);
         column.setOrientation(LinearLayout.VERTICAL);
         content = new SwipeFrame(this);
@@ -455,15 +454,14 @@ public class MainActivity extends LangActivity {
 
         LinearLayout nav = new LinearLayout(this);
         nav.setOrientation(LinearLayout.HORIZONTAL);
-        nav.setBackgroundColor(Ui.SURFACE);
-        nav.setElevation(dp(8));
-        nav.setPadding(dp(4), dp(6), dp(4), dp(8));
+        nav.setBackground(Ui.box(this, Ui.BAR, Ui.EDGE, 30));   // a floating bar of glass
+        nav.setPadding(dp(4), dp(6), dp(4), dp(6));
         for (int i = 0; i < 5; i++) {
             final int t = i;
             LinearLayout item = new LinearLayout(this);
             item.setOrientation(LinearLayout.VERTICAL);
             item.setGravity(Gravity.CENTER_HORIZONTAL);
-            item.setBackground(Ui.pressable(this, 0x00FFFFFF, 0, 16, 0x200E7C7B));
+            item.setBackground(Ui.pressable(this, 0x00FFFFFF, 0, 22, Ui.RIPPLE));
             item.setPadding(0, dp(4), 0, dp(2));
             item.setContentDescription(TAB_NAMES[i]);
             FrameLayout pill = new FrameLayout(this);
@@ -480,7 +478,9 @@ public class MainActivity extends LangActivity {
             tabPills[i] = pill;
             nav.addView(item, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
         }
-        column.addView(nav, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        final FrameLayout navWrap = new FrameLayout(this);
+        navWrap.addView(nav, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        column.addView(navWrap, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         root.addView(column, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         // The undo bar floats just above the bottom bar.
@@ -508,15 +508,13 @@ public class MainActivity extends LangActivity {
         undoBar.setVisibility(View.GONE);
         root.addView(undoBar, ulp);
 
-        final LinearLayout navBar = nav;
         final FrameLayout.LayoutParams undoLp = ulp;
         Insets.watch(root, (l, t, r, b) -> {
             content.setPadding(l, t, r, 0);
-            navBar.setPadding(dp(4) + l, dp(6), dp(4) + r, dp(8) + b);
+            navWrap.setPadding(dp(12) + l, dp(4), dp(12) + r, dp(6) + b);
             undoLp.bottomMargin = dp(84) + b;
             undoBar.setLayoutParams(undoLp);
         });
-        Insets.lightBars(this);
         setContentView(root);
     }
 
@@ -787,7 +785,7 @@ public class MainActivity extends LangActivity {
             tabIcons[i].setColor(on ? Ui.TEAL_DARK : Ui.MUTED);
             tabLabels[i].setTextColor(on ? Ui.TEAL_DARK : Ui.MUTED);
             tabLabels[i].setTypeface(on ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
-            tabPills[i].setBackground(on ? Ui.box(this, Ui.TONAL, 0, 16) : null);
+            tabPills[i].setBackground(on ? Ui.box(this, Ui.TONAL, Ui.EDGE, 16) : null);
         }
     }
 

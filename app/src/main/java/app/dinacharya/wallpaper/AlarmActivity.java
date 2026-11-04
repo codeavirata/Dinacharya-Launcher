@@ -42,6 +42,12 @@ import java.util.Random;
  * to work. At bedtime it asks whether you are going to sleep.
  */
 public class AlarmActivity extends LangActivity {
+
+    @Override
+    protected int look() {
+        return LOOK_NIGHT;
+    }
+
     private AlarmPlanner.Event ev;
     private Routine base;
     private Overrides ov;
@@ -119,13 +125,12 @@ public class AlarmActivity extends LangActivity {
         root.setPadding(dp(20), dp(32), dp(20), dp(24));
         sv.addView(root, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         Insets.pad(sv);
-        Insets.lightBars(this);
         setContentView(sv);
 
         bigClock = Ui.label(this, "", 40, Ui.INK, true);
         bigClock.setGravity(Gravity.CENTER_HORIZONTAL);
         root.addView(bigClock, Ui.wide(this, 0));
-        titleView = Ui.label(this, "", 22, Ui.TEAL, true);
+        titleView = Ui.label(this, "", 22, Ui.TEAL_DARK, true);
         titleView.setGravity(Gravity.CENTER_HORIZONTAL);
         root.addView(titleView, Ui.wide(this, 10));
         subView = Ui.label(this, "", 15, Ui.MUTED, false);
@@ -284,7 +289,6 @@ public class AlarmActivity extends LangActivity {
             // the screen is closing
         }
         slotPage = null;
-        Insets.lightBars(this);
     }
 
     /**
@@ -1132,7 +1136,7 @@ public class AlarmActivity extends LangActivity {
             card.setOrientation(LinearLayout.VERTICAL);
             card.setPadding(dp(14), dp(12), dp(14), dp(12));
             boolean sel = i == chosen && o.fits;
-            card.setBackground(Ui.box(this, sel ? 0xFFDDF0EE : Ui.SURFACE, sel ? Ui.TEAL : Ui.LINE, 14));
+            card.setBackground(Ui.box(this, sel ? Ui.TONAL : Ui.SURFACE, sel ? Ui.TEAL : Ui.LINE, 14));
             card.setAlpha(o.fits ? 1f : 0.55f);
             TextView head = Ui.label(this, heads[Math.min(i, 2)] + "  ·  " + clock(o.wakeMs), 17, Ui.INK, true);
             card.addView(head);

@@ -1,11 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
-        <item name="android:colorPrimary">@color/teal</item>
-        <item name="android:colorAccent">@color/teal</item>
-        <item name="android:statusBarColor">@color/bg</item>
-        <item name="android:windowBackground">@color/bg</item>
+    <!-- Every screen is frosted glass over a gradient ground. The night version is the default (and what shows while a screen opens);
+         the day version is chosen in code when the routine's look is Day. The ground itself and the colours are set in Ui. -->
+    <style name="AppNight" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:colorPrimary">#FF17938F</item>
+        <item name="android:colorAccent">#FF7FE0C3</item>
+        <item name="android:windowBackground">@drawable/ground_night</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:alertDialogTheme">@style/GlassDialogNight</item>
+        <item name="android:timePickerDialogTheme">@style/GlassDialogNight</item>
+        <item name="android:datePickerDialogTheme">@style/GlassDialogNight</item>
+        <item name="android:spinnerStyle">@style/GlassSpinnerNight</item>
+    </style>
+
+    <style name="AppDay" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">#FF0E7C7B</item>
+        <item name="android:colorAccent">#FF0E7C7B</item>
+        <item name="android:windowBackground">@drawable/ground_day</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:alertDialogTheme">@style/GlassDialogDay</item>
+        <item name="android:timePickerDialogTheme">@style/GlassDialogDay</item>
+        <item name="android:datePickerDialogTheme">@style/GlassDialogDay</item>
+        <item name="android:spinnerStyle">@style/GlassSpinnerDay</item>
+    </style>
+
+    <style name="AppTheme" parent="AppNight" />
+
+    <!-- Dialogs: frosted glass, dark at night and light by day. -->
+    <style name="GlassDialogNight" parent="@android:style/Theme.Material.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/glass_dialog_night</item>
+        <item name="android:colorAccent">#FF7FE0C3</item>
+    </style>
+
+    <style name="GlassDialogDay" parent="@android:style/Theme.Material.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/glass_dialog_day</item>
+        <item name="android:colorAccent">#FF0E7C7B</item>
+    </style>
+
+    <!-- The drop-down list of a choice box. -->
+    <style name="GlassSpinnerNight" parent="@android:style/Widget.Material.Spinner">
+        <item name="android:popupBackground">@drawable/glass_dialog_night</item>
+    </style>
+
+    <style name="GlassSpinnerDay" parent="@android:style/Widget.Material.Light.Spinner">
+        <item name="android:popupBackground">@drawable/glass_dialog_day</item>
     </style>
 
     <!-- The home screen: the phone's wallpaper shows through, behind transparent system bars. -->
@@ -14,6 +56,9 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:alertDialogTheme">@style/GlassDialogNight</item>
+        <item name="android:timePickerDialogTheme">@style/GlassDialogNight</item>
+        <item name="android:datePickerDialogTheme">@style/GlassDialogNight</item>
     </style>
 
     <!-- The lock and pause screen that comes up over an app when the strong lock is on (the colours are set in code). -->
@@ -25,8 +70,9 @@
 
     <!-- The tour: dark from the first frame, so it does not flash light. -->
     <style name="TourTheme" parent="@android:style/Theme.Material.NoActionBar">
-        <item name="android:windowBackground">@color/ink</item>
-        <item name="android:statusBarColor">@color/ink</item>
-        <item name="android:navigationBarColor">@color/ink</item>
+        <item name="android:windowBackground">@drawable/ground_night</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:alertDialogTheme">@style/GlassDialogNight</item>
     </style>
 </resources>

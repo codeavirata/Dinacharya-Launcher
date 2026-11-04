@@ -16,6 +16,12 @@ import android.widget.FrameLayout;
  * It lives in a task of its own, is not kept in the recent apps, and closes as soon as it is left.
  */
 public class GuardActivity extends LangActivity {
+
+    @Override
+    protected int look() {
+        return LOOK_OWN;
+    }
+
     static final String EXTRA_PKG = "pkg";
 
     private FrameLayout host;
@@ -98,9 +104,9 @@ public class GuardActivity extends LangActivity {
             return;
         }
         LauncherTheme th = LauncherTheme.of(this, cfg);
-        int bg = th.bg | 0xFF000000;
-        getWindow().setBackgroundDrawable(new ColorDrawable(bg));
-        host.setBackgroundColor(bg);
+        Ui.mode(th.dark);
+        getWindow().setBackgroundDrawable(new ColorDrawable(th.bg | 0xFF000000));
+        host.setBackground(Ui.ground(this, th.dark));
         Insets.bars(this, !th.dark);
         label = labelOf(pkg);
         final AppEntry app = new AppEntry(v.key, label, AppKey.user(v.key) != 0);

@@ -59,7 +59,7 @@ final class BackupPage extends Page {
         LinearLayout head = new LinearLayout(a);
         head.setOrientation(LinearLayout.HORIZONTAL);
         head.setGravity(Gravity.CENTER_VERTICAL);
-        Glyph cloud = new Glyph(a, Glyph.CLOUD, Ui.TEAL);
+        Glyph cloud = new Glyph(a, Glyph.CLOUD, Ui.TEAL_DARK);
         cloud.setBackground(Ui.box(a, Ui.TONAL, 0, 26));
         cloud.setPadding(a.dp(10), a.dp(10), a.dp(10), a.dp(10));
         head.addView(cloud, new LinearLayout.LayoutParams(a.dp(52), a.dp(52)));
@@ -124,11 +124,11 @@ final class BackupPage extends Page {
         row.setOrientation(LinearLayout.HORIZONTAL);
         row.setGravity(Gravity.CENTER_VERTICAL);
         row.setPadding(a.dp(4), a.dp(10), a.dp(4), a.dp(10));
-        row.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 12, 0x200E7C7B));
+        row.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 12, Ui.RIPPLE));
         LinearLayout words = new LinearLayout(a);
         words.setOrientation(LinearLayout.VERTICAL);
         words.addView(Ui.label(a, name, 15, Ui.INK, false));
-        TextView value = Ui.label(a, "", 13, Ui.TEAL, false);
+        TextView value = Ui.label(a, "", 13, Ui.TEAL_DARK, false);
         words.addView(value, Ui.wide(a, 2));
         row.addView(words, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
         row.addView(new Glyph(a, Glyph.CHEVRON, Ui.MUTED), new LinearLayout.LayoutParams(a.dp(22), a.dp(22)));

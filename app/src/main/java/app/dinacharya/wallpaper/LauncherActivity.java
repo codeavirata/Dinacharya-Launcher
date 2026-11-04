@@ -60,6 +60,12 @@ import java.util.Set;
  * sentence, slow breaths or a question, first. It shows no ads.
  */
 public class LauncherActivity extends LangActivity {
+
+    @Override
+    protected int look() {
+        return LOOK_OWN;
+    }
+
     private static final String PREF_HINT = "launcher_hint_done";
     private static final String PREF_PRO_CHECK = "launcher_pro_check";
     private static final String PREF_WALL_ASKED = "wallpaper_asked_at";
@@ -364,6 +370,7 @@ public class LauncherActivity extends LangActivity {
     @SuppressWarnings("deprecation")
     private void buildScreen() {
         th = LauncherTheme.of(this, cfg);
+        Ui.mode(th.dark);   // the dialogs and cards built here wear the same glass
         Window w = getWindow();
         if (Build.VERSION.SDK_INT >= 30) {
             w.setDecorFitsSystemWindows(false);

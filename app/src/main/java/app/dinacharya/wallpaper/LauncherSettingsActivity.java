@@ -26,7 +26,6 @@ import java.util.Set;
  * Each page is a row of cards of which only one is open at a time; Settings opens the page with the card the person chose.
  */
 public class LauncherSettingsActivity extends LangActivity {
-    private static final int DIALOG = android.R.style.Theme_DeviceDefault_Light_Dialog_Alert;
     static final String EXTRA_SECTION = "section";
     static final String EXTRA_CARD = "card";
     static final int SEC_HOME = 0, SEC_FOCUS = 1;
@@ -55,9 +54,8 @@ public class LauncherSettingsActivity extends LangActivity {
         openId = getIntent().getStringExtra(EXTRA_CARD);
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
-        root.setBackgroundColor(0xFFEDF2F1);
 
-        TextView back = Ui.label(this, "‹  Back", 15, Ui.TEAL, true);
+        TextView back = Ui.label(this, "‹  Back", 15, Ui.TEAL_DARK, true);
         back.setPadding(Ui.dp(this, 16), Ui.dp(this, 14), Ui.dp(this, 16), Ui.dp(this, 4));
         back.setOnClickListener(v -> finish());
         root.addView(back, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -72,7 +70,6 @@ public class LauncherSettingsActivity extends LangActivity {
         sv.addView(body, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         root.addView(sv, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
         Insets.pad(root);
-        Insets.lightBars(this);
         setContentView(root);
 
         final AppSource source = new AppSource(this);
@@ -143,9 +140,9 @@ public class LauncherSettingsActivity extends LangActivity {
     }
 
     private TextView smallButton(String text, View.OnClickListener l) {
-        TextView t = Ui.label(this, text, 14, Ui.TEAL, true);
+        TextView t = Ui.label(this, text, 14, Ui.TEAL_DARK, true);
         t.setPadding(Ui.dp(this, 14), Ui.dp(this, 9), Ui.dp(this, 14), Ui.dp(this, 9));
-        t.setBackground(Ui.pressable(this, Ui.TONAL, 0, 14, 0x300E7C7B));
+        t.setBackground(Ui.pressable(this, Ui.TONAL, 0, 14, Ui.RIPPLE));
         t.setGravity(Gravity.CENTER);
         t.setOnClickListener(l);
         return t;
@@ -279,7 +276,7 @@ public class LauncherSettingsActivity extends LangActivity {
     }
 
     private void pickSwipe(final boolean left) {
-        AppPicker.show(this, DIALOG, left ? "Swipe left opens" : "Swipe right opens", visibleApps(),
+        AppPicker.show(this, Ui.dialogTheme(), left ? "Swipe left opens" : "Swipe right opens", visibleApps(),
                 new String[]{"Nothing", "Camera", "Phone", "Dinacharya routine"},
                 new String[]{"", AppKey.CAMERA, AppKey.PHONE, AppKey.DASHBOARD}, key -> {
                     if (left) cfg.swipeLeft = key;
@@ -398,13 +395,13 @@ public class LauncherSettingsActivity extends LangActivity {
             addRow(c, row(nameOf(r.key), ruleSummary(r, open), "Edit", () -> {
                 AppEntry e = byKey.get(r.key);
                 if (e == null) e = new AppEntry(r.key, AppKey.pkg(r.key), false);
-                FocusDialog.show(this, DIALOG, cfg, e, Pro.open(this), this::render);
+                FocusDialog.show(this, Ui.dialogTheme(), cfg, e, Pro.open(this), this::render);
             }), 2);
         }
-        Button add = Ui.button(this, "Add a pause for an app", false, v -> AppPicker.show(this, DIALOG, "Add a pause for", ruleApps(),
+        Button add = Ui.button(this, "Add a pause for an app", false, v -> AppPicker.show(this, Ui.dialogTheme(), "Add a pause for", ruleApps(),
                 null, null, key -> {
                     AppEntry e = byKey.get(key);
-                    if (e != null) FocusDialog.show(this, DIALOG, cfg, e, Pro.open(this), this::render);
+                    if (e != null) FocusDialog.show(this, Ui.dialogTheme(), cfg, e, Pro.open(this), this::render);
                 }));
         addRow(c, add, 10);
         if (!Pro.get(this).owned()) {
@@ -513,7 +510,7 @@ public class LauncherSettingsActivity extends LangActivity {
             names[i] = list.get(i).shown();
             on[i] = picked.contains(list.get(i).key);
         }
-        new DBuilder(this, DIALOG).setAppChoices(names, on, (dlg, which, checked) -> {
+        new DBuilder(this, Ui.dialogTheme()).setAppChoices(names, on, (dlg, which, checked) -> {
                     String key = list.get(which).key;
                     if (!checked) {
                         picked.remove(key);
@@ -577,15 +574,15 @@ public class LauncherSettingsActivity extends LangActivity {
             else if (held < g.apps.size()) sb.append("  ·  only ").append(held).append(" held, needs Pro");
             else if (g.strict && !DayPass.has(open, DayPass.LOCK_STRICT)) sb.append("  ·  strict part off");
             addRow(c, row(g.name, sb.toString(), "Edit", () ->
-                    GroupDialog.show(this, DIALOG, cfg, g, visibleApps(), Pro.open(this), clock24, this::render)), 2);
+                    GroupDialog.show(this, Ui.dialogTheme(), cfg, g, visibleApps(), Pro.open(this), clock24, this::render)), 2);
         }
         Button add = Ui.button(this, more ? "Add a locked group" : "Lock apps", false, v -> {
             final int now = Pro.open(this);
             if (!DayPass.has(now, DayPass.LOCK_MORE) && cfg.groups.size() >= LockRules.FREE_GROUPS) {
-                ProPrompt.show(this, DayPass.LOCK_MORE, "More than one lock", DIALOG, this::render);
+                ProPrompt.show(this, DayPass.LOCK_MORE, "More than one lock", Ui.dialogTheme(), this::render);
                 return;
             }
-            GroupDialog.show(this, DIALOG, cfg, null, visibleApps(), now, clock24, this::render);
+            GroupDialog.show(this, Ui.dialogTheme(), cfg, null, visibleApps(), now, clock24, this::render);
         });
         addRow(c, add, 10);
         holdsEverywhere(c, lockHow);
@@ -627,14 +624,14 @@ public class LauncherSettingsActivity extends LangActivity {
                 + "it yourself meanwhile. If rules overlap, the quietest wins."), 4);
         if (q.rules.isEmpty()) addRow(qb, note("No quiet rules yet."), 8);
         for (final QuietRules.Rule r : q.rules) {
-            addRow(qb, row(r.name, r.text(clock24), "Edit", () -> QuietDialog.show(this, DIALOG, q, r, clock24, this::render)), 2);
+            addRow(qb, row(r.name, r.text(clock24), "Edit", () -> QuietDialog.show(this, Ui.dialogTheme(), q, r, clock24, this::render)), 2);
         }
         addRow(qb, Ui.button(this, "Add a quiet rule", false, v -> {
             if (q.rules.size() >= QuietRules.MAX_RULES) {
                 Lang.toast(this, "That is the most rules you can have", Toast.LENGTH_SHORT).show();
                 return;
             }
-            QuietDialog.show(this, DIALOG, q, null, clock24, this::render);
+            QuietDialog.show(this, Ui.dialogTheme(), q, null, clock24, this::render);
         }), 10);
         boolean needs = false;
         for (QuietRules.Rule r : q.rules) needs |= r.sound == QuietRules.SILENT || r.sound == QuietRules.DND;
@@ -694,7 +691,7 @@ public class LauncherSettingsActivity extends LangActivity {
             names[i] = nameOf(keys.get(i));
             hidden[i] = true;
         }
-        new DBuilder(this, DIALOG)
+        new DBuilder(this, Ui.dialogTheme())
                 .setTitle("Hidden apps")
                 .setMultiChoiceItems(names, hidden, (d, which, checked) -> hidden[which] = checked)
                 .setPositiveButton("Done", (d, w) -> {
@@ -735,13 +732,13 @@ public class LauncherSettingsActivity extends LangActivity {
         Button reset = Ui.button(this, "Reset these settings", false, v -> {
             long until = strictLockUntil();
             if (until != 0) {
-                new DBuilder(this, DIALOG).setTitle("A strict lock is holding")
+                new DBuilder(this, Ui.dialogTheme()).setTitle("A strict lock is holding")
                         .setMessage("The settings cannot be reset while a strict lock holds. It ends at "
                                 + LockRules.untilText(until, System.currentTimeMillis(), Store.zone(), clock24()) + ".")
                         .setPositiveButton("OK", null).show();
                 return;
             }
-            new DBuilder(this, DIALOG)
+            new DBuilder(this, Ui.dialogTheme())
                     .setTitle("Reset the home screen?")
                     .setMessage("This clears the swipes, the look, the hidden apps, the pause rules, the locked groups and the phone use choices. "
                             + "Your routine and reports are not touched.")

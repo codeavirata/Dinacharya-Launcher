@@ -40,7 +40,6 @@ public class SetupActivity extends LangActivity {
         review = getIntent().getBooleanExtra(EXTRA_REVIEW, false);
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
-        root.setBackgroundColor(0xFFEDF2F1);
 
         ScrollView sv = new ScrollView(this);
         sv.setFillViewport(true);
@@ -62,7 +61,6 @@ public class SetupActivity extends LangActivity {
         card.setOrientation(LinearLayout.VERTICAL);
         card.setPadding(dp(16), dp(8), dp(16), dp(8));
         card.setBackground(Ui.box(this, Ui.SURFACE, 0, 22));
-        card.setElevation(dp(1.5f));
         rows = new LinearLayout(this);
         rows.setOrientation(LinearLayout.VERTICAL);
         card.addView(rows);
@@ -77,7 +75,7 @@ public class SetupActivity extends LangActivity {
         foot.setPadding(dp(20), dp(8), dp(20), dp(16));
         main = Ui.button(this, "Continue", true, v -> onMain());
         foot.addView(main, Ui.wide(this, 0));
-        skip = Ui.label(this, review ? "Close" : "Skip for now", 15, Ui.TEAL, true);
+        skip = Ui.label(this, review ? "Close" : "Skip for now", 15, Ui.TEAL_DARK, true);
         skip.setGravity(Gravity.CENTER);
         skip.setPadding(dp(8), dp(12), dp(8), dp(12));
         skip.setOnClickListener(v -> finishSetup());
@@ -86,7 +84,6 @@ public class SetupActivity extends LangActivity {
 
         Insets.pad(root);
         setContentView(root);
-        Insets.lightBars(this);
         refresh();
     }
 
@@ -151,7 +148,7 @@ public class SetupActivity extends LangActivity {
                 if (s.id == Permissions.ALARMS_ON) refresh();
             }));
             if (s.extra != null && !s.ok) {
-                TextView more = Ui.label(this, s.extra, 13, Ui.TEAL, true);
+                TextView more = Ui.label(this, s.extra, 13, Ui.TEAL_DARK, true);
                 more.setPadding(dp(46), dp(2), dp(8), dp(10));
                 more.setOnClickListener(v -> Permissions.requestExtra(this, s.id));
                 rows.addView(more);

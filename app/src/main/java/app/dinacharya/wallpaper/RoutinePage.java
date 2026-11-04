@@ -187,17 +187,17 @@ final class RoutinePage extends Page {
         t.setGravity(Gravity.CENTER);
         t.setSingleLine(true);
         t.setPadding(dp(14), dp(9), dp(14), dp(9));
-        t.setBackground(on ? Ui.pressable(a, Ui.TEAL, 0, 18, 0x40FFFFFF) : Ui.pressable(a, fill, 0, 18, 0x300E7C7B));
+        t.setBackground(on ? Ui.pressable(a, Ui.TEAL, 0, 18, 0x40FFFFFF) : Ui.pressable(a, fill, 0, 18, Ui.RIPPLE));
         t.setOnClickListener(click);
         return t;
     }
 
     private TextView outlineChip(String text, View.OnClickListener click) {
-        TextView t = label(text, 14, Ui.TEAL, true);
+        TextView t = label(text, 14, Ui.TEAL_DARK, true);
         t.setGravity(Gravity.CENTER);
         t.setSingleLine(true);
         t.setPadding(dp(14), dp(9), dp(14), dp(9));
-        t.setBackground(Ui.pressable(a, Ui.SURFACE, Ui.TEAL, 18, 0x300E7C7B));
+        t.setBackground(Ui.pressable(a, Ui.SURFACE, Ui.TEAL, 18, Ui.RIPPLE));
         t.setOnClickListener(click);
         return t;
     }
@@ -243,7 +243,7 @@ final class RoutinePage extends Page {
         timeBtn.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
         timeBtn.setTextColor(Ui.INK);
         timeBtn.setStateListAnimator(null);
-        timeBtn.setBackground(Ui.pressable(a, Ui.SOFT, Ui.LINE, 18, 0x300E7C7B));
+        timeBtn.setBackground(Ui.pressable(a, Ui.SOFT, Ui.LINE, 18, Ui.RIPPLE));
         timeBtn.setPadding(dp(12), dp(14), dp(12), dp(14));
         timeBtn.setOnClickListener(v -> pickTime());
         start.addView(timeBtn, wide(6));
@@ -391,7 +391,7 @@ final class RoutinePage extends Page {
             boolean mine = m.dayUse[d] == sel;
             TextView t = label(Routine.DAY_SHORT[d].substring(0, 2), 13, mine ? 0xFFFFFFFF : Ui.MUTED, mine);
             t.setGravity(Gravity.CENTER);
-            t.setBackground(mine ? Ui.box(a, Ui.TEAL, 0, 20) : Ui.pressable(a, Ui.SOFT, Ui.LINE, 20, 0x300E7C7B));
+            t.setBackground(mine ? Ui.box(a, Ui.TEAL, 0, 20) : Ui.pressable(a, Ui.SOFT, Ui.LINE, 20, Ui.RIPPLE));
             t.setContentDescription(Routine.DAY_SHORT[d] + (mine ? ": uses this routine" : ": uses " + m.routineAt(m.dayUse[d]).name));
             t.setOnClickListener(v -> toggleDay(day));
             LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(0, dp(38), 1f);
@@ -741,7 +741,7 @@ final class RoutinePage extends Page {
             LinearLayout chips = row();
             for (final Routine.Sub s : m.subsOf(k)) {
                 int col = SubColors.of(m, s.kind, s.name);
-                TextView c = chip(s.name, false, mixWhite(col, 0.82f), v -> confirmRemoveType(s));
+                TextView c = chip(s.name, false, (col & 0x00FFFFFF) | 0x3D000000, v -> confirmRemoveType(s));
                 c.setCompoundDrawablePadding(dp(8));
                 c.setCompoundDrawablesWithIntrinsicBounds(dotDrawable(col), null, null, null);
                 c.setContentDescription(Routine.isOther(s.name) ? "Type " + s.name + ". Every kind keeps it."
@@ -868,7 +868,6 @@ final class RoutinePage extends Page {
         LinearLayout card = row();
         card.setGravity(Gravity.NO_GRAVITY);
         card.setBackground(Ui.box(a, Ui.SURFACE, 0, 18));
-        card.setElevation(dp(1));
         card.setPadding(0, 0, dp(10), 0);
 
         View bar = new View(a);
@@ -896,7 +895,7 @@ final class RoutinePage extends Page {
         });
         l1.addView(handle, new LinearLayout.LayoutParams(dp(36), dp(46)));
         LinearLayout times = column();
-        TextView start = label("", 14, Ui.TEAL, true);
+        TextView start = label("", 14, Ui.TEAL_DARK, true);
         start.setTypeface(Typeface.MONOSPACE, Typeface.BOLD);
         start.setSingleLine(true);
         TextView end = label("", 11, Ui.MUTED, false);
@@ -934,7 +933,7 @@ final class RoutinePage extends Page {
             TextView note = label("📝  " + b.note.trim(), 13, Ui.MUTED, false);
             note.setMaxLines(3);
             note.setPadding(dp(36), dp(2), dp(4), dp(4));
-            note.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 10, 0x200E7C7B));
+            note.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 10, Ui.RIPPLE));
             note.setOnClickListener(v -> askNote(b));
             body.addView(note);
         }
@@ -944,10 +943,10 @@ final class RoutinePage extends Page {
         final LinearLayout sumRow = row();
         sumRow.setPadding(dp(36), 0, dp(2), dp(2));
         sumRow.setMinimumHeight(dp(36));
-        sumRow.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 10, 0x200E7C7B));
+        sumRow.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 10, Ui.RIPPLE));
         final TextView summary = label("", 13, Ui.MUTED, false);
         sumRow.addView(summary, new LinearLayout.LayoutParams(0, WRAP, 1f));
-        final TextView chev = label("▾", 16, Ui.TEAL, true);
+        final TextView chev = label("▾", 16, Ui.TEAL_DARK, true);
         chev.setGravity(Gravity.CENTER);
         sumRow.addView(chev, new LinearLayout.LayoutParams(dp(36), dp(32)));
         final Runnable drawDetails = () -> {
@@ -997,7 +996,7 @@ final class RoutinePage extends Page {
         LinearLayout l3 = row();
         final TextView len = label(Routine.formatDuration(b.mins), 15, Ui.INK, true);
         len.setGravity(Gravity.CENTER);
-        len.setBackground(Ui.pressable(a, Ui.SOFT, 0, 12, 0x300E7C7B));
+        len.setBackground(Ui.pressable(a, Ui.SOFT, 0, 12, Ui.RIPPLE));
         len.setContentDescription("Length. Tap to type the minutes.");
         len.setOnClickListener(v -> askMinutes(b));
         Button minus = Ui.iconButton(a, "−", Ui.INK, v -> stepMinutes(b, -5));
@@ -1065,7 +1064,7 @@ final class RoutinePage extends Page {
         boolean master = a.routine().alarmOn;
         boolean lit = master && b.alert != Routine.ALERT_NONE;
         bell.setText(bellIcon(b));
-        bell.setBackground(Ui.pressable(a, lit ? Ui.TONAL : Ui.SOFT, 0, 20, 0x300E7C7B));
+        bell.setBackground(Ui.pressable(a, lit ? Ui.TONAL : Ui.SOFT, 0, 20, Ui.RIPPLE));
         bell.setAlpha(lit ? 1f : 0.55f);
         bell.setContentDescription(!master ? "Alarms are off. Tap to turn them on."
                 : "When this slot starts: " + alertName(b) + ". Tap to change.");

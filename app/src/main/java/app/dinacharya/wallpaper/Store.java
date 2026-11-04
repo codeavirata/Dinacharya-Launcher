@@ -31,6 +31,22 @@ final class Store {
         return (r != null) ? r : Routine.sample();
     }
 
+    /** The routine's look (a Routine.THEME_ value), read without parsing the whole routine. Night when nothing is saved. */
+    static int theme(Context c) {
+        String s = prefs(c).getString(KEY, null);
+        if (s == null) return Routine.THEME_NIGHT;
+        int i = s.startsWith("theme=") ? 0 : s.indexOf("\ntheme=");
+        if (i < 0) return Routine.THEME_NIGHT;
+        int from = s.indexOf('=', i) + 1;
+        int to = s.indexOf('\n', from);
+        try {
+            int v = Integer.parseInt((to < 0 ? s.substring(from) : s.substring(from, to)).trim());
+            return v >= 0 && v <= 2 ? v : Routine.THEME_NIGHT;
+        } catch (NumberFormatException e) {
+            return Routine.THEME_NIGHT;
+        }
+    }
+
     static void save(Context c, Routine r) {
         prefs(c).edit().putString(KEY, r.serialize()).apply();
     }

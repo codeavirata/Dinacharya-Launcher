@@ -30,7 +30,6 @@ public class PerformanceActivity extends LangActivity {
         super.onCreate(savedInstanceState);
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
-        root.setBackgroundColor(Ui.SOFT);
 
         TextView title = Ui.label(this, "Performance", 22, Ui.INK, true);
         title.setPadding(Ui.dp(this, 16), Ui.dp(this, 16), Ui.dp(this, 16), Ui.dp(this, 4));
@@ -61,7 +60,6 @@ public class PerformanceActivity extends LangActivity {
         ap.setMargins(Ui.dp(this, 12), Ui.dp(this, 4), Ui.dp(this, 12), Ui.dp(this, 8));
         root.addView(adSlot, ap);
         Insets.pad(root);
-        Insets.lightBars(this);
         setContentView(root);
     }
 
@@ -263,7 +261,7 @@ public class PerformanceActivity extends LangActivity {
 
     private static int scoreColor(int s) {
         if (s < 0) return Ui.MUTED;
-        if (s >= 70) return Ui.TEAL;
+        if (s >= 70) return Ui.TEAL_DARK;
         if (s >= 45) return Ui.AMBER;
         return Ui.RED;
     }

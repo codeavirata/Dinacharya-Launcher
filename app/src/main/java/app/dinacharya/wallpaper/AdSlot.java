@@ -84,7 +84,7 @@ final class AdSlot extends LinearLayout {
             status = Ui.label(a, "Loading an ad…", 11, Ui.MUTED, false);
             status.setGravity(Gravity.CENTER);
             addView(status, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            TextView remove = Ui.label(a, "Remove ads with Pro", 12, Ui.TEAL, true);
+            TextView remove = Ui.label(a, "Remove ads with Pro", 12, Ui.TEAL_DARK, true);
             remove.setPadding(Ui.dp(a, 12), Ui.dp(a, 6), Ui.dp(a, 12), Ui.dp(a, 2));
             remove.setOnClickListener((View v) -> openPro.run());
             addView(remove, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));

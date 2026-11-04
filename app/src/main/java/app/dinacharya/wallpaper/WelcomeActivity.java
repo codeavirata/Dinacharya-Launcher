@@ -19,7 +19,12 @@ import android.widget.TextView;
  * in the list of recent apps, so Dinacharya appears there once (the dashboard).
  */
 public class WelcomeActivity extends LangActivity {
-    private static final int BG = 0xFF10201E;
+
+    @Override
+    protected int look() {
+        return LOOK_OWN;
+    }
+
     private static final int WHITE = 0xFFF1F3F2;
     private static final int SOFT = 0xFFB8C7C5;
     private static final int TEAL = 0xFF63D2CC;
@@ -47,9 +52,7 @@ public class WelcomeActivity extends LangActivity {
             finish();
             return;
         }
-        getWindow().setStatusBarColor(BG);
-        getWindow().setNavigationBarColor(BG);
-        Insets.bars(this, false);
+        Ui.screen(this, true);   // night glass
         build();
     }
 
@@ -69,7 +72,6 @@ public class WelcomeActivity extends LangActivity {
     private void build() {
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
-        root.setBackgroundColor(BG);
 
         ScrollView sv = new ScrollView(this);
         sv.setFillViewport(true);
@@ -125,7 +127,7 @@ public class WelcomeActivity extends LangActivity {
         TextView langLink = text(LanguageDialog.summary(this), 14, TEAL, true);
         langLink.setGravity(Gravity.CENTER);
         langLink.setPadding(dp(8), dp(6), dp(8), dp(8));
-        langLink.setOnClickListener(v -> LanguageDialog.show(this, android.R.style.Theme_DeviceDefault_Dialog_Alert));
+        langLink.setOnClickListener(v -> LanguageDialog.show(this, R.style.GlassDialogNight));
         foot.addView(langLink, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         BrandMark mark = new BrandMark(this);
         mark.setColors(TEAL, SOFT);

@@ -102,13 +102,24 @@ final class Glass {
         return g;
     }
 
-    /** True when the screens should look like night: the routine's theme says so, or it is automatic and the sun is down. */
+    /**
+     * The big card at the top of Home: at night a brighter pane of glass over the ground, by day a deep teal pane that stands out on the
+     * light ground. White words sit on both.
+     */
+    static GradientDrawable hero(Context c, boolean night, float radiusDp) {
+        if (!night) return ground(c, false, radiusDp);
+        GradientDrawable g = new GradientDrawable(GradientDrawable.Orientation.TL_BR, new int[]{0x38FFFFFF, 0x14FFFFFF});
+        g.setCornerRadius(dp(c, radiusDp));
+        g.setStroke(Math.max(1, dp(c, 1)), 0x40FFFFFF);
+        return g;
+    }
+
+    /** True when the screens should look like night: the routine's theme says so, or it is automatic and the phone is in dark mode. */
     static boolean night(Routine r) {
         if (r == null) return true;
         if (r.theme == Routine.THEME_NIGHT) return true;
         if (r.theme == Routine.THEME_LIGHT) return false;
-        int h = java.time.LocalTime.now(Store.zone()).getHour();
-        return h < 6 || h >= 19;
+        return Ui.systemNight();
     }
 
     // ------------------------------------------------------------------ buttons

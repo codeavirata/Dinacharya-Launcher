@@ -272,7 +272,7 @@ final class InsightsPage extends Page {
             if (r.lentMs > 0) more.addView(detailLine("Given to the slot before", dur(r.lentMs)));
             if (r.extMs > 0) more.addView(detailLine("Carried on past its end", dur(r.extMs)));
             box.addView(more);
-            box.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 10, 0x200E7C7B));
+            box.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 10, Ui.RIPPLE));
             box.setContentDescription("Tap to show or hide the apps used in this slot.");
             box.setOnClickListener(v -> more.setVisibility(more.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE));
             card.addView(box, Ui.wide(a, 2));
@@ -336,7 +336,7 @@ final class InsightsPage extends Page {
     }
 
     private static int scoreColor(int s) {
-        return s < 0 ? Ui.MUTED : s >= 70 ? Ui.TEAL : (s >= 50 ? Ui.AMBER : Ui.RED);
+        return s < 0 ? Ui.MUTED : s >= 70 ? Ui.TEAL_DARK : (s >= 50 ? Ui.AMBER : Ui.RED);
     }
 
     /** A card listing goals with a clock-style ring each; used on Home and here. */
@@ -350,7 +350,6 @@ final class InsightsPage extends Page {
         card.setOrientation(LinearLayout.VERTICAL);
         card.setPadding(a.dp(18), a.dp(14), a.dp(18), a.dp(14));
         card.setBackground(Ui.box(a, Ui.SURFACE, 0, 22));
-        card.setElevation(a.dp(1.5f));
         LinearLayout head = new LinearLayout(a);
         head.setOrientation(LinearLayout.HORIZONTAL);
         head.setGravity(Gravity.CENTER_VERTICAL);
@@ -362,7 +361,7 @@ final class InsightsPage extends Page {
             LinearLayout top = new LinearLayout(a);
             top.setOrientation(LinearLayout.HORIZONTAL);
             top.setGravity(Gravity.CENTER_VERTICAL);
-            top.addView(new GoalRing(a, 52, sm.pct / 100f, Ui.TEAL, sm.pct + "%", sm.met == sm.goals), new LinearLayout.LayoutParams(a.dp(52), a.dp(52)));
+            top.addView(new GoalRing(a, 52, sm.pct / 100f, Ui.TEAL_DARK, sm.pct + "%", sm.met == sm.goals), new LinearLayout.LayoutParams(a.dp(52), a.dp(52)));
             LinearLayout words = new LinearLayout(a);
             words.setOrientation(LinearLayout.VERTICAL);
             words.setPadding(a.dp(14), 0, 0, 0);
@@ -395,7 +394,7 @@ final class InsightsPage extends Page {
         LinearLayout top = new LinearLayout(a);
         top.setOrientation(LinearLayout.HORIZONTAL);
         top.setGravity(Gravity.CENTER_VERTICAL);
-        final TextView arrow = Ui.label(a, "▾", 14, Ui.TEAL, true);
+        final TextView arrow = Ui.label(a, "▾", 14, Ui.TEAL_DARK, true);
         arrow.setPadding(a.dp(8), 0, 0, 0);
         // The detail lines are one tap away, so a list of goals stays short.
         final LinearLayout details = new LinearLayout(a);
@@ -408,7 +407,7 @@ final class InsightsPage extends Page {
             words.setPadding(a.dp(12), 0, 0, 0);
             words.addView(Ui.label(a, l.label() + (streak != null && streak > 0 ? "  🔥 " + streak : ""), 15, Ui.INK, true));
             words.addView(Ui.label(a, Routine.formatDuration(l.doneMin) + " of " + Routine.formatDuration(l.goalMin), 12,
-                    l.met() ? Ui.TEAL : Ui.MUTED, l.met()), Ui.wide(a, 1));
+                    l.met() ? Ui.TEAL_DARK : Ui.MUTED, l.met()), Ui.wide(a, 1));
             top.addView(words, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
             top.addView(arrow);
             box.addView(top);
@@ -465,7 +464,7 @@ final class InsightsPage extends Page {
         } else {
             details.setVisibility(View.GONE);
             box.addView(details);
-            box.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 10, 0x200E7C7B));
+            box.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 10, Ui.RIPPLE));
             box.setContentDescription(l.label() + ", " + Lang.tr("collapsed"));
             box.setOnClickListener(x -> {
                 boolean open = details.getVisibility() != View.VISIBLE;
@@ -566,7 +565,7 @@ final class InsightsPage extends Page {
             row.addView(top);
             row.addView(Ui.label(a, g.ruleText(today) + (now ? "   ·   counts today" : "   ·   not today")
                     + (g.todos.isEmpty() ? "" : g.todos.size() == 1 ? "   ·   1 to-do" : "   ·   " + g.todos.size() + " to-dos"), 12, Ui.MUTED, false), Ui.wide(a, 2));
-            row.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 10, 0x200E7C7B));
+            row.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 10, Ui.RIPPLE));
             row.setOnClickListener(x -> editGoal(g, false));
             listBox.addView(row, Ui.wide(a, 2));
         }
@@ -808,7 +807,7 @@ final class InsightsPage extends Page {
         head.setMinimumHeight(a.dp(44));
         final TextView title = Ui.label(a, "", 15, Ui.INK, true);
         head.addView(title, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        final TextView arrow = Ui.label(a, "▾", 14, Ui.TEAL, true);
+        final TextView arrow = Ui.label(a, "▾", 14, Ui.TEAL_DARK, true);
         head.addView(arrow);
         root.addView(head);
         final LinearLayout open = new LinearLayout(a);
@@ -933,7 +932,7 @@ final class InsightsPage extends Page {
         for (int d = 0; d < 7; d++) {
             boolean on = ((mask >> d) & 1) != 0;
             chips[d].setTextColor(on ? 0xFFFFFFFF : Ui.MUTED);
-            chips[d].setBackground(on ? Ui.box(a, Ui.TEAL, 0, 20) : Ui.pressable(a, Ui.SOFT, Ui.LINE, 20, 0x300E7C7B));
+            chips[d].setBackground(on ? Ui.box(a, Ui.TEAL, 0, 20) : Ui.pressable(a, Ui.SOFT, Ui.LINE, 20, Ui.RIPPLE));
         }
     }
 

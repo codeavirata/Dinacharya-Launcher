@@ -64,7 +64,7 @@ final class GoalRing extends View {
         p.setStyle(Paint.Style.STROKE);
         p.setStrokeWidth(stroke);
         p.setStrokeCap(Paint.Cap.ROUND);
-        p.setColor(0xFFE3ECEA);
+        p.setColor(Ui.night ? 0x33FFFFFF : 0x2610201E);
         cv.drawOval(box, p);
         if (shown > 0.004f) {
             p.setColor(done ? Ui.TEAL : color);
@@ -74,7 +74,7 @@ final class GoalRing extends View {
         if (s >= Ui.dp(getContext(), 36) && r > 0) {
             p.setStrokeCap(Paint.Cap.BUTT);
             p.setStrokeWidth(Math.max(1f, Ui.dp(getContext(), 1) * 0.8f));
-            p.setColor(0x330E7C7B);
+            p.setColor(Ui.night ? 0x33FFFFFF : 0x330E7C7B);
             for (int i = 0; i < 4; i++) {
                 double a = i * Math.PI / 2;
                 float x1 = (float) (s / 2f + Math.sin(a) * r), y1 = (float) (s / 2f - Math.cos(a) * r);

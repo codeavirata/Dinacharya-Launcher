@@ -22,9 +22,14 @@ import android.widget.TextView;
  * with a "you're all set" message.
  */
 public class TourActivity extends LangActivity {
+
+    @Override
+    protected int look() {
+        return LOOK_OWN;
+    }
+
     /** Set when the tour is the last step of the first-run welcome, so that it ends in the dashboard. */
     static final String EXTRA_FIRST_RUN = "first_run";
-    private static final int BG = 0xFF10201E;
     private static final int WHITE = 0xFFF1F3F2;
     private static final int SOFT = 0xFFB8C7C5;
     private static final int TEAL = 0xFF63D2CC;
@@ -60,7 +65,7 @@ public class TourActivity extends LangActivity {
             "Shut the apps that eat your time for hours you choose: every day or on some days, or just for the next hour. A locked app is greyed in the list, and the lock screen shows when it opens again. You can break a lock by waiting half a minute and typing a sentence. Free: one lock with one app. Pro: groups of apps, as many locks as you like, and strict locks that cannot be broken. A group can also lock only while an activity type such as Study is going on, only when both the hours and the activity hold, or in library mode. Set it up in the home settings. The strong lock makes every lock hold wherever an app is opened from.",
             "A score for today, phone time by hour and by app, and plain suggestions, with a PDF to save or share. Today's report is free. Pro adds every saved day, the weekly view, the slot-by-slot analysis and habit cards, and goals: set one for a slot, give it its own to-do list, and watch the streak.",
             "Sign in with Google to back up to a private space in your own Drive, and restore on a new phone. The home settings, your routines and your reports are all in it.",
-            "Choose Light, Night or Auto for your day poster, and a colour look: Teal is free and Pro adds the rest. The app speaks English, Hindi, Marathi, Gujarati, Bengali, Tamil and Telugu. Library mode and quiet rules keep your phone silent in the slots you choose. Settings > Feature guide explains every feature and how to set it up.",
+            "Choose Light, Night or Auto for your day poster and for the whole app, and a colour look: Teal is free and Pro adds the rest. The app speaks English, Hindi, Marathi, Gujarati, Bengali, Tamil and Telugu. Library mode and quiet rules keep your phone silent in the slots you choose. Settings > Feature guide explains every feature and how to set it up.",
             "",
             "The Dinacharya Launcher live wallpaper shows the time, the date and every slot of your day, with the one you are in highlighted, and keeps itself up to date. It comes with the home screen: Dinacharya Launcher asks Android to put it in place and you confirm once, so it also shows on your lock screen and in your recent apps.",
             "Anything still missing from the setup is listed here. You can skip it now and come back from Settings.",
@@ -80,9 +85,7 @@ public class TourActivity extends LangActivity {
     protected void onCreate(Bundle b) {
         super.onCreate(b);
         CrashLog.install(this);
-        getWindow().setStatusBarColor(BG);
-        getWindow().setNavigationBarColor(BG);
-        Insets.bars(this, false);
+        Ui.screen(this, true);   // night glass
         if (android.os.Build.VERSION.SDK_INT >= 33) {
             getOnBackInvokedDispatcher().registerOnBackInvokedCallback(
                     android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT, this::handleBack);
@@ -157,7 +160,6 @@ public class TourActivity extends LangActivity {
     private void build() {
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
-        root.setBackgroundColor(BG);
         root.setPadding(dp(24), dp(12), dp(24), dp(16));
 
         LinearLayout top = new LinearLayout(this);

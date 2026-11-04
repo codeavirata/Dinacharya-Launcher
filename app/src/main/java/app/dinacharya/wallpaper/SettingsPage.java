@@ -79,7 +79,7 @@ final class SettingsPage extends Page {
         proCard();
         LinearLayout general = Ui.section(a, body, "General", null);
         itemAction(general, Glyph.GLOBE, "Language", LanguageDialog.summary(a),
-                () -> LanguageDialog.show(a, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert));
+                () -> LanguageDialog.show(a, Ui.dialogTheme()));
         itemAction(general, Glyph.HELP, "Take the tour", "A short walk through what the app does",
                 () -> a.startActivity(new Intent(a, TourActivity.class)));
         itemAction(general, Glyph.SHIELD, "Check phone settings", "Permissions and settings the app needs, with a tick for each",
@@ -125,7 +125,7 @@ final class SettingsPage extends Page {
         row.setOrientation(LinearLayout.HORIZONTAL);
         row.setGravity(Gravity.CENTER_VERTICAL);
         row.setPadding(a.dp(4), a.dp(10), a.dp(4), a.dp(10));
-        row.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 14, 0x200E7C7B));
+        row.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 14, Ui.RIPPLE));
         Glyph g = new Glyph(a, icon, Ui.TEAL_DARK);
         g.setBackground(Ui.box(a, Ui.TONAL, 0, 14));
         g.setPadding(a.dp(8), a.dp(8), a.dp(8), a.dp(8));
@@ -143,12 +143,12 @@ final class SettingsPage extends Page {
 
     /** "‹ Settings" and the page title. */
     private void header(String title) {
-        TextView back = Ui.label(a, "‹  Settings", 15, Ui.TEAL, true);
+        TextView back = Ui.label(a, "‹  Settings", 15, Ui.TEAL_DARK, true);
         back.setPadding(a.dp(4), a.dp(8), a.dp(12), a.dp(8));
-        back.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 12, 0x200E7C7B));
+        back.setBackground(Ui.pressable(a, 0x00FFFFFF, 0, 12, Ui.RIPPLE));
         back.setOnClickListener(v -> show(MENU));
         body.addView(back, Ui.wrap(a, 0));
-        body.addView(Ui.label(a, title, 26, Ui.INK, true), Ui.wide(a, 6));
+        body.addView(Ui.display(a, title, 30, Ui.INK), Ui.wide(a, 6));
     }
 
     // ------------------------------------------------------------------ look
@@ -185,6 +185,7 @@ final class SettingsPage extends Page {
             a.persist();
             rebuildSwatches();
             a.previewChanged();
+            a.restyle();   // the whole app wears the look: day glass or night glass
         });
         card.addView(themeSeg, Ui.wide(a, 10));
         card.addView(Ui.label(a, "Colours", 13, Ui.MUTED, true), Ui.wrap(a, 16));
@@ -344,8 +345,7 @@ final class SettingsPage extends Page {
         card.setOrientation(LinearLayout.HORIZONTAL);
         card.setGravity(Gravity.CENTER_VERTICAL);
         card.setPadding(a.dp(18), a.dp(16), a.dp(14), a.dp(16));
-        card.setBackground(Ui.box(a, owned ? Ui.SURFACE : Ui.TEAL, 0, 22));
-        card.setElevation(a.dp(1.5f));
+        card.setBackground(owned ? Ui.box(a, Ui.SURFACE, 0, 24) : Ui.accent(a, 24));
         LinearLayout words = new LinearLayout(a);
         words.setOrientation(LinearLayout.VERTICAL);
         int ink = owned ? Ui.INK : 0xFFFFFFFF;
@@ -436,9 +436,9 @@ final class SettingsPage extends Page {
         words.addView(Ui.label(a, ok ? why : why + " Not allowed yet.", 12, Ui.MUTED, false));
         row.addView(words, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
         if (!ok) {
-            TextView btn = Ui.label(a, "Allow", 14, Ui.TEAL, true);
+            TextView btn = Ui.label(a, "Allow", 14, Ui.TEAL_DARK, true);
             btn.setPadding(a.dp(12), a.dp(8), a.dp(12), a.dp(8));
-            btn.setBackground(Ui.pressable(a, Ui.TONAL, 0, 14, 0x300E7C7B));
+            btn.setBackground(Ui.pressable(a, Ui.TONAL, 0, 14, Ui.RIPPLE));
             btn.setOnClickListener(v -> fix.run());
             row.addView(btn);
         }
@@ -571,10 +571,10 @@ final class SettingsPage extends Page {
                         + "Set it up: open the Backup tab.",
                 "Open", () -> a.go(MainActivity.TAB_BACKUP));
         no = topic(card, parts, no, "Look, theme and language",
-                "Choose Light, Night or Auto for your day poster, and a colour look: Teal is free and Pro adds the rest. You can also change the clock, the phone time and the spacing. The app speaks English, Hindi, Marathi, Gujarati, Bengali, Tamil and Telugu. "
+                "Choose Light, Night or Auto for your day poster and for the whole app, and a colour look: Teal is free and Pro adds the rest. You can also change the clock, the phone time and the spacing. The app speaks English, Hindi, Marathi, Gujarati, Bengali, Tamil and Telugu. "
                         + "Set it up: Settings > Home screen > Home screen look, and Settings > Language.",
                 "Home screen look", () -> show(LOOK),
-                "Language", () -> LanguageDialog.show(a, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert));
+                "Language", () -> LanguageDialog.show(a, Ui.dialogTheme()));
         no = topic(card, parts, no, "Free and Pro",
                 "Free keeps the home screen, alarms, to-dos, today's report, one paused app and one locked app, with a small ad on some dashboard screens. Pro removes the ads and opens goals, every saved day, more pauses and locks, extra routines and all colour looks. "
                         + "When it is offered, you can try Pro first: watch a few short videos and everything in Pro opens for a day. Set it up: the Pro card at the top of Settings.",

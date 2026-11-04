@@ -56,7 +56,7 @@ final class HomePage extends Page {
         head.setGravity(Gravity.CENTER_VERTICAL);
         LinearLayout words = new LinearLayout(a);
         words.setOrientation(LinearLayout.VERTICAL);
-        hello = Ui.label(a, "", 26, Ui.INK, true);
+        hello = Ui.display(a, "", 30, Ui.INK);
         dateLine = Ui.label(a, "", 14, Ui.MUTED, false);
         words.addView(hello);
         words.addView(dateLine, Ui.wide(a, 2));
@@ -206,8 +206,7 @@ final class HomePage extends Page {
         LinearLayout card = new LinearLayout(a);
         card.setOrientation(LinearLayout.VERTICAL);
         card.setPadding(a.dp(22), a.dp(20), a.dp(22), a.dp(22));
-        card.setBackground(Glass.ground(a, Glass.night(m), 30));
-        card.setElevation(a.dp(3));
+        card.setBackground(Glass.hero(a, Glass.night(m), 30));
         card.setOnClickListener(v -> a.go(MainActivity.TAB_ROUTINE));
 
         int next = -1;
@@ -642,7 +641,6 @@ final class HomePage extends Page {
                 card.addView(Ui.button(a, "Fix now", true, v -> openAlarmSettings()), Ui.wide(a, 12));
             } else {
                 card.setBackground(Ui.box(a, Ui.SURFACE, 0, 22));
-                card.setElevation(a.dp(1.5f));
                 LinearLayout row = new LinearLayout(a);
                 row.setOrientation(LinearLayout.HORIZONTAL);
                 row.setGravity(Gravity.CENTER_VERTICAL);
@@ -661,9 +659,9 @@ final class HomePage extends Page {
                     words.addView(Ui.label(a, "Every slot has its bell off.", 12, Ui.MUTED, false), Ui.wide(a, 1));
                 }
                 row.addView(words, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-                TextView test = Ui.label(a, "Test", 14, Ui.TEAL, true);
+                TextView test = Ui.label(a, "Test", 14, Ui.TEAL_DARK, true);
                 test.setPadding(a.dp(14), a.dp(10), a.dp(14), a.dp(10));
-                test.setBackground(Ui.pressable(a, Ui.TONAL, 0, 16, 0x300E7C7B));
+                test.setBackground(Ui.pressable(a, Ui.TONAL, 0, 16, Ui.RIPPLE));
                 test.setOnClickListener(v -> a.extras.testAlarm());
                 test.setContentDescription("Ring a test alarm in 10 seconds");
                 card.setOnClickListener(v -> openAlarmSettings());
@@ -749,7 +747,6 @@ final class HomePage extends Page {
             card.setOrientation(LinearLayout.VERTICAL);
             card.setPadding(a.dp(16), a.dp(14), a.dp(16), a.dp(14));
             card.setBackground(Ui.box(a, on ? Ui.TONAL : Ui.SURFACE, 0, 22));
-            card.setElevation(a.dp(1.5f));
             card.addView(Ui.eyebrow(a, "Library mode"));
             card.addView(Ui.label(a, on ? lib.status(now, Store.zone(), a.routine().fmt24) : "Off", 16, Ui.INK, true), Ui.wide(a, 2));
             card.addView(Ui.label(a, on

@@ -176,7 +176,7 @@ final class ExtraSections {
         delayRow.setGravity(Gravity.CENTER_VERTICAL);
         delayRow.addView(Ui.label(a, "Put the start off by", 15, Ui.INK, false), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
         delayRow.addView(Ui.iconButton(a, "−", Ui.TEAL_DARK, v -> stepWakeDelay(-SlotPlay.STEP)));
-        delayText = Ui.label(a, "", 16, Ui.TEAL, true);
+        delayText = Ui.label(a, "", 16, Ui.TEAL_DARK, true);
         delayText.setGravity(Gravity.CENTER);
         delayRow.addView(delayText, new LinearLayout.LayoutParams(a.dp(76), ViewGroup.LayoutParams.WRAP_CONTENT));
         delayRow.addView(Ui.iconButton(a, "+", Ui.TEAL_DARK, v -> stepWakeDelay(SlotPlay.STEP)));
@@ -641,11 +641,11 @@ final class ExtraSections {
     }
 
     private static int habitInk(int tone) {
-        return tone == Suggestions.Habit.GOOD ? Ui.TEAL_DARK : tone == Suggestions.Habit.WATCH ? 0xFF8A5A00 : 0xFF2F4F78;
+        return tone == Suggestions.Habit.GOOD ? Ui.TEAL_DARK : tone == Suggestions.Habit.WATCH ? Ui.AMBER : (Ui.night ? 0xFF9CC4F2 : 0xFF2F4F78);
     }
 
     private static int habitFill(int tone) {
-        return tone == Suggestions.Habit.GOOD ? Ui.TONAL : tone == Suggestions.Habit.WATCH ? Ui.AMBER_SOFT : 0xFFE6EEF7;
+        return tone == Suggestions.Habit.GOOD ? Ui.TONAL : tone == Suggestions.Habit.WATCH ? Ui.AMBER_SOFT : (Ui.night ? 0x334A6C94 : 0xFFE6EEF7);
     }
 
     private static String habitWord(int tone) {

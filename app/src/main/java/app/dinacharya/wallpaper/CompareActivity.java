@@ -29,14 +29,12 @@ public class CompareActivity extends LangActivity {
         if (b != null) openGroup = b.getInt("open", -1);
         ScrollView sv = new ScrollView(this);
         sv.setFillViewport(true);
-        sv.setBackgroundColor(Ui.SOFT);
         body = new LinearLayout(this);
         body.setOrientation(LinearLayout.VERTICAL);
         body.setPadding(Ui.dp(this, 16), Ui.dp(this, 18), Ui.dp(this, 16), Ui.dp(this, 24));
         sv.addView(body, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         Insets.pad(sv);
         setContentView(sv);
-        Insets.lightBars(this);
         Pro.get(this).start();
         render();
     }
@@ -134,7 +132,7 @@ public class CompareActivity extends LangActivity {
         LinearLayout c = new LinearLayout(this);
         c.setOrientation(LinearLayout.VERTICAL);
         c.setPadding(Ui.dp(this, 16), Ui.dp(this, 14), Ui.dp(this, 16), Ui.dp(this, 14));
-        c.setBackground(pro ? Ui.box(this, Ui.TEAL, 0, 20) : Ui.box(this, Ui.SURFACE, Ui.LINE, 20));
+        c.setBackground(pro ? Ui.accent(this, 22) : Ui.box(this, Ui.SURFACE, Ui.LINE, 22));
         c.addView(Ui.label(this, name, 24, pro ? 0xFFFFFFFF : Ui.INK, true));
         TextView t = Ui.label(this, line, 13, pro ? 0xE6FFFFFF : Ui.MUTED, false);
         t.setLineSpacing(Ui.dp(this, 2), 1f);

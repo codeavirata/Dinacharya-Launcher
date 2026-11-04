@@ -34,7 +34,6 @@ public class ReportActivity extends LangActivity {
         root.setOrientation(LinearLayout.VERTICAL);
         sv.addView(root, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         Insets.pad(sv);
-        Insets.lightBars(this);
         setContentView(sv);
 
         LinearLayout bar = new LinearLayout(this);

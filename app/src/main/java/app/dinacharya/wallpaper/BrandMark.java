@@ -17,7 +17,7 @@ final class BrandMark extends View {
 
     private final Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final float d;
-    private int accent = Ui.TEAL;
+    private int accent = Ui.TEAL_DARK;
     private int ink = Ui.MUTED;
 
     BrandMark(Context c) {

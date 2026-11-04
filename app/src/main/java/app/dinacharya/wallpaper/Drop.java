@@ -92,7 +92,7 @@ final class Drop implements Accordion.Foldable {
             header.addView(chip, cp);
         }
 
-        arrow = Ui.label(c, "▾", 18, Ui.TEAL, true);
+        arrow = Ui.label(c, "▾", 18, Ui.TEAL_DARK, true);
         arrow.setGravity(Gravity.CENTER);
         header.addView(arrow, new LinearLayout.LayoutParams(Ui.dp(c, 36), ViewGroup.LayoutParams.WRAP_CONTENT));
         root.addView(header, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -133,7 +133,7 @@ final class Drop implements Accordion.Foldable {
         if (animate) arrow.animate().rotation(rot).setDuration(160).start();
         else arrow.setRotation(rot);
         root.setBackground(Ui.box(c, Ui.SURFACE, open ? Ui.TEAL : Ui.LINE, 16));
-        header.setBackground(Ui.pressable(c, 0x00000000, 0, 16, 0x200E7C7B));
+        header.setBackground(Ui.pressable(c, 0x00000000, 0, 16, Ui.RIPPLE));
         String words = Lang.tr(title) + (badgeWords.isEmpty() ? "" : ", " + Lang.tr(badgeWords));
         header.setContentDescription(words + ", " + Lang.tr(open ? "expanded" : "collapsed"));
     }

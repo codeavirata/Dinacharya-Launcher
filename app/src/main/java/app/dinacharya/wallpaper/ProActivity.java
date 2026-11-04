@@ -22,14 +22,12 @@ public class ProActivity extends LangActivity {
         CrashLog.install(this);
         ScrollView sv = new ScrollView(this);
         sv.setFillViewport(true);
-        sv.setBackgroundColor(Ui.SOFT);
         body = new LinearLayout(this);
         body.setOrientation(LinearLayout.VERTICAL);
         body.setPadding(Ui.dp(this, 16), Ui.dp(this, 18), Ui.dp(this, 16), Ui.dp(this, 24));
         sv.addView(body, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         Insets.pad(sv);
         setContentView(sv);
-        Insets.lightBars(this);
         render();
     }
 
@@ -61,10 +59,10 @@ public class ProActivity extends LangActivity {
             boolean life = p.lifetimeOwned();
             boolean month = p.monthlyOwned();
             body.addView(Ui.eyebrow(this, "Dinacharya"));
-            body.addView(Ui.label(this, "Dinacharya Pro", 28, Ui.INK, true), Ui.wide(this, 4));
+            body.addView(Ui.display(this, "Dinacharya Pro", 34, Ui.INK), Ui.wide(this, 4));
             body.addView(Ui.label(this, owned ? "You have Pro. Thank you!"
                     : "Choose a monthly plan or pay once for life. Paid through Google Play.",
-                    15, owned ? Ui.TEAL : Ui.MUTED, owned), Ui.wide(this, 6));
+                    15, owned ? Ui.TEAL_DARK : Ui.MUTED, owned), Ui.wide(this, 6));
 
             if (month && !life) {
                 body.addView(small("Your monthly plan is active. It renews every month until you cancel it in Google Play.", Ui.MUTED),
@@ -82,7 +80,7 @@ public class ProActivity extends LangActivity {
                     body.addView(note, Ui.wide(this, 6));
                 }
             } else if (p.debugPro()) {
-                body.addView(Ui.label(this, "Switched on for testing on this phone.", 14, Ui.TEAL, true), Ui.wide(this, 10));
+                body.addView(Ui.label(this, "Switched on for testing on this phone.", 14, Ui.TEAL_DARK, true), Ui.wide(this, 10));
             }
 
             if (!owned && VideoPass.offered(this)) {

@@ -24,9 +24,6 @@ import java.util.List;
  * {@link SlotReport}.
  */
 final class SlotCards {
-    private static final int RED_SOFT = 0xFFFBE9E5;
-    private static final int RED_INK = 0xFFA8402B;
-    private static final int AMBER_INK = 0xFF8A5A00;
 
     private SlotCards() {
     }
@@ -36,8 +33,8 @@ final class SlotCards {
     static int toneInk(int tone) {
         switch (tone) {
             case SlotReport.TONE_GOOD: return Ui.TEAL_DARK;
-            case SlotReport.TONE_FAIR: return AMBER_INK;
-            case SlotReport.TONE_LOW: return RED_INK;
+            case SlotReport.TONE_FAIR: return Ui.AMBER;
+            case SlotReport.TONE_LOW: return Ui.RED;
             default: return Ui.MUTED;
         }
     }
@@ -46,7 +43,7 @@ final class SlotCards {
         switch (tone) {
             case SlotReport.TONE_GOOD: return Ui.TONAL;
             case SlotReport.TONE_FAIR: return Ui.AMBER_SOFT;
-            case SlotReport.TONE_LOW: return RED_SOFT;
+            case SlotReport.TONE_LOW: return (Ui.RED & 0x00FFFFFF) | 0x33000000;
             default: return Ui.SOFT;
         }
     }
@@ -66,7 +63,6 @@ final class SlotCards {
         card.setOrientation(LinearLayout.VERTICAL);
         card.setPadding(Ui.dp(a, 18), Ui.dp(a, 16), Ui.dp(a, 18), Ui.dp(a, 18));
         card.setBackground(Ui.box(a, Ui.SURFACE, 0, 22));
-        card.setElevation(Ui.dp(a, 1.5f));
         card.addView(Ui.eyebrow(a, "Slot analysis · Pro"));
         card.addView(Ui.label(a, "How each slot went", 20, Ui.INK, true), Ui.wide(a, 4));
         card.addView(note(a, "Focus and phone use slot by slot, with a timeline and the exact times, and the same by activity. "
@@ -86,7 +82,6 @@ final class SlotCards {
         card.setOrientation(LinearLayout.VERTICAL);
         card.setPadding(Ui.dp(c, 18), Ui.dp(c, 16), Ui.dp(c, 18), Ui.dp(c, 18));
         card.setBackground(Ui.box(c, Ui.SURFACE, 0, 22));
-        card.setElevation(Ui.dp(c, 1.5f));
         card.setLayoutTransition(new LayoutTransition());
         card.addView(Ui.eyebrow(c, "Slot analysis"));
         card.addView(Ui.label(c, "How each slot went", 20, Ui.INK, true), Ui.wide(c, 4));
@@ -252,7 +247,7 @@ final class SlotCards {
             return;
         }
         body.addView(pair(c, tile(c, "Phone in total", SlotReport.dur(s.phoneMs), Ui.INK),
-                tile(c, "Other phone use", SlotReport.dur(s.offMs()), s.offMs() > 0 ? RED_INK : Ui.INK)), Ui.wide(c, 8));
+                tile(c, "Other phone use", SlotReport.dur(s.offMs()), s.offMs() > 0 ? Ui.RED : Ui.INK)), Ui.wide(c, 8));
         if (s.partMs > 0) {
             body.addView(note(c, SlotReport.dur(s.partMs) + " of the phone time was in apps chosen for this activity."), Ui.wide(c, 8));
         }
@@ -276,7 +271,7 @@ final class SlotCards {
             LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(0, Ui.dp(c, 8), 1f);
             bp.leftMargin = Ui.dp(c, 8);
             bp.rightMargin = Ui.dp(c, 8);
-            row.addView(new Bar(c, ap.ms / (float) max, i == 0 ? Ui.TEAL : 0xB00E7C7B), bp);
+            row.addView(new Bar(c, ap.ms / (float) max, i == 0 ? Ui.TEAL : (Ui.TEAL & 0x00FFFFFF) | 0xB0000000), bp);
             TextView t = Ui.label(c, SlotReport.dur(ap.ms), 13, Ui.MUTED, false);
             t.setGravity(Gravity.END);
             t.setMinWidth(Ui.dp(c, 52));

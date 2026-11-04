@@ -28,9 +28,9 @@ final class LauncherTheme {
             t = night ? LauncherConfig.THEME_DARK : LauncherConfig.THEME_LIGHT;
         }
         if (t == LauncherConfig.THEME_DARK) {
-            return new LauncherTheme(true, 0xFF000000, 0xFFF1F3F2, 0xFF8C9594, 0xFF63D2CC);
+            return new LauncherTheme(true, 0xFF0B1A2A, 0xFFF1F5F5, 0xFF9FB1B5, 0xFF7FE0C3);
         }
-        return new LauncherTheme(false, 0xFFF6F7F6, 0xFF10201E, 0xFF65706F, 0xFF0E7C7B);
+        return new LauncherTheme(false, 0xFFEAF2F4, 0xFF10201E, 0xFF4E6866, 0xFF0E7C7B);
     }
 
     /** The background colour with the given opacity (0 to 255), for the see-through screens over the poster. */
@@ -40,7 +40,6 @@ final class LauncherTheme {
 
     /** The dialog theme to use so dialogs match the screen. */
     int dialog() {
-        return dark ? android.R.style.Theme_DeviceDefault_Dialog_Alert
-                : android.R.style.Theme_DeviceDefault_Light_Dialog_Alert;
+        return dark ? R.style.GlassDialogNight : R.style.GlassDialogDay;
     }
 }

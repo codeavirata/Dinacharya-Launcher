@@ -25,7 +25,7 @@ final class DayOffDialog {
         t.setGravity(android.view.Gravity.CENTER);
         t.setMinHeight(Ui.dp(a, 34));
         t.setPadding(Ui.dp(a, 14), Ui.dp(a, 6), Ui.dp(a, 14), Ui.dp(a, 6));
-        t.setBackground(Ui.pressable(a, Ui.SURFACE, Ui.TEAL, 17, 0x300E7C7B));
+        t.setBackground(Ui.pressable(a, Ui.SURFACE, Ui.TEAL, 17, Ui.RIPPLE));
         t.setContentDescription(Lang.tr("Take the rest of today off"));
         t.setOnClickListener(v -> {
             boolean off = false;

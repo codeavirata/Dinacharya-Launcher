@@ -212,7 +212,10 @@ final class PauseScreen {
         GradientDrawable bg = new GradientDrawable();
         bg.setCornerRadius(dp(30));
         if (filled) bg.setColor(th.accent);
-        else bg.setStroke(dp(1), th.muted);
+        else {
+            bg.setColor(th.dark ? 0x1FFFFFFF : 0x14000000);
+            bg.setStroke(dp(1), th.dark ? 0x40FFFFFF : 0x33000000);
+        }
         b.setBackground(bg);
         return b;
     }

@@ -209,8 +209,8 @@ final class GroupDialog {
         moreHead.setOrientation(LinearLayout.HORIZONTAL);
         moreHead.setGravity(Gravity.CENTER_VERTICAL);
         moreHead.setPadding(0, Ui.dp(c, 8), 0, Ui.dp(c, 8));
-        final TextView moreArrow = Ui.label(c, moreSet ? "\u25B4" : "\u25BE", 14, Ui.TEAL, true);
-        moreHead.addView(Ui.label(c, "More options", 14, Ui.TEAL, true), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        final TextView moreArrow = Ui.label(c, moreSet ? "\u25B4" : "\u25BE", 14, Ui.TEAL_DARK, true);
+        moreHead.addView(Ui.label(c, "More options", 14, Ui.TEAL_DARK, true), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
         moreHead.addView(moreArrow, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         moreHead.setOnClickListener(v -> {
             boolean shown = moreBody.getVisibility() != View.VISIBLE;
@@ -240,7 +240,7 @@ final class GroupDialog {
         }
         moreBody.addView(nowRow, Ui.wide(c, 4));
         moreBody.addView(nowNote, Ui.wide(c, 4));
-        TextView clear = Ui.label(c, "Unlock now", 14, Ui.TEAL, true);
+        TextView clear = Ui.label(c, "Unlock now", 14, Ui.TEAL_DARK, true);
         clear.setPadding(0, Ui.dp(c, 6), 0, Ui.dp(c, 6));
         clear.setOnClickListener(v -> {
             d.untilMs = 0;
@@ -426,7 +426,7 @@ final class GroupDialog {
     }
 
     static TextView preset(Context c, String text, final Runnable r) {
-        TextView t = Ui.label(c, text, 13, Ui.TEAL, true);
+        TextView t = Ui.label(c, text, 13, Ui.TEAL_DARK, true);
         t.setPadding(0, Ui.dp(c, 6), Ui.dp(c, 16), Ui.dp(c, 6));
         t.setOnClickListener(v -> r.run());
         return t;

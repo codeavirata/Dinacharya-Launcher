@@ -38,7 +38,7 @@ final class ChangePlanUi {
                 text.addView(Ui.label(c, names.get(i), 16, Ui.INK, true));
                 text.addView(Ui.label(c, notes.get(i), 12, Ui.MUTED, false));
                 card.addView(text, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
-                TextView tick = Ui.label(c, "✓", 18, Ui.TEAL, true);
+                TextView tick = Ui.label(c, "✓", 18, Ui.TEAL_DARK, true);
                 card.addView(tick);
                 card.setOnClickListener(v -> select(k));
                 cards.add(card);
@@ -52,7 +52,7 @@ final class ChangePlanUi {
             sel = i;
             for (int k = 0; k < cards.size(); k++) {
                 boolean on = k == i;
-                cards.get(k).setBackground(Ui.pressable(c, on ? 0x260E7C7B : Ui.SURFACE, on ? Ui.TEAL : Ui.LINE, 14, 0x300E7C7B));
+                cards.get(k).setBackground(Ui.pressable(c, on ? Ui.TONAL : Ui.SURFACE, on ? Ui.TEAL : Ui.LINE, 14, Ui.RIPPLE));
                 ticks.get(k).setVisibility(on ? View.VISIBLE : View.INVISIBLE);
             }
         }
@@ -86,7 +86,7 @@ final class ChangePlanUi {
             onPick[0] = picked;
             for (int i = 0; i < names.size(); i++) {
                 final int k = i;
-                TextView t = Ui.label(c, names.get(i), 14, Ui.TEAL, true);
+                TextView t = Ui.label(c, names.get(i), 14, Ui.TEAL_DARK, true);
                 t.setGravity(Gravity.CENTER);
                 t.setSingleLine(true);
                 t.setPadding(Ui.dp(c, 14), Ui.dp(c, 8), Ui.dp(c, 14), Ui.dp(c, 8));
@@ -107,8 +107,8 @@ final class ChangePlanUi {
             for (int k = 0; k < chips.size(); k++) {
                 boolean on = k == i;
                 TextView t = chips.get(k);
-                t.setTextColor(on ? 0xFFFFFFFF : Ui.TEAL);
-                t.setBackground(Ui.pressable(c, on ? Ui.TEAL : Ui.SURFACE, Ui.TEAL, 18, 0x300E7C7B));
+                t.setTextColor(on ? 0xFFFFFFFF : Ui.TEAL_DARK);
+                t.setBackground(Ui.pressable(c, on ? Ui.TEAL : Ui.SURFACE, Ui.TEAL, 18, Ui.RIPPLE));
             }
         }
 

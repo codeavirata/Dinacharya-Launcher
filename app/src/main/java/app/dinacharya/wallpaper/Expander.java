@@ -59,7 +59,7 @@ final class Expander {
             row.setMinimumHeight(Ui.dp(c, 48));
             row.setClickable(true);
             row.setFocusable(true);
-            row.setBackground(Ui.pressable(c, 0x00000000, 0, 12, 0x200E7C7B));
+            row.setBackground(Ui.pressable(c, 0x00000000, 0, 12, Ui.RIPPLE));
 
             LinearLayout words = new LinearLayout(c);
             words.setOrientation(LinearLayout.VERTICAL);
@@ -101,7 +101,7 @@ final class Expander {
 
         /** Draws the header as a rounded tonal button, for a choice on a screen that asks one thing at a time. */
         Part asButton() {
-            headerRow.setBackground(Ui.pressable(c, Ui.TONAL, 0, 24, 0x300E7C7B));
+            headerRow.setBackground(Ui.pressable(c, Ui.TONAL, 0, 24, Ui.RIPPLE));
             headerRow.setPadding(Ui.dp(c, 18), 0, Ui.dp(c, 8), 0);
             return this;
         }
@@ -136,12 +136,11 @@ final class Expander {
 
     /** A white card for one section, like {@link Ui#section}, whose heading opens and closes it. Returns the part; fill its body. */
     static Part card(Context c, LinearLayout page, String eyebrow, String title, String summary, String key, boolean openByDefault) {
-        Part p = new Part(c, eyebrow, title, summary, key, openByDefault, Ui.TEAL, Ui.INK, Ui.MUTED, 20);
+        Part p = new Part(c, eyebrow, title, summary, key, openByDefault, Ui.TEAL_DARK, Ui.INK, Ui.MUTED, 20);
         LinearLayout card = new LinearLayout(c);
         card.setOrientation(LinearLayout.VERTICAL);
         card.setPadding(Ui.dp(c, 18), Ui.dp(c, 6), Ui.dp(c, 12), Ui.dp(c, 12));
         card.setBackground(Ui.box(c, Ui.SURFACE, 0, 22));
-        card.setElevation(Ui.dp(c, 1.5f));
         card.addView(p.root, Ui.wide(c, 0));
         page.addView(card, Ui.wide(c, 16));
         return p;
