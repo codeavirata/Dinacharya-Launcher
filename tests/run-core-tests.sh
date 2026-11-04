@@ -18,5 +18,13 @@ for t in TranslatorTest LangFilesTest LauncherTest PassLedgerTest PassResetTest 
   echo "== $t"
   if ! java -Dfile.encoding=UTF-8 -cp "$OUT" app.dinacharya.wallpaper.$t | grep -E "FAIL|ALL PASS|FAILS|Exception"; then FAILED=1; fi
 done
+# The picture-tour code (app/src/shots) must stay out of what ships: nothing in app/src/main may name it.
+echo "== ShotsStayOut"
+if grep -rlE "\bShot(Tour|Activity|Script|Seed|Capture)\b" ../app/src/main; then
+  echo "FAIL: app/src/main refers to the shots-only classes"
+  FAILED=1
+else
+  echo "ALL PASS"
+fi
 rm -rf "$OUT"
 exit $FAILED

@@ -11,7 +11,7 @@ android {
         minSdk 26
         // Google Play needs new apps and updates to target Android 16 (API 36) or later.
         targetSdk 36
-        versionCode 73
+        versionCode 74
         versionName '1.0'
     }
 
@@ -42,6 +42,15 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.shared
+        }
+        // A build only for taking pictures of the whole app, on a phone or an emulator (see app/src/shots and the README).
+        // It has its own app ID, so it sits beside the real app and can never replace it, and its code lives only in app/src/shots,
+        // so the debug build and the Google Play bundle do not contain it.
+        shots {
+            initWith debug
+            applicationIdSuffix '.shots'
+            versionNameSuffix '-shots'
+            matchingFallbacks = ['debug']
         }
         release {
             minifyEnabled false
