@@ -53,7 +53,7 @@ public class ReportActivity extends LangActivity {
         boolean h24 = Store.load(this).fmt24;
         ReportView head = new ReportView(this);
         head.showDay(report, h24, ReportRenderer.HEAD);
-        root.addView(head, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        root.addView(head, ReportView.lp(this));
         try {
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             lp.setMargins(Ui.dp(this, 14), Ui.dp(this, 6), Ui.dp(this, 14), Ui.dp(this, 8));
@@ -64,7 +64,7 @@ public class ReportActivity extends LangActivity {
         }
         ReportView tail = new ReportView(this);
         tail.showDay(report, h24, ReportRenderer.TAIL);
-        root.addView(tail, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        root.addView(tail, ReportView.lp(this));
     }
 
     private void addHalf(LinearLayout bar, String text, boolean primary, final Runnable r) {

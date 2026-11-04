@@ -167,7 +167,7 @@ public class MainActivity extends LangActivity {
     private void showReady() {
         try {
             final boolean home = HomeRole.isDefault(this);
-            android.app.AlertDialog.Builder b = new android.app.AlertDialog.Builder(this)
+            android.app.AlertDialog.Builder b = new DBuilder(this)
                     .setTitle("You\u2019re all set")
                     .setMessage(home
                             ? "Press the Home button to see your day. Everything else is here in the dashboard: your routine, insights, backup and settings."
@@ -332,7 +332,7 @@ public class MainActivity extends LangActivity {
         String text = PassSettle.takeMessage(this);
         if (text == null || isFinishing() || isDestroyed()) return;
         try {
-            new android.app.AlertDialog.Builder(this)
+            new DBuilder(this)
                     .setTitle("Your video pass has ended")
                     .setMessage(text)
                     .setPositiveButton("OK", null)

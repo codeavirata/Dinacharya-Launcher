@@ -1,7 +1,6 @@
 package app.dinacharya.wallpaper;
 
 import android.app.AlertDialog;
-import android.app.TimePickerDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -13,7 +12,6 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +21,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
@@ -317,7 +314,7 @@ final class RoutinePage extends Page {
     }
 
     private void askTurnOnAlarms() {
-        new android.app.AlertDialog.Builder(a)
+        new DBuilder(a)
                 .setTitle("Alarms are off")
                 .setMessage("Turn them on so the bells on your slots ring when a slot starts?")
                 .setPositiveButton("Turn on", (d, w) -> a.extras.enableAlarms())
@@ -437,7 +434,7 @@ final class RoutinePage extends Page {
         name.setText(m.hasWeek() ? "Exam day" : "Weekend");
         name.setSelectAllOnFocus(true);
         name.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Routine.MAX_NAME_LEN)});
-        final Spinner from = new Spinner(a);
+        final Spinner from = new GlassSpinner(a);
         List<String> names = new ArrayList<>();
         for (Routine r : m.all()) names.add("Copy of “" + r.name + "”");
         ArrayAdapter<String> ad = Lang.adapter(a, android.R.layout.simple_spinner_item, names);
@@ -484,7 +481,7 @@ final class RoutinePage extends Page {
         final Routine m = main();
         final LocalDate today = LocalDate.now(Store.zone());
         final LocalDate[] date = {today.plusDays(1)};
-        final Spinner from = new Spinner(a);
+        final Spinner from = new GlassSpinner(a);
         final List<String> names = new ArrayList<>();
         for (Routine r : m.all()) names.add("Copy of “" + r.name + "”");
         ArrayAdapter<String> ad = Lang.adapter(a, android.R.layout.simple_spinner_item, names);
@@ -511,13 +508,11 @@ final class RoutinePage extends Page {
             else if (id == rTomorrow.getId()) date[0] = today.plusDays(1);
             else {
                 try {
-                    android.app.DatePickerDialog picker = new android.app.DatePickerDialog(a, (view, y, mo, d) -> {
-                        date[0] = LocalDate.of(y, mo + 1, d);
+                    DateSheet.show(a, 0, "Pick a date", today, today, day -> {
+                        date[0] = day;
                         pickedText.setText(dateText(date[0]));
                         from.setSelection(Math.min(usualFor(date[0]), names.size() - 1));
-                    }, today.getYear(), today.getMonthValue() - 1, today.getDayOfMonth());
-                    picker.getDatePicker().setMinDate(System.currentTimeMillis() - 1000L);
-                    picker.show();
+                    });
                 } catch (RuntimeException e) {
                     CrashLog.note(a, "date picker", e);
                 }
@@ -563,8 +558,7 @@ final class RoutinePage extends Page {
         final LocalDate today = LocalDate.now(Store.zone());
         try {
             LocalDate cur = t.tempDate.isBefore(today) ? today : t.tempDate;
-            android.app.DatePickerDialog picker = new android.app.DatePickerDialog(a, (view, y, mo, d) -> {
-                LocalDate nd = LocalDate.of(y, mo + 1, d);
+            DateSheet.show(a, 0, "Pick a date", cur, today, nd -> {
                 String snap = a.snapshot();
                 LocalDate old = t.tempDate;
                 main().moveTemp(t, nd);
@@ -575,9 +569,7 @@ final class RoutinePage extends Page {
                 sel = TEMP_BASE + main().temps.indexOf(t);
                 changed();
                 a.undoable("Routine moved to " + dateText(nd) + ".", snap);
-            }, cur.getYear(), cur.getMonthValue() - 1, cur.getDayOfMonth());
-            picker.getDatePicker().setMinDate(System.currentTimeMillis() - 1000L);
-            picker.show();
+            });
         } catch (RuntimeException e) {
             CrashLog.note(a, "date picker", e);
         }
@@ -719,10 +711,10 @@ final class RoutinePage extends Page {
     private void pickTime() {
         final Routine r = sched();
         try {
-            new TimePickerDialog(a, (view, h, m) -> {
+            TimeSheet.show(a, 0, "Start time", r.anchor, main().fmt24, (h, m) -> {
                 r.anchor = h * 60 + m;
                 changed();
-            }, r.anchor / 60, r.anchor % 60, main().fmt24).show();
+            });
         } catch (RuntimeException e) {
             CrashLog.note(a, "time picker", e);
         }
@@ -824,7 +816,7 @@ final class RoutinePage extends Page {
     private Spinner kindSpinner() {
         String[] names = new String[Routine.SLEEP];
         System.arraycopy(Routine.KIND_NAMES, 0, names, 0, names.length);
-        Spinner sp = new Spinner(a);
+        Spinner sp = new GlassSpinner(a);
         ArrayAdapter<String> ad = Lang.adapter(a, android.R.layout.simple_spinner_item, names);
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp.setAdapter(ad);
@@ -968,7 +960,7 @@ final class RoutinePage extends Page {
         // Line 2: kind and activity type.
         LinearLayout l2 = row();
         l2.setPadding(dp(30), 0, 0, 0);
-        Spinner kind = new Spinner(a);
+        Spinner kind = new GlassSpinner(a);
         ArrayAdapter<String> ad = Lang.adapter(a, android.R.layout.simple_spinner_item, Routine.KIND_NAMES);
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         kind.setAdapter(ad);
@@ -987,7 +979,7 @@ final class RoutinePage extends Page {
             }
         });
         l2.addView(kind, new LinearLayout.LayoutParams(dp(116), WRAP));
-        Spinner sub = new Spinner(a);
+        Spinner sub = new GlassSpinner(a);
         bindSub(sub, b);
         l2.addView(sub, new LinearLayout.LayoutParams(0, WRAP, 1f));
         details.addView(l2);
@@ -1039,24 +1031,22 @@ final class RoutinePage extends Page {
     }
 
     private void showMenu(View anchor, final Routine.Block b, final int index) {
-        PopupMenu pm = new PopupMenu(a, anchor);
-        Menu m = pm.getMenu();
-        m.add(0, MENU_ADD, 0, Lang.tr("Add a slot below"));
-        m.add(0, MENU_NOTE, 1, Lang.tr(b.note.trim().isEmpty() ? "Add a note" : "Edit the note"));
+        GlassMenu gm = new GlassMenu(a);
+        gm.add(MENU_ADD, "Add a slot below");
+        gm.add(MENU_NOTE, b.note.trim().isEmpty() ? "Add a note" : "Edit the note");
         if (!SlotOps.isPermanent(sched(), index)) {
-            m.add(0, MENU_DUPLICATE, 2, Lang.tr("Duplicate (splits this slot in two)"));
-            m.add(0, MENU_DELETE, 3, Lang.tr("Delete"));
+            gm.add(MENU_DUPLICATE, "Duplicate (splits this slot in two)");
+            gm.add(MENU_DELETE, "Delete");
         }
-        pm.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                case MENU_ADD: showAddDialog(index); return true;
-                case MENU_NOTE: askNote(b); return true;
-                case MENU_DUPLICATE: duplicate(index); return true;
-                case MENU_DELETE: confirmDelete(index); return true;
-                default: return false;
+        gm.show(id -> {
+            switch (id) {
+                case MENU_ADD: showAddDialog(index); break;
+                case MENU_NOTE: askNote(b); break;
+                case MENU_DUPLICATE: duplicate(index); break;
+                case MENU_DELETE: confirmDelete(index); break;
+                default: break;
             }
         });
-        pm.show();
     }
 
     /** The picture on a slot's bell: what happens when the slot starts. The start-of-day slot has a sun. */
@@ -1080,23 +1070,19 @@ final class RoutinePage extends Page {
     private void pickAlert(final Button bell, final Routine.Block b, final int index) {
         final int[] modes = {Routine.ALERT_RING, Routine.ALERT_VIBRATE, Routine.ALERT_SILENT, Routine.ALERT_NONE};
         final String[] names = {"Notification with ring", "Notification with vibration", "Silent notification", "No notification"};
-        PopupMenu pm = new PopupMenu(a, bell);
-        Menu m = pm.getMenu();
-        for (int i = 0; i < modes.length; i++) {
-            m.add(0, 100 + i, i, (b.alert == modes[i] ? "✓  " : "      ") + Lang.tr(names[i]));
-        }
+        GlassMenu gm = new GlassMenu(a);
+        for (int i = 0; i < modes.length; i++) gm.add(100 + i, names[i], b.alert == modes[i]);
         final Routine r = sched();
         boolean sounds = b.sounds();
         if (sounds && r.blocks.indexOf(b) >= 0) {
-            m.add(0, 200, 10, Lang.tr(b.wake ? "This is the start-of-day alarm: tap to undo" : "Make this the start-of-day alarm"));
+            gm.add(200, b.wake ? "This is the start-of-day alarm: tap to undo" : "Make this the start-of-day alarm");
         }
-        pm.setOnMenuItemClickListener(item -> {
-            int id = item.getItemId();
+        gm.show(id -> {
             if (id >= 100 && id < 100 + modes.length) {
                 b.setAlert(modes[id - 100]);
                 main().normalizeWake();   // the start-of-day alarm stays the first alert of the day
                 afterAlertChange(bell, b, names[id - 100]);
-                return true;
+                return;
             }
             if (id == 200) {
                 int at = r.blocks.indexOf(b);
@@ -1108,11 +1094,8 @@ final class RoutinePage extends Page {
                 } else {
                     a.toastText("The start-of-day alarm has to be the first alarm of the day. Set the slots before it to No notification first.");
                 }
-                return true;
             }
-            return false;
         });
-        pm.show();
     }
 
     private void afterAlertChange(Button bell, Routine.Block b, String what) {
@@ -1360,7 +1343,7 @@ final class RoutinePage extends Page {
         final Spinner kind = kindSpinner();
         box.addView(kind, wide(0));
         box.addView(label("Type (optional)", 12, Ui.MUTED, true), wrap(8));
-        final Spinner sub = new Spinner(a);
+        final Spinner sub = new GlassSpinner(a);
         final List<Routine.Sub> subOpts = new ArrayList<>();
         box.addView(sub, wide(0));
         final EditText newType = new EditText(a);

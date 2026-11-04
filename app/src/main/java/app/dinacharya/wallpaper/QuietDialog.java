@@ -2,7 +2,6 @@ package app.dinacharya.wallpaper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.text.InputType;
 import android.view.Gravity;
@@ -115,14 +114,14 @@ final class QuietDialog {
         times.setOrientation(LinearLayout.HORIZONTAL);
         final Button from = Ui.button(c, "", false, null);
         final Button to = Ui.button(c, "", false, null);
-        from.setOnClickListener(v -> new TimePickerDialog(c, theme, (tp, h, m) -> {
+        from.setOnClickListener(v -> TimeSheet.show(c, theme, "Start time", d.start, h24, (h, m) -> {
             d.start = h * 60 + m;
             redraw[0].run();
-        }, d.start / 60, d.start % 60, h24).show());
-        to.setOnClickListener(v -> new TimePickerDialog(c, theme, (tp, h, m) -> {
+        }));
+        to.setOnClickListener(v -> TimeSheet.show(c, theme, "End time", d.end, h24, (h, m) -> {
             d.end = h * 60 + m;
             redraw[0].run();
-        }, d.end / 60, d.end % 60, h24).show());
+        }));
         LinearLayout.LayoutParams l1 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
         l1.rightMargin = Ui.dp(c, 4);
         LinearLayout.LayoutParams l2 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);

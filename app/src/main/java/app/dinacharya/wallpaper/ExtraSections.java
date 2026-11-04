@@ -183,7 +183,7 @@ final class ExtraSections {
         wake.body.addView(delayRow, Ui.wide(a, 10));
 
         wake.body.addView(Ui.label(a, "To turn the alarm off and start the day", 12, Ui.MUTED, true), Ui.wrap(a, 12));
-        offSpin = new Spinner(a);
+        offSpin = new GlassSpinner(a);
         ArrayAdapter<String> offAd = Lang.adapter(a, android.R.layout.simple_spinner_item,
                 new String[]{"Just tap Start my day", "Solve three quick sums", "Take a short pause (four slow breaths)", "Shake the phone",
                         "Type a sentence"});
@@ -221,7 +221,7 @@ final class ExtraSections {
                 + "now, later or leave it.", 12, Ui.MUTED, false), Ui.wide(a, 2));
 
         wake.body.addView(Ui.label(a, "Challenge before putting it off", 12, Ui.MUTED, true), Ui.wrap(a, 12));
-        challengeSpin = new Spinner(a);
+        challengeSpin = new GlassSpinner(a);
         ArrayAdapter<String> ad = Lang.adapter(a, android.R.layout.simple_spinner_item,
                 new String[]{"No challenge", "Solve three quick sums", "Type a sentence"});
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -241,7 +241,7 @@ final class ExtraSections {
         wake.body.addView(challengeSpin, Ui.wide(a, 0));
 
         wake.body.addView(Ui.label(a, "How your own line is used", 12, Ui.MUTED, true), Ui.wrap(a, 12));
-        lineSpin = new Spinner(a);
+        lineSpin = new GlassSpinner(a);
         ArrayAdapter<String> lineAd = Lang.adapter(a, android.R.layout.simple_spinner_item,
                 new String[]{"Shown as the quote", "Typed to put the day off", "Typed to start the day", "Typed for both"});
         lineAd.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -359,7 +359,7 @@ final class ExtraSections {
         String extra = "";
         if (!AlarmHealth.notificationsOn(a)) extra += "\n\nNotifications are off for this app, so you will only hear it.";
         if (!exact) extra += "\n\nAndroid is not allowing exact alarms, so it may come a little late.";
-        new android.app.AlertDialog.Builder(a)
+        new DBuilder(a)
                 .setTitle("Test alarm set")
                 .setMessage("It rings in 10 seconds. To try it as it will really be, press the power button now to lock the phone." + extra)
                 .setPositiveButton("OK", null)

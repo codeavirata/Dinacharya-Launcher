@@ -4,14 +4,12 @@ import android.content.Context;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -270,18 +268,15 @@ final class TodoDialog {
                 final android.widget.Button again = Ui.iconButton(c, "↻", Ui.TEAL_DARK, null);
                 again.setContentDescription("Repeat");
                 again.setOnClickListener(v -> {
-                    PopupMenu pm = new PopupMenu(c, again);
-                    Menu m = pm.getMenu();
+                    GlassMenu gm = new GlassMenu(c);
                     int[] modes = {Todos.NO_REPEAT, Todos.EVERY_DAY, Todos.EVERY_OTHER_DAY, Todos.CHOSEN_DAYS};
                     String[] names = {"Does not repeat", "Every day", "Every other day", "On chosen days"};
-                    for (int i = 0; i < modes.length; i++) m.add(0, i, i, (mode[0] == modes[i] ? "✓  " : "      ") + Lang.tr(names[i]));
-                    pm.setOnMenuItemClickListener(item -> {
-                        mode[0] = modes[item.getItemId()];
+                    for (int i = 0; i < modes.length; i++) gm.add(i, names[i], mode[0] == modes[i]);
+                    gm.show(which -> {
+                        mode[0] = modes[which];
                         if (mode[0] == Todos.CHOSEN_DAYS && (mask[0] & 0x7F) == 0) mask[0] = 31;
                         paint.run();
-                        return true;
                     });
-                    pm.show();
                 });
                 line.addView(again);
             }

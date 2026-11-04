@@ -485,37 +485,16 @@ final class InsightsPage extends Page {
 
     /** A short sheet at the bottom of the screen: every day, today only, or tomorrow only. */
     private void chooseGoalDay() {
-        final android.app.Dialog d = new android.app.Dialog(a);
-        d.requestWindowFeature(android.view.Window.FEATURE_NO_TITLE);
-        LinearLayout sheet = new LinearLayout(a);
-        sheet.setOrientation(LinearLayout.VERTICAL);
-        sheet.setPadding(a.dp(20), a.dp(14), a.dp(20), a.dp(18));
-        sheet.setBackground(Ui.box(a, Ui.SURFACE, 0, 22));
-        View grip = new View(a);
-        grip.setBackground(Ui.box(a, Ui.LINE, 0, 3));
-        sheet.addView(grip, Ui.lp(a, a.dp(36), a.dp(4), 0));
-        ((LinearLayout.LayoutParams) grip.getLayoutParams()).gravity = Gravity.CENTER_HORIZONTAL;
-        sheet.addView(Ui.label(a, "New goal", 17, Ui.INK, true), Ui.wide(a, 12));
-        sheet.addView(Ui.label(a, "When is it for?", 13, Ui.MUTED, false), Ui.wide(a, 2));
-        String[] names = {"Every day", "Today only", "Tomorrow only"};
-        for (int i = 0; i < names.length; i++) {
-            final int which = i;
-            Button b = Ui.button(a, names[i], false, x -> {
-                d.dismiss();
-                if (which == 0) editGoal(null, false);
-                else if (which == 1) editGoal(null, true);
-                else editGoal(null, false, true);
-            });
-            sheet.addView(b, Ui.wide(a, 8));
-        }
-        d.setContentView(sheet);
-        android.view.Window w = d.getWindow();
-        if (w != null) {
-            w.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(0));
-            w.setGravity(Gravity.BOTTOM);
-            w.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        }
-        d.show();
+        new GlassMenu(a)
+                .title("New goal")
+                .add(0, "Every day")
+                .add(1, "Today only")
+                .add(2, "Tomorrow only")
+                .show(which -> {
+                    if (which == 0) editGoal(null, false);
+                    else if (which == 1) editGoal(null, true);
+                    else editGoal(null, false, true);
+                });
     }
 
     /** The day the app calls today (a day that began yesterday and is still running counts as today). */
@@ -606,7 +585,7 @@ final class InsightsPage extends Page {
         final List<String> todos = new ArrayList<>();
         if (g != null) todos.addAll(g.todos);
 
-        final Spinner when = new Spinner(a);
+        final Spinner when = new GlassSpinner(a);
         ArrayAdapter<String> wad = Lang.adapter(a, android.R.layout.simple_spinner_item,
                 new String[]{"Today only", "Every day", "Every other day", "On chosen days", "Tomorrow only"});
         wad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -631,7 +610,7 @@ final class InsightsPage extends Page {
             daysRow.addView(t, lp);
         }
 
-        final Spinner type = new Spinner(a);
+        final Spinner type = new GlassSpinner(a);
         final Button withBtn = Ui.button(a, "", false, null);
 
         final Runnable fillTypes = new Runnable() {

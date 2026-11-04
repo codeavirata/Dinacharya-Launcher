@@ -76,7 +76,7 @@ final class HomeRole {
     /** The offer: tells the person the Home button no longer opens Dinacharya, with one tap to put it back. */
     static void offerBack(final Activity a, int theme) {
         if (a.isFinishing()) return;
-        new android.app.AlertDialog.Builder(a, theme)
+        new DBuilder(a, theme)
                 .setTitle("Dinacharya Launcher is not your home app any more")
                 .setMessage("The Home button now opens another launcher. This happens after an update or a reinstall, or when another "
                         + "home app is picked. Make Dinacharya Launcher your home app again?")

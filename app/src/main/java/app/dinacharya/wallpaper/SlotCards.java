@@ -49,7 +49,8 @@ final class SlotCards {
     }
 
     private static int kindColor(int kind) {
-        return ReportRenderer.KIND[Math.max(0, Math.min(ReportRenderer.KIND.length - 1, kind))];
+        int[] kinds = ReportRenderer.Skin.screen().kind;
+        return kinds[Math.max(0, Math.min(kinds.length - 1, kind))];
     }
 
     // ------------------------------------------------------------------ the card

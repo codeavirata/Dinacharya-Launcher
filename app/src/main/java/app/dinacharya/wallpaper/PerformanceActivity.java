@@ -152,11 +152,11 @@ public class PerformanceActivity extends LangActivity {
         // the top of the report, then the slot analysis as dropdowns, then the table of slots and the suggestions
         ReportView head = new ReportView(this);
         head.showDay(r, h24, ReportRenderer.HEAD);
-        body.addView(head, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        body.addView(head, ReportView.lp(this));
         addSlotCards(r, h24);
         ReportView tail = new ReportView(this);
         tail.showDay(r, h24, ReportRenderer.TAIL);
-        body.addView(tail, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        body.addView(tail, ReportView.lp(this));
         LinearLayout row = new LinearLayout(this);
         row.setOrientation(LinearLayout.HORIZONTAL);
         row.setPadding(Ui.dp(this, 14), Ui.dp(this, 8), Ui.dp(this, 14), Ui.dp(this, 24));
@@ -188,7 +188,7 @@ public class PerformanceActivity extends LangActivity {
         }
         ReportView rv = new ReportView(this);
         rv.showWeek(w, tips, h24);
-        body.addView(rv, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        body.addView(rv, ReportView.lp(this));
     }
 
     /** A tab that is part of Pro: what it holds, and the button that opens the Pro screen. */

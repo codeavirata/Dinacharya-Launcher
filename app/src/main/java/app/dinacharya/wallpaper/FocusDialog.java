@@ -75,7 +75,7 @@ final class FocusDialog {
         hl.topMargin = Ui.dp(c, 12);
         box.addView(howLabel, hl);
 
-        final Spinner how = new Spinner(c);
+        final Spinner how = new GlassSpinner(c);
         how.setAdapter(Lang.adapter(c, android.R.layout.simple_spinner_dropdown_item, howTexts(DayPass.has(open[0], DayPass.PAUSE_PLAYFUL))));
         how.setSelection(now != null && DayPass.has(open[0], DayPass.PAUSE_PLAYFUL) && PauseChallenge.valid(now.challenge) ? now.challenge : PauseChallenge.WAIT);
         box.addView(how, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -102,7 +102,7 @@ final class FocusDialog {
         ll.topMargin = Ui.dp(c, 12);
         box.addView(limitLabel, ll);
 
-        final Spinner limit = new Spinner(c);
+        final Spinner limit = new GlassSpinner(c);
         String[] ltxt = new String[LIMITS.length];
         int sel = 0;
         for (int i = 0; i < LIMITS.length; i++) {
