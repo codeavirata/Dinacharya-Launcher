@@ -206,7 +206,7 @@ final class HomePage extends Page {
         LinearLayout card = new LinearLayout(a);
         card.setOrientation(LinearLayout.VERTICAL);
         card.setPadding(a.dp(22), a.dp(20), a.dp(22), a.dp(22));
-        card.setBackground(Glass.hero(a, Glass.night(m), 30));
+        card.setBackground(Glass.hero(a, true, 30));
         card.setOnClickListener(v -> a.go(MainActivity.TAB_ROUTINE));
 
         int next = -1;

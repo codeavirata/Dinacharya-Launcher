@@ -85,9 +85,9 @@ public class LauncherTest {
         ok("damaged and old lines are clamped or skipped", bad.pauseSec == 3 && bad.size == 1 && bad.hidden.isEmpty()
                 && bad.rules.isEmpty() && bad.swipeLeft.isEmpty());
         ok("old home-list lines are ignored", LauncherConfig.parse("DINALAUNCH1\nhomeCount=6\nslotAware=1\nH\t" + k("a") + "\nK\t0\t" + k("b") + "\ntheme=1\n").theme == 1);
-        ok("the default colours are Auto", new LauncherConfig().theme == LauncherConfig.THEME_AUTO && LauncherConfig.THEME_NAMES.length == 3);
-        ok("the old Wallpaper look (3) now means Auto: the day poster is always the home screen",
-                LauncherConfig.parse("DINALAUNCH1\ntheme=3\n").theme == LauncherConfig.THEME_AUTO);
+        ok("the default colours are Dark", new LauncherConfig().theme == LauncherConfig.THEME_DARK && LauncherConfig.THEME_NAMES.length == 3);
+        ok("the old Wallpaper look (3) now means the default, Dark: the day poster is always the home screen",
+                LauncherConfig.parse("DINALAUNCH1\ntheme=3\n").theme == LauncherConfig.THEME_DARK);
         ok("old clock, date, now and position lines are ignored", LauncherConfig.parse("DINALAUNCH1\nalign=2\nshowClock=0\nshowDate=0\nshowNow=0\ntheme=2\nsize=3\n").theme == LauncherConfig.THEME_LIGHT
                 && LauncherConfig.parse("DINALAUNCH1\nalign=2\nshowClock=0\nsize=3\n").size == 3);
         ok("a rule that does nothing is removed", c.setRule(k("yt"), 0, 0, false) == null && c.ruleFor(k("yt")) == null && c.rules.size() == 1);

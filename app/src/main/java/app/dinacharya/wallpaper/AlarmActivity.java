@@ -302,7 +302,7 @@ public class AlarmActivity extends LangActivity {
         body.removeAllViews();
         panels.clear();
         removePage();
-        final boolean night = Glass.night(base);
+        final boolean night = true;
         slotPage = new FrameLayout(this);
         slotPage.setBackground(Glass.ground(this, night, 0));
         slotPage.setClickable(true);

@@ -185,7 +185,6 @@ final class SettingsPage extends Page {
             a.persist();
             rebuildSwatches();
             a.previewChanged();
-            a.restyle();   // the whole app wears the look: day glass or night glass
         });
         card.addView(themeSeg, Ui.wide(a, 10));
         card.addView(Ui.label(a, "Colours", 13, Ui.MUTED, true), Ui.wrap(a, 16));
@@ -571,7 +570,7 @@ final class SettingsPage extends Page {
                         + "Set it up: open the Backup tab.",
                 "Open", () -> a.go(MainActivity.TAB_BACKUP));
         no = topic(card, parts, no, "Look, theme and language",
-                "Choose Light, Night or Auto for your day poster and for the whole app, and a colour look: Teal is free and Pro adds the rest. You can also change the clock, the phone time and the spacing. The app speaks English, Hindi, Marathi, Gujarati, Bengali, Tamil and Telugu. "
+                "Choose Light, Night or Auto for your day poster, and a colour look: Teal is free and Pro adds the rest. You can also change the clock, the phone time and the spacing. The app speaks English, Hindi, Marathi, Gujarati, Bengali, Tamil and Telugu. "
                         + "Set it up: Settings > Home screen > Home screen look, and Settings > Language.",
                 "Home screen look", () -> show(LOOK),
                 "Language", () -> LanguageDialog.show(a, Ui.dialogTheme()));

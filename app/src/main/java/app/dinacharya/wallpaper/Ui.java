@@ -74,16 +74,14 @@ final class Ui {
         mode(Glass.night(r));
     }
 
-    /** Whether the screens are in night colours now, by the routine's look. */
+    /**
+     * Whether the screens are in night colours: always. The app is dark glass; the routine's Light / Night / Auto look dresses the
+     * wallpaper only. (The day colours stay in {@link #mode} for the home screen's own light theme.)
+     */
     static boolean nightNow(Context c) {
-        try {
-            systemNight = (c.getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK)
-                    == android.content.res.Configuration.UI_MODE_NIGHT_YES;
-            int t = Store.theme(c);
-            return t == Routine.THEME_NIGHT || (t == Routine.THEME_AUTO && systemNight);
-        } catch (RuntimeException e) {
-            return true;
-        }
+        systemNight = (c.getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK)
+                == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+        return true;
     }
 
     private static boolean systemNight = true;

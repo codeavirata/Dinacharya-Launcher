@@ -126,7 +126,7 @@ public final class LauncherConfig {
     /** Swipe left opens the camera and swipe right the phone, until the person picks something else. */
     public String swipeLeft = AppKey.CAMERA;
     public String swipeRight = AppKey.PHONE;
-    public int theme = THEME_AUTO;
+    public int theme = THEME_DARK;
     public int size = 1;
     /** Open an app at once when the search finds just one. */
     public boolean autoOpen = true;
@@ -434,7 +434,7 @@ public final class LauncherConfig {
                     String v = ln.substring(eq + 1);
                     switch (k) {
                         // 3 was the old "Wallpaper" look: the home screen now always shows the day poster, so it means Auto.
-                        case "theme": { int t = num(v, THEME_AUTO, 0, 3); c.theme = t > THEME_LIGHT ? THEME_AUTO : t; break; }
+                        case "theme": { int t = num(v, THEME_DARK, 0, 3); c.theme = t > THEME_LIGHT ? THEME_DARK : t; break; }
                         case "size": c.size = num(v, 1, 0, 3); break;
                         case "autoOpen": c.autoOpen = v.trim().equals("1"); break;
                         case "kbd": c.keyboard = v.trim().equals("1"); break;
