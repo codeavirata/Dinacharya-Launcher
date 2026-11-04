@@ -1,5 +1,6 @@
 package app.dinacharya.wallpaper;
 
+import android.app.TimePickerDialog;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -58,17 +59,17 @@ final class LibrarySettings {
         times.setOrientation(LinearLayout.HORIZONTAL);
         fromButton = Ui.button(a, "", false, v -> {
             final LibraryMode lib = Store.library(a);
-            TimeSheet.show(a, 0, "Start time", lib.startMin, clock24(), (h, m) -> {
+            new TimePickerDialog(a, (tp, h, m) -> {
                 lib.startMin = h * 60 + m;
                 save(lib);
-            });
+            }, lib.startMin / 60, lib.startMin % 60, clock24()).show();
         });
         toButton = Ui.button(a, "", false, v -> {
             final LibraryMode lib = Store.library(a);
-            TimeSheet.show(a, 0, "End time", lib.endMin, clock24(), (h, m) -> {
+            new TimePickerDialog(a, (tp, h, m) -> {
                 lib.endMin = h * 60 + m;
                 save(lib);
-            });
+            }, lib.endMin / 60, lib.endMin % 60, clock24()).show();
         });
         LinearLayout.LayoutParams l1 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
         l1.rightMargin = Ui.dp(a, 4);

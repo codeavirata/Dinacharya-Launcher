@@ -1,6 +1,7 @@
 package app.dinacharya.wallpaper;
 
 import android.app.AlertDialog;
+import android.app.TimePickerDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -722,10 +723,10 @@ final class RoutinePage extends Page {
     private void pickTime() {
         final Routine r = sched();
         try {
-            TimeSheet.show(a, 0, "Start time", r.anchor, main().fmt24, (h, m) -> {
+            new TimePickerDialog(a, (view, h, m) -> {
                 r.anchor = h * 60 + m;
                 changed();
-            });
+            }, r.anchor / 60, r.anchor % 60, main().fmt24).show();
         } catch (RuntimeException e) {
             CrashLog.note(a, "time picker", e);
         }
