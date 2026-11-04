@@ -1135,21 +1135,6 @@ The app writes down what went wrong. Next time you open it, a yellow card on Hom
 and problem report**. Problems in background work (reports, backup, phone-time reading) do not
 close the app: they are written down and that one job is skipped.
 
-### Pictures of the whole app (a test build, not for the Play Store)
-
-A separate build type, **shots**, turns Pro on by itself and walks through the whole app, saving a picture of every screen: the first start (welcome, setup, tour,
-compare, ready), every tab scrolled to its end with its cards opened, every Settings page and sheet, the routine's menus and dialogs, the day reports, the home and
-focus settings, the home screen, the lock screen and the alarm question. It does this in Graphite and Amber and in White and Black, in English, and in Hindi.
-
-- **Where its code lives.** Only in `app/src/shots`. The debug build and the Google Play bundle do not contain it, it has its own app ID (`app.dinacharya.launcher.shots`) so it sits
-  beside the real app and cannot replace it, and `tests/run-core-tests.sh` fails if anything in `app/src/main` names it.
-- **On a phone.** Download the APK of the **Screenshots** workflow run (artifact `Dinacharya-shots-apk`, or build `gradle assembleShots`), install it, open **Dinacharya shots**, tap
-  **Start the tour** and leave the phone alone for a few minutes. Then **Share all as one zip** (it is also saved in Downloads) or **Share each picture**. They are also in Pictures/DinacharyaShots.
-- **On GitHub, with no phone.** Actions > **Screenshots** > Run workflow (or push the branch `shots-run`). It runs the tour on an Android emulator. The full-size pictures are the
-  artifact `Dinacharya-shots`; a half-size copy, with the tour's log, is pushed to the branch `shots-out`. `log.txt` lists every button the tour could not find, with what could be pressed on that
-  screen, so a renamed button shows up as a line there, not as a failed run.
-- **What it cannot show.** Android's own screens (permission pages, the system share sheet) are not part of the app, and the emulator has no real phone-use data (the tour makes a week of sample days).
-
 ### Version notes
 
 **1.0, build 26: locks hold wherever an app is opened from**

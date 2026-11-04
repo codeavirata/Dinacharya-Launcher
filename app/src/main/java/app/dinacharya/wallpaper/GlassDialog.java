@@ -36,14 +36,6 @@ final class GlassDialog extends AlertDialog {
     /** What a list of choices is for. */
     static final int PLAIN = 0, SINGLE = 1, MULTI = 2;
 
-    /** The sheets that are open, the latest last (the test build's tour closes them). */
-    private static final java.util.List<GlassDialog> SHOWING = new java.util.ArrayList<>();
-
-    /** The sheet on top, or null when none is open. */
-    static GlassDialog top() {
-        return SHOWING.isEmpty() ? null : SHOWING.get(SHOWING.size() - 1);
-    }
-
     private final Context ctx;
     private final FrameLayout root;
     private final View scrim;
@@ -459,7 +451,6 @@ final class GlassDialog extends AlertDialog {
     @Override
     protected void onStart() {
         super.onStart();
-        if (!SHOWING.contains(this)) SHOWING.add(this);
         Lang.watch(root);
         panel.setVisibility(View.INVISIBLE);
         root.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
@@ -497,7 +488,6 @@ final class GlassDialog extends AlertDialog {
     private void finish() {
         if (finished) return;
         finished = true;
-        SHOWING.remove(this);
         try {
             super.dismiss();
         } catch (RuntimeException ignored) {

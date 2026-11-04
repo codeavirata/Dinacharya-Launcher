@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- so the test build is easy to tell from the real app on the same phone -->
-    <string name="app_name">Dinacharya (shots)</string>
-</resources>
