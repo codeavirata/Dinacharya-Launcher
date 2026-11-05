@@ -7,13 +7,13 @@ import android.graphics.Typeface;
 import android.view.View;
 
 /**
- * The small credit at the bottom of a page, on one line: "© 2026 | Developed by ASG". The year and the words are quiet,
+ * The small credit at the bottom of a page, on one line: "© 2026 | Developed by Code Avirata". The year and the words are quiet,
  * a hairline stands between them, and the name is a little stronger. It shrinks, never wraps, when the screen is narrow.
  */
 final class BrandMark extends View {
     private static final String YEAR = "© 2026";
     private static final String BY = "Developed by";
-    private static final String WHO = "ASG";
+    private static final String WHO = "Code Avirata";
 
     private final Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final float d;

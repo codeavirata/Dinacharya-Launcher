@@ -1673,14 +1673,14 @@
 },
 {
 "id": 223,
-"en": "ASG",
+"en": "Code Avirata",
 "src": [
 "BrandMark.java:41"
 ]
 },
 {
 "id": 224,
-"en": "ASG",
+"en": "Code Avirata",
 "src": [
 "BrandMark.java:65",
 "PosterRenderer.java:203"
@@ -6438,7 +6438,7 @@
 },
 {
 "id": 878,
-"en": "DEVELOPED BY ASG",
+"en": "DEVELOPED BY CODE AVIRATA",
 "src": [
 "PosterRenderer.java:192"
 ]

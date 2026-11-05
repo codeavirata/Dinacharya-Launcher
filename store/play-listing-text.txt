@@ -48,7 +48,7 @@ Your routine, answers and reports stay on your phone. The list of your apps and 
 
 You can go back to your old home screen any time in Android's Home app setting.
 
-Developed by ASG.
+Developed by Code Avirata.
 
 WHAT'S NEW (max 500)
 - First release: your whole day on the home screen, with the slot you are in highlighted.

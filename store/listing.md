@@ -80,7 +80,7 @@ Character limits are Google's.
 
     You can go back to your old home screen any time in Android's Home app setting.
 
-    Developed by ASG.
+    Developed by Code Avirata.
 
 ## Category and tags
 
@@ -97,9 +97,9 @@ Character limits are Google's.
 
 ## Contact details (Play Console asks for these)
 
-- Email: your real email (shown publicly on the store page)
-- Website (optional): your GitHub Pages address, for example `https://YOURNAME.github.io/dinacharya/`
-- Privacy policy URL (required): `https://YOURNAME.github.io/dinacharya/privacy.html`
+- Email: `codeavirata.support@gmail.com` (shown publicly on the store page)
+- Website (optional): `https://codeavirata.github.io/Dinacharya/`
+- Privacy policy URL (required): `https://codeavirata.github.io/Dinacharya/privacy.html`
   (the file is `docs/privacy.html` in this project; see the README for how to turn on GitHub Pages)
 
 ## Graphics in `store/graphics/`

@@ -730,7 +730,7 @@ final class SettingsPage extends Page {
                 + "daily goals and reports, and a Google Drive backup. Dinacharya means “daily routine”."), Ui.wide(a, 6));
         BrandMark mark = new BrandMark(a);
         card.addView(mark, Ui.wide(a, 18));
-        card.addView(a.note("Designed and developed by ASG."), Ui.wide(a, 4));
+        card.addView(a.note("Designed and developed by Code Avirata."), Ui.wide(a, 4));
         card.addView(a.note("Free with small ads. Dinacharya Pro, monthly or for life, removes the ads and unlocks the extras."), Ui.wide(a, 8));
         a.addFooter(body);
     }

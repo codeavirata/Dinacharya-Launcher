@@ -8,7 +8,7 @@ and a Google Drive backup come with it.
   highlighted, in four colour themes (light and night). It is shown by the **Dinacharya Launcher live wallpaper**,
   which comes with the launcher: Dinacharya asks Android to put it in place and you confirm once (Android
   never lets an app do that silently). Being the real wallpaper, it also shows on the lock screen and in the
-  recent-apps screen. A small one-line "© 2026 | Developed by ASG" credit sits at the bottom (it can be hidden). Tap
+  recent-apps screen. A small one-line "© 2026 | Developed by Code Avirata" credit sits at the bottom (it can be hidden). Tap
   your day to open the dashboard, swipe up for every app (a plain list with search and an A to Z strip, over a
   blurred view of your day; Dinacharya is in it too and opens the dashboard), swipe down for notifications, left for the camera
   and right for the phone (both can be any app), press and hold for settings. Apps that pull you away can wait a
@@ -795,7 +795,7 @@ left out of it on purpose).
 **Settings > Language** (or the line on the welcome screen) lets the person pick **English, हिन्दी, मराठी, ગુજરાતી, বাংলা, தமிழ் or తెలుగు**;
 the default, **Automatic**, follows the phone's language when the app has it and is English otherwise. The change shows at once.
 Numbers, times and dates stay in 0-9 so a schedule reads the same everywhere. Names (Dinacharya, Pro, Google, Drive), the app names
-on the phone and anything the person typed (slot titles, notes, group names) are never translated. "© 2026 | Developed by ASG" stays in English.
+on the phone and anything the person typed (slot titles, notes, group names) are never translated. "© 2026 | Developed by Code Avirata" stays in English.
 
 How it works (so it can be corrected): the program's text is English. `Translator` (plain Java, tested) looks each text up in a
 word list, `app/src/main/assets/lang/<code>.tsv` (`English TAB translation`; `{1}`, `{2}` mark a changing part such as a number or a
@@ -934,7 +934,7 @@ in a row** before Google lets you publish publicly. Start that as early as you c
    Deploy from a branch > main > /docs**. A **private** repository can only do this on a paid
    GitHub plan; on the free plan make a second, public repository that contains only the `docs`
    folder. The policy will be at `https://YOURNAME.github.io/REPOSITORY/privacy.html`. The
-   contact email in `docs/privacy.html` is `asgdevelopers.support@gmail.com`; change it there if it ever moves.
+   contact email in `docs/privacy.html` is `codeavirata.support@gmail.com`; change it there if it ever moves.
 7. **Upload and test.** **Testing > Closed testing > Create track/release**, upload the `.aab`, accept
    **Play App Signing**, add your testers' Gmail addresses (or a Google Group), and send them the
    opt-in link. They must stay opted in for 14 days. The same `.aab` can go to **Internal testing**
@@ -1203,7 +1203,7 @@ close the app: they are written down and that one job is skipped.
 
 **1.0 (first release on Google Play)**
 - **Pro has two plans:** **Rs 50 a month** (a Google Play subscription, product `pro_monthly`) or **Rs 499 once for life** (the one-time product `pro_unlock`). The Pro screen shows both side by side with the prices Google Play reports; Pro is on while either is active. A monthly subscriber who buys lifetime is told to cancel the monthly plan in Google Play, and "Manage subscription" opens Google Play's page for it. Anyone who bought `pro_unlock` before keeps Pro. In Play Console create the subscription and set `pro_unlock` to Rs 499 (see "Pro purchase: monthly and lifetime").
-- The app is named **Dinacharya Launcher** and is credited "© 2026 | Developed by ASG" on one line (home screen mark, Settings > About, store text, privacy page). The version shown in Settings > About is **1.0**. Google Play's internal build number (`versionCode`) is **45** and goes up by one with every build you install or upload, because Google only accepts a number higher than every one it has seen. Settings > About shows it after the version ("1.0 (build 45)"), so you can tell which build is on the phone. The notes below, from 2.2 to 3.0.1, are the private test builds that came before.
+- The app is named **Dinacharya Launcher** and is credited "© 2026 | Developed by Code Avirata" on one line (home screen mark, Settings > About, store text, privacy page). The version shown in Settings > About is **1.0**. Google Play's internal build number (`versionCode`) is **45** and goes up by one with every build you install or upload, because Google only accepts a number higher than every one it has seen. Settings > About shows it after the version ("1.0 (build 45)"), so you can tell which build is on the phone. The notes below, from 2.2 to 3.0.1, are the private test builds that came before.
 
 **2.2**
 - **Dinacharya is now a home screen (launcher), not a wallpaper app.** No apps on it: the whole screen is your

@@ -242,11 +242,11 @@ final class PosterRenderer {
     }
 
     /**
-     * The small credit under the list, on one line: "© 2026 | Developed by ASG". The year and the words are quiet, a hairline in the
+     * The small credit under the list, on one line: "© 2026 | Developed by Code Avirata". The year and the words are quiet, a hairline in the
      * accent colour stands between them and the name is a little stronger. It shrinks, never wraps, when the screen is narrow.
      */
     private void mark(Canvas c, int w, float u, float cy, Palette pal) {
-        final String year = "© 2026", by = "Developed by", who = "ASG";
+        final String year = "© 2026", by = "Developed by", who = "Code Avirata";
         float size = 21 * u;
         float gap = 17 * u;
         float space = 7 * u;
