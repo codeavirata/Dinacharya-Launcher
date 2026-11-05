@@ -933,8 +933,8 @@ in a row** before Google lets you publish publicly. Start that as early as you c
 6. **Turn on GitHub Pages for the privacy policy.** In the repository: **Settings > Pages > Source:
    Deploy from a branch > main > /docs**. A **private** repository can only do this on a paid
    GitHub plan; on the free plan make a second, public repository that contains only the `docs`
-   folder. The policy will be at `https://YOURNAME.github.io/REPOSITORY/privacy.html`. Open
-   `docs/privacy.html` first and put your real contact email in place of `your-email@example.com`.
+   folder. The policy will be at `https://YOURNAME.github.io/REPOSITORY/privacy.html`. The
+   contact email in `docs/privacy.html` is `asgdevelopers.support@gmail.com`; change it there if it ever moves.
 7. **Upload and test.** **Testing > Closed testing > Create track/release**, upload the `.aab`, accept
    **Play App Signing**, add your testers' Gmail addresses (or a Google Group), and send them the
    opt-in link. They must stay opted in for 14 days. The same `.aab` can go to **Internal testing**
