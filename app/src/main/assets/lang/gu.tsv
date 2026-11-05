@@ -2302,3 +2302,13 @@ Minute	મિનિટ
 Pick a date	તારીખ પસંદ કરો
 Earlier month	પાછલો મહિનો
 Later month	આગલો મહિનો
+Earlier, no answer	પહેલાનું, જવાબ આપ્યો નહીં
+Start it now	હમણાં શરૂ કરો
+Then	પછી
+Then: sleep	પછી: ઊંઘ
+Start now, or tap to choose.	હમણાં શરૂ કરો, અથવા પસંદ કરવા ટૅપ કરો.
+There is no room for it before the next slot	આગલા સ્લોટ પહેલાં તેના માટે જગ્યા નથી
+You did not answer its alarm. Start it now for as long as you choose; “{1}” carries on after it, and the rest of your day stays as it is.	તમે તેના અલાર્મનો જવાબ આપ્યો નહીં. તમે જેટલો સમય ઈચ્છો તેટલો તેને હમણાં શરૂ કરો; તે પછી “{1}” ચાલુ રહેશે અને તમારો બાકીનો દિવસ એવો જ રહેશે.
+“{1}” until {2}, then “{3}” until {4}.	“{1}” {2} સુધી, પછી “{3}” {4} સુધી.
+Its full length: {1}	તેની પૂરી લંબાઈ: {1}
+“{1}” for {2} min, then “{3}”	“{1}” {2} મિનિટ માટે, પછી “{3}”

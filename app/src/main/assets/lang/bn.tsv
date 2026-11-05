@@ -2301,3 +2301,13 @@ Minute	মিনিট
 Pick a date	তারিখ বাছুন
 Earlier month	আগের মাস
 Later month	পরের মাস
+Earlier, no answer	আগেরটা, উত্তর দেননি
+Start it now	এখনই শুরু করুন
+Then	তারপর
+Then: sleep	তারপর: ঘুম
+Start now, or tap to choose.	এখনই শুরু করুন, বা বেছে নিতে ট্যাপ করুন।
+There is no room for it before the next slot	পরের স্লটের আগে এর জন্য জায়গা নেই
+You did not answer its alarm. Start it now for as long as you choose; “{1}” carries on after it, and the rest of your day stays as it is.	আপনি এর অ্যালার্মের উত্তর দেননি। যতক্ষণ চান ততক্ষণের জন্য এটি এখনই শুরু করুন; তারপর “{1}” চলতে থাকবে এবং আপনার বাকি দিন যেমন আছে তেমনই থাকবে।
+“{1}” until {2}, then “{3}” until {4}.	“{1}” {2} পর্যন্ত, তারপর “{3}” {4} পর্যন্ত।
+Its full length: {1}	এর পূর্ণ দৈর্ঘ্য: {1}
+“{1}” for {2} min, then “{3}”	“{1}” {2} মিনিটের জন্য, তারপর “{3}”

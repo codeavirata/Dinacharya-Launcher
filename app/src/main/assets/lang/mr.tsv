@@ -2301,3 +2301,13 @@ Minute	मिनिट
 Pick a date	तारीख निवडा
 Earlier month	मागील महिना
 Later month	पुढील महिना
+Earlier, no answer	आधीचा, उत्तर दिले नाही
+Start it now	आता सुरू करा
+Then	मग
+Then: sleep	मग: झोप
+Start now, or tap to choose.	आता सुरू करा, किंवा निवडण्यासाठी टॅप करा.
+There is no room for it before the next slot	पुढील स्लॉटपूर्वी यासाठी जागा नाही
+You did not answer its alarm. Start it now for as long as you choose; “{1}” carries on after it, and the rest of your day stays as it is.	तुम्ही याच्या अलार्मला उत्तर दिले नाही. तुम्हाला हवा तितका वेळ ते आता सुरू करा; त्यानंतर “{1}” चालू राहील आणि तुमचा उर्वरित दिवस तसाच राहील.
+“{1}” until {2}, then “{3}” until {4}.	“{1}” {2} पर्यंत, मग “{3}” {4} पर्यंत.
+Its full length: {1}	याची पूर्ण लांबी: {1}
+“{1}” for {2} min, then “{3}”	“{1}” {2} मिनिटांसाठी, मग “{3}”

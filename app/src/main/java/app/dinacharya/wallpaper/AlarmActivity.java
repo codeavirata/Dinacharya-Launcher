@@ -327,26 +327,52 @@ public class AlarmActivity extends LangActivity {
         } catch (RuntimeException ignored) {
             // no sub type shown
         }
-        col.addView(Glass.display(this, clock(System.currentTimeMillis()), 58, Glass.WHITE));
+        final boolean slotKind = ev.kind == AlarmPlanner.SLOT || ev.kind == AlarmPlanner.START_AGAIN;
+        final SlotActions.Skipped skip = slotKind ? SlotActions.whatSkipping(this, ev) : null;
+
+        // The top: the time now and what this is, small; the slot itself in one card; what comes after it.
+        col.addView(Glass.display(this, clock(System.currentTimeMillis()), 46, Glass.WHITE));
         col.addView(Glass.eyebrow(this, ev.kind == AlarmPlanner.START_AGAIN ? "You asked to start later"
-                : ev.firstOfDay ? "Your day starts" : "Starting now", Glass.MUTE), Ui.wide(this, 6));
-        TextView title = Glass.display(this, slotName(), 38, Glass.WHITE);
+                : ev.firstOfDay ? "Your day starts" : "Starting now", Glass.MUTE), Ui.wide(this, 4));
+        LinearLayout hero = Glass.box(this);
+        TextView title = Glass.display(this, slotName(), 34, Glass.WHITE);
         title.setLineSpacing(dp(2), 1f);
-        col.addView(title, Ui.wide(this, 30));
-        col.addView(Glass.text(this, clock(ev.slotStartMs) + " – " + clock(ev.slotEndMs) + "  ·  " + Routine.formatDuration(mins)
-                + (sub.isEmpty() ? "" : "  ·  " + sub), 15, Glass.SOFT, false), Ui.wide(this, 10));
+        hero.addView(title);
+        hero.addView(Glass.text(this, clock(ev.slotStartMs) + " – " + clock(ev.slotEndMs) + "  ·  " + Routine.formatDuration(mins)
+                + (sub.isEmpty() ? "" : "  ·  " + sub), 15, Glass.SOFT, false), Ui.wide(this, 8));
+        if (skip != null && (skip.nextIsSleep || !skip.nextTitle.isEmpty())) {
+            hero.addView(Glass.text(this, skip.nextIsSleep ? Lang.tr("Then: sleep") : Lang.tr("Then") + ": " + skip.nextTitle,
+                    13.5f, Glass.MUTE, false), Ui.wide(this, 6));
+        }
+        col.addView(hero, Ui.wide(this, 16));
         String note = slotNote();
         if (!note.isEmpty()) {
             LinearLayout nb = Glass.box(this);
             TextView nt = Glass.text(this, "📝  " + note, 14.5f, Glass.SOFT, false);
             nt.setLineSpacing(dp(2), 1f);
             nb.addView(nt);
-            col.addView(nb, Ui.wide(this, 18));
+            col.addView(nb, Ui.wide(this, 10));
+        }
+
+        // An earlier slot whose alarm nobody answered: it can be started now, for as long as is chosen.
+        final int fit = fitMinutes();
+        final MissedInfo missed = slotKind && !ev.wake && fit >= SlotPlay.STEP ? findMissed() : null;
+        if (missed != null) {
+            LinearLayout mb = Glass.box(this);
+            mb.addView(Glass.eyebrow(this, "Earlier, no answer", Glass.MUTE));
+            mb.addView(Glass.text(this, missed.title, 20, Glass.WHITE, true), Ui.wide(this, 4));
+            mb.addView(Glass.text(this, clock(missed.startMs) + " – " + clock(missed.endMs) + "  ·  " + Routine.formatDuration(missed.plannedMin),
+                    13.5f, Glass.SOFT, false), Ui.wide(this, 2));
+            mb.addView(Glass.chip(this, "Start it now", v -> {
+                silence();
+                SlotSheets.missedSheet(this, missed.title, ev.title, ev.slotEndMs, missed.plannedMin, missed.plannedMin, fit,
+                        m -> startMissed(missed, m));
+            }), Ui.wide(this, 12));
+            col.addView(mb, Ui.wide(this, 10));
         }
         View spacer = new View(this);
         col.addView(spacer, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
 
-        final int fit = fitMinutes();
         final SlotActions.Prev prev = ev.kind == AlarmPlanner.SLOT && fit >= SlotPlay.STEP ? SlotActions.previous(this, ev) : null;
         java.util.List<View> mains = new java.util.ArrayList<>();
         mains.add(Glass.main(this, "Start", v -> {
@@ -379,7 +405,6 @@ public class AlarmActivity extends LangActivity {
             silence();
             askChange();
         }));
-        final SlotActions.Skipped skip = ev.kind == AlarmPlanner.SLOT || ev.kind == AlarmPlanner.START_AGAIN ? SlotActions.whatSkipping(this, ev) : null;
         if (skip != null) more.addView(Glass.chip(this, "Skip", v -> {
             silence();
             askSkip(skip);
@@ -390,6 +415,59 @@ public class AlarmActivity extends LangActivity {
         root.addView(slotPage, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         Insets.bars(this, false);
         Lang.watch(slotPage);
+    }
+
+    /** An earlier slot of today whose alarm rang and was not answered. */
+    private static final class MissedInfo {
+        String title = "";
+        String sub = "";
+        int kind;
+        int src;
+        int plannedMin;
+        long startMs;
+        long endMs;
+    }
+
+    /** The slot that rang last without an answer, before this one, or null. */
+    private MissedInfo findMissed() {
+        try {
+            long now = System.currentTimeMillis();
+            java.util.List<MissedSlots.Key> keys = MissedSlots.pending(Store.history(this).events(), ev.day, ev.src, now, MissedSlots.WITHIN_MS);
+            if (keys.isEmpty()) return null;
+            Plan.DayPlan p = Plan.plan(base, ov, LocalDate.parse(ev.day), Store.zone());
+            for (MissedSlots.Key k : keys) {
+                for (int i = 0; i < p.sc.slots.size(); i++) {
+                    Routine.Block b = p.sc.slots.get(i).block;
+                    if (b.src != k.src || b.kind == Routine.SLEEP || b.skipped) continue;
+                    if (p.slotStartMs(i) >= ev.slotStartMs) continue;   // only something that came before this slot
+                    MissedInfo m = new MissedInfo();
+                    m.title = (b.changed && b.origTitle != null) ? b.origTitle : b.title;
+                    m.sub = b.sub == null ? "" : b.sub;
+                    m.kind = b.kind;
+                    m.src = b.src;
+                    m.plannedMin = b.mins;
+                    m.startMs = p.slotStartMs(i);
+                    m.endMs = p.slotEndMs(i);
+                    return m;
+                }
+            }
+        } catch (RuntimeException e) {
+            CrashLog.note(this, "missed slot lookup", e);
+        }
+        return null;
+    }
+
+    /**
+     * "Start it now" for the missed slot: the slot that is starting gives its first {@code minutes} to it (the same as Change plan,
+     * replacing the slot for a while, so the day still adds up and the later slots do not move), and both answers are written down.
+     */
+    private void startMissed(MissedInfo m, int minutes) {
+        long now = System.currentTimeMillis();
+        Plan.editPart(base, ov, LocalDate.parse(ev.day), ev.src, m.title, minutes, m.kind, m.sub);
+        Store.saveOverrides(this, base, ov);
+        log(Ev.ack(now, ev.day, ev.src, ev.title, "R", m.title));
+        log(Ev.ack(now, ev.day, m.src, m.title, "R", m.title));
+        done("“" + m.title + "” for " + minutes + " min, then “" + ev.title + "”");
     }
 
     /** "Skip": the slot that is starting is left out for today and the next one begins now. Asks once, so a tap by mistake can be taken back. */

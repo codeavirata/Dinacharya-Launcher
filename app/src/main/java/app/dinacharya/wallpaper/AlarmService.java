@@ -56,6 +56,17 @@ public class AlarmService extends Service {
     private static long lastBrought;
 
     private final Handler handler = new Handler(Looper.getMainLooper());
+    /** How long a new alarm waits for the question still ringing before it takes over (the wake-up alarm rings for half an hour). */
+    static final long WAIT_CAP_MS = 5 * 60 * 1000L;
+    /** The alarm that came while another was still ringing: it waits its turn, and is dropped when the first is answered. */
+    private AlarmPlanner.Event queued;
+    private long ringingSince;
+    private final Runnable promote = new Runnable() {
+        @Override
+        public void run() {
+            promoteQueued();
+        }
+    };
     private long lastReshow;
     private boolean watchingScreen;
     private final BroadcastReceiver screen = new BroadcastReceiver() {
@@ -78,6 +89,19 @@ public class AlarmService extends Service {
             giveUp();
         }
     };
+
+    /** An answer given from a notification button: stops the ringing and clears its notification. */
+    static void silenceFromNotification(Context c) {
+        if (ringing == null) return;
+        ringing = null;
+        try {
+            Intent i = new Intent(c, AlarmService.class);
+            i.setAction(ACTION_SILENCE);
+            c.startService(i);
+        } catch (RuntimeException ignored) {
+            // it stops by itself after five minutes
+        }
+    }
 
     /** The question was answered (or the alarm gave up): nothing is ringing any more. */
     static void answered() {
@@ -122,7 +146,9 @@ public class AlarmService extends Service {
             text = "Time to start now. Tap to answer.";
         } else if (e.kind == AlarmPlanner.SLOT) {
             title = name.isEmpty() ? "Next slot" : name;
-            text = clock(e.slotStartMs, h24) + " to " + clock(e.slotEndMs, h24) + ". Tap to answer.";
+            long mins = Math.max(1L, (e.slotEndMs - e.slotStartMs) / 60000L);
+            return new String[]{Lang.tr(title), clock(e.slotStartMs, h24) + " – " + clock(e.slotEndMs, h24) + " · "
+                    + Routine.formatDuration((int) mins) + ". " + Lang.tr("Start now, or tap to choose.")};
         } else {
             title = "Time to sleep";
             text = "Going to sleep, or will it take more time?";
@@ -205,6 +231,8 @@ public class AlarmService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null && ACTION_SILENCE.equals(intent.getAction())) {
             current = null;           // answered: nothing to mark as missed
+            queued = null;            // the person is busy with the question; the next slot waits on the Home screen as "No response"
+            handler.removeCallbacks(promote);
             ringing = null;
             stopRinging();
             try {
@@ -222,7 +250,16 @@ public class AlarmService extends Service {
             stopSelf();
             return START_NOT_STICKY;
         }
-        if (current != null) logMissed(current);   // a new alarm arrived while the last one was still unanswered
+        if (current != null && !AlarmPlanner.isTest(current)) {
+            // A new alarm came while the last question was still ringing. It does not push the old one off the screen: it waits until the
+            // old one is answered (then it is dropped, the person is busy) or stops by itself, and never for more than WAIT_CAP_MS.
+            queued = e;
+            handler.removeCallbacks(promote);
+            long left = limitFor(current) - (android.os.SystemClock.elapsedRealtime() - ringingSince);
+            handler.postDelayed(promote, Math.max(1000L, Math.min(WAIT_CAP_MS, left)));
+            return START_NOT_STICKY;
+        }
+        if (current != null) logMissed(current);
         current = e;
         try {
             ring(e);
@@ -239,6 +276,7 @@ public class AlarmService extends Service {
     @Override
     public void onDestroy() {
         handler.removeCallbacks(timeout);
+        handler.removeCallbacks(promote);
         ringing = null;
         stopRinging();
         super.onDestroy();
@@ -262,20 +300,29 @@ public class AlarmService extends Service {
         return Routine.formatTime(z.getHour() * 60 + z.getMinute(), h24);
     }
 
+    /**
+     * The ringing notification: the slot's name, its time and length, and for a slot two quick answers, "Start now" and "In 10 min", so a
+     * slot can be started from the shade without opening the screen. Tapping it opens the full question.
+     */
     private Notification ringNotification(AlarmPlanner.Event e) {
         PendingIntent pi = PendingIntent.getActivity(this, 5001, openIntent(this, e), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         String[] w = words(this, e);
-        return new Notification.Builder(this, CH_RING)
+        Notification.Builder b = new Notification.Builder(this, CH_RING)
                 .setSmallIcon(R.drawable.ic_stat)
                 .setContentTitle(w[0])
                 .setContentText(w[1])
+                .setStyle(new Notification.BigTextStyle().bigText(w[1]))
                 .setCategory(Notification.CATEGORY_ALARM)
                 .setOngoing(true)
                 .setAutoCancel(false)
                 .setVisibility(Notification.VISIBILITY_PUBLIC)
                 .setContentIntent(pi)
-                .setFullScreenIntent(pi, true)
-                .build();
+                .setFullScreenIntent(pi, true);
+        if ((e.kind == AlarmPlanner.SLOT || e.kind == AlarmPlanner.START_AGAIN) && !e.wake && !AlarmPlanner.isTest(e)) {
+            b.addAction(quickAction(this, e, SlotActions.ACTION_START_NOW, Lang.tr("Start now"), 1));
+            b.addAction(quickAction(this, e, SlotActions.ACTION_START_LATER, Lang.tr("In 10 min"), 2));
+        }
+        return b.build();
     }
 
     private void ring(AlarmPlanner.Event e) {
@@ -299,6 +346,7 @@ public class AlarmService extends Service {
         }
 
         ringing = e;
+        ringingSince = android.os.SystemClock.elapsedRealtime();
         AlarmScheduler.noteRinging(this);
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         if (pm != null) {
@@ -569,7 +617,31 @@ public class AlarmService extends Service {
         Store.history(this).append(Ev.missed(System.currentTimeMillis(), e.day, e.src, e.title));
     }
 
+    /** The waiting alarm takes over: the old question is marked missed and the new one rings. */
+    private void promoteQueued() {
+        AlarmPlanner.Event next = queued;
+        queued = null;
+        handler.removeCallbacks(promote);
+        if (next == null) return;
+        handler.removeCallbacks(timeout);
+        if (current != null) logMissed(current);
+        current = next;
+        try {
+            ring(next);
+        } catch (RuntimeException ex) {
+            CrashLog.note(this, "ring queued", ex);
+            current = null;
+            stopRinging();
+            postFallback(this, next);
+            stopSelf();
+        }
+    }
+
     private void giveUp() {
+        if (queued != null) {
+            promoteQueued();   // the old one stops by itself: the waiting one rings now
+            return;
+        }
         AlarmPlanner.Event e = current;
         current = null;
         ringing = null;

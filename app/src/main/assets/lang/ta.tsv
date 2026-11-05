@@ -2302,3 +2302,13 @@ Minute	நிமிடம்
 Pick a date	தேதியைத் தேர்ந்தெடுக்கவும்
 Earlier month	முந்தைய மாதம்
 Later month	அடுத்த மாதம்
+Earlier, no answer	முந்தையது, பதில் இல்லை
+Start it now	இப்போதே தொடங்கு
+Then	பிறகு
+Then: sleep	பிறகு: தூக்கம்
+Start now, or tap to choose.	இப்போதே தொடங்கு, அல்லது தேர்ந்தெடுக்க தட்டவும்.
+There is no room for it before the next slot	அடுத்த ஸ்லாட்டுக்கு முன் இதற்கு இடம் இல்லை
+You did not answer its alarm. Start it now for as long as you choose; “{1}” carries on after it, and the rest of your day stays as it is.	இதன் அலாரத்துக்கு நீங்கள் பதில் சொல்லவில்லை. நீங்கள் விரும்பும் நேரம் வரை இப்போதே தொடங்குங்கள்; அதன் பிறகு “{1}” தொடரும், உங்கள் மீதமுள்ள நாள் அப்படியே இருக்கும்.
+“{1}” until {2}, then “{3}” until {4}.	“{1}” {2} வரை, பிறகு “{3}” {4} வரை.
+Its full length: {1}	இதன் முழு நீளம்: {1}
+“{1}” for {2} min, then “{3}”	“{1}” {2} நிமிடங்களுக்கு, பிறகு “{3}”

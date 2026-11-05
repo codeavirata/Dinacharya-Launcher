@@ -469,6 +469,47 @@ final class SlotSheets {
         sheet.show();
     }
 
+    /**
+     * "Start it now" for a slot whose alarm was not answered: how long it runs now (its planned length, or less, or more up to what the
+     * slot that is starting leaves), and what happens after: that slot carries on for the rest of its time.
+     */
+    static void missedSheet(final Activity a, final String missedTitle, final String currentTitle, final long currentEndMs,
+                            final int plannedMin, int initial, int room, final java.util.function.IntConsumer go) {
+        if (room < SlotPlay.STEP) {
+            say(a, "There is no room for it before the next slot");
+            return;
+        }
+        final boolean h24 = Store.load(a).fmt24;
+        final String mt = missedTitle == null || missedTitle.isEmpty() ? "The slot" : missedTitle;
+        final String ct = currentTitle == null || currentTitle.isEmpty() ? "the next slot" : currentTitle;
+        final Glass.Sheet sheet = new Glass.Sheet(a, "Start “" + mt + "” now", "You did not answer its alarm. Start it now for as long as you choose; “" + ct
+                + "” carries on after it, and the rest of your day stays as it is.");
+        final Glass.Stepper st = new Glass.Stepper(a, Math.min(Math.max(initial, SlotPlay.STEP), room), SlotPlay.STEP, room, SlotPlay.STEP, "min", null);
+        final TextView caption = Glass.note(a, "");
+        final Runnable draw = () -> {
+            long end = System.currentTimeMillis() + st.value() * 60000L;
+            caption.setText("“" + mt + "” until " + clock(end, h24) + ", then “" + ct + "” until " + clock(currentEndMs, h24) + ".");
+        };
+        st.onChange(v -> draw.run());
+        draw.run();
+        LinearLayout box = column(a);
+        box.addView(st.view);
+        if (plannedMin >= SlotPlay.STEP && plannedMin <= room && plannedMin != st.value()) {
+            box.addView(Glass.chip(a, "Its full length: " + Routine.formatDuration(plannedMin), v -> {
+                st.setValue(plannedMin);
+                draw.run();
+            }), Glass.wide(a, 12));
+        }
+        box.addView(caption, Glass.wide(a, 14));
+        box.addView(Glass.main(a, "Start it now", v -> {
+            sheet.dismiss();
+            go.accept(st.value());
+        }), Glass.wide(a, 20));
+        box.addView(Glass.quiet(a, "Cancel", v -> sheet.dismiss()), Glass.wide(a, 4));
+        sheet.body.addView(box);
+        sheet.show();
+    }
+
     // ------------------------------------------------------------------ change plan
 
     /** What the caller does with the answers of "Change plan" (the Home screen and the alarm screen record them differently). */

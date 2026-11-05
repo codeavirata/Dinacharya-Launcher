@@ -2301,3 +2301,13 @@ Minute	నిమిషం
 Pick a date	తేదీని ఎంచుకోండి
 Earlier month	ముందటి నెల
 Later month	తర్వాతి నెల
+Earlier, no answer	ముందుది, సమాధానం ఇవ్వలేదు
+Start it now	ఇప్పుడే ప్రారంభించండి
+Then	తర్వాత
+Then: sleep	తర్వాత: నిద్ర
+Start now, or tap to choose.	ఇప్పుడే ప్రారంభించండి, లేదా ఎంచుకోవడానికి నొక్కండి.
+There is no room for it before the next slot	తదుపరి స్లాట్‌కు ముందు దీనికి చోటు లేదు
+You did not answer its alarm. Start it now for as long as you choose; “{1}” carries on after it, and the rest of your day stays as it is.	దీని అలారానికి మీరు సమాధానం ఇవ్వలేదు. మీకు కావలసినంత సేపు దీన్ని ఇప్పుడే ప్రారంభించండి; ఆ తర్వాత “{1}” కొనసాగుతుంది, మీ మిగతా రోజు అలాగే ఉంటుంది.
+“{1}” until {2}, then “{3}” until {4}.	“{1}” {2} వరకు, తర్వాత “{3}” {4} వరకు.
+Its full length: {1}	దీని పూర్తి నిడివి: {1}
+“{1}” for {2} min, then “{3}”	“{1}” {2} నిమిషాలు, తర్వాత “{3}”
