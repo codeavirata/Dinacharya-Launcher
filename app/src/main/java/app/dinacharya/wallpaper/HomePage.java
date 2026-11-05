@@ -120,7 +120,7 @@ final class HomePage extends Page {
         goalsBox.setOrientation(LinearLayout.VERTICAL);
         body.addView(goalsBox, Ui.wide(a, 0));
 
-        adSlot = new AdSlot(a, a::openPro);
+        adSlot = new AdSlot(a, R.string.admob_banner_id, a::openPro);
         body.addView(adSlot, Ui.wide(a, 16));
 
         a.addFooter(body);

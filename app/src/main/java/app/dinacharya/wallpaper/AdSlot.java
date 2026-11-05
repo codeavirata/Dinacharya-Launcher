@@ -27,15 +27,18 @@ final class AdSlot extends LinearLayout {
     private static final int MAX_TRIES = 6;
 
     private final Activity a;
+    private final int unitRes;
     private final Runnable openPro;
     private final Handler ui = new Handler(Looper.getMainLooper());
     private AdView adView;
     private TextView status;
     private int tries;
 
-    AdSlot(Activity host, Runnable openPro) {
+    /** @param unitRes the string resource holding this page's banner ad unit id, so AdMob reports each page on its own */
+    AdSlot(Activity host, int unitRes, Runnable openPro) {
         super(host);
         this.a = host;
+        this.unitRes = unitRes;
         this.openPro = openPro;
         setOrientation(VERTICAL);
         setGravity(Gravity.CENTER_HORIZONTAL);
@@ -54,7 +57,7 @@ final class AdSlot extends LinearLayout {
             if (adView != null) return;   // already showing or loading
             setVisibility(VISIBLE);
             adView = new AdView(a);
-            adView.setAdUnitId(a.getString(R.string.admob_banner_id));
+            adView.setAdUnitId(a.getString(unitRes));
             adView.setAdSize(AdSize.BANNER);
             adView.setAdListener(new AdListener() {
                 @Override

@@ -55,7 +55,7 @@ public class PerformanceActivity extends LangActivity {
         body.setOrientation(LinearLayout.VERTICAL);
         sv.addView(body, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         root.addView(sv, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
-        adSlot = new AdSlot(this, () -> ProPrompt.open(this));
+        adSlot = new AdSlot(this, R.string.admob_banner_performance_id, () -> ProPrompt.open(this));
         LinearLayout.LayoutParams ap = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         ap.setMargins(Ui.dp(this, 12), Ui.dp(this, 4), Ui.dp(this, 12), Ui.dp(this, 8));
         root.addView(adSlot, ap);

@@ -67,7 +67,7 @@ final class InsightsPage extends Page {
         typesBox.setOrientation(LinearLayout.VERTICAL);
         body.addView(typesBox, Ui.wide(a, 0));
         a.extras.buildHabits(body);
-        adSlot = new AdSlot(a, a::openPro);
+        adSlot = new AdSlot(a, R.string.admob_banner_insights_id, a::openPro);
         body.addView(adSlot, Ui.wide(a, 16));
         LinearLayout rep = Ui.section(a, body, "Reports", "Every day, saved");
         rep.addView(a.note("When a day ends its report is saved on this phone: score, phone use by hour and app, time per type, "

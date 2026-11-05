@@ -9,8 +9,8 @@
         pro_monthly_product_id: the ID of the MONTHLY plan, a subscription you create in Google Play Console
         (Monetize > Products > Subscriptions) with one auto-renewing base plan billed every month (Rs 49). It must match exactly.
 
-        admob_app_id / admob_banner_id / admob_rewarded_id: these are the REAL ids from the AdMob account of
-        Code Avirata (app "Dinacharya Launcher", one Banner and three Rewarded units). They show real ads that pay.
+        admob_app_id / admob_banner_id (Home) / admob_banner_insights_id / admob_banner_performance_id / admob_rewarded_id: these are the REAL ids from the AdMob account of
+        Code Avirata (app "Dinacharya Launcher", three Banner units, one per page, and three Rewarded units). They show real ads that pay.
         NEVER tap real ads on your own phone or let testers do it: that is invalid traffic and can get the AdMob
         account banned. To see ads safely on a phone, add it under AdMob > Settings > Test devices, or swap in
         Google's test ids: app ca-app-pub-3940256099942544~3347511713, banner ca-app-pub-3940256099942544/9214589741,
@@ -29,6 +29,8 @@
     <string name="pro_monthly_product_id" translatable="false">pro_monthly</string>
     <string name="admob_app_id" translatable="false">ca-app-pub-2119750772553263~6327530697</string>
     <string name="admob_banner_id" translatable="false">ca-app-pub-2119750772553263/4463572656</string>
+    <string name="admob_banner_insights_id" translatable="false">ca-app-pub-2119750772553263/8075514608</string>
+    <string name="admob_banner_performance_id" translatable="false">ca-app-pub-2119750772553263/9627260262</string>
     <string name="admob_rewarded_id" translatable="false">ca-app-pub-2119750772553263/3101380363</string>
     <string name="admob_rewarded_id_2" translatable="false">ca-app-pub-2119750772553263/5672924579</string>
     <string name="admob_rewarded_id_3" translatable="false">ca-app-pub-2119750772553263/3046761230</string>
