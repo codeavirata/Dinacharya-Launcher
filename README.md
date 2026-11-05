@@ -29,7 +29,7 @@ and a Google Drive backup come with it.
   weekly or monthly to a private space in your Drive, and restore on a new phone.
 - **Free, with an optional Pro:** the app is free with a small ad on Home and Insights. Free keeps the useful
   core: the home screen, alarms, a to-do list for every slot, **today's report** (with a PDF), one pause rule for one app and one lock on one app.
-  **Dinacharya Pro**, Rs 50 a month or Rs 499 once for life (both set in Play Console), removes the ads and unlocks **goals** (a goal for a slot of your
+  **Dinacharya Pro**, Rs 49 a month or Rs 499 once for life (both set in Play Console), removes the ads and unlocks **goals** (a goal for a slot of your
   routine, with its own to-dos), every saved day, the weekly view and the deeper analysis, any number of pauses and locks, locked groups, strict locks,
   extra routines and colour themes. Anyone can open all of it for a day, free, by watching **three short videos**; when the day is over it closes again.
   The **Free and Pro** screen (the last page of the tour, and a button on the Pro screen) shows the two side by side. See "Dinacharya Pro and ads" and "Earn from the app".
@@ -821,7 +821,7 @@ a short pause for **one app** and one lock on **one app**. The free version show
 **Home** and **Insights** tabs and of the report screen. There are never ads on the home screen, the all-apps list,
 an alarm, the pause and lock screens or in a PDF.
 
-**Pro (through Google Play: Rs 50 a month, or Rs 499 once for life, as set in Play Console):** removes the ads, and adds
+**Pro (through Google Play: Rs 49 a month, or Rs 499 once for life, as set in Play Console):** removes the ads, and adds
 
 - **Goals:** a goal for a slot of your routine, with its own to-do list (see "Goals and streaks"). Goals that already exist keep working in Free.
 - **Reports:** every saved day (with its PDF), the **Week** view and its suggestions, and the **deeper analysis**: the slot-by-slot analysis
@@ -999,7 +999,7 @@ In **Focus and locks > Library and Quiet mode > Quiet mode**: rules that set the
    change the price to 499; people who already bought it keep Pro.
 3. **The monthly plan: Monetize with Play > Products > Subscriptions > Create subscription.** Product ID exactly
    `pro_monthly`. Name "Dinacharya Pro (monthly)", then **Add base plan**: auto-renewing, billing period **Monthly**, price
-   **Rs 50** (India), then **Activate** it. One base plan only. (Details in `store/data-safety-and-declarations.md`, section 8.)
+   **Rs 49** (India), then **Activate** it. One base plan only. (Details in `store/data-safety-and-declarations.md`, section 8.)
    The app shows both plans on its Pro screen. Pro is on while either the lifetime purchase is owned or the monthly plan is
    running; if a monthly plan lapses, Pro turns off the next time the app starts online.
 4. Finish the **payments profile** (Play Console > Setup > Payments profile) and your **tax**
@@ -1202,7 +1202,7 @@ close the app: they are written down and that one job is skipped.
 - New texts were translated into the six languages by the developer, not by a native speaker: please read them once on a phone.
 
 **1.0 (first release on Google Play)**
-- **Pro has two plans:** **Rs 50 a month** (a Google Play subscription, product `pro_monthly`) or **Rs 499 once for life** (the one-time product `pro_unlock`). The Pro screen shows both side by side with the prices Google Play reports; Pro is on while either is active. A monthly subscriber who buys lifetime is told to cancel the monthly plan in Google Play, and "Manage subscription" opens Google Play's page for it. Anyone who bought `pro_unlock` before keeps Pro. In Play Console create the subscription and set `pro_unlock` to Rs 499 (see "Pro purchase: monthly and lifetime").
+- **Pro has two plans:** **Rs 49 a month** (a Google Play subscription, product `pro_monthly`) or **Rs 499 once for life** (the one-time product `pro_unlock`). The Pro screen shows both side by side with the prices Google Play reports; Pro is on while either is active. A monthly subscriber who buys lifetime is told to cancel the monthly plan in Google Play, and "Manage subscription" opens Google Play's page for it. Anyone who bought `pro_unlock` before keeps Pro. In Play Console create the subscription and set `pro_unlock` to Rs 499 (see "Pro purchase: monthly and lifetime").
 - The app is named **Dinacharya Launcher** and is credited "© 2026 | Developed by Code Avirata" on one line (home screen mark, Settings > About, store text, privacy page). The version shown in Settings > About is **1.0**. Google Play's internal build number (`versionCode`) is **45** and goes up by one with every build you install or upload, because Google only accepts a number higher than every one it has seen. Settings > About shows it after the version ("1.0 (build 45)"), so you can tell which build is on the phone. The notes below, from 2.2 to 3.0.1, are the private test builds that came before.
 
 **2.2**
@@ -1235,7 +1235,7 @@ close the app: they are written down and that one job is skipped.
   comes with the one-time "Allow restricted settings" steps.
 - **Free and Pro, reshaped:** free users see today and the last 3 saved days of the report (the week tab and older
   days are Pro), pause 2 apps (was 3) and lock 2 apps in one lock; groups, many locks, strict locks and playful
-  pauses are Pro. Pro is Rs 50 a month or Rs 499 once for life (both set in Play Console).
+  pauses are Pro. Pro is Rs 49 a month or Rs 499 once for life (both set in Play Console).
 - **A See Pro screen** of its own (Free against Pro, the price, Get Pro, Restore). The old "See Pro" button in the
   home settings did nothing because Android did not pass the request on to the dashboard; all of them now open this
   screen directly.
@@ -1343,7 +1343,7 @@ close the app: they are written down and that one job is skipped.
 - **Alarms:** a Home card, guided permission steps, a test alarm, a phone checklist with buttons for
   each setting (including common phone makers' background lists), and a notice when an alarm
   never reached the app. The ringing service uses Android's "system exempted" type for alarm apps.
-- **Dinacharya Pro** (Rs 50 a month or Rs 499 once, through Google Play) and small ads with a consent form.
+- **Dinacharya Pro** (Rs 49 a month or Rs 499 once, through Google Play) and small ads with a consent form.
 - **Google Play ready:** targets Android 16, edge-to-edge screens, swipe-back support, a separate
   upload key for Google Play, a bundle (`.aab`) workflow, a privacy policy page and store listing text.
 - Usage access is now explained in a message before Android's settings open.

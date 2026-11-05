@@ -7,7 +7,7 @@
         (Monetize > Products > In-app products). It must match exactly. Set its price (Rs 499) there.
 
         pro_monthly_product_id: the ID of the MONTHLY plan, a subscription you create in Google Play Console
-        (Monetize > Products > Subscriptions) with one auto-renewing base plan billed every month (Rs 50). It must match exactly.
+        (Monetize > Products > Subscriptions) with one auto-renewing base plan billed every month (Rs 49). It must match exactly.
 
         admob_app_id / admob_banner_id / admob_rewarded_id: these are Google's TEST values. They show test ads
         that pay nothing and are safe to tap. Before you publish, make an AdMob account (admob.google.com),

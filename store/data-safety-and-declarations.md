@@ -229,7 +229,7 @@ uploaded build with the Billing permission first). **The two IDs must match** `p
 - Name: Dinacharya Pro (monthly)
 - Benefits (up to 4 short lines): No ads; every saved day and the weekly view; locked groups and strict locks; all routines, goals and colours.
 - Press **Add base plan**: Base plan ID `monthly` (any name you like), **Auto-renewing**, Billing period **Monthly**.
-- Price: **Rs 50** (India). Set it once, then use "Update prices" to let Google convert it for other countries.
+- Price: **Rs 49** (India). Set it once, then use "Update prices" to let Google convert it for other countries.
 - Leave grace period and account hold at Google's defaults. No free trial or intro offer is needed (if you add one later the app
   still works: it offers the base plan, never the trial).
 - Press **Activate** on the base plan. A subscription that is only saved as a draft is not offered to anyone.

@@ -25,7 +25,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * "Dinacharya Pro", in two plans through Google Play: a monthly subscription (product "pro_monthly", Rs 50 a month in
+ * "Dinacharya Pro", in two plans through Google Play: a monthly subscription (product "pro_monthly", Rs 49 a month in
  * Play Console) and a lifetime purchase (the one-time product "pro_unlock", Rs 499). The app shows whatever prices Play reports.
  * Either plan removes the ads and unlocks the extras: the report for every saved day and the week
  * view, any number of paused apps with strict, limit and playful pauses, locked groups and strict locks,
@@ -426,7 +426,7 @@ final class Pro {
         }
     }
 
-    /** The price of one month of the monthly plan ("₹50.00") once Google Play has told us, otherwise an empty string. */
+    /** The price of one month of the monthly plan ("₹49.00") once Google Play has told us, otherwise an empty string. */
     String monthlyPrice() {
         try {
             ProductDetails.SubscriptionOfferDetails o = pickOffer(monthDetails);

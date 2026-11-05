@@ -172,11 +172,11 @@ public class LangFilesTest {
             "5 min late",
             // the Pro page
             "Pro is a monthly plan or one payment for life, through Google Play. ",
-            "Free: the home screen, alarms, today's report and the last three days, two paused apps and two locked apps. Pro is ₹50.00 a month, or ₹499.00 once for life, through Google Play. It adds every saved day and the weekly view, strict and playful pauses, daily limits, groups of locked apps and strict locks, weekday and weekend routines, goals, every colour look, and no ads.",
+            "Free: the home screen, alarms, today's report and the last three days, two paused apps and two locked apps. Pro is ₹49.00 a month, or ₹499.00 once for life, through Google Play. It adds every saved day and the weekly view, strict and playful pauses, daily limits, groups of locked apps and strict locks, weekday and weekend routines, goals, every colour look, and no ads.",
             "Choose a monthly plan or pay once for life. Paid through Google Play.",
             "Monthly plan",
             "Lifetime plan",
-            "₹50.00 a month",
+            "₹49.00 a month",
             "₹499.00 once",
             "Pro for as long as you subscribe. Renews every month; cancel any time in Google Play.",
             "Subscribe monthly",

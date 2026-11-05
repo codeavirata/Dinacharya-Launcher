@@ -68,7 +68,7 @@ Character limits are Google's.
 
     FREE, WITH AN OPTIONAL UPGRADE
     Dinacharya Launcher is free, with a small ad on three dashboard screens (never on the home screen, alarms, pause or
-    lock screens). Free keeps the home screen, alarms, to-dos and today's report. Dinacharya Pro is Rs 50 a month, or Rs 499
+    lock screens). Free keeps the home screen, alarms, to-dos and today's report. Dinacharya Pro is Rs 49 a month, or Rs 499
     once for life, and removes the ads and unlocks goals, every saved day, the weekly view, deeper analysis, any number of
     pauses and locks, locked groups, extra routines and all colour themes. Cancel monthly any time. To try first, watch
     three short videos: everything in Pro opens for a day, then goes back.
