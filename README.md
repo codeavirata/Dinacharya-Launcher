@@ -1148,6 +1148,11 @@ close the app: they are written down and that one job is skipped.
 
 ### Version notes
 
+**1.0, build 81: build 78's fixes and build 80's force-stop help, together**
+- Back from build 78 (see its notes below): alarms that stay on screen, a changed plan that begins when you change it, the Home card showing the new plan at once, and the first-timer changes. Together with build 80's help after a Force stop.
+- **Not back: the optional wallpaper.** The live wallpaper is required again, as in build 77: the setup asks for it, and the home screen asks for it again when it is lost. The "optional wallpaper" paragraph and the "No thanks" texts of build 78 are not part of this build (the work is kept on the branch `preview/first-timer-and-slot-fix`, commit `1920cf3`).
+- Made as the build-78 commits (without `1920cf3`) put back on top of build 80, so the history shows each change.
+
 **1.0, build 80: after a Force stop, the app helps you get your home screen back**
 - On some phones, closing the app from App info (**Force stop**) also switches the Home button back to the phone's own launcher with its own wallpaper. Android decides that, not the app, and the app cannot start itself again afterwards. What the app can do now:
   - **A card that stays.** While Dinacharya used to be your home app and is not now, the Home tab shows *Dinacharya is not your home app* with *Make it my home app* and *Stop asking*. It does not go away for a day after *Not now* like the pop-up does.
@@ -1157,7 +1162,7 @@ close the app: they are written down and that one job is skipped.
 
 **1.0, build 79: build 77 again (build 78 taken back)**
 - Build 78 was rolled back: the code is exactly build 77's, with a higher build number (79) so Google Play accepts it as the newer upload. Everything build 78 held (alarms that stay on screen, a changed plan that begins when you change it, the first-timer changes, the optional wallpaper) is kept on the branch `preview/first-timer-and-slot-fix` (commit `2a7e75a`, the old main) and can be brought back with `git revert` of this commit.
-**1.0, build 78 (temporary branch `preview/first-timer-and-slot-fix`, not in main yet): alarms that stay on screen**
+**1.0, build 78: alarms that stay on screen**
 - **The banner stays until the alarm is answered.** With the phone in use in another app, the alarm showed a banner without Android's full-screen setting (build 77 took it off to avoid two windows). Android hides such a banner after a few seconds, and the alarm went on ringing with nothing on screen to answer it. Now the notification carries the setting in that case too (`AlarmSurface.carriesFullScreen`: not only when locked): Android shows one **sticky banner** instead of a window, and opens the question itself if banners are turned off for the alarm. The app still opens nothing on top of what you are doing.
 - **Shown at once.** From Android 12 a ringing service's notification may be held back for up to ten seconds unless it has buttons; a break that is over, the bedtime question and the plan question had none, so the sound came first and the banner late. The notification is now marked `FOREGROUND_SERVICE_IMMEDIATE`.
 - **Buttons on every alarm.** A break that is over has **Back to work**, **+5 min** (only while two minutes of the slot are left, `SlotPlay.canExtendBreak`) and **Stop**; the bedtime and plan questions have **Stop**. Stop silences the alarm and leaves a quiet notification with the question one tap away. A break-over alarm nobody answers for five minutes now leaves that quiet note instead of vanishing.
@@ -1170,7 +1175,7 @@ close the app: they are written down and that one job is skipped.
 - **The Home card shows the new plan at once.** A slot changed in the middle is three parts with one slot number (the time before, the new plan, the rest), and the Home card found "its" part by the number alone, which is the first part: the time before, with the old name. Right after "Gym" was chosen the card still said *Reading & notes* (or *No response*). The part is now found by the number and the minute (`SlotPlay.indexOfPart`; Home, the "slot now" snapshot and the Change plan sheet use it), and the minutes that went by before the change are counted in whole minutes, not to the nearest, so the new plan never begins after the moment you made it (`ReplaceFromNow`). The test now looks at the day at the moment of the change, not five minutes after it.
 - Known limit: changing the plan of the same slot a second time replaces the first change (as before), so the part that already passed is shown as the slot's own again. New test `ReplaceFromNowTest` (the cases above, rounding, the last minute, a slot across midnight, reports, saved data from an older build). Six languages (6 new lines).
 
-**1.0, build 78, first-timers: less to take in, nothing to fear (temporary branch)**
+**1.0, build 78, first-timers: less to take in, nothing to fear**
 - **Welcome says three plain things** (all your apps are still there and *swipe up* lists them; the routine and reports stay on the phone and no sign-up is needed; you can switch back to your old home screen any time).
 - **A shorter first tour.** The first run shows five cards (the home screen, every app, the routine, the alarms, changing the plan) and the last check, then goes straight to the dashboard; the **Free / Pro table is no longer put in front of someone who has not used anything yet** (it is in Settings and comes up when a Pro feature is tapped). **Settings > Take the tour** still plays all fourteen cards and ends with that table (`TourActivity.FIRST_RUN`).
 - **Permission pages say what will happen.** What each page asks for is named by what it lets the app do ("ring on the minute", "stay awake", "show locks over apps"; `Features.stepName`), and a box **What happens next** says what Android will put on the screen and what to tap (`Features.stepNext`).
