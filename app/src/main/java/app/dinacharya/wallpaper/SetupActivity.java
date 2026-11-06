@@ -480,6 +480,8 @@ public class SetupActivity extends LangActivity {
     }
 
     private void advanceSkipping() {
+        // Skipping the wallpaper is an answer: nothing asks for it again (the Settings has it)
+        if (queue.get(at) == FeaturePlan.S_WALLPAPER) WallpaperSetup.decline(this, true);
         tried = false;
         advance();
     }

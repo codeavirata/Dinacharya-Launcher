@@ -67,7 +67,7 @@ public class TourActivity extends LangActivity {
             "Sign in with Google to back up to a private space in your own Drive, and restore on a new phone. The home settings, your routines and your reports are all in it.",
             "Choose Light, Night or Auto for your day poster, and a colour look: Teal is free and Pro adds the rest. The app speaks English, Hindi, Marathi, Gujarati, Bengali, Tamil and Telugu. Library mode and quiet rules keep your phone silent in the slots you choose. Settings > Feature guide explains every feature and how to set it up.",
             "",
-            "The Dinacharya Launcher live wallpaper shows the time, the date and every slot of your day, with the one you are in highlighted, and keeps itself up to date. It comes with the home screen: Dinacharya Launcher asks Android to put it in place and you confirm once, so it also shows on your lock screen and in your recent apps.",
+            "The Dinacharya Launcher live wallpaper shows the time, the date and every slot of your day, with the one you are in highlighted, and keeps itself up to date. It is optional: without it the home screen still draws your day. Set it and you confirm once, so it also shows on your lock screen and in your recent apps.",
             "A feature you chose that still needs a setting is listed here. You can finish it now or come back from Settings.",
     };
 

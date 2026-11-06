@@ -131,14 +131,16 @@ time: **Settings > Home screen > Change home app**, or Android's own **Settings 
 
 **What it shows.** No apps at all: your day. The Dinacharya day poster is the phone's wallpaper (a live
 wallpaper that redraws every minute while the screen is on). It shows the time, the date, phone use today and
-every slot, with the one you are in highlighted. **Putting it in place:** the first-start setup asks Android to
-switch to the Dinacharya Launcher wallpaper. The wallpaper is part of the launcher, not an extra, so the launcher **looks at it every
+every slot, with the one you are in highlighted. **The wallpaper is optional** (build 78): without it the launcher **paints the same day
+itself**, so the home screen is never plain; the wallpaper only adds the lock screen and the recent apps. **Putting it in place:** the
+first-start setup offers it as the last step of *Home screen and wallpaper*, with **Skip this one**. The launcher **looks at it every
 time the home screen comes up** (and when the dashboard opens, after a restart or an update, and every few hours in the background)
-instead of trusting an old note. If it is not in place, the launcher **paints your day itself at once**, so the home screen is never
-plain, and shows a small chip, **Bring back your day wallpaper**; the dashboard's Home tab shows an amber card ("Your day wallpaper
-is gone", "Only the lock screen has your day" or "Your day wallpaper is not set") with a **Bring it back** button. A wallpaper that
-was in place and then lost is asked for again **at once**, and again after 10 minutes if you turned the preview down; one that was
-never set is asked for once a day. It can also be done from the dashboard's Home tab, the tour and the home settings.
+instead of trusting an old note. **Saying no is final until you change your mind:** skipping the step, turning Android's preview down, or
+tapping **No thanks** on the dashboard card is remembered (`WallpaperSetup.declined`), and then nothing asks again and nothing warns: no pop-up,
+no chip on the home screen, no card. While it was never set and not declined, the dashboard shows a quiet *Next step* card and the home
+screen a small chip, and Android's preview is opened once, the first time. A wallpaper that was in place and then lost (the app was closed
+from App info) is still asked for at once, and again after 10 minutes if you turned the preview down, unless you said no. **Settings >
+Home screen > Home app** shows *Day wallpaper: off* with **Set**; setting it from there, or finding it in place, clears the no.
 Android shows its own preview with a **Set wallpaper** button; tap it (on Android 14 and later it may ask where:
 choose **Home screen** or **Home and lock screen**; "Lock screen" alone leaves the home screen on the old picture, and
 the app says so). Some phones do not report a live wallpaper back to apps, so the app also counts its own wallpaper engine as proof
@@ -1168,7 +1170,8 @@ close the app: they are written down and that one job is skipped.
 - **A calmer dashboard for a start that is not finished.** While alarms have never worked (`alarms_worked_once` is set the first time they are on with everything allowed), the alarm card is a quiet **Next step** card ("Switch on your day alarms", "One more thing before alarms can ring") and only that card is shown; a wallpaper that was never set is a quiet card too. Amber stays for things that broke: a missed alarm, a lost wallpaper, locks that hold only on the home screen, alarms that worked before and stopped.
 - **Safety lines:** the lock editor says *Phone, emergency calls, Settings and Dinacharya are never locked* (this is `GuardRules.alwaysSafe`; the line was checked against the list), and Settings > Home app says you can switch back to your old home app any time.
 - **One-line help on each tab, once.** After the first run only (`tab_hints_on`, never set for an older install) Home, Routine, Insights, Backup and Settings each show one line the first time they open, closed with **Got it** (`Page.hint`, kept above the page so a page that rebuilds its body does not lose it).
-- Not done on purpose: a three-item "first day" checklist (the dashboard already lists the next step, and a second list would be one more thing to read). Six languages (34 new lines).
+- **The live wallpaper is optional.** Skipping it in the setup, turning Android's preview down or tapping **No thanks** on the dashboard card stops every prompt, chip and card about it for good (the home screen draws your day itself); a wallpaper that was never set is asked for once, not once a day, and one on the lock screen only is no longer asked about. Settings > Home app shows *Day wallpaper: off* with **Set**, and setting it clears the no. See "The home screen". (`WallpaperWatch.shouldAsk/needsAttention` take the choice; `AlarmWatchTest`.)
+- Not done on purpose: a three-item "first day" checklist (the dashboard already lists the next step, and a second list would be one more thing to read). Six languages (43 new lines).
 
 **1.0, build 77: one alarm window, and a setup that asks which features you want**
 - **One window for an alarm.** On a phone in use an alarm showed a drop-down banner and a full-screen window at once. Now the app decides when the alarm rings (`AlarmSurface`, with `AlarmService.surfaceNow`): phone locked or screen off, the full screen (the loud notification carries it); phone in use, a banner only, with *Start now* and *In 10 min* and no full screen over it; Dinacharya in front, the question opens in the app and the notification goes to the quiet channel (and is made quiet again once the question is on screen). The test alarm and the missed-alarm path use the same choice.

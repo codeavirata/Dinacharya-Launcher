@@ -748,6 +748,17 @@ final class HomePage extends Page {
 
     /** A card for a step the person has not taken yet: quiet colours, one sentence, one button. Amber stays for things that broke. */
     private void calmCard(String title, String text, String button, View.OnClickListener go) {
+        calmCard(title, text, button, go, null, null);
+    }
+
+    /** The person does not want the wallpaper: nothing asks for it or warns about it again; the Settings has it. */
+    private void noWallpaper() {
+        WallpaperSetup.decline(a, true);
+        a.toastText("Okay. Your home screen still shows your day. You can set the wallpaper later in Settings.");
+        refreshAlarmCard();
+    }
+
+    private void calmCard(String title, String text, String button, View.OnClickListener go, String second, View.OnClickListener secondGo) {
         LinearLayout card = new LinearLayout(a);
         card.setOrientation(LinearLayout.VERTICAL);
         card.setPadding(a.dp(16), a.dp(14), a.dp(16), a.dp(14));
@@ -756,6 +767,7 @@ final class HomePage extends Page {
         card.addView(Ui.label(a, title, 18, Ui.INK, true), Ui.wide(a, 4));
         card.addView(Ui.label(a, text, 13, Ui.MUTED, false), Ui.wide(a, 4));
         card.addView(Ui.button(a, button, true, go), Ui.wide(a, 12));
+        if (second != null) card.addView(Ui.button(a, second, false, secondGo), Ui.wide(a, 8));
         alarmBox.addView(card, Ui.wide(a, 16));
     }
 
@@ -767,13 +779,14 @@ final class HomePage extends Page {
         try {
             if (!Store.prefs(a).getBoolean(SetupActivity.PREF_SETUP_DONE, false)) return;
             int st = WallpaperSetup.status(a);
-            if (!WallpaperWatch.needsAttention(st)) return;
+            if (!WallpaperWatch.needsAttention(st, WallpaperSetup.declined(a))) return;
             if (st == WallpaperWatch.NEVER) {
                 calmCard("Put your day on the lock screen",
-                        "It shows your day on the lock screen and in recent apps. Android asks you to confirm once.", "Set the wallpaper", v -> {
+                        "Optional. It shows your day on the lock screen and in recent apps. Without it the home screen still shows your day. "
+                                + "Android asks you to confirm once.", "Set the wallpaper", v -> {
                             Store.prefs(a).edit().putLong("wallpaper_asked_at", System.currentTimeMillis()).apply();
                             WallpaperSetup.request(a, Permissions.REQ_WALL);
-                        });
+                        }, "No thanks", v -> noWallpaper());
                 return;
             }
             LinearLayout card = new LinearLayout(a);
@@ -791,6 +804,7 @@ final class HomePage extends Page {
                 Store.prefs(a).edit().putLong("wallpaper_asked_at", System.currentTimeMillis()).apply();
                 WallpaperSetup.request(a, Permissions.REQ_WALL);
             }), Ui.wide(a, 12));
+            card.addView(Ui.button(a, "No thanks", false, v -> noWallpaper()), Ui.wide(a, 8));
             alarmBox.addView(card, Ui.wide(a, 16));
         } catch (RuntimeException e) {
             CrashLog.note(a, "wallpaper card", e);

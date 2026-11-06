@@ -199,7 +199,7 @@ final class Features {
             case FeaturePlan.S_HOME:
                 return "Pressing Home then shows your day. You can go back to your old home screen in Android’s settings at any time.";
             case FeaturePlan.S_WALLPAPER:
-                return "Shows your day as the wallpaper, on the lock screen and in recent apps. Android asks you to confirm once.";
+                return "Optional. Shows your day as the wallpaper, on the lock screen and in recent apps. Skip it and the home screen still shows your day. Android asks you to confirm once.";
             default: return "";
         }
     }
