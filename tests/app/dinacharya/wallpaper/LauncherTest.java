@@ -493,6 +493,11 @@ public class LauncherTest {
         ok("first run: welcome, then the tour, then the dashboard", FirstRun.next(false, false) == FirstRun.WELCOME
                 && FirstRun.next(true, false) == FirstRun.TOUR && FirstRun.next(true, true) == FirstRun.DASHBOARD);
         ok("an unfinished setup starts again from the welcome", FirstRun.next(false, true) == FirstRun.WELCOME);
+        ok("a setup that was started and cut short is picked up again, not started over from the welcome",
+                FirstRun.next(false, false, true) == FirstRun.SETUP && FirstRun.next(false, false, false) == FirstRun.WELCOME);
+        ok("a finished setup goes on to the tour or the dashboard whether or not it was begun",
+                FirstRun.next(true, false, true) == FirstRun.TOUR && FirstRun.next(true, true, true) == FirstRun.DASHBOARD
+                        && FirstRun.next(true, true, false) == FirstRun.DASHBOARD);
 
         // ---------- reports: counting the pauses
         Routine base = Routine.sample();

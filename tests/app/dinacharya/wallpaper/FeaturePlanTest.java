@@ -24,8 +24,8 @@ public class FeaturePlanTest {
                 Arrays.equals(FeaturePlan.needs(FeaturePlan.F_ALARMS, 34, true),
                         new int[]{FeaturePlan.S_ALARMS_ON, FeaturePlan.S_NOTIF, FeaturePlan.S_EXACT, FeaturePlan.S_FULLSCREEN, FeaturePlan.S_BATTERY, FeaturePlan.S_MAKER}));
         ok("usage: only usage access", Arrays.equals(FeaturePlan.needs(FeaturePlan.F_USAGE, 34, false), new int[]{FeaturePlan.S_USAGE}));
-        ok("focus: usage access, then display over apps",
-                Arrays.equals(FeaturePlan.needs(FeaturePlan.F_FOCUS, 34, false), new int[]{FeaturePlan.S_USAGE, FeaturePlan.S_OVERLAY}));
+        ok("focus: the home app (pauses and locks hold from the home screen), usage access, then display over apps",
+                Arrays.equals(FeaturePlan.needs(FeaturePlan.F_FOCUS, 34, false), new int[]{FeaturePlan.S_HOME, FeaturePlan.S_USAGE, FeaturePlan.S_OVERLAY}));
         ok("home: the home app, then the wallpaper",
                 Arrays.equals(FeaturePlan.needs(FeaturePlan.F_HOME, 34, false), new int[]{FeaturePlan.S_HOME, FeaturePlan.S_WALLPAPER}));
         ok("quiet: Do Not Disturb access", Arrays.equals(FeaturePlan.needs(FeaturePlan.F_QUIET, 34, false), new int[]{FeaturePlan.S_DND}));
@@ -37,7 +37,9 @@ public class FeaturePlanTest {
                 FeaturePlan.queue(new int[]{FeaturePlan.F_USAGE}, 34, true).equals(l(FeaturePlan.S_USAGE)));
         // two features that share a permission ask for it once
         List<Integer> both = FeaturePlan.queue(new int[]{FeaturePlan.F_USAGE, FeaturePlan.F_FOCUS}, 34, false);
-        ok("usage and focus share usage access: asked once", both.equals(l(FeaturePlan.S_USAGE, FeaturePlan.S_OVERLAY)));
+        ok("usage and focus share usage access: asked once", both.equals(l(FeaturePlan.S_USAGE, FeaturePlan.S_HOME, FeaturePlan.S_OVERLAY)));
+        List<Integer> homeFocus = FeaturePlan.queue(new int[]{FeaturePlan.F_FOCUS, FeaturePlan.F_HOME}, 34, false);
+        ok("focus and home share the home app: asked once", homeFocus.equals(l(FeaturePlan.S_HOME, FeaturePlan.S_USAGE, FeaturePlan.S_OVERLAY, FeaturePlan.S_WALLPAPER)));
         List<Integer> order = FeaturePlan.queue(new int[]{FeaturePlan.F_QUIET, FeaturePlan.F_ALARMS}, 29, false);
         ok("features keep the order they were chosen in",
                 order.equals(l(FeaturePlan.S_DND, FeaturePlan.S_ALARMS_ON, FeaturePlan.S_NOTIF, FeaturePlan.S_BATTERY)));

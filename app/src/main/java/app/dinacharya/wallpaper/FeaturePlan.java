@@ -41,6 +41,7 @@ public final class FeaturePlan {
                 out.add(S_USAGE);
                 break;
             case F_FOCUS:
+                out.add(S_HOME);   // an ordinary pause or lock holds when an app is opened from this home screen
                 out.add(S_USAGE);
                 out.add(S_OVERLAY);
                 break;

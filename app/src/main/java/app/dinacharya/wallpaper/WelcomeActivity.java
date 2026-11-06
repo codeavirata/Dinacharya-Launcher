@@ -35,8 +35,14 @@ public class WelcomeActivity extends LangActivity {
         super.onCreate(b);
         CrashLog.install(this);
         int step = FirstRun.next(Store.prefs(this).getBoolean(SetupActivity.PREF_SETUP_DONE, false),
-                Store.prefs(this).getBoolean(LauncherActivity.PREF_TOUR_DONE, false));
+                Store.prefs(this).getBoolean(LauncherActivity.PREF_TOUR_DONE, false),
+                Store.prefs(this).getBoolean(SetupActivity.PREF_SETUP_BEGUN, false));
         try {
+            if (step == FirstRun.SETUP) {
+                startActivity(new Intent(this, SetupActivity.class).putExtra(SetupActivity.EXTRA_RESUME, true));
+                finish();
+                return;
+            }
             if (step == FirstRun.DASHBOARD) {
                 startActivity(new Intent(this, MainActivity.class));
                 finish();

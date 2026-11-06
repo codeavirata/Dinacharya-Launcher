@@ -109,6 +109,12 @@ final class Features {
         return m;
     }
 
+    /** True when the person chose features in the setup (not only the ones worked out for an older install). */
+    static boolean chosenAny(Context c) {
+        SharedPreferences p = Store.prefs(c);
+        return p.contains(PREF_CHOSEN) && p.getInt(PREF_CHOSEN, 0) != 0;
+    }
+
     static void choose(Context c, int mask) {
         Store.prefs(c).edit().putInt(PREF_CHOSEN, chosen(c) | mask).apply();
     }

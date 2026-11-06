@@ -31,6 +31,10 @@ import java.util.Map;
  */
 public class SetupActivity extends LangActivity {
     static final String PREF_SETUP_DONE = "setup_done";
+    /** Set when the first-run setup has started, so that if it is cut short it is picked up again, not started over from the welcome. */
+    static final String PREF_SETUP_BEGUN = "setup_begun";
+    /** Opens on the steps of the features chosen so far (what is already allowed is skipped), as the way back into a setup that was cut short. */
+    static final String EXTRA_RESUME = "resume";
     static final String EXTRA_REVIEW = "review";
     /** Opens straight on the steps of one feature (a number from {@link FeaturePlan}), without the list of features. */
     static final String EXTRA_FEATURE = "feature";
@@ -48,6 +52,11 @@ public class SetupActivity extends LangActivity {
     private boolean review;
     private int direct = -1;
     private boolean busy;
+    /** True while the page is being built for a setup that is picked up again: no slide between pages, nothing to slide from. */
+    private boolean instant;
+
+    /** The setup that is open, so a second one (started from the home screen after Android's home app page) replaces it instead of piling up. */
+    private static java.lang.ref.WeakReference<SetupActivity> live;
 
     private final boolean[] picked = new boolean[FeaturePlan.FEATURES];
     private final View[] cards = new View[FeaturePlan.FEATURES];
@@ -68,6 +77,11 @@ public class SetupActivity extends LangActivity {
         review = getIntent().getBooleanExtra(EXTRA_REVIEW, false);
         direct = getIntent().getIntExtra(EXTRA_FEATURE, -1);
         if (direct >= FeaturePlan.FEATURES) direct = -1;
+        SetupActivity before = live == null ? null : live.get();
+        if (before != null && before != this && !before.isFinishing()) before.finish();
+        live = new java.lang.ref.WeakReference<>(this);
+        boolean resume = getIntent().getBooleanExtra(EXTRA_RESUME, false);
+        if (!review && direct < 0) Store.prefs(this).edit().putBoolean(PREF_SETUP_BEGUN, true).apply();
         Ui.screen(this, true);
 
         LinearLayout root = new LinearLayout(this);
@@ -84,9 +98,21 @@ public class SetupActivity extends LangActivity {
         if (direct >= 0) {
             picked[direct] = true;
             begin();
+        } else if (resume && Features.chosenAny(this)) {
+            int mask = Features.chosen(this);
+            for (int f = 0; f < FeaturePlan.FEATURES; f++) picked[f] = FeaturePlan.has(mask, f);
+            instant = true;
+            begin();
+            instant = false;
         } else {
             showPicker();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (live != null && live.get() == this) live = null;
+        super.onDestroy();
     }
 
     private int dp(float v) {
@@ -367,9 +393,9 @@ public class SetupActivity extends LangActivity {
         tried = false;
         if (queue.isEmpty()) {
             mode = DONE;
-            if (direct >= 0) showDone();
+            if (direct >= 0 || instant) showDone();
             else swap(true, this::showDone);
-        } else if (direct >= 0) {
+        } else if (direct >= 0 || instant) {
             showStep(true);
         } else {
             swap(true, () -> showStep(true));

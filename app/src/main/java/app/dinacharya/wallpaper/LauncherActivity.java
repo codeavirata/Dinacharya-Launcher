@@ -198,8 +198,13 @@ public class LauncherActivity extends LangActivity {
             // The home screen is the app that is always there, so it keeps the alarms and the end-of-day report set.
             AlarmScheduler.reschedule(this);
             DayCloser.schedule(this);
-            if (b == null && FirstRun.next(Store.prefs(this).getBoolean(SetupActivity.PREF_SETUP_DONE, false),
-                    Store.prefs(this).getBoolean(PREF_TOUR_DONE, false)) != FirstRun.DASHBOARD) {
+            int first = b != null ? FirstRun.DASHBOARD : FirstRun.next(Store.prefs(this).getBoolean(SetupActivity.PREF_SETUP_DONE, false),
+                    Store.prefs(this).getBoolean(PREF_TOUR_DONE, false), Store.prefs(this).getBoolean(SetupActivity.PREF_SETUP_BEGUN, false));
+            if (first == FirstRun.SETUP) {
+                // The setup was cut short (Android's home app page opens the home screen when it closes, for one): carry on from
+                // the features already chosen, in the app's own task, not from the welcome.
+                startActivity(new Intent(this, SetupActivity.class).putExtra(SetupActivity.EXTRA_RESUME, true).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            } else if (first != FirstRun.DASHBOARD) {
                 // The first run was not finished (Home was pressed before the welcome, setup and tour were done): pick it up.
                 startActivity(new Intent(this, WelcomeActivity.class));
             }
