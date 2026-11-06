@@ -49,6 +49,11 @@ final class InsightsPage extends Page {
     }
 
     @Override
+    String hint() {
+        return "Here you see how your days went: what was done, what was missed, and where your phone time went.";
+    }
+
+    @Override
     void build(LinearLayout body) {
         title("Insights", "How your days are going");
         todayBox = new LinearLayout(a);

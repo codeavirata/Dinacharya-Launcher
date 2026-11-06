@@ -138,6 +138,10 @@ final class GroupDialog {
         final TextView howNote = Ui.label(c, "", 12, Ui.MUTED, false);
         howNote.setLineSpacing(Ui.dp(c, 2), 1f);
         box.addView(howNote, Ui.wide(c, 8));
+        // The thing a first-time person fears most is locking themselves out: the code never blocks these (GuardRules.alwaysSafe).
+        TextView safe = Ui.label(c, "Phone, emergency calls, Settings and Dinacharya are never locked.", 12, Ui.TEAL_DARK, true);
+        safe.setLineSpacing(Ui.dp(c, 2), 1f);
+        box.addView(safe, Ui.wide(c, 6));
 
         // ---- the hours and days (a lock by time, and by time with activity)
         final LinearLayout timePanel = new LinearLayout(c);

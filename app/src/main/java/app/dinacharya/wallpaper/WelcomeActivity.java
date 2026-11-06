@@ -75,6 +75,25 @@ public class WelcomeActivity extends LangActivity {
         return t;
     }
 
+    /** One line with a small dot in front of it. */
+    private View promise(String s) {
+        LinearLayout row = new LinearLayout(this);
+        row.setOrientation(LinearLayout.HORIZONTAL);
+        View dot = new View(this);
+        dot.setBackground(Ui.box(this, TEAL, 0, 4));
+        LinearLayout.LayoutParams dl = new LinearLayout.LayoutParams(dp(8), dp(8));
+        dl.topMargin = dp(8);
+        dl.rightMargin = dp(12);
+        row.addView(dot, dl);
+        TextView t = text(s, 15, WHITE, false);
+        t.setLineSpacing(dp(2), 1f);
+        row.addView(t, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        LinearLayout.LayoutParams rl = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        rl.topMargin = dp(8);
+        row.setLayoutParams(rl);
+        return row;
+    }
+
     private void build() {
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
@@ -111,6 +130,16 @@ public class WelcomeActivity extends LangActivity {
         LinearLayout.LayoutParams bp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         bp.topMargin = dp(10);
         col.addView(body, bp);
+
+        // Three plain promises, so nothing here feels like a leap: the apps are still there, the data stays, and it can be undone.
+        LinearLayout promises = new LinearLayout(this);
+        promises.setOrientation(LinearLayout.VERTICAL);
+        promises.addView(promise("All your apps are still there. Swipe up on the home screen for the list."));
+        promises.addView(promise("Your routine and reports stay on your phone. No sign-up is needed."));
+        promises.addView(promise("You can switch back to your old home screen any time."));
+        LinearLayout.LayoutParams pp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        pp.topMargin = dp(18);
+        col.addView(promises, pp);
 
         col.addView(new View(this), new LinearLayout.LayoutParams(1, 0, 1f));
 

@@ -44,6 +44,11 @@ final class HomePage extends Page {
         }
     };
 
+    @Override
+    String hint() {
+        return "This is your day. The card shows what is on now. Break, Change plan and Adjust time on it change today only; your saved routine stays as it is.";
+    }
+
     HomePage(MainActivity host) {
         super(host);
     }
@@ -647,6 +652,7 @@ final class HomePage extends Page {
     private void refreshAlarmCard() {
         if (alarmBox == null) return;
         alarmBox.removeAllViews();
+        calmShown = false;
         final Routine r = a.routine();
         try {
             java.util.List<AlarmHealth.Item> items = AlarmHealth.check(a, r);
@@ -657,6 +663,21 @@ final class HomePage extends Page {
             card.setOrientation(LinearLayout.VERTICAL);
             card.setPadding(a.dp(16), a.dp(14), a.dp(16), a.dp(14));
 
+            boolean worked = Store.prefs(a).getBoolean(PREF_ALARMS_WORKED, false);
+            if (r.alarmOn && missing.isEmpty() && diag.missedFor == 0 && !worked) {
+                Store.prefs(a).edit().putBoolean(PREF_ALARMS_WORKED, true).apply();
+                worked = true;
+            }
+            if (!worked && diag.missedFor == 0 && (!r.alarmOn || !missing.isEmpty())) {
+                // Never working yet is a step still to take, not a fault: a calm card, and only this one until it is done.
+                calmCard(!r.alarmOn ? "Switch on your day alarms" : "One more thing before alarms can ring",
+                        !r.alarmOn ? "When a part of your day begins you hear an alarm and answer one quick question: carry on as planned, or change it. "
+                                + "Nothing rings until you switch them on."
+                                : "Alarms are on, but your phone needs your OK first: " + missing + ".",
+                        !r.alarmOn ? "Switch on" : "Continue", !r.alarmOn ? v -> a.extras.enableAlarms() : v -> openAlarmSettings());
+                calmShown = true;
+                return;
+            }
             if (!r.alarmOn) {
                 card.setBackground(Ui.box(a, Ui.AMBER_SOFT, Ui.AMBER, 22));
                 card.addView(Ui.eyebrow(a, "Alarms"));
@@ -711,8 +732,26 @@ final class HomePage extends Page {
         } catch (RuntimeException e) {
             CrashLog.note(a, "alarm card", e);
         }
-        addWallpaperCard();
-        addLockCard();
+        if (!calmShown) addWallpaperCard();   // one next step at a time while the first ones are still to do
+        if (!calmShown) addLockCard();
+    }
+
+    /** Set once the alarms were on with everything allowed: from then on a missing permission is a fault, not a step still to do. */
+    private static final String PREF_ALARMS_WORKED = "alarms_worked_once";
+    /** True while the alarm card is the calm "next step" one (see {@link #refreshAlarmCard}). */
+    private boolean calmShown;
+
+    /** A card for a step the person has not taken yet: quiet colours, one sentence, one button. Amber stays for things that broke. */
+    private void calmCard(String title, String text, String button, View.OnClickListener go) {
+        LinearLayout card = new LinearLayout(a);
+        card.setOrientation(LinearLayout.VERTICAL);
+        card.setPadding(a.dp(16), a.dp(14), a.dp(16), a.dp(14));
+        card.setBackground(Ui.box(a, Ui.TONAL, 0, 22));
+        card.addView(Ui.eyebrow(a, "Next step"));
+        card.addView(Ui.label(a, title, 18, Ui.INK, true), Ui.wide(a, 4));
+        card.addView(Ui.label(a, text, 13, Ui.MUTED, false), Ui.wide(a, 4));
+        card.addView(Ui.button(a, button, true, go), Ui.wide(a, 12));
+        alarmBox.addView(card, Ui.wide(a, 16));
     }
 
     /**
@@ -724,6 +763,14 @@ final class HomePage extends Page {
             if (!Store.prefs(a).getBoolean(SetupActivity.PREF_SETUP_DONE, false)) return;
             int st = WallpaperSetup.status(a);
             if (!WallpaperWatch.needsAttention(st)) return;
+            if (st == WallpaperWatch.NEVER) {
+                calmCard("Put your day on the lock screen",
+                        "It shows your day on the lock screen and in recent apps. Android asks you to confirm once.", "Set the wallpaper", v -> {
+                            Store.prefs(a).edit().putLong("wallpaper_asked_at", System.currentTimeMillis()).apply();
+                            WallpaperSetup.request(a, Permissions.REQ_WALL);
+                        });
+                return;
+            }
             LinearLayout card = new LinearLayout(a);
             card.setOrientation(LinearLayout.VERTICAL);
             card.setPadding(a.dp(16), a.dp(14), a.dp(16), a.dp(14));
