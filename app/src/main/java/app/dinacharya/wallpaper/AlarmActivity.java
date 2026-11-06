@@ -525,10 +525,9 @@ public class AlarmActivity extends LangActivity {
 
             @Override
             public void replace(String n, int mins, int kind, String sub) {
-                Plan.editPart(base, ov, day, ev.src, n, mins, kind, sub);
-                Store.saveOverrides(AlarmActivity.this, base, ov);
-                log(Ev.ack(System.currentTimeMillis(), ev.day, ev.src, ev.title, "R", n));
-                done(mins == 0 ? "Changed for today: " + n : n + " for " + mins + " min, then back to the plan");
+                // the same path as on the Home screen: the new plan begins now, the time since the alarm stays "No response" or "Delayed start"
+                ReplaceFromNow.Placed p = SlotActions.changePart(AlarmActivity.this, ev.day, ev.src, ev.title, n, mins, ev.slotStartMs, false, kind, sub);
+                done(SlotActions.placedText(AlarmActivity.this, n, p));
             }
 
             @Override

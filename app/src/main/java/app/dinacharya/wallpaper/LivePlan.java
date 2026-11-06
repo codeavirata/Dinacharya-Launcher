@@ -155,6 +155,8 @@ public final class LivePlan {
         // a slot whose alarm went off and was not answered (yet) starts from the answer: until then it is "No response"
         Map<Integer, Long> workStart = new LinkedHashMap<>();
         Map<Integer, Boolean> unanswered = new LinkedHashMap<>();
+        // when the unanswered stretch of a slot ends (it is "No response" even after the late answer; a start put off after that is "Delayed start")
+        Map<Integer, Long> noRespEnd = new LinkedHashMap<>();
         for (Ev e : lastDelay.values()) workStart.put(e.src, e.aLong(0));
         for (int x = 0; x < n; x++) {
             Routine.Block sb = base.sc.slots.get(x).block;
@@ -163,16 +165,25 @@ public final class LivePlan {
             if (nr == 0L) continue;
             Long had = workStart.get(sb.src);
             workStart.put(sb.src, Math.max(had == null ? 0L : had, nr));
+            noRespEnd.put(sb.src, nr);
             if (nr == NoResponse.PENDING) unanswered.put(sb.src, true);
         }
         for (Map.Entry<Integer, Long> we : workStart.entrySet()) {
             int x = SlotPlay.indexOfSrc(base, we.getKey());
             if (x < 0 || base.sc.slots.get(x).block.skipped) continue;
-            long w = Math.min(we.getValue(), end[x] - MIN);
+            // a minute of the slot is always left, unless the slot goes on in the next part (a plan changed in the middle of it begins
+            // right where the wait ended: the part before it is then all wait)
+            long w = Math.min(we.getValue(), continues(base, x) ? end[x] : end[x] - MIN);
             if (w > start[x]) {
-                Gap gap = new Gap(start[x], w, Routine.LIVE_WAIT);
-                gap.noResp = unanswered.containsKey(we.getKey());
-                gaps.get(x).add(gap);
+                // the time nobody answered, then the start that was put off after the answer: two stretches, named for what they were
+                Long nrEnd = noRespEnd.get(we.getKey());
+                long split = nrEnd == null ? start[x] : Math.min(nrEnd, w);
+                if (split > start[x]) {
+                    Gap missed = new Gap(start[x], split, Routine.LIVE_WAIT);
+                    missed.noResp = true;
+                    gaps.get(x).add(missed);
+                }
+                if (w > split) gaps.get(x).add(new Gap(split, w, Routine.LIVE_WAIT));
                 changed = true;
             }
         }
@@ -193,7 +204,7 @@ public final class LivePlan {
             Routine.Block orig = base.sc.slots.get(x).block;
             List<Gap> g = merged(gaps.get(x));
             // never let the gaps swallow the whole slot: its last minute stays
-            if (!g.isEmpty() && g.get(0).from <= start[x] && g.get(g.size() - 1).to >= end[x] && g.size() == 1) {
+            if (!g.isEmpty() && g.get(0).from <= start[x] && g.get(g.size() - 1).to >= end[x] && g.size() == 1 && !continues(base, x)) {
                 g.get(0).to = Math.max(g.get(0).from, end[x] - MIN);
                 if (g.get(0).to <= g.get(0).from) g.clear();
             }
@@ -291,6 +302,14 @@ public final class LivePlan {
         return live;
     }
 
+    /** True when the slot after part {@code x} is another part of the same slot (a slot changed for its first or last minutes only). */
+    private static boolean continues(Plan.DayPlan base, int x) {
+        if (x < 0 || x + 1 >= base.sc.slots.size()) return false;
+        Routine.Block a = base.sc.slots.get(x).block;
+        Routine.Block b = base.sc.slots.get(x + 1).block;
+        return a.src >= 0 && a.src == b.src && !b.skipped;
+    }
+
     /** True when every slot between {@code p} and {@code x} (exclusive) was taken off, so nothing is lost when the boundary skips over them. */
     private static boolean takenOffBetween(Plan.DayPlan base, int p, int x) {
         for (int k = p + 1; k < x; k++) if (!base.sc.slots.get(k).block.skipped) return false;
@@ -340,7 +359,9 @@ public final class LivePlan {
         });
         List<Gap> out = new ArrayList<>();
         for (Gap g : list) {
-            if (!out.isEmpty() && g.from <= out.get(out.size() - 1).to) {
+            // overlapping stretches join; stretches that only touch join when they are the same kind (no response stays apart from a later start)
+            Gap prev = out.isEmpty() ? null : out.get(out.size() - 1);
+            if (prev != null && (g.from < prev.to || g.from == prev.to && g.live == prev.live && g.noResp == prev.noResp)) {
                 Gap last = out.get(out.size() - 1);
                 last.to = Math.max(last.to, g.to);
                 if (g.live == Routine.LIVE_BREAK) last.live = Routine.LIVE_BREAK;

@@ -2394,3 +2394,7 @@ Shows the alarm as a banner on top while you use another app, so you can answer 
 It showed as the question over the lock screen.	இது பூட்டுத் திரையில் கேள்வியாகத் தோன்றியது.
 It showed as a banner that stays until you answer it.	இது பேனராகத் தோன்றியது; நீங்கள் பதில் சொல்லும் வரை அது இருக்கும்.
 It showed as the question inside the app.	இது ஆப்ஸுக்குள் கேள்வியாகத் தோன்றியது.
+Rest of the slot	ஸ்லாட்டின் மீதமுள்ள பகுதி
+Starts now, at {1}. The time before stays as it was.	இப்போதே, {1} மணிக்குத் தொடங்கும். அதற்கு முந்தைய நேரம் இருந்தபடியே இருக்கும்.
+Changed for today from {1} to {2}: {3}	இன்றைக்கு {1} முதல் {2} வரை மாற்றப்பட்டது: {3}
+Changed for today from {1} to {2}: {3}, then back to the plan	இன்றைக்கு {1} முதல் {2} வரை மாற்றப்பட்டது: {3}, பிறகு திட்டத்துக்குத் திரும்பும்

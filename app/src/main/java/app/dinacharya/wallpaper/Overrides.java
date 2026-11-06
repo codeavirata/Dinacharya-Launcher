@@ -49,6 +49,11 @@ public final class Overrides {
         public final int kind;
         /** The sub type the changed part takes, or empty to keep the slot's own. */
         public final String sub;
+        /**
+         * Minutes after the slot's start at which the changed part begins (0: at the start, as it always was). The minutes before it stay
+         * the slot's own, so a plan changed in the middle of a slot starts when it was changed (see {@link ReplaceFromNow}).
+         */
+        public final int from;
 
         Edit(String day, int src, String orig, boolean skip, String name) {
             this(day, src, orig, skip, name, 0, -1, -1, "");
@@ -59,6 +64,11 @@ public final class Overrides {
         }
 
         Edit(String day, int src, String orig, boolean skip, String name, int mins, int with, int kind, String sub) {
+            this(day, src, orig, skip, name, mins, with, kind, sub, 0);
+        }
+
+        Edit(String day, int src, String orig, boolean skip, String name, int mins, int with, int kind, String sub, int from) {
+            this.from = Math.max(0, from);
             this.kind = kind;
             this.sub = sub == null ? "" : sub;
             this.day = day;
@@ -162,12 +172,17 @@ public final class Overrides {
 
     /** Renames the first {@code mins} minutes (0 for the whole slot) and gives them a type and sub type (-1 and "" keep the slot's own). */
     public void setPartial(LocalDate d, int src, String orig, String name, int mins, int kind, String sub) {
+        setPartial(d, src, orig, name, mins, kind, sub, 0);
+    }
+
+    /** The same, beginning {@code from} minutes after the slot's start (the minutes before stay the slot's own). */
+    public void setPartial(LocalDate d, int src, String orig, String name, int mins, int kind, String sub, int from) {
         String key = d.toString();
         for (int i = edits.size() - 1; i >= 0; i--) {
             Edit e = edits.get(i);
             if (e.day.equals(key) && e.src == src) edits.remove(i);
         }
-        edits.add(new Edit(key, src, Routine.clean(orig), false, Routine.clean(name == null ? "" : name), mins, -1, kind, Routine.clean(sub == null ? "" : sub)));
+        edits.add(new Edit(key, src, Routine.clean(orig), false, Routine.clean(name == null ? "" : name), mins, -1, kind, Routine.clean(sub == null ? "" : sub), from));
     }
 
     /** Makes this slot and slot {@code other} trade places for one day. */
@@ -260,7 +275,9 @@ public final class Overrides {
         }
         for (Edit e : edits) {
             sb.append("E\t").append(e.day).append('\t').append(e.src).append('\t').append(e.skip ? 1 : 0).append('\t')
-                    .append(e.orig).append('\t').append(e.name).append('\t').append(e.mins).append('\t').append(e.with).append('\t').append(e.kind).append('\t').append(e.sub).append('\n');
+                    .append(e.orig).append('\t').append(e.name).append('\t').append(e.mins).append('\t').append(e.with).append('\t').append(e.kind).append('\t').append(e.sub);
+            if (e.from > 0) sb.append('\t').append(e.from);   // only when there is one, so an older app still reads every other line as before
+            sb.append('\n');
         }
         for (Step t : steps) {
             sb.append(t.type == FRESH ? "N\t" : "M\t").append(t.day).append('\t').append(t.src).append('\t').append(t.ord).append('\t')
@@ -298,19 +315,21 @@ public final class Overrides {
                             p[4], Integer.parseInt(p[5].trim()), Integer.parseInt(p[6].trim()), p[7], Integer.parseInt(p[8].trim()),
                             p[9], Integer.parseInt(p[10].trim()), p[11], p.length > 12 ? Integer.parseInt(p[12].trim()) : 0));
                 } else if (ln.startsWith("E\t")) {
-                    String[] p = ln.split("\t", 10);
+                    String[] p = ln.split("\t", 11);
                     LocalDate.parse(p[1]);
                     int pm = 0;
                     int pw = -1;
                     int pk = -1;
+                    int pf = 0;
                     try {
                         if (p.length > 6) pm = Integer.parseInt(p[6].trim());
                         if (p.length > 7) pw = Integer.parseInt(p[7].trim());
                         if (p.length > 8) pk = Integer.parseInt(p[8].trim());
+                        if (p.length > 10) pf = Integer.parseInt(p[10].trim());
                     } catch (NumberFormatException ignored) {
                     }
                     o.edits.add(new Edit(p[1], Integer.parseInt(p[2].trim()), p[4], p[3].trim().equals("1"),
-                            p.length > 5 ? p[5] : "", pm, pw, pk, p.length > 9 ? p[9] : ""));
+                            p.length > 5 ? p[5] : "", pm, pw, pk, p.length > 9 ? p[9] : "", pf));
                 }
             } catch (RuntimeException ignored) {
                 // skip a damaged line
