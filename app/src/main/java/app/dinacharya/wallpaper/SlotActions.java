@@ -12,6 +12,12 @@ import java.time.LocalDate;
 final class SlotActions {
     static final String ACTION_START_NOW = "app.dinacharya.wallpaper.SLOT_START_NOW";
     static final String ACTION_START_LATER = "app.dinacharya.wallpaper.SLOT_START_LATER";
+    /** The buttons of a break that is over: back to work, five more minutes, or just silence it. */
+    static final String ACTION_BREAK_BACK = "app.dinacharya.wallpaper.BREAK_BACK";
+    static final String ACTION_BREAK_MORE = "app.dinacharya.wallpaper.BREAK_MORE";
+    /** Silences an alarm without answering it: the question stays in a quiet notification. */
+    static final String ACTION_STOP = "app.dinacharya.wallpaper.ALARM_STOP";
+    static final int BREAK_MORE_MIN = 5;
     static final int NOTIFICATION_LATER_MIN = 10;
 
     private SlotActions() {

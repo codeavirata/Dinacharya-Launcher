@@ -6,7 +6,9 @@ package app.dinacharya.wallpaper;
  * <ul>
  * <li>{@link #FULL_SCREEN}: the phone is locked or its screen is off, so the question opens by itself over the lock screen.</li>
  * <li>{@link #BANNER}: the phone is unlocked and in use in another app, so one drop-down banner (with its quick answers) shows and the
- * question waits behind a tap.</li>
+ * question waits behind a tap. The banner carries the full-screen setting too, so Android keeps it on screen until it is answered
+ * (a banner without it goes away by itself after a few seconds while the alarm keeps ringing) and, if banners are turned off for
+ * the alarm, opens the question instead. It is still one thing: Android picks the banner or the window, never both.</li>
  * <li>{@link #IN_APP}: Dinacharya itself is on screen, so the question opens right there and no banner is added on top of it.</li>
  * </ul>
  * Uses no Android classes, so the rule is tested on its own.
@@ -37,8 +39,25 @@ public final class AlarmSurface {
         return surface != IN_APP;
     }
 
-    /** True when the notification carries the full-screen intent (only when the phone is locked or asleep). */
+    /**
+     * True when the notification carries the full-screen intent: when the phone is locked or asleep (it opens the question), and when it
+     * is in use in another app (Android then shows the banner instead of a window, and keeps it up until it is answered).
+     */
     public static boolean carriesFullScreen(int surface) {
-        return surface == FULL_SCREEN;
+        return surface != IN_APP;
+    }
+
+    /** What the person saw, as a sentence for the alarm checklist. */
+    public static String describe(int surface) {
+        switch (surface) {
+            case FULL_SCREEN:
+                return "It showed as the question over the lock screen.";
+            case BANNER:
+                return "It showed as a banner that stays until you answer it.";
+            case IN_APP:
+                return "It showed as the question inside the app.";
+            default:
+                return "";
+        }
     }
 }

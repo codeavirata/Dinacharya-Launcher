@@ -2382,3 +2382,10 @@ Add more features any time from Settings.	সুবিধা যেকোনো 
 A feature you chose that still needs a setting is listed here. You can finish it now or come back from Settings.	আপনার বেছে নেওয়া যে সুবিধার এখনো কোনো সেটিং দরকার, তা এখানে দেখানো হয়। এখন শেষ করতে পারেন, বা পরে সেটিংস থেকে ফিরে আসতে পারেন।
 Choose what Dinacharya does. It asks your phone only for what each feature needs	Dinacharya কী করবে তা বেছে নিন। প্রতিটি সুবিধার যা দরকার, শুধু তা-ই সে আপনার ফোনের কাছে চায়
 Alarm in progress	অ্যালার্ম চলছে
++5 min	+5 মিনিট
+Stop	থামান
+Keeps the alarm on screen until you answer it, and opens the question by itself when the phone is locked.	আপনি উত্তর না দেওয়া পর্যন্ত অ্যালার্মকে স্ক্রিনে ধরে রাখে, আর ফোন লক থাকলে প্রশ্নটি নিজে থেকেই খুলে দেয়।
+Shows the alarm as a banner on top while you use another app, so you can answer or stop it.	আপনি অন্য অ্যাপ ব্যবহার করার সময় অ্যালার্মকে উপরে ব্যানার হিসেবে দেখায়, যাতে আপনি উত্তর দিতে বা থামাতে পারেন।
+It showed as the question over the lock screen.	এটি লক স্ক্রিনের উপরে প্রশ্ন হিসেবে দেখা গেছে।
+It showed as a banner that stays until you answer it.	এটি ব্যানার হিসেবে দেখা গেছে, যা আপনি উত্তর না দেওয়া পর্যন্ত থাকে।
+It showed as the question inside the app.	এটি অ্যাপের ভেতরে প্রশ্ন হিসেবে দেখা গেছে।

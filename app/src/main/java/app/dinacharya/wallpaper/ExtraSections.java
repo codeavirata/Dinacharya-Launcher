@@ -492,7 +492,11 @@ final class ExtraSections {
         }
         if (d.firedAt > 0) {
             sb.append("\nLast alarm Android gave the app: ").append(when(d.firedAt)).append(d.firedTest ? " (test)" : "");
-            if (d.ringAt > 0) sb.append(". Ringing started.");
+            if (d.ringAt > 0) {
+                sb.append(". Ringing started.");
+                String how = AlarmSurface.describe(d.shownAs);
+                if (!how.isEmpty()) sb.append(" ").append(how);
+            }
             else if (d.fallbackAt > 0) sb.append(". Android would not start the ringing service, so a notification was used.");
             else sb.append(". Ringing did not start. Copy the problem report from Settings > Help and send it.");
         } else {

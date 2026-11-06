@@ -2383,3 +2383,10 @@ Add more features any time from Settings.	வசதிகளை எப்போ�
 A feature you chose that still needs a setting is listed here. You can finish it now or come back from Settings.	நீங்கள் தேர்ந்தெடுத்த வசதிக்கு இன்னும் ஓர் அமைப்பு தேவைப்பட்டால் அது இங்கே பட்டியலிடப்படும். இப்போது முடிக்கலாம், அல்லது அமைப்புகளிலிருந்து பின்னர் திரும்பலாம்.
 Choose what Dinacharya does. It asks your phone only for what each feature needs	Dinacharya என்ன செய்ய வேண்டும் என்பதைத் தேர்ந்தெடுங்கள். ஒவ்வொரு வசதிக்கும் தேவையானதை மட்டுமே அது உங்கள் ஃபோனிடம் கேட்கும்
 Alarm in progress	அலாரம் நடப்பில் உள்ளது
++5 min	+5 நிமிடம்
+Stop	நிறுத்து
+Keeps the alarm on screen until you answer it, and opens the question by itself when the phone is locked.	நீங்கள் பதில் சொல்லும் வரை அலாரத்தைத் திரையில் வைத்திருக்கும்; ஃபோன் பூட்டியிருக்கும்போது கேள்வியைத் தானாகவே திறக்கும்.
+Shows the alarm as a banner on top while you use another app, so you can answer or stop it.	நீங்கள் வேறு ஆப்ஸைப் பயன்படுத்தும்போது அலாரத்தை மேலே பேனராகக் காட்டும்; அதனால் பதில் சொல்லவோ நிறுத்தவோ முடியும்.
+It showed as the question over the lock screen.	இது பூட்டுத் திரையில் கேள்வியாகத் தோன்றியது.
+It showed as a banner that stays until you answer it.	இது பேனராகத் தோன்றியது; நீங்கள் பதில் சொல்லும் வரை அது இருக்கும்.
+It showed as the question inside the app.	இது ஆப்ஸுக்குள் கேள்வியாகத் தோன்றியது.

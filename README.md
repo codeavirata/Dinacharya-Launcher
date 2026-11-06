@@ -636,7 +636,7 @@ with an **Undo** button. Editing the saved routine in the app clears them.
    notification, but the question does not open by itself. **One window, not two.** When an alarm rings, the app decides
    once, from the state of the phone at that moment (`AlarmSurface`), where the question appears: with the phone locked or the
    screen off, the **full screen** (and the notification is the loud one that carries it); with the phone in use, a **drop-down
-   banner** only (with *Start now* and *In 10 min* buttons) and no full screen on top of it; and when Dinacharya itself is in
+   banner** only (with *Start now* and *In 10 min* buttons; build 78: it carries the full-screen setting so Android keeps it up until it is answered, and still opens no window on top of it); and when Dinacharya itself is in
    front, the question simply opens **in the app** and the notification goes quiet, so nothing appears twice. The checklist's
    **Alarm pop-up allowed** line catches the case where the alarm notification was turned down to a quiet one in Android's
    settings, and the moment you come back to the home screen or the dashboard while an alarm still rings, the question is brought up.
@@ -1147,6 +1147,12 @@ and problem report**. Problems in background work (reports, backup, phone-time r
 close the app: they are written down and that one job is skipped.
 
 ### Version notes
+
+**1.0, build 78 (temporary branch `preview/first-timer-and-slot-fix`, not in main yet): alarms that stay on screen**
+- **The banner stays until the alarm is answered.** With the phone in use in another app, the alarm showed a banner without Android's full-screen setting (build 77 took it off to avoid two windows). Android hides such a banner after a few seconds, and the alarm went on ringing with nothing on screen to answer it. Now the notification carries the setting in that case too (`AlarmSurface.carriesFullScreen`: not only when locked): Android shows one **sticky banner** instead of a window, and opens the question itself if banners are turned off for the alarm. The app still opens nothing on top of what you are doing.
+- **Shown at once.** From Android 12 a ringing service's notification may be held back for up to ten seconds unless it has buttons; a break that is over, the bedtime question and the plan question had none, so the sound came first and the banner late. The notification is now marked `FOREGROUND_SERVICE_IMMEDIATE`.
+- **Buttons on every alarm.** A break that is over has **Back to work**, **+5 min** (only while two minutes of the slot are left, `SlotPlay.canExtendBreak`) and **Stop**; the bedtime and plan questions have **Stop**. Stop silences the alarm and leaves a quiet notification with the question one tap away. A break-over alarm nobody answers for five minutes now leaves that quiet note instead of vanishing.
+- **Settings > Alarms** says how the last alarm showed (over the lock screen, a banner that stays, or in the app), and the two checklist lines (**Alarm screen over the lock screen**, **Alarm pop-up allowed**) now say what they do for an alarm while you use another app.
 
 **1.0, build 77: one alarm window, and a setup that asks which features you want**
 - **One window for an alarm.** On a phone in use an alarm showed a drop-down banner and a full-screen window at once. Now the app decides when the alarm rings (`AlarmSurface`, with `AlarmService.surfaceNow`): phone locked or screen off, the full screen (the loud notification carries it); phone in use, a banner only, with *Start now* and *In 10 min* and no full screen over it; Dinacharya in front, the question opens in the app and the notification goes to the quiet channel (and is made quiet again once the question is on screen). The test alarm and the missed-alarm path use the same choice.

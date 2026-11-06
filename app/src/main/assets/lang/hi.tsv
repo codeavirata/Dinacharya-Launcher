@@ -2382,3 +2382,10 @@ Add more features any time from Settings.	सुविधाएँ कभी भ
 A feature you chose that still needs a setting is listed here. You can finish it now or come back from Settings.	आपकी चुनी हुई जिस सुविधा को अब भी किसी सेटिंग की ज़रूरत है, वह यहाँ दिखती है। आप उसे अभी पूरा कर सकते हैं या सेटिंग्स से बाद में लौट सकते हैं।
 Choose what Dinacharya does. It asks your phone only for what each feature needs	चुनें कि Dinacharya क्या करे। वह आपके फ़ोन से सिर्फ़ वही माँगता है जो हर सुविधा को चाहिए
 Alarm in progress	अलार्म जारी है
++5 min	+5 मिनट
+Stop	रोकें
+Keeps the alarm on screen until you answer it, and opens the question by itself when the phone is locked.	जब तक आप जवाब नहीं देते, अलार्म को स्क्रीन पर बनाए रखता है, और फ़ोन लॉक होने पर सवाल अपने आप खोल देता है।
+Shows the alarm as a banner on top while you use another app, so you can answer or stop it.	जब आप दूसरा ऐप इस्तेमाल कर रहे हों, तब अलार्म को ऊपर बैनर के रूप में दिखाता है, ताकि आप जवाब दे सकें या उसे रोक सकें।
+It showed as the question over the lock screen.	यह लॉक स्क्रीन पर सवाल के रूप में दिखा।
+It showed as a banner that stays until you answer it.	यह बैनर के रूप में दिखा, जो आपके जवाब देने तक बना रहता है।
+It showed as the question inside the app.	यह ऐप के अंदर सवाल के रूप में दिखा।
