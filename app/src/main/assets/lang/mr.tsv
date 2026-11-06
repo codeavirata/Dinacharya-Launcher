@@ -2311,3 +2311,74 @@ You did not answer its alarm. Start it now for as long as you choose; “{1}” 
 “{1}” until {2}, then “{3}” until {4}.	“{1}” {2} पर्यंत, मग “{3}” {4} पर्यंत.
 Its full length: {1}	याची पूर्ण लांबी: {1}
 “{1}” for {2} min, then “{3}”	“{1}” {2} मिनिटांसाठी, मग “{3}”
+Quiet until 9:00	9:00 पर्यंत शांत
+Day alarms	दिवसाचे अलार्म
+Phone time and app limits	फोनचा वेळ आणि अॅप मर्यादा
+Pause and lock apps	अॅप्सना विराम आणि लॉक
+Quiet phone	शांत फोन
+Rings when each part of your day begins and asks one quick question.	तुमच्या दिवसाचा प्रत्येक भाग सुरू होताना वाजतो आणि एक छोटासा प्रश्न विचारतो.
+See where your phone time goes, and set a daily limit for any app.	तुमचा फोन-वेळ कुठे जातो ते पाहा, आणि कोणत्याही अॅपसाठी दैनिक मर्यादा ठरवा.
+A pause before the apps that pull you away, and a lock when you need to focus.	तुम्हाला ओढून नेणाऱ्या अॅप्सआधी एक विराम, आणि लक्ष केंद्रित करायचे असताना एक लॉक.
+Your whole day on the home screen and lock screen, with nothing else on it.	तुमचा संपूर्ण दिवस होम स्क्रीन आणि लॉक स्क्रीनवर, आणखी काहीही नाही.
+Silences your phone for the hours and slots you choose.	तुम्ही निवडलेल्या तासांसाठी आणि स्लॉटसाठी फोन शांत ठेवतो.
+notifications	सूचना
+exact alarms	अचूक अलार्म
+lock-screen alarm	लॉक स्क्रीनवर अलार्म
+battery	बॅटरी
+background activity	बॅकग्राउंड हालचाल
+usage access	वापर प्रवेश
+display over apps	इतर अॅप्सवर दाखवणे
+home app	होम अॅप
+wallpaper	वॉलपेपर
+Let alarms appear on your screen	अलार्म तुमच्या स्क्रीनवर दिसू द्या
+Ring on the exact minute	अगदी मिनिटाला अलार्म वाजवा
+Open the alarm over the lock screen	लॉक स्क्रीनवर अलार्म उघडा
+Keep Dinacharya awake	Dinacharya ला जागे ठेवा
+See your phone-use time	तुमचा फोन-वापराचा वेळ पाहा
+Hold locks in front of other apps	इतर अॅप्सच्या समोर लॉक टिकवा
+Let Dinacharya silence your phone	Dinacharya ला तुमचा फोन शांत करू द्या
+Make this your home screen	हा तुमचा होम स्क्रीन बनवा
+Put your day on the lock screen	तुमचा दिवस लॉक स्क्रीनवर ठेवा
+Dinacharya shows each alarm as a notification, also over the lock screen. If you say no, nothing can ring.	Dinacharya प्रत्येक अलार्म सूचना म्हणून दाखवतो, लॉक स्क्रीनवरही. तुम्ही नाही म्हटल्यास काहीही वाजू शकणार नाही.
+Android lets an app ring on the minute only if you allow it. Without it, an alarm can come minutes late.	तुम्ही परवानगी दिली तरच Android एखाद्या अॅपला अगदी मिनिटाला वाजू देते. त्याशिवाय अलार्म काही मिनिटे उशिरा येऊ शकतो.
+When your phone is locked, the question opens by itself, so you do not have to unlock first. Skip it and you get a notification instead.	फोन लॉक असताना प्रश्न आपोआप उघडतो, त्यामुळे आधी अनलॉक करावे लागत नाही. हे वगळले तर त्याऐवजी एक सूचना मिळते.
+Some phones put apps to sleep to save battery, and a sleeping app misses its alarm. Set its battery use to Unrestricted.	काही फोन बॅटरी वाचवण्यासाठी अॅप्सना झोपवतात, आणि झोपलेले अॅप त्याचा अलार्म चुकवते. त्याचा बॅटरी वापर “अनिर्बंध” वर सेट करा.
+Your phone’s maker has its own battery rules that can close apps. Allow Dinacharya to keep running in the background.	तुमच्या फोन बनवणाऱ्या कंपनीचे स्वतःचे बॅटरी नियम असतात, जे अॅप्स बंद करू शकतात. Dinacharya ला बॅकग्राउंडमध्ये सुरू राहू द्या.
+Android shares which app is open, and for how long, only if you allow usage access. It is read on this phone only and never sent anywhere.	कोणते अॅप उघडे आहे आणि किती वेळ, हे Android तुम्ही वापर प्रवेश दिला तरच सांगते. ते फक्त याच फोनवर वाचले जाते आणि कुठेही पाठवले जात नाही.
+So a lock still holds when an app is opened from Recents or a notification, Dinacharya shows its lock screen in front of that app.	अलीकडील अॅप्स किंवा सूचनेतून अॅप उघडले तरी लॉक लागू राहावा म्हणून Dinacharya त्या अॅपसमोर आपली लॉक स्क्रीन दाखवतो.
+Do Not Disturb access lets quiet hours truly silence the phone. Without it, the phone can only be set to vibrate.	“व्यत्यय आणू नका” प्रवेशामुळे शांत तासांत फोन खरोखर शांत होतो. त्याशिवाय फोन फक्त व्हायब्रेटवर सेट करता येतो.
+Pressing Home then shows your day. You can go back to your old home screen in Android’s settings at any time.	मग होम दाबल्यावर तुमचा दिवस दिसतो. तुम्ही Android च्या सेटिंग्जमध्ये जाऊन कधीही तुमच्या जुन्या होम स्क्रीनवर परत जाऊ शकता.
+Shows your day as the wallpaper, on the lock screen and in recent apps. Android asks you to confirm once.	तुमचा दिवस वॉलपेपर म्हणून दाखवतो, लॉक स्क्रीनवर आणि अलीकडील अॅप्समध्ये. Android तुम्हाला एकदा पुष्टी करायला सांगते.
+Allow notifications	सूचनांना परवानगी द्या
+Show me how	कसे ते दाखवा
+Choose home app	होम अॅप निवडा
+Set the wallpaper	वॉलपेपर सेट करा
+Open the setting	सेटिंग उघडा
+Needs	हवे
+Features	सुविधा
+What would you like Dinacharya to do?	Dinacharya ने काय करावे असे तुम्हाला वाटते?
+Add or fix a feature	एक सुविधा जोडा किंवा दुरुस्त करा
+Turn on a feature and Dinacharya asks only for what that feature needs.	एखादी सुविधा सुरू करा, आणि Dinacharya फक्त त्या सुविधेला जे हवे तेच मागतो.
+Choose only what you want. Dinacharya asks your phone for a permission only when a feature you choose needs it, and tells you why first.	तुम्हाला हवे तेवढेच निवडा. तुम्ही निवडलेल्या सुविधेला गरज असेल तेव्हाच Dinacharya तुमच्या फोनकडे परवानगी मागतो, आणि आधी कारण सांगतो.
+Start here	येथून सुरू करा
+Asks for	परवानगी मागेल
+Set up 1 feature	1 सुविधा सेट करा
+Set up {1} features	{1} सुविधा सेट करा
+You can add or change any feature later in Settings.	कोणतीही सुविधा तुम्ही नंतर सेटिंग्जमध्ये जोडू किंवा बदलू शकता.
+Not allowed yet. You can try again, or skip this for now.	अजून परवानगी मिळाली नाही. तुम्ही पुन्हा प्रयत्न करू शकता, किंवा हे आत्ता वगळू शकता.
+Skip this one	हे वगळा
+Nothing to set up yet	सेट करण्यासारखे अजून काही नाही
+Your features are ready	तुमच्या सुविधा तयार आहेत
+That is fine. Add any feature later from Settings, and Dinacharya asks only for what it needs then.	हरकत नाही. कोणतीही सुविधा नंतर सेटिंग्जमधून जोडा, आणि Dinacharya तेव्हा फक्त त्याला जे हवे तेच मागेल.
+Here is what you chose. Anything that still needs a setting can be finished now or later.	तुम्ही हे निवडले. ज्याला अजून एखाद्या सेटिंगची गरज आहे ते आत्ता किंवा नंतर पूर्ण करता येते.
+Ready	तयार
+Needs one more setting	आणखी एक सेटिंग हवी
+1 feature still to finish	1 सुविधा पूर्ण करायची बाकी आहे
+{1} features still to finish	{1} सुविधा पूर्ण करायच्या बाकी आहेत
+You chose these, and each needs one more setting. Each opens a short page that says what it is for.	या तुम्ही निवडल्या, आणि प्रत्येकीला आणखी एक सेटिंग हवी आहे. प्रत्येक एक छोटे पान उघडते, जे ती कशासाठी आहे ते सांगते.
+Add or fix features	सुविधा जोडा किंवा दुरुस्त करा
+Everything you chose is set	तुम्ही निवडलेले सर्व सेट आहे
+Add more features any time from Settings.	सुविधा कधीही सेटिंग्जमधून जोडा.
+A feature you chose that still needs a setting is listed here. You can finish it now or come back from Settings.	तुम्ही निवडलेली जी सुविधा अजून सेटिंगची वाट पाहते ती इथे दिसते. ती आत्ता पूर्ण करता येते, किंवा सेटिंग्जमधून नंतर परत येता येते.
+Choose what Dinacharya does. It asks your phone only for what each feature needs	Dinacharya ने काय करावे ते निवडा. प्रत्येक सुविधेला जे हवे तेच तो तुमच्या फोनकडे मागतो
+Alarm in progress	अलार्म सुरू आहे

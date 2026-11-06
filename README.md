@@ -14,8 +14,8 @@ and a Google Drive backup come with it.
   and right for the phone (both can be any app), press and hold for settings. Apps that pull you away can wait a
   few seconds before they open, or (Pro) ask a quick sum, a sentence, slow breaths or why you are opening them;
   you can always open them anyway. **Locked groups** keep a set of apps shut for hours you choose. The first time the
-  app opens, a **welcome**, a short **setup** (every permission) and a **tour** lead into the dashboard (the setup and
-  the tour can be replayed from Settings).
+  app opens, a **welcome**, a **setup** that first asks which features you want (and asks the phone for a permission only when a
+  feature you chose needs it) and a **tour** lead into the dashboard (the setup and the tour can be replayed from Settings).
 - **Routines for each day:** a weekday routine, a weekend routine, an exam-day routine… each used
   on the days you pick, and a **routine for one day** (today, tomorrow or any date). Alarms, the home screen and
   reports follow the right one every day.
@@ -73,16 +73,23 @@ With JDK 17 and the Android SDK installed (`ANDROID_HOME` set), run `./gradlew a
 
 ## Use it
 
-1. Open **Dinacharya**. The first time, a **welcome** screen ("Get started") leads into a **setup** that goes through everything the app needs, one screen each, and
-   checks it as you go: make Dinacharya your **home app**, put its **wallpaper** in place, allow **notifications**,
-   switch **alarms** on, allow **exact alarms**, the **full-screen alarm**, **battery** use without limits, your
-   phone maker's own background lists, and **usage access** (for phone time). Each step explains why, opens the
-   right Android screen and ticks itself when it is done; any step can be skipped, and the setup can be reopened
-   from **Settings > Check phone settings** or the card on the dashboard's Home tab. Android makes you confirm
-   each of these yourself on its own screen: an app cannot switch them on silently. Then a **tour** walks through
+1. Open **Dinacharya**. The first time, a **welcome** screen ("Get started") leads into a **setup** that starts by asking what you want
+   Dinacharya to do, so nothing is asked for that you did not choose. Five **features** are offered, each with a small animated
+   picture of what it does (still pictures when the phone has animations turned off): **Day alarms**, **Phone time and app limits**,
+   **Pause and lock apps**, **Home screen and wallpaper** and **Quiet phone**. Under each one it lists, in plain words, what the
+   phone will be asked to allow. You tick the ones you want and tap **Set up N features**; the setup then goes through only what
+   those need, one page each, with a picture of what the step is for, why it is needed and what happens without it, and checks
+   it as you go (`FeaturePlan` says which things a feature needs and in what order; `Features` holds the words). The things are:
+   **notifications**, **exact alarms**, the **lock-screen alarm**, **battery** use without limits, your phone maker's own
+   background lists, **usage access**, **display over other apps** (for locks that hold in front of other apps), **Do Not
+   Disturb** access, your **home app** and the **wallpaper**. Each page opens the right Android screen and ticks itself when it
+   is done; any page can be skipped with **Not now**. A feature you chose and did not finish stays on the dashboard's Home tab
+   ("N features still to finish") and in **Settings > Features**, where you can also add more features at any time. Android makes
+   you confirm each of these yourself on its own screen: an app cannot switch them on silently. Then a **tour** walks through
    the app, and it ends in the dashboard with a "You're all set" message (a button to go to your home screen, or to
    make Dinacharya your home app if that is still to do). Until the wallpaper is in place the launcher paints the same day itself, so the home screen is never
-   empty, but your recent-apps screen and lock screen keep showing the old wallpaper.
+   empty, but your recent-apps screen and lock screen keep showing the old wallpaper. People who set the app up before this
+   setup existed keep what they have: only alarms count as chosen for them, if alarms are on.
 2. Tap your day to open the dashboard. On **Routine**, pick
    **Wake-up time** or **First task time**, set the time, and edit the slots
    (or tap **Paste from web app** to bring in a routine made in the web planner).
@@ -622,13 +629,13 @@ with an **Undo** button. Editing the saved routine in the app clears them.
    minute until you allow it. Without it alarms can be several minutes late.
 3. **Alarm screen over the lock screen.** On Android 14 and newer this can also be switched off
    by default; the checklist has a button for it. Without it the alarm still rings and shows a
-   notification, but the question does not open by itself. **If the screen was late:** Android only lets
-   an alarm open a full screen by itself while the phone is locked or the screen is off; while you are using
-   another app it shows a pop-up instead (and some phones hide pop-ups). So the question is brought up several
-   ways: the full-screen notification, an immediate try to open it, again each time the screen turns on or the
-   phone is unlocked while it rings, and the moment you come back to the home screen or the dashboard. The
-   checklist's **Alarm pop-up allowed** line catches the case where the alarm notification was turned down to
-   a quiet one in Android's settings.
+   notification, but the question does not open by itself. **One window, not two.** When an alarm rings, the app decides
+   once, from the state of the phone at that moment (`AlarmSurface`), where the question appears: with the phone locked or the
+   screen off, the **full screen** (and the notification is the loud one that carries it); with the phone in use, a **drop-down
+   banner** only (with *Start now* and *In 10 min* buttons) and no full screen on top of it; and when Dinacharya itself is in
+   front, the question simply opens **in the app** and the notification goes quiet, so nothing appears twice. The checklist's
+   **Alarm pop-up allowed** line catches the case where the alarm notification was turned down to a quiet one in Android's
+   settings, and the moment you come back to the home screen or the dashboard while an alarm still rings, the question is brought up.
 4. **Phone makers.** Xiaomi, Oppo, Realme, Vivo, OnePlus, Huawei, Samsung and others stop apps in
    the background with their own settings (often called Auto-start, App launch, Battery saver or
    Protected apps). The **Allow background activity** button opens the right page on the common
@@ -1136,6 +1143,11 @@ and problem report**. Problems in background work (reports, backup, phone-time r
 close the app: they are written down and that one job is skipped.
 
 ### Version notes
+
+**1.0, build 77: one alarm window, and a setup that asks which features you want**
+- **One window for an alarm.** On a phone in use an alarm showed a drop-down banner and a full-screen window at once. Now the app decides when the alarm rings (`AlarmSurface`, with `AlarmService.surfaceNow`): phone locked or screen off, the full screen (the loud notification carries it); phone in use, a banner only, with *Start now* and *In 10 min* and no full screen over it; Dinacharya in front, the question opens in the app and the notification goes to the quiet channel (and is made quiet again once the question is on screen). The test alarm and the missed-alarm path use the same choice.
+- **A setup that starts with the person's choice.** The first-start setup asks which of five features you want (**Day alarms**, **Phone time and app limits**, **Pause and lock apps**, **Home screen and wallpaper**, **Quiet phone**), each with an animated picture (`FeatureScenes`, drawn with `android.graphics` only, no image files; a still frame when the phone has animations off). It asks the phone for a permission only when a feature you chose needs it, one page at a time with a picture, the reason and what happens without it, and **Not now** on every page. What was chosen is kept (`features_chosen`); the dashboard's Home tab and the tour mention only chosen features that are not finished. **Settings > Features** (was Check phone settings) reopens it. Two things are new: **Display over other apps** is asked for with locks, and **Do Not Disturb** access with Quiet phone. People who installed before keep alarms as their chosen feature when alarms are on.
+- New tests `AlarmSurfaceTest` and `FeaturePlanTest`. `tools/preview/run.sh` draws the animated scenes on a computer into contact sheets of six frames, so they can be looked at without a phone. Six languages updated (71 new lines each).
 
 **1.0, build 26: locks hold wherever an app is opened from**
 - **Why locks failed.** A lock (and a pause) held only when an app was opened from this home screen. Opened from **Recents**, from **App info** (Settings > Apps > the app > Open), from a notification

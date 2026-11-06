@@ -2312,3 +2312,74 @@ You did not answer its alarm. Start it now for as long as you choose; “{1}” 
 “{1}” until {2}, then “{3}” until {4}.	“{1}” {2} வரை, பிறகு “{3}” {4} வரை.
 Its full length: {1}	இதன் முழு நீளம்: {1}
 “{1}” for {2} min, then “{3}”	“{1}” {2} நிமிடங்களுக்கு, பிறகு “{3}”
+Quiet until 9:00	9:00 வரை அமைதி
+Day alarms	நாளின் அலாரங்கள்
+Phone time and app limits	ஃபோன் நேரமும் ஆப் வரம்புகளும்
+Pause and lock apps	ஆப்களுக்கு இடைநிறுத்தமும் லாக்கும்
+Quiet phone	அமைதியான ஃபோன்
+Rings when each part of your day begins and asks one quick question.	உங்கள் நாளின் ஒவ்வொரு பகுதியும் தொடங்கும்போது ஒலித்து, ஒரு சிறு கேள்வி கேட்கும்.
+See where your phone time goes, and set a daily limit for any app.	உங்கள் ஃபோன் நேரம் எங்கே செல்கிறது என்று பார்த்து, எந்த ஆப்புக்கும் தினசரி வரம்பை அமைக்கலாம்.
+A pause before the apps that pull you away, and a lock when you need to focus.	உங்களை இழுத்துச் செல்லும் ஆப்களுக்கு முன் ஓர் இடைநிறுத்தம், கவனம் தேவைப்படும்போது ஒரு லாக்.
+Your whole day on the home screen and lock screen, with nothing else on it.	உங்கள் முழு நாளும் முகப்புத் திரையிலும் லாக் திரையிலும், வேறு எதுவும் இல்லாமல்.
+Silences your phone for the hours and slots you choose.	நீங்கள் தேர்ந்தெடுக்கும் மணிநேரங்களுக்கும் ஸ்லாட்களுக்கும் ஃபோனை அமைதியாக்கும்.
+notifications	அறிவிப்புகள்
+exact alarms	துல்லியமான அலாரங்கள்
+lock-screen alarm	லாக் திரையில் அலாரம்
+battery	பேட்டரி
+background activity	பின்னணிச் செயல்பாடு
+usage access	பயன்பாட்டு அணுகல்
+display over apps	பிற ஆப்களின் மேல் காட்டுதல்
+home app	முகப்பு ஆப்
+wallpaper	வால்பேப்பர்
+Let alarms appear on your screen	அலாரங்கள் உங்கள் திரையில் தோன்ற அனுமதியுங்கள்
+Ring on the exact minute	சரியான நிமிடத்தில் ஒலிக்கச் செய்யுங்கள்
+Open the alarm over the lock screen	லாக் திரைக்கு மேல் அலாரத்தைத் திறக்கவும்
+Keep Dinacharya awake	Dinacharya-வை விழித்திருக்கச் செய்யுங்கள்
+See your phone-use time	உங்கள் ஃபோன் பயன்பாட்டு நேரத்தைப் பாருங்கள்
+Hold locks in front of other apps	பிற ஆப்களுக்கு முன்னால் லாக்குகளை நிலைநிறுத்துங்கள்
+Let Dinacharya silence your phone	Dinacharya உங்கள் ஃபோனை அமைதியாக்க அனுமதியுங்கள்
+Make this your home screen	இதை உங்கள் முகப்புத் திரையாக்குங்கள்
+Put your day on the lock screen	உங்கள் நாளை லாக் திரையில் வையுங்கள்
+Dinacharya shows each alarm as a notification, also over the lock screen. If you say no, nothing can ring.	Dinacharya ஒவ்வொரு அலாரத்தையும் அறிவிப்பாகக் காட்டும், லாக் திரையிலும். நீங்கள் மறுத்தால் எதுவும் ஒலிக்க முடியாது.
+Android lets an app ring on the minute only if you allow it. Without it, an alarm can come minutes late.	நீங்கள் அனுமதித்தால் மட்டுமே Android ஒரு ஆப்பைச் சரியான நிமிடத்தில் ஒலிக்க விடும். அது இல்லையென்றால் அலாரம் சில நிமிடங்கள் தாமதமாக வரக்கூடும்.
+When your phone is locked, the question opens by itself, so you do not have to unlock first. Skip it and you get a notification instead.	ஃபோன் லாக் ஆகியிருக்கும்போது கேள்வி தானாகத் திறக்கும், எனவே முதலில் அன்லாக் செய்ய வேண்டியதில்லை. இதைத் தவிர்த்தால் அதற்குப் பதிலாக ஒரு அறிவிப்பு வரும்.
+Some phones put apps to sleep to save battery, and a sleeping app misses its alarm. Set its battery use to Unrestricted.	சில ஃபோன்கள் பேட்டரியைச் சேமிக்க ஆப்களைத் தூங்க வைக்கும், தூங்கும் ஆப் தன் அலாரத்தைத் தவறவிடும். அதன் பேட்டரி பயன்பாட்டை “கட்டுப்பாடற்றது” என அமைக்கவும்.
+Your phone’s maker has its own battery rules that can close apps. Allow Dinacharya to keep running in the background.	உங்கள் ஃபோன் தயாரிப்பாளருக்குத் தனக்கே உரிய பேட்டரி விதிகள் உண்டு, அவை ஆப்களை மூடிவிடக்கூடும். Dinacharya பின்னணியில் தொடர்ந்து இயங்க அனுமதியுங்கள்.
+Android shares which app is open, and for how long, only if you allow usage access. It is read on this phone only and never sent anywhere.	எந்த ஆப் திறந்திருக்கிறது, எவ்வளவு நேரமாக என்பதை, நீங்கள் பயன்பாட்டு அணுகலை அனுமதித்தால் மட்டுமே Android தெரிவிக்கும். அது இந்த ஃபோனில் மட்டுமே படிக்கப்படும், எங்கும் அனுப்பப்படாது.
+So a lock still holds when an app is opened from Recents or a notification, Dinacharya shows its lock screen in front of that app.	சமீபத்திய ஆப்கள் அல்லது அறிவிப்பிலிருந்து ஆப் திறக்கப்பட்டாலும் லாக் நீடிக்க, Dinacharya அந்த ஆப்பின் முன்னால் தன் லாக் திரையைக் காட்டுகிறது.
+Do Not Disturb access lets quiet hours truly silence the phone. Without it, the phone can only be set to vibrate.	“தொந்தரவு செய்யாதே” அணுகல் இருந்தால் அமைதி நேரங்களில் ஃபோன் உண்மையிலேயே அமைதியாகும். அது இல்லையென்றால் ஃபோனை அதிர்வுக்கு மட்டுமே அமைக்க முடியும்.
+Pressing Home then shows your day. You can go back to your old home screen in Android’s settings at any time.	பிறகு முகப்பை அழுத்தினால் உங்கள் நாள் தெரியும். Android அமைப்புகளில் எப்போது வேண்டுமானாலும் பழைய முகப்புத் திரைக்குத் திரும்பலாம்.
+Shows your day as the wallpaper, on the lock screen and in recent apps. Android asks you to confirm once.	உங்கள் நாளை வால்பேப்பராகக் காட்டும், லாக் திரையிலும் சமீபத்திய ஆப்களிலும். Android உங்களிடம் ஒருமுறை உறுதிப்படுத்தக் கேட்கும்.
+Allow notifications	அறிவிப்புகளை அனுமதி
+Show me how	எப்படி என்று காட்டு
+Choose home app	முகப்பு ஆப்பைத் தேர்ந்தெடு
+Set the wallpaper	வால்பேப்பரை அமை
+Open the setting	அமைப்பைத் திற
+Needs	தேவை
+Features	வசதிகள்
+What would you like Dinacharya to do?	Dinacharya என்ன செய்ய வேண்டும் என்று விரும்புகிறீர்கள்?
+Add or fix a feature	ஒரு வசதியைச் சேர் அல்லது சரிசெய்
+Turn on a feature and Dinacharya asks only for what that feature needs.	ஒரு வசதியை இயக்குங்கள், அந்த வசதிக்குத் தேவையானதை மட்டுமே Dinacharya கேட்கும்.
+Choose only what you want. Dinacharya asks your phone for a permission only when a feature you choose needs it, and tells you why first.	உங்களுக்கு வேண்டியதை மட்டும் தேர்ந்தெடுங்கள். நீங்கள் தேர்ந்தெடுத்த வசதிக்குத் தேவைப்படும்போது மட்டுமே Dinacharya உங்கள் ஃபோனிடம் அனுமதி கேட்கும், முதலில் ஏன் என்றும் சொல்லும்.
+Start here	இங்கிருந்து தொடங்குங்கள்
+Asks for	கேட்கப்படும் அனுமதிகள்
+Set up 1 feature	1 வசதியை அமை
+Set up {1} features	{1} வசதிகளை அமை
+You can add or change any feature later in Settings.	எந்த வசதியையும் நீங்கள் பின்னர் அமைப்புகளில் சேர்க்கலாம் அல்லது மாற்றலாம்.
+Not allowed yet. You can try again, or skip this for now.	இன்னும் அனுமதிக்கப்படவில்லை. நீங்கள் மீண்டும் முயலலாம், அல்லது இதை இப்போதைக்குத் தவிர்க்கலாம்.
+Skip this one	இதைத் தவிர்
+Nothing to set up yet	இன்னும் அமைக்க எதுவும் இல்லை
+Your features are ready	உங்கள் வசதிகள் தயார்
+That is fine. Add any feature later from Settings, and Dinacharya asks only for what it needs then.	பரவாயில்லை. எந்த வசதியையும் பின்னர் அமைப்புகளிலிருந்து சேர்க்கலாம், அப்போது அதற்குத் தேவையானதை மட்டுமே Dinacharya கேட்கும்.
+Here is what you chose. Anything that still needs a setting can be finished now or later.	நீங்கள் தேர்ந்தெடுத்தவை இதோ. இன்னும் ஓர் அமைப்பு தேவைப்படுபவற்றை இப்போதோ பின்னரோ முடிக்கலாம்.
+Ready	தயார்
+Needs one more setting	இன்னும் ஓர் அமைப்பு தேவை
+1 feature still to finish	1 வசதி முடிக்க உள்ளது
+{1} features still to finish	{1} வசதிகள் முடிக்க உள்ளன
+You chose these, and each needs one more setting. Each opens a short page that says what it is for.	இவற்றை நீங்கள் தேர்ந்தெடுத்தீர்கள், ஒவ்வொன்றுக்கும் இன்னும் ஓர் அமைப்பு தேவை. ஒவ்வொன்றும் அது எதற்காக என்பதைச் சொல்லும் சிறு பக்கத்தைத் திறக்கும்.
+Add or fix features	வசதிகளைச் சேர் அல்லது சரிசெய்
+Everything you chose is set	நீங்கள் தேர்ந்தெடுத்த அனைத்தும் அமைக்கப்பட்டுள்ளன
+Add more features any time from Settings.	வசதிகளை எப்போது வேண்டுமானாலும் அமைப்புகளிலிருந்து சேர்க்கலாம்.
+A feature you chose that still needs a setting is listed here. You can finish it now or come back from Settings.	நீங்கள் தேர்ந்தெடுத்த வசதிக்கு இன்னும் ஓர் அமைப்பு தேவைப்பட்டால் அது இங்கே பட்டியலிடப்படும். இப்போது முடிக்கலாம், அல்லது அமைப்புகளிலிருந்து பின்னர் திரும்பலாம்.
+Choose what Dinacharya does. It asks your phone only for what each feature needs	Dinacharya என்ன செய்ய வேண்டும் என்பதைத் தேர்ந்தெடுங்கள். ஒவ்வொரு வசதிக்கும் தேவையானதை மட்டுமே அது உங்கள் ஃபோனிடம் கேட்கும்
+Alarm in progress	அலாரம் நடப்பில் உள்ளது

@@ -2311,3 +2311,74 @@ You did not answer its alarm. Start it now for as long as you choose; “{1}” 
 “{1}” until {2}, then “{3}” until {4}.	“{1}” {2} వరకు, తర్వాత “{3}” {4} వరకు.
 Its full length: {1}	దీని పూర్తి నిడివి: {1}
 “{1}” for {2} min, then “{3}”	“{1}” {2} నిమిషాలు, తర్వాత “{3}”
+Quiet until 9:00	9:00 వరకు నిశ్శబ్దం
+Day alarms	రోజు అలారాలు
+Phone time and app limits	ఫోన్ సమయం మరియు యాప్ పరిమితులు
+Pause and lock apps	యాప్‌లకు విరామం మరియు లాక్
+Quiet phone	నిశ్శబ్ద ఫోన్
+Rings when each part of your day begins and asks one quick question.	మీ రోజులోని ప్రతి భాగం మొదలైనప్పుడు మోగి, ఒక చిన్న ప్రశ్న అడుగుతుంది.
+See where your phone time goes, and set a daily limit for any app.	మీ ఫోన్ సమయం ఎక్కడికి పోతోందో చూడండి, ఏ యాప్‌కైనా రోజువారీ పరిమితి పెట్టండి.
+A pause before the apps that pull you away, and a lock when you need to focus.	మిమ్మల్ని లాగేసే యాప్‌లకు ముందు ఒక విరామం, దృష్టి పెట్టాల్సినప్పుడు ఒక లాక్.
+Your whole day on the home screen and lock screen, with nothing else on it.	మీ రోజంతా హోమ్ స్క్రీన్ మరియు లాక్ స్క్రీన్‌పై, మరేమీ లేకుండా.
+Silences your phone for the hours and slots you choose.	మీరు ఎంచుకున్న గంటలకు మరియు స్లాట్‌లకు ఫోన్‌ను నిశ్శబ్దంగా ఉంచుతుంది.
+notifications	నోటిఫికేషన్‌లు
+exact alarms	ఖచ్చితమైన అలారాలు
+lock-screen alarm	లాక్ స్క్రీన్‌పై అలారం
+battery	బ్యాటరీ
+background activity	బ్యాక్‌గ్రౌండ్ కార్యకలాపం
+usage access	వినియోగ యాక్సెస్
+display over apps	ఇతర యాప్‌ల పైన చూపడం
+home app	హోమ్ యాప్
+wallpaper	వాల్‌పేపర్
+Let alarms appear on your screen	అలారాలు మీ స్క్రీన్‌పై కనిపించనివ్వండి
+Ring on the exact minute	సరిగ్గా నిమిషానికే అలారం మోగించండి
+Open the alarm over the lock screen	లాక్ స్క్రీన్ పైన అలారాన్ని తెరవండి
+Keep Dinacharya awake	Dinacharyaను మేల్కొని ఉంచండి
+See your phone-use time	మీ ఫోన్ వాడకం సమయాన్ని చూడండి
+Hold locks in front of other apps	ఇతర యాప్‌ల ముందు లాక్‌లను నిలబెట్టండి
+Let Dinacharya silence your phone	Dinacharya మీ ఫోన్‌ను నిశ్శబ్దం చేయనివ్వండి
+Make this your home screen	దీన్ని మీ హోమ్ స్క్రీన్‌గా చేయండి
+Put your day on the lock screen	మీ రోజును లాక్ స్క్రీన్‌పై ఉంచండి
+Dinacharya shows each alarm as a notification, also over the lock screen. If you say no, nothing can ring.	Dinacharya ప్రతి అలారాన్ని నోటిఫికేషన్‌గా చూపిస్తుంది, లాక్ స్క్రీన్‌పై కూడా. మీరు వద్దంటే ఏదీ మోగదు.
+Android lets an app ring on the minute only if you allow it. Without it, an alarm can come minutes late.	మీరు అనుమతిస్తేనే Android ఒక యాప్‌ను సరిగ్గా నిమిషానికి మోగనిస్తుంది. అది లేకపోతే అలారం కొన్ని నిమిషాలు ఆలస్యంగా రావచ్చు.
+When your phone is locked, the question opens by itself, so you do not have to unlock first. Skip it and you get a notification instead.	ఫోన్ లాక్ అయి ఉన్నప్పుడు ప్రశ్న తనంతట తానే తెరుచుకుంటుంది, కాబట్టి ముందు అన్‌లాక్ చేయనవసరం లేదు. దీన్ని వదిలేస్తే బదులుగా నోటిఫికేషన్ వస్తుంది.
+Some phones put apps to sleep to save battery, and a sleeping app misses its alarm. Set its battery use to Unrestricted.	కొన్ని ఫోన్‌లు బ్యాటరీ ఆదా కోసం యాప్‌లను నిద్రపుచ్చుతాయి, నిద్రపోయిన యాప్ తన అలారాన్ని మిస్ అవుతుంది. దాని బ్యాటరీ వినియోగాన్ని “పరిమితి లేదు”కు సెట్ చేయండి.
+Your phone’s maker has its own battery rules that can close apps. Allow Dinacharya to keep running in the background.	మీ ఫోన్ తయారీదారుకు తనదైన బ్యాటరీ నియమాలు ఉంటాయి, అవి యాప్‌లను మూసివేయగలవు. Dinacharyaను బ్యాక్‌గ్రౌండ్‌లో నడుస్తూ ఉండనివ్వండి.
+Android shares which app is open, and for how long, only if you allow usage access. It is read on this phone only and never sent anywhere.	ఏ యాప్ తెరిచి ఉందో, ఎంతసేపటి నుండో, మీరు వినియోగ యాక్సెస్ ఇస్తేనే Android చెబుతుంది. అది ఈ ఫోన్‌లో మాత్రమే చదవబడుతుంది, ఎక్కడికీ పంపబడదు.
+So a lock still holds when an app is opened from Recents or a notification, Dinacharya shows its lock screen in front of that app.	ఇటీవలి యాప్‌లు లేదా నోటిఫికేషన్ నుండి యాప్ తెరిచినా లాక్ కొనసాగడానికి, Dinacharya ఆ యాప్ ముందు తన లాక్ స్క్రీన్‌ను చూపిస్తుంది.
+Do Not Disturb access lets quiet hours truly silence the phone. Without it, the phone can only be set to vibrate.	“అంతరాయం కలిగించవద్దు” యాక్సెస్ ఉంటే నిశ్శబ్ద సమయాల్లో ఫోన్ నిజంగా నిశ్శబ్దంగా మారుతుంది. అది లేకపోతే ఫోన్‌ను వైబ్రేట్‌కు మాత్రమే సెట్ చేయగలం.
+Pressing Home then shows your day. You can go back to your old home screen in Android’s settings at any time.	తర్వాత హోమ్ నొక్కితే మీ రోజు కనిపిస్తుంది. Android సెట్టింగ్‌లలో ఎప్పుడైనా మీ పాత హోమ్ స్క్రీన్‌కు తిరిగి వెళ్లవచ్చు.
+Shows your day as the wallpaper, on the lock screen and in recent apps. Android asks you to confirm once.	మీ రోజును వాల్‌పేపర్‌గా చూపిస్తుంది, లాక్ స్క్రీన్‌పై మరియు ఇటీవలి యాప్‌లలో. Android ఒకసారి నిర్ధారించమని అడుగుతుంది.
+Allow notifications	నోటిఫికేషన్‌లను అనుమతించండి
+Show me how	ఎలాగో చూపండి
+Choose home app	హోమ్ యాప్‌ను ఎంచుకోండి
+Set the wallpaper	వాల్‌పేపర్ సెట్ చేయండి
+Open the setting	సెట్టింగ్ తెరవండి
+Needs	కావాలి
+Features	సదుపాయాలు
+What would you like Dinacharya to do?	Dinacharya ఏమి చేయాలని మీరు కోరుకుంటున్నారు?
+Add or fix a feature	ఒక సదుపాయాన్ని జోడించండి లేదా సరిచేయండి
+Turn on a feature and Dinacharya asks only for what that feature needs.	ఒక సదుపాయాన్ని ఆన్ చేయండి, ఆ సదుపాయానికి కావలసినదే Dinacharya అడుగుతుంది.
+Choose only what you want. Dinacharya asks your phone for a permission only when a feature you choose needs it, and tells you why first.	మీకు కావలసినవే ఎంచుకోండి. మీరు ఎంచుకున్న సదుపాయానికి అవసరమైనప్పుడు మాత్రమే Dinacharya మీ ఫోన్‌ను అనుమతి అడుగుతుంది, ముందుగా ఎందుకో చెబుతుంది.
+Start here	ఇక్కడ మొదలుపెట్టండి
+Asks for	అడిగే అనుమతులు
+Set up 1 feature	1 సదుపాయాన్ని సెటప్ చేయండి
+Set up {1} features	{1} సదుపాయాలను సెటప్ చేయండి
+You can add or change any feature later in Settings.	ఏ సదుపాయాన్నైనా మీరు తర్వాత సెట్టింగ్‌లలో జోడించవచ్చు లేదా మార్చవచ్చు.
+Not allowed yet. You can try again, or skip this for now.	ఇంకా అనుమతి ఇవ్వలేదు. మీరు మళ్లీ ప్రయత్నించవచ్చు, లేదా దీన్ని ప్రస్తుతానికి వదిలేయవచ్చు.
+Skip this one	దీన్ని వదిలేయండి
+Nothing to set up yet	ఇంకా సెటప్ చేయడానికి ఏమీ లేదు
+Your features are ready	మీ సదుపాయాలు సిద్ధంగా ఉన్నాయి
+That is fine. Add any feature later from Settings, and Dinacharya asks only for what it needs then.	పర్వాలేదు. ఏ సదుపాయాన్నైనా తర్వాత సెట్టింగ్‌ల నుండి జోడించండి, అప్పుడు Dinacharya దానికి కావలసినదే అడుగుతుంది.
+Here is what you chose. Anything that still needs a setting can be finished now or later.	మీరు ఎంచుకున్నవి ఇవే. ఇంకా ఒక సెట్టింగ్ కావలసిన వాటిని ఇప్పుడైనా తర్వాతైనా పూర్తి చేయవచ్చు.
+Ready	సిద్ధం
+Needs one more setting	ఇంకా ఒక సెట్టింగ్ కావాలి
+1 feature still to finish	1 సదుపాయం పూర్తి చేయాల్సి ఉంది
+{1} features still to finish	{1} సదుపాయాలు పూర్తి చేయాల్సి ఉన్నాయి
+You chose these, and each needs one more setting. Each opens a short page that says what it is for.	వీటిని మీరు ఎంచుకున్నారు, ప్రతిదానికీ ఇంకా ఒక సెట్టింగ్ కావాలి. ప్రతిదీ అది దేనికోసమో చెప్పే చిన్న పేజీని తెరుస్తుంది.
+Add or fix features	సదుపాయాలను జోడించండి లేదా సరిచేయండి
+Everything you chose is set	మీరు ఎంచుకున్నవన్నీ సెట్ అయ్యాయి
+Add more features any time from Settings.	సదుపాయాలను ఎప్పుడైనా సెట్టింగ్‌ల నుండి జోడించండి.
+A feature you chose that still needs a setting is listed here. You can finish it now or come back from Settings.	మీరు ఎంచుకున్న సదుపాయానికి ఇంకా ఒక సెట్టింగ్ కావాలంటే అది ఇక్కడ కనిపిస్తుంది. ఇప్పుడే పూర్తి చేయవచ్చు లేదా సెట్టింగ్‌ల నుండి తర్వాత రావచ్చు.
+Choose what Dinacharya does. It asks your phone only for what each feature needs	Dinacharya ఏమి చేయాలో ఎంచుకోండి. ప్రతి సదుపాయానికి కావలసినదే అది మీ ఫోన్‌ను అడుగుతుంది
+Alarm in progress	అలారం కొనసాగుతోంది
