@@ -53,7 +53,8 @@
     <!-- The home screen: the phone's wallpaper shows through, behind transparent system bars. -->
     <style name="LauncherTheme" parent="@android:style/Theme.Material.Wallpaper.NoTitleBar">
         <item name="android:windowShowWallpaper">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- Dark while the app starts again after a force stop; the code makes the window see-through once the live wallpaper is confirmed. -->
+        <item name="android:windowBackground">@color/launcher_start</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:alertDialogTheme">@style/GlassDialogNight</item>

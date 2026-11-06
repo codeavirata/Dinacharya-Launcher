@@ -415,6 +415,8 @@ public class LauncherActivity extends LangActivity {
         if (posterView != null) posterView.setVisibility(ours ? View.GONE : View.VISIBLE);
         // With the wallpaper in place the window is see-through, so the wallpaper itself is what you see.
         root.setBackgroundColor(ours ? 0x00000000 : th.bg);
+        // The window itself starts dark (the theme), so the first moment is never the phone's plain wallpaper; see-through only once it is confirmed.
+        getWindow().setBackgroundDrawable(new ColorDrawable(ours ? 0x00000000 : th.bg));
         if (wallPill != null) {
             boolean setupDone = Store.prefs(this).getBoolean(SetupActivity.PREF_SETUP_DONE, false);
             wallPill.setVisibility(setupDone && WallpaperWatch.needsAttention(st) ? View.VISIBLE : View.GONE);

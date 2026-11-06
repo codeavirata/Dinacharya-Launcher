@@ -3,6 +3,8 @@
     <color name="bg">#EDF2F1</color>
     <color name="teal">#0E7C7B</color>
     <!-- App icon background (logo C ground). -->
+    <!-- What the home screen's first moment looks like while the app is still starting (instead of the phone's own wallpaper). -->
+    <color name="launcher_start">#FF0B1F1D</color>
     <color name="icon_bg">#0B1F1D</color>
     <color name="ink">#10201E</color>
     <color name="muted">#587270</color>
