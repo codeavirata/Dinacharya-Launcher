@@ -1040,7 +1040,7 @@ public class AlarmActivity extends LangActivity {
             done(null);
         });
         final long now = System.currentTimeMillis();
-        if (ev.slotEndMs - now >= 2 * 60000L) {
+        if (SlotPlay.canExtendBreak(now, ev.slotEndMs)) {
             Expander.Part more = choice("More time");
             LinearLayout box = panel(more);
             box.addView(Ui.label(this, "Rest for", 14, Ui.MUTED, true));

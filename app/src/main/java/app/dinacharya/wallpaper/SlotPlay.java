@@ -19,6 +19,11 @@ public final class SlotPlay {
         return (int) Math.max(0, (slotEndMs - nowMs) / MIN);
     }
 
+    /** True when a break that is over can still be made longer: the slot has at least two minutes left. */
+    public static boolean canExtendBreak(long nowMs, long slotEndMs) {
+        return slotEndMs - nowMs >= 2 * MIN;
+    }
+
     /** When a break of {@code minutes} from now ends: at most the end of the slot. */
     public static long breakEnd(long nowMs, int minutes, long slotEndMs) {
         return Math.min(nowMs + Math.max(1, minutes) * MIN, slotEndMs);

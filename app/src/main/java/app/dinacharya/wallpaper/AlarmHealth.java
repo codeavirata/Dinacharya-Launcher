@@ -52,9 +52,9 @@ final class AlarmHealth {
                 notificationsOn(c) ? OK : NEEDED));
         out.add(new Item(EXACT, "Exact alarms", "Rings on the minute a slot starts, not a few minutes late.",
                 AlarmScheduler.exactAllowed(c) ? OK : NEEDED));
-        out.add(new Item(FULL, "Alarm screen over the lock screen", "Opens the question by itself when the phone is locked.",
+        out.add(new Item(FULL, "Alarm screen over the lock screen", "Keeps the alarm on screen until you answer it, and opens the question by itself when the phone is locked.",
                 fullScreenOk(c) ? OK : ADVICE));
-        out.add(new Item(POPUP, "Alarm pop-up allowed", "Shows the question on top while you use the phone.",
+        out.add(new Item(POPUP, "Alarm pop-up allowed", "Shows the alarm as a banner on top while you use another app, so you can answer or stop it.",
                 popupOk(c) ? OK : NEEDED));
         out.add(new Item(VOLUME, "Alarm volume", "The phone's alarm volume is turned right down, so an alarm would not make a sound.",
                 volumeOk(c) ? OK : NEEDED));

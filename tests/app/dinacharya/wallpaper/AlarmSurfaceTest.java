@@ -27,9 +27,16 @@ public class AlarmSurfaceTest {
                 ok("full screen: the window is the one surface, the notification carries it", window && AlarmSurface.carriesFullScreen(s));
             } else {
                 ok("surface " + s + ": exactly one of window or banner", shown == 1);
-                ok("surface " + s + ": no full-screen intent", !AlarmSurface.carriesFullScreen(s));
             }
         }
+        // build 78: a banner without the full-screen setting goes away after a few seconds while the alarm keeps ringing; with it Android
+        // keeps the banner up until it is answered (and opens the question instead if banners are off for the alarm)
+        ok("in use in another app: the banner carries the full-screen setting so it stays up", AlarmSurface.carriesFullScreen(AlarmSurface.BANNER));
+        ok("in use in another app: the program itself still opens nothing on top of what you are doing", !AlarmSurface.opensQuestion(AlarmSurface.BANNER));
+        ok("inside Dinacharya: no full-screen setting, no banner", !AlarmSurface.carriesFullScreen(AlarmSurface.IN_APP) && !AlarmSurface.popsBanner(AlarmSurface.IN_APP));
+        ok("each surface can be described for the checklist", !AlarmSurface.describe(AlarmSurface.FULL_SCREEN).isEmpty()
+            && !AlarmSurface.describe(AlarmSurface.BANNER).isEmpty() && !AlarmSurface.describe(AlarmSurface.IN_APP).isEmpty()
+            && AlarmSurface.describe(-1).isEmpty());
         System.out.println(fails == 0 ? "ALL PASS" : fails + " FAILS");
         if (fails > 0) System.exit(1);
     }

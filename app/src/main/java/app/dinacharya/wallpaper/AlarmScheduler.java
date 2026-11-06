@@ -71,6 +71,8 @@ final class AlarmScheduler {
         long firedDue;        // the time that alarm was meant for
         boolean firedTest;
         long ringAt;          // when the ringing service last got going
+        int shownAs = -1;     // what it showed as: an AlarmSurface (the question over the lock screen, a banner, or the question in the app)
+        int shownKind = -1;   // and which kind of alarm that was (an AlarmPlanner kind)
         long fallbackAt;      // when the backup notification had to be used instead
         long missedFor;       // an alarm set for this time never reached the app
         String missedTitle = "";   // what that alarm was for
@@ -100,6 +102,8 @@ final class AlarmScheduler {
             d.firedDue = p.getLong("firedDue", 0);
             d.firedTest = p.getBoolean("firedTest", false);
             d.ringAt = p.getLong("ringAt", 0);
+            d.shownAs = p.getInt("shownAs", -1);
+            d.shownKind = p.getInt("shownKind", -1);
             d.fallbackAt = p.getLong("fallbackAt", 0);
             d.missedFor = p.getLong("missedFor", 0);
             d.missedTitle = p.getString("missedTitle", "");
@@ -139,9 +143,9 @@ final class AlarmScheduler {
         }
     }
 
-    static void noteRinging(Context c) {
+    static void noteRinging(Context c, int surface, int kind) {
         try {
-            diagPrefs(c).edit().putLong("ringAt", System.currentTimeMillis()).apply();
+            diagPrefs(c).edit().putLong("ringAt", System.currentTimeMillis()).putInt("shownAs", surface).putInt("shownKind", kind).apply();
         } catch (RuntimeException ignored) {
             // diagnostics only
         }
