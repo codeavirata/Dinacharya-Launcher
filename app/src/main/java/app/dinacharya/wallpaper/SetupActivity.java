@@ -150,6 +150,15 @@ public class SetupActivity extends LangActivity {
         return b;
     }
 
+    /** A block that takes the free room in a page and keeps what is in it in the middle of that room. */
+    private LinearLayout middle(LinearLayout body) {
+        LinearLayout mid = new LinearLayout(this);
+        mid.setOrientation(LinearLayout.VERTICAL);
+        mid.setGravity(Gravity.CENTER_VERTICAL);
+        body.addView(mid, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f));
+        return mid;
+    }
+
     private void setPage(LinearLayout body) {
         ScrollView sv = new ScrollView(this);
         sv.setFillViewport(true);
@@ -237,17 +246,7 @@ public class SetupActivity extends LangActivity {
         });
 
         FrameLayout top = new FrameLayout(this);
-        top.addView(new FeatureArt(this, Features.scene(f)), new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        String badge = ready ? "On" : (f == FeaturePlan.F_ALARMS ? "Start here" : null);
-        if (badge != null) {
-            TextView chip = Ui.label(this, ready ? "✓  " + Lang.tr(badge) : badge, 11.5f, accent, true);
-            chip.setPadding(dp(10), dp(4), dp(10), dp(4));
-            chip.setBackground(Ui.box(this, 0xCC0B0C0F, 0, 12));
-            FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,
-                    Gravity.TOP | Gravity.START);
-            lp.setMargins(dp(10), dp(10), 0, 0);
-            top.addView(chip, lp);
-        }
+        top.addView(new FeatureArt(this, Features.scene(f), true), new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         card.addView(top, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         LinearLayout info = new LinearLayout(this);
@@ -256,7 +255,21 @@ public class SetupActivity extends LangActivity {
         info.setPadding(dp(14), dp(12), dp(12), dp(14));
         LinearLayout text = new LinearLayout(this);
         text.setOrientation(LinearLayout.VERTICAL);
-        text.addView(Ui.label(this, Features.title(f), 17, Ui.INK, true));
+        LinearLayout titleRow = new LinearLayout(this);
+        titleRow.setOrientation(LinearLayout.HORIZONTAL);
+        titleRow.setGravity(Gravity.CENTER_VERTICAL);
+        titleRow.addView(Ui.label(this, Features.title(f), 17, Ui.INK, true));
+        String badge = ready ? "On" : (f == FeaturePlan.F_ALARMS ? "Start here" : null);
+        if (badge != null) {
+            // a small tag beside the name, so it never sits on the picture
+            TextView chip = Ui.label(this, ready ? "✓  " + Lang.tr(badge) : badge, 11, accent, true);
+            chip.setPadding(dp(9), dp(3), dp(9), dp(3));
+            chip.setBackground(Ui.box(this, (accent & 0x00FFFFFF) | 0x2E000000, 0, 11));
+            LinearLayout.LayoutParams clp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            clp.leftMargin = dp(8);
+            titleRow.addView(chip, clp);
+        }
+        text.addView(titleRow);
         TextView tag = words(Features.tagline(f), 13.5f, Ui.MUTED);
         text.addView(tag, Ui.wide(this, 3));
         String asks = Features.asks(f);
@@ -399,21 +412,23 @@ public class SetupActivity extends LangActivity {
         head.addView(Ui.label(this, (at + 1) + " / " + queue.size(), 12, Ui.MUTED, false));
         body.addView(head, Ui.wide(this, 16));
 
-        body.addView(new FeatureArt(this, Features.stepScene(step)), Ui.wide(this, 12));
-        body.addView(Ui.display(this, Features.stepTitle(step), 27, Ui.INK), Ui.wide(this, 18));
-        body.addView(words(Features.stepWhy(step), 15.5f, Ui.MUTED), Ui.wide(this, 8));
+        // the picture and the words sit in the middle of the room between the bars and the buttons
+        LinearLayout mid = middle(body);
+        mid.addView(new FeatureArt(this, Features.stepScene(step), false), Ui.wide(this, 12));
+        mid.addView(Ui.display(this, Features.stepTitle(step), 27, Ui.INK), Ui.wide(this, 18));
+        mid.addView(words(Features.stepWhy(step), 15.5f, Ui.MUTED), Ui.wide(this, 8));
         if (tried) {
             TextView hint = words("Not allowed yet. You can try again, or skip this for now.", 13.5f, Ui.AMBER);
             hint.setPadding(dp(12), dp(9), dp(12), dp(9));
             hint.setBackground(Ui.box(this, Ui.AMBER_SOFT, 0, 14));
-            body.addView(hint, Ui.wide(this, 14));
+            mid.addView(hint, Ui.wide(this, 14));
         }
         final String extra = Features.stepExtra(this, step);
         if (extra != null) {
             TextView more = Ui.label(this, extra, 13.5f, accent, true);
             more.setPadding(0, dp(10), 0, dp(4));
             more.setOnClickListener(v -> Permissions.requestExtra(this, step));
-            body.addView(more, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            mid.addView(more, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         }
         setPage(body);
 
@@ -442,9 +457,10 @@ public class SetupActivity extends LangActivity {
         LinearLayout body = body();
         int n = pickedCount();
         body.addView(Ui.eyebrow(this, n == 0 ? "Setup" : "All set"));
-        body.addView(new FeatureArt(this, FeatureScenes.DONE), Ui.wide(this, 14));
-        body.addView(Ui.display(this, n == 0 ? "Nothing to set up yet" : "Your features are ready", 28, Ui.INK), Ui.wide(this, 18));
-        body.addView(words(n == 0
+        LinearLayout mid = middle(body);
+        mid.addView(new FeatureArt(this, FeatureScenes.DONE, false), Ui.wide(this, 14));
+        mid.addView(Ui.display(this, n == 0 ? "Nothing to set up yet" : "Your features are ready", 28, Ui.INK), Ui.wide(this, 18));
+        mid.addView(words(n == 0
                 ? "That is fine. Add any feature later from Settings, and Dinacharya asks only for what it needs then."
                 : "Here is what you chose. Anything that still needs a setting can be finished now or later.", 15.5f, Ui.MUTED), Ui.wide(this, 8));
         if (n > 0) {
@@ -464,7 +480,7 @@ public class SetupActivity extends LangActivity {
                     begin();
                 }));
             }
-            body.addView(card, Ui.wide(this, 16));
+            mid.addView(card, Ui.wide(this, 16));
         }
         setPage(body);
         setFoot(cta(review || direct >= 0 ? "Done" : "Continue", 0, v -> finishSetup()));

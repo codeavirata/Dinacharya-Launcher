@@ -351,8 +351,12 @@ final class FeatureScenes {
             c.rotate(shake, cx, 130f);
             phone(cx, 26f, 98f, 200f);
             float started = ease(seg(t, 0.84f, 0.92f));
-            digits("6:30", cx, screen.top + 46f, 27f, INK, 1, false);
-            bar(cx - 20f, screen.top + 60f, 40f, 4f, alpha(INK, 0.28f));
+            // the clock gives way to the banner that drops over it, and comes back when the banner is gone
+            float clockA = Math.max(0f, Math.min(1f, 1f - ease(seg(t, 0.56f, 0.66f)) + ease(seg(t, 0.92f, 0.98f))));
+            if (clockA > 0.01f) {
+                digits("6:30", cx, screen.top + 46f, 27f, alpha(INK, clockA), 1, false);
+                bar(cx - 20f, screen.top + 60f, 40f, 4f, alpha(INK, 0.28f * clockA));
+            }
             // the day below: three slots, the first one fills when it is started
             for (int i = 0; i < 3; i++) {
                 float y = screen.top + 82f + i * 15f;
