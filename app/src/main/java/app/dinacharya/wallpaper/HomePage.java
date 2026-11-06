@@ -187,20 +187,21 @@ final class HomePage extends Page {
 
     // ------------------------------------------------------------------ now and next
 
-    /** The setup card: shown while any permission or setting from the first-start setup is still missing. */
+    /** The setup card: shown while a feature the person chose still needs a setting. Features they did not choose are never nagged about. */
     private void refreshHomeCard() {
         homeBox.removeAllViews();
-        int missing = Permissions.missing(a);
-        if (missing == 0) return;
-        LinearLayout card = Ui.section(a, homeBox, "Setup", missing == 1 ? "1 setting still to do" : missing + " settings still to do");
-        card.addView(a.note("These make the alarms ring on time and the home screen work. Each opens Android\u2019s own screen."), Ui.wide(a, 6));
+        java.util.List<Integer> todo = Features.unfinished(a);
+        if (todo.isEmpty()) return;
+        LinearLayout card = Ui.section(a, homeBox, "Setup", todo.size() == 1 ? "1 feature still to finish" : todo.size() + " features still to finish");
+        card.addView(a.note("You chose these, and each needs one more setting. Each opens a short page that says what it is for."), Ui.wide(a, 6));
         boolean first = true;
-        for (final Permissions.Step st : Permissions.steps(a)) {
-            if (st.ok) continue;
-            card.addView(Ui.statusRow(a, st.title, st.why, false, st.action, () -> Permissions.request(a, st.id)), Ui.wide(a, first ? 8 : 2));
+        for (final int f : todo) {
+            card.addView(Ui.statusRow(a, Features.title(f), Features.lacking(a, f), false, "Finish", () -> a.startActivity(
+                    new Intent(a, SetupActivity.class).putExtra(SetupActivity.EXTRA_REVIEW, true).putExtra(SetupActivity.EXTRA_FEATURE, f))),
+                    Ui.wide(a, first ? 8 : 2));
             first = false;
         }
-        card.addView(Ui.button(a, "Open the setup guide", true, v -> a.startActivity(new Intent(a, SetupActivity.class)
+        card.addView(Ui.button(a, "Add or fix features", true, v -> a.startActivity(new Intent(a, SetupActivity.class)
                 .putExtra(SetupActivity.EXTRA_REVIEW, true))), Ui.wide(a, 10));
         card.addView(Ui.button(a, "Take the tour", false, v -> a.startActivity(new Intent(a, TourActivity.class))), Ui.wide(a, 6));
     }

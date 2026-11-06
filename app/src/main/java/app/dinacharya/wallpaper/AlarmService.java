@@ -1,5 +1,6 @@
 package app.dinacharya.wallpaper;
 
+import android.app.KeyguardManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -37,12 +38,17 @@ import java.time.ZonedDateTime;
  * one never reaches this service ({@link #postSilent} puts a quiet notification up instead). The start-of-day alarm is the one that
  * keeps going until the day is started or put off; it still stops by itself after half an hour so a phone left alone is not ringing
  * for ever.
+ *
+ * Only one thing shows for a ringing alarm (see {@link AlarmSurface}): the full-screen question when the phone is locked or asleep, one banner
+ * when it is in use in another app, or the question itself when Dinacharya is on screen. Never the banner and the full screen together.
  */
 public class AlarmService extends Service {
     static final String ACTION_RING = "app.dinacharya.wallpaper.RING";
     static final String ACTION_SILENCE = "app.dinacharya.wallpaper.SILENCE";
 
     private static final String CH_RING = "ring";
+    /** The same alarm while its question is already on screen: it keeps a quiet notification and never pops up as a banner as well. */
+    private static final String CH_RING_QUIET = "ring_quiet";
     private static final String CH_MISSED = "missed";
     private static final int ID_RING = 77;
     private static final int ID_MISSED = 78;
@@ -291,8 +297,57 @@ public class AlarmService extends Service {
         ring.enableVibration(false);
         ring.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
         nm.createNotificationChannel(ring);
+        nm.createNotificationChannel(quietChannel());
         NotificationChannel missed = new NotificationChannel(CH_MISSED, Lang.tr("Missed alarms"), NotificationManager.IMPORTANCE_DEFAULT);
         nm.createNotificationChannel(missed);
+    }
+
+    private static NotificationChannel quietChannel() {
+        NotificationChannel quiet = new NotificationChannel(CH_RING_QUIET, Lang.tr("Alarm in progress"), NotificationManager.IMPORTANCE_LOW);
+        quiet.setDescription("Shown while an alarm's question is on your screen");
+        quiet.setSound(null, null);
+        quiet.enableVibration(false);
+        quiet.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+        return quiet;
+    }
+
+    /**
+     * Which one thing shows for an alarm that rings now: the full-screen question (phone locked or asleep), one banner (phone in use in
+     * another app) or the question inside the app (Dinacharya is on screen). See {@link AlarmSurface}.
+     */
+    static int surfaceNow(Context c) {
+        boolean screenOn = true;
+        boolean locked = false;
+        try {
+            PowerManager pm = (PowerManager) c.getSystemService(Context.POWER_SERVICE);
+            if (pm != null) screenOn = pm.isInteractive();
+        } catch (RuntimeException ignored) {
+            // cannot tell: treat the screen as on
+        }
+        try {
+            KeyguardManager km = (KeyguardManager) c.getSystemService(Context.KEYGUARD_SERVICE);
+            if (km != null) locked = km.isKeyguardLocked();
+        } catch (RuntimeException ignored) {
+            // cannot tell: treat the phone as unlocked
+        }
+        return AlarmSurface.choose(screenOn, locked, App.inFront());
+    }
+
+    /**
+     * The question is on screen now, so the alarm's notification goes quiet: no banner on top of the question. (Called by the question
+     * screen each time it comes to the front while an alarm rings.)
+     */
+    static void questionShown(Context c) {
+        AlarmPlanner.Event e = ringing;
+        if (e == null) return;
+        try {
+            NotificationManager nm = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
+            if (nm == null) return;
+            nm.createNotificationChannel(quietChannel());
+            nm.notify(ID_RING, ringNotification(c, e, AlarmSurface.IN_APP));
+        } catch (RuntimeException ignored) {
+            // the notification stays as it was
+        }
     }
 
     private static String clock(long ms, boolean h24) {
@@ -304,10 +359,10 @@ public class AlarmService extends Service {
      * The ringing notification: the slot's name, its time and length, and for a slot two quick answers, "Start now" and "In 10 min", so a
      * slot can be started from the shade without opening the screen. Tapping it opens the full question.
      */
-    private Notification ringNotification(AlarmPlanner.Event e) {
-        PendingIntent pi = PendingIntent.getActivity(this, 5001, openIntent(this, e), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-        String[] w = words(this, e);
-        Notification.Builder b = new Notification.Builder(this, CH_RING)
+    private static Notification ringNotification(Context c, AlarmPlanner.Event e, int surface) {
+        PendingIntent pi = PendingIntent.getActivity(c, 5001, openIntent(c, e), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        String[] w = words(c, e);
+        Notification.Builder b = new Notification.Builder(c, AlarmSurface.popsBanner(surface) ? CH_RING : CH_RING_QUIET)
                 .setSmallIcon(R.drawable.ic_stat)
                 .setContentTitle(w[0])
                 .setContentText(w[1])
@@ -316,11 +371,12 @@ public class AlarmService extends Service {
                 .setOngoing(true)
                 .setAutoCancel(false)
                 .setVisibility(Notification.VISIBILITY_PUBLIC)
-                .setContentIntent(pi)
-                .setFullScreenIntent(pi, true);
+                .setContentIntent(pi);
+        // Only a phone that is locked or asleep gets the full-screen intent. On a phone in use it would add a second window to the banner.
+        if (AlarmSurface.carriesFullScreen(surface)) b.setFullScreenIntent(pi, true);
         if ((e.kind == AlarmPlanner.SLOT || e.kind == AlarmPlanner.START_AGAIN) && !e.wake && !AlarmPlanner.isTest(e)) {
-            b.addAction(quickAction(this, e, SlotActions.ACTION_START_NOW, Lang.tr("Start now"), 1));
-            b.addAction(quickAction(this, e, SlotActions.ACTION_START_LATER, Lang.tr("In 10 min"), 2));
+            b.addAction(quickAction(c, e, SlotActions.ACTION_START_NOW, Lang.tr("Start now"), 1));
+            b.addAction(quickAction(c, e, SlotActions.ACTION_START_LATER, Lang.tr("In 10 min"), 2));
         }
         return b.build();
     }
@@ -328,7 +384,8 @@ public class AlarmService extends Service {
     private void ring(AlarmPlanner.Event e) {
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         channels(nm);
-        Notification n = ringNotification(e);
+        int surface = surfaceNow(this);
+        Notification n = ringNotification(this, e, surface);
         try {
             if (Build.VERSION.SDK_INT >= 34) {
                 // Android 14 and later: the type reserved for alarm apps that hold the exact-alarm permission.
@@ -358,14 +415,17 @@ public class AlarmService extends Service {
         handler.removeCallbacks(timeout);
         handler.postDelayed(timeout, limitFor(e));
 
-        // The question is brought up three ways, so it does not wait for you to find it:
-        // 1. the full-screen notification (opens by itself when the phone is locked or the screen is off);
-        // 2. an immediate try to open it (works whenever Android lets this app open a screen from the background);
-        // 3. every time the screen turns on or is unlocked while it rings, again, and when you come back to the home screen.
-        try {
-            startActivity(openIntent(this, e));
-        } catch (RuntimeException ignored) {
-            // the notification still carries the question
+        // One thing shows, chosen above (see AlarmSurface):
+        // - phone locked or asleep: the full-screen notification opens the question by itself, and this tries it at once too;
+        // - Dinacharya on screen: the question opens right there, and the notification stays quiet;
+        // - phone in use in another app: one banner, and the question waits behind a tap, so nothing opens on top of what you are doing.
+        // After that, waking or unlocking the phone while it rings shows the question again (see reshow), and so does coming back to the home screen.
+        if (AlarmSurface.opensQuestion(surface)) {
+            try {
+                startActivity(openIntent(this, e));
+            } catch (RuntimeException ignored) {
+                // the notification still carries the question
+            }
         }
         watchScreen();
     }
@@ -398,14 +458,18 @@ public class AlarmService extends Service {
         long t = System.currentTimeMillis();
         if (t - lastReshow < 1500L) return;
         lastReshow = t;
-        try {
-            startActivity(openIntent(this, e));
-        } catch (RuntimeException ignored) {
-            // blocked in the background: the pop-up below still shows
+        if (AlarmActivity.onScreen()) return;   // the question is already in front: nothing to add
+        int surface = surfaceNow(this);
+        if (AlarmSurface.opensQuestion(surface)) {
+            try {
+                startActivity(openIntent(this, e));
+            } catch (RuntimeException ignored) {
+                // blocked in the background: the notification below still shows it
+            }
         }
         try {
             NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            if (nm != null) nm.notify(ID_RING, ringNotification(e));
+            if (nm != null) nm.notify(ID_RING, ringNotification(this, e, surface));
         } catch (RuntimeException ignored) {
             // the first notification is still there
         }
@@ -566,17 +630,19 @@ public class AlarmService extends Service {
         nm.createNotificationChannel(ch);
         PendingIntent pi = PendingIntent.getActivity(c, 5001, openIntent(c, e), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         String[] w = words(c, e);
-        Notification n = new Notification.Builder(c, id)
+        // Locked or asleep: the full-screen intent opens the question. In use: only this one banner (it carries the sound), never both.
+        boolean locked = AlarmSurface.carriesFullScreen(surfaceNow(c));
+        Notification.Builder nb = new Notification.Builder(c, id)
                 .setSmallIcon(R.drawable.ic_stat)
                 .setContentTitle(w[0])
                 .setContentText(Lang.tr("Tap to answer."))
                 .setCategory(Notification.CATEGORY_ALARM)
                 .setVisibility(Notification.VISIBILITY_PUBLIC)
                 .setContentIntent(pi)
-                .setFullScreenIntent(pi, true)
                 .setAutoCancel(true)
-                .setTimeoutAfter(limitFor(e))   // the same time the ringing service would have gone on for
-                .build();
+                .setTimeoutAfter(limitFor(e));   // the same time the ringing service would have gone on for
+        if (locked) nb.setFullScreenIntent(pi, true);
+        Notification n = nb.build();
         // Without the ringing service nothing else repeats the sound, so the notification does: it goes on until it is opened
         // or its time is up. A sound that plays once and stops is easy to sleep through.
         n.flags |= Notification.FLAG_INSISTENT;

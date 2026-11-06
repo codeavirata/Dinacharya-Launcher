@@ -113,6 +113,26 @@ public class AlarmActivity extends LangActivity {
         handle(intent);
     }
 
+    /** True while the question is in front of the person (the alarm service looks at it so it never adds a banner on top). */
+    private static volatile boolean onScreen;
+
+    static boolean onScreen() {
+        return onScreen;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        onScreen = true;
+        AlarmService.questionShown(this);   // the question is here, so the alarm's notification stops being a banner
+    }
+
+    @Override
+    protected void onPause() {
+        onScreen = false;
+        super.onPause();
+    }
+
     private int dp(float v) {
         return Ui.dp(this, v);
     }

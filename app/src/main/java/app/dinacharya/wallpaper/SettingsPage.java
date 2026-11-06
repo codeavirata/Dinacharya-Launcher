@@ -92,7 +92,7 @@ final class SettingsPage extends Page {
         item(general, Glyph.PALETTE, "App colours", coloursName(Ui.colours(a)), COLOURS);
         itemAction(general, Glyph.HELP, "Take the tour", "A short walk through what the app does",
                 () -> a.startActivity(new Intent(a, TourActivity.class)));
-        itemAction(general, Glyph.SHIELD, "Check phone settings", "Permissions and settings the app needs, with a tick for each",
+        itemAction(general, Glyph.SHIELD, "Features", "Choose what Dinacharya does. It asks your phone only for what each feature needs",
                 () -> a.startActivity(new Intent(a, SetupActivity.class).putExtra(SetupActivity.EXTRA_REVIEW, true)));
         LinearLayout home = Ui.section(a, body, "Home screen", null);
         homeItem(home, Glyph.HOME, "Home app", "Make it your home app, and the wallpaper", LauncherSettingsActivity.SEC_HOME, "home");

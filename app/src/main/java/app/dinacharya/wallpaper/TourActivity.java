@@ -68,7 +68,7 @@ public class TourActivity extends LangActivity {
             "Choose Light, Night or Auto for your day poster, and a colour look: Teal is free and Pro adds the rest. The app speaks English, Hindi, Marathi, Gujarati, Bengali, Tamil and Telugu. Library mode and quiet rules keep your phone silent in the slots you choose. Settings > Feature guide explains every feature and how to set it up.",
             "",
             "The Dinacharya Launcher live wallpaper shows the time, the date and every slot of your day, with the one you are in highlighted, and keeps itself up to date. It comes with the home screen: Dinacharya Launcher asks Android to put it in place and you confirm once, so it also shows on your lock screen and in your recent apps.",
-            "Anything still missing from the setup is listed here. You can skip it now and come back from Settings.",
+            "A feature you chose that still needs a setting is listed here. You can finish it now or come back from Settings.",
     };
 
     private int page;
@@ -321,17 +321,14 @@ public class TourActivity extends LangActivity {
         if (setupRows == null) return;
         setupRows.removeAllViews();
         boolean any = false;
-        for (final Permissions.Step st : Permissions.steps(this)) {
-            if (st.ok) continue;
+        for (final int f : Features.unfinished(this)) {
             if (any) setupRows.addView(Ui.rule(this), Ui.lp(this, ViewGroup.LayoutParams.MATCH_PARENT, dp(1), 2));
             any = true;
-            setupRows.addView(Ui.statusRow(this, st.title, st.why, false, st.action, () -> {
-                Permissions.request(this, st.id);
-                fillSetup();
-            }));
+            setupRows.addView(Ui.statusRow(this, Features.title(f), Features.lacking(this, f), false, "Finish", () ->
+                    startActivity(new Intent(this, SetupActivity.class).putExtra(SetupActivity.EXTRA_REVIEW, true).putExtra(SetupActivity.EXTRA_FEATURE, f))));
         }
         if (!any) {
-            setupRows.addView(Ui.statusRow(this, "Everything is set", "Your phone is ready.", true, "", null));
+            setupRows.addView(Ui.statusRow(this, "Everything you chose is set", "Add more features any time from Settings.", true, "", null));
         }
     }
 }
