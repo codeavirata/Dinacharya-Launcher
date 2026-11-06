@@ -540,11 +540,13 @@ final class SlotSheets {
         final LocalDate d = LocalDate.parse(day);
         Plan.DayPlan dp = Plan.plan(base, ov, d, Store.zone());
         int mi = SlotPlay.indexOfSrc(dp, src);
-        final int slotMins = mi < 0 ? 60 : Math.max(SlotPlay.STEP, dp.sc.slots.get(mi).end - dp.sc.slots.get(mi).start);
+        // the slot as a whole, first part to last (a slot changed earlier today is several parts with one number)
+        long[] span = ReplaceFromNow.span(dp, src);
+        final int slotMins = span != null ? Math.max(SlotPlay.STEP, (int) Math.round((span[1] - span[0]) / 60000.0))
+                : mi < 0 ? 60 : Math.max(SlotPlay.STEP, dp.sc.slots.get(mi).end - dp.sc.slots.get(mi).start);
         final int part = Math.max(SlotPlay.STEP, slotMins - SlotPlay.STEP);
         // A slot that is running already: the new plan begins now, so its length is counted from now and what is left of the slot is the
         // most it can have (see ReplaceFromNow).
-        long[] span = ReplaceFromNow.span(dp, src);
         final ReplaceFromNow rf = span == null ? null : ReplaceFromNow.of(span[0], span[1], System.currentTimeMillis());
         final boolean late = rf != null && rf.late();
         final int roomNow = late ? rf.room : slotMins;

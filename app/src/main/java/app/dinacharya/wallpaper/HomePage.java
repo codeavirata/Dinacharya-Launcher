@@ -266,7 +266,8 @@ final class HomePage extends Page {
         if (p.cur >= 0) {
             Routine.Slot s = p.sc.slots.get(p.cur);
             Routine.Block b = s.block;
-            Routine.Block owner = ownerBlock(saved, b);
+            final int tt = saved.tt;
+            Routine.Block owner = ownerBlock(saved, b, tt);
             String sub = owner.sub.isEmpty() || Routine.isOther(owner.sub) ? "" : "  ·  " + owner.sub;
             String head = dayOff ? "Day off" : onBreak ? "On a break" : noResponse ? "No response" : waiting ? "Starting later" : "Now";
             int left = Math.max(0, s.end - p.tt);
@@ -293,18 +294,18 @@ final class HomePage extends Page {
                 }
             } else if (onBreak) {
                 card.addView(Glass.text(a, "Break until " + Routine.formatTime(s.end, m.fmt24) + "  ·  " + Routine.formatDuration(left) + " left", 15, Glass.SOFT, false), Ui.wide(a, 8));
-                card.addView(Glass.note(a, "Then back to " + titleOf(owner) + ", which ends at " + Routine.formatTime(slotEnd(saved, owner), m.fmt24)), Ui.wide(a, 4));
+                card.addView(Glass.note(a, "Then back to " + titleOf(owner) + ", which ends at " + Routine.formatTime(slotEnd(saved, owner, tt), m.fmt24)), Ui.wide(a, 4));
             } else if (noResponse) {
                 card.addView(Glass.text(a, "No answer yet. The slot starts when you answer.", 15, Glass.SOFT, false), Ui.wide(a, 8));
-                card.addView(Glass.note(a, "It was to start at " + Routine.formatTime(slotStart(saved, owner), m.fmt24) + ", and ends at "
-                        + Routine.formatTime(slotEnd(saved, owner), m.fmt24)), Ui.wide(a, 4));
+                card.addView(Glass.note(a, "It was to start at " + Routine.formatTime(slotStart(saved, owner, tt), m.fmt24) + ", and ends at "
+                        + Routine.formatTime(slotEnd(saved, owner, tt), m.fmt24)), Ui.wide(a, 4));
             } else if (waiting) {
                 card.addView(Glass.text(a, "Starts at " + Routine.formatTime(s.end, m.fmt24) + "  ·  in " + Routine.formatDuration(left), 15, Glass.SOFT, false), Ui.wide(a, 8));
-                card.addView(Glass.note(a, "It was to start at " + Routine.formatTime(slotStart(saved, owner), m.fmt24) + ", and ends at "
-                        + Routine.formatTime(slotEnd(saved, owner), m.fmt24)), Ui.wide(a, 4));
+                card.addView(Glass.note(a, "It was to start at " + Routine.formatTime(slotStart(saved, owner, tt), m.fmt24) + ", and ends at "
+                        + Routine.formatTime(slotEnd(saved, owner, tt), m.fmt24)), Ui.wide(a, 4));
             } else {
                 card.addView(Glass.text(a, Routine.formatTime(s.start, m.fmt24) + " – " + Routine.formatTime(s.end, m.fmt24), 15, Glass.SOFT, false), Ui.wide(a, 8));
-                String changed = changeNote(b, s, saved, owner, m.fmt24);
+                String changed = changeNote(b, s, saved, owner, tt, m.fmt24);
                 if (!changed.isEmpty()) card.addView(Glass.text(a, changed, 13, Glass.GREEN, true), Ui.wide(a, 6));
             }
             if (!dayOff) {
@@ -331,7 +332,7 @@ final class HomePage extends Page {
             card.addView(Glass.eyebrow(a, "Next up", Glass.FAINT), Ui.wide(a, 14));
             TextView nx = Glass.text(a, titleOf(s.block) + "  ·  " + Routine.formatTime(s.start, m.fmt24) + "  ·  in " + Routine.formatDuration(in), 15, Glass.SOFT, true);
             card.addView(nx, Ui.wide(a, 6));
-            final int nextIndex = SlotPlay.indexOfSrc(saved, s.block.slotSrc());
+            final int nextIndex = SlotPlay.indexOfPart(saved, s.block.slotSrc(), s.start);
             final Plan.DayPlan plan = saved;
             nx.setOnClickListener(v -> openTodos(plan, nextIndex));
             card.addView(Glass.text(a, "Tap it to add a to-do list for it.", 12, Glass.FAINT, false), Ui.wide(a, 3));
@@ -343,26 +344,30 @@ final class HomePage extends Page {
         return b.title.isEmpty() ? Routine.KIND_NAMES[b.kind] : b.title;
     }
 
-    /** The block of the saved plan this part of the live day belongs to (a break or a wait belongs to the slot it sits in). */
-    private static Routine.Block ownerBlock(Plan.DayPlan saved, Routine.Block b) {
-        int i = SlotPlay.indexOfSrc(saved, b.slotSrc());
+    /**
+     * The block of the saved plan this part of the live day belongs to (a break or a wait belongs to the slot it sits in), at minute {@code tt}.
+     * A slot changed in the middle is several parts with one number, so the part is found by the minute, not by the number alone: the first part
+     * is the time before the change and still has the old name.
+     */
+    private static Routine.Block ownerBlock(Plan.DayPlan saved, Routine.Block b, int tt) {
+        int i = SlotPlay.indexOfPart(saved, b.slotSrc(), tt);
         return i >= 0 ? saved.sc.slots.get(i).block : b;
     }
 
-    private static int slotStart(Plan.DayPlan saved, Routine.Block owner) {
-        int i = SlotPlay.indexOfSrc(saved, owner.src);
+    private static int slotStart(Plan.DayPlan saved, Routine.Block owner, int tt) {
+        int i = SlotPlay.indexOfPart(saved, owner.src, tt);
         return i >= 0 ? saved.sc.slots.get(i).start : 0;
     }
 
-    private static int slotEnd(Plan.DayPlan saved, Routine.Block owner) {
-        int i = SlotPlay.indexOfSrc(saved, owner.src);
+    private static int slotEnd(Plan.DayPlan saved, Routine.Block owner, int tt) {
+        int i = SlotPlay.indexOfPart(saved, owner.src, tt);
         return i >= 0 ? saved.sc.slots.get(i).end : 0;
     }
 
     /** One line under the time when the slot began or ended other than planned: "Started late", "Carried on", "Started early". */
-    private static String changeNote(Routine.Block b, Routine.Slot s, Plan.DayPlan saved, Routine.Block owner, boolean h24) {
-        int ps = slotStart(saved, owner);
-        int pe = slotEnd(saved, owner);
+    private static String changeNote(Routine.Block b, Routine.Slot s, Plan.DayPlan saved, Routine.Block owner, int tt, boolean h24) {
+        int ps = slotStart(saved, owner, tt);
+        int pe = slotEnd(saved, owner, tt);
         switch (b.live) {
             case Routine.LIVE_LATE:
                 return "Started late, at " + Routine.formatTime(s.start, h24) + " instead of " + Routine.formatTime(ps, h24);
@@ -414,7 +419,7 @@ final class HomePage extends Page {
         if (!mains.isEmpty()) card.addView(Glass.row(a, 10, mains.toArray(new View[0])), Ui.wide(a, 22));
 
         Glass.Flow chips = new Glass.Flow(a, 8);
-        final Routine.Block owner = ownerBlock(saved, b);
+        final Routine.Block owner = ownerBlock(saved, b, saved.tt);
         if (!onBreak && !waiting) {
             boolean sameSlot = saved.cur >= 0 && saved.sc.slots.get(saved.cur).block.src == b.src && b.live != Routine.LIVE_CARRIED;
             if (sameSlot && SlotAdjust.of(saved, now) != null) {
@@ -424,7 +429,7 @@ final class HomePage extends Page {
                 chips.addView(Glass.chip(a, "Change plan", v -> askNewName(saved.day.toString(), owner.src, owner.title, 0L, false)));
             }
         }
-        final int sIdx = SlotPlay.indexOfSrc(saved, b.slotSrc());
+        final int sIdx = SlotPlay.indexOfPart(saved, b.slotSrc(), saved.tt);
         if (sIdx >= 0 && !saved.sc.slots.get(sIdx).block.skipped) {
             Routine.Block ob = saved.sc.slots.get(sIdx).block;
             Todos t = Store.todosFor(a, saved.day, blocksOf(saved));
@@ -448,7 +453,7 @@ final class HomePage extends Page {
      */
     private void addWaitChoices(LinearLayout card, final Plan.DayPlan saved, final Plan.DayPlan p) {
         Routine.Block w = p.sc.slots.get(p.cur).block;
-        final int oi = SlotPlay.indexOfSrc(saved, w.slotSrc());
+        final int oi = SlotPlay.indexOfPart(saved, w.slotSrc(), saved.tt);
         if (oi < 0) return;
         final Routine.Block ob = saved.sc.slots.get(oi).block;
         final String day = saved.day.toString();
