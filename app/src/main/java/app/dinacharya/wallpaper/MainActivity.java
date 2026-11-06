@@ -868,6 +868,11 @@ public class MainActivity extends LangActivity {
     /** The page of tab {@code t} is now the one in view: it is brought up to date, unless nothing it shows has changed. */
     private void showed(int t) {
         Page p = pages[t];
+        try {
+            p.maybeHint();
+        } catch (RuntimeException e) {
+            CrashLog.note(this, "tab hint", e);
+        }
         if (pageGood(t)) {
             p.revive();
             return;

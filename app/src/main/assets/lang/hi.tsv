@@ -2397,3 +2397,36 @@ Rest of the slot	स्लॉट का बचा हुआ हिस्सा
 Starts now, at {1}. The time before stays as it was.	अभी, {1} बजे शुरू होता है। उससे पहले का समय जैसा था वैसा ही रहता है।
 Changed for today from {1} to {2}: {3}	आज के लिए {1} से {2} तक बदला गया: {3}
 Changed for today from {1} to {2}: {3}, then back to the plan	आज के लिए {1} से {2} तक बदला गया: {3}, फिर योजना पर वापस
+All your apps are still there. Swipe up on the home screen for the list.	आपके सभी ऐप यहीं हैं। सूची के लिए होम स्क्रीन पर ऊपर की ओर स्वाइप करें।
+Your routine and reports stay on your phone. No sign-up is needed.	आपकी दिनचर्या और रिपोर्ट आपके फ़ोन में ही रहती हैं। साइन-अप की ज़रूरत नहीं है।
+You can switch back to your old home screen any time.	आप कभी भी अपनी पुरानी होम स्क्रीन पर वापस जा सकते हैं।
+Phone, emergency calls, Settings and Dinacharya are never locked.	फ़ोन, आपातकालीन कॉल, सेटिंग्स और Dinacharya कभी लॉक नहीं होते।
+Make it your home app, and the wallpaper. You can switch back to your old one any time	इसे अपना होम ऐप बनाएँ, और वॉलपेपर भी। आप कभी भी अपने पुराने ऐप पर वापस जा सकते हैं
+This is your day. The card shows what is on now. Break, Change plan and Adjust time on it change today only; your saved routine stays as it is.	यह आपका दिन है। कार्ड में दिखता है कि अभी क्या चल रहा है। उस पर ब्रेक, योजना बदलें और समय समायोजित करें सिर्फ़ आज के लिए बदलाव करते हैं; आपकी सहेजी दिनचर्या जैसी है वैसी रहती है।
+This is your saved routine. A change here stays until you change it again. To change just today, use Change plan on Home.	यह आपकी सहेजी हुई दिनचर्या है। यहाँ किया बदलाव तब तक रहता है जब तक आप उसे फिर न बदलें। सिर्फ़ आज के लिए बदलना हो तो होम पर योजना बदलें का उपयोग करें।
+Here you see how your days went: what was done, what was missed, and where your phone time went.	यहाँ आप देखते हैं कि आपके दिन कैसे बीते: क्या हुआ, क्या छूटा, और फ़ोन का समय कहाँ गया।
+A backup keeps your routine and your days in your own Google Drive, so a new phone can start where this one stopped.	बैकअप आपकी दिनचर्या और आपके दिनों को आपके अपने Google Drive में रखता है, ताकि नया फ़ोन वहीं से शुरू हो सके जहाँ यह रुका था।
+Nothing here is final. Alarms, locks and the home screen each have their own section, and each can be changed or switched off.	यहाँ कुछ भी अंतिम नहीं है। अलार्म, लॉक और होम स्क्रीन का अपना-अपना अनुभाग है, और हर एक को बदला या बंद किया जा सकता है।
+Got it	समझ गया
+show alarms	अलार्म दिखाना
+ring on the minute	ठीक समय पर बजना
+open over the lock screen	लॉक स्क्रीन के ऊपर खुलना
+stay awake	जागते रहना
+keep running	चलते रहना
+see app use time	ऐप उपयोग का समय देखना
+show locks over apps	ऐप के ऊपर लॉक दिखाना
+silence the phone	फ़ोन को शांत करना
+be your home screen	आपकी होम स्क्रीन बनना
+show your day as wallpaper	आपका दिन वॉलपेपर के रूप में दिखाना
+What happens next	आगे क्या होगा
+Android shows a small box. Tap Allow.	Android एक छोटा बॉक्स दिखाता है। अनुमति दें पर टैप करें।
+A short guide shows where to tap, then Android opens its battery list.	एक छोटी गाइड बताती है कि कहाँ टैप करना है, फिर Android अपनी बैटरी सूची खोलता है।
+Android asks which home app to use. Choose Dinacharya. You can change it back any time.	Android पूछता है कि कौन-सा होम ऐप इस्तेमाल करना है। Dinacharya चुनें। आप इसे कभी भी वापस बदल सकते हैं।
+Android shows a preview. Tap Set wallpaper to confirm.	Android एक प्रीव्यू दिखाता है। पुष्टि के लिए वॉलपेपर सेट करें पर टैप करें।
+Your phone’s settings open. Switch Dinacharya on, then press Back.	आपके फ़ोन की सेटिंग्स खुलती हैं। Dinacharya को चालू करें, फिर वापस दबाएँ।
+Android opens a settings page. Find Dinacharya, switch it on, then press Back.	Android एक सेटिंग्स पेज खोलता है। Dinacharya ढूँढें, उसे चालू करें, फिर वापस दबाएँ।
+Switch on your day alarms	अपने दिन के अलार्म चालू करें
+One more thing before alarms can ring	अलार्म बजने से पहले एक चीज़ और
+When a part of your day begins you hear an alarm and answer one quick question: carry on as planned, or change it. Nothing rings until you switch them on.	दिन का कोई हिस्सा शुरू होने पर आपको अलार्म सुनाई देता है और आप एक छोटे सवाल का जवाब देते हैं: योजना के अनुसार चलें, या उसे बदलें। जब तक आप चालू नहीं करते, कुछ नहीं बजता।
+Alarms are on, but your phone needs your OK first: {1}.	अलार्म चालू हैं, पर पहले आपके फ़ोन को आपकी अनुमति चाहिए: {1}।
+Switch on	चालू करें

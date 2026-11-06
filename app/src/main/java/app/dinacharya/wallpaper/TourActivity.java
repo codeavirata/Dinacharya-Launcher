@@ -16,10 +16,10 @@ import android.widget.TextView;
 
 
 /**
- * A short tour of what the app does: eleven cards with a picture each, then a card that checks what is still missing from
- * the setup, then the last screen, which shows Free and Pro side by side (see {@link CompareActivity}). It comes after the welcome
- * and the setup the first time, and can be replayed from the settings. When it is the first time, finishing it opens the dashboard
- * with a "you're all set" message.
+ * A short tour of what the app does. The first time it is five cards with a picture each (the home screen, every app, the routine, the
+ * alarms, changing the plan) and a card that checks what is still missing from the setup, then the dashboard with a "you're all set"
+ * message. Replayed from the Settings it is all the cards, ending with the screen that shows Free and Pro side by side (see
+ * {@link CompareActivity}).
  */
 public class TourActivity extends LangActivity {
 
@@ -71,6 +71,13 @@ public class TourActivity extends LangActivity {
             "A feature you chose that still needs a setting is listed here. You can finish it now or come back from Settings.",
     };
 
+    /**
+     * The pages of the first run, in order: what the home screen is, how to reach every app, the routine, the alarms, changing the plan, and
+     * the last check. The other nine (swipes, breaks, pauses, locks, reports, backup, colours, Free and Pro, wallpaper) are for the person who replays the tour from the Settings.
+     */
+    private static final int[] FIRST_RUN = {0, 1, 3, 4, 5, SETUP};
+    /** The pages shown, as numbers into {@link #TITLES}: all of them when the tour is replayed. */
+    private int[] seq;
     private int page;
     private boolean busy;
     private TourArt art;
@@ -90,7 +97,13 @@ public class TourActivity extends LangActivity {
             getOnBackInvokedDispatcher().registerOnBackInvokedCallback(
                     android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT, this::handleBack);
         }
-        if (b != null) page = Math.max(0, Math.min(TOTAL - 1, b.getInt("page", 0)));
+        if (getIntent().getBooleanExtra(EXTRA_FIRST_RUN, false)) {
+            seq = FIRST_RUN;
+        } else {
+            seq = new int[TOTAL];
+            for (int i = 0; i < TOTAL; i++) seq[i] = i;
+        }
+        if (b != null) page = Math.max(0, Math.min(seq.length - 1, b.getInt("page", 0)));
         Pro.get(this).start();   // so the price is known by the time the Pro page is reached
         build();
         bind();
@@ -118,7 +131,7 @@ public class TourActivity extends LangActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (page == SETUP) fillSetup();
+        if (id() == SETUP) fillSetup();
     }
 
     @Override
@@ -208,7 +221,7 @@ public class TourActivity extends LangActivity {
         dots = new LinearLayout(this);
         dots.setOrientation(LinearLayout.HORIZONTAL);
         dots.setGravity(Gravity.CENTER);
-        for (int i = 0; i < TOTAL; i++) {
+        for (int i = 0; i < seq.length; i++) {
             View dot = new View(this);
             LinearLayout.LayoutParams dp = new LinearLayout.LayoutParams(dp(7), dp(7));
             dp.leftMargin = dp(3);
@@ -227,7 +240,7 @@ public class TourActivity extends LangActivity {
         View gap = new View(this);
         nav.addView(gap, new LinearLayout.LayoutParams(0, 1, 1f));
         next = Ui.button(this, "Next", true, v -> {
-            if (page == SETUP) openFinal();
+            if (id() == SETUP) openFinal();
             else step(1);
         });
         next.setMinWidth(dp(120));
@@ -242,13 +255,13 @@ public class TourActivity extends LangActivity {
 
     /** Shows the current page's words, picture or checklist, dots and buttons. */
     private void bind() {
-        boolean setup = page == SETUP;
-        stepView.setText((page + 1) + " of " + TOTAL);
-        titleView.setText(TITLES[page]);
-        bodyView.setText(page == TourArt.PRO ? proBody() : BODIES[page]);
+        boolean setup = id() == SETUP;
+        stepView.setText((page + 1) + " of " + seq.length);
+        titleView.setText(TITLES[id()]);
+        bodyView.setText(id() == TourArt.PRO ? proBody() : BODIES[id()]);
         art.setVisibility(setup ? View.GONE : View.VISIBLE);
         setupCard.setVisibility(setup ? View.VISIBLE : View.GONE);
-        if (!setup) art.setPage(page);
+        if (!setup) art.setPage(id());
         else fillSetup();
         skip.setVisibility(setup ? View.INVISIBLE : View.VISIBLE);
         back.setVisibility(page == 0 ? View.INVISIBLE : View.VISIBLE);
@@ -260,6 +273,11 @@ public class TourActivity extends LangActivity {
             lp.width = dp(i == page ? 18 : 7);
             dot.setLayoutParams(lp);
         }
+    }
+
+    /** The number of the page shown now, into {@link #TITLES}, {@link #BODIES} and the pictures. */
+    private int id() {
+        return seq[page];
     }
 
     /** The Pro page's words, with the price Google Play shows once it has answered. */
@@ -279,7 +297,7 @@ public class TourActivity extends LangActivity {
     /** Moves to the next ({@code dir} 1) or previous (-1) page with a short slide and fade. */
     private void step(final int dir) {
         final int to = page + dir;
-        if (busy || to < 0 || to >= TOTAL) return;
+        if (busy || to < 0 || to >= seq.length) return;
         busy = true;
         final float shift = dp(28) * dir;
         content.animate().alpha(0f).translationX(-shift).setDuration(110).withEndAction(() -> {
@@ -293,6 +311,12 @@ public class TourActivity extends LangActivity {
     /** After the last check: the screen that shows Free and Pro side by side. It carries on to the dashboard the first time. */
     private void openFinal() {
         Store.prefs(this).edit().putBoolean(LauncherActivity.PREF_TOUR_DONE, true).apply();
+        if (getIntent().getBooleanExtra(EXTRA_FIRST_RUN, false)) {
+            // The first time, nobody is shown a price list before they have used anything: Free and Pro are in the Settings and come up
+            // when a Pro feature is tapped.
+            finishTour();
+            return;
+        }
         try {
             startActivity(new Intent(this, CompareActivity.class)
                     .putExtra(CompareActivity.EXTRA_FIRST_RUN, getIntent().getBooleanExtra(EXTRA_FIRST_RUN, false)));
@@ -306,6 +330,7 @@ public class TourActivity extends LangActivity {
     private void finishTour() {
         Store.prefs(this).edit().putBoolean(LauncherActivity.PREF_TOUR_DONE, true).apply();
         if (getIntent().getBooleanExtra(EXTRA_FIRST_RUN, false)) {
+            Store.prefs(this).edit().putBoolean(Page.PREF_HINTS_ON, true).apply();   // one line of help the first time each tab is opened
             try {
                 startActivity(new Intent(this, MainActivity.class).putExtra(MainActivity.EXTRA_OPEN, "ready"));
             } catch (RuntimeException e) {

@@ -209,6 +209,11 @@ final class RoutinePage extends Page {
     // ------------------------------------------------------------------ building
 
     @Override
+    String hint() {
+        return "This is your saved routine. A change here stays until you change it again. To change just today, use Change plan on Home.";
+    }
+
+    @Override
     void build(LinearLayout body) {
         title("Routine", "Your day, slot by slot");
 
