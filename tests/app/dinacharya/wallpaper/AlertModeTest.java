@@ -261,9 +261,6 @@ public class AlertModeTest {
         ok("a later start leaves a minute of the slot", SlotPlay.startAfter(now, 90, end) == at(21, 10, 59));
         ok("carrying the slot before stops inside this slot", SlotPlay.continueUntil(now, 10, end) == at(21, 10, 10) && SlotPlay.continueUntil(now, 120, end) == at(21, 10, 59));
         ok("room is what is left of the slot", SlotPlay.roomMinutes(now, end) == 60 && SlotPlay.roomMinutes(end + 5000, end) == 0);
-        ok("a break that is over can be made longer while two minutes of the slot are left", SlotPlay.canExtendBreak(end - 2 * 60000L, end) && SlotPlay.canExtendBreak(now, end)
-            && !SlotPlay.canExtendBreak(end - 90000L, end) && !SlotPlay.canExtendBreak(end + 1000L, end));
-        ok("five more minutes of a break stop at the end of the slot", SlotPlay.breakEnd(end - 3 * 60000L, 5, end) == end && SlotPlay.breakEnd(now, 5, end) == at(21, 10, 5));
         ok("the minute button moves by five", SlotPlay.stepMinutes(10, true, 60) == 15 && SlotPlay.stepMinutes(10, false, 60) == 5);
         ok("and stays between five and what fits", SlotPlay.stepMinutes(5, false, 60) == 5 && SlotPlay.stepMinutes(60, true, 60) == 60 && SlotPlay.stepMinutes(10, true, 12) == 10);
         Plan.DayPlan dp = Plan.plan(Routine.sample(), new Overrides(), day(21), Z);

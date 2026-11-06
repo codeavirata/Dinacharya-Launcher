@@ -372,31 +372,13 @@ public class AlarmService extends Service {
                 .setAutoCancel(false)
                 .setVisibility(Notification.VISIBILITY_PUBLIC)
                 .setContentIntent(pi);
-        // Locked or asleep: the full-screen setting opens the question. In use in another app: Android shows the banner instead of a window
-        // (never both), and because the notification carries the setting it keeps the banner up until it is answered. Without it the banner
-        // went away after a few seconds and the alarm went on ringing with nothing on screen to answer it.
+        // Only a phone that is locked or asleep gets the full-screen intent. On a phone in use it would add a second window to the banner.
         if (AlarmSurface.carriesFullScreen(surface)) b.setFullScreenIntent(pi, true);
-        // Android 12 and later holds back the notification of a ringing service for up to ten seconds unless it has buttons or says it is
-        // urgent. The sound starts at once, so the banner must too.
-        if (Build.VERSION.SDK_INT >= 31) b.setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE);
         if ((e.kind == AlarmPlanner.SLOT || e.kind == AlarmPlanner.START_AGAIN) && !e.wake && !AlarmPlanner.isTest(e)) {
             b.addAction(quickAction(c, e, SlotActions.ACTION_START_NOW, Lang.tr("Start now"), 1));
             b.addAction(quickAction(c, e, SlotActions.ACTION_START_LATER, Lang.tr("In 10 min"), 2));
-        } else if (e.kind == AlarmPlanner.BREAK_END) {
-            // the three things the question offers, so a break can be ended, made longer or just silenced without opening anything
-            b.addAction(quickAction(c, e, SlotActions.ACTION_BREAK_BACK, Lang.tr("Back to work"), 1));
-            if (breakCanGrow(e)) b.addAction(quickAction(c, e, SlotActions.ACTION_BREAK_MORE, Lang.tr("+5 min"), 2));
-            b.addAction(quickAction(c, e, SlotActions.ACTION_STOP, Lang.tr("Stop"), 3));
-        } else if (!e.wake) {
-            // every other alarm can at least be silenced from the banner (the question stays one tap away in a quiet notification)
-            b.addAction(quickAction(c, e, SlotActions.ACTION_STOP, Lang.tr("Stop"), 3));
         }
         return b.build();
-    }
-
-    /** True when a break that is over can still be made longer: the slot has at least two minutes left (as the question itself needs). */
-    static boolean breakCanGrow(AlarmPlanner.Event e) {
-        return e != null && SlotPlay.canExtendBreak(System.currentTimeMillis(), e.slotEndMs);
     }
 
     private void ring(AlarmPlanner.Event e) {
@@ -422,7 +404,7 @@ public class AlarmService extends Service {
 
         ringing = e;
         ringingSince = android.os.SystemClock.elapsedRealtime();
-        AlarmScheduler.noteRinging(this, surface, e.kind);
+        AlarmScheduler.noteRinging(this);
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         if (pm != null) {
             if (wake != null && wake.isHeld()) wake.release();
@@ -436,8 +418,7 @@ public class AlarmService extends Service {
         // One thing shows, chosen above (see AlarmSurface):
         // - phone locked or asleep: the full-screen notification opens the question by itself, and this tries it at once too;
         // - Dinacharya on screen: the question opens right there, and the notification stays quiet;
-        // - phone in use in another app: one banner that stays up until it is answered, and the question waits behind a tap, so nothing
-        //   opens on top of what you are doing.
+        // - phone in use in another app: one banner, and the question waits behind a tap, so nothing opens on top of what you are doing.
         // After that, waking or unlocking the phone while it rings shows the question again (see reshow), and so does coming back to the home screen.
         if (AlarmSurface.opensQuestion(surface)) {
             try {
@@ -649,8 +630,7 @@ public class AlarmService extends Service {
         nm.createNotificationChannel(ch);
         PendingIntent pi = PendingIntent.getActivity(c, 5001, openIntent(c, e), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
         String[] w = words(c, e);
-        // Locked or asleep: the full-screen intent opens the question. In use: only this one banner (it carries the sound), kept up by the
-        // same setting until it is answered, never both.
+        // Locked or asleep: the full-screen intent opens the question. In use: only this one banner (it carries the sound), never both.
         boolean locked = AlarmSurface.carriesFullScreen(surfaceNow(c));
         Notification.Builder nb = new Notification.Builder(c, id)
                 .setSmallIcon(R.drawable.ic_stat)
@@ -747,10 +727,6 @@ public class AlarmService extends Service {
                     .setAutoCancel(true)
                     .build();
             nm.notify(ID_MISSED, n);
-        }
-        if (e != null && e.kind == AlarmPlanner.BREAK_END) {
-            // a break that is over and was not answered must not just vanish: it stays in the shade, quietly, with the question one tap away
-            postSilent(this, e);
         }
         stopForeground(true);
         stopSelf();

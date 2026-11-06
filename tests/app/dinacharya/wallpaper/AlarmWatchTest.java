@@ -72,20 +72,7 @@ public class AlarmWatchTest {
         ok("lost: asked at once when never asked", WallpaperWatch.shouldAsk(WallpaperWatch.LOST, true, -1));
         ok("lost: not asked again straight after the preview was turned down", !WallpaperWatch.shouldAsk(WallpaperWatch.LOST, true, 20000L));
         ok("lost: asked again after ten minutes", WallpaperWatch.shouldAsk(WallpaperWatch.LOST, true, 11 * MIN));
-        ok("never set: asked once, the first time, and not again (it is optional)", WallpaperWatch.shouldAsk(WallpaperWatch.NEVER, true, -1)
-                && !WallpaperWatch.shouldAsk(WallpaperWatch.NEVER, true, 5 * HOUR) && !WallpaperWatch.shouldAsk(WallpaperWatch.NEVER, true, 25 * HOUR)
-                && !WallpaperWatch.shouldAsk(WallpaperWatch.NEVER, true, 400 * HOUR));
-        ok("on the lock screen only is a choice already made: not asked for", !WallpaperWatch.shouldAsk(WallpaperWatch.LOCK_ONLY, true, -1)
-                && !WallpaperWatch.shouldAsk(WallpaperWatch.LOCK_ONLY, true, 25 * HOUR));
-        // a person who said no (skipped it in the setup, or turned Android's preview down)
-        ok("said no: never asked, whatever the state", !WallpaperWatch.shouldAsk(WallpaperWatch.NEVER, true, -1, true)
-                && !WallpaperWatch.shouldAsk(WallpaperWatch.LOST, true, -1, true) && !WallpaperWatch.shouldAsk(WallpaperWatch.LOST, true, 99 * HOUR, true));
-        ok("said no: nothing on the dashboard or the home screen", !WallpaperWatch.needsAttention(WallpaperWatch.NEVER, true)
-                && !WallpaperWatch.needsAttention(WallpaperWatch.LOST, true) && !WallpaperWatch.needsAttention(WallpaperWatch.LOCK_ONLY, true));
-        ok("not said no: as it was", WallpaperWatch.shouldAsk(WallpaperWatch.LOST, true, -1, false) && WallpaperWatch.needsAttention(WallpaperWatch.NEVER, false)
-                && WallpaperWatch.needsAttention(WallpaperWatch.LOST, false));
-        ok("said no and then set it: in place, so nothing to ask or tell", !WallpaperWatch.shouldAsk(WallpaperWatch.OK, true, -1, false)
-                && !WallpaperWatch.needsAttention(WallpaperWatch.OK, false));
+        ok("never set: asked once a day", !WallpaperWatch.shouldAsk(WallpaperWatch.NEVER, true, 5 * HOUR) && WallpaperWatch.shouldAsk(WallpaperWatch.NEVER, true, 25 * HOUR));
         ok("in place: never asked", !WallpaperWatch.shouldAsk(WallpaperWatch.OK, true, -1) && !WallpaperWatch.shouldAsk(WallpaperWatch.CHECKING, true, -1));
         ok("before the first-start setup is done: not asked here", !WallpaperWatch.shouldAsk(WallpaperWatch.LOST, false, -1));
 

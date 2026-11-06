@@ -243,26 +243,15 @@ public class LauncherSettingsActivity extends LangActivity {
         boolean def = HomeRole.isDefault(this);
         LinearLayout c = card("home", "Home app",
                 def ? "Dinacharya Launcher is your home app" : "Not your home app yet").body;
-        addRow(c, note("No apps on the home screen: your day is the background. Swipe up for every app."), 6);
+        addRow(c, note("No apps on the home screen: your day is the wallpaper. Swipe up for every app."), 6);
         addRow(c, Ui.statusRow(this, def ? "Dinacharya Launcher is your home app" : "Not your home app yet",
                 def ? "Pressing Home shows this screen." : "Press Try it to look first.", def, "Set", () -> HomeRole.request(this)), 8);
         boolean wall = WallpaperSetup.settled(this);
         boolean lockOnly = WallpaperSetup.lockOnly(this);
-        boolean no = WallpaperSetup.declined(this);
-        LinearLayout wallRow = Ui.statusRow(this, wall ? "The Dinacharya Launcher wallpaper is on" : lockOnly ? "Only the lock screen has it"
-                        : no ? "Day wallpaper: off" : "Wallpaper not in place yet",
+        addRow(c, Ui.statusRow(this, wall ? "The Dinacharya Launcher wallpaper is on" : lockOnly ? "Only the lock screen has it" : "Wallpaper not in place yet",
                 wall ? "Your day shows on the home screen, lock screen and recent apps."
                         : lockOnly ? "On Android’s preview, choose Home screen (or both)."
-                        : no ? "Optional. The home screen still shows your day. Set it to show it on the lock screen and in recent apps too."
-                        : "Optional. Android asks you to confirm once.", wall, "Set", () -> WallpaperSetup.open(this));
-        if (no && !wall && !lockOnly && wallRow.getChildAt(0) instanceof TextView) {
-            // said no on purpose: a quiet dash, not an amber warning
-            TextView mark = (TextView) wallRow.getChildAt(0);
-            mark.setText("–");
-            mark.setTextColor(Ui.MUTED);
-            mark.setBackground(Ui.box(this, Ui.TONAL, 0, 16));
-        }
-        addRow(c, wallRow, 2);
+                        : "Android asks you to confirm once.", wall, "Set", () -> WallpaperSetup.open(this)), 2);
         LinearLayout btns = new LinearLayout(this);
         btns.setOrientation(LinearLayout.HORIZONTAL);
         Button tryIt = Ui.button(this, "Try it now", true, v -> startActivity(new Intent(this, LauncherActivity.class)));

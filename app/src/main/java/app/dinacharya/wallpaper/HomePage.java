@@ -44,11 +44,6 @@ final class HomePage extends Page {
         }
     };
 
-    @Override
-    String hint() {
-        return "This is your day. The card shows what is on now. Break, Change plan and Adjust time on it change today only; your saved routine stays as it is.";
-    }
-
     HomePage(MainActivity host) {
         super(host);
     }
@@ -266,8 +261,7 @@ final class HomePage extends Page {
         if (p.cur >= 0) {
             Routine.Slot s = p.sc.slots.get(p.cur);
             Routine.Block b = s.block;
-            final int tt = saved.tt;
-            Routine.Block owner = ownerBlock(saved, b, tt);
+            Routine.Block owner = ownerBlock(saved, b);
             String sub = owner.sub.isEmpty() || Routine.isOther(owner.sub) ? "" : "  ·  " + owner.sub;
             String head = dayOff ? "Day off" : onBreak ? "On a break" : noResponse ? "No response" : waiting ? "Starting later" : "Now";
             int left = Math.max(0, s.end - p.tt);
@@ -294,18 +288,18 @@ final class HomePage extends Page {
                 }
             } else if (onBreak) {
                 card.addView(Glass.text(a, "Break until " + Routine.formatTime(s.end, m.fmt24) + "  ·  " + Routine.formatDuration(left) + " left", 15, Glass.SOFT, false), Ui.wide(a, 8));
-                card.addView(Glass.note(a, "Then back to " + titleOf(owner) + ", which ends at " + Routine.formatTime(slotEnd(saved, owner, tt), m.fmt24)), Ui.wide(a, 4));
+                card.addView(Glass.note(a, "Then back to " + titleOf(owner) + ", which ends at " + Routine.formatTime(slotEnd(saved, owner), m.fmt24)), Ui.wide(a, 4));
             } else if (noResponse) {
                 card.addView(Glass.text(a, "No answer yet. The slot starts when you answer.", 15, Glass.SOFT, false), Ui.wide(a, 8));
-                card.addView(Glass.note(a, "It was to start at " + Routine.formatTime(slotStart(saved, owner, tt), m.fmt24) + ", and ends at "
-                        + Routine.formatTime(slotEnd(saved, owner, tt), m.fmt24)), Ui.wide(a, 4));
+                card.addView(Glass.note(a, "It was to start at " + Routine.formatTime(slotStart(saved, owner), m.fmt24) + ", and ends at "
+                        + Routine.formatTime(slotEnd(saved, owner), m.fmt24)), Ui.wide(a, 4));
             } else if (waiting) {
                 card.addView(Glass.text(a, "Starts at " + Routine.formatTime(s.end, m.fmt24) + "  ·  in " + Routine.formatDuration(left), 15, Glass.SOFT, false), Ui.wide(a, 8));
-                card.addView(Glass.note(a, "It was to start at " + Routine.formatTime(slotStart(saved, owner, tt), m.fmt24) + ", and ends at "
-                        + Routine.formatTime(slotEnd(saved, owner, tt), m.fmt24)), Ui.wide(a, 4));
+                card.addView(Glass.note(a, "It was to start at " + Routine.formatTime(slotStart(saved, owner), m.fmt24) + ", and ends at "
+                        + Routine.formatTime(slotEnd(saved, owner), m.fmt24)), Ui.wide(a, 4));
             } else {
                 card.addView(Glass.text(a, Routine.formatTime(s.start, m.fmt24) + " – " + Routine.formatTime(s.end, m.fmt24), 15, Glass.SOFT, false), Ui.wide(a, 8));
-                String changed = changeNote(b, s, saved, owner, tt, m.fmt24);
+                String changed = changeNote(b, s, saved, owner, m.fmt24);
                 if (!changed.isEmpty()) card.addView(Glass.text(a, changed, 13, Glass.GREEN, true), Ui.wide(a, 6));
             }
             if (!dayOff) {
@@ -332,7 +326,7 @@ final class HomePage extends Page {
             card.addView(Glass.eyebrow(a, "Next up", Glass.FAINT), Ui.wide(a, 14));
             TextView nx = Glass.text(a, titleOf(s.block) + "  ·  " + Routine.formatTime(s.start, m.fmt24) + "  ·  in " + Routine.formatDuration(in), 15, Glass.SOFT, true);
             card.addView(nx, Ui.wide(a, 6));
-            final int nextIndex = SlotPlay.indexOfPart(saved, s.block.slotSrc(), s.start);
+            final int nextIndex = SlotPlay.indexOfSrc(saved, s.block.slotSrc());
             final Plan.DayPlan plan = saved;
             nx.setOnClickListener(v -> openTodos(plan, nextIndex));
             card.addView(Glass.text(a, "Tap it to add a to-do list for it.", 12, Glass.FAINT, false), Ui.wide(a, 3));
@@ -344,30 +338,26 @@ final class HomePage extends Page {
         return b.title.isEmpty() ? Routine.KIND_NAMES[b.kind] : b.title;
     }
 
-    /**
-     * The block of the saved plan this part of the live day belongs to (a break or a wait belongs to the slot it sits in), at minute {@code tt}.
-     * A slot changed in the middle is several parts with one number, so the part is found by the minute, not by the number alone: the first part
-     * is the time before the change and still has the old name.
-     */
-    private static Routine.Block ownerBlock(Plan.DayPlan saved, Routine.Block b, int tt) {
-        int i = SlotPlay.indexOfPart(saved, b.slotSrc(), tt);
+    /** The block of the saved plan this part of the live day belongs to (a break or a wait belongs to the slot it sits in). */
+    private static Routine.Block ownerBlock(Plan.DayPlan saved, Routine.Block b) {
+        int i = SlotPlay.indexOfSrc(saved, b.slotSrc());
         return i >= 0 ? saved.sc.slots.get(i).block : b;
     }
 
-    private static int slotStart(Plan.DayPlan saved, Routine.Block owner, int tt) {
-        int i = SlotPlay.indexOfPart(saved, owner.src, tt);
+    private static int slotStart(Plan.DayPlan saved, Routine.Block owner) {
+        int i = SlotPlay.indexOfSrc(saved, owner.src);
         return i >= 0 ? saved.sc.slots.get(i).start : 0;
     }
 
-    private static int slotEnd(Plan.DayPlan saved, Routine.Block owner, int tt) {
-        int i = SlotPlay.indexOfPart(saved, owner.src, tt);
+    private static int slotEnd(Plan.DayPlan saved, Routine.Block owner) {
+        int i = SlotPlay.indexOfSrc(saved, owner.src);
         return i >= 0 ? saved.sc.slots.get(i).end : 0;
     }
 
     /** One line under the time when the slot began or ended other than planned: "Started late", "Carried on", "Started early". */
-    private static String changeNote(Routine.Block b, Routine.Slot s, Plan.DayPlan saved, Routine.Block owner, int tt, boolean h24) {
-        int ps = slotStart(saved, owner, tt);
-        int pe = slotEnd(saved, owner, tt);
+    private static String changeNote(Routine.Block b, Routine.Slot s, Plan.DayPlan saved, Routine.Block owner, boolean h24) {
+        int ps = slotStart(saved, owner);
+        int pe = slotEnd(saved, owner);
         switch (b.live) {
             case Routine.LIVE_LATE:
                 return "Started late, at " + Routine.formatTime(s.start, h24) + " instead of " + Routine.formatTime(ps, h24);
@@ -419,7 +409,7 @@ final class HomePage extends Page {
         if (!mains.isEmpty()) card.addView(Glass.row(a, 10, mains.toArray(new View[0])), Ui.wide(a, 22));
 
         Glass.Flow chips = new Glass.Flow(a, 8);
-        final Routine.Block owner = ownerBlock(saved, b, saved.tt);
+        final Routine.Block owner = ownerBlock(saved, b);
         if (!onBreak && !waiting) {
             boolean sameSlot = saved.cur >= 0 && saved.sc.slots.get(saved.cur).block.src == b.src && b.live != Routine.LIVE_CARRIED;
             if (sameSlot && SlotAdjust.of(saved, now) != null) {
@@ -429,7 +419,7 @@ final class HomePage extends Page {
                 chips.addView(Glass.chip(a, "Change plan", v -> askNewName(saved.day.toString(), owner.src, owner.title, 0L, false)));
             }
         }
-        final int sIdx = SlotPlay.indexOfPart(saved, b.slotSrc(), saved.tt);
+        final int sIdx = SlotPlay.indexOfSrc(saved, b.slotSrc());
         if (sIdx >= 0 && !saved.sc.slots.get(sIdx).block.skipped) {
             Routine.Block ob = saved.sc.slots.get(sIdx).block;
             Todos t = Store.todosFor(a, saved.day, blocksOf(saved));
@@ -453,7 +443,7 @@ final class HomePage extends Page {
      */
     private void addWaitChoices(LinearLayout card, final Plan.DayPlan saved, final Plan.DayPlan p) {
         Routine.Block w = p.sc.slots.get(p.cur).block;
-        final int oi = SlotPlay.indexOfPart(saved, w.slotSrc(), saved.tt);
+        final int oi = SlotPlay.indexOfSrc(saved, w.slotSrc());
         if (oi < 0) return;
         final Routine.Block ob = saved.sc.slots.get(oi).block;
         final String day = saved.day.toString();
@@ -493,9 +483,9 @@ final class HomePage extends Page {
     }
 
     /**
-     * "Change plan": the slot is called something else for today only (or the slot before goes on, or two slots swap). The new plan begins
-     * <b>now</b> (see {@link ReplaceFromNow}): the time before it stays a delayed start or "No response" and is not part of it. During a late start
-     * ({@code endWait}) the wait ends now; on the slot that is running it changes only that slot. The slot keeps its type unless another is chosen.
+     * "Change plan": the slot is called something else for today only (or the slot before goes on, or two slots swap). During a late start
+     * ({@code endWait}) the new plan takes the place of the slot from now to its end; on the slot that is running it changes only that
+     * slot. The slot keeps its type unless another is chosen.
      */
     private void askNewName(final String day, final int src, final String title, final long sStart, final boolean endWait) {
         SlotSheets.changePlan(a, day, src, title, true, new SlotSheets.ChangeHost() {
@@ -507,8 +497,8 @@ final class HomePage extends Page {
 
             @Override
             public void replace(String n, int mins, int kind, String sub) {
-                ReplaceFromNow.Placed p = SlotActions.changePart(a, day, src, title, n, mins, sStart, endWait, kind, sub);
-                a.toastText(SlotActions.placedText(a, n, p));
+                SlotActions.changePart(a, day, src, title, n, mins, sStart, endWait, kind, sub);
+                a.toastText(mins == 0 ? "Changed for today: " + n : n + " for " + mins + " min, then back to the plan");
                 afterChange();
             }
 
@@ -657,7 +647,6 @@ final class HomePage extends Page {
     private void refreshAlarmCard() {
         if (alarmBox == null) return;
         alarmBox.removeAllViews();
-        calmShown = false;
         final Routine r = a.routine();
         try {
             java.util.List<AlarmHealth.Item> items = AlarmHealth.check(a, r);
@@ -668,21 +657,6 @@ final class HomePage extends Page {
             card.setOrientation(LinearLayout.VERTICAL);
             card.setPadding(a.dp(16), a.dp(14), a.dp(16), a.dp(14));
 
-            boolean worked = Store.prefs(a).getBoolean(PREF_ALARMS_WORKED, false);
-            if (r.alarmOn && missing.isEmpty() && diag.missedFor == 0 && !worked) {
-                Store.prefs(a).edit().putBoolean(PREF_ALARMS_WORKED, true).apply();
-                worked = true;
-            }
-            if (!worked && diag.missedFor == 0 && (!r.alarmOn || !missing.isEmpty())) {
-                // Never working yet is a step still to take, not a fault: a calm card, and only this one until it is done.
-                calmCard(!r.alarmOn ? "Switch on your day alarms" : "One more thing before alarms can ring",
-                        !r.alarmOn ? "When a part of your day begins you hear an alarm and answer one quick question: carry on as planned, or change it. "
-                                + "Nothing rings until you switch them on."
-                                : "Alarms are on, but your phone needs your OK first: " + missing + ".",
-                        !r.alarmOn ? "Switch on" : "Continue", !r.alarmOn ? v -> a.extras.enableAlarms() : v -> openAlarmSettings());
-                calmShown = true;
-                return;
-            }
             if (!r.alarmOn) {
                 card.setBackground(Ui.box(a, Ui.AMBER_SOFT, Ui.AMBER, 22));
                 card.addView(Ui.eyebrow(a, "Alarms"));
@@ -737,38 +711,8 @@ final class HomePage extends Page {
         } catch (RuntimeException e) {
             CrashLog.note(a, "alarm card", e);
         }
-        if (!calmShown) addWallpaperCard();   // one next step at a time while the first ones are still to do
-        if (!calmShown) addLockCard();
-    }
-
-    /** Set once the alarms were on with everything allowed: from then on a missing permission is a fault, not a step still to do. */
-    private static final String PREF_ALARMS_WORKED = "alarms_worked_once";
-    /** True while the alarm card is the calm "next step" one (see {@link #refreshAlarmCard}). */
-    private boolean calmShown;
-
-    /** A card for a step the person has not taken yet: quiet colours, one sentence, one button. Amber stays for things that broke. */
-    private void calmCard(String title, String text, String button, View.OnClickListener go) {
-        calmCard(title, text, button, go, null, null);
-    }
-
-    /** The person does not want the wallpaper: nothing asks for it or warns about it again; the Settings has it. */
-    private void noWallpaper() {
-        WallpaperSetup.decline(a, true);
-        a.toastText("Okay. Your home screen still shows your day. You can set the wallpaper later in Settings.");
-        refreshAlarmCard();
-    }
-
-    private void calmCard(String title, String text, String button, View.OnClickListener go, String second, View.OnClickListener secondGo) {
-        LinearLayout card = new LinearLayout(a);
-        card.setOrientation(LinearLayout.VERTICAL);
-        card.setPadding(a.dp(16), a.dp(14), a.dp(16), a.dp(14));
-        card.setBackground(Ui.box(a, Ui.TONAL, 0, 22));
-        card.addView(Ui.eyebrow(a, "Next step"));
-        card.addView(Ui.label(a, title, 18, Ui.INK, true), Ui.wide(a, 4));
-        card.addView(Ui.label(a, text, 13, Ui.MUTED, false), Ui.wide(a, 4));
-        card.addView(Ui.button(a, button, true, go), Ui.wide(a, 12));
-        if (second != null) card.addView(Ui.button(a, second, false, secondGo), Ui.wide(a, 8));
-        alarmBox.addView(card, Ui.wide(a, 16));
+        addWallpaperCard();
+        addLockCard();
     }
 
     /**
@@ -779,16 +723,7 @@ final class HomePage extends Page {
         try {
             if (!Store.prefs(a).getBoolean(SetupActivity.PREF_SETUP_DONE, false)) return;
             int st = WallpaperSetup.status(a);
-            if (!WallpaperWatch.needsAttention(st, WallpaperSetup.declined(a))) return;
-            if (st == WallpaperWatch.NEVER) {
-                calmCard("Put your day on the lock screen",
-                        "Optional. It shows your day on the lock screen and in recent apps. Without it the home screen still shows your day. "
-                                + "Android asks you to confirm once.", "Set the wallpaper", v -> {
-                            Store.prefs(a).edit().putLong("wallpaper_asked_at", System.currentTimeMillis()).apply();
-                            WallpaperSetup.request(a, Permissions.REQ_WALL);
-                        }, "No thanks", v -> noWallpaper());
-                return;
-            }
+            if (!WallpaperWatch.needsAttention(st)) return;
             LinearLayout card = new LinearLayout(a);
             card.setOrientation(LinearLayout.VERTICAL);
             card.setPadding(a.dp(16), a.dp(14), a.dp(16), a.dp(14));
@@ -804,7 +739,6 @@ final class HomePage extends Page {
                 Store.prefs(a).edit().putLong("wallpaper_asked_at", System.currentTimeMillis()).apply();
                 WallpaperSetup.request(a, Permissions.REQ_WALL);
             }), Ui.wide(a, 12));
-            card.addView(Ui.button(a, "No thanks", false, v -> noWallpaper()), Ui.wide(a, 8));
             alarmBox.addView(card, Ui.wide(a, 16));
         } catch (RuntimeException e) {
             CrashLog.note(a, "wallpaper card", e);

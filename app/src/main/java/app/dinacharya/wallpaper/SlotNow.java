@@ -70,7 +70,7 @@ final class SlotNow {
                     b = null;   // the day is off: nothing is going on
                 } else if (cur.live == Routine.LIVE_WAIT) {
                     // a start that was put off still counts as that slot, so its locks do not open while waiting
-                    int owner = SlotPlay.indexOfPart(saved, cur.owner, saved.tt);
+                    int owner = SlotPlay.indexOfSrc(saved, cur.owner);
                     b = owner < 0 ? null : saved.sc.slots.get(owner).block;
                 }
                 for (int j = 0; j < p.sc.slots.size(); j++) {

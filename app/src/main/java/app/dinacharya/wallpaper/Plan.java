@@ -185,35 +185,22 @@ public final class Plan {
                     adjusted = true;
                     continue;
                 }
-                if ((e.mins > 0 || e.from > 0) && !e.skip) {
+                if (e.mins > 0 && !e.skip) {
                     int i = indexOfSrc(blocks, e.src);
                     if (i < 0) continue;
                     Routine.Block b = blocks.get(i);
-                    // a plan changed in the middle of the slot begins there: the minutes before stay the slot's own (always a minute is left of them)
-                    int lead = Math.min(e.from, Math.max(0, b.mins - 1));
-                    int room = b.mins - lead;
-                    int len = e.mins > 0 ? Math.min(e.mins, room) : room;
-                    if (!e.name.isEmpty() && (lead > 0 || e.mins < b.mins)) {
+                    if (e.mins < b.mins && !e.name.isEmpty()) {
                         Routine.Block first = b.copy();
                         first.src = b.src;
-                        first.mins = len;
+                        first.mins = e.mins;
                         first.changed = true;
                         first.origTitle = b.title;
                         first.title = e.name;
                         if (e.kind >= 0 && e.kind < Routine.SLEEP) first.kind = e.kind;
                         if (!e.sub.isEmpty()) first.sub = e.sub;
-                        Routine.Block before = lead > 0 ? b.copy() : null;
-                        if (before != null) {
-                            before.src = b.src;
-                            before.mins = lead;
-                            first.wake = false;   // the slot's own start (the wake-up alarm) is in the part before
-                        }
-                        b.mins = room - len;
+                        b.mins -= e.mins;
                         b.wake = false;
-                        int at = i;
-                        if (before != null) blocks.add(at++, before);
-                        blocks.add(at++, first);
-                        if (b.mins <= 0) blocks.remove(at);   // the new plan took all that was left
+                        blocks.add(i, first);
                         adjusted = true;
                         continue;
                     }
@@ -738,18 +725,10 @@ public final class Plan {
 
     /** The same with a type and sub type for the changed part ({@code mins} 0 changes the whole slot). */
     public static void editPart(Routine main, Overrides ov, LocalDate day, int src, String newName, int mins, int kind, String sub) {
-        editPart(main, ov, day, src, newName, mins, kind, sub, 0);
-    }
-
-    /**
-     * The same, beginning {@code from} minutes after the slot's start: the minutes before it stay the slot's own (a plan changed in the
-     * middle of a slot starts when it was changed). {@code mins} is then the length of the new plan; 0 means all that is left.
-     */
-    public static void editPart(Routine main, Overrides ov, LocalDate day, int src, String newName, int mins, int kind, String sub, int from) {
         Routine base = main.forDay(day);
         if (src < 0 || src >= base.blocks.size()) return;
         ov.sig = signature(main);
-        ov.setPartial(day, src, base.blocks.get(src).title, newName, mins, kind, sub, from);
+        ov.setPartial(day, src, base.blocks.get(src).title, newName, mins, kind, sub);
     }
 
     /** This slot and slot {@code other} trade places for this day. */

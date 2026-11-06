@@ -131,32 +131,20 @@ final class Features {
 
     // ------------------------------------------------------------------ the things it asks
 
-    /** A few words naming what the phone is asked to allow, in what it lets Dinacharya do (not in Android's own names for the setting). */
+    /** A few words naming what the phone is asked to allow. */
     static String stepName(int step) {
         switch (step) {
-            case FeaturePlan.S_NOTIF: return "show alarms";
-            case FeaturePlan.S_EXACT: return "ring on the minute";
-            case FeaturePlan.S_FULLSCREEN: return "open over the lock screen";
-            case FeaturePlan.S_BATTERY: return "stay awake";
-            case FeaturePlan.S_MAKER: return "keep running";
-            case FeaturePlan.S_USAGE: return "see app use time";
-            case FeaturePlan.S_OVERLAY: return "show locks over apps";
-            case FeaturePlan.S_DND: return "silence the phone";
-            case FeaturePlan.S_HOME: return "be your home screen";
-            case FeaturePlan.S_WALLPAPER: return "show your day as wallpaper";
+            case FeaturePlan.S_NOTIF: return "notifications";
+            case FeaturePlan.S_EXACT: return "exact alarms";
+            case FeaturePlan.S_FULLSCREEN: return "lock-screen alarm";
+            case FeaturePlan.S_BATTERY: return "battery";
+            case FeaturePlan.S_MAKER: return "background activity";
+            case FeaturePlan.S_USAGE: return "usage access";
+            case FeaturePlan.S_OVERLAY: return "display over apps";
+            case FeaturePlan.S_DND: return "Do Not Disturb";
+            case FeaturePlan.S_HOME: return "home app";
+            case FeaturePlan.S_WALLPAPER: return "wallpaper";
             default: return "";
-        }
-    }
-
-    /** What Android will put on the screen after the button is pressed, so the page that opens is no surprise. */
-    static String stepNext(int step) {
-        switch (step) {
-            case FeaturePlan.S_NOTIF: return "Android shows a small box. Tap Allow.";
-            case FeaturePlan.S_BATTERY: return "A short guide shows where to tap, then Android opens its battery list.";
-            case FeaturePlan.S_HOME: return "Android asks which home app to use. Choose Dinacharya. You can change it back any time.";
-            case FeaturePlan.S_WALLPAPER: return "Android shows a preview. Tap Set wallpaper to confirm.";
-            case FeaturePlan.S_MAKER: return "Your phone’s settings open. Switch Dinacharya on, then press Back.";
-            default: return "Android opens a settings page. Find Dinacharya, switch it on, then press Back.";
         }
     }
 
@@ -199,7 +187,7 @@ final class Features {
             case FeaturePlan.S_HOME:
                 return "Pressing Home then shows your day. You can go back to your old home screen in Android’s settings at any time.";
             case FeaturePlan.S_WALLPAPER:
-                return "Optional. Shows your day as the wallpaper, on the lock screen and in recent apps. Skip it and the home screen still shows your day. Android asks you to confirm once.";
+                return "Shows your day as the wallpaper, on the lock screen and in recent apps. Android asks you to confirm once.";
             default: return "";
         }
     }

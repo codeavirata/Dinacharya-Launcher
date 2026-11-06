@@ -12,12 +12,6 @@ import java.time.LocalDate;
 final class SlotActions {
     static final String ACTION_START_NOW = "app.dinacharya.wallpaper.SLOT_START_NOW";
     static final String ACTION_START_LATER = "app.dinacharya.wallpaper.SLOT_START_LATER";
-    /** The buttons of a break that is over: back to work, five more minutes, or just silence it. */
-    static final String ACTION_BREAK_BACK = "app.dinacharya.wallpaper.BREAK_BACK";
-    static final String ACTION_BREAK_MORE = "app.dinacharya.wallpaper.BREAK_MORE";
-    /** Silences an alarm without answering it: the question stays in a quiet notification. */
-    static final String ACTION_STOP = "app.dinacharya.wallpaper.ALARM_STOP";
-    static final int BREAK_MORE_MIN = 5;
     static final int NOTIFICATION_LATER_MIN = 10;
 
     private SlotActions() {
@@ -139,60 +133,48 @@ final class SlotActions {
 
     /**
      * "Other plan" / "Change plan": the slot is called something else for today only (the saved routine and every other slot stay as they
-     * are, and the slot keeps its type, so the locks of that type still hold). It takes all that is left of the slot, from now.
+     * are, and the slot keeps its type, so the locks of that type still hold). When {@code endWait} is set the late start is cancelled
+     * and the new plan takes the whole slot.
      */
-    static ReplaceFromNow.Placed changePlan(Context c, String day, int src, String title, String newName, long slotStartMs, boolean endWait) {
-        return changePart(c, day, src, title, newName, 0, slotStartMs, endWait, -1, "");
-    }
-
-    /** Only the first {@code mins} minutes of the slot are called {@code newName} today; the rest goes back to the saved plan. */
-    static ReplaceFromNow.Placed changePart(Context c, String day, int src, String title, String newName, int mins, long slotStartMs, boolean endWait) {
-        return changePart(c, day, src, title, newName, mins, slotStartMs, endWait, -1, "");
-    }
-
-    /**
-     * The same with the type and sub type the new plan takes ({@code mins} 0 for all that is left of the slot).
-     *
-     * <p>The new plan begins <b>now</b>, not where the slot planned to begin: the time that went by since then (a late start, an alarm
-     * nobody answered) stays out of it and keeps showing as "Delayed start" or "No response", and the minutes asked for are counted from
-     * the moment of the change (see {@link ReplaceFromNow}). When {@code endWait} is set, the wait for a put-off start ends now too.
-     */
-    static ReplaceFromNow.Placed changePart(Context c, String day, int src, String title, String newName, int mins, long slotStartMs, boolean endWait,
-                                            int kind, String sub) {
+    static void changePlan(Context c, String day, int src, String title, String newName, long slotStartMs, boolean endWait) {
         Routine base = Store.load(c);
         Overrides ov = Store.overrides(c, base);
-        LocalDate d = LocalDate.parse(day);
-        long now = System.currentTimeMillis();
-        long[] span = ReplaceFromNow.span(Plan.plan(base, ov, d, Store.zone()), src);
-        // a slot that cannot be found in the plan keeps the old way: from its start, for as long as asked
-        ReplaceFromNow when = span != null ? ReplaceFromNow.of(span[0], span[1], now)
-                : ReplaceFromNow.of(slotStartMs, slotStartMs + Math.max(1, mins) * 60000L, slotStartMs);
-        ReplaceFromNow.Placed placed = when.place(mins);
-        Plan.editPart(base, ov, d, src, newName, placed.stored, kind, sub, when.lead);
+        Plan.edit(base, ov, LocalDate.parse(day), src, false, newName);
         Store.saveOverrides(c, base, ov);
+        long now = System.currentTimeMillis();
         Store.history(c).append(Ev.ack(now, day, src, title, "R", newName));
-        // the wait for a put-off start is over now (not at the slot's start: that would wipe the delay out of the day)
-        if (endWait) Store.history(c).append(Ev.delay(now, day, src, title, now));
+        if (endWait) Store.history(c).append(Ev.delay(now, day, src, title, slotStartMs));
         AlarmState st = Store.alarmState(c);
-        if ((endWait || placed.stored <= 0) && st.againAt > 0 && st.againSrc == src) {
+        if (st.againAt > 0 && st.againSrc == src) {
             st.againAt = 0;
             st.againWake = false;
             Store.saveAlarmState(c, st);
         }
         finish(c);
-        return placed;
     }
 
-    /** What to tell the person after a change of plan: the name, and when it runs when that is not simply "all of the slot". */
-    static String placedText(Context c, String name, ReplaceFromNow.Placed p) {
-        if (!p.late()) return p.stored <= 0 ? "Changed for today: " + name : name + " for " + p.stored + " min, then back to the plan";
-        String t = "Changed for today from " + clockText(c, p.fromMs()) + " to " + clockText(c, p.toMs()) + ": " + name;
-        return p.restBack() ? t + ", then back to the plan" : t;
+    /** Only the first {@code mins} minutes of the slot are called {@code newName} today; the rest goes back to the saved plan. */
+    static void changePart(Context c, String day, int src, String title, String newName, int mins, long slotStartMs, boolean endWait) {
+        changePart(c, day, src, title, newName, mins, slotStartMs, endWait, -1, "");
     }
 
-    static String clockText(Context c, long ms) {
-        java.time.ZonedDateTime z = java.time.Instant.ofEpochMilli(ms).atZone(Store.zone());
-        return Routine.formatTime(z.getHour() * 60 + z.getMinute(), Store.load(c).fmt24);
+    /** The same with the type and sub type the new plan takes ({@code mins} 0 for the whole slot). */
+    static void changePart(Context c, String day, int src, String title, String newName, int mins, long slotStartMs, boolean endWait,
+                           int kind, String sub) {
+        Routine base = Store.load(c);
+        Overrides ov = Store.overrides(c, base);
+        Plan.editPart(base, ov, LocalDate.parse(day), src, newName, mins, kind, sub);
+        Store.saveOverrides(c, base, ov);
+        long now = System.currentTimeMillis();
+        Store.history(c).append(Ev.ack(now, day, src, title, "R", newName));
+        if (endWait) Store.history(c).append(Ev.delay(now, day, src, title, slotStartMs));
+        AlarmState st = Store.alarmState(c);
+        if (mins <= 0 && st.againAt > 0 && st.againSrc == src) {
+            st.againAt = 0;
+            st.againWake = false;
+            Store.saveAlarmState(c, st);
+        }
+        finish(c);
     }
 
     /**

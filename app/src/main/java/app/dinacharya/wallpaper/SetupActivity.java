@@ -443,14 +443,6 @@ public class SetupActivity extends LangActivity {
         mid.addView(new FeatureArt(this, Features.stepScene(step), false), Ui.wide(this, 12));
         mid.addView(Ui.display(this, Features.stepTitle(step), 27, Ui.INK), Ui.wide(this, 18));
         mid.addView(words(Features.stepWhy(step), 15.5f, Ui.MUTED), Ui.wide(this, 8));
-        // what Android will show next, so the page that opens after the button is no surprise
-        LinearLayout next = new LinearLayout(this);
-        next.setOrientation(LinearLayout.VERTICAL);
-        next.setPadding(dp(14), dp(10), dp(14), dp(11));
-        next.setBackground(Ui.box(this, Ui.SURFACE, 0, 16));
-        next.addView(Ui.eyebrow(this, "What happens next"));
-        next.addView(words(Features.stepNext(step), 14f, Ui.INK), Ui.wide(this, 3));
-        mid.addView(next, Ui.wide(this, 14));
         if (tried) {
             TextView hint = words("Not allowed yet. You can try again, or skip this for now.", 13.5f, Ui.AMBER);
             hint.setPadding(dp(12), dp(9), dp(12), dp(9));
@@ -480,8 +472,6 @@ public class SetupActivity extends LangActivity {
     }
 
     private void advanceSkipping() {
-        // Skipping the wallpaper is an answer: nothing asks for it again (the Settings has it)
-        if (queue.get(at) == FeaturePlan.S_WALLPAPER) WallpaperSetup.decline(this, true);
         tried = false;
         advance();
     }

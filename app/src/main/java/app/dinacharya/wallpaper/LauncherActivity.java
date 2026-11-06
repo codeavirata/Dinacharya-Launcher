@@ -329,14 +329,13 @@ public class LauncherActivity extends LangActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQ_ROLE) {
             updatePill();
-            // Next in the same setup: the wallpaper, unless the person said no to it.
-            if (HomeRole.isDefault(this) && !WallpaperSetup.settled(this) && !WallpaperSetup.declined(this)) {
+            // Next in the same setup: the wallpaper.
+            if (HomeRole.isDefault(this) && !WallpaperSetup.settled(this)) {
                 Store.prefs(this).edit().putLong(PREF_WALL_ASKED, System.currentTimeMillis()).apply();
                 WallpaperSetup.request(this, REQ_WALL);
             }
         } else if (requestCode == REQ_WALL) {
             WallpaperSetup.noteResult(this, resultCode == RESULT_OK);
-            if (resultCode != RESULT_OK) WallpaperSetup.decline(this, true);   // turned down: it is not asked for again (the Settings has it)
             updatePill();
             // The wallpaper starts a moment after Android's preview closes: look again once it has.
             ui.postDelayed(() -> {
@@ -417,7 +416,7 @@ public class LauncherActivity extends LangActivity {
         root.setBackgroundColor(ours ? 0x00000000 : th.bg);
         if (wallPill != null) {
             boolean setupDone = Store.prefs(this).getBoolean(SetupActivity.PREF_SETUP_DONE, false);
-            wallPill.setVisibility(setupDone && WallpaperWatch.needsAttention(st, WallpaperSetup.declined(this)) ? View.VISIBLE : View.GONE);
+            wallPill.setVisibility(setupDone && WallpaperWatch.needsAttention(st) ? View.VISIBLE : View.GONE);
             wallPill.setText(st == WallpaperWatch.LOST ? "Bring back your day wallpaper" : "Set your day wallpaper");
         }
         // Just started, or just confirmed: Android may still be putting it in place, so look once more a moment later.
@@ -520,10 +519,10 @@ public class LauncherActivity extends LangActivity {
     }
 
     /**
-     * The wallpaper is a choice. After the first-start setup, Android's own preview is opened when it was there and is gone (the app was
-     * closed from App info), and once when it was never set. Turning the preview down is an answer: nothing asks again and nothing warns
-     * (the Settings has it). Never over a list or a pause. The poster the launcher paints itself, and the small note on the home screen
-     * while it is still wanted, cover the time without it.
+     * The wallpaper is part of the launcher. After the first-start setup, whenever it is not in place Android's own preview is opened:
+     * at once when it was there and is gone (the app was closed from App info), and again after ten minutes if the person turned the
+     * preview down; once a day when it was never set. Never over a list or a pause. The poster the launcher paints itself, and the
+     * button on the home screen, cover the time in between.
      */
     private void askForWallpaper() {
         if (askPending || overlayKind != NONE || isFinishing()) return;
@@ -541,7 +540,7 @@ public class LauncherActivity extends LangActivity {
         boolean setupDone = Store.prefs(this).getBoolean(SetupActivity.PREF_SETUP_DONE, false);
         long last = Store.prefs(this).getLong(PREF_WALL_ASKED, 0);
         long since = last == 0 ? -1 : Math.max(0, System.currentTimeMillis() - last);
-        return WallpaperWatch.shouldAsk(WallpaperSetup.status(this), setupDone, since, WallpaperSetup.declined(this));
+        return WallpaperWatch.shouldAsk(WallpaperSetup.status(this), setupDone, since);
     }
 
     /** Works out which slot is running, for the focus rules and the log of paused apps. */

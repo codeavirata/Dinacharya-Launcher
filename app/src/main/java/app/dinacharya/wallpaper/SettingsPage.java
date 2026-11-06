@@ -40,11 +40,6 @@ final class SettingsPage extends Page {
     }
 
     @Override
-    String hint() {
-        return "Nothing here is final. Alarms, locks and the home screen each have their own section, and each can be changed or switched off.";
-    }
-
-    @Override
     void build(LinearLayout body) {
         show(open);
     }
@@ -100,7 +95,7 @@ final class SettingsPage extends Page {
         itemAction(general, Glyph.SHIELD, "Features", "Choose what Dinacharya does. It asks your phone only for what each feature needs",
                 () -> a.startActivity(new Intent(a, SetupActivity.class).putExtra(SetupActivity.EXTRA_REVIEW, true)));
         LinearLayout home = Ui.section(a, body, "Home screen", null);
-        homeItem(home, Glyph.HOME, "Home app", "Make it your home app, and the wallpaper. You can switch back to your old one any time", LauncherSettingsActivity.SEC_HOME, "home");
+        homeItem(home, Glyph.HOME, "Home app", "Make it your home app, and the wallpaper", LauncherSettingsActivity.SEC_HOME, "home");
         homeItem(home, Glyph.GEAR, "Shortcut", "What swiping left and right opens", LauncherSettingsActivity.SEC_HOME, "swipes");
         homeItem(home, Glyph.CHART, "App list", "Colours, text size and the keyboard in the list of all apps", LauncherSettingsActivity.SEC_HOME, "list");
         homeItem(home, Glyph.PERSON, "Hidden apps", "Apps kept out of the list of all apps", LauncherSettingsActivity.SEC_HOME, "hidden");

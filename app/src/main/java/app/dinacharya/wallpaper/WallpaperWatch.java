@@ -2,11 +2,8 @@ package app.dinacharya.wallpaper;
 
 /**
  * Decides whether the Dinacharya Launcher wallpaper is really in place, from the facts the phone can give, and when the launcher
- * should ask Android to put it back. It is looked at every time the home screen comes up, not trusted from an old note: closing the
- * app from App info makes Android drop the live wallpaper, and nothing is told to the app.
- *
- * <p>The wallpaper is a choice, not a requirement: without it the home screen draws the same day itself. Once the person has said no
- * (skipped it in the setup, or turned Android's preview down), nothing asks again and nothing warns; it stays in the Settings.
+ * should ask Android to put it back. The wallpaper is part of the launcher, so it is looked at every time the home screen comes up,
+ * not trusted from an old note: closing the app from App info makes Android drop the live wallpaper, and nothing is told to the app.
  * Uses no Android classes.
  */
 public final class WallpaperWatch {
@@ -30,6 +27,8 @@ public final class WallpaperWatch {
     public static final long CONFIRM_MS = 120000L;
     /** The wait before a wallpaper that went missing is asked for again after the person turned the preview down. */
     public static final long ASK_AGAIN_LOST_MS = 10L * 60000L;
+    /** The wait before a wallpaper that was never set is asked for again. */
+    public static final long ASK_AGAIN_NEVER_MS = 24L * 3600000L;
 
     private WallpaperWatch() {
     }
@@ -66,32 +65,22 @@ public final class WallpaperWatch {
     }
 
     /**
-     * Whether the launcher should open Android's wallpaper preview now. A wallpaper that went missing (it was in place before) is asked
-     * for at once; one that was never set is asked for once, the first time and never again (it is offered from the Settings and from a
-     * small note); one on the lock screen only is a choice already made and is not asked for. The launcher paints the poster itself
-     * meanwhile, so the home screen is never plain.
+     * Whether the launcher should open Android's wallpaper preview now. A wallpaper that went missing is asked for at once, and again
+     * after ten minutes if the person turned the preview down (the launcher paints the poster itself meanwhile, so the home screen
+     * is never plain). One that was never set is asked for once a day.
      */
     public static boolean shouldAsk(int status, boolean setupDone, long sinceAsk) {
         if (!setupDone) return false;
         switch (status) {
             case LOST: return sinceAsk < 0 || sinceAsk >= ASK_AGAIN_LOST_MS;
-            case NEVER: return sinceAsk < 0;
+            case NEVER:
+            case LOCK_ONLY: return sinceAsk < 0 || sinceAsk >= ASK_AGAIN_NEVER_MS;
             default: return false;
         }
-    }
-
-    /** The same, for a person who may have said no: after that nothing is asked. */
-    public static boolean shouldAsk(int status, boolean setupDone, long sinceAsk, boolean declined) {
-        return !declined && shouldAsk(status, setupDone, sinceAsk);
     }
 
     /** True when the status is one the person should see a plain note about on the dashboard (it is not in place and not about to be). */
     public static boolean needsAttention(int status) {
         return status == LOST || status == NEVER || status == LOCK_ONLY;
-    }
-
-    /** The same, for a person who may have said no to the wallpaper: then there is nothing to tell them. */
-    public static boolean needsAttention(int status, boolean declined) {
-        return !declined && needsAttention(status);
     }
 }

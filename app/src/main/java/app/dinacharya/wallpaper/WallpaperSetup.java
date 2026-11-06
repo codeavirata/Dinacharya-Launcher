@@ -21,7 +21,7 @@ final class WallpaperSetup {
     static final int HOME = WallpaperManager.FLAG_SYSTEM, LOCK = WallpaperManager.FLAG_LOCK;
 
     private static final String STATE = "wallpaper_state";
-    private static final String K_LIVE = "live", K_OK_AT = "confirmed_at", K_EVER = "ever", K_LOST_AT = "lost_at", K_NO = "declined";
+    private static final String K_LIVE = "live", K_OK_AT = "confirmed_at", K_EVER = "ever", K_LOST_AT = "lost_at";
 
     /** The screens our own wallpaper engine is drawing for right now. Only true while it runs in this process. */
     private static volatile int engineBits;
@@ -85,8 +85,8 @@ final class WallpaperSetup {
             int st = WallpaperWatch.status(reported(c), engineBits, p.getInt(K_LIVE, 0), processAge(), sinceConfirmed(c), ever);
             if (st == WallpaperWatch.OK) {
                 boolean wasLost = p.getLong(K_LOST_AT, 0) != 0;
-                if (!ever || wasLost || p.getBoolean(K_NO, false)) {
-                    android.content.SharedPreferences.Editor ed = p.edit().putBoolean(K_EVER, true).remove(K_NO);   // in place: it is wanted
+                if (!ever || wasLost) {
+                    android.content.SharedPreferences.Editor ed = p.edit().putBoolean(K_EVER, true);
                     if (wasLost) ed.remove(K_LOST_AT);
                     ed.apply();
                 }
@@ -146,35 +146,11 @@ final class WallpaperSetup {
         return WallpaperWatch.inPlace(status(c));
     }
 
-    /**
-     * True when the person said no to the wallpaper (skipped it in the setup, or turned Android's preview down). Nothing asks for it and
-     * nothing warns about it then: the home screen draws the same day itself. It is wanted again as soon as they set it from the Settings.
-     */
-    static boolean declined(Context c) {
-        try {
-            return state(c).getBoolean(K_NO, false);
-        } catch (RuntimeException e) {
-            return false;
-        }
-    }
-
-    /** The person does not want the wallpaper (or wants it again, with {@code false}). */
-    static void decline(Context c, boolean no) {
-        try {
-            android.content.SharedPreferences.Editor ed = state(c).edit();
-            if (no) ed.putBoolean(K_NO, true);
-            else ed.remove(K_NO);
-            ed.apply();
-        } catch (RuntimeException ignored) {
-            // it is asked for once more at worst
-        }
-    }
-
     /** Remembers how Android's preview ended: confirmed (the person tapped Set) or not. */
     static void noteResult(Context c, boolean confirmed) {
         try {
             android.content.SharedPreferences.Editor ed = state(c).edit();
-            if (confirmed) ed.putLong(K_OK_AT, System.currentTimeMillis()).remove(K_NO);
+            if (confirmed) ed.putLong(K_OK_AT, System.currentTimeMillis());
             else ed.remove(K_OK_AT);
             ed.apply();
         } catch (RuntimeException ignored) {
@@ -220,9 +196,8 @@ final class WallpaperSetup {
         }
     }
 
-    /** Same, without wanting the answer. Asking for it from the Settings means it is wanted. */
+    /** Same, without wanting the answer. */
     static void open(Activity a) {
-        decline(a, false);
         request(a, 0);
     }
 }

@@ -52,11 +52,6 @@ final class BackupPage extends Page {
     // ------------------------------------------------------------------ layout
 
     @Override
-    String hint() {
-        return "A backup keeps your routine and your days in your own Google Drive, so a new phone can start where this one stopped.";
-    }
-
-    @Override
     void build(LinearLayout body) {
         title("Backup", "Your days, safe in Google Drive");
 

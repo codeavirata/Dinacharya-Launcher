@@ -19,11 +19,6 @@ public final class SlotPlay {
         return (int) Math.max(0, (slotEndMs - nowMs) / MIN);
     }
 
-    /** True when a break that is over can still be made longer: the slot has at least two minutes left. */
-    public static boolean canExtendBreak(long nowMs, long slotEndMs) {
-        return slotEndMs - nowMs >= 2 * MIN;
-    }
-
     /** When a break of {@code minutes} from now ends: at most the end of the slot. */
     public static long breakEnd(long nowMs, int minutes, long slotEndMs) {
         return Math.min(nowMs + Math.max(1, minutes) * MIN, slotEndMs);
@@ -64,25 +59,6 @@ public final class SlotPlay {
     public static int indexOfSrc(Plan.DayPlan p, int src) {
         for (int i = 0; i < p.sc.slots.size(); i++) if (p.sc.slots.get(i).block.src == src) return i;
         return -1;
-    }
-
-    /**
-     * Index of the part of slot {@code src} that holds {@code minute} (minutes of the plan, like {@code Routine.Slot.start}). A slot changed in the
-     * middle is several parts with one number: the time before, the new plan and what is left. {@link #indexOfSrc} finds the first of them, which
-     * after such a change is the time before and still has the old name, so what shows "the slot that is going on" asks for the part by the minute.
-     * When no part holds the minute (a slot carried on past its planned end), the last part that began before it, else the first part.
-     */
-    public static int indexOfPart(Plan.DayPlan p, int src, int minute) {
-        int first = -1;
-        int lastBefore = -1;
-        for (int i = 0; i < p.sc.slots.size(); i++) {
-            Routine.Slot s = p.sc.slots.get(i);
-            if (s.block.src != src) continue;
-            if (first < 0) first = i;
-            if (minute >= s.start && minute < s.end) return i;
-            if (s.start <= minute) lastBefore = i;
-        }
-        return lastBefore >= 0 ? lastBefore : first;
     }
 
     /** Whether a break can be taken in this slot now: a slot of the plan is running and it is not sleep and not taken off. */

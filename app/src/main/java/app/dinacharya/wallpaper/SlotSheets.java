@@ -540,17 +540,8 @@ final class SlotSheets {
         final LocalDate d = LocalDate.parse(day);
         Plan.DayPlan dp = Plan.plan(base, ov, d, Store.zone());
         int mi = SlotPlay.indexOfSrc(dp, src);
-        // the slot as a whole, first part to last (a slot changed earlier today is several parts with one number)
-        long[] span = ReplaceFromNow.span(dp, src);
-        final int slotMins = span != null ? Math.max(SlotPlay.STEP, (int) Math.round((span[1] - span[0]) / 60000.0))
-                : mi < 0 ? 60 : Math.max(SlotPlay.STEP, dp.sc.slots.get(mi).end - dp.sc.slots.get(mi).start);
+        final int slotMins = mi < 0 ? 60 : Math.max(SlotPlay.STEP, dp.sc.slots.get(mi).end - dp.sc.slots.get(mi).start);
         final int part = Math.max(SlotPlay.STEP, slotMins - SlotPlay.STEP);
-        // A slot that is running already: the new plan begins now, so its length is counted from now and what is left of the slot is the
-        // most it can have (see ReplaceFromNow).
-        final ReplaceFromNow rf = span == null ? null : ReplaceFromNow.of(span[0], span[1], System.currentTimeMillis());
-        final boolean late = rf != null && rf.late();
-        final int roomNow = late ? rf.room : slotMins;
-        final int partNow = Math.max(SlotPlay.STEP, roomNow - SlotPlay.STEP);
         int pi = mi < 0 || !allowPrev ? -1 : SlotPlay.previousIndex(dp, mi);
         final SlotActions.Prev prev = pi < 0 ? null : new SlotActions.Prev(dp.sc.slots.get(pi).block.src, dp.sc.slots.get(pi).block.title);
         final List<Routine.Block> others = new ArrayList<>();
@@ -625,11 +616,6 @@ final class SlotSheets {
             if (k == 0) {
                 p.addView(name);
                 p.addView(type.view, Glass.wide(a, 18));
-                if (late) {
-                    java.time.ZonedDateTime z = java.time.Instant.ofEpochMilli(rf.startMs).atZone(Store.zone());
-                    p.addView(Glass.note(a, "Starts now, at " + Routine.formatTime(z.getHour() * 60 + z.getMinute(), base.fmt24)
-                            + ". The time before stays as it was."), Glass.wide(a, 14));
-                }
             } else if (k == 1) {
                 p.addView(Glass.note(a, "“" + prev.title + "” goes on into this slot."));
             } else {
@@ -637,11 +623,10 @@ final class SlotSheets {
                 p.addView(target.view, Glass.wide(a, 8));
                 p.addView(swapMode.view, Glass.wide(a, 12));
             }
-            final int most = idx == 0 ? partNow : part;
-            final Glass.Stepper st = new Glass.Stepper(a, Math.min(30, most), SlotPlay.STEP, most, SlotPlay.STEP, "min", null);
+            final Glass.Stepper st = new Glass.Stepper(a, Math.min(30, part), SlotPlay.STEP, part, SlotPlay.STEP, "min", null);
             steps[k] = st;
             st.view.setVisibility(View.GONE);
-            LinearLayout wr = Glass.switchRow(a, idx == 0 && late ? "Rest of the slot (" + roomNow + " min)" : "Whole slot (" + slotMins + " min)", true, on -> {
+            LinearLayout wr = Glass.switchRow(a, "Whole slot (" + slotMins + " min)", true, on -> {
                 whole[idx] = on;
                 st.view.setVisibility(on ? View.GONE : View.VISIBLE);
             });
