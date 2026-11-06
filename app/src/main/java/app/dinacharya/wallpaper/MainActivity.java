@@ -288,12 +288,46 @@ public class MainActivity extends LangActivity {
         if (HomeRole.lost(this) && !homeOffered) {
             homeOffered = true;   // once each time the dashboard is opened
             ui.postDelayed(() -> HomeRole.offerBack(this, 0), 600);
+        } else {
+            askForWallpaper();   // one question at a time: the home app first, the wallpaper when that is settled
         }
         for (PosterView p : previews) {
             p.refreshScreen();
             p.invalidate();
         }
         refreshVisible();
+    }
+
+    /** Android's preview is about to be opened (so it is not asked for twice). */
+    private boolean wallAskPending;
+
+    /**
+     * The live wallpaper is part of the app. When it is not in place (the app was closed from App info, or another wallpaper was chosen)
+     * Android's preview is opened here, in the app, when the dashboard comes up: at once the first time, and again after ten minutes if the
+     * person turned it down (once a day when it was never set). It is never opened over the home screen: pressing Home must always
+     * show the day, and the home screen paints it itself while the wallpaper is gone. See {@link WallpaperWatch#shouldAsk}.
+     */
+    private void askForWallpaper() {
+        try {
+            if (wallAskPending || isFinishing() || !wantsWallpaperAsk()) return;
+            wallAskPending = true;
+            ui.postDelayed(() -> {
+                wallAskPending = false;
+                if (isFinishing() || isDestroyed() || !wantsWallpaperAsk()) return;
+                Store.prefs(this).edit().putLong(LauncherActivity.PREF_WALL_ASKED, System.currentTimeMillis()).apply();
+                WallpaperSetup.request(this, Permissions.REQ_WALL);
+            }, 1200);
+        } catch (RuntimeException e) {
+            wallAskPending = false;
+            CrashLog.note(this, "wallpaper ask", e);
+        }
+    }
+
+    private boolean wantsWallpaperAsk() {
+        boolean setupDone = Store.prefs(this).getBoolean(SetupActivity.PREF_SETUP_DONE, false);
+        long last = Store.prefs(this).getLong(LauncherActivity.PREF_WALL_ASKED, 0);
+        long since = last == 0 ? -1 : Math.max(0, System.currentTimeMillis() - last);
+        return WallpaperWatch.shouldAsk(WallpaperSetup.status(this), setupDone, since);
     }
 
     @Override

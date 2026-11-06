@@ -1148,6 +1148,11 @@ close the app: they are written down and that one job is skipped.
 
 ### Version notes
 
+**1.0, build 82: Home always shows your day, also right after a Force stop**
+- **The cause.** From build 80 (and, after twenty seconds, before it) the home screen opened Android's own *Set wallpaper* preview half a second after it started whenever the live wallpaper was gone. After a Force stop the wallpaper is always gone, so pressing Home showed a system screen over the launcher, with the phone's default wallpaper behind it, and it looked as if the launcher had not come back.
+- **The fix.** The home screen never opens Android's preview by itself any more. It starts at once, paints your day itself while the wallpaper is gone (`WallpaperWatch`, `Keeper.lastEndWasForceStop`), and shows the button **Bring back your day wallpaper**.
+- **The wallpaper is still required.** The first-start setup asks for it, and the dashboard (opened from the app icon) opens Android's preview when the wallpaper is gone: at once, and again after ten minutes if you turned it down (once a day when it was never set), after the home-app question if that is also open (`MainActivity.askForWallpaper`). The Home tab keeps its card and the home screen its button until it is back.
+
 **1.0, build 81: build 78's fixes and build 80's force-stop help, together**
 - Back from build 78 (see its notes below): alarms that stay on screen, a changed plan that begins when you change it, the Home card showing the new plan at once, and the first-timer changes. Together with build 80's help after a Force stop.
 - **Not back: the optional wallpaper.** The live wallpaper is required again, as in build 77: the setup asks for it, and the home screen asks for it again when it is lost. The "optional wallpaper" paragraph and the "No thanks" texts of build 78 are not part of this build (the work is kept on the branch `preview/first-timer-and-slot-fix`, commit `1920cf3`).
