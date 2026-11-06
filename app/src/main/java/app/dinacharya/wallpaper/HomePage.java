@@ -483,9 +483,9 @@ final class HomePage extends Page {
     }
 
     /**
-     * "Change plan": the slot is called something else for today only (or the slot before goes on, or two slots swap). During a late start
-     * ({@code endWait}) the new plan takes the place of the slot from now to its end; on the slot that is running it changes only that
-     * slot. The slot keeps its type unless another is chosen.
+     * "Change plan": the slot is called something else for today only (or the slot before goes on, or two slots swap). The new plan begins
+     * <b>now</b> (see {@link ReplaceFromNow}): the time before it stays a delayed start or "No response" and is not part of it. During a late start
+     * ({@code endWait}) the wait ends now; on the slot that is running it changes only that slot. The slot keeps its type unless another is chosen.
      */
     private void askNewName(final String day, final int src, final String title, final long sStart, final boolean endWait) {
         SlotSheets.changePlan(a, day, src, title, true, new SlotSheets.ChangeHost() {
@@ -497,8 +497,8 @@ final class HomePage extends Page {
 
             @Override
             public void replace(String n, int mins, int kind, String sub) {
-                SlotActions.changePart(a, day, src, title, n, mins, sStart, endWait, kind, sub);
-                a.toastText(mins == 0 ? "Changed for today: " + n : n + " for " + mins + " min, then back to the plan");
+                ReplaceFromNow.Placed p = SlotActions.changePart(a, day, src, title, n, mins, sStart, endWait, kind, sub);
+                a.toastText(SlotActions.placedText(a, n, p));
                 afterChange();
             }
 

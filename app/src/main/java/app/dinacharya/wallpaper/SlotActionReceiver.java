@@ -24,7 +24,7 @@ public class SlotActionReceiver extends BroadcastReceiver {
                 AlarmScheduler.reschedule(c);   // as "Back to work" in the question: the break is over, the plan goes on
             } else if (SlotActions.ACTION_BREAK_MORE.equals(action)) {
                 long until = AlarmService.breakCanGrow(e) ? SlotActions.extendBreak(c, SlotActions.BREAK_MORE_MIN) : -1L;
-                if (until > 0) Lang.toast(c, "Break extended until " + clockOf(c, until), android.widget.Toast.LENGTH_SHORT).show();
+                if (until > 0) Lang.toast(c, "Break extended until " + SlotActions.clockText(c, until), android.widget.Toast.LENGTH_SHORT).show();
                 else AlarmScheduler.reschedule(c);
             } else if (SlotActions.ACTION_STOP.equals(action)) {
                 AlarmService.silenceFromNotification(c);
@@ -35,10 +35,5 @@ public class SlotActionReceiver extends BroadcastReceiver {
         } catch (RuntimeException ex) {
             CrashLog.note(c, "slot action", ex);
         }
-    }
-
-    private static String clockOf(Context c, long ms) {
-        java.time.ZonedDateTime z = java.time.Instant.ofEpochMilli(ms).atZone(java.time.ZoneId.systemDefault());
-        return Routine.formatTime(z.getHour() * 60 + z.getMinute(), Store.load(c).fmt24);
     }
 }

@@ -2390,3 +2390,7 @@ Shows the alarm as a banner on top while you use another app, so you can answer 
 It showed as the question over the lock screen.	તે લૉક સ્ક્રીન પર સવાલ તરીકે દેખાયું.
 It showed as a banner that stays until you answer it.	તે બૅનર તરીકે દેખાયું, જે તમે જવાબ ન આપો ત્યાં સુધી રહે છે.
 It showed as the question inside the app.	તે એપની અંદર સવાલ તરીકે દેખાયું.
+Rest of the slot	સ્લૉટનો બાકીનો ભાગ
+Starts now, at {1}. The time before stays as it was.	હમણાં, {1} વાગ્યે શરૂ થાય છે. તેની પહેલાંનો સમય જેવો હતો તેવો જ રહે છે.
+Changed for today from {1} to {2}: {3}	આજ માટે {1} થી {2} સુધી બદલ્યું: {3}
+Changed for today from {1} to {2}: {3}, then back to the plan	આજ માટે {1} થી {2} સુધી બદલ્યું: {3}, પછી યોજના પર પાછા

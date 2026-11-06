@@ -2389,3 +2389,7 @@ Shows the alarm as a banner on top while you use another app, so you can answer 
 It showed as the question over the lock screen.	ఇది లాక్ స్క్రీన్‌పై ప్రశ్నగా కనిపించింది.
 It showed as a banner that stays until you answer it.	ఇది బ్యానర్‌గా కనిపించింది, మీరు జవాబు ఇచ్చే వరకు అది ఉంటుంది.
 It showed as the question inside the app.	ఇది యాప్ లోపల ప్రశ్నగా కనిపించింది.
+Rest of the slot	స్లాట్‌లో మిగిలిన భాగం
+Starts now, at {1}. The time before stays as it was.	ఇప్పుడే, {1}కు మొదలవుతుంది. దానికి ముందు సమయం ఎలా ఉందో అలాగే ఉంటుంది.
+Changed for today from {1} to {2}: {3}	ఈ రోజుకు {1} నుండి {2} వరకు మార్చబడింది: {3}
+Changed for today from {1} to {2}: {3}, then back to the plan	ఈ రోజుకు {1} నుండి {2} వరకు మార్చబడింది: {3}, తర్వాత ప్లాన్‌కు తిరిగి
