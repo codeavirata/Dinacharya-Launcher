@@ -63,7 +63,8 @@ public class ReplaceFromNowTest {
         ReplaceFromNow quick = ReplaceFromNow.of(s, e, at(9, 30, 20));
         ok("in the first half minute of the slot it is still from the start", quick.lead == 0 && quick.stored(30) == 30);
         ReplaceFromNow rounded = ReplaceFromNow.of(s, e, at(9, 50, 40));
-        ok("to the nearest minute: 20 minutes 40 seconds in is minute 21", rounded.lead == 21 && rounded.startMs == at(9, 51));
+        ok("whole minutes: 20 minutes 40 seconds in is minute 20, so the new plan never begins after the moment it was made",
+            rounded.lead == 20 && rounded.startMs == at(9, 50) && rounded.startMs <= at(9, 50, 40));
         ReplaceFromNow last = ReplaceFromNow.of(s, e, at(10, 59, 30));
         ok("in the last minute one minute is left, never none", last.lead == 89 && last.room == 1 && last.stored(30) == 1 && last.stored(0) == 1);
         ReplaceFromNow night = ReplaceFromNow.of(at(21, 30), at(21, 30) + 8 * 3600000L, at(23, 0));
@@ -135,6 +136,35 @@ public class ReplaceFromNowTest {
             if (b.title.equals(TITLE)) readingAfter += m;
         }
         ok("20 missed + 30 of Gym + 40 of the slot = 90", total == 90 && delay == 20 && gym == 30 && readingAfter == 40);
+
+        // 10. the Home card at the moment of the change and after it: the slot that is going on is Gym, and the part of the saved plan that
+        //     goes with it is Gym too (the first part of the slot is the time before and still has the old name; finding the slot by its
+        //     number alone showed "Reading & notes" on the card right after "Gym" was chosen)
+        for (long[] c : new long[][]{{at(9, 50), at(9, 50)}, {at(9, 50, 40), at(9, 50, 41)}, {at(9, 50), at(10, 5)}}) {
+            Overrides hov = new Overrides();
+            ReplaceFromNow hw = ReplaceFromNow.of(s, e, c[0]);
+            Plan.editPart(r, hov, D, SRC, "Gym", hw.place(30).stored, -1, "", hw.lead);
+            Plan.DayPlan hs = Plan.resolve(r, hov, c[1], Z);
+            List<Ev> hev = new ArrayList<>(Arrays.asList(Ev.rang(s, DAY, SRC, TITLE), Ev.ack(c[0], DAY, SRC, TITLE, "R", "Gym")));
+            Plan.DayPlan hl = LivePlan.apply(hs, hev, new AlarmState(), false, c[1]);
+            String when = hm(c[0]) + (c[0] % 60000L != 0 ? "+" : "") + " seen at " + hm(c[1]);
+            ok("Home " + when + ": the slot going on is Gym", hl.cur >= 0 && "Gym".equals(hl.sc.slots.get(hl.cur).block.title));
+            int oi = SlotPlay.indexOfPart(hs, SRC, hs.tt);
+            ok("Home " + when + ": its part of the saved plan is Gym (10:05: the rest, Reading & notes)", oi >= 0
+                && hs.sc.slots.get(oi).block.title.equals(c[1] < at(10, 20) ? "Gym" : TITLE));
+            ok("Home " + when + ": that part holds the minute", oi >= 0 && hs.tt >= hs.sc.slots.get(oi).start && hs.tt < hs.sc.slots.get(oi).end);
+        }
+        Overrides hov2 = new Overrides();
+        Plan.editPart(r, hov2, D, SRC, "Gym", 30, -1, "", 20);
+        Plan.DayPlan hs2 = Plan.resolve(r, hov2, at(10, 30), Z);
+        ok("the part of the rest of the slot, 10:20 to 11:00, is found by the minute at 10:30",
+            hs2.sc.slots.get(SlotPlay.indexOfPart(hs2, SRC, hs2.tt)).start == 10 * 60 + 20
+            && hs2.sc.slots.get(SlotPlay.indexOfPart(hs2, SRC, hs2.tt)).end == 11 * 60);
+        ok("the number alone finds the first part, the time before (that was the bug)",
+            hs2.sc.slots.get(SlotPlay.indexOfSrc(hs2, SRC)).start == 9 * 60 + 30);
+        ok("a minute no part holds (carried on past the end) finds the last part before it",
+            hs2.sc.slots.get(SlotPlay.indexOfPart(hs2, SRC, 11 * 60 + 10)).end == 11 * 60);
+        ok("a slot number that is not there finds nothing", SlotPlay.indexOfPart(hs2, 99, hs2.tt) == -1);
 
         // 9. the report counts the same way: the 20 minutes are No response, Gym has its 30 active minutes, the rest of the slot goes on
         long reportNow = at(10, 30);

@@ -17,7 +17,10 @@ public final class ReplaceFromNow {
 
     /** The slot's planned length in minutes (at least 1). */
     public final int slotMins;
-    /** Minutes of the slot that went by before this moment, to the nearest minute; 0 when it has not begun. Always leaves a minute. */
+    /**
+     * Whole minutes of the slot that went by before this moment; 0 when it has not begun. Always leaves a minute. Whole minutes (not the nearest)
+     * so the new plan never begins after the moment it was made: the home screen counts the minute it is in, and would still show the old part.
+     */
     public final int lead;
     /** Minutes from the start of the new plan to the end of the slot (at least 1). */
     public final int room;
@@ -29,7 +32,7 @@ public final class ReplaceFromNow {
     private ReplaceFromNow(long slotStartMs, long slotEndMs, long nowMs) {
         this.endMs = slotEndMs;
         this.slotMins = (int) Math.max(1L, Math.round((slotEndMs - slotStartMs) / (double) MIN));
-        this.lead = nowMs <= slotStartMs ? 0 : (int) Math.min(slotMins - 1L, Math.round((nowMs - slotStartMs) / (double) MIN));
+        this.lead = nowMs <= slotStartMs ? 0 : (int) Math.min(slotMins - 1L, Math.max(0L, (nowMs - slotStartMs) / MIN));
         this.room = slotMins - lead;
         this.startMs = slotStartMs + lead * MIN;
     }
