@@ -187,9 +187,30 @@ final class HomePage extends Page {
 
     // ------------------------------------------------------------------ now and next
 
+    /**
+     * Dinacharya was the home app and the phone now opens another launcher (an update, another home app picked, or, on some phones, a Force
+     * stop from App info). The card stays until it is put right, so it does not depend on a pop-up that went away.
+     */
+    private void addHomeLostCard() {
+        try {
+            if (!HomeRole.lostNow(a)) return;
+            LinearLayout card = Ui.section(a, homeBox, "Home app", "Dinacharya is not your home app");
+            card.addView(Ui.label(a, "The Home button opens another launcher now. This happens after an update, or on some phones when the app "
+                    + "is closed from App info (Force stop). One tap puts Dinacharya back.", 13, Ui.MUTED, false), Ui.wide(a, 4));
+            card.addView(Ui.button(a, "Make it my home app", true, v -> HomeRole.request(a)), Ui.wide(a, 12));
+            card.addView(Ui.button(a, "Stop asking", false, v -> {
+                HomeRole.forget(a);
+                refreshHomeCard();
+            }), Ui.wide(a, 8));
+        } catch (RuntimeException e) {
+            CrashLog.note(a, "home lost card", e);
+        }
+    }
+
     /** The setup card: shown while a feature the person chose still needs a setting. Features they did not choose are never nagged about. */
     private void refreshHomeCard() {
         homeBox.removeAllViews();
+        addHomeLostCard();
         java.util.List<Integer> todo = Features.unfinished(a);
         if (todo.isEmpty()) return;
         LinearLayout card = Ui.section(a, homeBox, "Setup", todo.size() == 1 ? "1 feature still to finish" : todo.size() + " features still to finish");

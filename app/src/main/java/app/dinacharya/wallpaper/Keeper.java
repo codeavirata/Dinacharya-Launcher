@@ -82,6 +82,25 @@ final class Keeper {
     }
 
     /**
+     * True when the process before this one was ended with Force stop from App info (and this process started after that). Only asked in
+     * the first seconds of a process, so it costs nothing at other times. Android before 11 does not say, so the answer is false there.
+     */
+    static boolean lastEndWasForceStop(Context c) {
+        if (Build.VERSION.SDK_INT < 30) return false;
+        try {
+            ActivityManager am = (ActivityManager) c.getSystemService(Context.ACTIVITY_SERVICE);
+            if (am == null) return false;
+            List<ApplicationExitInfo> list = am.getHistoricalProcessExitReasons(c.getPackageName(), 0, 1);   // newest first
+            if (list == null || list.isEmpty()) return false;
+            ApplicationExitInfo info = list.get(0);
+            long started = System.currentTimeMillis() - (android.os.SystemClock.elapsedRealtime() - android.os.Process.getStartElapsedRealtime());
+            return info.getReason() == ApplicationExitInfo.REASON_USER_REQUESTED && info.getTimestamp() <= started + 2000L;
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
+    /**
      * The last few ways this app's process ended, newest first, in one line for the problem report. {@link #readExit} keeps only the
      * ends that matter to the alarms, so a phone that closes the app in another way would otherwise never show up in a report.
      */

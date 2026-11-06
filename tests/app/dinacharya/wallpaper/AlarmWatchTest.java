@@ -56,6 +56,14 @@ public class AlarmWatchTest {
                 WallpaperWatch.status(0, 0, H, 5 * 60000L, -1, true) == WallpaperWatch.LOST);
         ok("an old note counts in the first seconds of a new process (Android puts the wallpaper back by itself)",
                 WallpaperWatch.status(0, 0, H, 4000L, -1, true) == WallpaperWatch.CHECKING);
+        ok("after Force stop the old note does not count even in the first seconds (Android does not put the wallpaper back)",
+                WallpaperWatch.status(0, 0, H, 4000L, -1, true, true) == WallpaperWatch.LOST);
+        ok("after Force stop the wallpaper is still in place when Android says so",
+                WallpaperWatch.status(H, 0, H, 4000L, -1, true, true) == WallpaperWatch.OK);
+        ok("after Force stop, a wallpaper the person confirmed seconds ago is still starting",
+                WallpaperWatch.status(0, 0, H, 4000L, 30000L, true, true) == WallpaperWatch.CHECKING);
+        ok("not after Force stop: the old note keeps counting in the first seconds",
+                WallpaperWatch.status(0, 0, H, 4000L, -1, true, false) == WallpaperWatch.CHECKING);
         ok("just confirmed on Android's preview: it is starting", WallpaperWatch.status(0, 0, 0, 999999, 30000L, false) == WallpaperWatch.CHECKING);
         ok("confirmed long ago and nothing says it is there: lost, not 'fine for a month'", WallpaperWatch.status(0, 0, 0, 999999, 20L * 24 * HOUR, true) == WallpaperWatch.LOST);
         ok("was there before and is gone: lost", WallpaperWatch.status(0, 0, 0, 999999, -1, true) == WallpaperWatch.LOST);

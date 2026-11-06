@@ -55,6 +55,46 @@ final class HomeRole {
         }
     }
 
+    /**
+     * True while Dinacharya used to be the home app and is not now, whatever "Not now" was said before. The pop-up stays quiet for a day
+     * after "Not now", but the card on the dashboard's Home tab stays until it is put right or the person says "Stop asking".
+     */
+    static boolean lostNow(Context c) {
+        try {
+            return watch(c).getBoolean("wasHome", false) && !isDefault(c);
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
+    /**
+     * What the problem report says about the home app: which launcher the phone opens on Home right now, whether Dinacharya was it, and how
+     * the app last ended. After a Force stop some phones switch back to their own launcher; this shows whether yours did.
+     */
+    static String report(Context c) {
+        try {
+            StringBuilder sb = new StringBuilder();
+            Intent i = new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME);
+            ResolveInfo ri = c.getPackageManager().resolveActivity(i, PackageManager.MATCH_DEFAULT_ONLY);
+            sb.append("Home button opens: ").append(ri == null || ri.activityInfo == null ? "nothing found" : ri.activityInfo.packageName);
+            sb.append("\nDinacharya is the home app: ").append(isDefault(c) ? "yes" : "NO");
+            android.content.SharedPreferences p = watch(c);
+            sb.append("\nIt was the home app before: ").append(p.getBoolean("wasHome", false) ? "yes" : "no");
+            long snooze = p.getLong("snooze", 0);
+            if (snooze > System.currentTimeMillis()) sb.append(" (the pop-up is quiet for ").append((snooze - System.currentTimeMillis()) / 3600000L).append(" h)");
+            if (Build.VERSION.SDK_INT >= 29) {
+                RoleManager rm = (RoleManager) c.getSystemService(Context.ROLE_SERVICE);
+                if (rm != null && rm.isRoleAvailable(RoleManager.ROLE_HOME)) {
+                    sb.append("\nAndroid's home role is held by Dinacharya: ").append(rm.isRoleHeld(RoleManager.ROLE_HOME) ? "yes" : "no");
+                }
+            }
+            sb.append("\nHow the app last ended: ").append(Keeper.recentExits(c));
+            return sb.toString();
+        } catch (RuntimeException e) {
+            return "Home app details unavailable.";
+        }
+    }
+
     /** "Not now": stay quiet for a day. */
     static void snooze(Context c) {
         try {
@@ -78,8 +118,9 @@ final class HomeRole {
         if (a.isFinishing()) return;
         new DBuilder(a, theme)
                 .setTitle("Dinacharya Launcher is not your home app any more")
-                .setMessage("The Home button now opens another launcher. This happens after an update or a reinstall, or when another "
-                        + "home app is picked. Make Dinacharya Launcher your home app again?")
+                .setMessage("The Home button now opens another launcher. This happens after an update or a reinstall, when another "
+                        + "home app is picked, or on some phones when the app is closed from App info (Force stop). "
+                        + "Make Dinacharya Launcher your home app again?")
                 .setPositiveButton("Make it my home app", (d, w) -> request(a))
                 .setNegativeButton("Not now", (d, w) -> snooze(a))
                 .setNeutralButton("Stop asking", (d, w) -> forget(a))

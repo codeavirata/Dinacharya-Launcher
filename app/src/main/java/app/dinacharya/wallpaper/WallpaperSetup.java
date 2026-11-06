@@ -82,7 +82,12 @@ final class WallpaperSetup {
         try {
             android.content.SharedPreferences p = state(c);
             boolean ever = p.getBoolean(K_EVER, false);
-            int st = WallpaperWatch.status(reported(c), engineBits, p.getInt(K_LIVE, 0), processAge(), sinceConfirmed(c), ever);
+            int rep = reported(c), live = p.getInt(K_LIVE, 0);
+            long age = processAge(), since = sinceConfirmed(c);
+            int st = WallpaperWatch.status(rep, engineBits, live, age, since, ever);
+            if (st == WallpaperWatch.CHECKING && live != 0 && age >= 0 && age < WallpaperWatch.GRACE_MS && Keeper.lastEndWasForceStop(c)) {
+                st = WallpaperWatch.status(rep, engineBits, live, age, since, ever, true);   // Force stop: Android does not hand it back
+            }
             if (st == WallpaperWatch.OK) {
                 boolean wasLost = p.getLong(K_LOST_AT, 0) != 0;
                 if (!ever || wasLost) {

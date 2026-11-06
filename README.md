@@ -1148,6 +1148,13 @@ close the app: they are written down and that one job is skipped.
 
 ### Version notes
 
+**1.0, build 80: after a Force stop, the app helps you get your home screen back**
+- On some phones, closing the app from App info (**Force stop**) also switches the Home button back to the phone's own launcher with its own wallpaper. Android decides that, not the app, and the app cannot start itself again afterwards. What the app can do now:
+  - **A card that stays.** While Dinacharya used to be your home app and is not now, the Home tab shows *Dinacharya is not your home app* with *Make it my home app* and *Stop asking*. It does not go away for a day after *Not now* like the pop-up does.
+  - **Plain words.** The pop-up and Settings > Home app now say that some phones switch back to their own launcher after Force stop, and what to tap.
+  - **A report that tells.** The problem report has a *Home app* part: which launcher Home opens, whether Dinacharya was the home app before, whether Android's home role is held by it, and how the app last ended.
+  - **No plain wallpaper for 20 seconds.** After a Force stop the launcher used to wait 20 s for Android to put the live wallpaper back (it does so after a crash or a memory clean-up, never after Force stop). It now knows the last end was a Force stop (`Keeper.lastEndWasForceStop`, Android 11 and later) and paints its own day poster and asks for the wallpaper at once (`WallpaperWatch.status` with `forceStopped`).
+
 **1.0, build 79: build 77 again (build 78 taken back)**
 - Build 78 was rolled back: the code is exactly build 77's, with a higher build number (79) so Google Play accepts it as the newer upload. Everything build 78 held (alarms that stay on screen, a changed plan that begins when you change it, the first-timer changes, the optional wallpaper) is kept on the branch `preview/first-timer-and-slot-fix` (commit `2a7e75a`, the old main) and can be brought back with `git revert` of this commit.
 

@@ -265,6 +265,8 @@ public class LauncherSettingsActivity extends LangActivity {
         addRow(c, btns, 10);
         addRow(c, note("You can go back to your old home screen at any time: tap Change home app and pick it. "
                 + "Nothing is removed from your phone."), 10);
+        addRow(c, note("On some phones, closing the app from App info (Force stop) switches the Home button back to the phone’s own launcher. "
+                + "Open Dinacharya from its icon and tap Set to bring it back."), 8);
     }
 
     private void gesturesCard() {

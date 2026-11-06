@@ -42,11 +42,22 @@ public final class WallpaperWatch {
      * @param everOurs    true when the wallpaper has been seen in place at some time
      */
     public static int status(int reported, int engine, int persisted, long processAge, long sinceOk, boolean everOurs) {
+        return status(reported, engine, persisted, processAge, sinceOk, everOurs, false);
+    }
+
+    /**
+     * The same, knowing how the app's last process ended. After a crash, a memory clean-up or an update Android puts the live wallpaper
+     * back by itself, so a new process is given a moment. After "Force stop" from App info Android removes the live wallpaper and does
+     * not bring it back, so waiting only leaves the home screen plain for the length of the wait: it counts as gone at once.
+     *
+     * @param forceStopped true when the last process of the app was ended by the person with Force stop
+     */
+    public static int status(int reported, int engine, int persisted, long processAge, long sinceOk, boolean everOurs, boolean forceStopped) {
         int w = (reported | engine) & (HOME | LOCK);
         if ((w & HOME) != 0) return OK;
         if ((w & LOCK) != 0) return LOCK_ONLY;
-        // Nothing says it is there. A process that has only just started has not had the wallpaper handed back yet.
-        if ((persisted & (HOME | LOCK)) != 0 && processAge >= 0 && processAge < GRACE_MS) return CHECKING;
+        // Nothing says it is there. A process that has only just started has not had the wallpaper handed back yet (not after Force stop).
+        if (!forceStopped && (persisted & (HOME | LOCK)) != 0 && processAge >= 0 && processAge < GRACE_MS) return CHECKING;
         if (sinceOk >= 0 && sinceOk < CONFIRM_MS) return CHECKING;
         return everOurs ? LOST : NEVER;
     }

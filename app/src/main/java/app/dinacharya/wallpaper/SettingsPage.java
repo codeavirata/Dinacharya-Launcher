@@ -587,7 +587,8 @@ final class SettingsPage extends Page {
                 : "Some problems were written down. Copy them and send them to the developer."), Ui.wide(a, 4));
         rep.addView(Ui.button(a, "Copy problem report", false, v -> {
             String text = "Dinacharya Launcher " + buildName(a) + " on Android " + Build.VERSION.RELEASE + " (" + Build.MANUFACTURER + " " + Build.MODEL + ")\n\n"
-                    + "Alarms:\n" + a.extras.alarmReport() + "\n\n" + "Locks:\n" + StrongMode.report(a) + "\n\n" + Ads.get().status(a) + "\n\n"
+                    + "Alarms:\n" + a.extras.alarmReport() + "\n\n" + "Locks:\n" + StrongMode.report(a) + "\n\n" + "Home app:\n" + HomeRole.report(a)
+                    + "\n\n" + Ads.get().status(a) + "\n\n"
                     + (crash == null ? "No crash recorded." : crash) + "\n\n" + (notes.isEmpty() ? "No handled problems." : notes);
             try {
                 ClipboardManager cm = (ClipboardManager) a.getSystemService(Context.CLIPBOARD_SERVICE);
