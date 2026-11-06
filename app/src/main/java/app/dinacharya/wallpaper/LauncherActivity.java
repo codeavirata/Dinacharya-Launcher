@@ -120,6 +120,8 @@ public class LauncherActivity extends LangActivity {
     private boolean ours;
     /** The small button that brings the wallpaper back while it is not in place. */
     private TextView wallPill;
+    /** The screen was built in onCreate a moment ago, so the first onResume does not build it again. */
+    private boolean builtInCreate;
     /** Shown while something is locked or paused and Android has not been told to let the lock hold everywhere. */
     private TextView lockPill;
     private final Runnable lookAgain = new Runnable() {
@@ -191,6 +193,7 @@ public class LauncherActivity extends LangActivity {
             apps = new ArrayList<>(cachedApps);
             index();
             buildScreen();
+            builtInCreate = true;
             loadApps();
             // The home screen is the app that is always there, so it keeps the alarms and the end-of-day report set.
             AlarmScheduler.reschedule(this);
@@ -250,9 +253,11 @@ public class LauncherActivity extends LangActivity {
             StrongMode.afterReturn(this);   // the strong lock runs whenever something is locked or paused and it is allowed; asks for the next permission
             PassSettle.run(this);   // a video pass that has ended gives back what was made with it
             passEpoch = PassSettle.epoch();
-            cfg = LauncherStore.load(this);
+            final boolean fresh = builtInCreate;   // built a moment ago in onCreate: nothing can have changed since
+            builtInCreate = false;
+            if (!fresh) cfg = LauncherStore.load(this);
             if (overlayKind == NONE) {
-                buildScreen();
+                if (!fresh) buildScreen();
             } else if (overlayKind == DRAWER) {
                 refreshDrawer();   // an app shown again (or hidden) in the settings is shown (or gone) at once
             }
@@ -406,7 +411,7 @@ public class LauncherActivity extends LangActivity {
      */
     private void syncWallpaper() {
         int st = WallpaperSetup.status(this);
-        ours = WallpaperWatch.inPlace(st);
+        ours = WallpaperWatch.seeThrough(st);   // anything less sure than "it is there": the launcher paints the day itself
         if (posterView != null) posterView.setVisibility(ours ? View.GONE : View.VISIBLE);
         // With the wallpaper in place the window is see-through, so the wallpaper itself is what you see.
         root.setBackgroundColor(ours ? 0x00000000 : th.bg);

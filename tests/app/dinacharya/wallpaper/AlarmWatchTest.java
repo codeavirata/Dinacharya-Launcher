@@ -71,6 +71,10 @@ public class AlarmWatchTest {
         ok("lost and never need attention, in place does not", WallpaperWatch.needsAttention(WallpaperWatch.LOST)
                 && WallpaperWatch.needsAttention(WallpaperWatch.NEVER) && WallpaperWatch.needsAttention(WallpaperWatch.LOCK_ONLY)
                 && !WallpaperWatch.needsAttention(WallpaperWatch.OK) && !WallpaperWatch.needsAttention(WallpaperWatch.CHECKING));
+        ok("the window is see-through only when the wallpaper is known to be there: starting or lost, the launcher paints the day itself",
+                WallpaperWatch.seeThrough(WallpaperWatch.OK) && !WallpaperWatch.seeThrough(WallpaperWatch.CHECKING)
+                && !WallpaperWatch.seeThrough(WallpaperWatch.LOST) && !WallpaperWatch.seeThrough(WallpaperWatch.NEVER)
+                && !WallpaperWatch.seeThrough(WallpaperWatch.LOCK_ONLY));
         ok("in place or starting: the launcher paints no poster of its own", WallpaperWatch.inPlace(WallpaperWatch.OK)
                 && WallpaperWatch.inPlace(WallpaperWatch.CHECKING) && !WallpaperWatch.inPlace(WallpaperWatch.LOST));
         ok("look again after the grace of a new process", WallpaperWatch.checkAgainMs(4000L, -1) == WallpaperWatch.GRACE_MS - 4000L + 500L);

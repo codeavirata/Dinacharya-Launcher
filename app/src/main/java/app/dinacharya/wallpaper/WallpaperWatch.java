@@ -67,6 +67,15 @@ public final class WallpaperWatch {
         return status == OK || status == CHECKING;
     }
 
+    /**
+     * True when the launcher's window may be see-through, so that the wallpaper itself shows behind it: only when it is known to be
+     * there. While it is only about to be (a new process, or the preview just confirmed) the launcher paints the same picture itself,
+     * so the first thing seen is always the day and never the phone's own default wallpaper on its own, however long Android takes.
+     */
+    public static boolean seeThrough(int status) {
+        return status == OK;
+    }
+
     /** Milliseconds after which a {@link #CHECKING} answer should be looked at again. */
     public static long checkAgainMs(long processAge, long sinceOk) {
         long a = processAge >= 0 && processAge < GRACE_MS ? GRACE_MS - processAge : Long.MAX_VALUE;
