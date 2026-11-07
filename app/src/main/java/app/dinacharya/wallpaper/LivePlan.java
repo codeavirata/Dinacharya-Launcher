@@ -174,6 +174,8 @@ public final class LivePlan {
             // a minute of the slot is always left, unless the slot goes on in the next part (a plan changed in the middle of it begins
             // right where the wait ended: the part before it is then all wait)
             long w = Math.min(we.getValue(), continues(base, x) ? end[x] : end[x] - MIN);
+            // a wait that was ended by "Start" in the second half of a minute is not drawn up to the next minute: the card shows the slot at once
+            if (w <= nowMs) w = Math.min(w, minuteStart(base, nowMs));
             if (w > start[x]) {
                 // the time nobody answered, then the start that was put off after the answer: two stretches, named for what they were
                 Long nrEnd = noRespEnd.get(we.getKey());
@@ -192,6 +194,8 @@ public final class LivePlan {
             if (x < 0 || base.sc.slots.get(x).block.skipped) continue;
             long a = Math.max(e.ts, start[x]);
             long b = Math.min(e.aLong(0), end[x]);
+            // the same for a break the person ended with "Back to work": whole minutes are drawn, so it must not run on to the next minute
+            if (b <= nowMs) b = Math.min(b, minuteStart(base, nowMs));
             if (b > a) {
                 gaps.get(x).add(new Gap(a, b, Routine.LIVE_BREAK));
                 changed = true;
@@ -314,6 +318,11 @@ public final class LivePlan {
     private static boolean takenOffBetween(Plan.DayPlan base, int p, int x) {
         for (int k = p + 1; k < x; k++) if (!base.sc.slots.get(k).block.skipped) return false;
         return true;
+    }
+
+    /** The start of the minute that {@code ms} is in, counted from the start of the day (the minute the card is in). */
+    private static long minuteStart(Plan.DayPlan base, long ms) {
+        return base.startMs + Math.floorDiv(ms - base.startMs, MIN) * MIN;
     }
 
     /** Minutes from the start of the day, to the nearest minute. */
