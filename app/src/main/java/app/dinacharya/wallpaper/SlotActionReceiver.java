@@ -28,10 +28,12 @@ public class SlotActionReceiver extends BroadcastReceiver {
                 else AlarmScheduler.reschedule(c);
             } else if (SlotActions.ACTION_STOP.equals(action)) {
                 AlarmService.silenceFromNotification(c);
+                AlarmService.clearRingNotification(c);   // the backup notification (no ringing service) goes too, and with it its repeating sound
                 AlarmService.postSilent(c, e);   // the sound stops, the question stays one tap away
                 return;
             }
             AlarmService.silenceFromNotification(c);   // when the buttons were on the ringing notification, it stops now
+            AlarmService.clearRingNotification(c);     // ... and when they were on the backup notification, that goes now
         } catch (RuntimeException ex) {
             CrashLog.note(c, "slot action", ex);
         }

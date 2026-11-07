@@ -379,19 +379,50 @@ public class AlarmService extends Service {
         // Android 12 and later holds back the notification of a ringing service for up to ten seconds unless it has buttons or says it is
         // urgent. The sound starts at once, so the banner must too.
         if (Build.VERSION.SDK_INT >= 31) b.setForegroundServiceBehavior(Notification.FOREGROUND_SERVICE_IMMEDIATE);
-        if ((e.kind == AlarmPlanner.SLOT || e.kind == AlarmPlanner.START_AGAIN) && !e.wake && !AlarmPlanner.isTest(e)) {
-            b.addAction(quickAction(c, e, SlotActions.ACTION_START_NOW, Lang.tr("Start now"), 1));
-            b.addAction(quickAction(c, e, SlotActions.ACTION_START_LATER, Lang.tr("In 10 min"), 2));
-        } else if (e.kind == AlarmPlanner.BREAK_END) {
-            // the three things the question offers, so a break can be ended, made longer or just silenced without opening anything
-            b.addAction(quickAction(c, e, SlotActions.ACTION_BREAK_BACK, Lang.tr("Back to work"), 1));
-            if (breakCanGrow(e)) b.addAction(quickAction(c, e, SlotActions.ACTION_BREAK_MORE, Lang.tr("+5 min"), 2));
-            b.addAction(quickAction(c, e, SlotActions.ACTION_STOP, Lang.tr("Stop"), 3));
-        } else if (!e.wake) {
-            // every other alarm can at least be silenced from the banner (the question stays one tap away in a quiet notification)
-            b.addAction(quickAction(c, e, SlotActions.ACTION_STOP, Lang.tr("Stop"), 3));
-        }
+        addQuickAnswers(c, e, b);
         return b.build();
+    }
+
+    /**
+     * The quick answers on an alarm notification (see {@link NoticeButtons} for which alarm gets which): for a slot "Start now" and
+     * "In 10 min"; for a break that is over "Back to work", "+5 min" and "Stop"; every other alarm can at least be silenced. The ringing
+     * notification and the backup notification both use this, so the buttons are the same whichever of the two Android allowed.
+     */
+    private static void addQuickAnswers(Context c, AlarmPlanner.Event e, Notification.Builder b) {
+        for (int button : NoticeButtons.forEvent(e, e != null && e.kind == AlarmPlanner.BREAK_END && breakCanGrow(e))) {
+            switch (button) {
+                case NoticeButtons.START_NOW:
+                    b.addAction(quickAction(c, e, SlotActions.ACTION_START_NOW, Lang.tr("Start now"), 1));
+                    break;
+                case NoticeButtons.START_LATER:
+                    b.addAction(quickAction(c, e, SlotActions.ACTION_START_LATER, Lang.tr("In 10 min"), 2));
+                    break;
+                case NoticeButtons.BREAK_BACK:
+                    // the three things the question offers, so a break can be ended, made longer or just silenced without opening anything
+                    b.addAction(quickAction(c, e, SlotActions.ACTION_BREAK_BACK, Lang.tr("Back to work"), 1));
+                    break;
+                case NoticeButtons.BREAK_MORE:
+                    b.addAction(quickAction(c, e, SlotActions.ACTION_BREAK_MORE, Lang.tr("+5 min"), 2));
+                    break;
+                default:
+                    // every other alarm can at least be silenced (the question stays one tap away in a quiet notification)
+                    b.addAction(quickAction(c, e, SlotActions.ACTION_STOP, Lang.tr("Stop"), 3));
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Takes the alarm's notification off the shade. The backup notification is not tied to the ringing service, so when it was the one
+     * used, nothing else removes it (and it repeats its sound until it is gone).
+     */
+    static void clearRingNotification(Context c) {
+        try {
+            NotificationManager nm = (NotificationManager) c.getSystemService(Context.NOTIFICATION_SERVICE);
+            if (nm != null) nm.cancel(ID_RING);
+        } catch (RuntimeException ignored) {
+            // nothing to clear
+        }
     }
 
     /** True when a break that is over can still be made longer: the slot has at least two minutes left (as the question itself needs). */
@@ -662,6 +693,9 @@ public class AlarmService extends Service {
                 .setAutoCancel(true)
                 .setTimeoutAfter(limitFor(e));   // the same time the ringing service would have gone on for
         if (locked) nb.setFullScreenIntent(pi, true);
+        // The same quick answers as the ringing notification: on a phone that has not allowed exact alarms this is the notification that
+        // rings, and without the buttons "Start now", "In 10 min" and "Stop" were simply missing.
+        addQuickAnswers(c, e, nb);
         Notification n = nb.build();
         // Without the ringing service nothing else repeats the sound, so the notification does: it goes on until it is opened
         // or its time is up. A sound that plays once and stops is easy to sleep through.
