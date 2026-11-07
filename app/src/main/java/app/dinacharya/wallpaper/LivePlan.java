@@ -109,7 +109,9 @@ public final class LivePlan {
             if (!early && !skip && !Ev.EXTEND.equals(e.type)) continue;
             // early: src begins, b ended.  skip: src was skipped, b begins.  extend: src begins, b carries on.
             int x = SlotPlay.indexOfSrc(base, skip ? toInt(e.b, -1) : e.src);
-            int p = SlotPlay.indexOfSrc(base, skip ? e.src : toInt(e.b, -1));
+            // the slot that ends is the part of it nearest before the one that begins: a slot changed in the middle is several parts with one
+            // number, and the one that is going on (and is finished or carried on) is the last, not the first
+            int p = skip ? SlotPlay.indexOfSrc(base, e.src) : lastPartBefore(base, toInt(e.b, -1), x);
             if (x < 1 || p < 0 || p >= x) continue;
             if (base.sc.slots.get(x).block.skipped) continue;
             if (skip ? !base.sc.slots.get(p).block.skipped : base.sc.slots.get(p).block.skipped) continue;
@@ -190,7 +192,8 @@ public final class LivePlan {
             }
         }
         for (Ev e : breaks.values()) {
-            int x = SlotPlay.indexOfSrc(base, e.src);
+            // the part of the slot the break began in (a slot changed in the middle is several parts with one number)
+            int x = partAt(base, start, end, e.src, e.ts);
             if (x < 0 || base.sc.slots.get(x).block.skipped) continue;
             long a = Math.max(e.ts, start[x]);
             long b = Math.min(e.aLong(0), end[x]);
@@ -304,6 +307,29 @@ public final class LivePlan {
             }
         }
         return live;
+    }
+
+    /** The last part of slot {@code src} that lies before index {@code x}, or -1. */
+    private static int lastPartBefore(Plan.DayPlan base, int src, int x) {
+        if (src < 0) return -1;
+        for (int k = Math.min(x, base.sc.slots.size()) - 1; k >= 0; k--) if (base.sc.slots.get(k).block.src == src) return k;
+        return -1;
+    }
+
+    /**
+     * The part of slot {@code src} that holds the moment {@code ms}, by the times as they are now (after finishing early and the like): the
+     * first part when the slot is in one piece. When no part holds it, the last part that began before it, else the first.
+     */
+    private static int partAt(Plan.DayPlan base, long[] start, long[] end, int src, long ms) {
+        int first = -1;
+        int lastBefore = -1;
+        for (int i = 0; i < base.sc.slots.size(); i++) {
+            if (base.sc.slots.get(i).block.src != src) continue;
+            if (first < 0) first = i;
+            if (ms >= start[i] && ms < end[i]) return i;
+            if (start[i] <= ms) lastBefore = i;
+        }
+        return lastBefore >= 0 ? lastBefore : first;
     }
 
     /** True when the slot after part {@code x} is another part of the same slot (a slot changed for its first or last minutes only). */
