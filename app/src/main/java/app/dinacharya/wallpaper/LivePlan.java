@@ -216,7 +216,7 @@ public final class LivePlan {
                 Routine.Block b = orig.copy();
                 int tag = tagEnd[x] != Routine.LIVE_NONE ? tagEnd[x] : tagStart[x];
                 b.live = tag;
-                addPiece(pieces, base, start[x], end[x], b);
+                addPiece(pieces, base, start[x], end[x], b, nowMs);
                 continue;
             }
             long at = start[x];
@@ -226,10 +226,10 @@ public final class LivePlan {
                 if (gap.from > at) {
                     Routine.Block w = orig.copy();
                     w.live = anyWork ? Routine.LIVE_NONE : (afterFront != Routine.LIVE_NONE ? afterFront : tagStart[x]);
-                    addPiece(pieces, base, at, gap.from, w);
+                    addPiece(pieces, base, at, gap.from, w, nowMs);
                     anyWork = true;
                 }
-                addPiece(pieces, base, Math.max(gap.from, at), gap.to, gapBlock(gap.live, orig.src, gap.noResp));
+                addPiece(pieces, base, Math.max(gap.from, at), gap.to, gapBlock(gap.live, orig.src, gap.noResp), nowMs);
                 if (!anyWork && gap.from <= start[x]) afterFront = gap.live == Routine.LIVE_WAIT ? Routine.LIVE_LATE : Routine.LIVE_NONE;
                 at = Math.max(at, gap.to);
             }
@@ -238,14 +238,14 @@ public final class LivePlan {
                 if (tagEnd[x] != Routine.LIVE_NONE) w.live = tagEnd[x];
                 else if (anyWork) w.live = Routine.LIVE_NONE;
                 else w.live = afterFront != Routine.LIVE_NONE ? afterFront : (g.get(0).from <= start[x] ? Routine.LIVE_NONE : tagStart[x]);
-                addPiece(pieces, base, at, end[x], w);
+                addPiece(pieces, base, at, end[x], w, nowMs);
             }
         }
         if (pieces.isEmpty()) return null;
 
         // 4. The rest of the day taken off: one "Day off" part from then until sleep.
         if (offNow) {
-            int off = minute(base, st.offFrom);
+            int off = minute(base, st.offFrom, nowMs);
             List<Piece> kept = new ArrayList<>();
             boolean placed = false;
             int offStart = off;
@@ -330,9 +330,19 @@ public final class LivePlan {
         return (int) Math.round((ms - base.startMs) / (double) MIN);
     }
 
-    private static void addPiece(List<Piece> out, Plan.DayPlan base, long from, long to, Routine.Block b) {
-        int a = minute(base, from);
-        int z = minute(base, to);
+    /**
+     * Minutes from the start of the day for a boundary of the card. The card is drawn in whole minutes, to the nearest one, but a boundary
+     * that has already happened is never drawn in the future: a break, a finish, a carry-on or a day off pressed at 40 seconds past the
+     * minute used to be drawn from the next minute, and the card went on showing the old slot for up to half a minute after the tap.
+     */
+    private static int minute(Plan.DayPlan base, long ms, long nowMs) {
+        if (ms <= nowMs) ms = Math.min(ms, minuteStart(base, nowMs));
+        return minute(base, ms);
+    }
+
+    private static void addPiece(List<Piece> out, Plan.DayPlan base, long from, long to, Routine.Block b, long nowMs) {
+        int a = minute(base, from, nowMs);
+        int z = minute(base, to, nowMs);
         if (z <= a) return;
         out.add(new Piece(a, z, b));
     }
