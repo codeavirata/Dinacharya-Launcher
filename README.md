@@ -1148,6 +1148,13 @@ close the app: they are written down and that one job is skipped.
 
 ### Version notes
 
+**1.0, build 83: the slot card and the buttons on an alarm notification**
+- **Break and Finish did nothing on the Home card after "Change plan".** A slot changed while it runs is several parts with one number (the time before, the new plan, what is left). The card put a break on the first part (long over) and cut the first part when you finished or carried on, so after a change of plan the break never showed, and a finished slot kept running on the card while the app already counted the next one as begun. They now go to the part that is going on (`LivePlan.partAt`, `LivePlan.lastPartBefore`).
+- **The card was up to half a minute late.** The card draws whole minutes, to the nearest one, so a Break, Finish, Back to work, Start or Day off pressed in the second half of a minute was drawn from the next minute. Something that has already happened is never drawn later than the minute the card is in.
+- **The buttons were missing from the alarm notification on a new install.** Android 14 and later do not let the ringing service run until "Alarms & reminders" is allowed, so the alarm is shown as the backup notification. That one had no buttons. It now has the same ones as the ringing notification (`NoticeButtons`): **Start now** and **In 10 min** for a slot; **Back to work**, **+5 min** and **Stop** for a break that is over; **Stop** for the rest. Pressing one also removes the backup notification and its repeating sound.
+- **Left as it was:** alarms still come late (up to a few minutes) until "Alarms & reminders" is allowed, which Android decides, not the app. After "Adjust time" in a slot, a later "Change plan" in the same slot begins the new plan late by the minutes that were added.
+- Tests: `CardAtOnceTest`, `ChangedSlotCardTest`, `BreakEndTest`, `NoticeButtonsTest` (49 suites in all). Checked on an Android 14 emulator with exact alarms off and on.
+
 **1.0, build 82: Home always shows your day, also right after a Force stop**
 - **The cause.** From build 80 (and, after twenty seconds, before it) the home screen opened Android's own *Set wallpaper* preview half a second after it started whenever the live wallpaper was gone. After a Force stop the wallpaper is always gone, so pressing Home showed a system screen over the launcher, with the phone's default wallpaper behind it, and it looked as if the launcher had not come back.
 - **The fix.** The home screen never opens Android's preview by itself any more. It starts at once, paints your day itself while the wallpaper is gone (`WallpaperWatch`, `Keeper.lastEndWasForceStop`), and shows the button **Bring back your day wallpaper**.
