@@ -124,7 +124,11 @@ public final class LivePlan {
                 start[x] = t;
                 tagStart[x] = Routine.LIVE_EARLY;
             } else if (early) {
-                if (t >= planned || t < start[p] + MIN) continue;
+                if (t >= planned) continue;
+                // finished in the first minute of the slot: it still shows for that minute, and the next begins then (ignoring the answer would
+                // leave the next slot's own alarm silenced while nothing shows)
+                t = Math.max(t, start[p] + MIN);
+                if (t >= planned) continue;
                 end[p] = t;
                 start[x] = t;
                 tagEnd[p] = Routine.LIVE_CUT;

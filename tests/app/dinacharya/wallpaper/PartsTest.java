@@ -205,6 +205,12 @@ public class PartsTest {
         is("an early finish written without a part (an older version) cuts the slot and starts the next",
             liveRows(live(r, new Overrides(), old, at(16, 45)), 16, 19), "16:00-16:20 Walk & tea | 16:20-16:41 Revision#6 | 16:41-18:35 Evening walk#5* | 18:35-19:20 Dinner");
 
+        // a slot finished in its first minute still shows for that minute, then the next begins (the answer is not lost)
+        List<Ev> quick = new ArrayList<>(old.subList(0, 2));
+        quick.add(Ev.early(at(16, 20, 40), DAY, 13, 12, "Revision", at(16, 20, 40), at(17, 50)));
+        is("finished 40 seconds after it began: Revision shows for one minute, then Evening walk begins",
+            liveRows(live(r, new Overrides(), quick, at(16, 22)), 16, 19), "16:00-16:20 Walk & tea | 16:20-16:21 Revision#6 | 16:21-18:35 Evening walk#5* | 18:35-19:20 Dinner");
+
         // ---- what the home card offers
         List<Ev> early = new ArrayList<>(old.subList(0, 2));
         early.add(Ev.early(at(16, 41), DAY, 13, 12, "Revision", at(16, 41), at(17, 50)));
