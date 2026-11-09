@@ -532,14 +532,16 @@ final class SlotSheets {
 
     /**
      * "Change plan": replace the slot for today, carry the slot before on into it, or swap it with another one. {@code allowPrev} says
-     * whether the slot before can be carried on (not when this is a start that was put off).
+     * whether the slot before can be carried on (not when this is a start that was put off). {@code partStartMs}: when the part that is going on
+     * was planned to begin (0 when the slot is in one piece or not known).
      */
-    static void changePlan(final Activity a, final String day, final int src, final String title, boolean allowPrev, final ChangeHost host) {
+    static void changePlan(final Activity a, final String day, final int src, final String title, long partStartMs, boolean allowPrev, final ChangeHost host) {
         final Routine base = Store.load(a);
         final Overrides ov = Store.overrides(a, base);
         final LocalDate d = LocalDate.parse(day);
         Plan.DayPlan dp = Plan.plan(base, ov, d, Store.zone());
-        int mi = SlotPlay.indexOfSrc(dp, src);
+        // the part that is going on (a slot changed in the middle is several parts with one number): the slot before it is what can be carried on
+        int mi = partStartMs > 0 ? SlotPlay.indexOfPartStart(dp, src, partStartMs) : SlotPlay.indexOfSrc(dp, src);
         // the slot as a whole, first part to last (a slot changed earlier today is several parts with one number)
         long[] span = ReplaceFromNow.span(dp, src);
         final int slotMins = span != null ? Math.max(SlotPlay.STEP, (int) Math.round((span[1] - span[0]) / 60000.0))

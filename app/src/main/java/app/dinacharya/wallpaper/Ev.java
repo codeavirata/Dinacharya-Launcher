@@ -107,11 +107,51 @@ public final class Ev {
     }
 
     public static Ev early(long ts, String day, int src, int prevSrc, String prevTitle, long boundaryMs) {
-        return new Ev(ts, EARLY, day, src, String.valueOf(boundaryMs), String.valueOf(prevSrc), prevTitle);
+        return early(ts, day, src, prevSrc, prevTitle, boundaryMs, 0L);
+    }
+
+    /**
+     * {@code partPlannedMs}: when the part that begins was planned to begin. A slot changed in the middle is several parts with one number,
+     * and this says which of them it is (0 when not known).
+     */
+    public static Ev early(long ts, String day, int src, int prevSrc, String prevTitle, long boundaryMs, long partPlannedMs) {
+        return new Ev(ts, EARLY, day, src, String.valueOf(boundaryMs), withPart(prevSrc, partPlannedMs), prevTitle);
     }
 
     public static Ev skip(long ts, String day, int src, String title, int nextSrc, long boundaryMs) {
-        return new Ev(ts, SKIP, day, src, String.valueOf(boundaryMs), String.valueOf(nextSrc), title);
+        return skip(ts, day, src, title, nextSrc, boundaryMs, 0L);
+    }
+
+    /** {@code partPlannedMs}: when the part that begins instead was planned to begin (0 when not known). */
+    public static Ev skip(long ts, String day, int src, String title, int nextSrc, long boundaryMs, long partPlannedMs) {
+        return new Ev(ts, SKIP, day, src, String.valueOf(boundaryMs), withPart(nextSrc, partPlannedMs), title);
+    }
+
+    private static String withPart(int src, long partPlannedMs) {
+        return partPlannedMs > 0 ? src + "@" + partPlannedMs : String.valueOf(src);
+    }
+
+    /** The slot number in a field that names a slot, with or without the part's planned start after an '@'. */
+    public static int srcOf(String field, int dflt) {
+        if (field == null) return dflt;
+        int at = field.indexOf('@');
+        try {
+            return Integer.parseInt((at < 0 ? field : field.substring(0, at)).trim());
+        } catch (NumberFormatException e) {
+            return dflt;
+        }
+    }
+
+    /** The planned start (milliseconds) of the part written after the '@' of such a field, or 0 when there is none. */
+    public static long partOf(String field) {
+        if (field == null) return 0L;
+        int at = field.indexOf('@');
+        if (at < 0) return 0L;
+        try {
+            return Long.parseLong(field.substring(at + 1).trim());
+        } catch (NumberFormatException e) {
+            return 0L;
+        }
     }
 
     public static Ev woke(long ts, String day, int firstSrc, String firstTitle, long plannedStartMs, int minutesEarlier) {

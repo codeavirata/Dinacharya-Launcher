@@ -39,7 +39,8 @@ final class SlotActions {
             Routine base = Store.load(c);
             Overrides ov = Store.overrides(c, base);
             Plan.DayPlan p = Plan.plan(base, ov, LocalDate.parse(e.day), Store.zone());
-            int i = SlotPlay.indexOfSrc(p, e.src);
+            // the part that is starting: a slot changed in the middle is several parts, and the one before it is what goes on
+            int i = SlotPlay.indexOfPartStart(p, e.src, e.slotStartMs);
             int prev = i < 0 ? -1 : SlotPlay.previousIndex(p, i);
             if (prev < 0) return null;
             Routine.Block b = p.sc.slots.get(prev).block;
@@ -47,6 +48,20 @@ final class SlotActions {
         } catch (RuntimeException ex) {
             return null;
         }
+    }
+
+    /**
+     * The slot {@code src} has begun before its planned time, so its own alarm at that time stays quiet. A slot changed in the middle has an
+     * alarm for each part and only the one that began is meant: the check as the alarm rings (see {@link AlarmPlanner#begunEarly}) says which.
+     */
+    private static void markBegun(Context c, Routine base, AlarmState st, String day, int src) {
+        try {
+            Plan.DayPlan p = Plan.plan(base, Store.overrides(c, base), LocalDate.parse(day), Store.zone());
+            if (SlotPlay.partCount(p, src) > 1) return;
+        } catch (RuntimeException ignored) {
+            // an unreadable plan: mark the slot, as before
+        }
+        st.skipAlarm(day, src);
     }
 
     private static void finish(Context c) {
@@ -159,13 +174,24 @@ final class SlotActions {
      */
     static ReplaceFromNow.Placed changePart(Context c, String day, int src, String title, String newName, int mins, long slotStartMs, boolean endWait,
                                             int kind, String sub) {
+        return changePart(c, day, src, title, newName, mins, slotStartMs, endWait, kind, sub, 0L);
+    }
+
+    /**
+     * The same for a part that is going on ({@code partStartMs}: when the part was planned to begin, 0 when not known). A part that began early
+     * is changed as of its planned start, not as of now: the saved plan has the part before it running until then, so a plan that began at
+     * "now" would land on that part and leave this one as it was.
+     */
+    static ReplaceFromNow.Placed changePart(Context c, String day, int src, String title, String newName, int mins, long slotStartMs, boolean endWait,
+                                            int kind, String sub, long partStartMs) {
         Routine base = Store.load(c);
         Overrides ov = Store.overrides(c, base);
         LocalDate d = LocalDate.parse(day);
         long now = System.currentTimeMillis();
+        long ref = Math.max(now, partStartMs);
         long[] span = ReplaceFromNow.span(Plan.plan(base, ov, d, Store.zone()), src);
         // a slot that cannot be found in the plan keeps the old way: from its start, for as long as asked
-        ReplaceFromNow when = span != null ? ReplaceFromNow.of(span[0], span[1], now)
+        ReplaceFromNow when = span != null ? ReplaceFromNow.of(span[0], span[1], ref)
                 : ReplaceFromNow.of(slotStartMs, slotStartMs + Math.max(1, mins) * 60000L, slotStartMs);
         ReplaceFromNow.Placed placed = when.place(mins);
         Plan.editPart(base, ov, d, src, newName, placed.stored, kind, sub, when.lead);
@@ -197,21 +223,21 @@ final class SlotActions {
 
     /**
      * This slot and slot {@code other} change for today only: {@code places} trade places and times; otherwise they trade names, all of
-     * their time ({@code mins} 0) or only the first {@code mins} minutes of each.
+     * their time ({@code mins} 0) or only the first {@code mins} minutes of each. {@code partStartMs} says which part of this slot is going on
+     * (a slot changed in the middle is several parts): what was done before it stays.
      */
-    static void swapWith(Context c, String day, int src, String title, int other, String otherTitle, int otherMins, boolean places, int mins) {
+    static void swapWith(Context c, String day, int src, String title, long partStartMs, int other, String otherTitle, int otherMins, boolean places, int mins) {
         Routine base = Store.load(c);
         Overrides ov = Store.overrides(c, base);
         LocalDate d = LocalDate.parse(day);
-        if (places) {
-            Plan.swapPlaces(base, ov, d, src, other);
-        } else if (mins <= 0) {
-            Plan.edit(base, ov, d, src, false, otherTitle);
-            Plan.edit(base, ov, d, other, false, title);
-        } else {
-            Plan.editPart(base, ov, d, src, otherTitle, mins);
-            Plan.editPart(base, ov, d, other, title, Math.min(mins, Math.max(SlotPlay.STEP, otherMins - SlotPlay.STEP)));
+        int from = 0;
+        try {
+            Plan.DayPlan dp = Plan.plan(base, ov, d, Store.zone());
+            from = SlotPlay.minutesBefore(dp, SlotPlay.indexOfPartStart(dp, src, partStartMs));
+        } catch (RuntimeException ignored) {
+            // the whole slot, as before
         }
+        Plan.swap(base, ov, d, src, title, from, other, otherTitle, otherMins, places, mins);
         Store.saveOverrides(c, base, ov);
         Store.history(c).append(Ev.ack(System.currentTimeMillis(), day, src, title, "R", otherTitle));
         finish(c);
@@ -333,6 +359,7 @@ final class SlotActions {
             HistoryStore h = Store.history(c);
             h.append(Ev.ack(now, saved.day.toString(), o.srcNext, o.titleNext, "R", name.trim()));
             AlarmState st = Store.alarmState(c);
+            closeBreak(h, st, now);
             st.breakFrom = 0;
             st.breakTo = 0;
             st.againAt = 0;
@@ -347,6 +374,14 @@ final class SlotActions {
     }
 
     // ------------------------------------------------------------------ finishing early and the day off
+
+    /**
+     * A break that is going on ends now, because the slot it is in was finished: its end is written as now, so that it cannot come back when
+     * the slot is carried on later (the first end it had was in the future, and a longer slot would hold it again).
+     */
+    private static void closeBreak(HistoryStore h, AlarmState st, long now) {
+        if (st.onBreak(now)) h.append(Ev.breakTaken(st.breakFrom, now, st.breakDay, st.breakSrc, st.breakTitle));
+    }
 
     /** What to do with the next slot when the one going on is finished early. */
     static final int EARLY_NOW = 0, EARLY_AFTER = 1, EARLY_BREAK = 2;
@@ -387,12 +422,23 @@ final class SlotActions {
                 begin = Math.min(now + m * 60000L, Math.max(now, o.plannedEndMs - 60000L));
             }
             HistoryStore h = Store.history(c);
+            closeBreak(h, st, now);
             // a slot that was carried on ends now and the next begins now (the carry is cut short); any other slot is cut short
-            if (o.carried) h.append(Ev.extend(now, day, o.srcNext, o.srcCur, o.titleCur, now));
-            else h.append(Ev.early(now, day, o.srcNext, o.srcCur, o.titleCur, now));
+            if (o.carried) {
+                h.append(Ev.extend(now, day, o.srcNext, o.srcCur, o.titleCur, now));
+                // a late start that was put off until the carry was to end is over now too
+                for (Ev x : h.events()) {
+                    if (Ev.DELAY.equals(x.type) && x.day.equals(day) && x.src == o.srcNext && x.aLong(0) > now) {
+                        h.append(Ev.delay(now, day, o.srcNext, o.titleNext, now));
+                        break;
+                    }
+                }
+            } else {
+                h.append(Ev.early(now, day, o.srcNext, o.srcCur, o.titleCur, now, o.nextStartMs));
+            }
             h.append(Ev.ack(now, day, o.srcNext, o.titleNext, "C", ""));
             st.bindSkips(Plan.scheduleSignature(base));   // marks of an older schedule go first
-            st.skipAlarm(day, o.srcNext);   // it has begun, so its own alarm at the planned time stays quiet
+            markBegun(c, base, st, day, o.srcNext);   // it has begun, so its own alarm at the planned time stays quiet
             st.breakFrom = 0;
             st.breakTo = 0;
             st.againAt = 0;
@@ -475,13 +521,16 @@ final class SlotActions {
         /** When the next slot was to begin, and (for sleep) when it ends. */
         final long nextPlannedMs;
         final long nextEndMs;
+        /** Minutes from the start of the slot to the part that is skipped (0 for a slot in one piece): what was done before it stays. */
+        final int fromMin;
 
-        Skipped(int nextSrc, String nextTitle, boolean nextIsSleep, long nextPlannedMs, long nextEndMs) {
+        Skipped(int nextSrc, String nextTitle, boolean nextIsSleep, long nextPlannedMs, long nextEndMs, int fromMin) {
             this.nextSrc = nextSrc;
             this.nextTitle = nextTitle;
             this.nextIsSleep = nextIsSleep;
             this.nextPlannedMs = nextPlannedMs;
             this.nextEndMs = nextEndMs;
+            this.fromMin = fromMin;
         }
     }
 
@@ -500,12 +549,13 @@ final class SlotActions {
             if (e == null || e.day.isEmpty() || e.src < 0 || AlarmPlanner.isTest(e)) return null;
             Routine base = Store.load(c);
             Plan.DayPlan p = Plan.plan(base, Store.overrides(c, base), LocalDate.parse(e.day), Store.zone());
-            int i = SlotPlay.indexOfSrc(p, e.src);
+            // the part that is starting (a slot changed in the middle is several parts); what comes next is after the last of them
+            int i = SlotPlay.indexOfPartStart(p, e.src, e.slotStartMs);
             if (i < 0 || p.sc.slots.get(i).block.kind == Routine.SLEEP) return null;
-            int n = nextReal(p, i);
+            int n = nextReal(p, SlotPlay.lastIndexOfSrc(p, e.src));
             if (n < 0) return null;
             Routine.Block nb = p.sc.slots.get(n).block;
-            return new Skipped(nb.src, nb.title, nb.kind == Routine.SLEEP, p.slotStartMs(n), p.slotEndMs(n));
+            return new Skipped(nb.src, nb.title, nb.kind == Routine.SLEEP, p.slotStartMs(n), p.slotEndMs(n), SlotPlay.minutesBefore(p, i));
         } catch (RuntimeException ex) {
             return null;
         }
@@ -524,7 +574,7 @@ final class SlotActions {
             Routine base = Store.load(c);
             Overrides ov = Store.overrides(c, base);
             long now = System.currentTimeMillis();
-            Plan.edit(base, ov, LocalDate.parse(e.day), e.src, true, "");
+            Plan.skipFrom(base, ov, LocalDate.parse(e.day), e.src, sk.fromMin);   // from this part on: what was done before it stays
             Store.saveOverrides(c, base, ov);
             HistoryStore h = Store.history(c);
             h.append(Ev.ack(now, e.day, e.src, e.title, "S", ""));
@@ -534,10 +584,10 @@ final class SlotActions {
                 st.againWake = false;
             }
             if (!sk.nextIsSleep && now < sk.nextPlannedMs - 60000L) {
-                h.append(Ev.skip(now, e.day, e.src, e.title, sk.nextSrc, now));
+                h.append(Ev.skip(now, e.day, e.src, e.title, sk.nextSrc, now, sk.nextPlannedMs));
                 h.append(Ev.ack(now, e.day, sk.nextSrc, sk.nextTitle, "C", ""));
                 st.bindSkips(Plan.scheduleSignature(base));   // marks of an older schedule go first
-                st.skipAlarm(e.day, sk.nextSrc);   // it has begun, so its own alarm at the planned time stays quiet
+                markBegun(c, base, st, e.day, sk.nextSrc);   // it has begun, so its own alarm at the planned time stays quiet
                 st.breakFrom = 0;
                 st.breakTo = 0;
             }
@@ -567,13 +617,14 @@ final class SlotActions {
             EarlyFinish.Offer o = EarlyFinish.of(Store.livePlan(c, base, Plan.resolve(base, ov, now, Store.zone()), now), now);
             Routine.Block before = saved.sc.slots.get(si - 1).block;
             if (o != null && o.kind == EarlyFinish.SLEEP && o.srcNext == sleepSrc) {
-                h.append(Ev.early(now, day, sleepSrc, o.srcCur, o.titleCur, now));
+                h.append(Ev.early(now, day, sleepSrc, o.srcCur, o.titleCur, now, o.nextStartMs));
             } else if (before.skipped && before.src >= 0) {
-                h.append(Ev.skip(now, day, before.src, before.title, sleepSrc, now));
+                h.append(Ev.skip(now, day, before.src, before.title, sleepSrc, now, saved.slotStartMs(si)));
             }
             AlarmState st = Store.alarmState(c);
+            closeBreak(h, st, now);
             st.bindSkips(Plan.scheduleSignature(base));
-            st.skipAlarm(day, sb.src);
+            markBegun(c, base, st, day, sb.src);
             st.breakFrom = 0;
             st.breakTo = 0;
             st.againAt = 0;

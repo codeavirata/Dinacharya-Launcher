@@ -371,24 +371,56 @@ final class HomePage extends Page {
      * is the time before the change and still has the old name.
      */
     private static Routine.Block ownerBlock(Plan.DayPlan saved, Routine.Block b, int tt) {
-        int i = SlotPlay.indexOfPart(saved, b.slotSrc(), tt);
+        int i = partIndex(saved, b, tt);
         return i >= 0 ? saved.sc.slots.get(i).block : b;
     }
 
-    private static int slotStart(Plan.DayPlan saved, Routine.Block owner, int tt) {
-        int i = SlotPlay.indexOfPart(saved, owner.src, tt);
+    /**
+     * Index in the saved plan of the part the live row {@code b} belongs to. A live row knows the planned start of its part ({@code partMs}), which
+     * is exact even when the part began early or late; without it (a row that was not built from the saved plan) the minute decides.
+     */
+    private static int partIndex(Plan.DayPlan saved, Routine.Block b, int tt) {
+        if (b.partMs > 0L) return SlotPlay.indexOfPartStart(saved, b.slotSrc(), b.partMs);
+        return SlotPlay.indexOfPart(saved, b.slotSrc(), tt);
+    }
+
+    /**
+     * Whether the part before the one that is going on really ran: some of it is a work row of the live day, not only a wait or "No response"
+     * (a slot changed while the alarm was unanswered has its first part spent entirely waiting, and there is nothing of it to carry on).
+     */
+    private static boolean partBeforeRan(Plan.DayPlan saved, Plan.DayPlan live, Routine.Block b, int tt) {
+        int mi = partIndex(saved, b, tt);
+        int pi = mi < 0 ? -1 : SlotPlay.previousIndex(saved, mi);
+        if (pi < 0) return false;
+        int src = saved.sc.slots.get(pi).block.src;
+        long start = saved.slotStartMs(pi);
+        for (Routine.Slot s : live.sc.slots) {
+            Routine.Block r = s.block;
+            if (r.src == src && !r.skipped && (r.partMs <= 0L || Math.abs(r.partMs - start) < 60000L)) return true;
+        }
+        return false;
+    }
+
+    /** When the part of the saved plan that the live row belongs to was planned to begin (milliseconds), or 0 when not found. */
+    private static long partStartOf(Plan.DayPlan saved, Routine.Block b, int tt) {
+        int i = partIndex(saved, b, tt);
+        return i >= 0 ? saved.slotStartMs(i) : 0L;
+    }
+
+    private static int slotStart(Plan.DayPlan saved, Routine.Block b, int tt) {
+        int i = partIndex(saved, b, tt);
         return i >= 0 ? saved.sc.slots.get(i).start : 0;
     }
 
-    private static int slotEnd(Plan.DayPlan saved, Routine.Block owner, int tt) {
-        int i = SlotPlay.indexOfPart(saved, owner.src, tt);
+    private static int slotEnd(Plan.DayPlan saved, Routine.Block b, int tt) {
+        int i = partIndex(saved, b, tt);
         return i >= 0 ? saved.sc.slots.get(i).end : 0;
     }
 
     /** One line under the time when the slot began or ended other than planned: "Started late", "Carried on", "Started early". */
     private static String changeNote(Routine.Block b, Routine.Slot s, Plan.DayPlan saved, Routine.Block owner, int tt, boolean h24) {
-        int ps = slotStart(saved, owner, tt);
-        int pe = slotEnd(saved, owner, tt);
+        int ps = slotStart(saved, b, tt);
+        int pe = slotEnd(saved, b, tt);
         switch (b.live) {
             case Routine.LIVE_LATE:
                 return "Started late, at " + Routine.formatTime(s.start, h24) + " instead of " + Routine.formatTime(ps, h24);
@@ -447,10 +479,15 @@ final class HomePage extends Page {
                 chips.addView(Glass.chip(a, "Adjust time", v -> SlotSheets.adjustTime(a, this::afterChange)));
             }
             if (owner.src >= 0 && !owner.skipped && owner.kind != Routine.SLEEP) {
-                chips.addView(Glass.chip(a, "Change plan", v -> askNewName(saved.day.toString(), owner.src, owner.title, 0L, false)));
+                // the part that is going on; a slot that began early has no slot before it to carry on (it was finished on purpose, and its later
+                // rows after a break carry no "early" tag, so the part's planned start tells), and a slot that is itself carried on has none either
+                final long partStart = partStartOf(saved, b, saved.tt);
+                final boolean beganEarly = b.live == Routine.LIVE_EARLY || (b.partMs > 0L && p.slotStartMs(p.cur) < b.partMs);
+                final boolean allowPrev = !beganEarly && b.live != Routine.LIVE_CARRIED && partBeforeRan(saved, p, b, saved.tt);
+                chips.addView(Glass.chip(a, "Change plan", v -> askNewName(saved.day.toString(), owner.src, owner.title, 0L, partStart, allowPrev, false)));
             }
         }
-        final int sIdx = SlotPlay.indexOfPart(saved, b.slotSrc(), saved.tt);
+        final int sIdx = partIndex(saved, b, saved.tt);
         if (sIdx >= 0 && !saved.sc.slots.get(sIdx).block.skipped) {
             Routine.Block ob = saved.sc.slots.get(sIdx).block;
             Todos t = Store.todosFor(a, saved.day, blocksOf(saved));
@@ -474,7 +511,7 @@ final class HomePage extends Page {
      */
     private void addWaitChoices(LinearLayout card, final Plan.DayPlan saved, final Plan.DayPlan p) {
         Routine.Block w = p.sc.slots.get(p.cur).block;
-        final int oi = SlotPlay.indexOfPart(saved, w.slotSrc(), saved.tt);
+        final int oi = partIndex(saved, w, saved.tt);
         if (oi < 0) return;
         final Routine.Block ob = saved.sc.slots.get(oi).block;
         final String day = saved.day.toString();
@@ -496,7 +533,7 @@ final class HomePage extends Page {
         }
         card.addView(Glass.row(a, 10, mains.toArray(new View[0])), Ui.wide(a, 22));
         Glass.Flow chips = new Glass.Flow(a, 8);
-        chips.addView(Glass.chip(a, "Change plan", v -> askNewName(day, ob.src, ob.title, sStart, true)));
+        chips.addView(Glass.chip(a, "Change plan", v -> askNewName(day, ob.src, ob.title, sStart, sStart, true, true)));
         card.addView(chips, Ui.wide(a, 14));
     }
 
@@ -518,8 +555,8 @@ final class HomePage extends Page {
      * <b>now</b> (see {@link ReplaceFromNow}): the time before it stays a delayed start or "No response" and is not part of it. During a late start
      * ({@code endWait}) the wait ends now; on the slot that is running it changes only that slot. The slot keeps its type unless another is chosen.
      */
-    private void askNewName(final String day, final int src, final String title, final long sStart, final boolean endWait) {
-        SlotSheets.changePlan(a, day, src, title, true, new SlotSheets.ChangeHost() {
+    private void askNewName(final String day, final int src, final String title, final long sStart, final long partStart, boolean allowPrev, final boolean endWait) {
+        SlotSheets.changePlan(a, day, src, title, partStart, allowPrev, new SlotSheets.ChangeHost() {
             @Override
             public void unchanged() {
                 if (endWait) SlotActions.startWaitingNow(a, day, src, title);
@@ -528,7 +565,7 @@ final class HomePage extends Page {
 
             @Override
             public void replace(String n, int mins, int kind, String sub) {
-                ReplaceFromNow.Placed p = SlotActions.changePart(a, day, src, title, n, mins, sStart, endWait, kind, sub);
+                ReplaceFromNow.Placed p = SlotActions.changePart(a, day, src, title, n, mins, sStart, endWait, kind, sub, partStart);
                 a.toastText(SlotActions.placedText(a, n, p));
                 afterChange();
             }
@@ -537,7 +574,8 @@ final class HomePage extends Page {
             public void continuePrevious(SlotActions.Prev prev, int minutes) {
                 Routine base = a.routine();
                 Plan.DayPlan dp = Plan.plan(base, Store.overrides(a, base), java.time.LocalDate.parse(day), Store.zone());
-                int mi = SlotPlay.indexOfSrc(dp, src);
+                // the part that is going on, not the first part of the slot
+                int mi = partStart > 0 ? SlotPlay.indexOfPartStart(dp, src, partStart) : SlotPlay.indexOfSrc(dp, src);
                 long slotStart = mi < 0 ? sStart : dp.slotStartMs(mi);
                 long sEnd = mi < 0 ? sStart + 60 * 60000L : dp.slotEndMs(mi);
                 long until = SlotActions.continueFrom(a, day, src, title, slotStart, sEnd, prev, minutes, endWait);
@@ -547,7 +585,7 @@ final class HomePage extends Page {
 
             @Override
             public void swap(Routine.Block o, boolean places, boolean whole, int mins) {
-                SlotActions.swapWith(a, day, src, title, o.src, o.title, o.mins, places, whole ? 0 : mins);
+                SlotActions.swapWith(a, day, src, title, partStart, o.src, o.title, o.mins, places, whole ? 0 : mins);
                 a.toastText("Swapped with " + o.title);
                 afterChange();
             }

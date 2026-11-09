@@ -75,11 +75,7 @@ public final class SlotGaps {
     }
 
     private static int toInt(String s, int dflt) {
-        try {
-            return Integer.parseInt(s.trim());
-        } catch (NumberFormatException e) {
-            return dflt;
-        }
+        return Ev.srcOf(s, dflt);
     }
 
     /** The events of one kind for one slot of the day, the last one written for each start time (a break that ended early is written twice). */

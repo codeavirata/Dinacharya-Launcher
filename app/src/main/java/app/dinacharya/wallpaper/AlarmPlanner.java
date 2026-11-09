@@ -27,15 +27,12 @@ public final class AlarmPlanner {
         for (Ev e : events) {
             if (!day.equals(e.day)) continue;
             boolean early = Ev.EARLY.equals(e.type) && e.src == src;
-            boolean skip = false;
-            if (Ev.SKIP.equals(e.type)) {
-                try {
-                    skip = Integer.parseInt(e.b.trim()) == src;
-                } catch (NumberFormatException ignored) {
-                    skip = false;
-                }
-            }
-            if ((early || skip) && e.aLong(plannedMs) < plannedMs - 60000L) return true;
+            boolean skip = Ev.SKIP.equals(e.type) && Ev.srcOf(e.b, Integer.MIN_VALUE) == src;
+            if (!early && !skip) continue;
+            // a slot changed in the middle is several parts with one number: only the part that began is meant (older entries do not say which)
+            long part = Ev.partOf(e.b);
+            if (part > 0L && Math.abs(part - plannedMs) >= 60000L) continue;
+            if (e.aLong(plannedMs) < plannedMs - 60000L) return true;
         }
         return false;
     }

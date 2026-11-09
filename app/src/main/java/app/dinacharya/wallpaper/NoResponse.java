@@ -34,4 +34,32 @@ public final class NoResponse {
         if (answered != 0L) return answered - rang > GRACE_MS ? answered : 0L;
         return nowMs - rang > GRACE_MS ? PENDING : 0L;
     }
+
+    /**
+     * The same for one part of a slot that was changed in the middle: several parts share a number, and each has an alarm at its start. Only
+     * an alarm that rang from just before the part was to begin up to its planned end counts for it, and only an answer after that alarm
+     * and before the next part's alarm.
+     *
+     * @param nextFromMs when the next part of the same slot was to begin ({@link Long#MAX_VALUE} for the last one)
+     */
+    public static long untilPart(List<Ev> dayEvents, int src, long partFromMs, long partToMs, long nextFromMs, long nowMs) {
+        if (dayEvents == null || src < 0) return 0L;
+        long slack = 60000L;
+        long rang = 0L;
+        for (Ev e : dayEvents) {
+            if (e.src != src || e.ts > nowMs || !Ev.RANG.equals(e.type)) continue;
+            if (e.ts < partFromMs - slack || e.ts >= partToMs) continue;
+            if (rang == 0L || e.ts < rang) rang = e.ts;
+        }
+        if (rang == 0L) return 0L;
+        long answered = 0L;
+        long limit = nextFromMs == Long.MAX_VALUE ? Long.MAX_VALUE : nextFromMs - slack;
+        for (Ev e : dayEvents) {
+            if (e.src != src || e.ts > nowMs || !Ev.ACK.equals(e.type)) continue;
+            if (e.ts < rang || e.ts >= limit) continue;
+            if (answered == 0L || e.ts < answered) answered = e.ts;
+        }
+        if (answered != 0L) return answered - rang > GRACE_MS ? answered : 0L;
+        return nowMs - rang > GRACE_MS ? PENDING : 0L;
+    }
 }

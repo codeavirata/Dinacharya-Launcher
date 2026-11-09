@@ -75,6 +75,12 @@ public final class Routine {
         public int live = LIVE_NONE;
         /** For a break or waiting part made inside a slot: the number of that slot. Never saved. */
         public int owner = -1;
+        /**
+         * On the live day (see {@link LivePlan}): when the part of the saved plan this row belongs to was planned to begin (milliseconds), or 0.
+         * A slot changed in the middle is several parts with one number; this says which one a row (or a break inside it) is part of, even when
+         * the part began early or was carried on. Never saved.
+         */
+        public long partMs;
 
         public Block(int kind, String title, int mins) {
             this.kind = clampKind(kind);
@@ -97,6 +103,7 @@ public final class Routine {
             b.extended = extended;
             b.live = live;
             b.owner = owner;
+            b.partMs = partMs;
             return b;
         }
 

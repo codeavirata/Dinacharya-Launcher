@@ -483,7 +483,7 @@ public class AlarmActivity extends LangActivity {
      */
     private void startMissed(MissedInfo m, int minutes) {
         long now = System.currentTimeMillis();
-        Plan.editPart(base, ov, LocalDate.parse(ev.day), ev.src, m.title, minutes, m.kind, m.sub);
+        Plan.editPart(base, ov, LocalDate.parse(ev.day), ev.src, m.title, minutes, m.kind, m.sub, partFromMin());
         Store.saveOverrides(this, base, ov);
         log(Ev.ack(now, ev.day, ev.src, ev.title, "R", m.title));
         log(Ev.ack(now, ev.day, m.src, m.title, "R", m.title));
@@ -516,7 +516,7 @@ public class AlarmActivity extends LangActivity {
     /** "Change plan": replace the slot, carry the slot before on into it, or swap it with another one; or take it off for today. */
     private void askChange() {
         final LocalDate day = LocalDate.parse(ev.day);
-        SlotSheets.changePlan(this, ev.day, ev.src, ev.title, ev.kind == AlarmPlanner.SLOT, new SlotSheets.ChangeHost() {
+        SlotSheets.changePlan(this, ev.day, ev.src, ev.title, ev.slotStartMs, ev.kind == AlarmPlanner.SLOT, new SlotSheets.ChangeHost() {
             @Override
             public void unchanged() {
                 log(Ev.ack(System.currentTimeMillis(), ev.day, ev.src, ev.title, "C", ""));
@@ -538,15 +538,7 @@ public class AlarmActivity extends LangActivity {
 
             @Override
             public void swap(Routine.Block o, boolean places, boolean whole, int mins) {
-                if (places) {
-                    Plan.swapPlaces(base, ov, day, ev.src, o.src);
-                } else if (whole) {
-                    Plan.edit(base, ov, day, ev.src, false, o.title);
-                    Plan.edit(base, ov, day, o.src, false, ev.title);
-                } else {
-                    Plan.editPart(base, ov, day, ev.src, o.title, mins);
-                    Plan.editPart(base, ov, day, o.src, ev.title, Math.min(mins, Math.max(SlotPlay.STEP, o.mins - SlotPlay.STEP)));
-                }
+                Plan.swap(base, ov, day, ev.src, ev.title, partFromMin(), o.src, o.title, o.mins, places, whole ? 0 : mins);
                 Store.saveOverrides(AlarmActivity.this, base, ov);
                 log(Ev.ack(System.currentTimeMillis(), ev.day, ev.src, ev.title, "R", o.title));
                 done("Swapped with " + o.title);
@@ -1061,8 +1053,19 @@ public class AlarmActivity extends LangActivity {
     }
 
     private void applyEdit(boolean skip, String newName) {
-        Plan.edit(base, ov, LocalDate.parse(ev.day), ev.src, skip, newName);
+        if (skip) Plan.skipFrom(base, ov, LocalDate.parse(ev.day), ev.src, partFromMin());   // this part on; what was done before it stays
+        else Plan.edit(base, ov, LocalDate.parse(ev.day), ev.src, false, newName);
         Store.saveOverrides(this, base, ov);
+    }
+
+    /** Minutes from the start of the slot to the part this alarm is for (0 for a slot in one piece: a slot changed in the middle is several parts). */
+    private int partFromMin() {
+        try {
+            Plan.DayPlan dp = Plan.plan(base, ov, LocalDate.parse(ev.day), Store.zone());
+            return SlotPlay.minutesBefore(dp, SlotPlay.indexOfPartStart(dp, ev.src, ev.slotStartMs));
+        } catch (RuntimeException e) {
+            return 0;
+        }
     }
 
     // ------------------------------------------------------------------ bedtime

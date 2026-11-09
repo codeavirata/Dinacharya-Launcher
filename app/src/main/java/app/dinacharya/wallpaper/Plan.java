@@ -165,72 +165,7 @@ public final class Plan {
             shortenNight(blocks, wokeEarly);
             adjusted = true;
         }
-        if (ov != null) {
-            String key = day.toString();
-            for (Overrides.Edit e : ov.edits) {
-                if (!e.day.equals(key)) continue;
-                if (e.src < 0 || e.src >= base.blocks.size() || !base.blocks.get(e.src).title.equals(e.orig)) continue;
-                if (e.with >= 0 && e.name.isEmpty() && !e.skip) {
-                    int i1 = indexOfSrc(blocks, e.src);
-                    int i2 = indexOfSrc(blocks, e.with);
-                    if (i1 < 0 || i2 < 0 || i1 == i2) continue;
-                    Routine.Block x = blocks.get(i1);
-                    Routine.Block y = blocks.get(i2);
-                    blocks.set(i1, y);
-                    blocks.set(i2, x);
-                    x.changed = true;
-                    y.changed = true;
-                    x.origTitle = x.title;
-                    y.origTitle = y.title;
-                    adjusted = true;
-                    continue;
-                }
-                if ((e.mins > 0 || e.from > 0) && !e.skip) {
-                    int i = indexOfSrc(blocks, e.src);
-                    if (i < 0) continue;
-                    Routine.Block b = blocks.get(i);
-                    // a plan changed in the middle of the slot begins there: the minutes before stay the slot's own (always a minute is left of them)
-                    int lead = Math.min(e.from, Math.max(0, b.mins - 1));
-                    int room = b.mins - lead;
-                    int len = e.mins > 0 ? Math.min(e.mins, room) : room;
-                    if (!e.name.isEmpty() && (lead > 0 || e.mins < b.mins)) {
-                        Routine.Block first = b.copy();
-                        first.src = b.src;
-                        first.mins = len;
-                        first.changed = true;
-                        first.origTitle = b.title;
-                        first.title = e.name;
-                        if (e.kind >= 0 && e.kind < Routine.SLEEP) first.kind = e.kind;
-                        if (!e.sub.isEmpty()) first.sub = e.sub;
-                        Routine.Block before = lead > 0 ? b.copy() : null;
-                        if (before != null) {
-                            before.src = b.src;
-                            before.mins = lead;
-                            first.wake = false;   // the slot's own start (the wake-up alarm) is in the part before
-                        }
-                        b.mins = room - len;
-                        b.wake = false;
-                        int at = i;
-                        if (before != null) blocks.add(at++, before);
-                        blocks.add(at++, first);
-                        if (b.mins <= 0) blocks.remove(at);   // the new plan took all that was left
-                        adjusted = true;
-                        continue;
-                    }
-                }
-                for (Routine.Block b : blocks) {
-                    if (b.src != e.src) continue;
-                    b.changed = true;
-                    b.origTitle = b.title;
-                    if (e.skip) b.skipped = true;
-                    else if (!e.name.isEmpty()) b.title = e.name;
-                    if (!e.skip && e.kind >= 0 && e.kind < Routine.SLEEP && b.kind != Routine.SLEEP) b.kind = e.kind;
-                    if (!e.skip && !e.sub.isEmpty()) b.sub = e.sub;
-                    adjusted = true;
-                }
-            }
-        }
-        if (ov != null && !ov.steps.isEmpty() && applySteps(base, blocks, ov, day.toString())) adjusted = true;
+        if (ov != null && replay(base, blocks, ov, day.toString())) adjusted = true;
         Routine r = base.copyLook();
         r.mode = Routine.MODE_WAKE;
         r.anchor = Routine.mod(startAbs, 1440);
@@ -642,50 +577,220 @@ public final class Plan {
     }
 
     /**
-     * Applies the day's time moves and new activities ({@link Overrides.Step}) to the slots, in the order they were made. A step that no
-     * longer fits (a slot it names is gone, or it would leave a slot with no time) is left out. The day keeps its length.
+     * Applies the day's changes to the slots in the order they were made: renames, takings-off and trades ({@link Overrides.Edit}) and time
+     * moves and new activities ({@link Overrides.Step}), each seeing what the ones before it made. A change that no longer fits (a slot it
+     * names is gone, or it would leave a slot with no time) is left out. The day keeps its length. Changes saved before they were numbered
+     * come first, the edits and then the steps, as they always did.
      */
-    private static boolean applySteps(Routine base, List<Routine.Block> blocks, Overrides ov, String key) {
-        boolean any = false;
-        for (Overrides.Step t : ov.steps) {
-            if (!t.day.equals(key)) continue;
-            if (!sameSlot(base, t.src, t.orig) || !sameSlot(base, t.to, t.toOrig)) continue;
-            int i = indexOfPart(blocks, t.src, t.ord);
-            int j = indexOfPart(blocks, t.to, t.toOrd);
-            if (i < 0 || j < 0 || i == j) continue;
-            Routine.Block x = blocks.get(i);
-            Routine.Block y = blocks.get(j);
-            if (t.type == Overrides.MOVE) {
-                int d = t.mins;
-                if (d > 0) d = Math.min(d, y.mins - 1);
-                else d = -Math.min(-d, x.mins - 1);
-                if (d == 0) continue;
-                x.mins += d;
-                y.mins -= d;
-                any = true;
-            } else {
-                // the slot ends after t.mins; a new activity takes its place up to len; the slot after it keeps its own end
-                if (j != i + 1) continue;
-                int keep = Math.max(1, Math.min(t.mins, x.mins));
-                int freed = x.mins - keep;
-                int len = Math.min(Math.max(1, t.len), y.mins + freed - 1);
-                if (len < 1) continue;
-                Routine.Block n = y.copy();
-                n.src = y.src;
-                n.mins = len;
-                n.wake = false;
-                n.changed = true;
-                n.origTitle = y.title;
-                if (!t.name.isEmpty()) n.title = t.name;
-                if (t.kind >= 0 && t.kind < Routine.SLEEP && y.kind != Routine.SLEEP) n.kind = t.kind;
-                if (!t.sub.isEmpty()) n.sub = t.sub;
-                x.mins = keep;
-                y.mins = y.mins + freed - len;
-                blocks.add(j, n);
-                any = true;
+    private static boolean replay(Routine base, List<Routine.Block> blocks, Overrides ov, String key) {
+        List<Object> ops = new ArrayList<>();
+        for (Overrides.Edit e : ov.edits) if (e.day.equals(key)) ops.add(e);
+        for (Overrides.Step t : ov.steps) if (t.day.equals(key)) ops.add(t);
+        if (ops.isEmpty()) return false;
+        java.util.Collections.sort(ops, new java.util.Comparator<Object>() {
+            @Override
+            public int compare(Object x, Object y) {
+                int c = Integer.compare(seqOf(x), seqOf(y));
+                if (c != 0) return c;
+                return Boolean.compare(x instanceof Overrides.Step, y instanceof Overrides.Step);
             }
+        });
+        boolean any = false;
+        for (Object o : ops) {
+            if (o instanceof Overrides.Edit ? applyEdit(base, blocks, (Overrides.Edit) o) : applyStep(base, blocks, (Overrides.Step) o)) any = true;
         }
         return any;
+    }
+
+    private static int seqOf(Object o) {
+        return o instanceof Overrides.Edit ? ((Overrides.Edit) o).seq : ((Overrides.Step) o).seq;
+    }
+
+    /** What a change paints on the minutes it covers. */
+    private static final class Paint {
+        boolean skip;
+        String name = "";
+        int kind = -1;
+        String sub = "";
+        String orig = "";
+    }
+
+    private static boolean applyEdit(Routine base, List<Routine.Block> blocks, Overrides.Edit e) {
+        if (e.src < 0 || e.src >= base.blocks.size() || !base.blocks.get(e.src).title.equals(e.orig)) return false;
+        if (e.with >= 0 && e.name.isEmpty() && !e.skip) return swapRuns(blocks, e.src, e.with);
+        int first = indexOfSrc(blocks, e.src);
+        if (first < 0) return false;
+        int total = 0;
+        for (int k = first; k < blocks.size() && blocks.get(k).src == e.src; k++) total += blocks.get(k).mins;
+        Paint p = new Paint();
+        p.skip = e.skip;
+        p.name = e.name;
+        p.kind = e.kind;
+        p.sub = e.sub;
+        p.orig = e.orig;
+        // a plan changed in the middle of the slot begins there: the minutes before stay the slot's own (always a minute is left of them)
+        int lead = Math.min(e.from, Math.max(0, total - 1));
+        int room = total - lead;
+        int len = !e.skip && e.mins > 0 ? Math.min(e.mins, room) : room;
+        boolean named = !e.skip && !e.name.isEmpty();
+        if (!named && !e.skip) {
+            // nothing to rename: the type changes for the whole slot, as it always did
+            lead = 0;
+            len = total;
+        } else if (lead == 0 && len >= total) {
+            len = total;
+        }
+        paint(blocks, e.src, lead, len, p);
+        coalesce(blocks, e.src);
+        return true;
+    }
+
+    /** Paints minutes {@code from} to {@code from + len} of slot {@code src} (counted from the start of its first part), splitting a part where the paint begins or ends inside it. */
+    private static void paint(List<Routine.Block> blocks, int src, int from, int len, Paint p) {
+        int k = indexOfSrc(blocks, src);
+        if (k < 0) return;
+        int to = from + len;
+        int acc = 0;
+        while (k < blocks.size() && blocks.get(k).src == src) {
+            Routine.Block b = blocks.get(k);
+            int bs = acc;
+            int be = acc + b.mins;
+            acc = be;
+            int a = Math.max(bs, from);
+            int z = Math.min(be, to);
+            if (a >= z) {
+                k++;
+                continue;
+            }
+            if (a == bs && z == be) {
+                mark(b, p);
+                k++;
+                continue;
+            }
+            List<Routine.Block> pieces = new ArrayList<>();
+            if (a > bs) {
+                Routine.Block l = b.copy();
+                l.mins = a - bs;
+                pieces.add(l);
+            }
+            Routine.Block m = b.copy();
+            m.mins = z - a;
+            mark(m, p);
+            pieces.add(m);
+            if (z < be) {
+                Routine.Block r = b.copy();
+                r.mins = be - z;
+                pieces.add(r);
+            }
+            // the slot's own start (the wake-up alarm) stays with the piece that begins it
+            for (int q = 0; q < pieces.size(); q++) pieces.get(q).wake = q == 0 && b.wake;
+            blocks.remove(k);
+            blocks.addAll(k, pieces);
+            k += pieces.size();
+        }
+    }
+
+    private static void mark(Routine.Block b, Paint p) {
+        b.changed = true;
+        b.origTitle = p.orig;
+        if (p.skip) {
+            b.skipped = true;
+            return;
+        }
+        b.skipped = false;
+        if (!p.name.isEmpty()) b.title = p.name;
+        if (p.kind >= 0 && p.kind < Routine.SLEEP && b.kind != Routine.SLEEP) b.kind = p.kind;
+        if (!p.sub.isEmpty()) b.sub = p.sub;
+    }
+
+    /** Joins neighbouring parts of slot {@code src} that were changed to the same thing, so they are one part (and one alarm). */
+    private static void coalesce(List<Routine.Block> blocks, int src) {
+        int k = indexOfSrc(blocks, src);
+        if (k < 0) return;
+        while (k + 1 < blocks.size() && blocks.get(k).src == src && blocks.get(k + 1).src == src) {
+            Routine.Block a = blocks.get(k);
+            Routine.Block b = blocks.get(k + 1);
+            if (a.changed && b.changed && a.skipped == b.skipped && a.kind == b.kind && a.title.equals(b.title) && a.sub.equals(b.sub)) {
+                a.mins += b.mins;
+                blocks.remove(k + 1);
+            } else {
+                k++;
+            }
+        }
+    }
+
+    /** Slot {@code src} and slot {@code with} trade places for the day, every part of each. */
+    private static boolean swapRuns(List<Routine.Block> blocks, int src, int with) {
+        int a0 = indexOfSrc(blocks, src);
+        int b0 = indexOfSrc(blocks, with);
+        if (a0 < 0 || b0 < 0 || a0 == b0) return false;
+        int a1 = a0;
+        while (a1 + 1 < blocks.size() && blocks.get(a1 + 1).src == src) a1++;
+        int b1 = b0;
+        while (b1 + 1 < blocks.size() && blocks.get(b1 + 1).src == with) b1++;
+        List<Routine.Block> ra = new ArrayList<>(blocks.subList(a0, a1 + 1));
+        List<Routine.Block> rb = new ArrayList<>(blocks.subList(b0, b1 + 1));
+        for (Routine.Block x : ra) swapMark(x);
+        for (Routine.Block y : rb) swapMark(y);
+        List<Routine.Block> out = new ArrayList<>();
+        int lo = Math.min(a0, b0);
+        int hi = Math.max(a1, b1);
+        out.addAll(blocks.subList(0, lo));
+        if (a0 < b0) {
+            out.addAll(rb);
+            out.addAll(blocks.subList(a1 + 1, b0));
+            out.addAll(ra);
+        } else {
+            out.addAll(ra);
+            out.addAll(blocks.subList(b1 + 1, a0));
+            out.addAll(rb);
+        }
+        out.addAll(blocks.subList(hi + 1, blocks.size()));
+        blocks.clear();
+        blocks.addAll(out);
+        return true;
+    }
+
+    private static void swapMark(Routine.Block b) {
+        if (!b.changed) b.origTitle = b.title;
+        b.changed = true;
+    }
+
+    private static boolean applyStep(Routine base, List<Routine.Block> blocks, Overrides.Step t) {
+        if (!sameSlot(base, t.src, t.orig) || !sameSlot(base, t.to, t.toOrig)) return false;
+        int i = indexOfPart(blocks, t.src, t.ord);
+        int j = indexOfPart(blocks, t.to, t.toOrd);
+        if (i < 0 || j < 0 || i == j) return false;
+        Routine.Block x = blocks.get(i);
+        Routine.Block y = blocks.get(j);
+        if (t.type == Overrides.MOVE) {
+            int d = t.mins;
+            if (d > 0) d = Math.min(d, y.mins - 1);
+            else d = -Math.min(-d, x.mins - 1);
+            if (d == 0) return false;
+            x.mins += d;
+            y.mins -= d;
+            return true;
+        }
+        // the slot ends after t.mins; a new activity takes its place up to len; the slot after it keeps its own end
+        if (j != i + 1) return false;
+        int keep = Math.max(1, Math.min(t.mins, x.mins));
+        int freed = x.mins - keep;
+        int len = Math.min(Math.max(1, t.len), y.mins + freed - 1);
+        if (len < 1) return false;
+        Routine.Block n = y.copy();
+        n.src = y.src;
+        n.mins = len;
+        n.wake = false;
+        n.changed = true;
+        n.origTitle = y.title;
+        if (!t.name.isEmpty()) n.title = t.name;
+        if (t.kind >= 0 && t.kind < Routine.SLEEP && y.kind != Routine.SLEEP) n.kind = t.kind;
+        if (!t.sub.isEmpty()) n.sub = t.sub;
+        x.mins = keep;
+        y.mins = y.mins + freed - len;
+        blocks.add(j, n);
+        return true;
     }
 
     /** Which part of its slot the slot at {@code index} of {@code p} is: 0 for the first (or only) part. */
@@ -766,6 +871,35 @@ public final class Plan {
         if (src < 0 || src >= base.blocks.size()) return;
         ov.sig = signature(main);
         ov.setEdit(day, src, base.blocks.get(src).title, skip, newName);
+    }
+
+    /**
+     * Takes off, for this day, the part of slot {@code src} that begins {@code fromMin} minutes after the slot's start and everything after it
+     * (0 takes off the whole slot): what was done before stays.
+     */
+    public static void skipFrom(Routine main, Overrides ov, LocalDate day, int src, int fromMin) {
+        Routine base = main.forDay(day);
+        if (src < 0 || src >= base.blocks.size()) return;
+        ov.sig = signature(main);
+        ov.setSkipFrom(day, src, base.blocks.get(src).title, fromMin);
+    }
+
+    /**
+     * This slot and slot {@code other} trade for today: {@code places} trade places and times; otherwise they trade names, all of their time
+     * ({@code whole}) or only the first {@code mins} minutes of each. This slot is changed from {@code fromMin} minutes after its start (the
+     * part that is going on; what was done before it stays), the other one from its start.
+     */
+    public static void swap(Routine main, Overrides ov, LocalDate day, int src, String title, int fromMin, int other, String otherTitle, int otherMins,
+                            boolean places, int mins) {
+        if (places) {
+            swapPlaces(main, ov, day, src, other);
+        } else if (mins <= 0) {
+            editPart(main, ov, day, src, otherTitle, 0, -1, "", fromMin);
+            edit(main, ov, day, other, false, title);
+        } else {
+            editPart(main, ov, day, src, otherTitle, mins, -1, "", fromMin);
+            editPart(main, ov, day, other, title, Math.min(mins, Math.max(SlotPlay.STEP, otherMins - SlotPlay.STEP)));
+        }
     }
 
     /** Saves the choice. Normal wake-up means no change. */

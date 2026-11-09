@@ -85,6 +85,43 @@ public final class SlotPlay {
         return lastBefore >= 0 ? lastBefore : first;
     }
 
+    /**
+     * Index of the part of slot {@code src} that was planned to begin at {@code startMs} (the alarm of a part says when it was to begin). When
+     * none begins then, the last part that began before it, else the first part; a slot in one piece has only that one.
+     */
+    public static int indexOfPartStart(Plan.DayPlan p, int src, long startMs) {
+        int first = -1;
+        int lastBefore = -1;
+        for (int i = 0; i < p.sc.slots.size(); i++) {
+            if (p.sc.slots.get(i).block.src != src) continue;
+            if (first < 0) first = i;
+            long s = p.slotStartMs(i);
+            if (Math.abs(s - startMs) < MIN) return i;
+            if (s <= startMs) lastBefore = i;
+        }
+        return lastBefore >= 0 ? lastBefore : first;
+    }
+
+    /** Index of the last part of slot {@code src} in the day's plan, or -1. */
+    public static int lastIndexOfSrc(Plan.DayPlan p, int src) {
+        for (int i = p.sc.slots.size() - 1; i >= 0; i--) if (p.sc.slots.get(i).block.src == src) return i;
+        return -1;
+    }
+
+    /** Whole minutes from the start of the slot (its first part) to the start of the part at {@code index}: 0 for the first part. */
+    public static int minutesBefore(Plan.DayPlan p, int index) {
+        if (index < 0 || index >= p.sc.slots.size()) return 0;
+        int first = indexOfSrc(p, p.sc.slots.get(index).block.src);
+        return first < 0 ? 0 : Math.max(0, p.sc.slots.get(index).start - p.sc.slots.get(first).start);
+    }
+
+    /** How many parts slot {@code src} has in the day's plan (1 for a slot that was not changed in the middle). */
+    public static int partCount(Plan.DayPlan p, int src) {
+        int n = 0;
+        for (Routine.Slot s : p.sc.slots) if (s.block.src == src) n++;
+        return n;
+    }
+
     /** Whether a break can be taken in this slot now: a slot of the plan is running and it is not sleep and not taken off. */
     public static boolean canBreak(Plan.DayPlan p) {
         if (p.cur < 0 || p.cur >= p.sc.slots.size()) return false;

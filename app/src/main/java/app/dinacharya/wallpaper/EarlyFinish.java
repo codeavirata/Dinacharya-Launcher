@@ -43,6 +43,8 @@ public final class EarlyFinish {
         public final String titleNext;
         /** When the slot was to end, which is when the next one was to begin (milliseconds). */
         public final long plannedEndMs;
+        /** When the next slot (the part of it that begins) was planned to begin. */
+        public final long nextStartMs;
         /** When the next slot ends. */
         public final long nextEndMs;
         /** Whole minutes from now until the planned end. */
@@ -51,8 +53,14 @@ public final class EarlyFinish {
         public final int kindNext;
         public final int nextMins;
         public final boolean adjacent;
+        /**
+         * True when the slot going on began before its planned time (the one before it was finished early). The saved plan still has that
+         * slot starting later, so answers that rewrite the saved plan from "now" (a new activity in its place) cannot be placed.
+         */
+        public final boolean beganEarly;
 
-        Offer(int kind, boolean curIsSleep, boolean carried, String day, int cur, int next, Routine.Block a, Routine.Block b, long plannedEndMs, long nextEndMs, int roomMin) {
+        Offer(int kind, boolean curIsSleep, boolean carried, String day, int cur, int next, Routine.Block a, Routine.Block b, long plannedEndMs, long nextStartMs,
+              long nextEndMs, int roomMin, boolean beganEarly) {
             this.kind = kind;
             this.carried = carried;
             this.day = day;
@@ -64,11 +72,13 @@ public final class EarlyFinish {
             this.titleCur = a.title;
             this.titleNext = b.title;
             this.plannedEndMs = plannedEndMs;
+            this.nextStartMs = nextStartMs;
             this.nextEndMs = nextEndMs;
             this.roomMin = roomMin;
             this.kindNext = b.kind;
             this.nextMins = b.mins;
             this.adjacent = next == cur + 1;
+            this.beganEarly = beganEarly;
         }
 
         /**
@@ -110,11 +120,29 @@ public final class EarlyFinish {
         int n = live.sc.slots.size();
         int cur = live.cur;
         Routine.Block a = live.sc.slots.get(cur).block;
-        // On a break inside the slot: finishing the slot ends the break too, so look at the part of the slot that comes after the break.
+        int last = cur;   // the last row of the part that is going on (a break can run to the end of it)
+        // On a break inside the slot: finishing the slot ends the break too. The part the break is in is found by the part it belongs to (a slot
+        // changed in the middle is several parts with one number): its work is the row after the break or, when the break runs to the part's end,
+        // the row before it.
         if (a.src < 0 && a.live == Routine.LIVE_BREAK && a.owner >= 0) {
-            int k = cur + 1;
-            while (k < n && live.sc.slots.get(k).block.src != a.owner) k++;
-            if (k >= n) return null;
+            int k = -1;
+            for (int q = cur + 1; q < n; q++) {
+                Routine.Block rb = live.sc.slots.get(q).block;
+                if (rb.slotSrc() != a.owner || (a.partMs > 0L && rb.partMs != a.partMs)) break;
+                last = q;
+                if (rb.src >= 0 && k < 0) k = q;
+            }
+            if (k < 0) {
+                for (int q = cur - 1; q >= 0; q--) {
+                    Routine.Block rb = live.sc.slots.get(q).block;
+                    if (rb.slotSrc() != a.owner || (a.partMs > 0L && rb.partMs != a.partMs)) break;
+                    if (rb.src >= 0) {
+                        k = q;
+                        break;
+                    }
+                }
+            }
+            if (k < 0) return null;
             cur = k;
             a = live.sc.slots.get(k).block;
         }
@@ -123,17 +151,20 @@ public final class EarlyFinish {
         boolean aSleep = a.kind == Routine.SLEEP;
         if (carried && aSleep) return null;
         // the next slot of the plan; ones that were taken off are passed over
-        int j = cur + 1;
+        int j = last + 1;
         while (j < n && live.sc.slots.get(j).block.skipped && live.sc.slots.get(j).block.src >= 0) j++;
         if (j >= n) return aSleep ? wake(live, nextDay, cur, a, nowMs) : null;
         Routine.Block b = live.sc.slots.get(j).block;
         if (b.src < 0 || b.skipped || b.live == Routine.LIVE_BREAK || b.live == Routine.LIVE_WAIT) return null;
-        if (carried && (j != cur + 1 || b.kind == Routine.SLEEP)) return null;   // a carried slot only hands over to the slot right after it
-        long end = live.slotEndMs(cur);
+        // the row of a slot that was carried on carries no tag when a break sits at its end: the slot after it, which began late, tells
+        if (!carried && b.live == Routine.LIVE_LATE && j == last + 1 && !aSleep) carried = true;
+        if (carried && (j != last + 1 || b.kind == Routine.SLEEP)) return null;   // a carried slot only hands over to the slot right after it
+        long end = live.slotEndMs(last);
         int room = (int) ((end - nowMs) / 60000L);
         if (room < MIN_ROOM) return null;
         int kind = b.kind == Routine.SLEEP && !aSleep ? SLEEP : FINISH;
-        return new Offer(kind, aSleep, carried, live.day.toString(), cur, j, a, b, end, live.slotEndMs(j), room);
+        return new Offer(kind, aSleep, carried, live.day.toString(), cur, j, a, b, end, live.slotStartMs(j), live.slotEndMs(j), room,
+                a.partMs > 0L && nowMs < a.partMs);
     }
 
     private static Offer wake(Plan.DayPlan live, Plan.DayPlan nextDay, int cur, Routine.Block a, long nowMs) {
@@ -143,7 +174,7 @@ public final class EarlyFinish {
         long start = nextDay.startMs;
         int room = (int) ((start - nowMs) / 60000L);
         if (room < MIN_WAKE_ROOM || room > Plan.MAX_SHIFT) return null;
-        return new Offer(WAKE, true, false, live.day.toString(), cur, 0, a, b, start, nextDay.slotEndMs(0), room);
+        return new Offer(WAKE, true, false, live.day.toString(), cur, 0, a, b, start, start, nextDay.slotEndMs(0), room, false);
     }
 
     /**

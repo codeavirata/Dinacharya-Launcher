@@ -54,6 +54,11 @@ public final class Overrides {
          * the slot's own, so a plan changed in the middle of a slot starts when it was changed (see {@link ReplaceFromNow}).
          */
         public final int from;
+        /**
+         * The order the changes of the day were made in (1, 2, 3...; 0 for one saved before changes were numbered). The day is rebuilt by
+         * replaying its edits and steps in this order, so a change that was made after another one sees what the other one made.
+         */
+        public final int seq;
 
         Edit(String day, int src, String orig, boolean skip, String name) {
             this(day, src, orig, skip, name, 0, -1, -1, "");
@@ -68,6 +73,11 @@ public final class Overrides {
         }
 
         Edit(String day, int src, String orig, boolean skip, String name, int mins, int with, int kind, String sub, int from) {
+            this(day, src, orig, skip, name, mins, with, kind, sub, from, 0);
+        }
+
+        Edit(String day, int src, String orig, boolean skip, String name, int mins, int with, int kind, String sub, int from, int seq) {
+            this.seq = Math.max(0, seq);
             this.from = Math.max(0, from);
             this.kind = kind;
             this.sub = sub == null ? "" : sub;
@@ -108,8 +118,15 @@ public final class Overrides {
         public final int kind;
         public final String sub;
         public final int len;
+        /** The order the changes of the day were made in (see {@link Edit#seq}). */
+        public final int seq;
 
         Step(int type, String day, int src, int ord, String orig, int to, int toOrd, String toOrig, int mins, String name, int kind, String sub, int len) {
+            this(type, day, src, ord, orig, to, toOrd, toOrig, mins, name, kind, sub, len, 0);
+        }
+
+        Step(int type, String day, int src, int ord, String orig, int to, int toOrd, String toOrig, int mins, String name, int kind, String sub, int len, int seq) {
+            this.seq = Math.max(0, seq);
             this.type = type;
             this.day = day;
             this.src = src;
@@ -155,14 +172,48 @@ public final class Overrides {
         else shifts.put(d.toString(), new Shift(type, Math.min(mins, 720)));
     }
 
-    /** Sets the change for one slot of one day. A second change to the same slot replaces the first. */
-    public void setEdit(LocalDate d, int src, String orig, boolean skip, String name) {
-        String key = d.toString();
+    /** The number the next change of the day will get: one more than the highest so far (see {@link Edit#seq}). */
+    private int nextSeq() {
+        int m = 0;
+        for (Edit e : edits) m = Math.max(m, e.seq);
+        for (Step t : steps) m = Math.max(m, t.seq);
+        return m + 1;
+    }
+
+    /** True when a change of this day was made after the one numbered {@code seq}. */
+    private boolean changedSince(String key, int seq) {
+        for (Edit e : edits) if (e.day.equals(key) && e.seq > seq) return true;
+        for (Step t : steps) if (t.day.equals(key) && t.seq > seq) return true;
+        return false;
+    }
+
+    private void dropEditsOf(String key, int src, int other) {
         for (int i = edits.size() - 1; i >= 0; i--) {
             Edit e = edits.get(i);
-            if (e.day.equals(key) && e.src == src) edits.remove(i);
+            if (e.day.equals(key) && (e.src == src || e.src == other)) edits.remove(i);
         }
-        edits.add(new Edit(key, src, Routine.clean(orig), skip, Routine.clean(name == null ? "" : name)));
+    }
+
+    /**
+     * Sets the change for the whole of one slot of one day (a name, or taking it off). It covers everything an earlier change to the same
+     * slot made, so it replaces them.
+     */
+    public void setEdit(LocalDate d, int src, String orig, boolean skip, String name) {
+        String key = d.toString();
+        dropEditsOf(key, src, -1);
+        edits.add(new Edit(key, src, Routine.clean(orig), skip, Routine.clean(name == null ? "" : name), 0, -1, -1, "", 0, nextSeq()));
+    }
+
+    /**
+     * Takes off the part of a slot that begins {@code from} minutes after the slot's start, and everything after it: what was done before
+     * stays. 0 takes off the whole slot (see {@link #setEdit}).
+     */
+    public void setSkipFrom(LocalDate d, int src, String orig, int from) {
+        if (from <= 0) {
+            setEdit(d, src, orig, true, "");
+            return;
+        }
+        edits.add(new Edit(d.toString(), src, Routine.clean(orig), true, "", 0, -1, -1, "", from, nextSeq()));
     }
 
     /** Renames only the first {@code mins} minutes of a slot for one day; the rest of the slot stays as saved. */
@@ -175,24 +226,22 @@ public final class Overrides {
         setPartial(d, src, orig, name, mins, kind, sub, 0);
     }
 
-    /** The same, beginning {@code from} minutes after the slot's start (the minutes before stay the slot's own). */
+    /**
+     * The same, beginning {@code from} minutes after the slot's start (the minutes before stay the slot's own). A change adds to what
+     * earlier changes to the slot made and takes over only the minutes it covers, so an earlier one is not lost; one that covers the
+     * whole slot replaces them.
+     */
     public void setPartial(LocalDate d, int src, String orig, String name, int mins, int kind, String sub, int from) {
         String key = d.toString();
-        for (int i = edits.size() - 1; i >= 0; i--) {
-            Edit e = edits.get(i);
-            if (e.day.equals(key) && e.src == src) edits.remove(i);
-        }
-        edits.add(new Edit(key, src, Routine.clean(orig), false, Routine.clean(name == null ? "" : name), mins, -1, kind, Routine.clean(sub == null ? "" : sub), from));
+        if (from <= 0 && mins <= 0) dropEditsOf(key, src, -1);
+        edits.add(new Edit(key, src, Routine.clean(orig), false, Routine.clean(name == null ? "" : name), mins, -1, kind, Routine.clean(sub == null ? "" : sub), from, nextSeq()));
     }
 
     /** Makes this slot and slot {@code other} trade places for one day. */
     public void setSwap(LocalDate d, int src, String orig, int other) {
         String key = d.toString();
-        for (int i = edits.size() - 1; i >= 0; i--) {
-            Edit e = edits.get(i);
-            if (e.day.equals(key) && (e.src == src || e.src == other)) edits.remove(i);
-        }
-        edits.add(new Edit(key, src, Routine.clean(orig), false, "", 0, other));
+        dropEditsOf(key, src, other);
+        edits.add(new Edit(key, src, Routine.clean(orig), false, "", 0, other, -1, "", 0, nextSeq()));
     }
 
     /**
@@ -204,13 +253,14 @@ public final class Overrides {
         String key = d.toString();
         for (int i = steps.size() - 1; i >= 0; i--) {
             Step t = steps.get(i);
-            if (t.type == MOVE && t.day.equals(key) && t.src == src && t.ord == ord && t.to == to && t.toOrd == toOrd) {
+            // joined only when nothing was changed since: a move that came before another change must stay before it
+            if (t.type == MOVE && t.day.equals(key) && t.src == src && t.ord == ord && t.to == to && t.toOrd == toOrd && !changedSince(key, t.seq)) {
                 steps.remove(i);
                 mins += t.mins;
                 break;
             }
         }
-        if (mins != 0) steps.add(new Step(MOVE, key, src, ord, Routine.clean(orig), to, toOrd, Routine.clean(toOrig), mins, "", -1, "", 0));
+        if (mins != 0) steps.add(new Step(MOVE, key, src, ord, Routine.clean(orig), to, toOrd, Routine.clean(toOrig), mins, "", -1, "", 0, nextSeq()));
     }
 
     /**
@@ -220,7 +270,7 @@ public final class Overrides {
     public void addFresh(LocalDate d, int src, int ord, String orig, int keep, int before, int beforeOrd, String beforeOrig, String name,
                          int kind, String sub, int len) {
         steps.add(new Step(FRESH, d.toString(), src, ord, Routine.clean(orig), before, beforeOrd, Routine.clean(beforeOrig), keep,
-                Routine.clean(name == null ? "" : name), kind, Routine.clean(sub == null ? "" : sub), len));
+                Routine.clean(name == null ? "" : name), kind, Routine.clean(sub == null ? "" : sub), len, nextSeq()));
     }
 
     public boolean isEmpty() {
@@ -276,14 +326,17 @@ public final class Overrides {
         for (Edit e : edits) {
             sb.append("E\t").append(e.day).append('\t').append(e.src).append('\t').append(e.skip ? 1 : 0).append('\t')
                     .append(e.orig).append('\t').append(e.name).append('\t').append(e.mins).append('\t').append(e.with).append('\t').append(e.kind).append('\t').append(e.sub);
-            if (e.from > 0) sb.append('\t').append(e.from);   // only when there is one, so an older app still reads every other line as before
+            if (e.from > 0 || e.seq > 0) sb.append('\t').append(e.from);   // only when there is one, so an older app still reads every other line as before
+            if (e.seq > 0) sb.append('\t').append(e.seq);
             sb.append('\n');
         }
         for (Step t : steps) {
             sb.append(t.type == FRESH ? "N\t" : "M\t").append(t.day).append('\t').append(t.src).append('\t').append(t.ord).append('\t')
                     .append(t.orig).append('\t').append(t.to).append('\t').append(t.toOrd).append('\t').append(t.toOrig).append('\t')
                     .append(t.mins).append('\t').append(t.name).append('\t').append(t.kind).append('\t').append(t.sub).append('\t')
-                    .append(t.len).append('\n');
+                    .append(t.len);
+            if (t.seq > 0) sb.append('\t').append(t.seq);
+            sb.append('\n');
         }
         return sb.toString();
     }
@@ -309,27 +362,34 @@ public final class Overrides {
                     int m = Integer.parseInt(p[2].trim());
                     if (m > 0) o.wakes.put(p[1], Math.min(m, 720));
                 } else if (ln.startsWith("M\t") || ln.startsWith("N\t")) {
-                    String[] p = ln.split("\t", 13);
+                    String[] p = ln.split("\t", 14);
                     LocalDate.parse(p[1]);
+                    int ps = 0;
+                    try {
+                        if (p.length > 13) ps = Integer.parseInt(p[13].trim());
+                    } catch (NumberFormatException ignored) {
+                    }
                     o.steps.add(new Step(ln.charAt(0) == 'N' ? FRESH : MOVE, p[1], Integer.parseInt(p[2].trim()), Integer.parseInt(p[3].trim()),
                             p[4], Integer.parseInt(p[5].trim()), Integer.parseInt(p[6].trim()), p[7], Integer.parseInt(p[8].trim()),
-                            p[9], Integer.parseInt(p[10].trim()), p[11], p.length > 12 ? Integer.parseInt(p[12].trim()) : 0));
+                            p[9], Integer.parseInt(p[10].trim()), p[11], p.length > 12 ? Integer.parseInt(p[12].trim()) : 0, ps));
                 } else if (ln.startsWith("E\t")) {
-                    String[] p = ln.split("\t", 11);
+                    String[] p = ln.split("\t", 12);
                     LocalDate.parse(p[1]);
                     int pm = 0;
                     int pw = -1;
                     int pk = -1;
                     int pf = 0;
+                    int pq = 0;
                     try {
                         if (p.length > 6) pm = Integer.parseInt(p[6].trim());
                         if (p.length > 7) pw = Integer.parseInt(p[7].trim());
                         if (p.length > 8) pk = Integer.parseInt(p[8].trim());
                         if (p.length > 10) pf = Integer.parseInt(p[10].trim());
+                        if (p.length > 11) pq = Integer.parseInt(p[11].trim());
                     } catch (NumberFormatException ignored) {
                     }
                     o.edits.add(new Edit(p[1], Integer.parseInt(p[2].trim()), p[4], p[3].trim().equals("1"),
-                            p.length > 5 ? p[5] : "", pm, pw, pk, p.length > 9 ? p[9] : "", pf));
+                            p.length > 5 ? p[5] : "", pm, pw, pk, p.length > 9 ? p[9] : "", pf, pq));
                 }
             } catch (RuntimeException ignored) {
                 // skip a damaged line

@@ -6,6 +6,7 @@ package app.dinacharya.wallpaper;
  * <ul>
  *   <li>more than 30 minutes left and the next slot is not a rest: Rest, Start next, New activity;</li>
  *   <li>more than 30 minutes left and the next slot is a rest: Rest, Start next;</li>
+ *   <li>(a slot that began early gets no "New activity" either);</li>
  *   <li>30 minutes or less left (or the slot has nothing to hand over, or the next is sleep): only a confirm, so an accidental tap can be
  *       taken back.</li>
  * </ul>
@@ -36,7 +37,8 @@ public final class FinishChoices {
         if (o.kind != EarlyFinish.FINISH || o.curIsSleep || o.carried) return new FinishChoices(false, true, false);
         if (o.roomMin <= MIN_LEFT) return new FinishChoices(false, true, false);
         boolean nextIsRest = o.kindNext == Routine.REST;
-        return new FinishChoices(o.canWait(), true, !nextIsRest && o.adjacent && maxFromNext(o, 0) >= 0 && fitsAny(o));
+        // a slot that began early cannot be given a new activity: the saved plan has it starting later, so the new activity could not be placed
+        return new FinishChoices(o.canWait(), true, !nextIsRest && !o.beganEarly && o.adjacent && maxFromNext(o, 0) >= 0 && fitsAny(o));
     }
 
     /** Whether some length of a new activity can be had at all (the longest, with everything the next slot can give, reaches the smallest limit). */
