@@ -1148,6 +1148,12 @@ close the app: they are written down and that one job is skipped.
 
 ### Version notes
 
+**1.0, build 85: rate on Google Play, and Light, Dark or System default for everyone**
+- **App colours for everyone.** Settings > App colours now offers three looks, all free: **Dark** (Graphite & Amber), **Light** (White & Black, until now part of Pro) and **System default**, which follows the phone's own dark mode and changes with it. The choice is kept across restarts, as before, and each tile is a small preview of the look. The wallpaper keeps its own Light, Night and Auto look (`Ui.COLOURS_SYSTEM`, `Ui.phoneNight`).
+- **Rate on Google Play.** Settings > Support has **Rate Dinacharya**, and About has a button, both opening the app's page in the Play Store app (or on the web when it is not there). Home shows a small card offering the same, only after the app has been used on 5 different days and a week has passed since the first; **Not now** puts it away for two weeks, a second **Not now** or a rating puts it away for good. The card asks nothing about whether the person likes the app, as Google Play's rules require (`RatePrompt`, `RateApp`).
+- Translated into Hindi, Marathi, Gujarati, Bengali, Tamil and Telugu.
+- Tests: `RateTest` (51 suites in all).
+
 **1.0, build 84: a slot you changed in the middle, answered on the right part**
 - **The cause.** A slot you change while it runs ("Change plan") is several parts with one number: the time before, the new plan, and what is left. Several answers looked up "the slot" by its number alone, so they landed on the first part (long over) or on the whole slot, and a second change wiped out the first.
 - **The alarm at the rest of a changed slot** (the 11:30 question of a slot changed at 10:00, say). **Continue** now carries on the replaced task, not the slot before. **Rest first** shows the wait on the rest, not as a late start of the earlier part. **Skip** takes off only the rest, and the next slot begins. **Change plan** again keeps the first change. **Swap** keeps what was done before. An alarm for a later part that nobody answers shows **No response** (`LivePlan`, `NoResponse.untilPart`, `Ev` answers now name the part: `src@plannedStart`; older ones read as before).

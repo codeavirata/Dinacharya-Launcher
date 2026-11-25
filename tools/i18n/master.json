@@ -16636,5 +16636,117 @@
 "src": [
 "added"
 ]
+},
+{
+"id": 5882,
+"en": "Google Play",
+"src": [
+"added"
+]
+},
+{
+"id": 5883,
+"en": "Rate Dinacharya",
+"src": [
+"added"
+]
+},
+{
+"id": 5884,
+"en": "A rating on Google Play helps other people find the app. It takes a few seconds.",
+"src": [
+"added"
+]
+},
+{
+"id": 5885,
+"en": "Rate on Google Play",
+"src": [
+"added"
+]
+},
+{
+"id": 5886,
+"en": "Google Play could not be opened on this phone",
+"src": [
+"added"
+]
+},
+{
+"id": 5887,
+"en": "Choose how the whole app looks: Dark, glass with warm amber; Light, white with black; or System default, which follows your phone's dark mode. All three are free. The wallpaper keeps its own Light, Night and Auto look. Set it up: Settings > App colours.",
+"src": [
+"added"
+]
+},
+{
+"id": 5888,
+"en": "Give it a rating on Google Play",
+"src": [
+"added"
+]
+},
+{
+"id": 5889,
+"en": "System default",
+"src": [
+"added"
+]
+},
+{
+"id": 5890,
+"en": "Follows your phone",
+"src": [
+"added"
+]
+},
+{
+"id": 5891,
+"en": "System default follows your phone's dark mode.",
+"src": [
+"added"
+]
+},
+{
+"id": 5892,
+"en": "All three are free.",
+"src": [
+"added"
+]
+},
+{
+"id": 5893,
+"en": "rate_prompt",
+"src": [
+"added"
+]
+},
+{
+"id": 5894,
+"en": "DINARATE1",
+"src": [
+"added"
+]
+},
+{
+"id": 5895,
+"en": "last",
+"src": [
+"added"
+]
+},
+{
+"id": 5896,
+"en": "done",
+"src": [
+"added"
+]
+},
+{
+"id": 5897,
+"en": "{1}\nfirst={2}\nlast={3}\ndays={4}\nsnooze={5}\nlater={6}\ndone={7}\n",
+"src": [
+"added"
+]
 }
 ]

@@ -22,12 +22,15 @@ import android.widget.TextView;
 final class Ui {
     // ------------------------------------------------------------------ the glass look
     // Every screen is frosted glass over a ground, in one of two app colours: Graphite & Amber (dark, the default) or White & Black
-    // (light, a Pro choice). The colours below are not constants: they are set by mode() before a screen is built, so the whole app
-    // reads them the same way. "Night" in this file means the dark one.
+    // (light), or the one that follows the phone's own dark mode (System default). All three are free. The colours below are not
+    // constants: they are set by mode() before a screen is built, so the whole app reads them the same way. "Night" in this file means
+    // the dark one.
 
     /** The app colours: what is stored is one of these. */
     static final int COLOURS_GRAPHITE = 0;
     static final int COLOURS_PAPER = 1;
+    /** Follows the phone: Graphite & Amber while the phone is in its dark mode, White & Black otherwise. */
+    static final int COLOURS_SYSTEM = 2;
 
     /** True when the screens are in their dark colours (Graphite & Amber). */
     static boolean night = true;
@@ -83,8 +86,8 @@ final class Ui {
     }
 
     /**
-     * Whether the screens are in their dark colours: yes unless the person chose White & Black and may use it. The routine's Light /
-     * Night / Auto look dresses the wallpaper only.
+     * Whether the screens are in their dark colours: yes unless the person chose White & Black, or System default while the phone is in
+     * its light mode. The routine's Light / Night / Auto look dresses the wallpaper only.
      */
     static boolean nightNow(Context c) {
         systemNight = (c.getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK)
@@ -94,32 +97,39 @@ final class Ui {
 
     private static final String KEY_COLOURS = "app_colours";
 
-    /** What the person picked in Settings (it may not be allowed any more: see {@link #colours}). */
+    /** What the person picked in Settings: Graphite & Amber, White & Black or System default. */
     static int chosenColours(Context c) {
         try {
-            return Store.prefs(c).getInt(KEY_COLOURS, COLOURS_GRAPHITE) == COLOURS_PAPER ? COLOURS_PAPER : COLOURS_GRAPHITE;
+            return pick(Store.prefs(c).getInt(KEY_COLOURS, COLOURS_GRAPHITE));
         } catch (RuntimeException e) {
             return COLOURS_GRAPHITE;
         }
     }
 
+    private static int pick(int v) {
+        return v == COLOURS_PAPER || v == COLOURS_SYSTEM ? v : COLOURS_GRAPHITE;
+    }
+
     /** Saves the pick (the screens must then be restyled). */
     static void chooseColours(Context c, int which) {
-        Store.prefs(c).edit().putInt(KEY_COLOURS, which == COLOURS_PAPER ? COLOURS_PAPER : COLOURS_GRAPHITE).apply();
+        Store.prefs(c).edit().putInt(KEY_COLOURS, pick(which)).apply();
     }
 
-    /** True when all of Pro is open: bought, or a video pass that opens everything. White & Black is part of it. */
-    static boolean paperAllowed(Context c) {
-        try {
-            return (Pro.open(c) & DayPass.ALL) == DayPass.ALL;
-        } catch (RuntimeException e) {
-            return false;
-        }
-    }
-
-    /** The colours in use: the pick, unless it needs Pro that is not open now (a pass that ended), when it is Graphite & Amber. */
+    /** The colours in use now: the pick, with System default turned into the dark or the light one by the phone's own mode. */
     static int colours(Context c) {
-        return chosenColours(c) == COLOURS_PAPER && paperAllowed(c) ? COLOURS_PAPER : COLOURS_GRAPHITE;
+        int p = chosenColours(c);
+        if (p != COLOURS_SYSTEM) return p;
+        return phoneNight(c) ? COLOURS_GRAPHITE : COLOURS_PAPER;
+    }
+
+    /** Whether the phone itself is in its dark mode right now. */
+    static boolean phoneNight(Context c) {
+        try {
+            return (c.getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK)
+                    == android.content.res.Configuration.UI_MODE_NIGHT_YES;
+        } catch (RuntimeException e) {
+            return true;
+        }
     }
 
     private static boolean systemNight = true;
