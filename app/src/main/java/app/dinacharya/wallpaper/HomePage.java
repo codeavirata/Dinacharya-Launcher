@@ -31,6 +31,7 @@ final class HomePage extends Page {
     private LinearLayout nowBox;
     private LinearLayout alarmBox;
     private LinearLayout libraryBox;
+    private LinearLayout rateBox;
     private LinearLayout homeBox;
     private LinearLayout goalsBox;
     private AdSlot adSlot;
@@ -125,6 +126,11 @@ final class HomePage extends Page {
         goalsBox.setOrientation(LinearLayout.VERTICAL);
         body.addView(goalsBox, Ui.wide(a, 0));
 
+        // Once in a while, after the app has been in use for some days: the way to rate it on Google Play.
+        rateBox = new LinearLayout(a);
+        rateBox.setOrientation(LinearLayout.VERTICAL);
+        body.addView(rateBox, Ui.wide(a, 0));
+
         adSlot = new AdSlot(a, R.string.admob_banner_id, a::openPro);
         body.addView(adSlot, Ui.wide(a, 16));
 
@@ -156,6 +162,7 @@ final class HomePage extends Page {
         refreshAlarmCard();
         refreshLibrary();
         refreshGoals();
+        refreshRate();
         adSlot.refresh();
         scroll.removeCallbacks(tick);
         scroll.postDelayed(tick, 60000L - (System.currentTimeMillis() % 60000L) + 200L);
@@ -913,6 +920,42 @@ final class HomePage extends Page {
             libraryBox.addView(card, Ui.wide(a, 12));
         } catch (RuntimeException e) {
             CrashLog.note(a, "library card", e);
+        }
+    }
+
+    // ------------------------------------------------------------------ rate on Google Play
+
+    /** The card that offers the way to rate the app on Google Play, when {@link RatePrompt} says it is time. It asks nothing else. */
+    private void refreshRate() {
+        if (rateBox == null) return;
+        rateBox.removeAllViews();
+        try {
+            if (!RateApp.due(a)) return;
+            LinearLayout card = new LinearLayout(a);
+            card.setOrientation(LinearLayout.VERTICAL);
+            card.setPadding(a.dp(16), a.dp(14), a.dp(16), a.dp(14));
+            card.setBackground(Ui.box(a, Ui.SURFACE, 0, 22));
+            card.addView(Ui.eyebrow(a, "Google Play"));
+            card.addView(Ui.label(a, "Rate Dinacharya", 16, Ui.INK, true), Ui.wide(a, 2));
+            card.addView(Ui.label(a, "A rating on Google Play helps other people find the app. It takes a few seconds.", 12, Ui.MUTED, false),
+                    Ui.wide(a, 2));
+            LinearLayout row = new LinearLayout(a);
+            row.setOrientation(LinearLayout.HORIZONTAL);
+            row.setGravity(Gravity.CENTER_VERTICAL);
+            row.addView(Ui.button(a, "Rate on Google Play", true, v -> {
+                RateApp.open(a);
+                rateBox.removeAllViews();
+            }), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            lp.leftMargin = a.dp(8);
+            row.addView(Ui.button(a, "Not now", false, v -> {
+                RateApp.later(a);
+                rateBox.removeAllViews();
+            }), lp);
+            card.addView(row, Ui.wide(a, 10));
+            rateBox.addView(card, Ui.wide(a, 12));
+        } catch (RuntimeException e) {
+            CrashLog.note(a, "rate card", e);
         }
     }
 

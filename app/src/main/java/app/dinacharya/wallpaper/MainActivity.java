@@ -283,6 +283,7 @@ public class MainActivity extends LangActivity {
         HomeRole.look(this);
         StrongMode.afterReturn(this);   // the strong lock runs whenever something is locked or paused and it is allowed; asks for the next permission
         Quiet.refresh(this);   // library mode may have begun or ended while the app was closed
+        RateApp.used(this);   // counts the days the app is in use, for the card that offers a rating on Google Play
         // The alarms and the wallpaper are looked at again every time the dashboard comes up (settlePass above saved first).
         Keeper.ensure(this, "dashboard");
         if (HomeRole.lost(this) && !homeOffered) {

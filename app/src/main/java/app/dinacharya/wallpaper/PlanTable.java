@@ -129,7 +129,6 @@ public final class PlanTable {
         List<Row> more = new ArrayList<>();
         more.add(differ("Routines", "One routine", "Weekday, weekend and one-day routines"));
         more.add(differ("Colour looks", "The first look", "All the looks"));
-        more.add(differ("App colours", "Graphite & Amber", "Graphite & Amber and White & Black"));
         more.add(differ("Ads", "Small ads", "No ads"));
         out.add(new Group("Routines and looks", "Free: one routine and one look. Pro: all of them, and no ads", more));
 

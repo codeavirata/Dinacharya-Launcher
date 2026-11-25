@@ -94,7 +94,7 @@ final class SettingsPage extends Page {
         LinearLayout general = Ui.section(a, body, "General", null);
         itemAction(general, Glyph.GLOBE, "Language", LanguageDialog.summary(a),
                 () -> LanguageDialog.show(a, Ui.dialogTheme()));
-        item(general, Glyph.PALETTE, "App colours", coloursName(Ui.colours(a)), COLOURS);
+        item(general, Glyph.PALETTE, "App colours", coloursName(Ui.chosenColours(a)), COLOURS);
         itemAction(general, Glyph.HELP, "Take the tour", "A short walk through what the app does",
                 () -> a.startActivity(new Intent(a, TourActivity.class)));
         itemAction(general, Glyph.SHIELD, "Features", "Choose what Dinacharya does. It asks your phone only for what each feature needs",
@@ -115,11 +115,13 @@ final class SettingsPage extends Page {
         item(card2, Glyph.SHIELD, "Permissions", "What the app may do, and why", PERMISSIONS);
         LinearLayout card3 = Ui.section(a, body, "Support", null);
         item(card3, Glyph.INFO, "Feature guide", "Every feature, and how to set it up", GUIDE);
-        item(card3, Glyph.HELP, "Help and problem report", "How things work, copy a report", HELP);
+        item(card3, Glyph.HELP, "Help and problem report", "How things work, send or copy a report", HELP);
         if (Ads.wanted(a) && Ads.get().privacyOptionsRequired()) {
             itemAction(card3, Glyph.SHIELD, "Ad privacy choices", "Change what you agreed to for ads",
                     () -> Ads.get().showPrivacyOptions(a));
         }
+        itemAction(card3, Glyph.MAIL, "Send feedback", "Ideas, problems or questions, to the developer by email", this::feedback);
+        itemAction(card3, Glyph.STAR, "Rate Dinacharya", "Give it a rating on Google Play", () -> RateApp.open(a));
         item(card3, Glyph.INFO, "About", "Version and developer", ABOUT);
         a.addFooter(body);
     }
@@ -169,77 +171,86 @@ final class SettingsPage extends Page {
     // ------------------------------------------------------------------ app colours
 
     private static String coloursName(int which) {
-        return which == Ui.COLOURS_PAPER ? "White & Black" : "Graphite & Amber";
+        return which == Ui.COLOURS_SYSTEM ? "System default" : which == Ui.COLOURS_PAPER ? "Light" : "Dark";
     }
 
-    /** Two tiles, each a small picture of the app in its colours: Graphite & Amber (free) and White & Black (Pro). */
+    /** Three tiles, each a small picture of the app in its colours: Dark (Graphite & Amber), Light (White & Black) and System default. */
     private void colours() {
         header("App colours");
-        body.addView(a.note("Choose how the whole app looks. The wallpaper has its own Light, Night and Auto look, under Home screen look."), Ui.wide(a, 4));
+        body.addView(a.note("Choose how the whole app looks. System default follows your phone's dark mode. "
+                + "The wallpaper has its own Light, Night and Auto look, under Home screen look."), Ui.wide(a, 4));
         LinearLayout row = new LinearLayout(a);
         row.setOrientation(LinearLayout.HORIZONTAL);
-        LinearLayout.LayoutParams left = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
-        left.rightMargin = a.dp(6);
-        LinearLayout.LayoutParams right = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
-        right.leftMargin = a.dp(6);
-        row.addView(coloursTile(Ui.COLOURS_GRAPHITE), left);
-        row.addView(coloursTile(Ui.COLOURS_PAPER), right);
-        body.addView(row, Ui.wide(a, 16));
-        if (!Ui.paperAllowed(a)) {
-            body.addView(Ui.label(a, "White & Black is part of Pro.", 13, Ui.MUTED, false), Ui.wide(a, 12));
+        int[] order = {Ui.COLOURS_GRAPHITE, Ui.COLOURS_PAPER, Ui.COLOURS_SYSTEM};
+        for (int i = 0; i < order.length; i++) {
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
+            if (i > 0) lp.leftMargin = a.dp(5);
+            if (i < order.length - 1) lp.rightMargin = a.dp(5);
+            row.addView(coloursTile(order[i]), lp);
         }
+        body.addView(row, Ui.wide(a, 16));
     }
 
-    private View coloursTile(final int which) {
-        final boolean paper = which == Ui.COLOURS_PAPER;
-        boolean locked = paper && !Ui.paperAllowed(a);
-        boolean sel = Ui.colours(a) == which;
-        LinearLayout tile = new LinearLayout(a);
-        tile.setOrientation(LinearLayout.VERTICAL);
-        tile.setPadding(a.dp(10), a.dp(10), a.dp(10), a.dp(12));
-        tile.setBackground(ring(Ui.SURFACE, sel ? Ui.TEAL : Ui.LINE, 20, sel ? 2.5f : 1));
-        tile.setClickable(true);
-        // a small picture of the app: the ground, a card that stands out, a glass card, and two chips
+    /** The small picture of the app in one look: the ground, a card that stands out, a glass card, and two chips. */
+    private View coloursMini(boolean paper) {
         LinearLayout mini = new LinearLayout(a);
         mini.setOrientation(LinearLayout.VERTICAL);
-        mini.setPadding(a.dp(8), a.dp(8), a.dp(8), a.dp(8));
+        mini.setPadding(a.dp(7), a.dp(7), a.dp(7), a.dp(7));
         GradientDrawable ground = new GradientDrawable(GradientDrawable.Orientation.TL_BR, paper
                 ? new int[]{0xFFF8F8F6, 0xFFEDEDEA, 0xFFDEDEDA} : new int[]{0xFF2E2D33, 0xFF1B1B20, 0xFF0C0C0F});
-        ground.setCornerRadius(a.dp(14));
+        ground.setCornerRadius(a.dp(12));
         mini.setBackground(ground);
         View hero = new View(a);
-        hero.setBackground(paper ? Ui.box(a, 0xFF111111, 0, 9) : Ui.box(a, 0x38FFFFFF, 0x40FFFFFF, 9));
-        mini.addView(hero, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, a.dp(34)));
+        hero.setBackground(paper ? Ui.box(a, 0xFF111111, 0, 8) : Ui.box(a, 0x38FFFFFF, 0x40FFFFFF, 8));
+        mini.addView(hero, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, a.dp(30)));
         View card = new View(a);
-        card.setBackground(paper ? Ui.box(a, 0xFFFFFFFF, 0x1A000000, 9) : Ui.box(a, 0x1FFFFFFF, 0x2BFFFFFF, 9));
-        mini.addView(card, Ui.lp(a, ViewGroup.LayoutParams.MATCH_PARENT, a.dp(22), 6));
+        card.setBackground(paper ? Ui.box(a, 0xFFFFFFFF, 0x1A000000, 8) : Ui.box(a, 0x1FFFFFFF, 0x2BFFFFFF, 8));
+        mini.addView(card, Ui.lp(a, ViewGroup.LayoutParams.MATCH_PARENT, a.dp(20), 6));
         LinearLayout chips = new LinearLayout(a);
         chips.setOrientation(LinearLayout.HORIZONTAL);
         View on = new View(a);
-        on.setBackground(Ui.box(a, paper ? 0xFF111111 : 0xFFFFB84D, 0, 7));
-        chips.addView(on, new LinearLayout.LayoutParams(a.dp(34), a.dp(14)));
+        on.setBackground(Ui.box(a, paper ? 0xFF111111 : 0xFFFFB84D, 0, 6));
+        chips.addView(on, new LinearLayout.LayoutParams(a.dp(24), a.dp(12)));
         View off = new View(a);
-        off.setBackground(Ui.box(a, paper ? 0x1F000000 : 0x33FFFFFF, 0, 7));
-        LinearLayout.LayoutParams offLp = new LinearLayout.LayoutParams(a.dp(34), a.dp(14));
-        offLp.leftMargin = a.dp(6);
+        off.setBackground(Ui.box(a, paper ? 0x1F000000 : 0x33FFFFFF, 0, 6));
+        LinearLayout.LayoutParams offLp = new LinearLayout.LayoutParams(a.dp(24), a.dp(12));
+        offLp.leftMargin = a.dp(5);
         chips.addView(off, offLp);
-        mini.addView(chips, Ui.wrap(a, 8));
-        tile.addView(mini, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, a.dp(112)));
+        mini.addView(chips, Ui.wrap(a, 7));
+        return mini;
+    }
+
+    private View coloursTile(final int which) {
+        boolean sel = Ui.chosenColours(a) == which;
+        LinearLayout tile = new LinearLayout(a);
+        tile.setOrientation(LinearLayout.VERTICAL);
+        tile.setPadding(a.dp(8), a.dp(8), a.dp(8), a.dp(10));
+        tile.setBackground(ring(Ui.SURFACE, sel ? Ui.TEAL : Ui.LINE, 18, sel ? 2.5f : 1));
+        tile.setClickable(true);
+        if (which == Ui.COLOURS_SYSTEM) {   // half dark, half light
+            LinearLayout split = new LinearLayout(a);
+            split.setOrientation(LinearLayout.HORIZONTAL);
+            LinearLayout.LayoutParams half = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f);
+            split.addView(coloursMini(false), half);
+            LinearLayout.LayoutParams half2 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f);
+            half2.leftMargin = a.dp(3);
+            split.addView(coloursMini(true), half2);
+            tile.addView(split, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, a.dp(100)));
+        } else {
+            tile.addView(coloursMini(which == Ui.COLOURS_PAPER), new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, a.dp(100)));
+        }
         String name = coloursName(which);
         LinearLayout title = new LinearLayout(a);
         title.setOrientation(LinearLayout.HORIZONTAL);
         title.setGravity(Gravity.CENTER_VERTICAL);
-        title.addView(Ui.label(a, name, 15, Ui.INK, true), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        if (sel || locked) title.addView(Ui.label(a, sel ? "✓" : "🔒", 15, Ui.TEAL_DARK, true));
-        tile.addView(title, Ui.wide(a, 10));
-        tile.addView(Ui.label(a, paper ? "Light and clean, with black" : "Dark glass with warm amber", 12, Ui.MUTED, false), Ui.wide(a, 2));
-        tile.setContentDescription(sel ? name + ", selected" : locked ? name + ", part of Pro" : name);
+        title.addView(Ui.label(a, name, 14, Ui.INK, true), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+        if (sel) title.addView(Ui.label(a, "✓", 14, Ui.TEAL_DARK, true));
+        tile.addView(title, Ui.wide(a, 9));
+        tile.addView(Ui.label(a, which == Ui.COLOURS_SYSTEM ? "Follows your phone" : which == Ui.COLOURS_PAPER ? "White & Black" : "Graphite & Amber",
+                12, Ui.MUTED, false), Ui.wide(a, 2));
+        tile.setContentDescription(sel ? name + ", selected" : name);
         tile.setOnClickListener(v -> {
-            if (Ui.colours(a) == which) return;
-            if (paper && !Ui.paperAllowed(a)) {
-                ProPrompt.show(a, DayPass.LOOK_GRAPHITE, "The White & Black look of the app", 0, () -> applyColours(which));
-                return;
-            }
+            if (Ui.chosenColours(a) == which) return;
             applyColours(which);
         });
         return tile;
@@ -589,12 +600,11 @@ final class SettingsPage extends Page {
                 crash == null && notes.isEmpty() ? "Nothing written down" : "Some problems were written down", "help_report", false)).body;
         rep.addView(a.note(crash == null && notes.isEmpty()
                 ? "No problems have been written down. If something goes wrong, the details are kept here so you can send them."
-                : "Some problems were written down. Copy them and send them to the developer."), Ui.wide(a, 4));
+                : "Some problems were written down. Email them to the developer, or copy them."), Ui.wide(a, 4));
+        rep.addView(Ui.button(a, "Email problem report", true, v -> mail("Dinacharya Launcher problem report",
+                "What went wrong (optional):\n\n\n" + reportText(crash, notes))), Ui.wide(a, 10));
         rep.addView(Ui.button(a, "Copy problem report", false, v -> {
-            String text = "Dinacharya Launcher " + buildName(a) + " on Android " + Build.VERSION.RELEASE + " (" + Build.MANUFACTURER + " " + Build.MODEL + ")\n\n"
-                    + "Alarms:\n" + a.extras.alarmReport() + "\n\n" + "Locks:\n" + StrongMode.report(a) + "\n\n" + "Home app:\n" + HomeRole.report(a)
-                    + "\n\n" + Ads.get().status(a) + "\n\n"
-                    + (crash == null ? "No crash recorded." : crash) + "\n\n" + (notes.isEmpty() ? "No handled problems." : notes);
+            String text = reportText(crash, notes);
             try {
                 ClipboardManager cm = (ClipboardManager) a.getSystemService(Context.CLIPBOARD_SERVICE);
                 if (cm != null) cm.setPrimaryClip(ClipData.newPlainText("Dinacharya problem report", text));
@@ -604,6 +614,53 @@ final class SettingsPage extends Page {
             }
         }), Ui.wide(a, 10));
         a.addFooter(body);
+    }
+
+    private String reportText(String crash, String notes) {
+        return deviceLine() + "\n\n"
+                + "Alarms:\n" + a.extras.alarmReport() + "\n\n" + "Locks:\n" + StrongMode.report(a) + "\n\n" + "Home app:\n" + HomeRole.report(a)
+                + "\n\n" + Ads.get().status(a) + "\n\n"
+                + (crash == null ? "No crash recorded." : crash) + "\n\n" + (notes.isEmpty() ? "No handled problems." : notes);
+    }
+
+    // ------------------------------------------------------------------ feedback by email
+
+    /** Where feedback and problem reports go. */
+    static final String SUPPORT_EMAIL = "codeavirata.support@gmail.com";
+
+    /** "Dinacharya Launcher 1.0 (build 85) on Android 14 (Google Pixel 6), language hi": what the developer needs to know first. */
+    private String deviceLine() {
+        return "Dinacharya Launcher " + buildName(a) + " on Android " + Build.VERSION.RELEASE + " (" + Build.MANUFACTURER + " " + Build.MODEL + ")"
+                + ", language " + Lang.current();
+    }
+
+    /** The feedback message, ready in the phone's email app: the words are the person's, the line at the end says which phone and version. */
+    private void feedback() {
+        mail("Dinacharya Launcher feedback", "\n\n\n---\n" + deviceLine());
+    }
+
+    /**
+     * Opens the phone's email app with a message to {@link #SUPPORT_EMAIL}, ready to send. Nothing is sent by the app itself. With no
+     * email app on the phone, the address is copied so it can be pasted elsewhere.
+     */
+    private void mail(String subject, String text) {
+        Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"))
+                .putExtra(Intent.EXTRA_EMAIL, new String[]{SUPPORT_EMAIL})
+                .putExtra(Intent.EXTRA_SUBJECT, subject)
+                .putExtra(Intent.EXTRA_TEXT, text);
+        try {   // straight to the email app (Android asks which one when there are several); with none, this throws and the address is copied
+            a.startActivity(i);
+            return;
+        } catch (android.content.ActivityNotFoundException | SecurityException e) {
+            CrashLog.note(a, "feedback: no email app", e);
+        }
+        try {
+            ClipboardManager cm = (ClipboardManager) a.getSystemService(Context.CLIPBOARD_SERVICE);
+            if (cm != null) cm.setPrimaryClip(ClipData.newPlainText("Dinacharya support", SUPPORT_EMAIL + "\n\n" + text));
+            a.toastText("No email app on this phone. The address and the message were copied: " + SUPPORT_EMAIL);
+        } catch (RuntimeException e) {
+            a.toastText("Write to " + SUPPORT_EMAIL);
+        }
     }
 
     // ------------------------------------------------------------------ feature guide
@@ -679,8 +736,8 @@ final class SettingsPage extends Page {
                 "Home screen look", () -> show(LOOK),
                 "Language", () -> LanguageDialog.show(a, Ui.dialogTheme()));
         no = topic(card, parts, no, "App colours",
-                "Choose how the whole app looks: Graphite & Amber, dark glass with warm amber, or White & Black, a light look with black. Graphite & Amber is free. "
-                        + "White & Black is part of Pro, or free for a day when you watch the short videos. The wallpaper keeps its own Light, Night and Auto look. "
+                "Choose how the whole app looks: Dark, glass with warm amber; Light, white with black; or System default, which follows your phone's dark mode. "
+                        + "All three are free. The wallpaper keeps its own Light, Night and Auto look. "
                         + "Set it up: Settings > App colours.",
                 "App colours", () -> show(COLOURS));
         no = topic(card, parts, no, "Free and Pro",
@@ -689,7 +746,7 @@ final class SettingsPage extends Page {
                 "Pro", a::openPro);
         no = topic(card, parts, no, "Permissions and problem report",
                 "Alarms, the wallpaper and locks need a few permissions: notifications, exact alarms, the alarm screen over the lock screen, Usage access and Display over other apps. The checklist shows what is missing. "
-                        + "Set it up: Settings > Permissions, or Check phone settings. If something goes wrong, copy the problem report from Help and send it to the developer.",
+                        + "Set it up: Settings > Permissions, or Check phone settings. If something goes wrong, open Help and email the problem report to the developer, or use Send feedback.",
                 "Permissions", () -> show(PERMISSIONS),
                 "Help and problem report", () -> show(HELP));
         a.addFooter(body);
@@ -738,6 +795,9 @@ final class SettingsPage extends Page {
         card.addView(mark, Ui.wide(a, 18));
         card.addView(a.note("Designed and developed by Code Avirata."), Ui.wide(a, 4));
         card.addView(a.note("Free with small ads. Dinacharya Pro, monthly or for life, removes the ads and unlocks the extras."), Ui.wide(a, 8));
+        card.addView(Ui.button(a, "Rate on Google Play", false, v -> RateApp.open(a)), Ui.wide(a, 14));
+        card.addView(Ui.button(a, "Send feedback", false, v -> feedback()), Ui.wide(a, 8));
+        card.addView(a.note("Support: " + SUPPORT_EMAIL), Ui.wide(a, 8));
         a.addFooter(body);
     }
 }
