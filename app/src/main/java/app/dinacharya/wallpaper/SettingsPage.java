@@ -115,11 +115,12 @@ final class SettingsPage extends Page {
         item(card2, Glyph.SHIELD, "Permissions", "What the app may do, and why", PERMISSIONS);
         LinearLayout card3 = Ui.section(a, body, "Support", null);
         item(card3, Glyph.INFO, "Feature guide", "Every feature, and how to set it up", GUIDE);
-        item(card3, Glyph.HELP, "Help and problem report", "How things work, copy a report", HELP);
+        item(card3, Glyph.HELP, "Help and problem report", "How things work, send or copy a report", HELP);
         if (Ads.wanted(a) && Ads.get().privacyOptionsRequired()) {
             itemAction(card3, Glyph.SHIELD, "Ad privacy choices", "Change what you agreed to for ads",
                     () -> Ads.get().showPrivacyOptions(a));
         }
+        itemAction(card3, Glyph.MAIL, "Send feedback", "Ideas, problems or questions, to the developer by email", this::feedback);
         itemAction(card3, Glyph.STAR, "Rate Dinacharya", "Give it a rating on Google Play", () -> RateApp.open(a));
         item(card3, Glyph.INFO, "About", "Version and developer", ABOUT);
         a.addFooter(body);
@@ -599,12 +600,11 @@ final class SettingsPage extends Page {
                 crash == null && notes.isEmpty() ? "Nothing written down" : "Some problems were written down", "help_report", false)).body;
         rep.addView(a.note(crash == null && notes.isEmpty()
                 ? "No problems have been written down. If something goes wrong, the details are kept here so you can send them."
-                : "Some problems were written down. Copy them and send them to the developer."), Ui.wide(a, 4));
+                : "Some problems were written down. Email them to the developer, or copy them."), Ui.wide(a, 4));
+        rep.addView(Ui.button(a, "Email problem report", true, v -> mail("Dinacharya Launcher problem report",
+                "What went wrong (optional):\n\n\n" + reportText(crash, notes))), Ui.wide(a, 10));
         rep.addView(Ui.button(a, "Copy problem report", false, v -> {
-            String text = "Dinacharya Launcher " + buildName(a) + " on Android " + Build.VERSION.RELEASE + " (" + Build.MANUFACTURER + " " + Build.MODEL + ")\n\n"
-                    + "Alarms:\n" + a.extras.alarmReport() + "\n\n" + "Locks:\n" + StrongMode.report(a) + "\n\n" + "Home app:\n" + HomeRole.report(a)
-                    + "\n\n" + Ads.get().status(a) + "\n\n"
-                    + (crash == null ? "No crash recorded." : crash) + "\n\n" + (notes.isEmpty() ? "No handled problems." : notes);
+            String text = reportText(crash, notes);
             try {
                 ClipboardManager cm = (ClipboardManager) a.getSystemService(Context.CLIPBOARD_SERVICE);
                 if (cm != null) cm.setPrimaryClip(ClipData.newPlainText("Dinacharya problem report", text));
@@ -614,6 +614,53 @@ final class SettingsPage extends Page {
             }
         }), Ui.wide(a, 10));
         a.addFooter(body);
+    }
+
+    private String reportText(String crash, String notes) {
+        return deviceLine() + "\n\n"
+                + "Alarms:\n" + a.extras.alarmReport() + "\n\n" + "Locks:\n" + StrongMode.report(a) + "\n\n" + "Home app:\n" + HomeRole.report(a)
+                + "\n\n" + Ads.get().status(a) + "\n\n"
+                + (crash == null ? "No crash recorded." : crash) + "\n\n" + (notes.isEmpty() ? "No handled problems." : notes);
+    }
+
+    // ------------------------------------------------------------------ feedback by email
+
+    /** Where feedback and problem reports go. */
+    static final String SUPPORT_EMAIL = "codeavirata.support@gmail.com";
+
+    /** "Dinacharya Launcher 1.0 (build 85) on Android 14 (Google Pixel 6), language hi": what the developer needs to know first. */
+    private String deviceLine() {
+        return "Dinacharya Launcher " + buildName(a) + " on Android " + Build.VERSION.RELEASE + " (" + Build.MANUFACTURER + " " + Build.MODEL + ")"
+                + ", language " + Lang.current();
+    }
+
+    /** The feedback message, ready in the phone's email app: the words are the person's, the line at the end says which phone and version. */
+    private void feedback() {
+        mail("Dinacharya Launcher feedback", "\n\n\n---\n" + deviceLine());
+    }
+
+    /**
+     * Opens the phone's email app with a message to {@link #SUPPORT_EMAIL}, ready to send. Nothing is sent by the app itself. With no
+     * email app on the phone, the address is copied so it can be pasted elsewhere.
+     */
+    private void mail(String subject, String text) {
+        Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"))
+                .putExtra(Intent.EXTRA_EMAIL, new String[]{SUPPORT_EMAIL})
+                .putExtra(Intent.EXTRA_SUBJECT, subject)
+                .putExtra(Intent.EXTRA_TEXT, text);
+        try {
+            a.startActivity(Intent.createChooser(i, Lang.tr("Send with")));
+            return;
+        } catch (android.content.ActivityNotFoundException | SecurityException e) {
+            CrashLog.note(a, "feedback: no email app", e);
+        }
+        try {
+            ClipboardManager cm = (ClipboardManager) a.getSystemService(Context.CLIPBOARD_SERVICE);
+            if (cm != null) cm.setPrimaryClip(ClipData.newPlainText("Dinacharya support", SUPPORT_EMAIL + "\n\n" + text));
+            a.toastText("No email app on this phone. The address and the message were copied: " + SUPPORT_EMAIL);
+        } catch (RuntimeException e) {
+            a.toastText("Write to " + SUPPORT_EMAIL);
+        }
     }
 
     // ------------------------------------------------------------------ feature guide
@@ -699,7 +746,7 @@ final class SettingsPage extends Page {
                 "Pro", a::openPro);
         no = topic(card, parts, no, "Permissions and problem report",
                 "Alarms, the wallpaper and locks need a few permissions: notifications, exact alarms, the alarm screen over the lock screen, Usage access and Display over other apps. The checklist shows what is missing. "
-                        + "Set it up: Settings > Permissions, or Check phone settings. If something goes wrong, copy the problem report from Help and send it to the developer.",
+                        + "Set it up: Settings > Permissions, or Check phone settings. If something goes wrong, open Help and email the problem report to the developer, or use Send feedback.",
                 "Permissions", () -> show(PERMISSIONS),
                 "Help and problem report", () -> show(HELP));
         a.addFooter(body);
@@ -749,6 +796,8 @@ final class SettingsPage extends Page {
         card.addView(a.note("Designed and developed by Code Avirata."), Ui.wide(a, 4));
         card.addView(a.note("Free with small ads. Dinacharya Pro, monthly or for life, removes the ads and unlocks the extras."), Ui.wide(a, 8));
         card.addView(Ui.button(a, "Rate on Google Play", false, v -> RateApp.open(a)), Ui.wide(a, 14));
+        card.addView(Ui.button(a, "Send feedback", false, v -> feedback()), Ui.wide(a, 8));
+        card.addView(a.note("Support: " + SUPPORT_EMAIL), Ui.wide(a, 8));
         a.addFooter(body);
     }
 }

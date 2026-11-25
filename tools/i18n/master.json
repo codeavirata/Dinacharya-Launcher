@@ -16748,5 +16748,138 @@
 "src": [
 "added"
 ]
+},
+{
+"id": 5898,
+"en": "Send feedback",
+"src": [
+"added"
+]
+},
+{
+"id": 5899,
+"en": "Ideas, problems or questions, to the developer by email",
+"src": [
+"added"
+]
+},
+{
+"id": 5900,
+"en": "Email problem report",
+"src": [
+"added"
+]
+},
+{
+"id": 5901,
+"en": "How things work, send or copy a report",
+"src": [
+"added"
+]
+},
+{
+"id": 5902,
+"en": "No email app on this phone. The address and the message were copied: {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5903,
+"en": "Write to {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5904,
+"en": "Send with",
+"src": [
+"added"
+]
+},
+{
+"id": 5905,
+"en": "If something goes wrong, open Help and email the problem report to the developer, or use Send feedback.",
+"src": [
+"added"
+]
+},
+{
+"id": 5906,
+"en": "Some problems were written down. Email them to the developer, or copy them.",
+"src": [
+"added"
+]
+},
+{
+"id": 5907,
+"en": "Email them to the developer, or copy them.",
+"src": [
+"added"
+]
+},
+{
+"id": 5908,
+"en": "Support: {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5909,
+"en": "What went wrong (optional):\n\n\n{1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5910,
+"en": "{1}\n\nAlarms:\n{2}\n\nLocks:\n{3}\n\nHome app:\n{4}\n\n{5}\n\n{6}\n\n{7}",
+"src": [
+"added"
+]
+},
+{
+"id": 5911,
+"en": "Dinacharya Launcher {1} on Android {2} ({3} {4}), language {5}",
+"src": [
+"added"
+]
+},
+{
+"id": 5912,
+"en": "\n\n\n---\n{1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5913,
+"en": "Dinacharya Launcher problem report",
+"src": [
+"added"
+]
+},
+{
+"id": 5914,
+"en": "codeavirata.support@gmail.com",
+"src": [
+"added"
+]
+},
+{
+"id": 5915,
+"en": "Dinacharya Launcher feedback",
+"src": [
+"added"
+]
+},
+{
+"id": 5916,
+"en": "Dinacharya support",
+"src": [
+"added"
+]
 }
 ]

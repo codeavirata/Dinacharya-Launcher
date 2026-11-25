@@ -11,7 +11,7 @@ import android.view.View;
 /** Small line icons drawn in code (24 x 24 design grid), so the app needs no image files. */
 final class Glyph extends View {
     static final int HOME = 0, ROUTINE = 1, CHART = 2, CLOUD = 3, GEAR = 4, PALETTE = 5, BELL = 6, SHIELD = 7,
-            HELP = 8, INFO = 9, PERSON = 10, TARGET = 11, CHEVRON = 12, GLOBE = 13, STAR = 14;
+            HELP = 8, INFO = 9, PERSON = 10, TARGET = 11, CHEVRON = 12, GLOBE = 13, STAR = 14, MAIL = 15;
 
     private final Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Path a = new Path();
@@ -196,6 +196,15 @@ final class Glyph extends View {
                 c.drawOval(r, p);
                 c.drawLine(3.4f, 12, 20.6f, 12, p);
                 c.drawLine(12, 3.4f, 12, 20.6f, p);
+                break;
+            case MAIL:   // an envelope
+                r.set(3.4f, 5.8f, 20.6f, 18.2f);
+                c.drawRoundRect(r, 2.4f, 2.4f, p);
+                a.reset();
+                a.moveTo(4.2f, 7.2f);
+                a.lineTo(12, 12.8f);
+                a.lineTo(19.8f, 7.2f);
+                c.drawPath(a, p);
                 break;
             case STAR:   // a five-pointed star, outlined
                 a.reset();
