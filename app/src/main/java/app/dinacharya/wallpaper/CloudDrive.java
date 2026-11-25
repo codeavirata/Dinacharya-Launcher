@@ -187,7 +187,11 @@ public final class CloudDrive {
     }
 
     public byte[] download(String id) throws IOException {
-        Http.Resp r = authed("GET", FILES_URL + "/" + enc(id) + "?alt=media", null, null);
+        String url = FILES_URL + "/" + enc(id) + "?alt=media";
+        Http.Resp r = authed("GET", url, null, null);
+        // Drive sometimes marks a file as "malware or spam" by mistake (a zip of text and settings can trip it). The backup is this app's own
+        // file in its hidden space, and Drive allows its owner to download it anyway when the call says so, so ask again once, only for that answer.
+        if (r.code == 403 && r.text().contains("cannotDownloadAbusiveFile")) r = authed("GET", url + "&acknowledgeAbuse=true", null, null);
         if (r.code != 200) throw fail("Download failed", r);
         return r.body;
     }
