@@ -628,7 +628,7 @@ final class SettingsPage extends Page {
     /** Where feedback and problem reports go. */
     static final String SUPPORT_EMAIL = "codeavirata.support@gmail.com";
 
-    /** "Dinacharya Launcher 1.0 (build 85) on Android 14 (Google Pixel 6), language hi": what the developer needs to know first. */
+    /** "Dinacharya Launcher 1.0 (build 86) on Android 14 (Google Pixel 6), language hi": what the developer needs to know first. */
     private String deviceLine() {
         return "Dinacharya Launcher " + buildName(a) + " on Android " + Build.VERSION.RELEASE + " (" + Build.MANUFACTURER + " " + Build.MODEL + ")"
                 + ", language " + Lang.current();

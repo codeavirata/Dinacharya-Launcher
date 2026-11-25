@@ -20,7 +20,7 @@ public class CloudTest {
     static class Fake implements Http {
         List<String> log = new ArrayList<>();
         int pending = 2;
-        boolean expireOnce = false, deadRefresh = false, offline = false;
+        boolean expireOnce = false, deadRefresh = false, offline = false, flagged = false;
         Map<String, byte[]> files = new LinkedHashMap<>();
         Map<String, String> names = new LinkedHashMap<>();
         Map<String, String> modified = new LinkedHashMap<>();
@@ -99,6 +99,7 @@ public class CloudTest {
             }
             if (path.startsWith(CloudDrive.FILES_URL + "/") && method.equals("GET") && url.contains("alt=media")) {
                 String id = path.substring(path.lastIndexOf('/') + 1);
+                if (flagged && !url.contains("acknowledgeAbuse=true")) return r(403, "{\"error\":{\"code\":403,\"message\":\"This file has been identified as malware or spam and cannot be downloaded.\",\"errors\":[{\"reason\":\"cannotDownloadAbusiveFile\"}]}}");
                 return files.containsKey(id) ? new Resp(200, files.get(id)) : r(404, "{}");
             }
             if (path.startsWith(CloudDrive.FILES_URL + "/") && method.equals("DELETE")) {
@@ -180,6 +181,13 @@ public class CloudTest {
         ok("manifest read", c.format() == 1 && c.created() == 1760860000000L && "Pixel 8".equals(c.info.get("device")));
         Routine back = Routine.parse(new String(c.files.get("prefs/routine.txt"), StandardCharsets.UTF_8));
         ok("restored routine keeps weekend and notes", back.others.size() == 1 && back.dayUse[6] == 1 && back.blocks.get(3).note.equals("polity ch 4\nmaps"));
+
+        // Drive marks the backup as "malware or spam" by mistake: restore still works (asks again with acknowledgeAbuse), and other 403s still fail
+        g2.flagged = true; g2.log.clear();
+        BackupArchive.Contents cf = CloudBackup.fetch(d, found);
+        ok("flagged file: restore still gives back every file", cf.files.size() == orig.size() && Arrays.equals(orig.get("prefs/routine.txt"), cf.files.get("prefs/routine.txt")));
+        ok("flagged file: asked twice, no more", g2.log.stream().filter(x -> x.contains("/files/F1")).count() == 2);
+        g2.flagged = false;
 
         // ---- sign-in problems
         Fake g3 = new Fake(); Kv kv3 = new Kv(); kv3.put("refresh", "RT"); g3.deadRefresh = true;

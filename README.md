@@ -1148,6 +1148,11 @@ close the app: they are written down and that one job is skipped.
 
 ### Version notes
 
+**1.0, build 86: restoring a backup that Google Drive marked as spam**
+- **The cause.** Drive sometimes marks a backup file as "malware or spam" by mistake, and then refuses to download it: Restore said "Download failed (This file has been identified as malware or spam and cannot be downloaded.)" and changed nothing.
+- **The fix.** When Drive answers that (and only that), the app asks once more, saying it accepts the warning, which Drive allows for the owner of a file. The backup is the app's own file in its hidden space. Any other error is still shown as before (`CloudDrive.download`).
+- Tests: `CloudTest` has a pretend Drive that flags the file (51 suites in all).
+
 **1.0, build 85: rate on Google Play, and Light, Dark or System default for everyone**
 - **App colours for everyone.** Settings > App colours now offers three looks, all free: **Dark** (Graphite & Amber), **Light** (White & Black, until now part of Pro) and **System default**, which follows the phone's own dark mode and changes with it. The choice is kept across restarts, as before, and each tile is a small preview of the look. The wallpaper keeps its own Light, Night and Auto look (`Ui.COLOURS_SYSTEM`, `Ui.phoneNight`).
 - **Rate on Google Play.** Settings > Support has **Rate Dinacharya**, and About has a button, both opening the app's page in the Play Store app (or on the web when it is not there). Home shows a small card offering the same, only after the app has been used on 5 different days and a week has passed since the first; **Not now** puts it away for two weeks, a second **Not now** or a rating puts it away for good. The card asks nothing about whether the person likes the app, as Google Play's rules require (`RatePrompt`, `RateApp`).
