@@ -648,8 +648,8 @@ final class SettingsPage extends Page {
                 .putExtra(Intent.EXTRA_EMAIL, new String[]{SUPPORT_EMAIL})
                 .putExtra(Intent.EXTRA_SUBJECT, subject)
                 .putExtra(Intent.EXTRA_TEXT, text);
-        try {
-            a.startActivity(Intent.createChooser(i, Lang.tr("Send with")));
+        try {   // straight to the email app (Android asks which one when there are several); with none, this throws and the address is copied
+            a.startActivity(i);
             return;
         } catch (android.content.ActivityNotFoundException | SecurityException e) {
             CrashLog.note(a, "feedback: no email app", e);
