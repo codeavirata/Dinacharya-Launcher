@@ -29,7 +29,7 @@ public class LangFilesTest {
     static final String[] CODES = {"hi", "mr", "gu", "bn", "ta", "te"};
     /** English words that stay as they are in every language: names, and the apps used in the samples. */
     static final Set<String> KEEP = new HashSet<>(Arrays.asList("Dinacharya", "Launcher", "Pro", "Google", "Play", "Drive", "Android", "Chrome", "Maps",
-            "YouTube", "Pixel", "Wi", "Fi", "PDF", "Amit", "Singh", "Yoga"));
+            "YouTube", "Pixel", "Wi", "Fi", "PDF", "UPSC", "Amit", "Singh", "Yoga"));
     static final Pattern WORD = Pattern.compile("[A-Za-z]{3,}");
     static final Pattern MARK = Pattern.compile("\\{\\d+\\}");
 
@@ -288,6 +288,25 @@ public class LangFilesTest {
             "PHONE USE  ·  14 min",
             "Focused for 1h 5m since",
             "phone 14 min",
+            // build 87: invite friends, routine templates and sharing
+            "Invite friends",
+            "Share Dinacharya with friends. When a friend uses your code and starts using the app, you both get free Pro days.",
+            "Friends 1 to 4: 7 days of Pro each\nFriends 5 to 10: 3 days each\nUp to 46 days in all",
+            "3 of 10 invites used\n2 waiting for the friend to use the app\nFree Pro days left: 12",
+            "3 of 10 invites used",
+            "You got 7 days of free Pro",
+            "A friend joined: you earned 7 free Pro days",
+            "Could not reach the invite server. Please try again later.",
+            "UPSC Civil Services",
+            "Wake at 5:30. Quant, reasoning, English, GA and a daily mock.",
+            "Wake at 6:00. Deep work, meetings, learning and family time.",
+            "Newspaper & current affairs",
+            "Mock test or PYQs",
+            "Revision & error log",
+            "+ 10 more",
+            "The slots of \u201cWeekdays\u201d are replaced and you can edit every one. You can undo this.",
+            "\u201cWeekdays\u201d now follows the College template.",
+            "Wake at 6:30. Classes, self-study, workout, assignments and friends.\n\nThe slots of \u201cWeekdays\u201d are replaced and you can edit every one. You can undo this.",
     };
     /** Text that is the person's own, or a name, and must stay as it is. */
     static final String[] STAYS = {"Social apps", "Meeting time", "Study room", "Time left", "Chrome", "Watch a video", "Morning run"};
@@ -363,6 +382,17 @@ public class LangFilesTest {
                 }
             }
             if (shown == 0) ok(code + ": " + SAMPLES.length + " sentences come out with no English left", true);
+            // build 87: a shared routine and a shared invite keep their code and link whole when the message is turned into the language
+            Routine shareSample = Routine.sample();
+            shareSample.name = "Weekdays";
+            String shareMsg = RoutineShare.message(shareSample);
+            String shareOut = t.translate(shareMsg);
+            Routine got = RoutineShare.read(shareOut);
+            ok(code + ": a shared routine message still imports after it is translated", got != null && got.blocks.size() == shareSample.blocks.size());
+            ok(code + ": a shared routine message is in the language, not English", !shareOut.startsWith("My daily routine") && shareOut.contains(RoutineShare.PLAY));
+            String inviteMsg = "I plan my day with Dinacharya Launcher. Get it and use my code ABCD2345 for 7 days of free Pro: https://x.test/i/ABCD2345";
+            String inviteOut = t.translate(inviteMsg);
+            ok(code + ": a shared invite keeps its code and link and is translated", inviteOut.contains("ABCD2345") && inviteOut.contains("https://x.test/i/ABCD2345") && !inviteOut.startsWith("I plan"));
             // the lines of the start-of-day alarm: every quote, and the sentences to type, come out in the language (the names of who said them stay)
             int quoteLeft = 0;
             for (WakeQuotes.Quote q : WakeQuotes.LIST) {

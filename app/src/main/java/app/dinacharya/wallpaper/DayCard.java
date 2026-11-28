@@ -49,16 +49,16 @@ final class DayCard {
         p.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
         p.setTextSize(40);
         p.setLetterSpacing(0.2f);
-        c.drawText("MY DAY", 80, 150, p);
+        c.drawText(Lang.tr("MY DAY"), 80, 150, p);
         p.setLetterSpacing(0f);
         p.setColor(ink);
         p.setTypeface(Typeface.create("sans-serif", Typeface.BOLD));
         p.setTextSize(84);
-        c.drawText(day.format(DateTimeFormatter.ofPattern("EEEE", Locale.getDefault())), 80, 260, p);
+        c.drawText(day.format(DateTimeFormatter.ofPattern("EEEE", Lang.locale())), 80, 260, p);
         p.setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));
         p.setTextSize(44);
         p.setColor(fade(ink, 0.7f));
-        c.drawText(day.format(DateTimeFormatter.ofPattern("d MMMM", Locale.getDefault())) + "  ·  " + fit(r.name, p, 560), 80, 330, p);
+        c.drawText(day.format(DateTimeFormatter.ofPattern("d MMMM", Lang.locale())) + "  ·  " + fit(Lang.tr(r.name), p, 560), 80, 330, p);
 
         float top = 400, rowH = Math.min(124f, (H - top - 260f) / Math.max(1, rows.size()));
         RectF rect = new RectF();
@@ -69,7 +69,7 @@ final class DayCard {
                 p.setColor(fade(ink, 0.6f));
                 p.setTypeface(Typeface.create("sans-serif", Typeface.ITALIC));
                 p.setTextSize(42);
-                c.drawText(row.title, 80 + 250, y + rowH * 0.62f, p);
+                c.drawText(Lang.tr(row.title), 80 + 250, y + rowH * 0.62f, p);
                 continue;
             }
             int kc = sw[3 + Math.max(0, Math.min(Routine.SLEEP, row.kind))];
@@ -83,7 +83,7 @@ final class DayCard {
             p.setColor(ink);
             p.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
             p.setTextSize(44);
-            c.drawText(fit(row.title, p, W - 360 - 80 - 170), 360, y + rowH * 0.62f, p);
+            c.drawText(fit(Lang.tr(row.title), p, W - 360 - 80 - 170), 360, y + rowH * 0.62f, p);
             p.setColor(fade(ink, 0.6f));
             p.setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));
             p.setTextSize(34);
@@ -99,7 +99,7 @@ final class DayCard {
         p.setColor(fade(ink, 0.6f));
         p.setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));
         p.setTextSize(34);
-        c.drawText("Plan your day. Free on Google Play.", 80, H - 84, p);
+        c.drawText(Lang.tr("Plan your day. Free on Google Play."), 80, H - 84, p);
         return bmp;
     }
 

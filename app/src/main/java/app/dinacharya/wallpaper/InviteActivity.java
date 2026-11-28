@@ -171,7 +171,7 @@ public class InviteActivity extends LangActivity {
                     if (gone) return;
                     int left = Pro.get(c).inviteDaysLeft();
                     statusView.setText(shown.invited + " of " + shown.max + " invites used"
-                            + (shown.pending > 0 ? ", " + shown.pending + " waiting for the friend to use the app" : "")
+                            + (shown.pending > 0 ? "\n" + shown.pending + " waiting for the friend to use the app" : "")
                             + (left > 0 ? "\nFree Pro days left: " + left : ""));
                 });
             } catch (RuntimeException e) {
