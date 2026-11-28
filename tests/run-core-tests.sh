@@ -8,7 +8,7 @@ SRC=../app/src/main/java/app/dinacharya/wallpaper
 OUT="$(mktemp -d)"
 CORE="Routine TypeStats Tokens DeviceAuth CloudDrive BackupArchive BackupPolicy CloudBackup SlotOps SwipeTracker TabSwipe DragReorder \
 Overrides Plan AlarmState AlarmPlanner Ev UsageDetail DayReport ReportAssembler Analyzer WeekStats Suggestions HistoryStore \
-Http MiniJson SubColors Allotment SlotGaps SlotPlay Todos PosterExtras WakeQuotes PauseChallenge SnoozeCost LauncherConfig AppKey AppEntry AppSearch FocusRules LockRules Limits DayPass PassLedger FirstRun PassReset HomeWatch GuardRules FrontTracker AlarmSurface FeaturePlan GuardLoop AdLayers Translator Tr DayOff LibraryMode LivePlan EarlyFinish ShakeCounter LockMode SlotUse SlotReport OneOpen SlotTodo VideoProgress GoalSlots PlanTable AlarmWatch WallpaperWatch QuietRules NoResponse StaleTimers SlotAdjust FinishChoices MissedSlots ReplaceFromNow NoticeButtons RatePrompt InviteClient InviteDays InviteActive RoutineTemplates RoutineShare"
+Http MiniJson SubColors Allotment SlotGaps SlotPlay Todos PosterExtras WakeQuotes PauseChallenge SnoozeCost LauncherConfig AppKey AppEntry AppSearch FocusRules LockRules Limits DayPass PassLedger FirstRun PassReset HomeWatch GuardRules FrontTracker AlarmSurface FeaturePlan GuardLoop AdLayers Translator Tr DayOff LibraryMode LivePlan EarlyFinish ShakeCounter LockMode SlotUse SlotReport OneOpen SlotTodo VideoProgress GoalSlots PlanTable AlarmWatch WallpaperWatch QuietRules NoResponse StaleTimers SlotAdjust FinishChoices MissedSlots ReplaceFromNow NoticeButtons RatePrompt InviteClient InviteDays InviteActive RoutineTemplates RoutineShare DayCardLayout"
 FILES=""
 for f in $CORE; do FILES="$FILES $SRC/$f.java"; done
 javac -encoding UTF-8 -nowarn -d "$OUT" $FILES

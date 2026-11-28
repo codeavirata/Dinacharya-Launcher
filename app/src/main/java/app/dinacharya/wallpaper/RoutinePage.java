@@ -272,6 +272,7 @@ final class RoutinePage extends Page {
         Expander.Part tools = Expander.more(a, body, "More tools", "routine_tools", false);
         tools.body.addView(pair(button("Start from a template", false, v -> chooseTemplate()),
                 button("Share this routine", false, v -> shareRoutine())), wide(6));
+        tools.body.addView(button("Share my day as a picture", false, v -> DayCard.share(a)), wide(6));
         tools.body.addView(pair(button("Paste a routine", false, v -> pasteRoutine()),
                 button("Reset to sample", false, v -> confirmReset())), wide(6));
 

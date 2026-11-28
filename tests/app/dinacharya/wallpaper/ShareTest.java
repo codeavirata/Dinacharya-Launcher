@@ -51,6 +51,25 @@ public class ShareTest {
         d.setInput(new byte[5_000_000]); d.finish();
         byte[] buf = new byte[100000]; int n = d.deflate(buf);
         ok("a code that unpacks to something huge is refused", RoutineShare.read("DNC1:" + java.util.Base64.getUrlEncoder().withoutPadding().encodeToString(java.util.Arrays.copyOf(buf, n))) == null);
+        for (int i = 0; i < RoutineTemplates.count(); i++) {
+            Routine t = RoutineTemplates.build(i);
+            java.util.List<DayCardLayout.Row> all = DayCardLayout.rows(t.compute(), false);
+            java.util.List<DayCardLayout.Row> pick = DayCardLayout.pick(all);
+            ok(RoutineTemplates.name(i) + ": the day picture has at most " + DayCardLayout.MAX_ROWS + " lines", pick.size() <= DayCardLayout.MAX_ROWS && !pick.isEmpty());
+            ok(RoutineTemplates.name(i) + ": the picture starts with the first slot and shows its time", pick.get(0).title.equals(t.blocks.get(0).title) && pick.get(0).time.endsWith("M"));
+        }
+        java.util.List<DayCardLayout.Row> few = new java.util.ArrayList<>();
+        for (int i = 0; i < 5; i++) few.add(new DayCardLayout.Row("6:00 AM", "S" + i, Routine.TASK, 60, false));
+        ok("a short day is shown whole", DayCardLayout.pick(few).size() == 5);
+        java.util.List<DayCardLayout.Row> many = new java.util.ArrayList<>();
+        for (int i = 0; i < 20; i++) many.add(new DayCardLayout.Row("6:00 AM", "S" + i, Routine.TASK, 60, false));
+        java.util.List<DayCardLayout.Row> pm = DayCardLayout.pick(many);
+        ok("a long day ends with a '+ N more' line that counts what is left out", pm.size() == DayCardLayout.MAX_ROWS && pm.get(pm.size() - 1).more && pm.get(pm.size() - 1).title.equals("+ 10 more"));
+        java.util.List<DayCardLayout.Row> rests = new java.util.ArrayList<>();
+        for (int i = 0; i < 8; i++) { rests.add(new DayCardLayout.Row("t", "T" + i, Routine.TASK, 60, false)); rests.add(new DayCardLayout.Row("t", "R" + i, Routine.REST, 10, false)); }
+        java.util.List<DayCardLayout.Row> pr = DayCardLayout.pick(rests);
+        int tasksKept = 0; for (DayCardLayout.Row x : pr) if (x.kind == Routine.TASK) tasksKept++;
+        ok("short rests are left out before anything else (all 8 slots kept, no 'more' line)", pr.size() == DayCardLayout.MAX_ROWS && tasksKept == 8 && !pr.get(pr.size() - 1).more);
         System.out.println(fails == 0 ? "ALL PASS" : fails + " FAILS");
     }
 }
