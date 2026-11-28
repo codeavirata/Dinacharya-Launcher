@@ -1,0 +1,424 @@
+[000]  | tour starts, Android SDK built for x86_64, Android 34
+[000] 00-first-run | --- pass 00-first-run
+[001] 00-first-run | picture 001-welcome.png (WelcomeActivity)
+[001] 00-first-run | page 'welcome-full' is 1878px tall in 1650px: 2 pictures
+[002] 00-first-run | picture 002-welcome-full-1.png (WelcomeActivity)
+[003] 00-first-run | picture 003-welcome-full-2.png (WelcomeActivity)
+[003] 00-first-run | pressed 'Get started'
+[004] 00-first-run | picture 004-setup.png (SetupActivity)
+[004] 00-first-run | page 'setup-full' is 4810px tall in 1881px: 3 pictures
+[005] 00-first-run | picture 005-setup-full-1.png (SetupActivity)
+[006] 00-first-run | picture 006-setup-full-2.png (SetupActivity)
+[007] 00-first-run | picture 007-setup-full-3.png (SetupActivity)
+[007] 00-first-run | pressed 'Day alarms'
+[007] 00-first-run | pressed 'Phone time and app limits'
+[008] 00-first-run | picture 008-setup-picked.png (SetupActivity)
+[008] 00-first-run | pressed 'Set up 2 features'
+[009] 00-first-run | picture 009-setup-step-1.png (SetupActivity)
+[009] 00-first-run | pressed (if there) 'Not now'
+[010] 00-first-run | picture 010-setup-step-2.png (SetupActivity)
+[010] 00-first-run | pressed (if there) 'Not now'
+[011] 00-first-run | picture 011-setup-step-3.png (SetupActivity)
+[011] 00-first-run | pressed (if there) 'Skip this one'
+[012] 00-first-run | picture 012-setup-step-4.png (SetupActivity)
+[012] 00-first-run | pressed (if there) 'Not now'
+[013] 00-first-run | picture 013-setup-step-5.png (SetupActivity)
+[014] 00-first-run | picture 014-setup-done.png (SetupActivity)
+[015] 00-first-run | picture 015-tour-1.png (TourActivity)
+[015] 00-first-run | pressed 'Next'
+[016] 00-first-run | picture 016-tour-2.png (TourActivity)
+[016] 00-first-run | pressed 'Next'
+[017] 00-first-run | picture 017-tour-3.png (TourActivity)
+[017] 00-first-run | pressed 'Next'
+[018] 00-first-run | picture 018-tour-4.png (TourActivity)
+[018] 00-first-run | pressed 'Next'
+[019] 00-first-run | picture 019-tour-5.png (TourActivity)
+[019] 00-first-run | pressed 'Next'
+[020] 00-first-run | picture 020-tour-6.png (TourActivity)
+[020] 00-first-run | pressed 'Next'
+[020] 00-first-run | TIMEOUT waiting for CompareActivity; in front is MainActivity
+[021] 00-first-run | picture 021-compare-first.png (MainActivity)
+[021] 00-first-run | page 'compare-first-full' is 3753px tall in 1755px: 3 pictures
+[022] 00-first-run | picture 022-compare-first-full-1.png (MainActivity)
+[023] 00-first-run | picture 023-compare-first-full-2.png (MainActivity)
+[024] 00-first-run | picture 024-compare-first-full-3.png (MainActivity)
+[024] 00-first-run | pressed 'Continue'
+[024] 00-first-run | seeded; reports: 7
+[024] 00-first-run | seeded today: 6 answered slots, now Fri Nov 27 10:42:38 GMT+05:30 2026
+[000] site-a-graphite-en | --- pass site-a-graphite-en
+[000] site-a-graphite-en | seeded; reports: 7
+[000] site-a-graphite-en | seeded today: 6 answered slots, now Fri Nov 27 10:42:39 GMT+05:30 2026
+[000] site-a-graphite-en | NOT FOUND description 'Home'. On screen: 
+[000] site-a-graphite-en | clickables on Home: 
+[001] site-a-graphite-en | picture 001-01-home.png (MainActivity)
+[002] site-a-graphite-en | picture 002-01-home-open.png (MainActivity)
+[002] site-a-graphite-en | NOT FOUND description 'Home'. On screen: 
+[002] site-a-graphite-en | NOT FOUND any of [Adjust time]. On screen: 
+[003] site-a-graphite-en | picture 003-home-adjust-time.png (MainActivity)
+[003] site-a-graphite-en | closed a sheet
+[003] site-a-graphite-en | NOT FOUND any of [Change plan]. On screen: 
+[004] site-a-graphite-en | picture 004-home-change-plan.png (MainActivity)
+[004] site-a-graphite-en | no sheet to close
+[004] site-a-graphite-en | NOT FOUND any of [To-do]. On screen: 
+[005] site-a-graphite-en | picture 005-home-todo.png (MainActivity)
+[005] site-a-graphite-en | no sheet to close
+[005] site-a-graphite-en | NOT FOUND any of [Break]. On screen: 
+[006] site-a-graphite-en | picture 006-home-break.png (MainActivity)
+[006] site-a-graphite-en | no sheet to close
+[006] site-a-graphite-en | NOT FOUND any of [Day off]. On screen: 
+[007] site-a-graphite-en | picture 007-home-day-off.png (MainActivity)
+[007] site-a-graphite-en | no sheet to close
+[007] site-a-graphite-en | NOT FOUND any of [Finish]. On screen: 
+[008] site-a-graphite-en | picture 008-home-finish.png (MainActivity)
+[008] site-a-graphite-en | no sheet to close
+[008] site-a-graphite-en | NOT FOUND description 'Routine'. On screen: 
+[008] site-a-graphite-en | clickables on Routine: 
+[009] site-a-graphite-en | picture 009-02-routine.png (MainActivity)
+[010] site-a-graphite-en | picture 010-02-routine-open.png (MainActivity)
+[010] site-a-graphite-en | NOT FOUND description 'Routine'. On screen: 
+[010] site-a-graphite-en | NOT FOUND description 'Templates'. On screen: 
+[011] site-a-graphite-en | picture 011-routine-templates.png (MainActivity)
+[011] site-a-graphite-en | no sheet to close
+[011] site-a-graphite-en | NOT FOUND description 'Share'. On screen: 
+[012] site-a-graphite-en | picture 012-routine-share.png (MainActivity)
+[012] site-a-graphite-en | no sheet to close
+[012] site-a-graphite-en | NOT FOUND any of [Add slot]. On screen: 
+[013] site-a-graphite-en | picture 013-routine-add.png (MainActivity)
+[013] site-a-graphite-en | no sheet to close
+[013] site-a-graphite-en | NOT FOUND any of [Add rests]. On screen: 
+[014] site-a-graphite-en | picture 014-routine-rests.png (MainActivity)
+[014] site-a-graphite-en | no sheet to close
+[014] site-a-graphite-en | NOT FOUND description containing 'details hidden'. On screen: 
+[014] site-a-graphite-en | on the open slot: 
+[015] site-a-graphite-en | picture 015-routine-slot-open.png (MainActivity)
+[015] site-a-graphite-en | NOT FOUND description 'More: add below, note, duplicate, delete'. On screen: 
+[016] site-a-graphite-en | picture 016-routine-menu-more.png (MainActivity)
+[016] site-a-graphite-en | no sheet to close
+[016] site-a-graphite-en | NOT FOUND description 'Length. Tap to type the minutes.'. On screen: 
+[017] site-a-graphite-en | picture 017-routine-length.png (MainActivity)
+[017] site-a-graphite-en | no sheet to close
+[017] site-a-graphite-en | NOT FOUND text /^\d{1,2}:\d{2}/. On screen: 
+[018] site-a-graphite-en | picture 018-routine-start-of-day.png (MainActivity)
+[018] site-a-graphite-en | no sheet to close
+[018] site-a-graphite-en | pressed [Routine]
+[018] site-a-graphite-en | pressed (if there) 'Got it'
+[019] site-a-graphite-en | picture 019-routine-exam.png (MainActivity)
+[019] site-a-graphite-en | seeded; reports: 7
+[019] site-a-graphite-en | seeded today: 6 answered slots, now Fri Nov 27 10:43:26 GMT+05:30 2026
+[019] site-a-graphite-en | pressed [Insights]
+[019] site-a-graphite-en | pressed (if there) 'Got it'
+[019] site-a-graphite-en | clickables on Insights: ＋ | New goal ; | GS study, collapsed ; | Answer writing, collapsed ; | Yoga & pranayama, collapsed ; | All your goals, collapsed ; | Time and apps in each slot, collapsed ; | Time by type today, collapsed ; | Habits, collapsed ; Performance and reports ; | Home ; | Routine ; | Insights ; | Backup ; | Settings
+[020] site-a-graphite-en | picture 020-03-insights.png (MainActivity)
+[020] site-a-graphite-en | opened 7 cards
+[020] site-a-graphite-en | page '03-insights-open' is 7940px tall in 1970px: 5 pictures
+[021] site-a-graphite-en | picture 021-03-insights-open-1.png (MainActivity)
+[022] site-a-graphite-en | picture 022-03-insights-open-2.png (MainActivity)
+[023] site-a-graphite-en | picture 023-03-insights-open-3.png (MainActivity)
+[024] site-a-graphite-en | picture 024-03-insights-open-4.png (MainActivity)
+[025] site-a-graphite-en | picture 025-03-insights-open-5.png (MainActivity)
+[025] site-a-graphite-en | pressed 'New goal'
+[026] site-a-graphite-en | picture 026-insights-new-goal.png (MainActivity)
+[026] site-a-graphite-en | closed a sheet
+[026] site-a-graphite-en | pressed 'Performance and reports'
+[027] site-a-graphite-en | picture 027-performance.png (PerformanceActivity)
+[027] site-a-graphite-en | opened 7 cards
+[027] site-a-graphite-en | opened 7 cards
+[027] site-a-graphite-en | opened 7 cards
+[027] site-a-graphite-en | page 'performance-open' is 6035px tall in 1858px: 4 pictures
+[028] site-a-graphite-en | picture 028-performance-open-1.png (PerformanceActivity)
+[029] site-a-graphite-en | picture 029-performance-open-2.png (PerformanceActivity)
+[030] site-a-graphite-en | picture 030-performance-open-3.png (PerformanceActivity)
+[031] site-a-graphite-en | picture 031-performance-open-4.png (PerformanceActivity)
+[031] site-a-graphite-en | back from PerformanceActivity
+[031] site-a-graphite-en | pressed [Backup]
+[031] site-a-graphite-en | pressed (if there) 'Got it'
+[031] site-a-graphite-en | clickables on Backup: | About this backup, collapsed ; Back up ; Sign in with Google ; | Settings, collapsed ; | Restore, collapsed ; | Other ways to sign in, collapsed ; | Home ; | Routine ; | Insights ; | Backup ; | Settings
+[032] site-a-graphite-en | picture 032-04-backup.png (MainActivity)
+[032] site-a-graphite-en | opened 4 cards
+[032] site-a-graphite-en | page '04-backup-open' is 3783px tall in 1970px: 3 pictures
+[033] site-a-graphite-en | picture 033-04-backup-open-1.png (MainActivity)
+[034] site-a-graphite-en | picture 034-04-backup-open-2.png (MainActivity)
+[035] site-a-graphite-en | picture 035-04-backup-open-3.png (MainActivity)
+[035] site-a-graphite-en | pressed [Settings]
+[035] site-a-graphite-en | pressed (if there) 'Got it'
+[035] site-a-graphite-en | clickables on Settings: Dinacharya Pro ✓ ; Language ; App colours ; Take the tour ; Features ; Home app ; Shortcut ; App list ; Hidden apps ; Home screen look ; Focus ; Locked apps ; Library and Quiet mode ; Phone use in slots ; Alarms ; Permissions ; Feature guide ; Help and problem report ; Send feedback ; Invite friends ; Rate Dinacharya ; About ; | Home ; | Routine ; | Insights ; | Backup ; | Settings
+[036] site-a-graphite-en | picture 036-05-settings.png (MainActivity)
+[036] site-a-graphite-en | page '05-settings-open' is 5412px tall in 1970px: 4 pictures
+[037] site-a-graphite-en | picture 037-05-settings-open-1.png (MainActivity)
+[038] site-a-graphite-en | picture 038-05-settings-open-2.png (MainActivity)
+[039] site-a-graphite-en | picture 039-05-settings-open-3.png (MainActivity)
+[040] site-a-graphite-en | picture 040-05-settings-open-4.png (MainActivity)
+[040] site-a-graphite-en | pressed [Settings]
+[040] site-a-graphite-en | pressed 'Language'
+[041] site-a-graphite-en | picture 041-settings-language.png (MainActivity)
+[041] site-a-graphite-en | closed a sheet
+[041] site-a-graphite-en | pressed 'App colours'
+[042] site-a-graphite-en | picture 042-settings-colours.png (MainActivity)
+[042] site-a-graphite-en | page 'settings-colours-open' is 1970px tall in 1970px: 1 pictures
+[043] site-a-graphite-en | picture 043-settings-colours-open.png (MainActivity)
+[043] site-a-graphite-en | back from MainActivity
+[043] site-a-graphite-en | pressed 'Home screen look'
+[044] site-a-graphite-en | picture 044-settings-look.png (MainActivity)
+[044] site-a-graphite-en | opened 2 cards
+[044] site-a-graphite-en | opened 2 cards
+[044] site-a-graphite-en | opened 2 cards
+[044] site-a-graphite-en | page 'settings-look-open' is 2831px tall in 1970px: 2 pictures
+[045] site-a-graphite-en | picture 045-settings-look-open-1.png (MainActivity)
+[046] site-a-graphite-en | picture 046-settings-look-open-2.png (MainActivity)
+[046] site-a-graphite-en | back from MainActivity
+[046] site-a-graphite-en | pressed 'Alarms'
+[047] site-a-graphite-en | picture 047-settings-alarms.png (MainActivity)
+[047] site-a-graphite-en | opened 4 cards
+[047] site-a-graphite-en | opened 4 cards
+[047] site-a-graphite-en | opened 4 cards
+[047] site-a-graphite-en | page 'settings-alarms-open' is 3439px tall in 1970px: 2 pictures
+[048] site-a-graphite-en | picture 048-settings-alarms-open-1.png (MainActivity)
+[049] site-a-graphite-en | picture 049-settings-alarms-open-2.png (MainActivity)
+[049] site-a-graphite-en | back from MainActivity
+[049] site-a-graphite-en | pressed 'Permissions'
+[050] site-a-graphite-en | picture 050-settings-permissions.png (MainActivity)
+[050] site-a-graphite-en | page 'settings-permissions-open' is 1970px tall in 1970px: 1 pictures
+[051] site-a-graphite-en | picture 051-settings-permissions-open.png (MainActivity)
+[051] site-a-graphite-en | back from MainActivity
+[051] site-a-graphite-en | pressed 'Feature guide'
+[052] site-a-graphite-en | picture 052-settings-guide.png (MainActivity)
+[052] site-a-graphite-en | opened 16 cards
+[052] site-a-graphite-en | opened 16 cards
+[052] site-a-graphite-en | opened 16 cards
+[052] site-a-graphite-en | page 'settings-guide-open' is 3843px tall in 1970px: 3 pictures
+[053] site-a-graphite-en | picture 053-settings-guide-open-1.png (MainActivity)
+[054] site-a-graphite-en | picture 054-settings-guide-open-2.png (MainActivity)
+[055] site-a-graphite-en | picture 055-settings-guide-open-3.png (MainActivity)
+[055] site-a-graphite-en | back from MainActivity
+[055] site-a-graphite-en | pressed 'Help and problem report'
+[056] site-a-graphite-en | picture 056-settings-help.png (MainActivity)
+[056] site-a-graphite-en | opened 8 cards
+[056] site-a-graphite-en | opened 8 cards
+[056] site-a-graphite-en | opened 8 cards
+[056] site-a-graphite-en | page 'settings-help-open' is 2327px tall in 1970px: 2 pictures
+[057] site-a-graphite-en | picture 057-settings-help-open-1.png (MainActivity)
+[058] site-a-graphite-en | picture 058-settings-help-open-2.png (MainActivity)
+[058] site-a-graphite-en | back from MainActivity
+[058] site-a-graphite-en | pressed 'About'
+[059] site-a-graphite-en | picture 059-settings-about.png (MainActivity)
+[059] site-a-graphite-en | page 'settings-about-open' is 1970px tall in 1970px: 1 pictures
+[060] site-a-graphite-en | picture 060-settings-about-open.png (MainActivity)
+[060] site-a-graphite-en | back from MainActivity
+[060] site-a-graphite-en | pressed 'Features'
+[061] site-a-graphite-en | picture 061-setup-review.png (SetupActivity)
+[061] site-a-graphite-en | back from SetupActivity
+[000] d-other-screens | --- pass d-other-screens
+[001] d-other-screens | picture 001-pro.png (ProActivity)
+[001] d-other-screens | page 'pro-open' is 2146px tall in 2146px: 1 pictures
+[002] d-other-screens | picture 002-pro-open.png (ProActivity)
+[003] d-other-screens | picture 003-compare.png (CompareActivity)
+[003] d-other-screens | opened 7 cards
+[003] d-other-screens | opened 7 cards
+[003] d-other-screens | opened 7 cards
+[003] d-other-screens | page 'compare-open' is 3437px tall in 2146px: 2 pictures
+[004] d-other-screens | picture 004-compare-open-1.png (CompareActivity)
+[005] d-other-screens | picture 005-compare-open-2.png (CompareActivity)
+[006] d-other-screens | picture 006-invite.png (InviteActivity)
+[006] d-other-screens | page 'invite-open' is 2146px tall in 2146px: 1 pictures
+[007] d-other-screens | picture 007-invite-open.png (InviteActivity)
+[008] d-other-screens | picture 008-report-yesterday.png (ReportActivity)
+[008] d-other-screens | opened 14 cards
+[008] d-other-screens | opened 14 cards
+[008] d-other-screens | opened 14 cards
+[008] d-other-screens | page 'report-yesterday-open' is 8568px tall in 2146px: 5 pictures
+[009] d-other-screens | picture 009-report-yesterday-open-1.png (ReportActivity)
+[010] d-other-screens | picture 010-report-yesterday-open-2.png (ReportActivity)
+[011] d-other-screens | picture 011-report-yesterday-open-3.png (ReportActivity)
+[012] d-other-screens | picture 012-report-yesterday-open-4.png (ReportActivity)
+[013] d-other-screens | picture 013-report-yesterday-open-5.png (ReportActivity)
+[014] d-other-screens | picture 014-report-2-days-ago.png (ReportActivity)
+[014] d-other-screens | opened 13 cards
+[014] d-other-screens | opened 13 cards
+[014] d-other-screens | opened 13 cards
+[014] d-other-screens | page 'report-2-days-ago-open' is 8307px tall in 2146px: 3 pictures
+[015] d-other-screens | picture 015-report-2-days-ago-open-1.png (ReportActivity)
+[016] d-other-screens | picture 016-report-2-days-ago-open-2.png (ReportActivity)
+[017] d-other-screens | picture 017-report-2-days-ago-open-3.png (ReportActivity)
+[018] d-other-screens | picture 018-home-settings-home.png (LauncherSettingsActivity)
+[018] d-other-screens | opened 3 cards
+[018] d-other-screens | opened 4 cards
+[018] d-other-screens | opened 4 cards
+[018] d-other-screens | page 'home-settings-home-open' is 1387px tall in 1947px: 1 pictures
+[019] d-other-screens | picture 019-home-settings-home-open.png (LauncherSettingsActivity)
+[020] d-other-screens | picture 020-home-settings-swipes.png (LauncherSettingsActivity)
+[020] d-other-screens | opened 4 cards
+[020] d-other-screens | opened 4 cards
+[020] d-other-screens | opened 4 cards
+[020] d-other-screens | page 'home-settings-swipes-open' is 1387px tall in 1947px: 1 pictures
+[021] d-other-screens | picture 021-home-settings-swipes-open.png (LauncherSettingsActivity)
+[022] d-other-screens | picture 022-home-settings-list.png (LauncherSettingsActivity)
+[022] d-other-screens | opened 4 cards
+[022] d-other-screens | opened 4 cards
+[022] d-other-screens | opened 4 cards
+[022] d-other-screens | page 'home-settings-list-open' is 1387px tall in 1947px: 1 pictures
+[023] d-other-screens | picture 023-home-settings-list-open.png (LauncherSettingsActivity)
+[024] d-other-screens | picture 024-home-settings-hidden.png (LauncherSettingsActivity)
+[024] d-other-screens | opened 4 cards
+[024] d-other-screens | opened 4 cards
+[024] d-other-screens | opened 4 cards
+[024] d-other-screens | page 'home-settings-hidden-open' is 1387px tall in 1947px: 1 pictures
+[025] d-other-screens | picture 025-home-settings-hidden-open.png (LauncherSettingsActivity)
+[026] d-other-screens | picture 026-focus-settings-pauses.png (LauncherSettingsActivity)
+[026] d-other-screens | opened 6 cards
+[026] d-other-screens | opened 5 cards
+[026] d-other-screens | opened 5 cards
+[026] d-other-screens | page 'focus-settings-pauses-open' is 1424px tall in 1947px: 1 pictures
+[027] d-other-screens | picture 027-focus-settings-pauses-open.png (LauncherSettingsActivity)
+[028] d-other-screens | picture 028-focus-settings-locks.png (LauncherSettingsActivity)
+[028] d-other-screens | opened 6 cards
+[028] d-other-screens | opened 5 cards
+[028] d-other-screens | opened 5 cards
+[028] d-other-screens | page 'focus-settings-locks-open' is 1424px tall in 1947px: 1 pictures
+[029] d-other-screens | picture 029-focus-settings-locks-open.png (LauncherSettingsActivity)
+[030] d-other-screens | picture 030-focus-settings-quiet.png (LauncherSettingsActivity)
+[030] d-other-screens | opened 7 cards
+[030] d-other-screens | opened 5 cards
+[030] d-other-screens | opened 5 cards
+[030] d-other-screens | page 'focus-settings-quiet-open' is 1424px tall in 1947px: 1 pictures
+[031] d-other-screens | picture 031-focus-settings-quiet-open.png (LauncherSettingsActivity)
+[032] d-other-screens | picture 032-focus-settings-use.png (LauncherSettingsActivity)
+[032] d-other-screens | opened 5 cards
+[032] d-other-screens | opened 5 cards
+[032] d-other-screens | opened 5 cards
+[032] d-other-screens | page 'focus-settings-use-open' is 1424px tall in 1947px: 1 pictures
+[033] d-other-screens | picture 033-focus-settings-use-open.png (LauncherSettingsActivity)
+[033] d-other-screens | hid 2 nudges
+[034] d-other-screens | picture 034-home-screen.png (LauncherActivity)
+[034] d-other-screens | called LauncherActivity.openDrawer
+[035] d-other-screens | picture 035-home-screen-apps.png (LauncherActivity)
+[035] d-other-screens | back from LauncherActivity
+[036] d-other-screens | picture 036-pause.png (ShotStage)
+[037] d-other-screens | picture 037-pause-later.png (ShotStage)
+[038] d-other-screens | picture 038-pause-strict.png (ShotStage)
+[039] d-other-screens | picture 039-pause-strict-later.png (ShotStage)
+[040] d-other-screens | picture 040-lock-timed.png (ShotStage)
+[041] d-other-screens | picture 041-lock-timed-later.png (ShotStage)
+[042] d-other-screens | picture 042-lock-type.png (ShotStage)
+[043] d-other-screens | picture 043-lock-type-later.png (ShotStage)
+[044] d-other-screens | picture 044-lock-strict.png (ShotStage)
+[045] d-other-screens | picture 045-lock-strict-later.png (ShotStage)
+[046] d-other-screens | picture 046-alarm-slot.png (AlarmActivity)
+[047] d-other-screens | picture 047-alarm-bedtime.png (AlarmActivity)
+[048] d-other-screens | picture 048-alarm-reask.png (AlarmActivity)
+[049] d-other-screens | picture 049-alarm-plan-ask.png (AlarmActivity)
+[049] d-other-screens | other screens done 134 pictures so far
+[000] site-b-paper-en | --- pass site-b-paper-en
+[000] site-b-paper-en | seeded; reports: 7
+[000] site-b-paper-en | seeded today: 6 answered slots, now Fri Nov 27 10:46:46 GMT+05:30 2026
+[000] site-b-paper-en | pressed [Home]
+[000] site-b-paper-en | pressed (if there) 'Got it'
+[000] site-b-paper-en | clickables on Home: ☁ | Not signed in. Open Backup. ; Day off | Take the rest of today off ; NOW  ·  STUDY ; Finish | Finish ; Break | Break ; Adjust time | Adjust time ; Change plan | Change plan ; To-do | To-do ; Lunch  ·  12:25 PM  ·  in 1h 39m ; Continue ; Library mode ; Settings ; Finish ; Finish ; Add or fix features ; Take the tour ; | Your home screen, collapsed ; TODAY'S GOALS ; | GS study, collapsed ; | Answer writing, collapsed ; | Yoga & pranayama, collapsed ; | Home ; | Routine ; | Insights ; | Backup ; | Settings
+[001] site-b-paper-en | picture 001-01-home.png (MainActivity)
+[001] site-b-paper-en | opened 4 cards
+[001] site-b-paper-en | page '01-home-open' is 6630px tall in 1970px: 4 pictures
+[002] site-b-paper-en | picture 002-01-home-open-1.png (MainActivity)
+[003] site-b-paper-en | picture 003-01-home-open-2.png (MainActivity)
+[004] site-b-paper-en | picture 004-01-home-open-3.png (MainActivity)
+[005] site-b-paper-en | picture 005-01-home-open-4.png (MainActivity)
+[005] site-b-paper-en | pressed [Routine]
+[005] site-b-paper-en | clickables on Routine: | Templates ; | Share ; UPSC Civil Services ; ＋ Weekend routine ; ＋ One day only ; Wake-up time ; First task time ; 5:00 AM ; | Time by type, collapsed ; | How to edit slots, collapsed ; ＋  Add slot ; Add rests ; Wake up & freshen up ; | Wake up & freshen up, details hidden. Tap … ; Yoga & pranayama ; | Yoga & pranayama, details hidden. Tap to s… ; Newspaper & current affairs ; | Newspaper & current affairs, details hidde… ; Breakfast ; | Breakfast, details hidden. Tap to show. ; GS study ; | GS study, details hidden. Tap to show. ; Short break ; | Short break, details hidden. Tap to show. ; Optional subject ; | Optional subject, details hidden. Tap to s… ; Lunch ; | Lunch, details hidden. Tap to show. ; Power nap ; | Power nap, details hidden. Tap to show. ; Answer writing ; | Answer writing, details hidden. Tap to sho… ; Tea break ; | Tea break, details hidden. Tap to show. ; Revision & notes ; | Revision & notes, details hidden. Tap to s… ; Evening walk ; | Evening walk, details hidden. Tap to show. ; Dinner ; | Dinner, details hidden. Tap to show. ; Mock test or PYQs ; | Mock test or PYQs, details hidden. Tap to … ; Plan tomorrow ; | Plan tomorrow, details hidden. Tap to show… ; Wind down ; | Wind down, details hidden. Tap to show. ; Sleep ; | Sleep, details hidden. Tap to show. ; | Give a slot a type, collapsed ; | Home ; | Routine ; | Insights ; | Backup ; | Settings
+[006] site-b-paper-en | picture 006-02-routine.png (MainActivity)
+[006] site-b-paper-en | opened 3 cards
+[006] site-b-paper-en | page '02-routine-open' is 10038px tall in 1970px: 6 pictures
+[007] site-b-paper-en | picture 007-02-routine-open-1.png (MainActivity)
+[008] site-b-paper-en | picture 008-02-routine-open-2.png (MainActivity)
+[009] site-b-paper-en | picture 009-02-routine-open-3.png (MainActivity)
+[010] site-b-paper-en | picture 010-02-routine-open-4.png (MainActivity)
+[011] site-b-paper-en | picture 011-02-routine-open-5.png (MainActivity)
+[012] site-b-paper-en | picture 012-02-routine-open-6.png (MainActivity)
+[012] site-b-paper-en | pressed [Insights]
+[012] site-b-paper-en | clickables on Insights: ＋ | New goal ; | GS study, collapsed ; | Answer writing, collapsed ; | Yoga & pranayama, collapsed ; | All your goals, expanded ; GS study ; Answer writing ; Yoga & pranayama ; | Time and apps in each slot, expanded ; | Tap to show or hide the apps used in this … ; | Tap to show or hide the apps used in this … ; | Tap to show or hide the apps used in this … ; | Tap to show or hide the apps used in this … ; | Tap to show or hide the apps used in this … ; | Tap to show or hide the apps used in this … ; | Time by type today, expanded ; | Study, collapsed ; | Meal, collapsed ; | Exercise, collapsed ; | Current affairs, collapsed ; | Other rest, collapsed ; | Personal, collapsed ; | Habits, expanded ; | A solid day, Good, collapsed ; Open Performance ; Performance and reports ; | Home ; | Routine ; | Insights ; | Backup ; | Settings
+[013] site-b-paper-en | picture 013-03-insights.png (MainActivity)
+[013] site-b-paper-en | opened 10 cards
+[013] site-b-paper-en | page '03-insights-open' is 8547px tall in 1970px: 5 pictures
+[014] site-b-paper-en | picture 014-03-insights-open-1.png (MainActivity)
+[015] site-b-paper-en | picture 015-03-insights-open-2.png (MainActivity)
+[016] site-b-paper-en | picture 016-03-insights-open-3.png (MainActivity)
+[017] site-b-paper-en | picture 017-03-insights-open-4.png (MainActivity)
+[018] site-b-paper-en | picture 018-03-insights-open-5.png (MainActivity)
+[018] site-b-paper-en | pressed [Backup]
+[018] site-b-paper-en | clickables on Backup: | About this backup, expanded ; Back up ; Sign in with Google ; | Settings, expanded ; Back up to Google Drive ; Back up using ; | Restore, expanded ; Restore from Google Drive ; | Other ways to sign in, expanded ; Check sign-in setup ; Sign in with a code ; Code sign-in setup (client ID) ; | Home ; | Routine ; | Insights ; | Backup ; | Settings
+[019] site-b-paper-en | picture 019-04-backup.png (MainActivity)
+[019] site-b-paper-en | page '04-backup-open' is 3783px tall in 1970px: 3 pictures
+[020] site-b-paper-en | picture 020-04-backup-open-1.png (MainActivity)
+[021] site-b-paper-en | picture 021-04-backup-open-2.png (MainActivity)
+[022] site-b-paper-en | picture 022-04-backup-open-3.png (MainActivity)
+[022] site-b-paper-en | pressed [Settings]
+[022] site-b-paper-en | clickables on Settings: Dinacharya Pro ✓ ; Language ; App colours ; Take the tour ; Features ; Home app ; Shortcut ; App list ; Hidden apps ; Home screen look ; Focus ; Locked apps ; Library and Quiet mode ; Phone use in slots ; Alarms ; Permissions ; Feature guide ; Help and problem report ; Send feedback ; Invite friends ; Rate Dinacharya ; About ; | Home ; | Routine ; | Insights ; | Backup ; | Settings
+[023] site-b-paper-en | picture 023-05-settings.png (MainActivity)
+[023] site-b-paper-en | page '05-settings-open' is 5412px tall in 1970px: 4 pictures
+[024] site-b-paper-en | picture 024-05-settings-open-1.png (MainActivity)
+[025] site-b-paper-en | picture 025-05-settings-open-2.png (MainActivity)
+[026] site-b-paper-en | picture 026-05-settings-open-3.png (MainActivity)
+[027] site-b-paper-en | picture 027-05-settings-open-4.png (MainActivity)
+[027] site-b-paper-en | hid 2 nudges
+[028] site-b-paper-en | picture 028-home-screen.png (LauncherActivity)
+[028] site-b-paper-en | called LauncherActivity.openDrawer
+[029] site-b-paper-en | picture 029-home-screen-apps.png (LauncherActivity)
+[029] site-b-paper-en | back from LauncherActivity
+[030] site-b-paper-en | picture 030-pause.png (ShotStage)
+[031] site-b-paper-en | picture 031-pause-later.png (ShotStage)
+[032] site-b-paper-en | picture 032-alarm-slot.png (AlarmActivity)
+[033] site-b-paper-en | picture 033-alarm-bedtime.png (AlarmActivity)
+[034] site-b-paper-en | picture 034-alarm-reask.png (AlarmActivity)
+[035] site-b-paper-en | picture 035-alarm-plan-ask.png (AlarmActivity)
+[000] site-c-graphite-hi | --- pass site-c-graphite-hi
+[000] site-c-graphite-hi | seeded; reports: 7
+[000] site-c-graphite-hi | seeded today: 6 answered slots, now Fri Nov 27 10:47:55 GMT+05:30 2026
+[000] site-c-graphite-hi | pressed [होम]
+[000] site-c-graphite-hi | clickables on Home: ☁ | साइन इन नहीं है। बैकअप खोलें। ; छुट्टी | आज का बाकी दिन छुट्टी लें ; अभी  ·  पढ़ाई ; पूरा करें | पूरा करें ; ब्रेक | ब्रेक ; समय समायोजित करें | समय समायोजित करें ; योजना बदलें | योजना बदलें ; करने की सूची | करने की सूची ; दोपहर का भोजन  ·  12:25 PM  ·  in 1h 38मि ; जारी रखें ; लाइब्रेरी मोड ; सेटिंग्स ; पूरा करें ; पूरा करें ; सुविधाएँ जोड़ें या ठीक करें ; टूर देखें ; | आपकी होम स्क्रीन, खुला हुआ ; लुक बदलें ; आज के लक्ष्य ; | GS की पढ़ाई, बंद ; | उत्तर लेखन, बंद ; | योग और प्राणायाम, बंद ; | होम ; | दिनचर्या ; | इनसाइट्स ; | बैकअप ; | सेटिंग्स
+[001] site-c-graphite-hi | picture 001-01-home.png (MainActivity)
+[001] site-c-graphite-hi | page '01-home-open' is 6186px tall in 1966px: 4 pictures
+[002] site-c-graphite-hi | picture 002-01-home-open-1.png (MainActivity)
+[003] site-c-graphite-hi | picture 003-01-home-open-2.png (MainActivity)
+[004] site-c-graphite-hi | picture 004-01-home-open-3.png (MainActivity)
+[005] site-c-graphite-hi | picture 005-01-home-open-4.png (MainActivity)
+[005] site-c-graphite-hi | pressed [दिनचर्या]
+[005] site-c-graphite-hi | clickables on Routine: | टेम्पलेट ; | शेयर करें ; UPSC सिविल सेवा ; ＋ सप्ताहांत की दिनचर्या ; ＋ केवल एक दिन ; जागने का समय ; पहले काम का समय ; 5:00 AM ; | प्रकार के अनुसार समय, खुला हुआ ; | स्लॉट कैसे बदलें, खुला हुआ ; ＋  स्लॉट जोड़ें ; विश्राम जोड़ें ; Wake up & freshen up ; | उठें और तरोताज़ा हों, ब्योरा छिपा है। दिखा… ; Yoga & pranayama ; | योग और प्राणायाम, ब्योरा छिपा है। दिखाने क… ; Newspaper & current affairs ; | अख़बार और समसामयिकी, ब्योरा छिपा है। दिखान… ; Breakfast ; | नाश्ता, ब्योरा छिपा है। दिखाने के लिए टैप … ; GS study ; | GS की पढ़ाई, ब्योरा छिपा है। दिखाने के लिए… ; Short break ; | छोटा ब्रेक, ब्योरा छिपा है। दिखाने के लिए … ; Optional subject ; | वैकल्पिक विषय, ब्योरा छिपा है। दिखाने के ल… ; Lunch ; | दोपहर का भोजन, ब्योरा छिपा है। दिखाने के ल… ; Power nap ; | छोटी झपकी, ब्योरा छिपा है। दिखाने के लिए ट… ; Answer writing ; | उत्तर लेखन, ब्योरा छिपा है। दिखाने के लिए … ; Tea break ; | चाय का ब्रेक, ब्योरा छिपा है। दिखाने के लि… ; Revision & notes ; | रिवीज़न और नोट्स, ब्योरा छिपा है। दिखाने क… ; Evening walk ; | शाम की सैर, ब्योरा छिपा है। दिखाने के लिए … ; Dinner ; | रात का खाना, ब्योरा छिपा है। दिखाने के लिए… ; Mock test or PYQs ; | मॉक टेस्ट या पिछले वर्षों के प्रश्न, ब्योर… ; Plan tomorrow ; | कल की योजना, ब्योरा छिपा है। दिखाने के लिए… ; Wind down ; | सोने की तैयारी, ब्योरा छिपा है। दिखाने के … ; Sleep ; | नींद, ब्योरा छिपा है। दिखाने के लिए टैप कर… ; | स्लॉट को एक प्रकार दें, खुला हुआ ; पढ़ाई | प्रकार पढ़ाई। हटाने के लिए टैप करें। ; रिवीज़न | प्रकार रिवीज़न। हटाने के लिए टैप क… ; अभ्यास | प्रकार अभ्यास। हटाने के लिए टैप करे… ; काम | प्रकार काम। हटाने के लिए टैप करें। ; समसामयिकी | प्रकार समसामयिकी। हटाने के लिए ट… ; उत्तर लेखन | प्रकार उत्तर लेखन। हटाने के लिए… ; मॉक टेस्ट | प्रकार मॉक टेस्ट। हटाने के लिए ट… ; अन्य | प्रकार अन्य। हर वर्ग में यह रहता है। ; ＋ जोड़ें ; झपकी | प्रकार झपकी। हटाने के लिए टैप करें। ; अन्य | प्रकार अन्य। हर वर्ग में यह रहता है। ; ＋ जोड़ें ; भोजन | प्रकार भोजन। हटाने के लिए टैप करें। ; अन्य | प्रकार अन्य। हर वर्ग में यह रहता है। ; ＋ जोड़ें ; कसरत | प्रकार कसरत। हटाने के लिए टैप करें। ; पठन | प्रकार पठन। हटाने के लिए टैप करें। ; परिवार का समय | प्रकार परिवार का समय। हटाने … ; निजी | प्रकार निजी। हटाने के लिए टैप करें। ; अन्य | प्रकार अन्य। हर वर्ग में यह रहता है। ; ＋ जोड़ें ; नींद | प्रकार नींद। हटाने के लिए टैप करें। ; अन्य | प्रकार अन्य। हर वर्ग में यह रहता है। ; ＋ जोड़ें ; | होम ; | दिनचर्या ; | इनसाइट्स ; | बैकअप ; | सेटिंग्स
+[006] site-c-graphite-hi | picture 006-02-routine.png (MainActivity)
+[006] site-c-graphite-hi | page '02-routine-open' is 10290px tall in 1966px: 6 pictures
+[007] site-c-graphite-hi | picture 007-02-routine-open-1.png (MainActivity)
+[008] site-c-graphite-hi | picture 008-02-routine-open-2.png (MainActivity)
+[009] site-c-graphite-hi | picture 009-02-routine-open-3.png (MainActivity)
+[010] site-c-graphite-hi | picture 010-02-routine-open-4.png (MainActivity)
+[011] site-c-graphite-hi | picture 011-02-routine-open-5.png (MainActivity)
+[012] site-c-graphite-hi | picture 012-02-routine-open-6.png (MainActivity)
+[012] site-c-graphite-hi | pressed [इनसाइट्स]
+[012] site-c-graphite-hi | clickables on Insights: ＋ | नया लक्ष्य ; | GS की पढ़ाई, बंद ; | उत्तर लेखन, बंद ; | योग और प्राणायाम, बंद ; | आपके सभी लक्ष्य, खुला हुआ ; GS की पढ़ाई ; उत्तर लेखन ; योग और प्राणायाम ; | हर स्लॉट में समय और ऐप्स, खुला हुआ ; | इस स्लॉट में इस्तेमाल हुए ऐप्स दिखाने या छ… ; | इस स्लॉट में इस्तेमाल हुए ऐप्स दिखाने या छ… ; | इस स्लॉट में इस्तेमाल हुए ऐप्स दिखाने या छ… ; | इस स्लॉट में इस्तेमाल हुए ऐप्स दिखाने या छ… ; | इस स्लॉट में इस्तेमाल हुए ऐप्स दिखाने या छ… ; | इस स्लॉट में इस्तेमाल हुए ऐप्स दिखाने या छ… ; | आज प्रकार के अनुसार समय, खुला हुआ ; | पढ़ाई, बंद ; | भोजन, बंद ; | कसरत, बंद ; | समसामयिकी, बंद ; | अन्य आराम, बंद ; | निजी, बंद ; | आदतें, खुला हुआ ; | एक बढ़िया दिन, अच्छा, बंद ; प्रदर्शन खोलें ; प्रदर्शन और रिपोर्ट ; | होम ; | दिनचर्या ; | इनसाइट्स ; | बैकअप ; | सेटिंग्स
+[013] site-c-graphite-hi | picture 013-03-insights.png (MainActivity)
+[013] site-c-graphite-hi | page '03-insights-open' is 7449px tall in 1966px: 5 pictures
+[014] site-c-graphite-hi | picture 014-03-insights-open-1.png (MainActivity)
+[015] site-c-graphite-hi | picture 015-03-insights-open-2.png (MainActivity)
+[016] site-c-graphite-hi | picture 016-03-insights-open-3.png (MainActivity)
+[017] site-c-graphite-hi | picture 017-03-insights-open-4.png (MainActivity)
+[018] site-c-graphite-hi | picture 018-03-insights-open-5.png (MainActivity)
+[018] site-c-graphite-hi | pressed [बैकअप]
+[018] site-c-graphite-hi | clickables on Backup: | इस बैकअप के बारे में, खुला हुआ ; बैकअप लें ; Google से साइन इन करें ; | सेटिंग्स, खुला हुआ ; Google ड्राइव में बैकअप लें ; बैकअप का तरीका ; | रीस्टोर करें, खुला हुआ ; Google ड्राइव से रीस्टोर करें ; | साइन इन के दूसरे तरीके, खुला हुआ ; साइन-इन सेटअप जाँचें ; कोड से साइन इन करें ; कोड से साइन-इन का सेटअप (क्लाइंट ID) ; | होम ; | दिनचर्या ; | इनसाइट्स ; | बैकअप ; | सेटिंग्स
+[019] site-c-graphite-hi | picture 019-04-backup.png (MainActivity)
+[019] site-c-graphite-hi | page '04-backup-open' is 3835px tall in 1966px: 3 pictures
+[020] site-c-graphite-hi | picture 020-04-backup-open-1.png (MainActivity)
+[021] site-c-graphite-hi | picture 021-04-backup-open-2.png (MainActivity)
+[022] site-c-graphite-hi | picture 022-04-backup-open-3.png (MainActivity)
+[022] site-c-graphite-hi | pressed [सेटिंग्स]
+[022] site-c-graphite-hi | clickables on Settings: Dinacharya Pro ✓ ; भाषा ; ऐप के रंग ; टूर देखें ; सुविधाएँ ; होम ऐप ; Shortcut ; App list ; छिपाए गए ऐप्स ; होम स्क्रीन का लुक ; फ़ोकस ; लॉक किए ऐप्स ; लाइब्रेरी और शांत मोड ; स्लॉट में फ़ोन का इस्तेमाल ; अलार्म ; अनुमतियाँ ; फ़ीचर गाइड ; मदद और समस्या रिपोर्ट ; फ़ीडबैक भेजें ; दोस्तों को आमंत्रित करें ; Dinacharya को रेट करें ; ऐप के बारे में ; | होम ; | दिनचर्या ; | इनसाइट्स ; | बैकअप ; | सेटिंग्स
+[023] site-c-graphite-hi | picture 023-05-settings.png (MainActivity)
+[023] site-c-graphite-hi | page '05-settings-open' is 5518px tall in 1966px: 4 pictures
+[024] site-c-graphite-hi | picture 024-05-settings-open-1.png (MainActivity)
+[025] site-c-graphite-hi | picture 025-05-settings-open-2.png (MainActivity)
+[026] site-c-graphite-hi | picture 026-05-settings-open-3.png (MainActivity)
+[027] site-c-graphite-hi | picture 027-05-settings-open-4.png (MainActivity)
+[027] site-c-graphite-hi | hid 0 nudges
+[028] site-c-graphite-hi | picture 028-home-screen.png (LauncherActivity)
+[028] site-c-graphite-hi | called LauncherActivity.openDrawer
+[029] site-c-graphite-hi | picture 029-home-screen-apps.png (LauncherActivity)
+[029] site-c-graphite-hi | back from LauncherActivity
+[030] site-c-graphite-hi | picture 030-alarm-slot.png (AlarmActivity)
+[031] site-c-graphite-hi | picture 031-alarm-bedtime.png (AlarmActivity)
+[032] site-c-graphite-hi | picture 032-alarm-reask.png (AlarmActivity)
+[033] site-c-graphite-hi | picture 033-alarm-plan-ask.png (AlarmActivity)
+[033] site-c-graphite-hi | tour ends, 202 pictures
