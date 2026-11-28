@@ -14,7 +14,7 @@ function sumDays(from, count) { let d = 0; for (let k = from; k < from + count; 
 export const MAX_REWARDED_INVITES = 10;   // per inviter
 const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 
-const json = (o, status = 200) => new Response(JSON.stringify(o), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
+const json = (o, status = 200) => new Response(JSON.stringify(o), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store', 'x-content-type-options': 'nosniff' } });
 const bad = (msg, status = 400) => json({ ok: false, error: msg }, status);
 
 export function validDevice(id) { return typeof id === 'string' && /^[A-Za-z0-9-]{16,64}$/.test(id); }
@@ -110,8 +110,15 @@ export async function handle(req, env) {
   }
 
   // claimed: -1 = the friend joined but has not used the app yet, 0 = waiting for the inviter to collect, 1 = paid out.
-  const count = async (inviter, where) => {
-    const r = await db.prepare('SELECT COUNT(*) AS n FROM redemptions WHERE inviter = ? AND ' + where).bind(inviter).first();
+  // Every statement is a fixed text; the only things that vary are bound values. Nothing a caller sends is ever part of the SQL text.
+  const COUNT_SQL = {
+    waiting: 'SELECT COUNT(*) AS n FROM redemptions WHERE inviter = ? AND rewarded = 1 AND claimed = 0',
+    paid: 'SELECT COUNT(*) AS n FROM redemptions WHERE inviter = ? AND rewarded = 1 AND claimed = 1',
+    pending: 'SELECT COUNT(*) AS n FROM redemptions WHERE inviter = ? AND rewarded = 1 AND claimed = -1',
+    invited: 'SELECT COUNT(*) AS n FROM redemptions WHERE inviter = ?',
+  };
+  const count = async (inviter, which) => {
+    const r = await db.prepare(COUNT_SQL[which]).bind(inviter).first();
     return r ? r.n : 0;
   };
 
@@ -121,16 +128,16 @@ export async function handle(req, env) {
   }
 
   if (url.pathname === '/v1/status') {
-    const waiting = await count(b.device, 'rewarded = 1 AND claimed = 0');
-    const paid = await count(b.device, 'rewarded = 1 AND claimed = 1');
-    const pending = await count(b.device, 'rewarded = 1 AND claimed = -1');
-    const invited = await count(b.device, '1 = 1');
+    const waiting = await count(b.device, 'waiting');
+    const paid = await count(b.device, 'paid');
+    const pending = await count(b.device, 'pending');
+    const invited = await count(b.device, 'invited');
     return json({ ok: true, waiting, pending, days: sumDays(paid + 1, waiting), invited, max: MAX_REWARDED_INVITES,
       tiers: { first: TIER_ONE_COUNT, firstDays: INVITER_DAYS, laterDays: INVITER_DAYS_LATER } });
   }
 
   if (url.pathname === '/v1/claim') {
-    const paid = await count(b.device, 'rewarded = 1 AND claimed = 1');
+    const paid = await count(b.device, 'paid');
     const r = await db.prepare('UPDATE redemptions SET claimed = 1 WHERE inviter = ? AND rewarded = 1 AND claimed = 0').bind(b.device).run();
     const n = r && r.meta ? r.meta.changes : 0;
     return json({ ok: true, claimed: n, days: sumDays(paid + 1, n) });
