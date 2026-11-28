@@ -96,7 +96,7 @@ With JDK 17 and the Android SDK installed (`ANDROID_HOME` set), run `./gradlew a
    because an ordinary pause or lock holds when an app is opened from Dinacharya's home screen (a strict one holds everywhere).
 2. Tap your day to open the dashboard. On **Routine**, pick
    **Wake-up time** or **First task time**, set the time, and edit the slots
-   (or tap **Paste from web app** to bring in a routine made in the web planner).
+   (or tap **Paste a routine** to bring in one a friend shared, or one made in the web planner; **Start from a template** gives a ready-made day, and **Share this routine** sends yours).
 3. Optional: turn on alarms (**Settings > Alarms**), set goals (**Insights**) and sign in to back
    up (**Backup**).
 

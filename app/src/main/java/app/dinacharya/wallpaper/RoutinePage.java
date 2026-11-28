@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.text.Editable;
@@ -269,7 +270,9 @@ final class RoutinePage extends Page {
         body.addView(rowsBox, wide(2));
         dragger = new RowDragger(rowsBox, scroll, dp(10), dp(80), dp(30), (from, to) -> moveSlot(from, to));
         Expander.Part tools = Expander.more(a, body, "More tools", "routine_tools", false);
-        tools.body.addView(pair(button("Paste from web app", false, v -> pasteRoutine()),
+        tools.body.addView(pair(button("Start from a template", false, v -> chooseTemplate()),
+                button("Share this routine", false, v -> shareRoutine())), wide(6));
+        tools.body.addView(pair(button("Paste a routine", false, v -> pasteRoutine()),
                 button("Reset to sample", false, v -> confirmReset())), wide(6));
 
         // Activity types (shared by all routines).
@@ -1499,6 +1502,45 @@ final class RoutinePage extends Page {
                 .show();
     }
 
+    /** The ready-made days: pick one, confirm, and the slots of this routine are replaced (it can be undone). */
+    private void chooseTemplate() {
+        int n = RoutineTemplates.count();
+        final CharSequence[] names = new CharSequence[n];
+        for (int i = 0; i < n; i++) names[i] = RoutineTemplates.name(i);
+        new DBuilder(a)
+                .setMenu(names, -1, (d, which) -> confirmTemplate(which))
+                .setTitle("Start from a template")
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    private void confirmTemplate(final int which) {
+        final Routine r = sched();
+        new DBuilder(a)
+                .setTitle(RoutineTemplates.name(which))
+                .setMessage(RoutineTemplates.about(which) + "\n\nThe slots of \u201c" + r.name + "\u201d are replaced and you can edit every one. You can undo this.")
+                .setPositiveButton("Use it", (d, w) -> {
+                    String snap = a.snapshot();
+                    r.copyScheduleFrom(RoutineTemplates.build(which));
+                    main().syncSubs();
+                    changed();
+                    a.undoable("\u201c" + r.name + "\u201d now follows the " + RoutineTemplates.name(which) + " template.", snap);
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    /** Sends this routine's slots (a message with a code in it) through the phone's share sheet. */
+    private void shareRoutine() {
+        try {
+            Intent send = new Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, RoutineShare.message(sched()));
+            a.startActivity(Intent.createChooser(send, "Share this routine"));
+        } catch (RuntimeException e) {
+            CrashLog.note(a, "share routine", e);
+            a.toastText("This routine could not be shared");
+        }
+    }
+
     private void pasteRoutine() {
         String text = null;
         try {
@@ -1513,9 +1555,9 @@ final class RoutinePage extends Page {
         } catch (RuntimeException e) {
             text = null;
         }
-        Routine in = Routine.parse(text);
+        Routine in = RoutineShare.read(text);
         if (in == null) {
-            a.toastText("Copy your routine in the web app first");
+            a.toastText("Copy a shared routine message (or your routine from the web app) first");
             return;
         }
         String snap = a.snapshot();
