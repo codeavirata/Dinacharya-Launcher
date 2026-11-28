@@ -521,6 +521,7 @@ public class SetupActivity extends LangActivity {
     }
 
     private void finishSetup() {
+        if (!Store.prefs(this).getBoolean(PREF_SETUP_DONE, false)) RoutineGuard.setupFinished(this);   // a day to arrange the routine first
         Store.prefs(this).edit().putBoolean(PREF_SETUP_DONE, true).apply();
         if (!review && direct < 0) {
             // First time: on to the tour, which ends in the dashboard. (If the tour was already seen, straight to the dashboard.)

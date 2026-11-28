@@ -4,9 +4,10 @@ import android.content.Context;
 
 import java.time.LocalDate;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
- * The Android side of {@link RoutineLock}: reads what today has lived from the history and the saved routine, decides whether a save from
+ * The Android side of {@link RoutineLock}: reads which slots of today have started and the saved routine, decides whether a save from
  * the dashboard may go through, and keeps today's Change plan edits and skip marks when the routine is saved from tomorrow.
  */
 final class RoutineGuard {
@@ -19,7 +20,7 @@ final class RoutineGuard {
     static final class Verdict {
         /** The save must not happen. */
         final boolean refused;
-        /** The lived slot the edit would change, or "" when the strict switch is the reason. */
+        /** The started slot the edit would change, or "" when the strict switch is the reason. */
         final String slot;
         /** The running schedule day. Null when nothing needed checking. */
         final LocalDate day;
@@ -54,13 +55,35 @@ final class RoutineGuard {
         Store.prefs(c).edit().putBoolean(KEY_STRICT, on).apply();
     }
 
+    private static final String KEY_SETUP_AT = "setup_done_at";
+
+    /** When the first setup finished (0 when not known, as for a phone that finished it in an older build). */
+    static long setupAt(Context c) {
+        try {
+            return Store.prefs(c).getLong(KEY_SETUP_AT, 0L);
+        } catch (RuntimeException e) {
+            return 0L;
+        }
+    }
+
+    /** Called when the first setup is finished. Only the first time is kept, so replaying the setup later gives no new day of grace. */
+    static void setupFinished(Context c) {
+        try {
+            android.content.SharedPreferences p = Store.prefs(c);
+            if (!p.contains(KEY_SETUP_AT)) p.edit().putLong(KEY_SETUP_AT, System.currentTimeMillis()).apply();
+        } catch (RuntimeException e) {
+            CrashLog.note(c, "setup time", e);
+        }
+    }
+
     /** Whether {@code edited} may be saved over {@code saved} now. Never throws: when anything goes wrong the save is allowed. */
     static Verdict check(Context c, Routine saved, Routine edited) {
         try {
             if (RoutineLock.fingerprint(saved).equals(RoutineLock.fingerprint(edited))) return Verdict.ALLOW;
             Overrides ov = Store.overrides(c, saved);
             Plan.DayPlan p = Plan.resolve(saved, ov, System.currentTimeMillis(), Store.zone());
-            Set<Integer> lived = RoutineLock.lived(p, Store.history(c).events());
+            // Just after the first setup the routine is still being arranged: only the strict switch can stop an edit then.
+            Set<Integer> lived = RoutineLock.inGrace(setupAt(c), System.currentTimeMillis()) ? new TreeSet<Integer>() : RoutineLock.lived(p);
             String v = RoutineLock.violation(saved, edited, p.day, lived, strict(c));
             boolean canPin = saved.tempFor(p.day) == null;
             if (v != null) return new Verdict(true, v, p.day, canPin, null, false);

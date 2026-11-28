@@ -21,13 +21,6 @@ public class RoutineLockTest {
 
     static long at(int h, int m) { return DAY.atStartOfDay(Z).plusMinutes(h * 60L + m).toInstant().toEpochMilli(); }
 
-    static List<Ev> rangUpTo(int last) {
-        List<Ev> ev = new ArrayList<>();
-        Routine r = base();
-        for (int i = 0; i <= last; i++) ev.add(Ev.rang(at(5, 30) + i, DAY.toString(), i, r.blocks.get(i).title));
-        return ev;
-    }
-
     static boolean refused(Routine saved, Routine edited, Set<Integer> lived, boolean strict) {
         return RoutineLock.violation(saved, edited, DAY, lived, strict) != null;
     }
@@ -49,23 +42,23 @@ public class RoutineLockTest {
         Plan.DayPlan p = Plan.resolve(r, new Overrides(), at(8, 0), Z);
         ok("8:00 is inside the morning focus block", p.day.equals(DAY) && p.cur == 3);
 
-        // ---- which slots count as lived
-        Set<Integer> lived = RoutineLock.lived(p, rangUpTo(3));
-        ok("slots that started and rang are lived", lived.equals(new TreeSet<>(Arrays.asList(0, 1, 2, 3))));
-        List<Ev> more = rangUpTo(3);
-        more.add(Ev.rang(at(9, 20), DAY.toString(), 4, "Short break"));
-        ok("a slot that has not started yet is not lived, even with an event", RoutineLock.lived(p, more).equals(lived));
-        List<Ev> otherDay = new ArrayList<>();
-        for (int i = 0; i <= 3; i++) otherDay.add(Ev.rang(at(5, 30) - 86400000L, DAY.minusDays(1).toString(), i, "x"));
-        ok("yesterday's events do not count", RoutineLock.lived(p, otherDay).isEmpty());
-        List<Ev> noise = new ArrayList<>();
-        noise.add(Ev.snooze(at(7, 20), DAY.toString(), 5));
-        noise.add(Ev.launch(at(7, 21), DAY.toString(), 3, "pkg", "App", false));
-        ok("events that are not about living the slot do not count", RoutineLock.lived(p, noise).isEmpty());
-        ok("no events: nothing is lived (alarms were off)", RoutineLock.lived(p, new ArrayList<>()).isEmpty());
-        List<Ev> early = new ArrayList<>();
-        early.add(Ev.early(at(7, 40), DAY.toString(), 4, 3, "Morning focus block", at(7, 40)));
-        ok("finishing a slot early lives that slot too", RoutineLock.lived(Plan.resolve(r, new Overrides(), at(9, 20), Z), early).contains(3));
+        // ---- which slots count as lived: every slot that has started, whatever the history says
+        Set<Integer> lived = RoutineLock.lived(p);
+        ok("every slot that has started is lived, with no alarm and no history at all", lived.equals(new TreeSet<>(Arrays.asList(0, 1, 2, 3))));
+        ok("a slot that has not started yet is not lived", !lived.contains(4) && !lived.contains(18));
+        Plan.DayPlan atStart = Plan.resolve(r, new Overrides(), at(5, 30), Z);
+        ok("at the very start of the day the first slot is already lived", RoutineLock.lived(atStart).equals(new TreeSet<>(Arrays.asList(0))));
+        ok("a few minutes later the slot after it is not lived yet", !RoutineLock.lived(Plan.resolve(r, new Overrides(), at(6, 4), Z)).contains(2));
+        Plan.DayPlan later = Plan.resolve(r, new Overrides(), at(9, 20), Z);
+        ok("later in the day more slots are lived", RoutineLock.lived(later).containsAll(Arrays.asList(0, 1, 2, 3, 4)) && !RoutineLock.lived(later).contains(5));
+
+        // ---- the day after the first setup
+        long setup = at(14, 0);
+        ok("no record of the setup: no grace", !RoutineLock.inGrace(0, at(15, 0)));
+        ok("an hour after the setup: grace", RoutineLock.inGrace(setup, at(15, 0)));
+        ok("23 hours after the setup: grace", RoutineLock.inGrace(setup, setup + 23L * 3600000));
+        ok("a day after the setup: no grace", !RoutineLock.inGrace(setup, setup + RoutineLock.GRACE_MS));
+        ok("the clock put back before the setup gives no grace", !RoutineLock.inGrace(setup, setup - 3600000));
 
         // ---- what may and may not change
         Set<Integer> L = new TreeSet<>(Arrays.asList(0, 1, 2, 3));
@@ -173,25 +166,22 @@ public class RoutineLockTest {
         long late = DAY.plusDays(1).atStartOfDay(Z).plusMinutes(30).toInstant().toEpochMilli();   // 00:30, the day that began on DAY runs until 5:30
         Plan.DayPlan night = Plan.resolve(r, new Overrides(), late, Z);
         ok("at 00:30 the schedule day is still the one that began yesterday, in its sleep slot", night.day.equals(DAY) && night.cur == 18);
-        List<Ev> nightEv = new ArrayList<>();
-        nightEv.add(Ev.rang(at(21, 30), DAY.toString(), 18, "Sleep"));
-        nightEv.add(Ev.rang(at(8, 0), DAY.toString(), 3, "Morning focus block"));
-        Set<Integer> nl = RoutineLock.lived(night, nightEv);
-        ok("the sleep slot that has started and rang is lived", nl.contains(18) && nl.contains(3));
+        Set<Integer> nl = RoutineLock.lived(night);
+        ok("at 00:30 every slot of the day that began yesterday has started", nl.size() == 19);
         e = copy(r); e.blocks.get(18).mins = 420; e.blocks.get(17).mins = 30 + 60;
         ok("shortening tonight's sleep from the Routine tab is refused", refused(r, e, nl, false));
         e = copy(r); e.blocks.get(12).title = "Revise";
-        ok("a slot that was never lived can still be edited at night", !refused(r, e, nl, false));
+        ok("at night an edit of any slot of the day that is ending is refused", refused(r, e, nl, false));
+        Routine none = copy(r); none.alarmOn = false;
+        ok("it makes no difference whether alarms are on or off", refused(none, e, nl, false));
 
         // ---- slots that Change plan moved: lived follows the slot, not the place
         Overrides sw = new Overrides();
         Plan.swapPlaces(r, sw, DAY, 10, 12);
         Plan.DayPlan swapped = Plan.resolve(r, sw, at(15, 0), Z);
         ok("after a swap, Revision runs at 15:00", swapped.cur >= 0 && swapped.sc.slots.get(swapped.cur).block.src == 12);
-        List<Ev> swEv = new ArrayList<>();
-        swEv.add(Ev.rang(at(14, 0), DAY.toString(), 12, "Revision"));
-        Set<Integer> sl = RoutineLock.lived(swapped, swEv);
-        ok("after a swap the slot that is running is the lived one", sl.equals(new TreeSet<>(Arrays.asList(12))));
+        Set<Integer> sl = RoutineLock.lived(swapped);
+        ok("after a swap the slots that have started are the lived ones", sl.contains(12) && !sl.contains(10) && !sl.contains(11));
         e = copy(r); e.blocks.get(12).title = "Netflix";
         ok("after a swap, renaming the slot that is running is refused", refused(r, e, sl, false));
         e = copy(r); e.blocks.get(10).title = "Calls";
