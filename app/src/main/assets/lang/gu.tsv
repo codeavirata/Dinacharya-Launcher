@@ -2558,3 +2558,14 @@ Meetings & email	મીટિંગ અને ઈમેલ
 Walk	લટાર
 Commute home	ઘરે પાછા ફરવું
 Learning or side project	શીખવું અથવા સાઇડ પ્રોજેક્ટ
+# build 87: routine lock
+“{1}” has already started today, so it can't be changed here. To change today, use Change plan on Home.	“{1}” આજે શરૂ થઈ ગયું છે, તેથી તેને અહીં બદલી શકાતું નથી. આજ બદલવા માટે હોમ પર યોજના બદલો વાપરો.
+Strict routine is on, so today's routine can't be changed here. To change today, use Change plan on Home.	કડક દિનચર્યા ચાલુ છે, તેથી આજની દિનચર્યા અહીં બદલી શકાતી નથી. આજ બદલવા માટે હોમ પર યોજના બદલો વાપરો.
+FROM TOMORROW	કાલથી
+Today stays as it was. The change starts tomorrow.	આજનો દિવસ જેવો હતો તેવો જ રહેશે. ફેરફાર કાલથી લાગુ થશે.
+Saved	સાચવ્યું
+Strict routine	કડક દિનચર્યા
+A slot that has already started today cannot be changed from the Routine tab: today is changed with Change plan on Home, which keeps a record of it. Slots that have not started yet, and every other day, can be edited as usual. You can always save a change from tomorrow.	આજે જે સ્લૉટ શરૂ થઈ ગયો છે તેને દિનચર્યા ટૅબમાંથી બદલી શકાતો નથી: આજનો દિવસ હોમ પર યોજના બદલો થી બદલાય છે, જેની નોંધ રખાય છે. હજી શરૂ ન થયેલા સ્લૉટ અને બાકીના બધા દિવસ હંમેશની જેમ બદલી શકાય છે. કોઈપણ ફેરફાર તમે કાલથી સાચવી શકો છો.
+Lock all of today's routine	આજની આખી દિનચર્યા લૉક કરો
+With this on, nothing of the day that is running can be changed from the Routine tab, started or not. Changes for tomorrow and later are never blocked.	આ ચાલુ હોય ત્યારે, ચાલુ દિવસનું કશું પણ દિનચર્યા ટૅબમાંથી બદલી શકાતું નથી, ભલે શરૂ થયું હોય કે ન હોય. કાલના અને પછીના ફેરફાર ક્યારેય રોકાતા નથી.
+This is your saved routine. A change here stays until you change it again. A slot that has already started today cannot be changed here: to change today, use Change plan on Home.	આ તમારી સાચવેલી દિનચર્યા છે. અહીં કરેલો ફેરફાર તમે ફરી બદલો નહીં ત્યાં સુધી રહે છે. આજે જે સ્લૉટ શરૂ થઈ ગયો છે તેને અહીં બદલી શકાતો નથી: આજ બદલવા માટે હોમ પર યોજના બદલો વાપરો.

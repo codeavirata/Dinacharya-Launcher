@@ -2558,3 +2558,14 @@ Meetings & email	கூட்டங்கள் & மின்னஞ்சல்
 Walk	நடை
 Commute home	வீடு திரும்புதல்
 Learning or side project	கற்றல் அல்லது துணைத் திட்டம்
+# build 87: routine lock
+“{1}” has already started today, so it can't be changed here. To change today, use Change plan on Home.	“{1}” இன்று தொடங்கிவிட்டது, அதனால் இதை இங்கே மாற்ற முடியாது. இன்றை மாற்ற முகப்பில் திட்டத்தை மாற்று என்பதைப் பயன்படுத்துங்கள்.
+Strict routine is on, so today's routine can't be changed here. To change today, use Change plan on Home.	கண்டிப்பான வழக்கம் இயக்கத்தில் உள்ளது, அதனால் இன்றைய வழக்கத்தை இங்கே மாற்ற முடியாது. இன்றை மாற்ற முகப்பில் திட்டத்தை மாற்று என்பதைப் பயன்படுத்துங்கள்.
+FROM TOMORROW	நாளை முதல்
+Today stays as it was. The change starts tomorrow.	இன்று இருந்தபடியே இருக்கும். மாற்றம் நாளை முதல் தொடங்கும்.
+Saved	சேமிக்கப்பட்டது
+Strict routine	கண்டிப்பான வழக்கம்
+A slot that has already started today cannot be changed from the Routine tab: today is changed with Change plan on Home, which keeps a record of it. Slots that have not started yet, and every other day, can be edited as usual. You can always save a change from tomorrow.	இன்று தொடங்கிவிட்ட ஸ்லாட்டை வழக்கம் தாவலில் இருந்து மாற்ற முடியாது: இன்றை முகப்பில் திட்டத்தை மாற்று மூலம் மாற்றலாம், அது பதிவு செய்யப்படும். இன்னும் தொடங்காத ஸ்லாட்களையும் மற்ற எல்லா நாட்களையும் வழக்கம்போல் மாற்றலாம். எந்த மாற்றத்தையும் நாளை முதல் சேமிக்கலாம்.
+Lock all of today's routine	இன்றைய முழு வழக்கத்தையும் பூட்டு
+With this on, nothing of the day that is running can be changed from the Routine tab, started or not. Changes for tomorrow and later are never blocked.	இது இயக்கத்தில் இருந்தால், நடந்துகொண்டிருக்கும் நாளின் எதையும் வழக்கம் தாவலில் இருந்து மாற்ற முடியாது, தொடங்கியிருந்தாலும் தொடங்காவிட்டாலும். நாளை மற்றும் அதற்குப் பிந்தைய மாற்றங்கள் ஒருபோதும் தடுக்கப்படாது.
+This is your saved routine. A change here stays until you change it again. A slot that has already started today cannot be changed here: to change today, use Change plan on Home.	இது நீங்கள் சேமித்த வழக்கம். இங்கே செய்யும் மாற்றம் நீங்கள் மீண்டும் மாற்றும் வரை இருக்கும். இன்று தொடங்கிவிட்ட ஸ்லாட்டை இங்கே மாற்ற முடியாது: இன்றை மாற்ற முகப்பில் திட்டத்தை மாற்று என்பதைப் பயன்படுத்துங்கள்.

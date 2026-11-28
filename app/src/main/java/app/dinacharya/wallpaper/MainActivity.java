@@ -40,6 +40,7 @@ public class MainActivity extends LangActivity {
     /** Typing is saved this long after the last key, so the phone is not busy on every letter. */
     private static final long SAVE_DELAY_MS = 500;
     private static final long UNDO_MS = 6000;
+    private static final long REFUSE_MS = 10000;
 
     private Routine routine;
     ExtraSections extras;
@@ -101,6 +102,9 @@ public class MainActivity extends LangActivity {
 
     private LinearLayout undoBar;
     private TextView undoText;
+    private TextView barBtn;
+    /** What the bar's button does. Each action hides the bar itself. */
+    private Runnable barAction;
     private String undoSnapshot;
     private final Runnable hideUndo = new Runnable() {
         @Override
@@ -612,7 +616,11 @@ public class MainActivity extends LangActivity {
         undoBtn.setGravity(Gravity.CENTER);
         undoBtn.setPadding(dp(14), dp(12), dp(14), dp(12));
         undoBtn.setBackground(Ui.pressable(this, 0x00FFFFFF, 0, 10, 0x40FFFFFF));
-        undoBtn.setOnClickListener(v -> undo());
+        undoBtn.setOnClickListener(v -> {
+            Runnable r = barAction;
+            if (r != null) r.run();
+        });
+        barBtn = undoBtn;
         undoBar.addView(undoBtn);
         FrameLayout.LayoutParams ulp = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,
                 Gravity.BOTTOM);
@@ -1006,9 +1014,24 @@ public class MainActivity extends LangActivity {
             AlarmScheduler.reschedule(this);   // the alarms follow the routine that was kept, not the one on this screen
             return;
         }
+        // A slot that has started today and has something in the history is part of the day as it was lived: the Routine tab may not
+        // change it (Change plan on Home is for today). Everything else saves as before.
+        Routine before = Store.load(this);
+        RoutineGuard.Verdict v = RoutineGuard.check(this, before, routine);
+        if (v.refused) {
+            refuseEdit(before, v);
+            return;
+        }
+        commitSave(before, v.keep, v.editsToday ? v.day : null);
+    }
+
+    /** Writes the routine on this screen, sets today's kept edits and the alarms, and tells the other tabs. */
+    private void commitSave(Routine before, Overrides keep, java.time.LocalDate editedDay) {
         try {
             Store.save(this, routine);
+            RoutineGuard.afterSave(this, before, routine, keep);
             SlotActions.noticeReplan(this, routine);
+            if (editedDay != null) RoutineGuard.logEdit(this, editedDay);
         } catch (RuntimeException e) {
             CrashLog.note(this, "save", e);
             toastText("Could not save. Please try again.");
@@ -1016,6 +1039,40 @@ public class MainActivity extends LangActivity {
         AlarmScheduler.reschedule(this);
         extras.routineChanged();
         DriveJob.changedSoon(this);
+    }
+
+    /** The edit would change a slot of today that was already lived: nothing is saved, the screen goes back to the saved routine. */
+    private void refuseEdit(Routine before, RoutineGuard.Verdict v) {
+        final String editedText = routine.serialize();
+        routine.replaceWith(before);
+        routineChanged();
+        String msg = v.slot.isEmpty()
+                ? "Strict routine is on, so today's routine can't be changed here. To change today, use Change plan on Home."
+                : "“" + v.slot + "” has already started today, so it can't be changed here. To change today, use Change plan on Home.";
+        if (v.canPin) bar(msg, "FROM TOMORROW", () -> saveFromTomorrow(editedText), REFUSE_MS);
+        else bar(msg, null, null, REFUSE_MS);
+    }
+
+    /** Saves the refused routine so that today stays exactly as it was and the change starts tomorrow. */
+    private void saveFromTomorrow(String editedText) {
+        ui.removeCallbacks(hideUndo);
+        hideUndoBar();
+        Routine ed = Routine.parse(editedText);
+        if (ed == null) return;
+        Routine before = Store.load(this);
+        RoutineGuard.Verdict v = RoutineGuard.check(this, before, ed);
+        Overrides keep = v.keep;
+        if (v.refused) {
+            if (!v.canPin || v.day == null) return;
+            keep = RoutineGuard.pin(this, before, ed, v.day);
+        }
+        revision++;
+        ui.removeCallbacks(saveTask);
+        savePending = false;
+        routine.replaceWith(ed);
+        commitSave(before, keep, !v.refused && v.editsToday ? v.day : null);
+        routineChanged();
+        toastText(v.refused ? "Today stays as it was. The change starts tomorrow." : "Saved");
     }
 
     void registerPreview(PosterView p) {
@@ -1034,8 +1091,17 @@ public class MainActivity extends LangActivity {
 
     /** Shows {@code msg} with an Undo button that puts the routine back to {@code snapshot}. */
     void undoable(String msg, String snapshot) {
+        bar(msg, "UNDO", this::undo, UNDO_MS);
         undoSnapshot = snapshot;
+    }
+
+    /** The bar above the bottom bar: a message and, when {@code label} is given, one button that runs {@code action}. */
+    private void bar(String msg, String label, Runnable action, long ms) {
+        undoSnapshot = null;
+        barAction = action;
         undoText.setText(msg);
+        barBtn.setText(label == null ? "" : label);
+        barBtn.setVisibility(label == null ? View.GONE : View.VISIBLE);
         ui.removeCallbacks(hideUndo);
         if (undoBar.getVisibility() != View.VISIBLE) {
             undoBar.setVisibility(View.VISIBLE);
@@ -1043,11 +1109,12 @@ public class MainActivity extends LangActivity {
             undoBar.setTranslationY(dp(16));
             undoBar.animate().alpha(1f).translationY(0).setDuration(180).start();
         }
-        ui.postDelayed(hideUndo, UNDO_MS);
+        ui.postDelayed(hideUndo, ms);
     }
 
     private void hideUndoBar() {
         undoSnapshot = null;
+        barAction = null;
         if (undoBar.getVisibility() != View.VISIBLE) return;
         undoBar.animate().alpha(0f).translationY(dp(16)).setDuration(160)
                 .withEndAction(() -> undoBar.setVisibility(View.GONE)).start();

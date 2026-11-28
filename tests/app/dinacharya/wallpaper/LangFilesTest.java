@@ -307,6 +307,17 @@ public class LangFilesTest {
             "The slots of \u201cWeekdays\u201d are replaced and you can edit every one. You can undo this.",
             "\u201cWeekdays\u201d now follows the College template.",
             "Wake at 6:30. Classes, self-study, workout, assignments and friends.\n\nThe slots of \u201cWeekdays\u201d are replaced and you can edit every one. You can undo this.",
+            // build 87: the routine lock
+            "\u201cMorning focus block\u201d has already started today, so it can't be changed here. To change today, use Change plan on Home.",
+            "Strict routine is on, so today's routine can't be changed here. To change today, use Change plan on Home.",
+            "FROM TOMORROW",
+            "Today stays as it was. The change starts tomorrow.",
+            "Saved",
+            "Strict routine",
+            "A slot that has already started today cannot be changed from the Routine tab: today is changed with Change plan on Home, which keeps a record of it. Slots that have not started yet, and every other day, can be edited as usual. You can always save a change from tomorrow.",
+            "Lock all of today's routine",
+            "With this on, nothing of the day that is running can be changed from the Routine tab, started or not. Changes for tomorrow and later are never blocked.",
+            "This is your saved routine. A change here stays until you change it again. A slot that has already started today cannot be changed here: to change today, use Change plan on Home.",
     };
     /** Text that is the person's own, or a name, and must stay as it is. */
     static final String[] STAYS = {"Social apps", "Meeting time", "Study room", "Time left", "Chrome", "Watch a video", "Morning run"};

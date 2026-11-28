@@ -17560,5 +17560,75 @@
 "src": [
 "added"
 ]
+},
+{
+"id": 6014,
+"en": "“{1}” has already started today, so it can't be changed here. To change today, use Change plan on Home.",
+"src": [
+"added"
+]
+},
+{
+"id": 6015,
+"en": "Strict routine is on, so today's routine can't be changed here. To change today, use Change plan on Home.",
+"src": [
+"added"
+]
+},
+{
+"id": 6016,
+"en": "FROM TOMORROW",
+"src": [
+"added"
+]
+},
+{
+"id": 6017,
+"en": "Today stays as it was. The change starts tomorrow.",
+"src": [
+"added"
+]
+},
+{
+"id": 6018,
+"en": "Saved",
+"src": [
+"added"
+]
+},
+{
+"id": 6019,
+"en": "Strict routine",
+"src": [
+"added"
+]
+},
+{
+"id": 6020,
+"en": "A slot that has already started today cannot be changed from the Routine tab: today is changed with Change plan on Home, which keeps a record of it. Slots that have not started yet, and every other day, can be edited as usual. You can always save a change from tomorrow.",
+"src": [
+"added"
+]
+},
+{
+"id": 6021,
+"en": "Lock all of today's routine",
+"src": [
+"added"
+]
+},
+{
+"id": 6022,
+"en": "With this on, nothing of the day that is running can be changed from the Routine tab, started or not. Changes for tomorrow and later are never blocked.",
+"src": [
+"added"
+]
+},
+{
+"id": 6023,
+"en": "This is your saved routine. A change here stays until you change it again. A slot that has already started today cannot be changed here: to change today, use Change plan on Home.",
+"src": [
+"added"
+]
 }
 ]

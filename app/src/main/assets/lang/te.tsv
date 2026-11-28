@@ -2557,3 +2557,14 @@ Meetings & email	మీటింగ్‌లు & ఈమెయిల్
 Walk	నడక
 Commute home	ఇంటికి తిరిగి రావడం
 Learning or side project	నేర్చుకోవడం లేదా సైడ్ ప్రాజెక్ట్
+# build 87: routine lock
+“{1}” has already started today, so it can't be changed here. To change today, use Change plan on Home.	“{1}” ఈ రోజు ప్రారంభమైంది, కాబట్టి దీన్ని ఇక్కడ మార్చలేరు. ఈ రోజును మార్చాలంటే హోమ్‌లో ప్లాన్ మార్చండి ఉపయోగించండి.
+Strict routine is on, so today's routine can't be changed here. To change today, use Change plan on Home.	కఠిన దినచర్య ఆన్‌లో ఉంది, కాబట్టి ఈ రోజు దినచర్యను ఇక్కడ మార్చలేరు. ఈ రోజును మార్చాలంటే హోమ్‌లో ప్లాన్ మార్చండి ఉపయోగించండి.
+FROM TOMORROW	రేపటి నుండి
+Today stays as it was. The change starts tomorrow.	ఈ రోజు ఎలా ఉందో అలాగే ఉంటుంది. మార్పు రేపటి నుండి మొదలవుతుంది.
+Saved	సేవ్ చేయబడింది
+Strict routine	కఠిన దినచర్య
+A slot that has already started today cannot be changed from the Routine tab: today is changed with Change plan on Home, which keeps a record of it. Slots that have not started yet, and every other day, can be edited as usual. You can always save a change from tomorrow.	ఈ రోజు ప్రారంభమైన స్లాట్‌ను దినచర్య ట్యాబ్ నుండి మార్చలేరు: ఈ రోజును హోమ్‌లో ప్లాన్ మార్చండి ద్వారా మార్చుకోవచ్చు, దాని రికార్డు ఉంటుంది. ఇంకా ప్రారంభం కాని స్లాట్లను, మిగతా అన్ని రోజులను యథావిధిగా మార్చుకోవచ్చు. ఏ మార్పునైనా మీరు రేపటి నుండి సేవ్ చేయవచ్చు.
+Lock all of today's routine	ఈ రోజు మొత్తం దినచర్యను లాక్ చేయండి
+With this on, nothing of the day that is running can be changed from the Routine tab, started or not. Changes for tomorrow and later are never blocked.	దీన్ని ఆన్ చేస్తే, నడుస్తున్న రోజులో ఏదీ దినచర్య ట్యాబ్ నుండి మార్చలేరు, ప్రారంభమైనా కాకపోయినా. రేపటి మరియు ఆ తర్వాతి మార్పులు ఎప్పుడూ ఆపబడవు.
+This is your saved routine. A change here stays until you change it again. A slot that has already started today cannot be changed here: to change today, use Change plan on Home.	ఇది మీరు సేవ్ చేసిన దినచర్య. ఇక్కడ చేసిన మార్పు మీరు మళ్లీ మార్చే వరకు ఉంటుంది. ఈ రోజు ప్రారంభమైన స్లాట్‌ను ఇక్కడ మార్చలేరు: ఈ రోజును మార్చాలంటే హోమ్‌లో ప్లాన్ మార్చండి ఉపయోగించండి.

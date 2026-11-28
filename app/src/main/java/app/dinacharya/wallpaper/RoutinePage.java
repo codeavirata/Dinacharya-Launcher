@@ -211,7 +211,8 @@ final class RoutinePage extends Page {
 
     @Override
     String hint() {
-        return "This is your saved routine. A change here stays until you change it again. To change just today, use Change plan on Home.";
+        return "This is your saved routine. A change here stays until you change it again. A slot that has already started today cannot be changed here: "
+                + "to change today, use Change plan on Home.";
     }
 
     @Override
