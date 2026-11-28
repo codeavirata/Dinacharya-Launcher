@@ -147,6 +147,19 @@
             android:exported="false"
             android:label="Dinacharya Pro" />
 
+        <!-- Invite friends: share a code, enter a friend's code. The link dinacharya://invite/CODE (from the invite web page) opens it. -->
+        <activity
+            android:name=".InviteActivity"
+            android:exported="true"
+            android:label="Invite friends">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="dinacharya" android:host="invite" />
+            </intent-filter>
+        </activity>
+
         <!-- Free and Pro side by side: the last screen of the tour, and a link from the Pro screen. -->
         <activity
             android:name=".CompareActivity"

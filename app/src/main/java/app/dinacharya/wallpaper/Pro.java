@@ -54,6 +54,9 @@ final class Pro {
     private static final String K_LIFE = "proLife";
     private static final String K_SUB = "proMonthly";
     private static final String K_DEBUG = "debugPro";
+    // free Pro days from invites (see InviteDays): the end date, this phone's random invite id, and the friend's use record (InviteActive)
+    private static final String K_INV_UNTIL = "inviteUntil", K_INV_DEVICE = "inviteDevice", K_INV_USED = "inviteUsed", K_INV_ASKED = "inviteAsked",
+            K_INV_SYNC = "inviteSync";
     // the passes videos gave (see PassLedger): one entry per pass, each with its items, start, end and the note of what existed.
     private static final String K_PASSES = "passes";
     // Versions before 2.8 kept ONE pass in separate values: the items (a mask), when it started and when it ends. Versions before
@@ -127,10 +130,79 @@ final class Pro {
     int open() {
         try {
             if (owned()) return DayPass.ALL;
+            if (inviteActive()) return DayPass.ALL;   // free days from an invite open everything, like Pro, until they end
             return runningMask();
         } catch (RuntimeException e) {
             return DayPass.FREE;
         }
+    }
+
+    // ------------------------------------------------------------------ free days from invites
+
+    /** True while free Pro days from an invite are running. */
+    boolean inviteActive() {
+        try {
+            return InviteDays.active(prefs.getLong(K_INV_UNTIL, 0), now());
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
+    /** Whole days of free Pro left from invites (0 when none). */
+    int inviteDaysLeft() {
+        try {
+            return InviteDays.left(prefs.getLong(K_INV_UNTIL, 0), now());
+        } catch (RuntimeException e) {
+            return 0;
+        }
+    }
+
+    /** Adds free Pro days after the ones already running. */
+    synchronized void addInviteDays(int days) {
+        try {
+            long until = InviteDays.add(prefs.getLong(K_INV_UNTIL, 0), days, now());
+            prefs.edit().putLong(K_INV_UNTIL, until).apply();
+            changed();
+        } catch (RuntimeException e) {
+            CrashLog.note(app, "invite days", e);
+        }
+    }
+
+    /** This phone's random invite id (made once; it holds no personal information). */
+    synchronized String inviteDevice() {
+        String d = prefs.getString(K_INV_DEVICE, null);
+        if (d == null || d.length() < 16) {
+            d = java.util.UUID.randomUUID().toString();
+            prefs.edit().putString(K_INV_DEVICE, d).apply();
+        }
+        return d;
+    }
+
+    /** The friend's use record ({@link InviteActive}); empty when no code was used on this phone. */
+    String inviteUsed() {
+        String s = prefs.getString(K_INV_USED, "");
+        return s == null ? "" : s;
+    }
+
+    void setInviteUsed(String s) {
+        prefs.edit().putString(K_INV_USED, s == null ? "" : s).apply();
+    }
+
+    /** True once this person has used (or tried) the invite screen, so it is worth asking the server about waiting rewards. */
+    boolean inviteAsked() {
+        return prefs.getBoolean(K_INV_ASKED, false);
+    }
+
+    void setInviteAsked() {
+        prefs.edit().putBoolean(K_INV_ASKED, true).apply();
+    }
+
+    long inviteSyncedAt() {
+        return prefs.getLong(K_INV_SYNC, 0);
+    }
+
+    void setInviteSyncedAt(long t) {
+        prefs.edit().putLong(K_INV_SYNC, t).apply();
     }
 
     /** True when colour look number {@code palette} may be used: the free look always, any other with Pro or a pass for that look. */

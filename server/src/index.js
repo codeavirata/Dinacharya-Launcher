@@ -52,9 +52,32 @@ async function codeFor(db, device) {
   throw new Error('no code');
 }
 
+const PLAY = 'https://play.google.com/store/apps/details?id=app.dinacharya.launcher';
+
+// The page a shared invite link opens: the code, a button to get the app, and a button to open it if it is already installed.
+export function landing(code) {
+  const c = code.length === 8 ? code : '';
+  const play = PLAY + (c ? '&referrer=' + encodeURIComponent('invite_' + c) : '');
+  const open = c ? 'intent://invite/' + c + '#Intent;scheme=dinacharya;package=app.dinacharya.launcher;end' : '';
+  const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dinacharya Launcher</title>
+<style>body{margin:0;font-family:system-ui,sans-serif;background:#0f1115;color:#f2f2f2;display:flex;min-height:100vh;align-items:center;justify-content:center;padding:20px;box-sizing:border-box}
+.c{max-width:420px;width:100%;text-align:center}h1{font-size:24px;margin:0 0 6px}p{color:#b8bcc6;line-height:1.5}
+.code{font-size:34px;letter-spacing:6px;font-weight:700;background:#1b1f27;border-radius:14px;padding:14px;margin:18px 0 6px}
+a.b,button{display:block;width:100%;box-sizing:border-box;margin-top:12px;padding:14px;border-radius:14px;border:0;font-size:16px;font-weight:600;text-decoration:none;cursor:pointer}
+a.p{background:#ffb454;color:#1a1204}a.s,button{background:#252a35;color:#f2f2f2}</style></head><body><div class="c">
+<h1>Plan your day with Dinacharya</h1><p>A friend invited you. Use their code in the app for <b>7 days of free Pro</b>.</p>
+${c ? `<div class="code" id="code">${c}</div><button onclick="navigator.clipboard&&navigator.clipboard.writeText('${c}');this.textContent='Copied'">Copy code</button>
+<a class="b p" href="${play}">Get the app on Google Play</a><a class="b s" href="${open}">I already have the app: open it</a>`
+: `<a class="b p" href="${play}">Get the app on Google Play</a>`}
+<p style="font-size:13px">In the app: Settings &gt; Invite friends &gt; enter the code.</p></div></body></html>`;
+  return new Response(html, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
+}
+
 export async function handle(req, env) {
   const url = new URL(req.url);
   if (req.method === 'GET' && url.pathname === '/') return json({ ok: true, service: 'dinacharya-invites' });
+  const land = req.method === 'GET' ? url.pathname.match(/^\/i\/([A-Za-z0-9-]{1,16})$/) : null;
+  if (land) return landing(normaliseCode(land[1]));
   if (req.method !== 'POST') return bad('not found', 404);
   const db = env.DB;
   const b = await body(req);
@@ -75,30 +98,37 @@ export async function handle(req, env) {
     const count = await db.prepare('SELECT COUNT(*) AS n FROM redemptions WHERE inviter = ?').bind(owner.device).first();
     const rewarded = (count ? count.n : 0) < MAX_REWARDED_INVITES;
     try {
-      await db.prepare('INSERT INTO redemptions (friend, inviter, rewarded, claimed, created) VALUES (?, ?, ?, 0, ?)')
+      await db.prepare('INSERT INTO redemptions (friend, inviter, rewarded, claimed, created) VALUES (?, ?, ?, -1, ?)')
         .bind(b.device, owner.device, rewarded ? 1 : 0, Date.now()).run();
     } catch (e) { return bad('This phone has already used an invite code.'); }
     return json({ ok: true, days: FRIEND_DAYS });
   }
 
+  // claimed: -1 = the friend joined but has not used the app yet, 0 = waiting for the inviter to collect, 1 = paid out.
+  const count = async (inviter, where) => {
+    const r = await db.prepare('SELECT COUNT(*) AS n FROM redemptions WHERE inviter = ? AND ' + where).bind(inviter).first();
+    return r ? r.n : 0;
+  };
+
+  if (url.pathname === '/v1/active') {   // the friend's app says the app has really been used
+    const r = await db.prepare('UPDATE redemptions SET claimed = 0 WHERE friend = ? AND claimed = -1').bind(b.device).run();
+    return json({ ok: true, activated: r && r.meta ? r.meta.changes : 0 });
+  }
+
   if (url.pathname === '/v1/status') {
-    const r = await db.prepare('SELECT COUNT(*) AS n FROM redemptions WHERE inviter = ? AND rewarded = 1 AND claimed = 0').bind(b.device).first();
-    const total = await db.prepare('SELECT COUNT(*) AS n FROM redemptions WHERE inviter = ?').bind(b.device).first();
-    const waiting = r ? r.n : 0;
-    const invited = total ? total.n : 0;
-    const claimedBefore = Math.min(invited, MAX_REWARDED_INVITES) - waiting;
-    return json({ ok: true, waiting, days: sumDays(claimedBefore + 1, waiting), invited, max: MAX_REWARDED_INVITES,
+    const waiting = await count(b.device, 'rewarded = 1 AND claimed = 0');
+    const paid = await count(b.device, 'rewarded = 1 AND claimed = 1');
+    const pending = await count(b.device, 'rewarded = 1 AND claimed = -1');
+    const invited = await count(b.device, '1 = 1');
+    return json({ ok: true, waiting, pending, days: sumDays(paid + 1, waiting), invited, max: MAX_REWARDED_INVITES,
       tiers: { first: TIER_ONE_COUNT, firstDays: INVITER_DAYS, laterDays: INVITER_DAYS_LATER } });
   }
 
   if (url.pathname === '/v1/claim') {
-    const w = await db.prepare('SELECT COUNT(*) AS n FROM redemptions WHERE inviter = ? AND rewarded = 1 AND claimed = 0').bind(b.device).first();
-    const t = await db.prepare('SELECT COUNT(*) AS n FROM redemptions WHERE inviter = ?').bind(b.device).first();
-    const waitingNow = w ? w.n : 0;
-    const before = Math.min(t ? t.n : 0, MAX_REWARDED_INVITES) - waitingNow;
+    const paid = await count(b.device, 'rewarded = 1 AND claimed = 1');
     const r = await db.prepare('UPDATE redemptions SET claimed = 1 WHERE inviter = ? AND rewarded = 1 AND claimed = 0').bind(b.device).run();
     const n = r && r.meta ? r.meta.changes : 0;
-    return json({ ok: true, claimed: n, days: sumDays(before + 1, n) });
+    return json({ ok: true, claimed: n, days: sumDays(paid + 1, n) });
   }
 
   return bad('not found', 404);
