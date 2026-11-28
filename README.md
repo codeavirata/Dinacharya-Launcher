@@ -1159,6 +1159,15 @@ close the app: they are written down and that one job is skipped.
 
 ### Version notes
 
+**1.0, build 87: invite friends, routine templates, sharing, and the new words in six languages**
+- **Invite friends** (Settings > Support). Your code, and buttons to share it (the phone's share sheet, WhatsApp, Telegram, Copy). A friend who enters it gets 7 days of free Pro at once; you get 7 days for each of your first 4 friends and 3 days for each of the next 6 (46 in all), once the friend has opened the app on two different days. The free days open everything like Pro and add up; when they end the phone goes back to what it was (no purchase is touched, and video passes are separate). The screen shows the schedule openly. Everything goes through the invite server (see "Invite server"); if it cannot be reached the screen says so and nothing else in the app notices (`InviteActivity`, `InviteClient`, `InviteSync`, `InviteDays`, `InviteActive`, `Pro.addInviteDays`).
+- **Invite link page.** The link in a shared invite opens a small web page (served by the Worker) with the code, a button for Google Play and one to open the app; the app also opens its invite screen from `dinacharya://invite/CODE`.
+- **Routine templates.** Routine > More tools > **Start from a template**: UPSC, SSC / Banking, Board exams, JEE / NEET, College, Working professional. Each fills the whole 24 hours; you can undo it (`RoutineTemplates`).
+- **Share and paste a routine.** **Share this routine** sends the slots (name, start time, slots; not the look, goals or alarms) as a message with one line of code; **Paste a routine** reads such a message, or the web app's plain text (`RoutineShare`).
+- **Share my day as a picture.** Routine > More tools > **Share my day as a picture** draws today's slots as a 1080 by 1920 image in the colours of the chosen look and opens the share sheet (`DayCard`, `DayCardLayout`).
+- **Languages.** The new texts are added to the Hindi, Marathi, Gujarati, Bengali, Tamil and Telugu files by hand in `assets/lang` (do not run `tools/i18n/build.py`: it would drop the entries that were added to those files directly). They have not been checked by native speakers.
+- Tests: 53 suites (`InviteTest`, `ShareTest`, and `LangFilesTest` now checks the new sentences); the server has 24 checks.
+
 **1.0, build 86: restoring a backup that Google Drive marked as spam**
 - **The cause.** Drive sometimes marks a backup file as "malware or spam" by mistake, and then refuses to download it: Restore said "Download failed (This file has been identified as malware or spam and cannot be downloaded.)" and changed nothing.
 - **The fix.** When Drive answers that (and only that), the app asks once more, saying it accepts the warning, which Drive allows for the owner of a file. The backup is the app's own file in its hidden space. Any other error is still shown as before (`CloudDrive.download`).
