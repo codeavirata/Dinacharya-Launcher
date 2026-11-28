@@ -977,6 +977,17 @@ in a row** before Google lets you publish publicly. Start that as early as you c
   (see "Limits"), so the first online build is the first time they compile for real. If the build
   prints an error in `Pro.java`, `Ads.java` or `AdSlot.java`, copy it and send it to me.
 
+## Invite server (Cloudflare Workers)
+
+A tiny server in `server/` that holds invite codes so a friend who uses your invite code gets free Pro days (7 for the friend, 7 for the person who invited, at most 10 rewarded invites per person). It stores only random device ids and codes: no names, emails or phone numbers. It runs free on Cloudflare Workers (100,000 requests a day) with a D1 database.
+
+1. Make a free account at dash.cloudflare.com. Note the **Account ID** (right side of the dashboard).
+2. **My Profile > API Tokens > Create Token > Edit Cloudflare Workers** template, add **D1: Edit**. Copy the token.
+3. In GitHub: **Settings > Secrets and variables > Actions**: add `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
+4. **Actions > Deploy invite server > Run workflow.** When it finishes, the Worker's address (`https://dinacharya-invites.<your-name>.workers.dev`) is shown in the log; send it to the app's developer to put in the app.
+- Tests: `cd server && npm test` (no Cloudflare account needed).
+- Endpoints (POST, JSON, `device` = a random id the app makes): `/v1/code`, `/v1/redeem`, `/v1/status`, `/v1/claim`.
+
 ## Earn from the app
 
 Nothing here changes how the app works; it is the account setup that only you can do.
