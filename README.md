@@ -979,7 +979,7 @@ in a row** before Google lets you publish publicly. Start that as early as you c
 
 ## Invite server (Cloudflare Workers)
 
-A tiny server in `server/` that holds invite codes so a friend who uses your invite code gets free Pro days (7 for the friend, 7 for the person who invited, at most 10 rewarded invites per person). It stores only random device ids and codes: no names, emails or phone numbers. It runs free on Cloudflare Workers (100,000 requests a day) with a D1 database.
+A tiny server in `server/` that holds invite codes so a friend who uses your invite code gets free Pro days (7 for the friend; for the person who invited, 7 days for each of their first 4 friends and 3 days for each of the next 6, at most 10 rewarded invites and 46 days in all; the app shows this schedule to the person). It stores only random device ids and codes: no names, emails or phone numbers. It runs free on Cloudflare Workers (100,000 requests a day) with a D1 database.
 
 1. Make a free account at dash.cloudflare.com. Note the **Account ID** (right side of the dashboard).
 2. **My Profile > API Tokens > Create Token > Edit Cloudflare Workers** template, add **D1: Edit**. Copy the token.

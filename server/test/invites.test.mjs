@@ -1,4 +1,4 @@
-import { handle, FRIEND_DAYS, INVITER_DAYS, MAX_REWARDED_INVITES } from '../src/index.js';
+import { handle, FRIEND_DAYS, INVITER_DAYS, INVITER_DAYS_LATER, TIER_ONE_COUNT, MAX_REWARDED_INVITES } from '../src/index.js';
 
 // A pretend D1 that understands exactly the statements the Worker uses.
 function fakeDb() {
@@ -57,6 +57,10 @@ ok('claiming twice gives nothing', j.claimed === 0 && j.days === 0);
 for (let i = 3; i < 3 + MAX_REWARDED_INVITES + 2; i++) await post('/v1/redeem', { device: dev(i), code });
 [s, j] = await post('/v1/status', { device: dev(1) });
 ok('rewards stop after the limit, friends still get theirs', j.waiting === MAX_REWARDED_INVITES - 1 && j.invited === MAX_REWARDED_INVITES + 3);
+ok('waiting days follow the tiers (3 at 7 days, then 3 days each)', j.days === 3 * INVITER_DAYS + (MAX_REWARDED_INVITES - 1 - 3) * INVITER_DAYS_LATER);
+ok('status tells the app the tier schedule', j.tiers && j.tiers.first === TIER_ONE_COUNT && j.tiers.laterDays === INVITER_DAYS_LATER);
+[s, j] = await post('/v1/claim', { device: dev(1) });
+ok('claim pays the tiered total and the lifetime total is 46', j.days === 39 && j.days + INVITER_DAYS === 4 * INVITER_DAYS + (MAX_REWARDED_INVITES - 4) * INVITER_DAYS_LATER);
 [s, j] = await post('/v1/nothing', { device: dev(1) });
 ok('unknown path is 404', s === 404);
 const r = await handle(new Request('https://x.test/v1/code', { method: 'POST', body: 'x'.repeat(5000) }), env);

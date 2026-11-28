@@ -4,7 +4,13 @@
 // No names, emails or phone numbers are stored.
 
 export const FRIEND_DAYS = 7;
-export const INVITER_DAYS = 7;
+export const INVITER_DAYS = 7;          // days for each of the first TIER_ONE_COUNT friends
+export const TIER_ONE_COUNT = 4;
+export const INVITER_DAYS_LATER = 3;    // days for each rewarded friend after that
+
+// Days the inviter earns for their k-th rewarded friend (1-based). The app shows this schedule.
+export function rewardDays(k) { return k <= TIER_ONE_COUNT ? INVITER_DAYS : INVITER_DAYS_LATER; }
+function sumDays(from, count) { let d = 0; for (let k = from; k < from + count; k++) d += rewardDays(k); return d; }
 export const MAX_REWARDED_INVITES = 10;   // per inviter
 const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 
@@ -79,13 +85,20 @@ export async function handle(req, env) {
     const r = await db.prepare('SELECT COUNT(*) AS n FROM redemptions WHERE inviter = ? AND rewarded = 1 AND claimed = 0').bind(b.device).first();
     const total = await db.prepare('SELECT COUNT(*) AS n FROM redemptions WHERE inviter = ?').bind(b.device).first();
     const waiting = r ? r.n : 0;
-    return json({ ok: true, waiting, days: waiting * INVITER_DAYS, invited: total ? total.n : 0, max: MAX_REWARDED_INVITES });
+    const invited = total ? total.n : 0;
+    const claimedBefore = Math.min(invited, MAX_REWARDED_INVITES) - waiting;
+    return json({ ok: true, waiting, days: sumDays(claimedBefore + 1, waiting), invited, max: MAX_REWARDED_INVITES,
+      tiers: { first: TIER_ONE_COUNT, firstDays: INVITER_DAYS, laterDays: INVITER_DAYS_LATER } });
   }
 
   if (url.pathname === '/v1/claim') {
+    const w = await db.prepare('SELECT COUNT(*) AS n FROM redemptions WHERE inviter = ? AND rewarded = 1 AND claimed = 0').bind(b.device).first();
+    const t = await db.prepare('SELECT COUNT(*) AS n FROM redemptions WHERE inviter = ?').bind(b.device).first();
+    const waitingNow = w ? w.n : 0;
+    const before = Math.min(t ? t.n : 0, MAX_REWARDED_INVITES) - waitingNow;
     const r = await db.prepare('UPDATE redemptions SET claimed = 1 WHERE inviter = ? AND rewarded = 1 AND claimed = 0').bind(b.device).run();
     const n = r && r.meta ? r.meta.changes : 0;
-    return json({ ok: true, claimed: n, days: n * INVITER_DAYS });
+    return json({ ok: true, claimed: n, days: sumDays(before + 1, n) });
   }
 
   return bad('not found', 404);
