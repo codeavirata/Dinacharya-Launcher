@@ -982,9 +982,9 @@ in a row** before Google lets you publish publicly. Start that as early as you c
 A tiny server in `server/` that holds invite codes so a friend who uses your invite code gets free Pro days (7 for the friend; for the person who invited, 7 days for each of their first 4 friends and 3 days for each of the next 6, at most 10 rewarded invites and 46 days in all; the app shows this schedule to the person). It stores only random device ids and codes: no names, emails or phone numbers. It runs free on Cloudflare Workers (100,000 requests a day) with a D1 database.
 
 1. Make a free account at dash.cloudflare.com. Note the **Account ID** (right side of the dashboard).
-2. **My Profile > API Tokens > Create Token > Edit Cloudflare Workers** template, add **D1: Edit**. Copy the token.
+2. **My Profile > API Tokens > Create Token > Edit Cloudflare Workers** template, add **D1: Edit**, and choose your account as its resource. An account with no domains has nothing to pick for the template's zone permission (Workers Routes), so delete that policy. Copy the token.
 3. In GitHub: **Settings > Secrets and variables > Actions**: add `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
-4. **Actions > Deploy invite server > Run workflow.** When it finishes, the Worker's address (`https://dinacharya-invites.<your-name>.workers.dev`) is shown in the log; send it to the app's developer to put in the app.
+4. **Actions > Deploy invite server > Run workflow.** When it finishes, the Worker's address (`https://dinacharya-invites.<your-subdomain>.workers.dev`, now `https://dinacharya-invites.codeavirata.workers.dev`) is shown in the log. It is the one line `InviteClient.BASE` in the app; the invite link and every call to the server are built from it.
 - Tests: `cd server && npm test` (no Cloudflare account needed).
 - **SQL injection.** Every statement is a fixed text with `?` for the values, and the values are always bound (`prepare(...).bind(...)`); nothing a caller sends is ever part of the SQL text, and D1 runs one statement per call, so stacked statements cannot happen. The phone id and the code are also checked for their format first (a code is cleaned to A to Z and 0 to 9; a phone id is 16 to 64 letters, digits and dashes). `test/injection.test.mjs` fails if any `prepare()` is given anything but a fixed string, and runs the whole Worker on a real SQLite with about 1,300 hostile requests (quotes, comments, `DROP TABLE`, `UNION`, odd types, huge bodies, bad links), then checks that the tables are unchanged, no 500 came back and nothing hostile was stored. The answers are JSON only, with `x-content-type-options: nosniff`; the Worker serves no HTML.
 - Endpoints (POST, JSON, `device` = a random id the app makes): `/v1/code`, `/v1/check`, `/v1/redeem`, `/v1/status`, `/v1/active`, `/v1/claim`.
@@ -1163,6 +1163,9 @@ and problem report**. Problems in background work (reports, backup, phone-time r
 close the app: they are written down and that one job is skipped.
 
 ### Version notes
+
+**1.0, build 91: the invite server moved to the `codeavirata` Cloudflare account**
+- The server address in the app (`InviteClient.BASE`, from which the invite link is built too) is now `https://dinacharya-invites.codeavirata.workers.dev`; the old one had the owner's name in it. Nothing else changed. The new account's database starts empty, so codes made on the old server are gone: a phone asks the new server for its code the first time and gets a new one. Builds 87 to 90 still call the old address and stop working when it is switched off.
 
 **1.0, build 90: invite safeguards (server asks before the offer, time gate, rate limits)**
 - **The offer is checked first.** "A friend invited you" is shown only after the server answers `/v1/check` with yes (`InviteOffer`, `InviteCheck`, `InviteClient.check`). A refused code (not a real code, the phone's own code, a phone that already used one) is forgotten (`InstallReferrerReader.clear`), so a link someone made up by hand shows nothing. No answer (no network, server down, 429) shows nothing and keeps the code; it is asked again later, not more often than every ten minutes, and again at once if the screen went away while the server was asked.

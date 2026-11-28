@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public final class InviteClient {
     /** Where the invite server runs. */
-    public static final String BASE = "https://dinacharya-invites.gandhar-amitsingh.workers.dev";
+    public static final String BASE = "https://dinacharya-invites.codeavirata.workers.dev";
     public static final String DOWN = "Could not reach the invite server. Please try again later.";
 
     /** The answer to one call. When {@link #ok} is false, {@link #error} is a sentence to show; {@link #network} says the server was not reached. */
