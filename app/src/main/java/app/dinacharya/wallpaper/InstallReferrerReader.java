@@ -139,6 +139,15 @@ final class InstallReferrerReader {
         }
     }
 
+    /** Forgets the code (the server said it cannot be used): there is nothing to offer and nothing to fill in. */
+    static void clear(Context c) {
+        try {
+            Store.prefs(c).edit().remove(KEY_CODE).apply();
+        } catch (RuntimeException e) {
+            CrashLog.note(c, "invite code clear", e);
+        }
+    }
+
     static void setOffered(Context c) {
         try {
             Store.prefs(c).edit().putBoolean(KEY_OFFERED, true).apply();

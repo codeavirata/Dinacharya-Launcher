@@ -19,6 +19,10 @@ public final class InviteClient {
     public static final class Result {
         public boolean ok;
         public boolean network;
+        /** The server said "too many tries" (HTTP 429): nothing is known about the code or the phone, only that this is not the moment. */
+        public boolean limited;
+        /** /active: the server was told too soon after the code was used, so nothing was released yet. Ask again later. */
+        public boolean early;
         public String error = "";
         public String code = "";
         public int days;       // /redeem: the days the friend gets. /status: the days waiting. /claim: the days just paid out.
@@ -28,6 +32,11 @@ public final class InviteClient {
         public int first, firstDays, laterDays;
         public int claimed;
         public int pending;
+    }
+
+    /** /active only counts as told when the server accepted it and released it (not when it said it was too early). */
+    public static boolean released(Result r) {
+        return r != null && r.ok && !r.early;
     }
 
     private final Http http;
@@ -44,6 +53,11 @@ public final class InviteClient {
 
     public Result redeem(String device, String code) {
         return call("/v1/redeem", device, code);
+    }
+
+    /** Asks whether {@code code} could be used by this phone. Uses nothing: the answer only tells the app whether to offer it. */
+    public Result check(String device, String code) {
+        return call("/v1/check", device, code);
     }
 
     public Result status(String device) {
@@ -76,6 +90,7 @@ public final class InviteClient {
             r.ok = Boolean.TRUE.equals(ok);
             String err = MiniJson.str(m, "error");
             if (!r.ok) {
+                r.limited = resp.code == 429;
                 r.error = err == null || err.isEmpty() ? "That did not work. Please try again." : err;
                 return r;
             }
@@ -87,6 +102,7 @@ public final class InviteClient {
             r.max = (int) MiniJson.num(m, "max", 0);
             r.pending = (int) MiniJson.num(m, "pending", 0);
             r.claimed = (int) MiniJson.num(m, "claimed", 0);
+            r.early = Boolean.TRUE.equals(m.get("early"));
             Object t = m.get("tiers");
             if (t instanceof Map) {
                 @SuppressWarnings("unchecked") Map<String, Object> tm = (Map<String, Object>) t;

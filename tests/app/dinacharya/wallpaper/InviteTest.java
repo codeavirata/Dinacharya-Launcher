@@ -44,6 +44,48 @@ public class InviteTest {
         f.code = 200; f.body = "";
         ok("an empty answer is treated as down", c.code("device-000000000001").network);
 
+        // check: the app asks before it offers a code
+        f.code = 200; f.body = "{\"ok\":true}";
+        r = c.check("device-000000000001", "ABCD2345");
+        ok("check posts to /v1/check with the code and reads yes", r.ok && f.lastUrl.equals("https://x.test/v1/check") && f.lastBody.contains("\"code\":\"ABCD2345\"") && InviteCheck.verdict(r) == InviteCheck.SHOW);
+        f.code = 400; f.body = "{\"ok\":false,\"error\":\"That code is not valid.\"}";
+        r = c.check("device-000000000001", "ZZZZZZZZ");
+        ok("a refused code is dropped for good", !r.ok && !r.network && !r.limited && InviteCheck.verdict(r) == InviteCheck.DROP);
+        f.body = "{\"ok\":false,\"error\":\"You cannot use your own code.\"}";
+        ok("your own code is dropped too", InviteCheck.verdict(c.check("device-000000000001", "ABCD2345")) == InviteCheck.DROP);
+        f.body = "{\"ok\":false,\"error\":\"This phone has already used an invite code.\"}";
+        ok("a phone that already used a code gets no offer", InviteCheck.verdict(c.check("device-000000000001", "ABCD2345")) == InviteCheck.DROP);
+        f.code = 429; f.body = "{\"ok\":false,\"error\":\"Too many tries. Please wait a minute and try again.\"}";
+        r = c.check("device-000000000001", "ABCD2345");
+        ok("too many tries says nothing about the code: it is asked again later", r.limited && !r.network && r.error.startsWith("Too many tries") && InviteCheck.verdict(r) == InviteCheck.LATER);
+        f.down = true;
+        ok("a server that cannot be reached keeps the code for later", InviteCheck.verdict(c.check("device-000000000001", "ABCD2345")) == InviteCheck.LATER);
+        f.down = false; f.code = 503; f.body = "<html>oops</html>";
+        ok("a server error page keeps the code for later", InviteCheck.verdict(c.check("device-000000000001", "ABCD2345")) == InviteCheck.LATER);
+        ok("no answer at all keeps the code for later", InviteCheck.verdict(null) == InviteCheck.LATER);
+        f.code = 200;
+        ok("a 429 is only 'limited' for 429, not for other refusals", !c.redeem("device-000000000001", "x").limited);
+        long t0 = 1_700_000_000_000L;
+        ok("the first ask is allowed", InviteCheck.canTry(0, t0));
+        ok("not asked again within ten minutes", !InviteCheck.canTry(t0, t0 + 9 * 60000L));
+        ok("asked again after ten minutes", InviteCheck.canTry(t0, t0 + 10 * 60000L));
+        ok("a clock that went back does not block asking", InviteCheck.canTry(t0, t0 - 5000L));
+
+        // active: "too early" is not the same as "used"
+        f.code = 200; f.body = "{\"ok\":true,\"activated\":0,\"early\":true}";
+        r = c.active("device-000000000001");
+        ok("early is read and is not counted as told", r.ok && r.early && !InviteClient.released(r));
+        f.body = "{\"ok\":true,\"activated\":1}";
+        r = c.active("device-000000000001");
+        ok("a released reward counts as told", r.ok && !r.early && InviteClient.released(r));
+        f.body = "{\"ok\":true,\"activated\":0}";
+        ok("a repeat after the reward was released counts as told (nothing more to wait for)", InviteClient.released(c.active("device-000000000001")));
+        f.down = true;
+        ok("an unreachable server never counts as told", !InviteClient.released(c.active("device-000000000001")) && !InviteClient.released(null));
+        f.down = false; f.code = 400; f.body = "{\"ok\":false,\"error\":\"That did not work.\"}";
+        ok("a refusal never counts as told", !InviteClient.released(c.active("device-000000000001")));
+        f.code = 200;
+
         long now = 1_000_000_000_000L, D = InviteDays.DAY_MS;
         ok("first days start from now", InviteDays.add(0, 7, now) == now + 7 * D);
         ok("days add up after the end date kept", InviteDays.add(now + 3 * D, 7, now) == now + 10 * D);

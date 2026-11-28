@@ -56,7 +56,8 @@ final class InviteSync {
         String device = pro.inviteDevice();
         if (InviteActive.due(pro.inviteUsed())) {
             InviteClient.Result r = api.active(device);
-            if (r.ok) pro.setInviteUsed(InviteActive.told(pro.inviteUsed()));
+            // "too early" from the server is not an answer: the record stays due and the next open asks again
+            if (InviteClient.released(r)) pro.setInviteUsed(InviteActive.told(pro.inviteUsed()));
         }
         int got = 0;
         if (pro.inviteAsked()) {

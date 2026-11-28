@@ -17875,5 +17875,33 @@
 "src": [
 "added"
 ]
+},
+{
+"id": 6059,
+"en": "That code is not valid.",
+"src": [
+"added"
+]
+},
+{
+"id": 6060,
+"en": "You cannot use your own code.",
+"src": [
+"added"
+]
+},
+{
+"id": 6061,
+"en": "This phone has already used an invite code.",
+"src": [
+"added"
+]
+},
+{
+"id": 6062,
+"en": "Too many tries. Please wait a minute and try again.",
+"src": [
+"added"
+]
 }
 ]

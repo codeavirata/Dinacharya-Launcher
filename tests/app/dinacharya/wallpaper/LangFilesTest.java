@@ -354,6 +354,10 @@ public class LangFilesTest {
             "A friend invited you",
             "Use their code to get 7 days of free Pro. Your friend also earns Pro days once you have used the app on two different days.",
             "Get 7 days of Pro",
+            "That code is not valid.",
+            "You cannot use your own code.",
+            "This phone has already used an invite code.",
+            "Too many tries. Please wait a minute and try again.",
     };
     /** Text that is the person's own, or a name, and must stay as it is. */
     static final String[] STAYS = {"Social apps", "Meeting time", "Study room", "Time left", "Chrome", "Watch a video", "Morning run"};

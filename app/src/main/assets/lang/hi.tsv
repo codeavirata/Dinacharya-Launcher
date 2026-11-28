@@ -2604,3 +2604,8 @@ Hidden for now. It comes back until you make your own schedule.	अभी के
 A friend invited you	एक दोस्त ने आपको आमंत्रित किया है
 Use their code to get 7 days of free Pro. Your friend also earns Pro days once you have used the app on two different days.	उनका कोड इस्तेमाल करके 7 दिन का मुफ़्त Pro पाएँ। जब आप दो अलग-अलग दिन ऐप इस्तेमाल कर लेंगे, तो आपके दोस्त को भी Pro के दिन मिलेंगे।
 Get 7 days of Pro	7 दिन का Pro पाएँ
+# build 90: invite safeguards
+That code is not valid.	वह कोड मान्य नहीं है।
+You cannot use your own code.	आप अपना ही कोड इस्तेमाल नहीं कर सकते।
+This phone has already used an invite code.	इस फ़ोन में पहले ही एक आमंत्रण कोड इस्तेमाल हो चुका है।
+Too many tries. Please wait a minute and try again.	बहुत ज़्यादा कोशिशें हो गईं। कृपया एक मिनट रुककर फिर कोशिश करें।
