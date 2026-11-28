@@ -29,13 +29,25 @@ public interface Http {
 
     /** The real thing, over HttpURLConnection. */
     final class Url implements Http {
+        private final int connectMs, readMs;
+
+        public Url() {
+            this(20000, 60000);
+        }
+
+        /** A request that gives up sooner than the default (the invite server uses a few seconds, so a server that is down never makes a screen wait). */
+        public Url(int connectMs, int readMs) {
+            this.connectMs = connectMs;
+            this.readMs = readMs;
+        }
+
         @Override
         public Resp send(String method, String url, Map<String, String> headers, byte[] body) throws IOException {
             HttpURLConnection c = (HttpURLConnection) new URL(url).openConnection();
             try {
                 c.setRequestMethod(method);
-                c.setConnectTimeout(20000);
-                c.setReadTimeout(60000);
+                c.setConnectTimeout(connectMs);
+                c.setReadTimeout(readMs);
                 c.setInstanceFollowRedirects(false);
                 if (headers != null) for (Map.Entry<String, String> h : headers.entrySet()) c.setRequestProperty(h.getKey(), h.getValue());
                 if (body != null) {

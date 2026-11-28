@@ -2459,3 +2459,153 @@ Some problems were written down. Email them to the developer, or copy them	ক�
 Email them to the developer, or copy them.	সেগুলি ডেভেলপারকে ইমেল করুন, অথবা কপি করুন।
 Email them to the developer, or copy them	সেগুলি ডেভেলপারকে ইমেল করুন, অথবা কপি করুন
 Support: {1}	সহায়তা: {1}
+# build 87: invite friends, templates, sharing
+Invite friends	বন্ধুদের আমন্ত্রণ জানান
+Share Dinacharya with friends. When a friend uses your code and starts using the app, you both get free Pro days.	বন্ধুদের সঙ্গে Dinacharya শেয়ার করুন। কোনো বন্ধু আপনার কোড ব্যবহার করে অ্যাপ ব্যবহার শুরু করলে আপনারা দুজনেই বিনামূল্যে Pro-র দিন পাবেন।
+Your code	আপনার কোড
+Share	শেয়ার করুন
+Copy	কপি করুন
+What you earn	আপনি কী পাবেন
+Friends 1 to {1}: {2} days of Pro each\nFriends {3} to {4}: {5} days each\nUp to {6} days in all	বন্ধু 1 থেকে {1}: প্রত্যেকের জন্য {2} দিন Pro\nবন্ধু {3} থেকে {4}: প্রত্যেকের জন্য {5} দিন\nমোট সর্বোচ্চ {6} দিন
+A friend counts once they have used the app on two different days. Each friend can use one code, on one phone.	কোনো বন্ধু তখনই গণ্য হয় যখন তিনি দুটি আলাদা দিনে অ্যাপটি ব্যবহার করেন। প্রত্যেক বন্ধু একটি ফোনে শুধু একটি কোড ব্যবহার করতে পারেন।
+Have a friend's code?	আপনার কাছে কোনো বন্ধুর কোড আছে?
+Enter it to get 7 days of free Pro.	বিনামূল্যে 7 দিনের Pro পেতে এটি দিন।
+Code	কোড
+Use this code	এই কোডটি ব্যবহার করুন
+Type your friend's code first.	আগে আপনার বন্ধুর কোড লিখুন।
+One moment…	এক মুহূর্ত…
+Your code is not ready yet. Check your connection and try again.	আপনার কোড এখনো তৈরি নয়। ইন্টারনেট দেখে আবার চেষ্টা করুন।
+That app is not on this phone. Choose another one.	এই অ্যাপটি এই ফোনে নেই। অন্যটি বেছে নিন।
+Invite a friend	বন্ধুকে আমন্ত্রণ জানান
+You got {1} days of free Pro	আপনি {1} দিনের বিনামূল্যে Pro পেয়েছেন
+{1} of {2} invites used	{2}টির মধ্যে {1}টি আমন্ত্রণ ব্যবহৃত হয়েছে
+{1} waiting for the friend to use the app	{1} জন বন্ধুর অ্যাপ ব্যবহারের অপেক্ষা চলছে
+Free Pro days left: {1}	বাকি বিনামূল্যে Pro-র দিন: {1}
+Could not reach the invite server. Please try again later.	আমন্ত্রণ সার্ভারে পৌঁছানো যায়নি। অনুগ্রহ করে পরে আবার চেষ্টা করুন।
+That did not work. Please try again.	এটি কাজ করেনি। অনুগ্রহ করে আবার চেষ্টা করুন।
+A friend joined: you earned {1} free Pro days	একজন বন্ধু যোগ দিয়েছেন: আপনি {1} দিনের বিনামূল্যে Pro পেয়েছেন
+I plan my day with Dinacharya Launcher. Get it and use my code {1} for 7 days of free Pro: {2}	আমার দিন Dinacharya Launcher দিয়েই সাজানো। এটি ডাউনলোড করুন আর আমার কোড {1} দিয়ে 7 দিন বিনামূল্যে Pro পান: {2}
+Share your code. You and your friend get free Pro days	আপনার কোড শেয়ার করুন। আপনি ও আপনার বন্ধু বিনামূল্যে Pro-র দিন পাবেন
+Start from a template	টেমপ্লেট থেকে শুরু করুন
+Share this routine	এই রুটিন শেয়ার করুন
+Share my day as a picture	আমার দিন ছবি হিসেবে শেয়ার করুন
+Paste a routine	রুটিন পেস্ট করুন
+The slots of “{1}” are replaced and you can edit every one. You can undo this.	“{1}”-এর স্লটগুলো বদলে যাবে এবং আপনি প্রতিটি স্লট বদলাতে পারবেন। আপনি এটি ফিরিয়েও আনতে পারেন।
+“{1}” now follows the {2} template.	“{1}” এখন {2} টেমপ্লেট অনুযায়ী চলছে।
+Use it	ব্যবহার করুন
+This routine could not be shared	এই রুটিন শেয়ার করা যায়নি
+Copy a shared routine message (or your routine from the web app) first	আগে শেয়ার করা রুটিনের বার্তা (বা ওয়েব অ্যাপ থেকে আপনার রুটিন) কপি করুন
+My daily routine “{1}” on Dinacharya Launcher.\nTo use it: copy this whole message, open Dinacharya > Routine > More tools > Paste a routine.\n\n{2}\n\nGet the app: {3}	আমার প্রতিদিনের রুটিন “{1}”, Dinacharya Launcher-এ।\nব্যবহার করতে: এই পুরো বার্তাটি কপি করুন, Dinacharya > রুটিন > আরও টুল > রুটিন পেস্ট করুন খুলুন।\n\n{2}\n\nঅ্যাপটি এখান থেকে নিন: {3}
+MY DAY	আমার দিন
+Plan your day. Free on Google Play.	আপনার দিন পরিকল্পনা করুন। Google Play-তে বিনামূল্যে।
++ {1} more	+ আরও {1}
+The picture could not be made	ছবি তৈরি করা যায়নি
+Share my day	আমার দিন শেয়ার করুন
+UPSC Civil Services	UPSC সিভিল সার্ভিস
+Wake at 5:00. GS, optional, answer writing, current affairs, mock tests.	সকাল 5:00টায় ওঠা। GS, ঐচ্ছিক বিষয়, উত্তর লেখা, সমসাময়িক ঘটনা, মক টেস্ট।
+SSC / Banking	SSC / ব্যাংকিং
+Wake at 5:30. Quant, reasoning, English, GA and a daily mock.	সকাল 5:30টায় ওঠা। গণিত, রিজনিং, ইংরেজি, GA আর রোজ একটি মক।
+Board exams (school)	বোর্ড পরীক্ষা (স্কুল)
+Wake at 6:00. School, homework, daily study and revision.	সকাল 6:00টায় ওঠা। স্কুল, হোমওয়ার্ক, প্রতিদিনের পড়া ও পুনরালোচনা।
+JEE / NEET	JEE / NEET
+Wake at 5:30. Physics, chemistry, maths or biology, practice and tests.	সকাল 5:30টায় ওঠা। পদার্থবিদ্যা, রসায়ন, গণিত বা জীববিদ্যা, অনুশীলন ও টেস্ট।
+College	কলেজ
+Wake at 6:30. Classes, self-study, workout, assignments and friends.	সকাল 6:30টায় ওঠা। ক্লাস, নিজে পড়া, ব্যায়াম, অ্যাসাইনমেন্ট ও বন্ধুরা।
+Working professional	চাকরিজীবী পেশাদার
+Wake at 6:00. Deep work, meetings, learning and family time.	সকাল 6:00টায় ওঠা। গভীর কাজ, মিটিং, শেখা ও পরিবারের সময়।
+Yoga & pranayama	যোগ ও প্রাণায়াম
+Newspaper & current affairs	খবরের কাগজ ও সমসাময়িক ঘটনা
+Current affairs	সমসাময়িক ঘটনা
+GS study	GS পড়া
+Optional subject	ঐচ্ছিক বিষয়
+Answer writing	উত্তর লেখা
+Revision & notes	পুনরালোচনা ও নোট
+Mock test or PYQs	মক টেস্ট বা আগের বছরের প্রশ্ন
+Mock test	মক টেস্ট
+Plan tomorrow	আগামীকালের পরিকল্পনা
+Exercise or run	ব্যায়াম বা দৌড়
+Quant practice	গণিতের অনুশীলন
+Quant	গণিত
+Reasoning	রিজনিং
+General awareness	সাধারণ জ্ঞান
+Full mock test	পুরো মক টেস্ট
+Tea & walk	চা ও হাঁটা
+Mock analysis	মকের বিশ্লেষণ
+Vocabulary & revision	শব্দভান্ডার ও পুনরালোচনা
+School	স্কুল
+Homework	হোমওয়ার্ক
+Tea & play	চা ও খেলা
+Maths & Science	গণিত ও বিজ্ঞান
+Revision & writing practice	পুনরালোচনা ও লেখার অনুশীলন
+Physics	পদার্থবিদ্যা
+Chemistry	রসায়ন
+Maths or Biology	গণিত বা জীববিদ্যা
+Problem practice	সমস্যা সমাধানের অনুশীলন
+Revision & error log	পুনরালোচনা ও ভুলের তালিকা
+Get ready & travel	তৈরি হওয়া ও যাতায়াত
+Classes	ক্লাস
+Classes or lab	ক্লাস বা ল্যাব
+Self-study	নিজে পড়া
+Sports or workout	খেলা বা ওয়ার্কআউট
+Assignments & projects	অ্যাসাইনমেন্ট ও প্রজেক্ট
+Assignments	অ্যাসাইনমেন্ট
+Friends & hobbies	বন্ধু ও শখ
+Get ready & commute	তৈরি হওয়া ও অফিসে যাওয়া
+Commute	যাতায়াত
+Deep work	গভীর কাজ
+Meetings & email	মিটিং ও ইমেল
+Walk	হাঁটা
+Commute home	বাড়ি ফেরা
+Learning or side project	শেখা বা সাইড প্রজেক্ট
+# build 87: routine lock
+“{1}” has already started today, so it can't be changed here. To change today, use Change plan on Home.	“{1}” আজ শুরু হয়ে গেছে, তাই এখানে এটি বদলানো যাবে না। আজ বদলাতে হোমে পরিকল্পনা বদলান ব্যবহার করুন।
+Strict routine is on, so today's routine can't be changed here. To change today, use Change plan on Home.	কঠোর রুটিন চালু আছে, তাই আজকের রুটিন এখানে বদলানো যাবে না। আজ বদলাতে হোমে পরিকল্পনা বদলান ব্যবহার করুন।
+FROM TOMORROW	কাল থেকে
+Today stays as it was. The change starts tomorrow.	আজ যেমন ছিল তেমনই থাকবে। বদলটি কাল থেকে শুরু হবে।
+Saved	সংরক্ষিত হয়েছে
+Strict routine	কঠোর রুটিন
+A slot that has already started today cannot be changed from the Routine tab: today is changed with Change plan on Home, which keeps a record of it. Slots that have not started yet, and every other day, can be edited as usual. You can always save a change from tomorrow.	আজ যে স্লট শুরু হয়ে গেছে তা রুটিন ট্যাব থেকে বদলানো যায় না: আজকের দিন হোমে পরিকল্পনা বদলান দিয়ে বদলানো হয়, যার হিসাব রাখা হয়। যে স্লট এখনও শুরু হয়নি এবং অন্য সব দিন আগের মতোই বদলানো যায়। যেকোনো বদল আপনি কাল থেকে সংরক্ষণ করতে পারেন।
+Lock all of today's routine	আজকের পুরো রুটিন লক করুন
+With this on, nothing of the day that is running can be changed from the Routine tab, started or not. Changes for tomorrow and later are never blocked.	এটি চালু থাকলে, যে দিনটি চলছে তার কিছুই রুটিন ট্যাব থেকে বদলানো যায় না, শুরু হয়ে থাকুক বা না থাকুক। কাল এবং তার পরের বদল কখনও আটকানো হয় না।
+This is your saved routine. A change here stays until you change it again. A slot that has already started today cannot be changed here: to change today, use Change plan on Home.	এটি আপনার সংরক্ষিত রুটিন। এখানে করা বদল আবার না বদলানো পর্যন্ত থাকে। আজ যে স্লট শুরু হয়ে গেছে তা এখানে বদলানো যাবে না: আজ বদলাতে হোমে পরিকল্পনা বদলান ব্যবহার করুন।
+# build 88: save from tomorrow, Routine tab, invite link
+Save this change from tomorrow?	এই পরিবর্তন আগামীকাল থেকে সংরক্ষণ করবেন?
+Strict routine is on	কঠোর রুটিন চালু আছে
+Today's routine can't be changed from here. Your change can start tomorrow, and today stays exactly as it is.	আজকের রুটিন এখান থেকে বদলানো যাবে না। আপনার পরিবর্তন আগামীকাল থেকে শুরু হতে পারে, আর আজ যেমন আছে তেমনই থাকবে।
+“{1}” has already started today, so today can't be changed from here. Your change can start tomorrow, and today stays exactly as it is.	“{1}” আজ শুরু হয়ে গেছে, তাই আজ এখান থেকে বদলানো যাবে না। আপনার পরিবর্তন আগামীকাল থেকে শুরু হতে পারে, আর আজ যেমন আছে তেমনই থাকবে।
+Today can't be changed here	আজ এখানে বদলানো যাবে না
+Your change	আপনার পরিবর্তন
+To change only today, use Change plan on Home.	শুধু আজ বদলাতে হোমে পরিকল্পনা বদলান ব্যবহার করুন।
+Save from tomorrow	আগামীকাল থেকে সংরক্ষণ করুন
+Discard	বাদ দিন
+Start of day: {1} → {2}	দিনের শুরু: {1} → {2}
+Start of day setting changed	দিনের শুরুর সেটিং বদলেছে
+Deleted: {1}	মুছে ফেলা হয়েছে: {1}
+Added: {1}	যোগ করা হয়েছে: {1}
+{1}: {2} min → {3} min	{1}: {2} মিনিট → {3} মিনিট
+{1}: settings changed	{1}: সেটিং বদলেছে
+Order of slots changed	স্লটের ক্রম বদলেছে
+Routine changed	রুটিন বদলেছে
+Exam Specific	পরীক্ষা অনুযায়ী
+Everyday	প্রতিদিনের জন্য
+Hide	লুকান
+Pick one, then change any slot you like.	একটি বেছে নিন, তারপর যেকোনো স্লট নিজের পছন্দমতো বদলান।
+Wakes at {1}	{1}-এ ওঠা
+Templates	টেমপ্লেট
+From “{1}”	“{1}” থেকে
+Send my routine	আমার রুটিন পাঠান
+A message with a code for friends	বন্ধুদের জন্য কোডসহ একটি বার্তা
+Today's slots, ready for WhatsApp	আজকের স্লট, WhatsApp-এর জন্য তৈরি
+Use a code someone sent you	কেউ পাঠালে সেই কোড ব্যবহার করুন
+Replaces the slots of “{1}”. You can undo it.	“{1}”-এর স্লট বদলে যাবে। আপনি এটি আগের অবস্থায় ফেরাতে পারবেন।
+Sample day	নমুনা দিন
+The day the app begins with.	যে দিন দিয়ে অ্যাপ শুরু হয়।
+Hidden for now. It comes back until you make your own schedule.	এখনকার জন্য লুকানো হলো। আপনি নিজের রুটিন না বানানো পর্যন্ত এটি ফিরে আসবে।
+A friend invited you	একজন বন্ধু আপনাকে আমন্ত্রণ জানিয়েছে
+Use their code to get 7 days of free Pro. Your friend also earns Pro days once you have used the app on two different days.	তাঁর কোড ব্যবহার করে 7 দিনের বিনামূল্যের Pro পান। আপনি দুটি আলাদা দিনে অ্যাপ ব্যবহার করলে আপনার বন্ধুও Pro-এর দিন পাবেন।
+Get 7 days of Pro	7 দিনের Pro পান
+# build 90: invite safeguards
+That code is not valid.	ওই কোডটি বৈধ নয়।
+You cannot use your own code.	আপনি নিজের কোড ব্যবহার করতে পারবেন না।
+This phone has already used an invite code.	এই ফোনে ইতিমধ্যে একটি আমন্ত্রণ কোড ব্যবহার করা হয়েছে।
+Too many tries. Please wait a minute and try again.	অনেকবার চেষ্টা করা হয়েছে। অনুগ্রহ করে এক মিনিট অপেক্ষা করে আবার চেষ্টা করুন।

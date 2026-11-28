@@ -11,3 +11,9 @@ CREATE TABLE IF NOT EXISTS redemptions (
   created  INTEGER NOT NULL
 );
 CREATE INDEX IF NOT EXISTS redemptions_inviter ON redemptions (inviter);
+-- How many times a shared link was opened, per code (a count and the last time; nothing about who opened it).
+CREATE TABLE IF NOT EXISTS clicks (
+  code TEXT PRIMARY KEY,
+  n    INTEGER NOT NULL,
+  last INTEGER NOT NULL
+);

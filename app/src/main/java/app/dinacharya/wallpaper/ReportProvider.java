@@ -50,7 +50,8 @@ public class ReportProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {
-        return "application/pdf";
+        String n = uri.getLastPathSegment();
+        return n != null && n.endsWith(".png") ? "image/png" : "application/pdf";
     }
 
     @Override

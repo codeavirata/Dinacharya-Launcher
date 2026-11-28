@@ -303,6 +303,16 @@ public final class Overrides {
         steps.removeIf(t -> t.day.compareTo(oldest) < 0);
     }
 
+    /**
+     * Keeps the changes made to the slots of one day and forgets those of every other day. A slot change names a place in the saved
+     * routine, so it only means something for the day it was made on; later and earlier starts and early wake-ups are times and stay.
+     * Used when a routine is saved so that today stays as it was and the new one starts tomorrow.
+     */
+    public void keepSlotChangesOf(String day) {
+        edits.removeIf(e -> !e.day.equals(day));
+        steps.removeIf(t -> !t.day.equals(day));
+    }
+
     public Overrides copy() {
         Overrides o = new Overrides();
         o.sig = sig;

@@ -165,6 +165,18 @@ final class ExtraSections {
                 + "vibration. Switch this off to see nothing at all for those slots. Each slot has its own choice: ring, vibration, silent or none, "
                 + "under its bell on the Routine tab.", 13, Ui.MUTED, false), Ui.wide(a, 2));
 
+        // Today's slots can only be changed through Change plan; this locks the rest of today's routine too.
+        Expander.Part strictPart = alarmParts.add(Expander.more(a, root, "Strict routine", "alarm_strict", false));
+        strictPart.body.addView(Ui.label(a, "A slot that has already started today cannot be changed from the Routine tab: today is changed with "
+                + "Change plan on Home, which keeps a record of it. Slots that have not started yet, and every other day, can be edited as usual. "
+                + "You can always save a change from tomorrow.", 13, Ui.MUTED, false), Ui.wide(a, 4));
+        strictPart.body.addView(Ui.toggle(a, "Lock all of today's routine", RoutineGuard.strict(a), (b, on) -> {
+            if (binding) return;
+            RoutineGuard.setStrict(a, on);
+        }), Ui.wide(a, 4));
+        strictPart.body.addView(Ui.label(a, "With this on, nothing of the day that is running can be changed from the Routine tab, "
+                + "started or not. Changes for tomorrow and later are never blocked.", 13, Ui.MUTED, false), Ui.wide(a, 2));
+
         // The start-of-day alarm.
         Expander.Part wake = alarmParts.add(Expander.more(a, root, "Start-of-day alarm", "alarm_wake", false));
         wake.body.addView(Ui.label(a, "Choose one slot as your start-of-day alarm from its bell on the Routine tab. It has to be the first alarm of "

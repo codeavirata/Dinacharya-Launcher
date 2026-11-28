@@ -1,1 +1,1 @@
-{ "name": "dinacharya-invites", "private": true, "type": "module", "scripts": { "test": "node test/invites.test.mjs" } }
+{ "name": "dinacharya-invites", "private": true, "type": "module", "scripts": { "test": "node test/invites.test.mjs && node test/injection.test.mjs" } }

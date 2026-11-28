@@ -7,3 +7,20 @@ compatibility_date = "2025-01-01"
 binding = "DB"
 database_name = "dinacharya-invites"
 database_id = "REPLACE_WITH_DATABASE_ID"
+
+# --- rate limits (optional: the deploy workflow leaves this part out if Cloudflare refuses it) ---
+# Counted per address and route in each Cloudflare location; nothing is stored. Needs wrangler 4.36 or later.
+# STRICT is for the two calls that tell whether a code exists (redeem and check); LIMITER is for everything else.
+[[ratelimits]]
+name = "LIMITER"
+namespace_id = "1001"
+  [ratelimits.simple]
+  limit = 60
+  period = 60
+
+[[ratelimits]]
+name = "STRICT"
+namespace_id = "1002"
+  [ratelimits.simple]
+  limit = 15
+  period = 60

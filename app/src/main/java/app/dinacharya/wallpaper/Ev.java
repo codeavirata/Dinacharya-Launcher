@@ -52,6 +52,9 @@ public final class Ev {
      */
     public static final String DAYOFF = "dayoff";
 
+    /** The saved routine was changed while this schedule day was running, in a way that changes the day's slots. ts = when; day = the day; src = -1. */
+    public static final String PLANEDIT = "planedit";
+
     public final long ts;
     public final String type;
     public final String day;
@@ -164,6 +167,10 @@ public final class Ev {
 
     public static Ev dayOffEnded(long ts, String day) {
         return new Ev(ts, DAYOFF, day, -1, "0", "", "");
+    }
+
+    public static Ev planEdited(long ts, String day) {
+        return new Ev(ts, PLANEDIT, day, -1, "", "", "");
     }
 
     public static Ev alarms(long ts, boolean on) {

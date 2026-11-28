@@ -1,5 +1,6 @@
 package app.dinacharya.wallpaper;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -101,6 +102,9 @@ public class MainActivity extends LangActivity {
 
     private LinearLayout undoBar;
     private TextView undoText;
+    private TextView barBtn;
+    /** What the bar's button does. Each action hides the bar itself. */
+    private Runnable barAction;
     private String undoSnapshot;
     private final Runnable hideUndo = new Runnable() {
         @Override
@@ -283,6 +287,9 @@ public class MainActivity extends LangActivity {
         HomeRole.look(this);
         StrongMode.afterReturn(this);   // the strong lock runs whenever something is locked or paused and it is allowed; asks for the next permission
         Quiet.refresh(this);   // library mode may have begun or ended while the app was closed
+        InstallReferrerReader.check(this, () -> InviteOffer.maybeShow(this));   // the code of a friend's invite link, read once after an install from Play
+        ui.postDelayed(() -> InviteOffer.maybeShow(this), 2500);   // the offer waits for the other first-run questions
+        InviteSync.opened(this);   // free Pro days from invites: counts a day of use for a friend's record, collects rewards in the background
         RateApp.used(this);   // counts the days the app is in use, for the card that offers a rating on Google Play
         // The alarms and the wallpaper are looked at again every time the dashboard comes up (settlePass above saved first).
         Keeper.ensure(this, "dashboard");
@@ -611,7 +618,11 @@ public class MainActivity extends LangActivity {
         undoBtn.setGravity(Gravity.CENTER);
         undoBtn.setPadding(dp(14), dp(12), dp(14), dp(12));
         undoBtn.setBackground(Ui.pressable(this, 0x00FFFFFF, 0, 10, 0x40FFFFFF));
-        undoBtn.setOnClickListener(v -> undo());
+        undoBtn.setOnClickListener(v -> {
+            Runnable r = barAction;
+            if (r != null) r.run();
+        });
+        barBtn = undoBtn;
         undoBar.addView(undoBtn);
         FrameLayout.LayoutParams ulp = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,
                 Gravity.BOTTOM);
@@ -1005,9 +1016,24 @@ public class MainActivity extends LangActivity {
             AlarmScheduler.reschedule(this);   // the alarms follow the routine that was kept, not the one on this screen
             return;
         }
+        // A slot that has started today and has something in the history is part of the day as it was lived: the Routine tab may not
+        // change it (Change plan on Home is for today). Everything else saves as before.
+        Routine before = Store.load(this);
+        RoutineGuard.Verdict v = RoutineGuard.check(this, before, routine);
+        if (v.refused) {
+            refuseEdit(before, v);
+            return;
+        }
+        commitSave(before, v.keep, v.editsToday ? v.day : null);
+    }
+
+    /** Writes the routine on this screen, sets today's kept edits and the alarms, and tells the other tabs. */
+    private void commitSave(Routine before, Overrides keep, java.time.LocalDate editedDay) {
         try {
             Store.save(this, routine);
+            RoutineGuard.afterSave(this, before, routine, keep);
             SlotActions.noticeReplan(this, routine);
+            if (editedDay != null) RoutineGuard.logEdit(this, editedDay);
         } catch (RuntimeException e) {
             CrashLog.note(this, "save", e);
             toastText("Could not save. Please try again.");
@@ -1015,6 +1041,44 @@ public class MainActivity extends LangActivity {
         AlarmScheduler.reschedule(this);
         extras.routineChanged();
         DriveJob.changedSoon(this);
+    }
+
+    /** The sheet about a refused edit, while it is open (a second refusal does not pile another on top). */
+    private AlertDialog refusal;
+
+    /**
+     * The edit would change a slot of today that was already lived: nothing is saved and the screen goes back to the saved routine. A sheet
+     * says what the change is and offers to save it from tomorrow, with today left as it was.
+     */
+    private void refuseEdit(Routine before, RoutineGuard.Verdict v) {
+        final String editedText = routine.serialize();
+        java.util.List<String> changes = RoutineDiff.changes(before, routine, v.day, before.fmt24);
+        routine.replaceWith(before);
+        routineChanged();
+        if (isFinishing() || (refusal != null && refusal.isShowing())) return;
+        refusal = SaveTomorrowDialog.show(this, v.slot, v.canPin, changes, () -> saveFromTomorrow(editedText));
+    }
+
+    /** Saves the refused routine so that today stays exactly as it was and the change starts tomorrow. */
+    private void saveFromTomorrow(String editedText) {
+        ui.removeCallbacks(hideUndo);
+        hideUndoBar();
+        Routine ed = Routine.parse(editedText);
+        if (ed == null) return;
+        Routine before = Store.load(this);
+        RoutineGuard.Verdict v = RoutineGuard.check(this, before, ed);
+        Overrides keep = v.keep;
+        if (v.refused) {
+            if (!v.canPin || v.day == null) return;
+            keep = RoutineGuard.pin(this, before, ed, v.day);
+        }
+        revision++;
+        ui.removeCallbacks(saveTask);
+        savePending = false;
+        routine.replaceWith(ed);
+        commitSave(before, keep, !v.refused && v.editsToday ? v.day : null);
+        routineChanged();
+        toastText(v.refused ? "Today stays as it was. The change starts tomorrow." : "Saved");
     }
 
     void registerPreview(PosterView p) {
@@ -1033,8 +1097,17 @@ public class MainActivity extends LangActivity {
 
     /** Shows {@code msg} with an Undo button that puts the routine back to {@code snapshot}. */
     void undoable(String msg, String snapshot) {
+        bar(msg, "UNDO", this::undo, UNDO_MS);
         undoSnapshot = snapshot;
+    }
+
+    /** The bar above the bottom bar: a message and, when {@code label} is given, one button that runs {@code action}. */
+    private void bar(String msg, String label, Runnable action, long ms) {
+        undoSnapshot = null;
+        barAction = action;
         undoText.setText(msg);
+        barBtn.setText(label == null ? "" : label);
+        barBtn.setVisibility(label == null ? View.GONE : View.VISIBLE);
         ui.removeCallbacks(hideUndo);
         if (undoBar.getVisibility() != View.VISIBLE) {
             undoBar.setVisibility(View.VISIBLE);
@@ -1042,11 +1115,12 @@ public class MainActivity extends LangActivity {
             undoBar.setTranslationY(dp(16));
             undoBar.animate().alpha(1f).translationY(0).setDuration(180).start();
         }
-        ui.postDelayed(hideUndo, UNDO_MS);
+        ui.postDelayed(hideUndo, ms);
     }
 
     private void hideUndoBar() {
         undoSnapshot = null;
+        barAction = null;
         if (undoBar.getVisibility() != View.VISIBLE) return;
         undoBar.animate().alpha(0f).translationY(dp(16)).setDuration(160)
                 .withEndAction(() -> undoBar.setVisibility(View.GONE)).start();

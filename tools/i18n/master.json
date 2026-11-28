@@ -16881,5 +16881,1027 @@
 "src": [
 "added"
 ]
+},
+{
+"id": 5917,
+"en": "Invite friends",
+"src": [
+"added"
+]
+},
+{
+"id": 5918,
+"en": "Share Dinacharya with friends. When a friend uses your code and starts using the app, you both get free Pro days.",
+"src": [
+"added"
+]
+},
+{
+"id": 5919,
+"en": "Your code",
+"src": [
+"added"
+]
+},
+{
+"id": 5920,
+"en": "Share",
+"src": [
+"added"
+]
+},
+{
+"id": 5921,
+"en": "Copy",
+"src": [
+"added"
+]
+},
+{
+"id": 5922,
+"en": "What you earn",
+"src": [
+"added"
+]
+},
+{
+"id": 5923,
+"en": "Friends 1 to {1}: {2} days of Pro each\nFriends {3} to {4}: {5} days each\nUp to {6} days in all",
+"src": [
+"added"
+]
+},
+{
+"id": 5924,
+"en": "A friend counts once they have used the app on two different days. Each friend can use one code, on one phone.",
+"src": [
+"added"
+]
+},
+{
+"id": 5925,
+"en": "Have a friend's code?",
+"src": [
+"added"
+]
+},
+{
+"id": 5926,
+"en": "Enter it to get 7 days of free Pro.",
+"src": [
+"added"
+]
+},
+{
+"id": 5927,
+"en": "Code",
+"src": [
+"added"
+]
+},
+{
+"id": 5928,
+"en": "Use this code",
+"src": [
+"added"
+]
+},
+{
+"id": 5929,
+"en": "Type your friend's code first.",
+"src": [
+"added"
+]
+},
+{
+"id": 5930,
+"en": "One moment…",
+"src": [
+"added"
+]
+},
+{
+"id": 5931,
+"en": "Your code is not ready yet. Check your connection and try again.",
+"src": [
+"added"
+]
+},
+{
+"id": 5932,
+"en": "That app is not on this phone. Choose another one.",
+"src": [
+"added"
+]
+},
+{
+"id": 5933,
+"en": "Invite a friend",
+"src": [
+"added"
+]
+},
+{
+"id": 5934,
+"en": "You got {1} days of free Pro",
+"src": [
+"added"
+]
+},
+{
+"id": 5935,
+"en": "{1} of {2} invites used",
+"src": [
+"added"
+]
+},
+{
+"id": 5936,
+"en": "{1} waiting for the friend to use the app",
+"src": [
+"added"
+]
+},
+{
+"id": 5937,
+"en": "Free Pro days left: {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 5938,
+"en": "Could not reach the invite server. Please try again later.",
+"src": [
+"added"
+]
+},
+{
+"id": 5939,
+"en": "That did not work. Please try again.",
+"src": [
+"added"
+]
+},
+{
+"id": 5940,
+"en": "A friend joined: you earned {1} free Pro days",
+"src": [
+"added"
+]
+},
+{
+"id": 5941,
+"en": "I plan my day with Dinacharya Launcher. Get it and use my code {1} for 7 days of free Pro: {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 5942,
+"en": "Share your code. You and your friend get free Pro days",
+"src": [
+"added"
+]
+},
+{
+"id": 5943,
+"en": "Start from a template",
+"src": [
+"added"
+]
+},
+{
+"id": 5944,
+"en": "Share this routine",
+"src": [
+"added"
+]
+},
+{
+"id": 5945,
+"en": "Share my day as a picture",
+"src": [
+"added"
+]
+},
+{
+"id": 5946,
+"en": "Paste a routine",
+"src": [
+"added"
+]
+},
+{
+"id": 5947,
+"en": "The slots of “{1}” are replaced and you can edit every one. You can undo this.",
+"src": [
+"added"
+]
+},
+{
+"id": 5948,
+"en": "“{1}” now follows the {2} template.",
+"src": [
+"added"
+]
+},
+{
+"id": 5949,
+"en": "Use it",
+"src": [
+"added"
+]
+},
+{
+"id": 5950,
+"en": "This routine could not be shared",
+"src": [
+"added"
+]
+},
+{
+"id": 5951,
+"en": "Copy a shared routine message (or your routine from the web app) first",
+"src": [
+"added"
+]
+},
+{
+"id": 5952,
+"en": "My daily routine “{1}” on Dinacharya Launcher.\nTo use it: copy this whole message, open Dinacharya > Routine > More tools > Paste a routine.\n\n{2}\n\nGet the app: {3}",
+"src": [
+"added"
+]
+},
+{
+"id": 5953,
+"en": "MY DAY",
+"src": [
+"added"
+]
+},
+{
+"id": 5954,
+"en": "Plan your day. Free on Google Play.",
+"src": [
+"added"
+]
+},
+{
+"id": 5955,
+"en": "+ {1} more",
+"src": [
+"added"
+]
+},
+{
+"id": 5956,
+"en": "The picture could not be made",
+"src": [
+"added"
+]
+},
+{
+"id": 5957,
+"en": "Share my day",
+"src": [
+"added"
+]
+},
+{
+"id": 5958,
+"en": "UPSC Civil Services",
+"src": [
+"added"
+]
+},
+{
+"id": 5959,
+"en": "Wake at 5:00. GS, optional, answer writing, current affairs, mock tests.",
+"src": [
+"added"
+]
+},
+{
+"id": 5960,
+"en": "SSC / Banking",
+"src": [
+"added"
+]
+},
+{
+"id": 5961,
+"en": "Wake at 5:30. Quant, reasoning, English, GA and a daily mock.",
+"src": [
+"added"
+]
+},
+{
+"id": 5962,
+"en": "Board exams (school)",
+"src": [
+"added"
+]
+},
+{
+"id": 5963,
+"en": "Wake at 6:00. School, homework, daily study and revision.",
+"src": [
+"added"
+]
+},
+{
+"id": 5964,
+"en": "JEE / NEET",
+"src": [
+"added"
+]
+},
+{
+"id": 5965,
+"en": "Wake at 5:30. Physics, chemistry, maths or biology, practice and tests.",
+"src": [
+"added"
+]
+},
+{
+"id": 5966,
+"en": "College",
+"src": [
+"added"
+]
+},
+{
+"id": 5967,
+"en": "Wake at 6:30. Classes, self-study, workout, assignments and friends.",
+"src": [
+"added"
+]
+},
+{
+"id": 5968,
+"en": "Working professional",
+"src": [
+"added"
+]
+},
+{
+"id": 5969,
+"en": "Wake at 6:00. Deep work, meetings, learning and family time.",
+"src": [
+"added"
+]
+},
+{
+"id": 5970,
+"en": "Yoga & pranayama",
+"src": [
+"added"
+]
+},
+{
+"id": 5971,
+"en": "Newspaper & current affairs",
+"src": [
+"added"
+]
+},
+{
+"id": 5972,
+"en": "Current affairs",
+"src": [
+"added"
+]
+},
+{
+"id": 5973,
+"en": "GS study",
+"src": [
+"added"
+]
+},
+{
+"id": 5974,
+"en": "Optional subject",
+"src": [
+"added"
+]
+},
+{
+"id": 5975,
+"en": "Answer writing",
+"src": [
+"added"
+]
+},
+{
+"id": 5976,
+"en": "Revision & notes",
+"src": [
+"added"
+]
+},
+{
+"id": 5977,
+"en": "Mock test or PYQs",
+"src": [
+"added"
+]
+},
+{
+"id": 5978,
+"en": "Mock test",
+"src": [
+"added"
+]
+},
+{
+"id": 5979,
+"en": "Plan tomorrow",
+"src": [
+"added"
+]
+},
+{
+"id": 5980,
+"en": "Exercise or run",
+"src": [
+"added"
+]
+},
+{
+"id": 5981,
+"en": "Quant practice",
+"src": [
+"added"
+]
+},
+{
+"id": 5982,
+"en": "Quant",
+"src": [
+"added"
+]
+},
+{
+"id": 5983,
+"en": "Reasoning",
+"src": [
+"added"
+]
+},
+{
+"id": 5984,
+"en": "General awareness",
+"src": [
+"added"
+]
+},
+{
+"id": 5985,
+"en": "Full mock test",
+"src": [
+"added"
+]
+},
+{
+"id": 5986,
+"en": "Tea & walk",
+"src": [
+"added"
+]
+},
+{
+"id": 5987,
+"en": "Mock analysis",
+"src": [
+"added"
+]
+},
+{
+"id": 5988,
+"en": "Vocabulary & revision",
+"src": [
+"added"
+]
+},
+{
+"id": 5989,
+"en": "School",
+"src": [
+"added"
+]
+},
+{
+"id": 5990,
+"en": "Homework",
+"src": [
+"added"
+]
+},
+{
+"id": 5991,
+"en": "Tea & play",
+"src": [
+"added"
+]
+},
+{
+"id": 5992,
+"en": "Maths & Science",
+"src": [
+"added"
+]
+},
+{
+"id": 5993,
+"en": "Revision & writing practice",
+"src": [
+"added"
+]
+},
+{
+"id": 5994,
+"en": "Physics",
+"src": [
+"added"
+]
+},
+{
+"id": 5995,
+"en": "Chemistry",
+"src": [
+"added"
+]
+},
+{
+"id": 5996,
+"en": "Maths or Biology",
+"src": [
+"added"
+]
+},
+{
+"id": 5997,
+"en": "Problem practice",
+"src": [
+"added"
+]
+},
+{
+"id": 5998,
+"en": "Revision & error log",
+"src": [
+"added"
+]
+},
+{
+"id": 5999,
+"en": "Get ready & travel",
+"src": [
+"added"
+]
+},
+{
+"id": 6000,
+"en": "Classes",
+"src": [
+"added"
+]
+},
+{
+"id": 6001,
+"en": "Classes or lab",
+"src": [
+"added"
+]
+},
+{
+"id": 6002,
+"en": "Self-study",
+"src": [
+"added"
+]
+},
+{
+"id": 6003,
+"en": "Sports or workout",
+"src": [
+"added"
+]
+},
+{
+"id": 6004,
+"en": "Assignments & projects",
+"src": [
+"added"
+]
+},
+{
+"id": 6005,
+"en": "Assignments",
+"src": [
+"added"
+]
+},
+{
+"id": 6006,
+"en": "Friends & hobbies",
+"src": [
+"added"
+]
+},
+{
+"id": 6007,
+"en": "Get ready & commute",
+"src": [
+"added"
+]
+},
+{
+"id": 6008,
+"en": "Commute",
+"src": [
+"added"
+]
+},
+{
+"id": 6009,
+"en": "Deep work",
+"src": [
+"added"
+]
+},
+{
+"id": 6010,
+"en": "Meetings & email",
+"src": [
+"added"
+]
+},
+{
+"id": 6011,
+"en": "Walk",
+"src": [
+"added"
+]
+},
+{
+"id": 6012,
+"en": "Commute home",
+"src": [
+"added"
+]
+},
+{
+"id": 6013,
+"en": "Learning or side project",
+"src": [
+"added"
+]
+},
+{
+"id": 6014,
+"en": "“{1}” has already started today, so it can't be changed here. To change today, use Change plan on Home.",
+"src": [
+"added"
+]
+},
+{
+"id": 6015,
+"en": "Strict routine is on, so today's routine can't be changed here. To change today, use Change plan on Home.",
+"src": [
+"added"
+]
+},
+{
+"id": 6016,
+"en": "FROM TOMORROW",
+"src": [
+"added"
+]
+},
+{
+"id": 6017,
+"en": "Today stays as it was. The change starts tomorrow.",
+"src": [
+"added"
+]
+},
+{
+"id": 6018,
+"en": "Saved",
+"src": [
+"added"
+]
+},
+{
+"id": 6019,
+"en": "Strict routine",
+"src": [
+"added"
+]
+},
+{
+"id": 6020,
+"en": "A slot that has already started today cannot be changed from the Routine tab: today is changed with Change plan on Home, which keeps a record of it. Slots that have not started yet, and every other day, can be edited as usual. You can always save a change from tomorrow.",
+"src": [
+"added"
+]
+},
+{
+"id": 6021,
+"en": "Lock all of today's routine",
+"src": [
+"added"
+]
+},
+{
+"id": 6022,
+"en": "With this on, nothing of the day that is running can be changed from the Routine tab, started or not. Changes for tomorrow and later are never blocked.",
+"src": [
+"added"
+]
+},
+{
+"id": 6023,
+"en": "This is your saved routine. A change here stays until you change it again. A slot that has already started today cannot be changed here: to change today, use Change plan on Home.",
+"src": [
+"added"
+]
+},
+{
+"id": 6024,
+"en": "Save this change from tomorrow?",
+"src": [
+"added"
+]
+},
+{
+"id": 6025,
+"en": "Strict routine is on",
+"src": [
+"added"
+]
+},
+{
+"id": 6026,
+"en": "Today's routine can't be changed from here. Your change can start tomorrow, and today stays exactly as it is.",
+"src": [
+"added"
+]
+},
+{
+"id": 6027,
+"en": "“{1}” has already started today, so today can't be changed from here. Your change can start tomorrow, and today stays exactly as it is.",
+"src": [
+"added"
+]
+},
+{
+"id": 6028,
+"en": "Today can't be changed here",
+"src": [
+"added"
+]
+},
+{
+"id": 6029,
+"en": "Your change",
+"src": [
+"added"
+]
+},
+{
+"id": 6030,
+"en": "To change only today, use Change plan on Home.",
+"src": [
+"added"
+]
+},
+{
+"id": 6031,
+"en": "Save from tomorrow",
+"src": [
+"added"
+]
+},
+{
+"id": 6032,
+"en": "Discard",
+"src": [
+"added"
+]
+},
+{
+"id": 6033,
+"en": "Start of day: {1} → {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 6034,
+"en": "Start of day setting changed",
+"src": [
+"added"
+]
+},
+{
+"id": 6035,
+"en": "Deleted: {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 6036,
+"en": "Added: {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 6037,
+"en": "{1}: {2} min → {3} min",
+"src": [
+"added"
+]
+},
+{
+"id": 6038,
+"en": "{1}: settings changed",
+"src": [
+"added"
+]
+},
+{
+"id": 6039,
+"en": "Order of slots changed",
+"src": [
+"added"
+]
+},
+{
+"id": 6040,
+"en": "Routine changed",
+"src": [
+"added"
+]
+},
+{
+"id": 6041,
+"en": "Exam Specific",
+"src": [
+"added"
+]
+},
+{
+"id": 6042,
+"en": "Everyday",
+"src": [
+"added"
+]
+},
+{
+"id": 6043,
+"en": "Hide",
+"src": [
+"added"
+]
+},
+{
+"id": 6044,
+"en": "Pick one, then change any slot you like.",
+"src": [
+"added"
+]
+},
+{
+"id": 6045,
+"en": "Wakes at {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 6046,
+"en": "Templates",
+"src": [
+"added"
+]
+},
+{
+"id": 6047,
+"en": "From “{1}”",
+"src": [
+"added"
+]
+},
+{
+"id": 6048,
+"en": "Send my routine",
+"src": [
+"added"
+]
+},
+{
+"id": 6049,
+"en": "A message with a code for friends",
+"src": [
+"added"
+]
+},
+{
+"id": 6050,
+"en": "Today's slots, ready for WhatsApp",
+"src": [
+"added"
+]
+},
+{
+"id": 6051,
+"en": "Use a code someone sent you",
+"src": [
+"added"
+]
+},
+{
+"id": 6052,
+"en": "Replaces the slots of “{1}”. You can undo it.",
+"src": [
+"added"
+]
+},
+{
+"id": 6053,
+"en": "Sample day",
+"src": [
+"added"
+]
+},
+{
+"id": 6054,
+"en": "The day the app begins with.",
+"src": [
+"added"
+]
+},
+{
+"id": 6055,
+"en": "Hidden for now. It comes back until you make your own schedule.",
+"src": [
+"added"
+]
+},
+{
+"id": 6056,
+"en": "A friend invited you",
+"src": [
+"added"
+]
+},
+{
+"id": 6057,
+"en": "Use their code to get 7 days of free Pro. Your friend also earns Pro days once you have used the app on two different days.",
+"src": [
+"added"
+]
+},
+{
+"id": 6058,
+"en": "Get 7 days of Pro",
+"src": [
+"added"
+]
+},
+{
+"id": 6059,
+"en": "That code is not valid.",
+"src": [
+"added"
+]
+},
+{
+"id": 6060,
+"en": "You cannot use your own code.",
+"src": [
+"added"
+]
+},
+{
+"id": 6061,
+"en": "This phone has already used an invite code.",
+"src": [
+"added"
+]
+},
+{
+"id": 6062,
+"en": "Too many tries. Please wait a minute and try again.",
+"src": [
+"added"
+]
 }
 ]

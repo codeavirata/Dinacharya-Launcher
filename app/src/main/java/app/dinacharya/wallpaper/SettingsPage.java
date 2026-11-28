@@ -121,6 +121,7 @@ final class SettingsPage extends Page {
                     () -> Ads.get().showPrivacyOptions(a));
         }
         itemAction(card3, Glyph.MAIL, "Send feedback", "Ideas, problems or questions, to the developer by email", this::feedback);
+        itemAction(card3, Glyph.PERSON, "Invite friends", "Share your code. You and your friend get free Pro days", () -> a.startActivity(new Intent(a, InviteActivity.class)));
         itemAction(card3, Glyph.STAR, "Rate Dinacharya", "Give it a rating on Google Play", () -> RateApp.open(a));
         item(card3, Glyph.INFO, "About", "Version and developer", ABOUT);
         a.addFooter(body);
