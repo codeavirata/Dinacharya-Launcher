@@ -68,6 +68,18 @@ public final class RoutineTemplates {
         return ALL.length;
     }
 
+    /** The first this many templates are for an exam (UPSC, SSC / Banking, board exams, JEE / NEET); the rest are for every day. */
+    public static final int EXAMS = 4;
+
+    public static boolean isExam(int i) {
+        return i >= 0 && i < EXAMS;
+    }
+
+    /** The start-of-day time of a template, in minutes after midnight. */
+    public static int wake(int i) {
+        return ALL[i].wake;
+    }
+
     public static String name(int i) {
         return ALL[i].name;
     }

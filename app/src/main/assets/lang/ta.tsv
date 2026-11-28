@@ -2569,3 +2569,39 @@ A slot that has already started today cannot be changed from the Routine tab: to
 Lock all of today's routine	இன்றைய முழு வழக்கத்தையும் பூட்டு
 With this on, nothing of the day that is running can be changed from the Routine tab, started or not. Changes for tomorrow and later are never blocked.	இது இயக்கத்தில் இருந்தால், நடந்துகொண்டிருக்கும் நாளின் எதையும் வழக்கம் தாவலில் இருந்து மாற்ற முடியாது, தொடங்கியிருந்தாலும் தொடங்காவிட்டாலும். நாளை மற்றும் அதற்குப் பிந்தைய மாற்றங்கள் ஒருபோதும் தடுக்கப்படாது.
 This is your saved routine. A change here stays until you change it again. A slot that has already started today cannot be changed here: to change today, use Change plan on Home.	இது நீங்கள் சேமித்த வழக்கம். இங்கே செய்யும் மாற்றம் நீங்கள் மீண்டும் மாற்றும் வரை இருக்கும். இன்று தொடங்கிவிட்ட ஸ்லாட்டை இங்கே மாற்ற முடியாது: இன்றை மாற்ற முகப்பில் திட்டத்தை மாற்று என்பதைப் பயன்படுத்துங்கள்.
+# build 88: save from tomorrow, Routine tab, invite link
+Save this change from tomorrow?	இந்த மாற்றத்தை நாளை முதல் சேமிக்கவா?
+Strict routine is on	கண்டிப்பான வழக்கம் இயக்கத்தில் உள்ளது
+Today's routine can't be changed from here. Your change can start tomorrow, and today stays exactly as it is.	இன்றைய வழக்கத்தை இங்கிருந்து மாற்ற முடியாது. உங்கள் மாற்றம் நாளை முதல் தொடங்கலாம்; இன்று இருப்பதுபோலவே இருக்கும்.
+“{1}” has already started today, so today can't be changed from here. Your change can start tomorrow, and today stays exactly as it is.	“{1}” இன்று ஏற்கனவே தொடங்கிவிட்டது, அதனால் இன்றை இங்கிருந்து மாற்ற முடியாது. உங்கள் மாற்றம் நாளை முதல் தொடங்கலாம்; இன்று இருப்பதுபோலவே இருக்கும்.
+Today can't be changed here	இன்றை இங்கே மாற்ற முடியாது
+Your change	உங்கள் மாற்றம்
+To change only today, use Change plan on Home.	இன்றை மட்டும் மாற்ற, முகப்பில் திட்டத்தை மாற்று பயன்படுத்துங்கள்.
+Save from tomorrow	நாளை முதல் சேமி
+Discard	விடு
+Start of day: {1} → {2}	நாளின் தொடக்கம்: {1} → {2}
+Start of day setting changed	நாளின் தொடக்க அமைப்பு மாறியது
+Deleted: {1}	நீக்கப்பட்டது: {1}
+Added: {1}	சேர்க்கப்பட்டது: {1}
+{1}: {2} min → {3} min	{1}: {2} நிமிடம் → {3} நிமிடம்
+{1}: settings changed	{1}: அமைப்புகள் மாறின
+Order of slots changed	ஸ்லாட்களின் வரிசை மாறியது
+Routine changed	வழக்கம் மாறியது
+Exam Specific	தேர்வுக்கு ஏற்றவை
+Everyday	தினசரிக்கு
+Hide	மறை
+Pick one, then change any slot you like.	ஒன்றைத் தேர்ந்தெடுங்கள், பிறகு எந்த ஸ்லாட்டையும் உங்கள் விருப்பப்படி மாற்றுங்கள்.
+Wakes at {1}	{1} மணிக்கு எழுதல்
+Templates	டெம்ப்ளேட்கள்
+From “{1}”	“{1}” இலிருந்து
+Send my routine	என் வழக்கத்தை அனுப்பு
+A message with a code for friends	நண்பர்களுக்கான குறியீட்டுடன் ஒரு செய்தி
+Today's slots, ready for WhatsApp	இன்றைய ஸ்லாட்கள், WhatsApp-க்குத் தயார்
+Use a code someone sent you	யாரோ அனுப்பிய குறியீட்டைப் பயன்படுத்து
+Replaces the slots of “{1}”. You can undo it.	“{1}” இன் ஸ்லாட்கள் மாற்றப்படும். இதைச் செயல்தவிர்க்கலாம்.
+Sample day	மாதிரி நாள்
+The day the app begins with.	செயலி தொடங்கும் நாள்.
+Hidden for now. It comes back until you make your own schedule.	இப்போதைக்கு மறைக்கப்பட்டது. நீங்கள் சொந்த அட்டவணையை உருவாக்கும் வரை இது மீண்டும் வரும்.
+A friend invited you	ஒரு நண்பர் உங்களை அழைத்துள்ளார்
+Use their code to get 7 days of free Pro. Your friend also earns Pro days once you have used the app on two different days.	அவருடைய குறியீட்டைப் பயன்படுத்தி 7 நாள் இலவச Pro பெறுங்கள். நீங்கள் இரண்டு வெவ்வேறு நாட்களில் செயலியைப் பயன்படுத்திய பிறகு உங்கள் நண்பருக்கும் Pro நாட்கள் கிடைக்கும்.
+Get 7 days of Pro	7 நாள் Pro பெறுங்கள்

@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Invite friends: your code, buttons to share it (the phone's share sheet, WhatsApp, Telegram), the reward schedule, a box for a
+ * Invite friends: your code, a button to share it (the phone's share sheet), the reward schedule, a box for a
  * friend's code, and what your invites have earned. It is the only screen that talks to the invite server, always in the background,
  * with short time-outs: a server that is down only shows a short message here, and nothing else in the app notices.
  * A link like dinacharya://invite/ABCD2345 (from the invite web page) opens this screen with the code filled in.
@@ -29,6 +29,9 @@ public class InviteActivity extends LangActivity {
     private String code = "";
     private int first = 4, firstDays = 7, laterDays = 3, max = 10;
     private volatile boolean gone;
+
+    /** Extras from the sheet that offers the code of the friend's link (see {@link InviteOffer}). */
+    static final String EXTRA_CODE = "friend_code", EXTRA_AUTO = "friend_code_use";
 
     @Override
     protected void onCreate(Bundle b) {
@@ -43,8 +46,14 @@ public class InviteActivity extends LangActivity {
         sv.addView(body, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         Insets.pad(sv);
         setContentView(sv);
-        build(linkedCode(getIntent()));
+        String pre = linkedCode(getIntent());
+        String stored = InstallReferrerReader.pendingCode(this);
+        if (pre.isEmpty()) pre = stored;
+        build(pre);
         refresh();
+        // The code is used by itself only when it is the one kept from the install link and the person chose to use it in the sheet.
+        Intent in = getIntent();
+        if (in != null && in.getBooleanExtra(EXTRA_AUTO, false) && !stored.isEmpty() && stored.equals(in.getStringExtra(EXTRA_CODE)) && friendCode != null) redeem();
     }
 
     @Override
@@ -83,17 +92,7 @@ public class InviteActivity extends LangActivity {
         codeView.setGravity(android.view.Gravity.CENTER);
         codeView.setPadding(0, Ui.dp(this, 10), 0, Ui.dp(this, 10));
         mine.addView(codeView, Ui.wide(this, 6));
-        mine.addView(Ui.button(this, "Share", true, v -> share(null)), Ui.wide(this, 8));
-        LinearLayout row = new LinearLayout(this);
-        row.setOrientation(LinearLayout.HORIZONTAL);
-        row.addView(Ui.button(this, "WhatsApp", false, v -> share("com.whatsapp")), new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
-        LinearLayout.LayoutParams gap = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
-        gap.leftMargin = Ui.dp(this, 8);
-        row.addView(Ui.button(this, "Telegram", false, v -> share("org.telegram.messenger")), gap);
-        LinearLayout.LayoutParams gap2 = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
-        gap2.leftMargin = Ui.dp(this, 8);
-        row.addView(Ui.button(this, "Copy", false, v -> copyCode()), gap2);
-        mine.addView(row, Ui.wide(this, 8));
+        mine.addView(Ui.button(this, "Share", true, v -> share()), Ui.wide(this, 8));
         statusView = small("", Ui.MUTED);
         mine.addView(statusView, Ui.wide(this, 10));
 
@@ -219,21 +218,13 @@ public class InviteActivity extends LangActivity {
         return "I plan my day with Dinacharya Launcher. Get it and use my code " + code + " for 7 days of free Pro: " + LINK + code;
     }
 
-    /** Opens the phone's share sheet, or one app directly when {@code pkg} is given (with the share sheet if that app is not installed). */
-    private void share(String pkg) {
+    /** Opens the phone's share sheet with the invite message. If the phone has no share sheet, the message is copied instead. */
+    private void share() {
         if (code.isEmpty()) {
             say("Your code is not ready yet. Check your connection and try again.");
             return;
         }
         Intent send = new Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, message());
-        try {
-            if (pkg != null) {
-                startActivity(new Intent(send).setPackage(pkg));
-                return;
-            }
-        } catch (ActivityNotFoundException | SecurityException e) {
-            say("That app is not on this phone. Choose another one.");
-        }
         try {
             startActivity(Intent.createChooser(send, "Invite a friend"));
         } catch (ActivityNotFoundException | SecurityException e) {

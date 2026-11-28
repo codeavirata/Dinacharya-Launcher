@@ -217,7 +217,13 @@ final class RoutinePage extends Page {
 
     @Override
     void build(LinearLayout body) {
-        title("Routine", "Your day, slot by slot");
+        body.addView(RoutineSheets.header(a, "Routine", "Your day, slot by slot",
+                RoutineSheets.roundButton(a, RoutineSheets.Icon.GRID, "Templates", v -> openTemplates()),
+                RoutineSheets.roundButton(a, RoutineSheets.Icon.SHARE, "Share", v -> openShare())), new LinearLayout.LayoutParams(-1, WRAP));
+
+        // For a person with no schedule of their own yet: the days for an exam come first.
+        makeExam();
+        body.addView(examBox, wide(16));
 
         alarmBanner = new LinearLayout(a);
         alarmBanner.setOrientation(LinearLayout.VERTICAL);
@@ -270,13 +276,6 @@ final class RoutinePage extends Page {
         rowsBox = column();
         body.addView(rowsBox, wide(2));
         dragger = new RowDragger(rowsBox, scroll, dp(10), dp(80), dp(30), (from, to) -> moveSlot(from, to));
-        Expander.Part tools = Expander.more(a, body, "More tools", "routine_tools", false);
-        tools.body.addView(pair(button("Start from a template", false, v -> chooseTemplate()),
-                button("Share this routine", false, v -> shareRoutine())), wide(6));
-        tools.body.addView(button("Share my day as a picture", false, v -> DayCard.share(a)), wide(6));
-        tools.body.addView(pair(button("Paste a routine", false, v -> pasteRoutine()),
-                button("Reset to sample", false, v -> confirmReset())), wide(6));
-
         // Activity types (shared by all routines).
         LinearLayout types = Expander.card(a, body, "Activity types", "Give a slot a type", "Study, Exercise, Meal and the rest, by kind",
                 "routine_types", false).body;
@@ -286,6 +285,7 @@ final class RoutinePage extends Page {
         typesBox = column();
         types.addView(typesBox, wide(6));
         a.addFooter(body);
+        refreshExam();
     }
 
     @Override
@@ -296,11 +296,13 @@ final class RoutinePage extends Page {
         rebuildPicker();
         rebuildRows();
         refreshStart();
+        refreshExam();
     }
 
     @Override
     void hidden() {
         a.flushSave();
+        rememberExamDone();   // the person has left the tab with a schedule of their own: the section does not come back
     }
 
     /** The slots are drawn again only when something changed (or the day turned: the dates read Today and Tomorrow). */
@@ -1504,16 +1506,70 @@ final class RoutinePage extends Page {
                 .show();
     }
 
-    /** The ready-made days: pick one, confirm, and the slots of this routine are replaced (it can be undone). */
-    private void chooseTemplate() {
-        int n = RoutineTemplates.count();
-        final CharSequence[] names = new CharSequence[n];
-        for (int i = 0; i < n; i++) names[i] = RoutineTemplates.name(i);
-        new DBuilder(a)
-                .setMenu(names, -1, (d, which) -> confirmTemplate(which))
-                .setTitle("Start from a template")
-                .setNegativeButton("Cancel", null)
-                .show();
+    /** The templates sheet: the days to start from, in two groups, and the sample day. */
+    private void openTemplates() {
+        RoutineSheets.templates(a, sched().name, main().fmt24, RoutineSheets.kindColors(main()), this::confirmTemplate, this::confirmReset);
+    }
+
+    /** The share sheet: send the routine, share the day as a picture, paste a routine. */
+    private void openShare() {
+        RoutineSheets.share(a, sched().name, this::shareRoutine, () -> DayCard.share(a), this::pasteRoutine);
+    }
+
+    // ---- Exam Specific (for a person with no schedule of their own yet; the rules are in FirstDay)
+
+    private static final String KEY_FIRST_DAY_DONE = "first_day_done";
+    /** Set when Hide is tapped before a schedule of one's own exists: the section is away until the app is opened again. */
+    private static boolean examHiddenThisSession;
+    private LinearLayout examBox;
+    /** The look and clock the tiles were drawn for (the bars use the colours of the routine's look). */
+    private int examPalette = -1;
+    private boolean examH24;
+
+    private void makeExam() {
+        examPalette = main().palette;
+        examH24 = main().fmt24;
+        examBox = RoutineSheets.examSection(a, RoutineSheets.kindColors(main()), examH24, this::confirmTemplate, this::hideExam);
+    }
+
+    private boolean examDone() {
+        try {
+            return Store.prefs(a).getBoolean(KEY_FIRST_DAY_DONE, false);
+        } catch (RuntimeException e) {
+            return false;
+        }
+    }
+
+    private void rememberExamDone() {
+        try {
+            if (FirstDay.done(main(), false)) Store.prefs(a).edit().putBoolean(KEY_FIRST_DAY_DONE, true).apply();
+        } catch (RuntimeException e) {
+            CrashLog.note(a, "first day", e);
+        }
+    }
+
+    /** Shows or hides the section: gone once the person has a schedule of their own, and while it is hidden for this session. */
+    private void refreshExam() {
+        if (examBox == null) return;
+        if ((main().palette != examPalette || main().fmt24 != examH24) && examBox.getParent() instanceof ViewGroup) {
+            ViewGroup parent = (ViewGroup) examBox.getParent();
+            int at = parent.indexOfChild(examBox);
+            ViewGroup.LayoutParams lp = examBox.getLayoutParams();
+            parent.removeViewAt(at);
+            makeExam();
+            parent.addView(examBox, at, lp);
+        }
+        examBox.setVisibility(FirstDay.shown(main(), examDone(), examHiddenThisSession) ? View.VISIBLE : View.GONE);
+    }
+
+    private void hideExam() {
+        if (FirstDay.hide(main()) == FirstDay.HIDE_FOR_GOOD) {
+            rememberExamDone();
+        } else {
+            examHiddenThisSession = true;
+            a.toastText("Hidden for now. It comes back until you make your own schedule.");
+        }
+        if (examBox != null) examBox.setVisibility(View.GONE);
     }
 
     private void confirmTemplate(final int which) {

@@ -1,5 +1,6 @@
 package app.dinacharya.wallpaper;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -40,7 +41,6 @@ public class MainActivity extends LangActivity {
     /** Typing is saved this long after the last key, so the phone is not busy on every letter. */
     private static final long SAVE_DELAY_MS = 500;
     private static final long UNDO_MS = 6000;
-    private static final long REFUSE_MS = 10000;
 
     private Routine routine;
     ExtraSections extras;
@@ -287,6 +287,8 @@ public class MainActivity extends LangActivity {
         HomeRole.look(this);
         StrongMode.afterReturn(this);   // the strong lock runs whenever something is locked or paused and it is allowed; asks for the next permission
         Quiet.refresh(this);   // library mode may have begun or ended while the app was closed
+        InstallReferrerReader.check(this, () -> InviteOffer.maybeShow(this));   // the code of a friend's invite link, read once after an install from Play
+        ui.postDelayed(() -> InviteOffer.maybeShow(this), 2500);   // the offer waits for the other first-run questions
         InviteSync.opened(this);   // free Pro days from invites: counts a day of use for a friend's record, collects rewards in the background
         RateApp.used(this);   // counts the days the app is in use, for the card that offers a rating on Google Play
         // The alarms and the wallpaper are looked at again every time the dashboard comes up (settlePass above saved first).
@@ -1041,16 +1043,20 @@ public class MainActivity extends LangActivity {
         DriveJob.changedSoon(this);
     }
 
-    /** The edit would change a slot of today that was already lived: nothing is saved, the screen goes back to the saved routine. */
+    /** The sheet about a refused edit, while it is open (a second refusal does not pile another on top). */
+    private AlertDialog refusal;
+
+    /**
+     * The edit would change a slot of today that was already lived: nothing is saved and the screen goes back to the saved routine. A sheet
+     * says what the change is and offers to save it from tomorrow, with today left as it was.
+     */
     private void refuseEdit(Routine before, RoutineGuard.Verdict v) {
         final String editedText = routine.serialize();
+        java.util.List<String> changes = RoutineDiff.changes(before, routine, v.day, before.fmt24);
         routine.replaceWith(before);
         routineChanged();
-        String msg = v.slot.isEmpty()
-                ? "Strict routine is on, so today's routine can't be changed here. To change today, use Change plan on Home."
-                : "“" + v.slot + "” has already started today, so it can't be changed here. To change today, use Change plan on Home.";
-        if (v.canPin) bar(msg, "FROM TOMORROW", () -> saveFromTomorrow(editedText), REFUSE_MS);
-        else bar(msg, null, null, REFUSE_MS);
+        if (isFinishing() || (refusal != null && refusal.isShowing())) return;
+        refusal = SaveTomorrowDialog.show(this, v.slot, v.canPin, changes, () -> saveFromTomorrow(editedText));
     }
 
     /** Saves the refused routine so that today stays exactly as it was and the change starts tomorrow. */

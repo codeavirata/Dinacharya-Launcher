@@ -17630,5 +17630,250 @@
 "src": [
 "added"
 ]
+},
+{
+"id": 6024,
+"en": "Save this change from tomorrow?",
+"src": [
+"added"
+]
+},
+{
+"id": 6025,
+"en": "Strict routine is on",
+"src": [
+"added"
+]
+},
+{
+"id": 6026,
+"en": "Today's routine can't be changed from here. Your change can start tomorrow, and today stays exactly as it is.",
+"src": [
+"added"
+]
+},
+{
+"id": 6027,
+"en": "“{1}” has already started today, so today can't be changed from here. Your change can start tomorrow, and today stays exactly as it is.",
+"src": [
+"added"
+]
+},
+{
+"id": 6028,
+"en": "Today can't be changed here",
+"src": [
+"added"
+]
+},
+{
+"id": 6029,
+"en": "Your change",
+"src": [
+"added"
+]
+},
+{
+"id": 6030,
+"en": "To change only today, use Change plan on Home.",
+"src": [
+"added"
+]
+},
+{
+"id": 6031,
+"en": "Save from tomorrow",
+"src": [
+"added"
+]
+},
+{
+"id": 6032,
+"en": "Discard",
+"src": [
+"added"
+]
+},
+{
+"id": 6033,
+"en": "Start of day: {1} → {2}",
+"src": [
+"added"
+]
+},
+{
+"id": 6034,
+"en": "Start of day setting changed",
+"src": [
+"added"
+]
+},
+{
+"id": 6035,
+"en": "Deleted: {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 6036,
+"en": "Added: {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 6037,
+"en": "{1}: {2} min → {3} min",
+"src": [
+"added"
+]
+},
+{
+"id": 6038,
+"en": "{1}: settings changed",
+"src": [
+"added"
+]
+},
+{
+"id": 6039,
+"en": "Order of slots changed",
+"src": [
+"added"
+]
+},
+{
+"id": 6040,
+"en": "Routine changed",
+"src": [
+"added"
+]
+},
+{
+"id": 6041,
+"en": "Exam Specific",
+"src": [
+"added"
+]
+},
+{
+"id": 6042,
+"en": "Everyday",
+"src": [
+"added"
+]
+},
+{
+"id": 6043,
+"en": "Hide",
+"src": [
+"added"
+]
+},
+{
+"id": 6044,
+"en": "Pick one, then change any slot you like.",
+"src": [
+"added"
+]
+},
+{
+"id": 6045,
+"en": "Wakes at {1}",
+"src": [
+"added"
+]
+},
+{
+"id": 6046,
+"en": "Templates",
+"src": [
+"added"
+]
+},
+{
+"id": 6047,
+"en": "From “{1}”",
+"src": [
+"added"
+]
+},
+{
+"id": 6048,
+"en": "Send my routine",
+"src": [
+"added"
+]
+},
+{
+"id": 6049,
+"en": "A message with a code for friends",
+"src": [
+"added"
+]
+},
+{
+"id": 6050,
+"en": "Today's slots, ready for WhatsApp",
+"src": [
+"added"
+]
+},
+{
+"id": 6051,
+"en": "Use a code someone sent you",
+"src": [
+"added"
+]
+},
+{
+"id": 6052,
+"en": "Replaces the slots of “{1}”. You can undo it.",
+"src": [
+"added"
+]
+},
+{
+"id": 6053,
+"en": "Sample day",
+"src": [
+"added"
+]
+},
+{
+"id": 6054,
+"en": "The day the app begins with.",
+"src": [
+"added"
+]
+},
+{
+"id": 6055,
+"en": "Hidden for now. It comes back until you make your own schedule.",
+"src": [
+"added"
+]
+},
+{
+"id": 6056,
+"en": "A friend invited you",
+"src": [
+"added"
+]
+},
+{
+"id": 6057,
+"en": "Use their code to get 7 days of free Pro. Your friend also earns Pro days once you have used the app on two different days.",
+"src": [
+"added"
+]
+},
+{
+"id": 6058,
+"en": "Get 7 days of Pro",
+"src": [
+"added"
+]
 }
 ]

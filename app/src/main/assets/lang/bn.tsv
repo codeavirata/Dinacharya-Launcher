@@ -2568,3 +2568,39 @@ A slot that has already started today cannot be changed from the Routine tab: to
 Lock all of today's routine	আজকের পুরো রুটিন লক করুন
 With this on, nothing of the day that is running can be changed from the Routine tab, started or not. Changes for tomorrow and later are never blocked.	এটি চালু থাকলে, যে দিনটি চলছে তার কিছুই রুটিন ট্যাব থেকে বদলানো যায় না, শুরু হয়ে থাকুক বা না থাকুক। কাল এবং তার পরের বদল কখনও আটকানো হয় না।
 This is your saved routine. A change here stays until you change it again. A slot that has already started today cannot be changed here: to change today, use Change plan on Home.	এটি আপনার সংরক্ষিত রুটিন। এখানে করা বদল আবার না বদলানো পর্যন্ত থাকে। আজ যে স্লট শুরু হয়ে গেছে তা এখানে বদলানো যাবে না: আজ বদলাতে হোমে পরিকল্পনা বদলান ব্যবহার করুন।
+# build 88: save from tomorrow, Routine tab, invite link
+Save this change from tomorrow?	এই পরিবর্তন আগামীকাল থেকে সংরক্ষণ করবেন?
+Strict routine is on	কঠোর রুটিন চালু আছে
+Today's routine can't be changed from here. Your change can start tomorrow, and today stays exactly as it is.	আজকের রুটিন এখান থেকে বদলানো যাবে না। আপনার পরিবর্তন আগামীকাল থেকে শুরু হতে পারে, আর আজ যেমন আছে তেমনই থাকবে।
+“{1}” has already started today, so today can't be changed from here. Your change can start tomorrow, and today stays exactly as it is.	“{1}” আজ শুরু হয়ে গেছে, তাই আজ এখান থেকে বদলানো যাবে না। আপনার পরিবর্তন আগামীকাল থেকে শুরু হতে পারে, আর আজ যেমন আছে তেমনই থাকবে।
+Today can't be changed here	আজ এখানে বদলানো যাবে না
+Your change	আপনার পরিবর্তন
+To change only today, use Change plan on Home.	শুধু আজ বদলাতে হোমে পরিকল্পনা বদলান ব্যবহার করুন।
+Save from tomorrow	আগামীকাল থেকে সংরক্ষণ করুন
+Discard	বাদ দিন
+Start of day: {1} → {2}	দিনের শুরু: {1} → {2}
+Start of day setting changed	দিনের শুরুর সেটিং বদলেছে
+Deleted: {1}	মুছে ফেলা হয়েছে: {1}
+Added: {1}	যোগ করা হয়েছে: {1}
+{1}: {2} min → {3} min	{1}: {2} মিনিট → {3} মিনিট
+{1}: settings changed	{1}: সেটিং বদলেছে
+Order of slots changed	স্লটের ক্রম বদলেছে
+Routine changed	রুটিন বদলেছে
+Exam Specific	পরীক্ষা অনুযায়ী
+Everyday	প্রতিদিনের জন্য
+Hide	লুকান
+Pick one, then change any slot you like.	একটি বেছে নিন, তারপর যেকোনো স্লট নিজের পছন্দমতো বদলান।
+Wakes at {1}	{1}-এ ওঠা
+Templates	টেমপ্লেট
+From “{1}”	“{1}” থেকে
+Send my routine	আমার রুটিন পাঠান
+A message with a code for friends	বন্ধুদের জন্য কোডসহ একটি বার্তা
+Today's slots, ready for WhatsApp	আজকের স্লট, WhatsApp-এর জন্য তৈরি
+Use a code someone sent you	কেউ পাঠালে সেই কোড ব্যবহার করুন
+Replaces the slots of “{1}”. You can undo it.	“{1}”-এর স্লট বদলে যাবে। আপনি এটি আগের অবস্থায় ফেরাতে পারবেন।
+Sample day	নমুনা দিন
+The day the app begins with.	যে দিন দিয়ে অ্যাপ শুরু হয়।
+Hidden for now. It comes back until you make your own schedule.	এখনকার জন্য লুকানো হলো। আপনি নিজের রুটিন না বানানো পর্যন্ত এটি ফিরে আসবে।
+A friend invited you	একজন বন্ধু আপনাকে আমন্ত্রণ জানিয়েছে
+Use their code to get 7 days of free Pro. Your friend also earns Pro days once you have used the app on two different days.	তাঁর কোড ব্যবহার করে 7 দিনের বিনামূল্যের Pro পান। আপনি দুটি আলাদা দিনে অ্যাপ ব্যবহার করলে আপনার বন্ধুও Pro-এর দিন পাবেন।
+Get 7 days of Pro	7 দিনের Pro পান

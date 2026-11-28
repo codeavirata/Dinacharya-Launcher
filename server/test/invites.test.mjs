@@ -1,9 +1,10 @@
-import { handle, landing, FRIEND_DAYS, INVITER_DAYS, INVITER_DAYS_LATER, TIER_ONE_COUNT, MAX_REWARDED_INVITES } from '../src/index.js';
+import { handle, playUrl, isBot, FRIEND_DAYS, INVITER_DAYS, INVITER_DAYS_LATER, TIER_ONE_COUNT, MAX_REWARDED_INVITES } from '../src/index.js';
 
 // A pretend D1 that understands exactly the statements the Worker uses.
 function fakeDb() {
-  const codes = new Map(), reds = new Map();
-  return { prepare(sql) {
+  let db;
+  const codes = new Map(), reds = new Map(), clicks = new Map();
+  db = { clicks, down: false, prepare(sql) {
     let args = [];
     const q = {
       bind(...a) { args = a; return q; },
@@ -18,6 +19,13 @@ function fakeDb() {
         throw new Error('first: ' + sql);
       },
       async run() {
+        if (db.down) throw new Error('database is down');
+        if (sql.startsWith('INSERT INTO clicks')) {
+          const [code, now, again] = args;
+          let has = false; for (const r of codes.values()) if (r.code === again) has = true;
+          if (!has) return {};
+          const c = clicks.get(code); clicks.set(code, c ? { n: c.n + 1, last: now } : { n: 1, last: now }); return {};
+        }
         if (sql.startsWith('INSERT INTO codes')) {
           for (const r of codes.values()) if (r.code === args[1]) throw new Error('unique');
           if (codes.has(args[0])) throw new Error('pk'); codes.set(args[0], { code: args[1] }); return {};
@@ -30,6 +38,7 @@ function fakeDb() {
     };
     return q;
   } };
+  return db;
 }
 let fails = 0; const ok = (n, v) => { console.log((v ? 'PASS ' : 'FAIL ') + n); if (!v) fails++; };
 const env = { DB: fakeDb() };
@@ -74,14 +83,53 @@ ok('waiting days follow the tiers (3 at 7 days, then 3 days each)', j.days === 3
 ok('status tells the app the tier schedule', j.tiers && j.tiers.first === TIER_ONE_COUNT && j.tiers.laterDays === INVITER_DAYS_LATER);
 [s, j] = await post('/v1/claim', { device: dev(1) });
 ok('claim pays the tiered total and the lifetime total is 46', j.days === 39 && j.days + INVITER_DAYS === 4 * INVITER_DAYS + (MAX_REWARDED_INVITES - 4) * INVITER_DAYS_LATER);
-const lp = await handle(new Request('https://x.test/i/' + code, { method: 'GET' }), env); const html = await lp.text();
-ok('the invite link page shows the code and the Play button', lp.status === 200 && html.includes(code) && html.includes('referrer=invite_' + code) && html.includes('scheme=dinacharya'));
-const lp2 = await handle(new Request('https://x.test/i/%3Cscript%3E', { method: 'GET' }), env);
-ok('a bad link is not shown back as html', lp2.status === 404 || !(await lp2.text()).includes('<script>'));
-const lp3 = await handle(new Request('https://x.test/i/abc', { method: 'GET' }), env);
-ok('a short bad code still gives a page with the Play button, no code', lp3.status === 200 && (await lp3.text()).includes('play.google.com'));
+const link = (c, ua) => handle(new Request('https://x.test/i/' + c, { method: 'GET', headers: ua ? { 'user-agent': ua } : {} }), env);
+const PLAYBASE = 'https://play.google.com/store/apps/details?id=app.dinacharya.launcher';
+let lp = await link(code, 'Mozilla/5.0 (Linux; Android 14) Chrome/126 Mobile Safari/537.36');
+ok('the invite link goes straight to Google Play with the code as the referrer', lp.status === 302 && lp.headers.get('location') === PLAYBASE + '&referrer=invite_' + code);
+ok('the redirect has no page and is never cached', (await lp.text()) === '' && lp.headers.get('cache-control') === 'no-store');
+ok('the open was counted for that code', env.DB.clicks.get(code) && env.DB.clicks.get(code).n === 1);
+await link(code.toLowerCase(), 'Chrome');
+ok('a code in small letters is the same code', env.DB.clicks.get(code).n === 2);
+await link(code, 'WhatsApp/2.24.1 A');
+await link(code, 'facebookexternalhit/1.1');
+await link(code, 'TelegramBot (like TwitterBot)');
+ok('the programs that make a link preview are not counted', env.DB.clicks.get(code).n === 2);
+lp = await link(code, 'WhatsApp/2.24.1 A');
+ok('a preview program is still sent on to Play (so the preview shows the app)', lp.status === 302 && lp.headers.get('location').includes('referrer=invite_' + code));
+await link('ZZZZZZZZ', 'Chrome');
+ok('a code that does not exist is not counted', !env.DB.clicks.has('ZZZZZZZZ') && env.DB.clicks.size === 1);
+lp = await link('ZZZZZZZZ', 'Chrome');
+ok('a code that does not exist still goes to Play', lp.status === 302 && lp.headers.get('location').startsWith(PLAYBASE));
+env.DB.down = true;
+lp = await link(code, 'Chrome');
+ok('a database that is down does not stop the redirect', lp.status === 302 && lp.headers.get('location') === PLAYBASE + '&referrer=invite_' + code);
+env.DB.down = false;
+const lp2 = await link('%3Cscript%3E', 'Chrome');
+ok('a link that is not a code at all is a 404 and shows nothing back', lp2.status === 404 && !(await lp2.text()).includes('<script>'));
+const lp3 = await link('abc', 'Chrome');
+ok('a short bad code goes to Play without a referrer and is not counted', lp3.status === 302 && lp3.headers.get('location') === PLAYBASE && env.DB.clicks.size === 1);
+const lp4 = await link('', 'Chrome');
+ok('an empty code is not a link', lp4.status === 404);
+ok('playUrl: a full code adds the referrer, anything else does not', playUrl('ABCD2345') === PLAYBASE + '&referrer=invite_ABCD2345' && playUrl('') === PLAYBASE && playUrl('ABC') === PLAYBASE);
+ok('isBot knows the preview programs and not a phone browser', isBot('WhatsApp/2.23') && isBot('Mozilla/5.0 (compatible; Googlebot/2.1)') && !isBot('Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 Chrome/126.0 Mobile Safari/537.36') && !isBot('') && !isBot(null));
 [s, j] = await post('/v1/nothing', { device: dev(1) });
 ok('unknown path is 404', s === 404);
 const r = await handle(new Request('https://x.test/v1/code', { method: 'POST', body: 'x'.repeat(5000) }), env);
 ok('a huge body is refused', r.status === 400);
+// The click statement against a real SQLite (D1 is SQLite), with the real schema: counts an existing code, ignores any other.
+try {
+  const { DatabaseSync } = await import('node:sqlite');
+  const fs = await import('node:fs');
+  const real = new DatabaseSync(':memory:');
+  real.exec(fs.readFileSync(new URL('../schema.sql', import.meta.url), 'utf8'));
+  real.prepare('INSERT INTO codes (device, code, created) VALUES (?, ?, ?)').run('device-real-000001', 'ABCD2345', 1);
+  const stmt = fs.readFileSync(new URL('../src/index.js', import.meta.url), 'utf8').match(/prepare\('(INSERT INTO clicks[^']*)'\)/)[1];
+  for (const [c, t] of [['ABCD2345', 10], ['ABCD2345', 20], ['NOSUCHCD', 30]]) real.prepare(stmt).run(c, t, c, t);
+  const rows = real.prepare('SELECT code, n, last FROM clicks').all();
+  ok('real SQLite: the click statement counts an existing code and ignores any other', rows.length === 1 && rows[0].code === 'ABCD2345' && rows[0].n === 2 && rows[0].last === 20);
+} catch (e) {
+  if (e && (e.code === 'ERR_UNKNOWN_BUILTIN_MODULE' || /node:sqlite/.test(String(e.message)))) console.log('SKIP real SQLite check (node:sqlite is not in this Node)');
+  else { console.log('FAIL real SQLite check: ' + e.message); fails++; }
+}
 console.log(fails ? fails + ' FAILED' : 'ALL PASS'); process.exit(fails ? 1 : 0);

@@ -29,7 +29,7 @@ public class LangFilesTest {
     static final String[] CODES = {"hi", "mr", "gu", "bn", "ta", "te"};
     /** English words that stay as they are in every language: names, and the apps used in the samples. */
     static final Set<String> KEEP = new HashSet<>(Arrays.asList("Dinacharya", "Launcher", "Pro", "Google", "Play", "Drive", "Android", "Chrome", "Maps",
-            "YouTube", "Pixel", "Wi", "Fi", "PDF", "UPSC", "Amit", "Singh", "Yoga"));
+            "YouTube", "Pixel", "Wi", "Fi", "PDF", "UPSC", "Amit", "Singh", "Yoga", "WhatsApp"));
     static final Pattern WORD = Pattern.compile("[A-Za-z]{3,}");
     static final Pattern MARK = Pattern.compile("\\{\\d+\\}");
 
@@ -318,6 +318,42 @@ public class LangFilesTest {
             "Lock all of today's routine",
             "With this on, nothing of the day that is running can be changed from the Routine tab, started or not. Changes for tomorrow and later are never blocked.",
             "This is your saved routine. A change here stays until you change it again. A slot that has already started today cannot be changed here: to change today, use Change plan on Home.",
+            // build 88: the save-from-tomorrow sheet, the Routine tab, the invite offer
+            "Save this change from tomorrow?",
+            "Strict routine is on",
+            "Today's routine can't be changed from here. Your change can start tomorrow, and today stays exactly as it is.",
+            "\u201cMorning focus block\u201d has already started today, so today can't be changed from here. Your change can start tomorrow, and today stays exactly as it is.",
+            "Today can't be changed here",
+            "Your change",
+            "To change only today, use Change plan on Home.",
+            "Save from tomorrow",
+            "Discard",
+            "Start of day: 5:30 AM \u2192 6:00 AM",
+            "Start of day setting changed",
+            "Deleted: Lunch",
+            "Added: Mock test",
+            "Breakfast: 30 min \u2192 20 min",
+            "Breakfast: settings changed",
+            "Order of slots changed",
+            "Routine changed",
+            "Exam Specific",
+            "Everyday",
+            "Hide",
+            "Pick one, then change any slot you like.",
+            "Wakes at 5:00 AM",
+            "Templates",
+            "From \u201cWeekdays\u201d",
+            "Send my routine",
+            "A message with a code for friends",
+            "Today's slots, ready for WhatsApp",
+            "Use a code someone sent you",
+            "Replaces the slots of \u201cWeekdays\u201d. You can undo it.",
+            "Sample day",
+            "The day the app begins with.",
+            "Hidden for now. It comes back until you make your own schedule.",
+            "A friend invited you",
+            "Use their code to get 7 days of free Pro. Your friend also earns Pro days once you have used the app on two different days.",
+            "Get 7 days of Pro",
     };
     /** Text that is the person's own, or a name, and must stay as it is. */
     static final String[] STAYS = {"Social apps", "Meeting time", "Study room", "Time left", "Chrome", "Watch a video", "Morning run"};

@@ -2568,3 +2568,39 @@ A slot that has already started today cannot be changed from the Routine tab: to
 Lock all of today's routine	ఈ రోజు మొత్తం దినచర్యను లాక్ చేయండి
 With this on, nothing of the day that is running can be changed from the Routine tab, started or not. Changes for tomorrow and later are never blocked.	దీన్ని ఆన్ చేస్తే, నడుస్తున్న రోజులో ఏదీ దినచర్య ట్యాబ్ నుండి మార్చలేరు, ప్రారంభమైనా కాకపోయినా. రేపటి మరియు ఆ తర్వాతి మార్పులు ఎప్పుడూ ఆపబడవు.
 This is your saved routine. A change here stays until you change it again. A slot that has already started today cannot be changed here: to change today, use Change plan on Home.	ఇది మీరు సేవ్ చేసిన దినచర్య. ఇక్కడ చేసిన మార్పు మీరు మళ్లీ మార్చే వరకు ఉంటుంది. ఈ రోజు ప్రారంభమైన స్లాట్‌ను ఇక్కడ మార్చలేరు: ఈ రోజును మార్చాలంటే హోమ్‌లో ప్లాన్ మార్చండి ఉపయోగించండి.
+# build 88: save from tomorrow, Routine tab, invite link
+Save this change from tomorrow?	ఈ మార్పును రేపటి నుండి సేవ్ చేయాలా?
+Strict routine is on	కఠిన దినచర్య ఆన్‌లో ఉంది
+Today's routine can't be changed from here. Your change can start tomorrow, and today stays exactly as it is.	ఈ రోజు దినచర్యను ఇక్కడి నుండి మార్చలేరు. మీ మార్పు రేపటి నుండి మొదలవుతుంది, ఈ రోజు ఉన్నట్లే ఉంటుంది.
+“{1}” has already started today, so today can't be changed from here. Your change can start tomorrow, and today stays exactly as it is.	“{1}” ఈ రోజు ఇప్పటికే మొదలైంది, కాబట్టి ఈ రోజును ఇక్కడి నుండి మార్చలేరు. మీ మార్పు రేపటి నుండి మొదలవుతుంది, ఈ రోజు ఉన్నట్లే ఉంటుంది.
+Today can't be changed here	ఈ రోజును ఇక్కడ మార్చలేరు
+Your change	మీ మార్పు
+To change only today, use Change plan on Home.	ఈ రోజును మాత్రమే మార్చడానికి హోమ్‌లో ప్లాన్ మార్చండి ఉపయోగించండి.
+Save from tomorrow	రేపటి నుండి సేవ్ చేయండి
+Discard	వదిలేయండి
+Start of day: {1} → {2}	రోజు ప్రారంభం: {1} → {2}
+Start of day setting changed	రోజు ప్రారంభ సెట్టింగ్ మారింది
+Deleted: {1}	తొలగించారు: {1}
+Added: {1}	జోడించారు: {1}
+{1}: {2} min → {3} min	{1}: {2} నిమిషాలు → {3} నిమిషాలు
+{1}: settings changed	{1}: సెట్టింగ్‌లు మారాయి
+Order of slots changed	స్లాట్ల క్రమం మారింది
+Routine changed	దినచర్య మారింది
+Exam Specific	పరీక్షకు తగినవి
+Everyday	రోజువారీకి
+Hide	దాచండి
+Pick one, then change any slot you like.	ఒకటి ఎంచుకోండి, తర్వాత ఏ స్లాట్‌నైనా మీకు నచ్చినట్లు మార్చండి.
+Wakes at {1}	{1}కి లేవడం
+Templates	టెంప్లేట్లు
+From “{1}”	“{1}” నుండి
+Send my routine	నా దినచర్యను పంపండి
+A message with a code for friends	స్నేహితుల కోసం కోడ్‌తో ఒక సందేశం
+Today's slots, ready for WhatsApp	ఈ రోజు స్లాట్లు, WhatsApp కోసం సిద్ధం
+Use a code someone sent you	ఎవరైనా పంపిన కోడ్‌ను ఉపయోగించండి
+Replaces the slots of “{1}”. You can undo it.	“{1}” స్లాట్లు మారుతాయి. మీరు దీన్ని అన్‌డూ చేయవచ్చు.
+Sample day	నమూనా రోజు
+The day the app begins with.	యాప్ మొదలయ్యే రోజు.
+Hidden for now. It comes back until you make your own schedule.	ప్రస్తుతానికి దాచాం. మీరు మీ సొంత దినచర్యను తయారు చేసే వరకు ఇది మళ్లీ వస్తుంది.
+A friend invited you	ఒక స్నేహితుడు మిమ్మల్ని ఆహ్వానించారు
+Use their code to get 7 days of free Pro. Your friend also earns Pro days once you have used the app on two different days.	వారి కోడ్ ఉపయోగించి 7 రోజుల ఉచిత Pro పొందండి. మీరు రెండు వేర్వేరు రోజుల్లో యాప్ ఉపయోగించిన తర్వాత మీ స్నేహితునికి కూడా Pro రోజులు వస్తాయి.
+Get 7 days of Pro	7 రోజుల Pro పొందండి

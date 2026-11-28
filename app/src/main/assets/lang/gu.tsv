@@ -2569,3 +2569,39 @@ A slot that has already started today cannot be changed from the Routine tab: to
 Lock all of today's routine	આજની આખી દિનચર્યા લૉક કરો
 With this on, nothing of the day that is running can be changed from the Routine tab, started or not. Changes for tomorrow and later are never blocked.	આ ચાલુ હોય ત્યારે, ચાલુ દિવસનું કશું પણ દિનચર્યા ટૅબમાંથી બદલી શકાતું નથી, ભલે શરૂ થયું હોય કે ન હોય. કાલના અને પછીના ફેરફાર ક્યારેય રોકાતા નથી.
 This is your saved routine. A change here stays until you change it again. A slot that has already started today cannot be changed here: to change today, use Change plan on Home.	આ તમારી સાચવેલી દિનચર્યા છે. અહીં કરેલો ફેરફાર તમે ફરી બદલો નહીં ત્યાં સુધી રહે છે. આજે જે સ્લૉટ શરૂ થઈ ગયો છે તેને અહીં બદલી શકાતો નથી: આજ બદલવા માટે હોમ પર યોજના બદલો વાપરો.
+# build 88: save from tomorrow, Routine tab, invite link
+Save this change from tomorrow?	આ ફેરફાર આવતીકાલથી સાચવવો છે?
+Strict routine is on	કડક દિનચર્યા ચાલુ છે
+Today's routine can't be changed from here. Your change can start tomorrow, and today stays exactly as it is.	આજની દિનચર્યા અહીંથી બદલી શકાતી નથી. તમારો ફેરફાર આવતીકાલથી શરૂ થઈ શકે છે, અને આજ જેમ છે તેમ જ રહેશે.
+“{1}” has already started today, so today can't be changed from here. Your change can start tomorrow, and today stays exactly as it is.	“{1}” આજે શરૂ થઈ ગયું છે, એટલે આજે અહીંથી બદલી શકાતું નથી. તમારો ફેરફાર આવતીકાલથી શરૂ થઈ શકે છે, અને આજ જેમ છે તેમ જ રહેશે.
+Today can't be changed here	આજે અહીં બદલી શકાતું નથી
+Your change	તમારો ફેરફાર
+To change only today, use Change plan on Home.	ફક્ત આજ બદલવા માટે હોમ પર યોજના બદલો વાપરો.
+Save from tomorrow	આવતીકાલથી સાચવો
+Discard	છોડી દો
+Start of day: {1} → {2}	દિવસની શરૂઆત: {1} → {2}
+Start of day setting changed	દિવસની શરૂઆતની સેટિંગ બદલાઈ
+Deleted: {1}	કાઢી નાખ્યું: {1}
+Added: {1}	ઉમેર્યું: {1}
+{1}: {2} min → {3} min	{1}: {2} મિનિટ → {3} મિનિટ
+{1}: settings changed	{1}: સેટિંગ બદલાઈ
+Order of slots changed	સ્લૉટનો ક્રમ બદલાયો
+Routine changed	દિનચર્યા બદલાઈ
+Exam Specific	પરીક્ષા મુજબ
+Everyday	રોજ માટે
+Hide	છુપાવો
+Pick one, then change any slot you like.	એક પસંદ કરો, પછી કોઈ પણ સ્લૉટ તમારી પસંદ મુજબ બદલો.
+Wakes at {1}	{1} વાગ્યે જાગવું
+Templates	ટેમ્પલેટ
+From “{1}”	“{1}” માંથી
+Send my routine	મારી દિનચર્યા મોકલો
+A message with a code for friends	મિત્રો માટે કોડ સાથેનો સંદેશ
+Today's slots, ready for WhatsApp	આજના સ્લૉટ, WhatsApp માટે તૈયાર
+Use a code someone sent you	કોઈએ મોકલેલો કોડ વાપરો
+Replaces the slots of “{1}”. You can undo it.	“{1}” ના સ્લૉટ બદલાઈ જશે. તમે તેને પાછું ફેરવી શકો છો.
+Sample day	નમૂનાનો દિવસ
+The day the app begins with.	જે દિવસથી એપ શરૂ થાય છે તે દિવસ.
+Hidden for now. It comes back until you make your own schedule.	હમણાં માટે છુપાવ્યું. તમે તમારી પોતાની દિનચર્યા બનાવો ત્યાં સુધી તે પાછું આવતું રહેશે.
+A friend invited you	એક મિત્રે તમને આમંત્રણ આપ્યું
+Use their code to get 7 days of free Pro. Your friend also earns Pro days once you have used the app on two different days.	તેમનો કોડ વાપરીને 7 દિવસનું મફત Pro મેળવો. તમે બે અલગ દિવસે એપ વાપરી લો પછી તમારા મિત્રને પણ Pro ના દિવસો મળશે.
+Get 7 days of Pro	7 દિવસનું Pro મેળવો

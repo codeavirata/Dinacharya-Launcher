@@ -51,6 +51,8 @@
     <!-- Needed to find which app is the home screen, to list the apps on the phone for the home screen's list of all
          apps, and to show app names in the phone-use report. -->
     <queries>
+        <!-- The Play Store app, to read the invite code that came with the install link. -->
+        <package android:name="com.android.vending" />
         <intent>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.HOME" />

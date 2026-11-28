@@ -54,30 +54,35 @@ async function codeFor(db, device) {
 
 const PLAY = 'https://play.google.com/store/apps/details?id=app.dinacharya.launcher';
 
-// The page a shared invite link opens: the code, a button to get the app, and a button to open it if it is already installed.
-export function landing(code) {
-  const c = code.length === 8 ? code : '';
-  const play = PLAY + (c ? '&referrer=' + encodeURIComponent('invite_' + c) : '');
-  const open = c ? 'intent://invite/' + c + '#Intent;scheme=dinacharya;package=app.dinacharya.launcher;end' : '';
-  const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dinacharya Launcher</title>
-<style>body{margin:0;font-family:system-ui,sans-serif;background:#0f1115;color:#f2f2f2;display:flex;min-height:100vh;align-items:center;justify-content:center;padding:20px;box-sizing:border-box}
-.c{max-width:420px;width:100%;text-align:center}h1{font-size:24px;margin:0 0 6px}p{color:#b8bcc6;line-height:1.5}
-.code{font-size:34px;letter-spacing:6px;font-weight:700;background:#1b1f27;border-radius:14px;padding:14px;margin:18px 0 6px}
-a.b,button{display:block;width:100%;box-sizing:border-box;margin-top:12px;padding:14px;border-radius:14px;border:0;font-size:16px;font-weight:600;text-decoration:none;cursor:pointer}
-a.p{background:#ffb454;color:#1a1204}a.s,button{background:#252a35;color:#f2f2f2}</style></head><body><div class="c">
-<h1>Plan your day with Dinacharya</h1><p>A friend invited you. Use their code in the app for <b>7 days of free Pro</b>.</p>
-${c ? `<div class="code" id="code">${c}</div><button onclick="navigator.clipboard&&navigator.clipboard.writeText('${c}');this.textContent='Copied'">Copy code</button>
-<a class="b p" href="${play}">Get the app on Google Play</a><a class="b s" href="${open}">I already have the app: open it</a>`
-: `<a class="b p" href="${play}">Get the app on Google Play</a>`}
-<p style="font-size:13px">In the app: Settings &gt; Invite friends &gt; enter the code.</p></div></body></html>`;
-  return new Response(html, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
+// Where a shared invite link goes: straight to the app's page on Google Play, with the code attached as the install referrer, which Play
+// keeps through the install so the app can read it on its first start. Nothing is shown and nothing needs a tap.
+export function playUrl(code) {
+  return code && code.length === 8 ? PLAY + '&referrer=' + encodeURIComponent('invite_' + code) : PLAY;
+}
+
+// The programs that fetch a link to make its preview (WhatsApp, Telegram and the like) are not friends opening it.
+export function isBot(ua) {
+  return typeof ua === 'string' && /whatsapp|telegrambot|facebookexternalhit|twitterbot|slackbot|discordbot|linkedinbot|skypeuripreview|bot\b|crawler|spider|preview/i.test(ua);
+}
+
+// The friend opened the link: count it for that code (only a code that exists; nothing about the friend is kept), then send them on.
+// A database that is down must never stop the redirect.
+async function openLink(req, env, code) {
+  if (code.length === 8 && !isBot(req.headers.get('user-agent'))) {
+    try {
+      const now = Date.now();
+      await env.DB.prepare('INSERT INTO clicks (code, n, last) SELECT ?, 1, ? WHERE EXISTS (SELECT 1 FROM codes WHERE code = ?) ON CONFLICT(code) DO UPDATE SET n = n + 1, last = ?')
+        .bind(code, now, code, now).run();
+    } catch (e) { /* the click is not counted; the friend still goes to Play */ }
+  }
+  return new Response(null, { status: 302, headers: { location: playUrl(code), 'cache-control': 'no-store' } });
 }
 
 export async function handle(req, env) {
   const url = new URL(req.url);
   if (req.method === 'GET' && url.pathname === '/') return json({ ok: true, service: 'dinacharya-invites' });
   const land = req.method === 'GET' ? url.pathname.match(/^\/i\/([A-Za-z0-9-]{1,16})$/) : null;
-  if (land) return landing(normaliseCode(land[1]));
+  if (land) return openLink(req, env, normaliseCode(land[1]));
   if (req.method !== 'POST') return bad('not found', 404);
   const db = env.DB;
   const b = await body(req);
